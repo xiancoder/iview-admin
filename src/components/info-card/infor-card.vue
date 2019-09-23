@@ -16,40 +16,40 @@
 <script>
 import CommonIcon from '_c/common-icon'
 export default {
-  name: 'InforCard',
-  components: {
-    CommonIcon
-  },
-  props: {
-    left: {
-      type: Number,
-      default: 36
+    name: 'InforCard',
+    components: {
+        CommonIcon
     },
-    color: {
-      type: String,
-      default: '#2d8cf0'
+    props: {
+        left: {
+            type: Number,
+            default: 36
+        },
+        color: {
+            type: String,
+            default: '#2d8cf0'
+        },
+        icon: {
+            type: String,
+            default: ''
+        },
+        iconSize: {
+            type: Number,
+            default: 20
+        },
+        shadow: {
+            type: Boolean,
+            default: false
+        }
     },
-    icon: {
-      type: String,
-      default: ''
-    },
-    iconSize: {
-      type: Number,
-      default: 20
-    },
-    shadow: {
-      type: Boolean,
-      default: false
+    computed: {
+        leftWidth () {
+            return `${this.left}%`
+        },
+        rightWidth () {
+            return `${100 - this.left}%`
+        }
     }
-  },
-  computed: {
-    leftWidth () {
-      return `${this.left}%`
-    },
-    rightWidth () {
-      return `${100 - this.left}%`
-    }
-  }
 }
 </script>
 

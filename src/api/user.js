@@ -1,84 +1,67 @@
-import axios from '@/libs/api.request'
-
-export const login = ({ userName, password }) => {
-  const data = {
-    userName,
-    password
-  }
-  return axios.request({
-    url: 'login',
-    data,
-    method: 'post'
-  })
-}
-
-export const getUserInfo = (token) => {
-  return axios.request({
-    url: 'get_info',
-    params: {
-      token
+import axios from 'axios'
+export const api = {
+    login ({ userName, password }) { // 管理员登录
+        return new Promise((resolve, reject) => {
+            axios.request({
+                method: 'POST',
+                url: 'api/user/login',
+                data: {
+                    'un': userName,
+                    'pw': password
+                }
+            }).then(res => {
+                resolve(res.data.token)
+            }).catch(e => {
+                reject(e)
+            })
+        })
     },
-    method: 'get'
-  })
-}
-
-export const logout = (token) => {
-  return axios.request({
-    url: 'logout',
-    method: 'post'
-  })
-}
-
-export const getUnreadCount = () => {
-  return axios.request({
-    url: 'message/count',
-    method: 'get'
-  })
-}
-
-export const getMessage = () => {
-  return axios.request({
-    url: 'message/init',
-    method: 'get'
-  })
-}
-
-export const getContentByMsgId = msg_id => {
-  return axios.request({
-    url: 'message/content',
-    method: 'get',
-    params: {
-      msg_id
+    getUserInfo () { // 用户所有信息
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: 'api/user/info',
+                data: { }
+            }).then(res => {
+                resolve(res.data.data)
+            })
+        })
+    },
+    logout () { // 退出登录
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: '/api/system/loginout',
+                data: { }
+            }).then(res => {
+                if (res.data.data && res.data.data.res) resolve()
+                else resolve(res.data.data)
+            })
+        })
+    },
+    newMessage () { // 最新消息数量
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: '/api/message/have',
+                data: { }
+            }).then(res => {
+                // 0隐藏 null表红点 数字代表数量
+                const newMessageNumber = res.data.data.res
+                resolve(newMessageNumber)
+            })
+        })
+    },
+    clearCache () { // 清除当前缓存
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: '/api/system/remove_all_cache',
+                data: { }
+            }).then(res => {
+                if (res.data.data && res.data.data.res) resolve()
+                else resolve(res.data.msg)
+            })
+        })
     }
-  })
-}
-
-export const hasRead = msg_id => {
-  return axios.request({
-    url: 'message/has_read',
-    method: 'post',
-    data: {
-      msg_id
-    }
-  })
-}
-
-export const removeReaded = msg_id => {
-  return axios.request({
-    url: 'message/remove_readed',
-    method: 'post',
-    data: {
-      msg_id
-    }
-  })
-}
-
-export const restoreTrash = msg_id => {
-  return axios.request({
-    url: 'message/restore',
-    method: 'post',
-    data: {
-      msg_id
-    }
-  })
 }

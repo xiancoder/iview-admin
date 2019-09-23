@@ -21,64 +21,64 @@
 <script>
 import draggable from 'vuedraggable'
 export default {
-  name: 'DragList',
-  components: {
-    draggable
-  },
-  props: {
-    list1: {
-      type: Array,
-      required: true
+    name: 'DragList',
+    components: {
+        draggable
     },
-    list2: {
-      type: Array,
-      default: () => []
-    },
-    dropConClass: {
-      type: Object,
-      default: () => ({})
-    }
-  },
-  data () {
-    return {
-      options: { group: 'drag_list' }
-    }
-  },
-  methods: {
-    handleListChange (value, type) {
-      if (type === 'left') this.$emit('update:list1', value)
-      else this.$emit('update:list2', value)
-    },
-    handleEnd (event, type) {
-      const srcClassName = (event.srcElement || event.target).classList[0]
-      const targetClassName = event.to.classList[0]
-      let src = ''
-      let target = ''
-      if (srcClassName === targetClassName) {
-        if (type === 'left') {
-          src = 'left'
-          target = 'left'
-        } else {
-          src = 'right'
-          target = 'right'
+    props: {
+        list1: {
+            type: Array,
+            required: true
+        },
+        list2: {
+            type: Array,
+            default: () => []
+        },
+        dropConClass: {
+            type: Object,
+            default: () => ({})
         }
-      } else {
-        if (type === 'left') {
-          src = 'left'
-          target = 'right'
-        } else {
-          src = 'right'
-          target = 'left'
+    },
+    data () {
+        return {
+            options: { group: 'drag_list' }
         }
-      }
-      this.$emit('on-change', {
-        src: src,
-        target: target,
-        oldIndex: event.oldIndex,
-        newIndex: event.newIndex
-      })
+    },
+    methods: {
+        handleListChange (value, type) {
+            if (type === 'left') this.$emit('update:list1', value)
+            else this.$emit('update:list2', value)
+        },
+        handleEnd (event, type) {
+            const srcClassName = (event.srcElement || event.target).classList[0]
+            const targetClassName = event.to.classList[0]
+            let src = ''
+            let target = ''
+            if (srcClassName === targetClassName) {
+                if (type === 'left') {
+                    src = 'left'
+                    target = 'left'
+                } else {
+                    src = 'right'
+                    target = 'right'
+                }
+            } else {
+                if (type === 'left') {
+                    src = 'left'
+                    target = 'right'
+                } else {
+                    src = 'right'
+                    target = 'left'
+                }
+            }
+            this.$emit('on-change', {
+                src: src,
+                target: target,
+                oldIndex: event.oldIndex,
+                newIndex: event.newIndex
+            })
+        }
     }
-  }
 }
 </script>
 <style lang="less">
