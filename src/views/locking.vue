@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-import unlock from './unlock.vue'
+import unlock from '@C/lockscreen/unlock.vue'
 export default {
     components: {
         unlock
@@ -28,6 +28,12 @@ export default {
     mounted () {
         this.showUnlock = true
         let lockScreenBack
+        const setLockBackSize = () => {
+            let x = document.body.clientWidth
+            let y = document.body.clientHeight
+            let r = Math.sqrt(x * x + y * y)
+            return parseInt(r)
+        }
         if (!document.getElementById('lock_screen_back')) {
             let lockdiv = document.createElement('div')
             lockdiv.setAttribute('id', 'lock_screen_back')

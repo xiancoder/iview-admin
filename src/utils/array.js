@@ -4,7 +4,7 @@
 // =====================
 // liuyp 2018年12月20日11:28:08
 /// ///////////////////////////////////////////////////////////////////////////
-export const unique = (A) => {
+export const unique = (array) => {
     return Array.from(new Set(array))
 }
 /// ///////////////////////////////////////////////////////////////////////////
@@ -20,7 +20,7 @@ export const uniqueObj = (data, fun) => {
         for (var j = 0, len2 = newData.length; j < len2; j++) {
             if (fun(newData[j], data[i])) { flag = 0; break; }
         }
-        flag === 1 ? newData.push(data[i]) : false;
+        if (flag === 1) newData.push(data[i])
     }
     return newData;
 }
@@ -71,7 +71,8 @@ export const contrast = (arrA, arrB) => {
 // liuyp 2019年9月20日11:10:17
 /// ///////////////////////////////////////////////////////////////////////////
 export const arrayFlatten = (ac) => {
-    let array = [], g = ac;
+    let array = []
+    let g = ac
     for (var i = 0; i < g.length; i++) {
         if (g[i] instanceof Array) { array = array.concat(arrayFlatten(g[i])); } else { array.push(g[i]); }
     }

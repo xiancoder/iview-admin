@@ -1,5 +1,5 @@
-import Main from '@/views/main'
-// import parentView from '@/components/parent-view'
+import Main from '@V/main'
+import parentView from '@C/parent-view'
 
 /**
  * iview-admin中meta除了原生参数外可配置的参数:
@@ -16,36 +16,52 @@ import Main from '@/views/main'
  *    beforeCloseName: (-) 设置该字段，则在关闭当前tab页时会去'@/router/before-close.js'里寻找该字段名对应的方法，作为关闭前的钩子函数
  * }
  */
-// 处理一二级路由
-const makeOneLevelRoute = (config) => {
+// 处理两层路由
+const makeTwoLevelRoute = (config) => {
     config.name = config.path
     config.component = config.component || Main
     config.path = '/' + config.path
     config.children = config.children || []
     config.children.forEach((v, i, a) => {
-        makeTwoLevelRoute(v, config.name)
+        makeTwoLevelRouteItem(v, config.name)
     })
     return config
 }
-// 处理三级路由
-const makeTwoLevelRoute = (config, parentName) => {
+const makeTwoLevelRouteItem = (config, parentName) => {
     const path = config.path
     config.name = parentName + '_' + path
     config.path = '/' + parentName + '/' + path
-    config.component = () => import('@/views/' + parentName + '/' + path + '.vue')
+    config.component = () => import('@V/' + parentName + '/' + path + '.vue')
     config.meta = { keepAlive: false }
+    return config
+}
+// 处理一层路由
+const makeOneLevelRoute = (config) => {
+    const path = config.path
+    config.name = path
+    config.component = () => import('@V/' + path + '.vue')
+    config.path = '/' + config.path
     return config
 }
 // 路由视图文件名必须和路由名字路径一致 方便查找定位
 export default [
     {path: '/', redirect: '/home/index'}, // 默认路由视图
-    makeOneLevelRoute({
+    // {path: '/*', redirect: '/error404'}, // 默认404视图
+    makeOneLevelRoute({ path: 'login', title: '登录' }),
+    makeOneLevelRoute({ path: 'locking', title: '锁屏' }),
+    makeOneLevelRoute({ path: 'error404', title: '页面不存在' }),
+    makeOneLevelRoute({ path: 'error401', title: '权限不足' }),
+    makeOneLevelRoute({ path: 'error500', title: '服务端错误' }),
+    makeTwoLevelRoute({
         path: 'home', title: '首页', icon: 'md-globe',
         children: [
-            {power: '0000', path: 'index', title: '首页'}
+            {power: '0000', path: 'index', title: '首页'},
+            {power: '0000', path: 'message', icon: 'md-notifications', title: '消息中心'},
+            {power: '0000', path: 'errorlogger', icon: 'md-bug', title: '错误收集'},
+            {power: '0000', path: 'errorstore', icon: 'md-bug', title: '错误收集'}
         ]
     }),
-    makeOneLevelRoute({
+    makeTwoLevelRoute({
         path: 'exp1', title: '经验集卷一', icon: 'md-globe',
         children: [
             {power: '0000', path: '001bebal', title: 'bebal说明'},
@@ -70,7 +86,7 @@ export default [
             {power: '0000', path: '020pginfo', title: 'Node查看包版本'}
         ]
     }),
-    makeOneLevelRoute({
+    makeTwoLevelRoute({
         path: 'exp2', title: '经验集卷二', icon: 'md-globe',
         children: [
             {power: '0000', path: '021route', title: '路由跳转'},
@@ -84,7 +100,7 @@ export default [
             {power: '1299', path: '100newBee', title: '大牛养成'}
         ]
     }),
-    makeOneLevelRoute({
+    makeTwoLevelRoute({
         path: 'components', title: '组件', icon: 'logo-buffer',
         children: [
             {power: '0000', path: 'treeselectpage', icon: 'md-arrow-dropdown-circle', title: '树状下拉选择器'},
@@ -101,93 +117,64 @@ export default [
             {power: '0000', path: 'iconspage', icon: 'bear', title: '自定义图标'}
         ]
     }),
+    makeTwoLevelRoute({
+        path: 'update', title: '数据上传', icon: 'md-cloud-upload',
+        children: [
+            {power: '0000', path: 'updatetable', icon: 'md-arrow-dropdown-circle', title: '上传Csv'},
+            {power: '0000', path: 'updatepaste', icon: 'md-trending-up', title: '粘贴表格数据'}
+        ]
+    }),
+    makeTwoLevelRoute({
+        path: 'excel', title: 'EXCEL导入导出', icon: 'ios-stats',
+        children: [
+            {power: '0000', path: 'treeselectpage', icon: 'md-add', title: '导入EXCEL'},
+            {power: '0000', path: 'counttopage', icon: 'md-download', title: '导出EXCEL'}
+        ]
+    }),
+    {
+        path: '/multilevel', name: 'multilevel', icon: 'md-menu', title: '多级菜单', component: Main,
+        children: [
+            {power: '0000', path: 'level_2_1', name: 'level_2_1', icon: 'md-funnel', title: '二级-1', component: () => import('@V/multilevel/level-2-1.vue')},
+            {power: '0000', path: 'level_2_2', name: 'level_2_2', access: ['super_admin'], icon: 'md-funnel', showAlways: true, title: '二级-2',
+                component: parentView,
+                children: [
+                    {path: 'level_2_2_1', name: 'level_2_2_1', icon: 'md-funnel', title: '三级', component: () => import('@V/multilevel/level-2-2/level-2-2-1.vue')},
+                    {path: 'level_2_2_2', name: 'level_2_2_2', icon: 'md-funnel', title: '三级', component: () => import('@V/multilevel/level-2-2/level-2-2-2.vue')}
+                ]
+            },
+            {path: 'level_2_3', name: 'level_2_3', icon: 'md-funnel', title: '二级-3', component: () => import('@V/multilevel/level-2-3.vue')}
+        ]
+    }
     /*
-    {path: '/login', name: 'login', title: 'Login - 登录', component: () => import('@/views/login.vue')},
-    {path: '/*', name: 'error-404', title: '404-页面不存在', component: () => import('@/views/error-page/404.vue')},
-    // {path: '/403', name: 'error-403', title: '403-权限不足', component: () => import('@/views/error-page/403.vue')},
-    {path: '/500', name: 'error-500', title: '500-服务端错误', component: () => import('@/views/error-page/500.vue')},
-    {path: '/locking', name: 'locking', title: 'Lock - 锁屏', component: () => import('@C/lockscreen/locking-page.vue')},
-
+    {path: '/401', name: 'error_401', hideInMenu: true, component: () => import('@V/error-page/401.vue')},
+    {path: '/500', name: 'error_500', hideInMenu: true, component: () => import('@V/error-page/500.vue')},
+    {path: '*', name: 'error_404', hideInMenu: true, component: () => import('@V/error-page/404.vue')}
     {path: '', name: 'doc', title: '文档', href: 'https://lison16.github.io/iview-admin-doc/#/', icon: 'ios-book'},
-    {
-        path: '/join', name: 'join', component: Main, hideInBread: true,
-        children: [
-            {path: 'join_page', name: 'join_page', icon: '_qq', title: 'QQ群', component: () => import('@/views/join-page.vue')}
-        ]
-    },
-    {
-        path: '/message', name: 'message', component: Main, hideInBread: true, hideInMenu: true,
-        children: [
-            {path: 'message_page', name: 'message_page', icon: 'md-notifications', title: '消息中心', component: () => import('@/views/single-page/message/index.vue')}
-        ]
-    },
-    {
-        path: '/update', name: 'update', icon: 'md-cloud-upload', title: '数据上传', component: Main,
-        children: [
-            {path: 'update_table_page', name: 'update_table_page', icon: 'ios-document', title: '上传Csv', component: () => import('@/views/update/update-table.vue')},
-            {path: 'update_paste_page', name: 'update_paste_page', icon: 'md-clipboard', title: '粘贴表格数据', component: () => import('@/views/update/update-paste.vue')}
-        ]
-    },
-    {
-        path: '/excel', name: 'excel', icon: 'ios-stats', title: 'EXCEL导入导出', component: Main,
-        children: [
-            {path: 'upload-excel', name: 'upload-excel', icon: 'md-add', title: '导入EXCEL', component: () => import('@/views/excel/upload-excel.vue')},
-            {path: 'export-excel', name: 'export-excel', icon: 'md-download', title: '导出EXCEL', component: () => import('@/views/excel/export-excel.vue')}
-        ]
-    },
+
     {
         path: '/tools_methods', name: 'tools_methods', hideInBread: true, component: Main,
         children: [
-            {path: 'tools_methods_page', name: 'tools_methods_page', icon: 'ios-hammer', title: '工具方法', beforeCloseName: 'before_close_normal', component: () => import('@/views/tools-methods/tools-methods.vue')}
+            {path: 'tools_methods_page', name: 'tools_methods_page', icon: 'ios-hammer', title: '工具方法', beforeCloseName: 'before_close_normal', component: () => import('@V/tools-methods/tools-methods.vue')}
         ]
     },
     {
         path: '/i18n', name: 'i18n', hideInBread: true, component: Main,
         children: [
-            {path: 'i18n_page', name: 'i18n_page', icon: 'md-planet', title: 'i18n - {{ i18n_page }}', component: () => import('@/views/i18n/i18n-page.vue')}
-        ]
-    },
-    {
-        path: '/error_store', name: 'error_store', hideInBread: true, component: Main,
-        children: [
-            {path: 'error_store_page', name: 'error_store_page', icon: 'ios-bug', title: '错误收集', component: () => import('@/views/error-store/error-store.vue')}
-        ]
-    },
-    {
-        path: '/error_logger', name: 'error_logger', hideInBread: true, hideInMenu: true, component: Main,
-        children: [
-            {path: 'error_logger_page', name: 'error_logger_page', icon: 'ios-bug', title: '错误收集', component: () => import('@/views/single-page/error-logger.vue')}
+            {path: 'i18n_page', name: 'i18n_page', icon: 'md-planet', title: 'i18n - {{ i18n_page }}', component: () => import('@V/i18n/i18n-page.vue')}
         ]
     },
     {
         path: '/directive', name: 'directive', hideInBread: true, component: Main,
         children: [
-            {path: 'directive_page', name: 'directive_page', icon: 'ios-navigate', title: '指令', component: () => import('@/views/directive/directive.vue')}
-        ]
-    },
-    {
-        path: '/multilevel', name: 'multilevel', icon: 'md-menu', title: '多级菜单', component: Main,
-        children: [
-            {path: 'level_2_1', name: 'level_2_1', icon: 'md-funnel', title: '二级-1', component: () => import('@/views/multilevel/level-2-1.vue')},
-            {path: 'level_2_2', name: 'level_2_2', access: ['super_admin'], icon: 'md-funnel', showAlways: true, title: '二级-2'},
-                component: parentView,
-                children: [
-                    {path: 'level_2_2_1', name: 'level_2_2_1', icon: 'md-funnel', title: '三级', component: () => import('@/views/multilevel/level-2-2/level-2-2-1.vue')},
-                    {path: 'level_2_2_2', name: 'level_2_2_2', icon: 'md-funnel', title: '三级', component: () => import('@/views/multilevel/level-2-2/level-2-2-2.vue')}
-                ]
-            },
-            {path: 'level_2_3', name: 'level_2_3', icon: 'md-funnel', title: '二级-3', component: () => import('@/views/multilevel/level-2-3.vue')}
+            {path: 'directive_page', name: 'directive_page', icon: 'ios-navigate', title: '指令', component: () => import('@V/directive/directive.vue')}
         ]
     },
     {
         path: '/argu', name: 'argu', hideInMenu: true, component: Main,
         children: [
-            {path: 'params/:id', name: 'params', icon: 'md-flower', title: route => `{{ params }}-${route.params.id}`, notCache: true, beforeCloseName: 'before_close_normal', component: () => import('@/views/argu-page/params.vue')},
-            {path: 'query', name: 'query', icon: 'md-flower', title: route => `{{ query }}-${route.query.id}`, notCache: true, component: () => import('@/views/argu-page/query.vue')}
+            {path: 'params/:id', name: 'params', icon: 'md-flower', title: route => `{{ params }}-${route.params.id}`, notCache: true, beforeCloseName: 'before_close_normal', component: () => import('@V/argu-page/params.vue')},
+            {path: 'query', name: 'query', icon: 'md-flower', title: route => `{{ query }}-${route.query.id}`, notCache: true, component: () => import('@V/argu-page/query.vue')}
         ]
     },
-    {path: '/401', name: 'error_401', hideInMenu: true, component: () => import('@/views/error-page/401.vue')},
-    {path: '/500', name: 'error_500', hideInMenu: true, component: () => import('@/views/error-page/500.vue')},
-    {path: '*', name: 'error_404', hideInMenu: true, component: () => import('@/views/error-page/404.vue')}
      */
 ]

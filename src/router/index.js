@@ -1,9 +1,10 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import routes from './routers'
-import { Store } from '@/store'
 import iView from 'iview'
-import { setTitle } from '@/libs/util'
+import Router from 'vue-router'
+import { Store } from '@/store'
+import { objEqual } from '@/utils/object'
+import { doCustomTimes } from '@/utils/function'
+import routes from './routers'
 // import config from '@/config'
 // const { homeName } = config
 
@@ -31,8 +32,9 @@ export const power2routes = (powerList) => { // 根据权限更新视图
         }
         // 根据规则过滤二级页面组
         const childrenArr = (item.children || []).filter((row, index, arr) => { // 根据权限过滤页面
-            listOneLevel[row.name] = { title: item.title, path: item.path }
-            if (row.power && powerList.indexOf(row.power) < 0) { return false } // 没有权限
+            let power = row.power && powerList.indexOf(row.power) > -1
+            listOneLevel[row.name] = { title: row.title, path: row.path, power: power }
+            if (!power) { return false } // 没有权限
             return !row.hideMenu
         })
         // 如果组中没有内容 放弃
@@ -40,11 +42,49 @@ export const power2routes = (powerList) => { // 根据权限更新视图
             one.children = childrenArr
             one.path = childrenArr[0].path
             list.push(one)
-            listOneLevel[one.name] = { title: one.title, path: one.path }
         }
+        listOneLevel[one.name] = { title: one.title, path: one.path, power: true }
     })
-    Store.dispatch('app/setMenuList', list) // 左侧树数据源
-    Store.dispatch('app/setRoutePowerList', listOneLevel) // 一维数组
+    Store.dispatch('system/setMenuList', list) // 左侧树数据源
+    Store.dispatch('system/setRoutePowerList', listOneLevel) // 一维数组
+}
+/**
+ * @description 根据name/params/query判断两个路由对象是否相等
+ * @param {*} route1 路由对象
+ * @param {*} route2 路由对象
+ */
+export const routeEqual = (route1, route2) => {
+    const params1 = route1.params || {}
+    const params2 = route2.params || {}
+    const query1 = route1.query || {}
+    const query2 = route2.query || {}
+    return (route1.name === route2.name) && objEqual(params1, params2) && objEqual(query1, query2)
+}
+
+/**
+ * 判断打开的标签列表里是否已存在这个新添加的路由对象
+ */
+export const routeHasExist = (tagNavList, routeItem) => {
+    let len = tagNavList.length
+    let res = false
+    doCustomTimes(len, (index) => {
+        if (routeEqual(tagNavList[index], routeItem)) res = true
+    })
+    return res
+}
+export const getRouteTitleHandled = (route) => {
+    let router = {...route}
+    let meta = {...route.meta}
+    let title = ''
+    if (meta.title) {
+        if (typeof meta.title === 'function') {
+            meta.__titleIsFunction__ = true
+            title = meta.title(router)
+        } else title = meta.title
+    }
+    meta.title = title
+    router.meta = meta
+    return router
 }
 
 // const LOGIN_PAGE_NAME = 'login'
@@ -56,8 +96,7 @@ export const power2routes = (powerList) => { // 根据权限更新视图
 
 router.beforeEach((to, from, next) => {
     iView.LoadingBar.start() // 顶部进度条
-    Store.dispatch('app/setBreadCrumb', to.name) // 左侧树数据源
-    Store.dispatch('app/setTitle', to.name) // 左侧树数据源
+    Store.dispatch('system/setBreadCrumb', to.name) // 左侧树数据源
 
     next() // 跳转
     /* const token = getToken()
@@ -92,7 +131,9 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(to => {
-    setTitle(to, router.app)
+    console.log(to)
+    Store.dispatch('system/setTitle', to.name) // 左侧树数据源
+    // Store.dispatch('system/addTagNav', { route: to, type: 'push' }) // 增加页面缓存标签
     iView.LoadingBar.finish()
     window.scrollTo(0, 0)
 })

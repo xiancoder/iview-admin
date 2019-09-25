@@ -1,5 +1,5 @@
 // 防抖
-export function _debounce (fn, delay) {
+export const _debounce = (fn, delay) => {
     delay = delay || 200;
     var timer;
     return function () {
@@ -15,7 +15,7 @@ export function _debounce (fn, delay) {
     };
 }
 // 节流
-export function _throttle (fn, interval) {
+export const _throttle = (fn, interval) => {
     var last;
     var timer;
     interval = interval || 200;
@@ -34,4 +34,12 @@ export function _throttle (fn, interval) {
             fn.apply(th, args);
         }
     };
+}
+/**
+ * @param {Number} times 回调函数需要执行的次数
+ * @param {Function} callback 回调函数
+ */
+export const doCustomTimes = (times, callback) => {
+    let i = -1
+    while (++i < times) { callback(i) }
 }

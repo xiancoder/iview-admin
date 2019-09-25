@@ -1,20 +1,12 @@
 <template>
-  <div>
-    <tree-select
-        v-model="treeSelected"
-        style="width: 300px;"
-        check-strictly
-        :expand-all="true"
-        :load-data="loadData"
-        @on-change="handleTreeSelectChange"
-        @on-toggle-expand="handleTreeSelectExpand"
-        @on-check-change="handleTreeSelectCheckChange"
-        @on-select-change="handleTreeSelectClick"
-        :data="treeData"
-      ></tree-select>
-      <Button @click="changeTreeSelectData">更新选中数据</Button>
-      <Button @click="changeTreeData">更新树数据</Button>
-  </div>
+    <div>
+        <tree-select v-model="treeSelected" style="width: 300px;" check-strictly :expand-all="true" :load-data="loadData"
+            @on-change="handleTreeSelectChange" @on-toggle-expand="handleTreeSelectExpand"
+            @on-check-change="handleTreeSelectCheckChange" @on-select-change="handleTreeSelectClick" :data="treeData"
+            ></tree-select>
+            <Button @click="changeTreeSelectData">更新选中数据</Button>
+            <Button @click="changeTreeData">更新树数据</Button>
+    </div>
 </template>
 
 <script>

@@ -30,7 +30,7 @@ export const api = {
         page, // 分页
         pageSize // 单页数量
     }) {
-        if (status == -1) { status = null }
+        if (status === -1) { status = null }
         if (postIds instanceof Array) { postIds = postIds.join(',') }
         return new Promise((resolve, reject) => {
             axios({

@@ -22,6 +22,7 @@ module.exports = {
         'object-property-newline': 0, // 对象一个属性占一行
         'vue/no-parsing-error': 0, // 非法结束标签
         'vue/valid-v-for': 0, // v-for必须携带v-bind:key
+        'vue/require-v-for-key': 0, // v-for必须携带v-bind:key
         'block-spacing': 0, // 花括号前后有空格
         'prefer-promise-reject-errors': 0, // reject必须给个错误理由
         'no-unreachable': 0 // 不能有无法执行的代码

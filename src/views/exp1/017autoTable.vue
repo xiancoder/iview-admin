@@ -68,7 +68,7 @@
     </div>
 </template>
 <script>
-import { dateFormater, dateSub } from '@/tools'
+import { dateFormater, dateSub } from '@/utils/date'
 import mixin from '@/mixin/tableMixin'
 import Mock from 'mockjs' // 造假数据
 export default {

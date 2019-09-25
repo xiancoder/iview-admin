@@ -1,49 +1,33 @@
 <template>
     <Submenu :name="`${parentName}`">
         <template slot="title">
-            <common-icon :type="parentItem.icon || 'ios-document'"/>
+            <common-icon :type="parentItem.icon||''"/>
             <span>{{ parentItem.title }}</span>
         </template>
         <template v-for="item in children">
             <template v-if="item.children && item.children.length === 1">
-                <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item"></side-menu-item>
+                <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item">
+                </side-menu-item>
                 <menu-item v-else :name="getNameOrHref(item, true)" :key="`menu-${item.children[0].name}`">
-                    <common-icon :type="item.children[0].icon || 'ios-document'"/>
+                    <common-icon :type="item.children[0].icon||'ios-document'"/>
                     <span>{{ item.children[0].title }}</span>
                 </menu-item>
             </template>
             <template v-else>
                 <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item"></side-menu-item>
                 <menu-item v-else :name="getNameOrHref(item)" :key="`menu-${item.name}`">
-                    <common-icon :type="item.icon || 'ios-document'"/>
-                    <span>{{ item.title }}</span>
+                    <common-icon :type="item.icon||'ios-document'"/><span>
+                    {{ item.title }}</span>
                 </menu-item>
             </template>
         </template>
     </Submenu>
 </template>
 <script>
-import CommonIcon from '@C/common-icon'
+import mixin from './mixin'
+import itemMixin from './item-mixin'
 export default {
     name: 'SideMenuItem',
-    components: { CommonIcon },
-    props: {
-        parentItem: { type: Object, default: () => {} },
-        theme: String,
-        iconSize: Number
-    },
-    computed: {
-        parentName () { return this.parentItem.name },
-        children () { return this.parentItem.children },
-        textColor () { return this.theme === 'dark' ? '#fff' : '#495060' }
-    },
-    methods: {
-        showChildren (item) {
-            return item.children && (item.children.length > 1 || (item.meta && item.meta.showAlways))
-        },
-        getNameOrHref (item, children0) {
-            return item.href ? `isTurnByHref_${item.href}` : (children0 ? item.children[0].name : item.name)
-        }
-    }
+    mixins: [ mixin, itemMixin ]
 }
 </script>

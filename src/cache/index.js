@@ -10,6 +10,8 @@ const ALL_SHOP_LIST = '_slist_' // 所有门店信息的key
 const TOKEN = 'Xian_loginToken_' // 登录token
 const FRESH_TOKEN = '_refreshToken_' // 登录token
 export const cache = {
+    // 删除token
+    clearAll () { storage.clear() },
     // 登录，存储用户类型
     setUserType (type) { storage.set(U_TYPE, type) },
     // 获取用户类型

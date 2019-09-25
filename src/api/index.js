@@ -15,7 +15,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 import { Store } from '@/store'
-import * as user from './user'
+import * as system from './system'
 import * as employee from './employee'
 import * as department from './department'
 import * as position from './position'
@@ -61,7 +61,7 @@ axios.interceptors.response.use(
 )
 // 输出::接口列表
 export const Api = {
-    user: user.api,
+    system: system.api,
     employee: employee.api,
     department: department.api,
     position: position.api,

@@ -1,16 +1,12 @@
 import axios from 'axios'
 export const saveErrorLogger = info => {
     console.error('仙', '错误日志', info)
-    /*return axios.request({
+    /* return axios.request({
         url: 'save_error_logger',
         data: info,
         method: 'post'
-    })*/
+    }) */
 }
-
-
-
-
 
 export const getTableData = () => {
     return axios.request({
@@ -33,8 +29,19 @@ export const errorReq = () => {
     })
 }
 
+export const getOrgData = formData => {
+    return axios.request({
+        url: 'image/upload',
+        data: formData
+    })
+}
 
-
+export const getTreeSelectData = formData => {
+    return axios.request({
+        url: 'image/upload',
+        data: formData
+    })
+}
 export const uploadImg = formData => {
     return axios.request({
         url: 'image/upload',

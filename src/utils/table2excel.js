@@ -46,6 +46,7 @@ export const tranform = (table, aId, name) => {
     }
     if (getExplorer() === 'ie') {
         var curTbl = table
+        // eslint-disable-next-line
         var oXL = new ActiveXObject('Excel.Application')
         var oWB = oXL.Workbooks.Add()
         var xlsheet = oWB.Worksheets(1)

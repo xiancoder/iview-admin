@@ -1,16 +1,16 @@
 <template>
     <div class="custom-bread-crumb">
         <Breadcrumb :style="{fontSize: `${fontSize}px`}">
-            <BreadcrumbItem v-for="item in list" :to="item.to" :key="`bread-crumb-${item.name}`">
+            <BreadcrumbItem v-for="(item, index) in list" :key="`bread-crumb-${index}`"
+                 :to="item.path">
                 <common-icon style="margin-right: 4px;" :type="item.icon || 'ios-document'"/>
-                {{ showTitle(item) }}
+                {{ item.title }}
             </BreadcrumbItem>
         </Breadcrumb>
     </div>
 </template>
 <script>
 import CommonIcon from '@C/common-icon'
-import { showTitle } from '@/libs/util'
 import './index.less'
 export default {
     name: 'customBreadCrumb',
@@ -20,10 +20,8 @@ export default {
         showIcon: { type: Boolean, default: false }
     },
     computed: {
-        list () { return this.$store.state.app.breadCrumbList || [] },
+        list () { return this.$store.state.system.breadCrumbList || [] }
     },
-
-
     methods: {
     }
 }

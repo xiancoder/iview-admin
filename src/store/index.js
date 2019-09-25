@@ -6,7 +6,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate' // 状态持久化
-import * as app from './app' // 系统相关
+import * as system from './system' // 系统相关
 import * as user from './user' // 登录管理员相关
 import * as employee from './employee' // 职员相关
 import app2 from './app2' //
@@ -17,7 +17,7 @@ const plugins = [
     createPersistedState() // 状态持久化
 ]
 const modules = {
-    app: app.store,
+    system: system.store,
     user: user.store,
     employee: employee.store,
     app2,

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { router } from '@/router'
-import { Message } from 'iview'
+import { Message, Modal } from 'iview'
 /// ////////////////////////////////////////////////////
 // 常用的操作封装
 /// ////////////////////////////////////////////////////

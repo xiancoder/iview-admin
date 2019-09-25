@@ -1,12 +1,14 @@
-'use strict';
+'use strict'
 /// ///////////////////////////////////////////////////////////////////////////
 // 数字转换为简写汉字一到十
 // =====================
 // liuyp 2018年12月20日11:28:08
 /// ///////////////////////////////////////////////////////////////////////////
 export const cnNumber = function (num) {
-    var i = 0, n = num + '', cn = ['\u96f6', '\u4e00', '\u4e8c', '\u4e09', '\u56db', '\u4e94', '\u516d', '\u4e03', '\u516b', '\u4e5d'];
-    for (;i < 10; i++) n = n.replace(new RegExp(i, 'g'), cn[i]); return n;
+    let n = num + ''
+    let cn = ['\u96f6', '\u4e00', '\u4e8c', '\u4e09', '\u56db', '\u4e94', '\u516d', '\u4e03', '\u516b', '\u4e5d']
+    for (let i = 0; i < 10; i++) n = n.replace(new RegExp(i, 'g'), cn[i])
+    return n
 }
 /// ///////////////////////////////////////////////////////////////////////////
 // 数位补全(2位)
@@ -188,12 +190,15 @@ export const money2Chinese = (money) => {
 // liuyp 2019年6月9日22:00:05
 /// ///////////////////////////////////////////////////////////////////////////
 export const uuid = function (len, radix) {
-    var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split(''), uuid = [], i; radix = radix || chars.length;
+    let chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('')
+    let uuid = []
+    let i
+    radix = radix || chars.length
     if (len) { for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random() * radix]; } else {
-        var r; uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-'; uuid[14] = '4';
-        for (i = 0; i < 36; i++) { if (!uuid[i]) { r = 0 | Math.random() * 16; uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r]; } }
+        let r; uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-'; uuid[14] = '4'
+        for (let i = 0; i < 36; i++) { if (!uuid[i]) { r = 0 | Math.random() * 16; uuid[i] = chars[(i === 19) ? (r & 0x3) | 0x8 : r]; } }
     }
-    return uuid.join('');
+    return uuid.join('')
 }
 /// ///////////////////////////////////////////////////////////////////////////
 // 从18位/17位身份证号算出校验位
@@ -213,12 +218,12 @@ export const uuid = function (len, radix) {
 /// ///////////////////////////////////////////////////////////////////////////
 export const idCardNumCompute = function (idcardno) {
     // 权重值
-    var verify18rights = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1);
-    var verify18_checkdigit = '10X98765432';
-    var sum = 0;
-    for (var i = 0; i <= 16; i++) { sum += parseInt(idcardno.charAt(i)) * verify18rights[i]; }
+    let verify18rights = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1]
+    let verify18Checkdigit = '10X98765432'
+    let sum = 0
+    for (let i = 0; i <= 16; i++) { sum += parseInt(idcardno.charAt(i)) * verify18rights[i]; }
     // 对权重值取模
-    return verify18_checkdigit.charAt(sum % 11);
+    return verify18Checkdigit.charAt(sum % 11)
 }
 /// ///////////////////////////////////////////////////////////////////////////
 // 数字估算
@@ -228,30 +233,16 @@ export const idCardNumCompute = function (idcardno) {
 // liuyp 2019年9月20日10:58:12
 /// ///////////////////////////////////////////////////////////////////////////
 export const estimate = function (n, s) {
-    s = s || 4; if (s < 5) s = 5; n = parseInt(n);
+    s = s || 4; if (s < 5) s = 5; n = parseInt(n)
     function getNum (nl, u) {
-        var jqxsd = 2 - 2 * (u.length), zs = n / nl;
+        let jqxsd = 2 - 2 * (u.length)
+        let zs = n / nl
         if (zs > 1e3) { jqxsd = 0 } else if (zs > 100) { if (u.length) { jqxsd = 0 } else { jqxsd = 1 } } else if (zs > 10) { if (u.length) { jqxsd = 0 } else { jqxsd = 2 } } else { if (u.length) { jqxsd = 1 } else { jqxsd = 2 } }
         return Number(zs.toFixed(jqxsd)) + u
     }
     if (n > 1e8) { return getNum(1e8, '亿') } else if (n > 1e4) { return getNum(1e4, '万') }
     return getNum(1, '')
 }
-/// ///////////////////////////////////////////////////////////////////////////
-// 字节计算
-// =====================
-// liuyp 2019年9月20日10:58:12
-/// ///////////////////////////////////////////////////////////////////////////
-export const parseBytes = function (e/* 值 */, t/* 单位 */, n/* 计算方式 */, r/* 保留位数 */) {
-    var i, spcr; return t = t != 'KBytes' && t != 'MBytes' && t != 'GBytes' && t != 'TBytes' ? 'mixed' : t,
-    spcr = n == null || n == 0 ? ' ' : '',
-    t == 'mixed' && e > 1099511627776 || t == 'TBytes' ? i = (e / 1099511627776).toFixed(r || 3) +
-    spcr + (n ? 'TB' : 'TBytes') : t == 'mixed' && e > 1073741824 || t == 'GBytes'
-        ? i = (e / 1073741824).toFixed(r || 3) + spcr + (n ? 'GB' : 'GBytes') : t == 'mixed' &&
-    e > 1048576 || t == 'MBytes' ? i = (e / 1048576).toFixed(r || 3) + spcr + (n ? 'MB' : 'MBytes')
-            : i = (e / 1024).toFixed(r || 3) + spcr + (n ? 'KB' : 'KBytes'), i
-}
-
 /// ///////////////////////////////////////////////////////////////////////////
 // 小数点后位数
 // =====================
@@ -265,8 +256,8 @@ const places = function (n) {
 // =====================
 // liuyp 2019年9月20日10:58:12
 /// ///////////////////////////////////////////////////////////////////////////
-const no_places = function (n) {
-    return Number(n.toString().replace('.', ''));
+export const noplaces = function (n) {
+    return Number(n.toString().replace('.', ''))
 }
 /// ///////////////////////////////////////////////////////////////////////////
 // 精准加法
@@ -276,15 +267,17 @@ const no_places = function (n) {
 // liuyp 2019年9月20日10:58:12
 /// ///////////////////////////////////////////////////////////////////////////
 export const add = function (/* arguments */) {
-    var args = [], l = arguments.length;
-    if (l == 0) { return 0 }
-    for (var i = 0; i < l; i++) { args[i] = parseFloat(arguments[i]) }
-    if (l == 1) { return args[0] }
-    var m = 0, r2 = 0;
-    for (var i = 0; i < l; i++) { m = Math.max(places(args[i]), m) }
-    m = Math.pow(10, m);
-    for (var i = 0; i < l; i++) { r2 += args[i] * m }
-    return r2 / m;
+    let args = []
+    let l = arguments.length
+    if (l === 0) { return 0 }
+    for (let i = 0; i < l; i++) { args[i] = parseFloat(arguments[i]) }
+    if (l === 1) { return args[0] }
+    let m = 0
+    let r2 = 0
+    for (let i = 0; i < l; i++) { m = Math.max(places(args[i]), m) }
+    m = Math.pow(10, m)
+    for (let i = 0; i < l; i++) { r2 += args[i] * m }
+    return r2 / m
 }
 /// ///////////////////////////////////////////////////////////////////////////
 // 精准减法
@@ -292,17 +285,18 @@ export const add = function (/* arguments */) {
 // liuyp 2019年9月20日10:58:12
 /// ///////////////////////////////////////////////////////////////////////////
 export const sub = function (/* arguments */) {
-    var l = arguments.length;
-    if (l == 0) { return 0 }
-    var args = [];
-    for (var i = 0; i < l; i++) { args[i] = parseFloat(arguments[i]) }
-    if (l == 1) { return args[0] }
-    var m = 0, r2 = args[0];
-    for (var i = 0; i < l; i++) { m = Math.max(places(args[i]), m) }
-    m = Math.pow(10, m);
-    r2 *= m;
-    for (var i = 1; i < l; i++) { r2 -= args[i] * m }
-    return r2 / m;
+    let l = arguments.length
+    if (l === 0) { return 0 }
+    let args = []
+    for (let i = 0; i < l; i++) { args[i] = parseFloat(arguments[i]) }
+    if (l === 1) { return args[0] }
+    let m = 0
+    let r2 = args[0]
+    for (let i = 0; i < l; i++) { m = Math.max(places(args[i]), m) }
+    m = Math.pow(10, m)
+    r2 *= m
+    for (let i = 1; i < l; i++) { r2 -= args[i] * m }
+    return r2 / m
 }
 /// ///////////////////////////////////////////////////////////////////////////
 // 精准乘法
@@ -310,20 +304,21 @@ export const sub = function (/* arguments */) {
 // liuyp 2019年9月20日10:58:12
 /// ///////////////////////////////////////////////////////////////////////////
 export const mul = function (/* arguments */) {
-    var args = [];
-    var l = arguments.length;
-    if (l == 0) { return 0 }
-    if (l == 1) { return parseFloat(arguments[0]) }
-    var m = 0, r2 = 1;
-    for (var i = 0; i < l; i++) {
-        var n = parseFloat(arguments[i]).toString();
-        var r1 = places(n);
-        args[i] = n;
-        m += r1;
+    let args = []
+    let l = arguments.length
+    if (l === 0) { return 0 }
+    if (l === 1) { return parseFloat(arguments[0]) }
+    let m = 0
+    let r2 = 1
+    for (let i = 0; i < l; i++) {
+        let n = parseFloat(arguments[i]).toString()
+        let r1 = places(n)
+        args[i] = n
+        m += r1
     }
-    m = Math.pow(10, m);
-    for (var i = 0; i < l; i++) { r2 *= Number(args[i].replace(/\./g, '')) }
-    return r2 / m;
+    m = Math.pow(10, m)
+    for (let i = 0; i < l; i++) { r2 *= Number(args[i].replace(/\./g, '')) }
+    return r2 / m
 }
 /// ///////////////////////////////////////////////////////////////////////////
 // 精准除法
@@ -331,13 +326,13 @@ export const mul = function (/* arguments */) {
 // liuyp 2019年9月20日10:58:12
 /// ///////////////////////////////////////////////////////////////////////////
 export const div = function (bcs, cs) {
-    bcs = parseFloat(bcs);
-    cs = parseFloat(cs);
-    var t1 = places(bcs),
-        t2 = places(cs),
-        r1 = no_places(bcs),
-        r2 = no_places(cs);
-    return mul((r1 / r2), Math.pow(10, t2 - t1));
+    bcs = parseFloat(bcs)
+    cs = parseFloat(cs)
+    let t1 = places(bcs)
+    let t2 = places(cs)
+    let r1 = noplaces(bcs)
+    let r2 = noplaces(cs)
+    return mul((r1 / r2), Math.pow(10, t2 - t1))
 }
 /// ///////////////////////////////////////////////////////////////////////////
 // 数字精准比较
@@ -345,12 +340,12 @@ export const div = function (bcs, cs) {
 // liuyp 2019年9月20日10:58:12
 /// ///////////////////////////////////////////////////////////////////////////
 const parseFloatRemoveNotNum = function (s) {
-    return parseFloat(s.replace(/[^0-9\.]/g, '') || 0);
+    return parseFloat(s.replace(/[^0-9\.]/g, '') || 0)
 }
 export const compare = function (a, b) {
-    var ax = parseFloatRemoveNotNum(a);
-    var bx = parseFloatRemoveNotNum(b);
-    if (ax == bx) { return '=' } else { return ax > bx ? '>' : '<' }
+    let ax = parseFloatRemoveNotNum(a)
+    let bx = parseFloatRemoveNotNum(b)
+    if (ax === bx) { return '=' } else { return ax > bx ? '>' : '<' }
 }
 /* ================================================================================*\
 *  |说明|_STRING_数字千分金钱
@@ -359,12 +354,12 @@ export const compare = function (a, b) {
 *  |返回|string
 \*================================================================================ */
 /* export const thousand = function (str) { // 可用 但过时
-    var s=(str+""),n=s.valueOf().length%3;
+    let s=(str+""),n=s.valueOf().length%3
     if (n){return s.slice(0,n)+s.slice(n).replace(/(\d{3})/g,',$1')}
     return s.replace(/(\d{3})/g,',$1').slice(1)
 } */
 export const thousand = function (num) {
-    return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','));
+    return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
 }
 /* ================================================================================*\
 *  |说明|_STRING_四位分隔银行账号
@@ -373,8 +368,10 @@ export const thousand = function (num) {
 *  |返回|string
 \*================================================================================ */
 export const bankCartNum = function (S) {
-    var len = S.length, s2 = '', max = Math.floor(len / 4);
-    for (var i = 0; i < max; i++) { var s = S.slice(len - 4, len); S = S.substr(0, len - 4); s2 = (' ' + s) + s2; len = S.length }
+    let len = S.length
+    let s2 = ''
+    let max = Math.floor(len / 4)
+    for (let i = 0; i < max; i++) { let s = S.slice(len - 4, len); S = S.substr(0, len - 4); s2 = (' ' + s) + s2; len = S.length }
     return S + s2
 }
 /* ================================================================================*\
@@ -382,16 +379,16 @@ export const bankCartNum = function (S) {
 *  |参数|源
 \*================================================================================ */
 export const validateIP = function (e) {
-    var t = 0;
-    if (e == '0.0.0.0') t = 1;
-    else if (e == '255.255.255.255') t = 2;
+    let t = 0
+    if (e === '0.0.0.0') t = 1
+    else if (e === '255.255.255.255') t = 2
     else {
-        var n = e.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
-        if (n == null) t = 5;
+        let n = e.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/)
+        if (n === null) t = 5
         else {
-            for (var field = 1; field <= 4; field++) {
-                n[field] > 255 && (t = 4),
-                n[field] == 255 && field == 4 && (t = 3)
+            for (let field = 1; field <= 4; field++) {
+                n[field] > 255 && (t = 4)
+                n[field] === 255 && field === 4 && (t = 3)
             }
         }
     } return t > 0
@@ -401,9 +398,9 @@ export const validateIP = function (e) {
 *  |参数|源
 \*================================================================================ */
 export const compareIP = function (ipBegin, ipEnd) {
-    var temp1 = ipBegin.split('.'),
-        temp2 = ipEnd.split('.');
-    for (var i = 0; i < 4; i++) {
+    let temp1 = ipBegin.split('.')
+    let temp2 = ipEnd.split('.')
+    for (let i = 0; i < 4; i++) {
         if (temp1[i] > temp2[i]) { return 1; } else if (temp1[i] < temp2[i]) { return -1; }
-    } return 0;
+    } return 0
 }

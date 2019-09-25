@@ -1,50 +1,36 @@
 <template>
-  <div class="user-avatar-dropdown">
-    <Dropdown @on-click="handleClick">
-      <Badge :dot="!!messageUnreadCount">
-        <Avatar :src="userAvatar"/>
-      </Badge>
-      <Icon :size="18" type="md-arrow-dropdown"></Icon>
-      <DropdownMenu slot="list">
-        <DropdownItem name="message">
-          消息中心<Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>
-        </DropdownItem>
-        <DropdownItem name="logout">退出登录</DropdownItem>
-      </DropdownMenu>
-    </Dropdown>
-  </div>
+    <div class="user-avatar-dropdown">
+        <Dropdown @on-click="handleClick">
+            <Badge :dot="!!unreadCount">
+                <Avatar :src="userAvatar"/>
+            </Badge>
+            {{ userName }}
+            <Icon :size="18" type="md-arrow-dropdown"></Icon>
+            <DropdownMenu slot="list">
+                <DropdownItem name="message"> 消息中心<Badge style="margin-left: 10px" :count="unreadCount"></Badge> </DropdownItem>
+                <DropdownItem name="logout">退出登录</DropdownItem>
+            </DropdownMenu>
+        </Dropdown>
+    </div>
 </template>
-
 <script>
 import './user.less'
-import { mapActions } from 'vuex'
 export default {
     name: 'User',
-    props: {
-        userAvatar: {
-            type: String,
-            default: ''
-        },
-        messageUnreadCount: {
-            type: Number,
-            default: 0
-        }
+    computed: {
+        userAvatar () { return this.$store.state.system.avatarImgPath }, // 用户头像
+        userName () { return this.$store.state.system.userName }, // 用户名
+        unreadCount () { return this.$store.state.system.newMessageNum }
     },
     methods: {
-        ...mapActions([
-            'handleLogOut'
-        ]),
         logout () {
-            this.handleLogOut().then(() => {
-                this.$router.push({
-                    name: 'login'
-                })
+            this.$store.dispatch('system/logout').then(() => {
+                console.info('仙', '管理员退出喽')
+                this.$router.push({ name: 'login' })
             })
         },
         message () {
-            this.$router.push({
-                name: 'message_page'
-            })
+            this.$router.push({ name: 'home_message' })
         },
         handleClick (name) {
             switch (name) {

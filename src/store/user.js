@@ -1,5 +1,4 @@
 import { Api } from '@/api'
-import { power2routes } from '@/router'
 import { cache } from '@/cache'
 export const store = {
     namespaced: true, // 作用域
@@ -46,66 +45,6 @@ export const store = {
         }
     },
     actions: {
-        login ({ commit }, param) { // 管理员登录
-            return new Promise((resolve, reject) => {
-                Api.user.login(param).then(token => {
-                    commit('setToken', token)
-                    cache.setUserToken(token)
-                    resolve()
-                }).catch(err => {
-                    reject(err)
-                })
-            })
-        },
-        isLogined ({ commit }) { // 检查管理员是否登录
-            return new Promise((resolve, reject) => {
-                const token = cache.getUserToken()
-                if (token) {resolve()} else {reject()}
-            })
-        },
-        clearLs ({ commit }) { // 初始化管理员环境
-            return new Promise((resolve, reject) => {
-                console.info('仙', '清场')
-                resolve()
-            })
-        },
-        getUserInfo ({ state, commit }) { // 获取管理员相关信息
-            return new Promise((resolve, reject) => {
-                Api.user.getUserInfo(state.token).then(data => {
-                    commit('setAvator', data.avator)
-                    commit('setUserName', data.userName)
-                    commit('setUserId', data.id)
-                    resolve()
-                }).catch(err => {
-                    reject(err)
-                })
-            })
-        },
-        readNewMessageNumber ({ commit }) { // 读取最新消息数量
-            return new Promise((resolve, reject) => {
-                Api.user.newMessage().then(num => {
-                    commit('newMessageNumber', num)
-                    resolve()
-                }).catch(err => {
-                    reject(err)
-                })
-            })
-        },
-        readPower ({ commit }) { // 触发读取接口
-            Api.user.powerList().then(powerList => { // 读取权限
-                commit('updatePowerList', powerList)
-                power2routes(powerList) // 传递给路由模块计算解析
-            })
-        },
-
-        logout ({ commit }) {
-            return new Promise((resolve, reject) => {
-                Api.user.logout().then(msg => { // 读取权限 根据结果 显示树形结构
-                    if (!msg) { commit('logout') }
-                    resolve(msg)
-                })
-            })
-        },
         // 测试一下全局状态
         handleTestState ({ commit }, num) {
             return new Promise((resolve, reject) => {

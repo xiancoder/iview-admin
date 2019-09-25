@@ -25,8 +25,8 @@ export const api = {
                 method: 'POST',
                 url: '/api/hr/departmentedit',
                 data: {
-                    id: (fun == 'c') ? 'null' : id, // 主键 添加时空 编辑时id
-                    parentId: (fun == 'c') ? id : 'null', // 辅助 添加时为id 编辑时为空
+                    id: (fun === 'c') ? 'null' : id, // 主键 添加时空 编辑时id
+                    parentId: (fun === 'c') ? id : 'null', // 辅助 添加时为id 编辑时为空
                     name
                 }
             }).then(res => {
