@@ -1,4 +1,4 @@
-import CommonIcon from '_c/common-icon'
+import CommonIcon from '@C/common-icon'
 const useI18n = false
 const showTitle = (item, vm) => {
     let { title, __titleIsFunction__ } = item.meta

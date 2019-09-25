@@ -3,7 +3,7 @@ export default {
         // 初始化逻辑
         // 搜索项, 数据源, 表格列设定, 表格属性
         handleInit ([searchDataBack, dataList, tableColumns, tableInfo]) {
-            console.log('哈哈哈')
+            console.info('哈哈哈')
             return {
                 searchDataBack,
                 searchData: { ...searchDataBack, page: tableInfo.page },

@@ -1,55 +1,55 @@
 <template>
-  <Card shadow>
-    <div>
-      <div class="message-page-con message-category-con">
-        <Menu width="auto" active-name="unread" @on-select="handleSelect">
-          <MenuItem name="unread">
-            <span class="category-title">未读消息</span><Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>
-          </MenuItem>
-          <MenuItem name="readed">
-            <span class="category-title">已读消息</span><Badge style="margin-left: 10px" class-name="gray-dadge" :count="messageReadedCount"></Badge>
-          </MenuItem>
-          <MenuItem name="trash">
-            <span class="category-title">回收站</span><Badge style="margin-left: 10px" class-name="gray-dadge" :count="messageTrashCount"></Badge>
-          </MenuItem>
-        </Menu>
-      </div>
-      <div class="message-page-con message-list-con">
-        <Spin fix v-if="listLoading" size="large"></Spin>
-        <Menu
-          width="auto"
-          active-name=""
-          :class="titleClass"
-          @on-select="handleView"
-        >
-          <MenuItem v-for="item in messageList" :name="item.msg_id" :key="`msg_${item.msg_id}`">
-            <div>
-              <p class="msg-title">{{ item.title }}</p>
-              <Badge status="default" :text="item.create_time" />
-              <Button
-                style="float: right;margin-right: 20px;"
-                :style="{ display: item.loading ? 'inline-block !important' : '' }"
-                :loading="item.loading"
-                size="small"
-                :icon="currentMessageType === 'readed' ? 'md-trash' : 'md-redo'"
-                :title="currentMessageType === 'readed' ? '删除' : '还原'"
-                type="text"
-                v-show="currentMessageType !== 'unread'"
-                @click.native.stop="removeMsg(item)"></Button>
+    <Card shadow>
+        <div>
+            <div class="message-page-con message-category-con">
+                <Menu width="auto" active-name="unread" @on-select="handleSelect">
+                    <MenuItem name="unread">
+                        <span class="category-title">未读消息</span><Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>
+                    </MenuItem>
+                    <MenuItem name="readed">
+                        <span class="category-title">已读消息</span><Badge style="margin-left: 10px" class-name="gray-dadge" :count="messageReadedCount"></Badge>
+                    </MenuItem>
+                    <MenuItem name="trash">
+                        <span class="category-title">回收站</span><Badge style="margin-left: 10px" class-name="gray-dadge" :count="messageTrashCount"></Badge>
+                    </MenuItem>
+                </Menu>
             </div>
-          </MenuItem>
-        </Menu>
-      </div>
-      <div class="message-page-con message-view-con">
-        <Spin fix v-if="contentLoading" size="large"></Spin>
-        <div class="message-view-header">
-          <h2 class="message-view-title">{{ showingMsgItem.title }}</h2>
-          <time class="message-view-time">{{ showingMsgItem.create_time }}</time>
+            <div class="message-page-con message-list-con">
+                <Spin fix v-if="listLoading" size="large"></Spin>
+                <Menu
+                    width="auto"
+                    active-name=""
+                    :class="titleClass"
+                    @on-select="handleView"
+                >
+                    <MenuItem v-for="item in messageList" :name="item.msgid" :key="`msg_${item.msgid}`">
+                        <div>
+                            <p class="msg-title">{{ item.title }}</p>
+                            <Badge status="default" :text="item.create_time" />
+                            <Button
+                                style="float: right;margin-right: 20px;"
+                                :style="{ display: item.loading ? 'inline-block !important' : '' }"
+                                :loading="item.loading"
+                                size="small"
+                                :icon="currentMessageType === 'readed' ? 'md-trash' : 'md-redo'"
+                                :title="currentMessageType === 'readed' ? '删除' : '还原'"
+                                type="text"
+                                v-show="currentMessageType !== 'unread'"
+                                @click.native.stop="removeMsg(item)"></Button>
+                        </div>
+                    </MenuItem>
+                </Menu>
+            </div>
+            <div class="message-page-con message-view-con">
+                <Spin fix v-if="contentLoading" size="large"></Spin>
+                <div class="message-view-header">
+                    <h2 class="message-view-title">{{ showingMsgItem.title }}</h2>
+                    <time class="message-view-time">{{ showingMsgItem.create_time }}</time>
+                </div>
+                <div v-html="messageContent"></div>
+            </div>
         </div>
-        <div v-html="messageContent"></div>
-      </div>
-    </div>
-  </Card>
+    </Card>
 </template>
 
 <script>
@@ -107,13 +107,13 @@ export default {
         handleSelect (name) {
             this.currentMessageType = name
         },
-        handleView (msg_id) {
+        handleView (msgid) {
             this.contentLoading = true
-            this.getContentByMsgId({ msg_id }).then(content => {
+            this.getContentByMsgId({ msgid }).then(content => {
                 this.messageContent = content
-                const item = this.messageList.find(item => item.msg_id === msg_id)
+                const item = this.messageList.find(item => item.msgid === msgid)
                 if (item) this.showingMsgItem = item
-                if (this.currentMessageType === 'unread') this.hasRead({ msg_id })
+                if (this.currentMessageType === 'unread') this.hasRead({ msgid })
                 this.stopLoading('contentLoading')
             }).catch(() => {
                 this.stopLoading('contentLoading')
@@ -121,9 +121,9 @@ export default {
         },
         removeMsg (item) {
             item.loading = true
-            const msg_id = item.msg_id
-            if (this.currentMessageType === 'readed') this.removeReaded({ msg_id })
-            else this.restoreTrash({ msg_id })
+            const msgid = item.msgid
+            if (this.currentMessageType === 'readed') this.removeReaded({ msgid })
+            else this.restoreTrash({ msgid })
         }
     },
     mounted () {

@@ -9,8 +9,9 @@ export const api = {
                     'un': userName,
                     'pw': password
                 }
-            }).then(res => {
-                resolve(res.data.token)
+            }).then(response => {
+                const res = response.data // 返回值是整个结果对象
+                resolve((res && res.data && res.data.token) || '')
             }).catch(e => {
                 reject(e)
             })
@@ -20,10 +21,37 @@ export const api = {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'GET',
-                url: 'api/user/info',
+                url: 'api/user/getUserInfo',
                 data: { }
-            }).then(res => {
-                resolve(res.data.data)
+            }).then(response => {
+                const res = response.data
+                resolve((res && res.data) || {})
+            })
+        })
+    },
+    newMessage () { // 最新消息数量
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: 'api/message/have',
+                data: { }
+            }).then(response => {
+                const res = response.data
+                // 0隐藏 null表红点 数字代表数量
+                resolve((res && res.data && res.data.res) || null)
+            })
+        })
+    },
+    powerList () { // 管理员的页面权限
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: 'api/system/menulist',
+                data: { }
+            }).then(response => {
+                const res = response.data
+                // 改造一下权限列表
+                resolve((res && res.data && res.data.list) || null)
             })
         })
     },
@@ -36,19 +64,6 @@ export const api = {
             }).then(res => {
                 if (res.data.data && res.data.data.res) resolve()
                 else resolve(res.data.data)
-            })
-        })
-    },
-    newMessage () { // 最新消息数量
-        return new Promise((resolve, reject) => {
-            axios({
-                method: 'GET',
-                url: '/api/message/have',
-                data: { }
-            }).then(res => {
-                // 0隐藏 null表红点 数字代表数量
-                const newMessageNumber = res.data.data.res
-                resolve(newMessageNumber)
             })
         })
     },

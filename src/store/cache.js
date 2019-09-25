@@ -42,19 +42,19 @@ export default config => {
         return Promise.resolve(JSON.parse(JSON.stringify(responsePromise))) // 对象是引用，为了防止污染数据源
     } else {
         responsePromise = (async () => {
-            console.log(111);
+            console.info(111);
             try {
-                console.log(222);
+                console.info(222);
                 const response = await axios.defaults.adapter(config)
                 cache.set(index, response)
                 return Promise.resolve(JSON.parse(JSON.stringify(response))) // 同时发送多次一样的请求，没办法防止污染数据源，只有业务中去实现
             } catch (reason) {
-                console.log(333);
+                console.info(333);
                 cache.clear(index)
                 return Promise.reject(reason)
             }
         })()
-        console.log(444);
+        console.info(444);
         // put the promise for the non-transformed response into cache as a placeholder
         cache.set(index, responsePromise)
     }

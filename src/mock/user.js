@@ -8,7 +8,7 @@ export const getMessageInit = () => {
         unreadList.push(Mock.mock({
             title: Random.cword(10, 15),
             create_time: '@date',
-            msg_id: Random.increment(100)
+            msgid: Random.increment(100)
         }))
     })
     let readedList = []
@@ -16,7 +16,7 @@ export const getMessageInit = () => {
         readedList.push(Mock.mock({
             title: Random.cword(10, 15),
             create_time: '@date',
-            msg_id: Random.increment(100)
+            msgid: Random.increment(100)
         }))
     })
     let trashList = []
@@ -24,7 +24,7 @@ export const getMessageInit = () => {
         trashList.push(Mock.mock({
             title: Random.cword(10, 15),
             create_time: '@date',
-            msg_id: Random.increment(100)
+            msgid: Random.increment(100)
         }))
     })
     return {

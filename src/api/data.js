@@ -1,4 +1,16 @@
 import axios from 'axios'
+export const saveErrorLogger = info => {
+    console.error('仙', '错误日志', info)
+    /*return axios.request({
+        url: 'save_error_logger',
+        data: info,
+        method: 'post'
+    })*/
+}
+
+
+
+
 
 export const getTableData = () => {
     return axios.request({
@@ -21,13 +33,7 @@ export const errorReq = () => {
     })
 }
 
-export const saveErrorLogger = info => {
-    return axios.request({
-        url: 'save_error_logger',
-        data: info,
-        method: 'post'
-    })
-}
+
 
 export const uploadImg = formData => {
     return axios.request({

@@ -1,4 +1,5 @@
 import { Api } from '@/api'
+import { power2routes } from '@/router'
 import { cache } from '@/cache'
 export const store = {
     namespaced: true, // 作用域
@@ -7,21 +8,21 @@ export const store = {
         userName: '', // 用户名
         userId: '', // 用户id
         token: cache.getUserToken(), // 服务器token
-        access: '', // 登录标识
+        access: '', // 登录标识??
+        newMessageNumber: 0, // 新消息数量
+        powerList: [], // 权限列表
 
         userInfo: { userName: '等', userPhoto: '' }, // 登录用户信息
-        newMessageNumber: 0, // 新消息数量
         testState: 3721
     },
     mutations: {
         setAvator (state, avatorPath) { state.avatorImgPath = avatorPath }, // 设置头像
         setUserId (state, id) { state.userId = id }, // 设置管理员ID
         setUserName (state, name) { state.userName = name }, // 设置管理员姓名
-        setAccess (state, access) { state.access = access }, // 设置登录标识
-        setToken (state, token) { // 设置服务器token
-            state.token = token
-            cache.saveUserToken(token)
-        },
+        setAccess (state, access) { state.access = access }, // 设置登录标识??
+        setToken (state, token) { state.token = token }, // 设置服务器token
+        newMessageNumber (state, num) { state.newMessageNumber = num }, // 触发读取接口 保存最新消息数量
+        updatePowerList (state, list) { state.powerList = list }, // 设置权限列表
 
         logout (state, vm) {
             let themeLink = document.querySelector('link[name="theme"]') // 恢复默认样式
@@ -40,11 +41,6 @@ export const store = {
                 state.userInfo = info
             })
         },
-        readNewMessageNumber (state) { // 触发读取接口 保存最新消息数量
-            Api.user.newMessage().then(num => {
-                state.newMessageNumber = num
-            })
-        },
         setTestState (state, num) {
             state.testState = num
         }
@@ -54,25 +50,54 @@ export const store = {
             return new Promise((resolve, reject) => {
                 Api.user.login(param).then(token => {
                     commit('setToken', token)
+                    cache.setUserToken(token)
                     resolve()
                 }).catch(err => {
                     reject(err)
                 })
             })
         },
+        isLogined ({ commit }) { // 检查管理员是否登录
+            return new Promise((resolve, reject) => {
+                const token = cache.getUserToken()
+                if (token) {resolve()} else {reject()}
+            })
+        },
+        clearLs ({ commit }) { // 初始化管理员环境
+            return new Promise((resolve, reject) => {
+                console.info('仙', '清场')
+                resolve()
+            })
+        },
         getUserInfo ({ state, commit }) { // 获取管理员相关信息
             return new Promise((resolve, reject) => {
                 Api.user.getUserInfo(state.token).then(data => {
                     commit('setAvator', data.avator)
-                    commit('setUserName', data.name)
-                    commit('setUserId', data.user_id)
-                    commit('setAccess', data.access)
-                    resolve(data)
+                    commit('setUserName', data.userName)
+                    commit('setUserId', data.id)
+                    resolve()
                 }).catch(err => {
                     reject(err)
                 })
             })
         },
+        readNewMessageNumber ({ commit }) { // 读取最新消息数量
+            return new Promise((resolve, reject) => {
+                Api.user.newMessage().then(num => {
+                    commit('newMessageNumber', num)
+                    resolve()
+                }).catch(err => {
+                    reject(err)
+                })
+            })
+        },
+        readPower ({ commit }) { // 触发读取接口
+            Api.user.powerList().then(powerList => { // 读取权限
+                commit('updatePowerList', powerList)
+                power2routes(powerList) // 传递给路由模块计算解析
+            })
+        },
+
         logout ({ commit }) {
             return new Promise((resolve, reject) => {
                 Api.user.logout().then(msg => { // 读取权限 根据结果 显示树形结构

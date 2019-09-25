@@ -3,10 +3,18 @@
 // 注意::页面增删改查逻辑相关接口由接口负责
 // 注意::用户相关系统相关的接口由状态来负责(负责调用 其代码还是写在这里的)
 // 注意::传参的整理 字段对应 结果的整理 关键内容挑选 容错
+/*
+    1.get方法：
+        this.$service.get(<url>, { params: {<参数>} } ).then(res => { //调用成功 }).catch(err => { //调用失败 });
+    2.post方法：
+        this.$service.post(<url>, {<参数>} ).then(res => { //调用成功 }).catch(err => { //调用失败 });
+    3.form-data上传文件： <  通过append向params对象添加数据: params.append('file', this.file); >
+        this.$service.request({ method: 'post', url: <url>, data: <form-data格式>,
+        headers: { 'Content-Type': 'multipart/form-data' } }).then(res => { });
+*/
 import Vue from 'vue'
 import axios from 'axios'
 import { Store } from '@/store'
-import * as app from './app'
 import * as user from './user'
 import * as employee from './employee'
 import * as department from './department'
@@ -20,7 +28,6 @@ axios.interceptors.request.use( // 开始设置请求 发起的拦截处理
     config => { // config 代表发起请求的参数的实体
         const token = Store.state.user.token
         config.headers['token'] = token || ''
-        console.info('仙', '请求接口', config.url, config.header)
         return config
     },
     error => { return Promise.reject(error) }
@@ -28,7 +35,7 @@ axios.interceptors.request.use( // 开始设置请求 发起的拦截处理
 // 请求到结果的拦截处理
 axios.interceptors.response.use(
     response => { // 返回请求正确的结果
-        console.info('仙', '返回内容', response.config.url, response.data)
+        console.info('仙', '请求接口', response.config.url, response.data)
         return response
     },
     error => { // 错误的请求结果处理，这里的代码根据后台的状态码来决定错误的输出信息
@@ -54,7 +61,6 @@ axios.interceptors.response.use(
 )
 // 输出::接口列表
 export const Api = {
-    app: app.api,
     user: user.api,
     employee: employee.api,
     department: department.api,
@@ -78,12 +84,3 @@ Vue.prototype.$get = function (url, params) { // 将axios 的 get 方法，绑�
             .catch(err => { reject(err) })
     })
 }
-/*
-1.get方法：
-    this.$service.get(<url>, { params: {<参数>} } ).then(res => { //调用成功 }).catch(err => { //调用失败 });
-2.post方法：
-    this.$service.post(<url>, {<参数>} ).then(res => { //调用成功 }).catch(err => { //调用失败 });
-3.form-data上传文件： <  通过append向params对象添加数据: params.append('file', this.file); >
-    this.$service.request({ method: 'post', url: <url>, data: <form-data格式>,
-    headers: { 'Content-Type': 'multipart/form-data' } }).then(res => { });
-*/

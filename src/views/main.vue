@@ -1,7 +1,9 @@
 <template>
     <Layout style="height: 100%" class="main">
-        <Sider hide-trigger collapsible :width="256" :collapsed-width="64" v-model="collapsed" class="left-sider" :style="{overflow: 'hidden'}">
-            <side-menu accordion ref="sideMenu" :active-name="$route.name" :collapsed="collapsed" @on-select="turnToPage" :menu-list="menuList">
+        <Sider hide-trigger collapsible :width="256" :collapsed-width="64"
+            v-model="collapsed" class="left-sider" :style="{overflow: 'hidden'}">
+            <side-menu accordion :collapsed="collapsed" @on-select="turnToPage"
+                ref="sideMenu" :active-name="$route.name">
                 <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
                 <div class="logo-con">
                     <img v-show="!collapsed" :src="maxLogo" key="max-logo" />
@@ -10,14 +12,29 @@
             </side-menu>
         </Sider>
         <Layout>
-            <Header class="header-con">
-                <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
+            <div class="main-header">
+                <Row type="flex" justify="start" align="middle" class="main-header-left">
+                    <a @click="handleCollapsedChange" type="text" :class="['sider-trigger-a', collapsed ? 'collapsed' : '']">
+                        <Icon type="md-menu" size="26" />
+                    </a>
+                    <custom-bread-crumb show-icon :list="breadCrumbList">
+                    </custom-bread-crumb>
+                </Row>
+                <Row type="flex" justify="end" align="middle" class="main-header-right">
+                    <a class="main-header-right-linkIcon" :href="`https://${row}/`" target="_blank"
+                        v-for="(row, key) in weblink" :name="key" :key="`link-${key}`">
+                        <img :src="`./${row}.png`">
+                    </a>
+                    <Badge dot :count="newMessageNumber">
+                        <Icon type="md-notifications-outline" size="23" style="cursor:pointer" />
+                    </Badge>
+                    <full-screen></full-screen>
+                    <language v-if="$config.useI18n" @on-lang-change="setLocal" :lang="local"/>
+                    <error-store v-if="$config.errorLogStore" :has-read="hasReadErrorPage" :count="errorCount">
+                    </error-store>
                     <user :message-unread-count="unreadCount" :user-avatar="userAvatar"/>
-                    <language v-if="$config.useI18n" @on-lang-change="setLocal" style="margin-right: 10px;" :lang="local"/>
-                    <error-store v-if="$config.plugin['error-store'] && $config.plugin['error-store'].showInHeader" :has-read="hasReadErrorPage" :count="errorCount"></error-store>
-                    <fullscreen v-model="isFullscreen" style="margin-right: 10px;"/>
-                </header-bar>
-            </Header>
+                </Row>
+            </div>
             <Content class="main-content-con">
                 <Layout class="main-layout-con">
                     <div class="tag-nav-wrapper">
@@ -36,27 +53,33 @@
 </template>
 <script>
 import SideMenu from '@C/side-menu'
-import HeaderBar from '@C/header-bar'
 import TagsNav from '@C/tags-nav'
 import User from '@C/user'
 import ABackTop from '@C/a-back-top'
-import Fullscreen from '@C/fullscreen'
+import FullScreen from '@C/fullscreen'
 import Language from '@C/language'
 import ErrorStore from '@C/error-store'
+import CustomBreadCrumb from '@C/custom-bread-crumb'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 import { getNewTagList, routeEqual } from '@/libs/util'
-import routers from '@/router/routers'
 import minLogo from '@/assets/images/logo-min.jpg'
 import maxLogo from '@/assets/images/logo.jpg'
 import '@S/main.less'
 export default {
     name: 'Main',
-    components: { SideMenu, HeaderBar, Language, TagsNav, Fullscreen, ErrorStore, User, ABackTop },
+    components: { SideMenu, Language, TagsNav, FullScreen, ErrorStore, User, ABackTop, CustomBreadCrumb },
     data () {
         return {
             collapsed: false,
             minLogo,
             maxLogo,
+            weblink: [
+                'www.zdao.com',
+                'www.qichacha.com',
+                'www.tianyancha.com',
+                'maimai.cn'
+            ],
+
             isFullscreen: false
         }
     },
@@ -64,31 +87,19 @@ export default {
         ...mapGetters([
             'errorCount'
         ]),
-        tagNavList () {
-            return this.$store.state.app.tagNavList
-        },
-        tagRouter () {
-            return this.$store.state.app.tagRouter
-        },
-        userAvatar () {
-            return this.$store.state.user.avatarImgPath
-        },
+        newMessageNumber () { return this.$store.state.user.newMessageNumber || 0 }, // 新消息数量 0隐藏 null表红点 数字代表数量
+
+        tagNavList () { return this.$store.state.app.tagNavList || [] },
+        breadCrumbList () { return this.$store.state.app.breadCrumbList },
+        tagRouter () { return this.$store.state.app.tagRouter },
+        userAvatar () { return this.$store.state.user.avatarImgPath },
         cacheList () {
-            const list = ['ParentView', ...this.tagNavList.length ? this.tagNavList.filter(item => !(item.meta && item.meta.notCache)).map(item => item.name) : []]
+            const list = [ 'ParentView', ...this.tagNavList.length ? this.tagNavList.filter(item => !(item.meta && item.meta.notCache)).map(item => item.name) : [] ]
             return list
         },
-        menuList () {
-            return this.$store.getters.menuList
-        },
-        local () {
-            return this.$store.state.app.local
-        },
-        hasReadErrorPage () {
-            return this.$store.state.app.hasReadErrorPage
-        },
-        unreadCount () {
-            return this.$store.state.user.unreadCount
-        }
+        local () { return this.$store.state.app.local },
+        hasReadErrorPage () { return this.$store.state.app.hasReadErrorPage },
+        unreadCount () { return this.$store.state.user.unreadCount }
     },
     methods: {
         ...mapMutations([
@@ -122,7 +133,7 @@ export default {
             })
         },
         handleCollapsedChange (state) {
-            this.collapsed = state
+            this.collapsed = !this.collapsed
         },
         handleCloseTag (res, type, route) {
             if (type !== 'others') {
@@ -153,9 +164,8 @@ export default {
         }
     },
     mounted () {
-    /**
-     * @description 初始化设置面包屑导航和标签导航
-     */
+        /**
+         * @description 初始化设置面包屑导航和标签导航
         this.setTagNavList()
         this.setHomeRoute(routers)
         const { name, params, query, meta } = this.$route
@@ -173,6 +183,7 @@ export default {
         }
         // 获取未读消息条数
         this.getUnreadMessageCount()
+         */
     }
 }
 </script>

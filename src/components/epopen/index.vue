@@ -19,7 +19,7 @@ export default {
             // $route.router 所属路由器以及所属组件信息
             // $route.matched 数组，包含当前匹配的路径中所包含的所有片段所对应的配置参数对象。
             // $route.name 当前路径名字
-            console.log('即EP将打开文件', this.$route.path)
+            console.info('即EP将打开文件', this.$route.path)
             let url = this.$route.path.replace(/\//g, '\\')
             axios.get(
                 'http://localhost:5002/epOpen', {
@@ -29,9 +29,9 @@ export default {
                     }
                 }
             ).then(function (response) {
-                console.log('成功EP打开文件: ', response)
+                console.info('成功EP打开文件: ', response)
             }).catch(function (error) {
-                console.log('失败', error)
+                console.info('失败', error)
             })
         }
     },

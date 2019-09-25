@@ -34,8 +34,8 @@ Vue.filter('change', {
         return value // model -> view 在更新 `<input>` 元素之前格式化值
     },
     write: function (newVal, oldVal) {
-        console.log('newVal:' + newVal) // view -> model 在写回数据之前格式化值
-        console.log('oldVal:' + oldVal)
+        console.info('newVal:' + newVal) // view -> model 在写回数据之前格式化值
+        console.info('oldVal:' + oldVal)
         return newVal
     }
 })

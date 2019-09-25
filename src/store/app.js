@@ -1,15 +1,16 @@
 import Vue from 'vue'
-import { power2routes } from '@/router'
-import { Api } from '@/api'
+import config from '@/config'
 export const store = {
     namespaced: true, // 作用域
     state: {
+        isFullScreen: false, // 全屏 不能默认设置全屏
+        breadCrumbList: [], // 面包屑内容
+        routeList: [], // 一维路由信息列表
+        menuList: [], // 路由结构 (过滤掉无权限页面)
+
         menuTheme: 'dark', // 主题
         themeColor: 'b', // 主题色彩
-        isFullScreen: false, // 全屏 -- 待议 似乎不能默认设置全屏
         lang: '', // 语言
-        menuList: [], // 路由结构 (过滤权限)
-        menuListOneLevel: [], // 路由一维集合 (过滤权限)
         menuListNoPower: [], // 无权限路由列表
         currentPageName: '', // 当前页面的name (for面包屑)
         cachePage: [], // 缓存视图 不知作用 ???
@@ -21,9 +22,11 @@ export const store = {
         powerList: [] // 权限列表
     },
     mutations: {
-        updateMenuList (state, list) { // 路由配置列表(已经过滤)
-            state.menuList = list
-        },
+        fullScreen (state, flag) { state.isFullScreen = flag }, // 重置全屏状态
+        updateBreadCrumb (state, list) { state.breadCrumbList = list }, // 面包屑内容
+        updateRoutePowerList (state, list) { state.routeList = list }, // 设置一维路由信息列表 完整信息
+        updateMenuList (state, list) { state.menuList = list }, // 路由配置列表(已经过滤)
+
         routeSpinStart (state) { // 启动路由视图loading
             state.spinLoading = true
         },
@@ -31,9 +34,6 @@ export const store = {
             setTimeout(function () {
                 state.spinLoading = false
             }, 500)
-        },
-        updateBreadcrumbList (state, list) { // 设置面包屑数据源
-            state.menuListOneLevel = list
         },
         updateNoPowerList (state, list) { // 无权限页面集合
             state.menuListNoPower = list
@@ -66,11 +66,6 @@ export const store = {
             const route = state.menuListOneLevel[name] || {}
             window.document.title = (route.title || 'OA-WEB') + ' | 资料库'
         },
-        resetFullScreen (state, flag) { // 重置一下全屏状态
-            state.isFullScreen = !!(document.fullscreenElement || document.mozFullScreenElement ||
-                                 document.webkitFullscreenElement || document.fullScreen ||
-                                 document.mozFullScreen || document.webkitIsFullScreen)
-        },
         setFullScreen (state, flag) { // 设置全屏状态
             state.isFullScreen = flag
             if (flag) {
@@ -85,20 +80,51 @@ export const store = {
         },
         changeShrink (state, flag) { // 设置左边树折叠状态
             state.shrink = flag
-        },
-        updatePowerList (state, list) { // 设置权限列表
-            state.powerList = list
         }
     },
     actions: {
-        readPower ({ // 触发读取接口
-            commit // 状态管理
-        }) {
-            Api.app.powerList().then(powerList => { // 读取权限
-                power2routes(powerList) // 传递给路由模块
-                commit('updatePowerList', powerList)
-            })
+        resetFullScreen ({ commit }) { // 重置一下全屏状态
+            const bool = !!(document.fullscreenElement || document.mozFullScreenElement ||
+                 document.webkitFullscreenElement || document.fullScreen ||
+                 document.mozFullScreen || document.webkitIsFullScreen)
+            commit('fullScreen', bool)
         },
+        setBreadCrumb ({ commit, state }, routeName) { // 获取一维路由中当前路由的面包屑
+            const bca = []
+            let r0 = { title: '首页', path: '/home/index' }
+            if( routeName.indexOf('_') > -1 ){
+                let l1 = routeName.replace(/_.*$/g, '')
+                let r1 = state.routeList[l1]
+                if (r1 && l1 != 'home'){
+                    bca.push(r0)
+                    bca.push(r1)
+                }
+                if( routeName.indexOf('@') > -1 ){
+                    let l2 = routeName.replace(/@.*$/g, '').replace(/^.*_/g, '')
+                    let r2 = state.routeList[l2]
+                    if (r2){
+                        bca.push(r2)
+                    }
+                }
+                let r3 = state.routeList[routeName]
+                if (r3){
+                    bca.push(r3)
+                }
+            }
+            commit('updateBreadCrumb', bca)
+        },
+        setTitle ({ state }, routeName) { // 修改title
+            const title = config.title || 'ABC'
+            const resTitle = state.routeList[routeName].title || 'ABC'
+            window.document.title = `${title} - ${resTitle}`
+        },
+        setRoutePowerList ({ commit }, list) { // 保存一维路由
+            commit('updateRoutePowerList', list)
+        },
+        setMenuList ({ commit }, list) { // 保存左边树数据源
+            commit('updateMenuList', list)
+        },
+
         hasPower ({ state }, name) { // 判断是否有权限
             return state.menuListNoPower[name] === null
         }

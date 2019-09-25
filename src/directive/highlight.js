@@ -34,7 +34,7 @@ export default {
                         hljs.highlightBlock(pre)
                     })
                     .catch(function (error) {
-                        console.log(error)
+                        console.info(error)
                     })
             }
         }

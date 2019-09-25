@@ -1,19 +1,9 @@
 <template>
-  <Select
-    ref="select"
-    class="tree-select"
-    v-bind="$attrs"
-    @on-change="handleChange"
-    multiple
-  >
-    <tree-select-tree-item
-      :selectedArray="value"
-      :data="data"
-      @on-clear="handleClear"
-      :load-data="loadData"
-      @on-check="handleTreeCheck"
-    ></tree-select-tree-item>
-  </Select>
+    <Select ref="select" class="tree-select" v-bind="$attrs" @on-change="handleChange" multiple >
+        <tree-select-tree-item :selectedArray="value" :data="data" @on-clear="handleClear"
+            :load-data="loadData" @on-check="handleTreeCheck">
+        </tree-select-tree-item>
+    </Select>
 </template>
 
 <script>

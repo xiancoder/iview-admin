@@ -11,41 +11,41 @@ const TOKEN = 'Xian_loginToken_' // 登录token
 const FRESH_TOKEN = '_refreshToken_' // 登录token
 export const cache = {
     // 登录，存储用户类型
-    saveUserType (type) { storage.set(U_TYPE, type) },
+    setUserType (type) { storage.set(U_TYPE, type) },
     // 获取用户类型
     getUserType () { return storage.get(U_TYPE) },
     // 存储用户token
-    saveUserToken (token) { storage.set(TOKEN, token) },
+    setUserToken (token) { storage.set(TOKEN, token) },
     // 获取token
     getUserToken () { return storage.get(TOKEN) },
     // 删除token
     delUserToken () { storage.set(TOKEN, '') },
     // 存储刷新token
-    saveRefreshToken (token) { storage.set(FRESH_TOKEN, token) },
+    setRefreshToken (token) { storage.set(FRESH_TOKEN, token) },
     // 获取刷新token
     getRefreshToken () { return storage.get(FRESH_TOKEN) },
     // 存储shopId
-    saveShopId (id) { storage.set(SHOP_ID, id) },
+    setShopId (id) { storage.set(SHOP_ID, id) },
     // 获取shopId
     getShopId () { return storage.get(SHOP_ID) },
     // 删除shopId
     delShopId () { storage.set(SHOP_ID, '') },
     // 存储shopName（用户点击门店跳转后显示门店名称）
-    saveShopName (name) { storage.set(SHOP_NAME, name) },
+    setShopName (name) { storage.set(SHOP_NAME, name) },
     // 获取shopName
     getShopName () { return storage.get(SHOP_NAME) },
     // 登录之后，获取用户信息和所有商户或者门店信息，并存储
-    saveMchUserInfo (info) { storage.set(MCH_INFO, info) },
+    setMchUserInfo (info) { storage.set(MCH_INFO, info) },
     // 获取当前商户信息
     getMchUserInfo () { return storage.get(MCH_INFO) },
     // 保存当前门店信息
-    saveShopUserInfo (info) { storage.set(SHOP_INFO, info) },
+    setShopUserInfo (info) { storage.set(SHOP_INFO, info) },
     // 获取当前门店信息
     getShopUserInfo () { return storage.get(SHOP_INFO) },
     // 保存所有商户列表
-    saveMchList (data) { storage.set(ALL_MCH_LIST, data) },
+    setMchList (data) { storage.set(ALL_MCH_LIST, data) },
     // 保存所有门店列表
-    saveShopList (data) { storage.set(ALL_SHOP_LIST, data) },
+    setShopList (data) { storage.set(ALL_SHOP_LIST, data) },
     // 获取所有商户列表
     getMchList () { return storage.get(ALL_MCH_LIST) },
     // 获取所有门店列表
