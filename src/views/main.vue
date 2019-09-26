@@ -1,9 +1,8 @@
 <template>
     <Layout style="height: 100%" class="main">
-        <Sider hide-trigger collapsible :width="256" :collapsed-width="64"
+        <Sider hide-trigger collapsible :width="200" :collapsed-width="64"
             v-model="collapsed" class="left-sider" :style="{overflow: 'hidden'}">
-            <side-menu accordion :collapsed="collapsed" @on-select="turnToPage"
-                 :menu-list="menuList" ref="sideMenu" :active-name="$route.name">
+            <side-menu :collapsed="collapsed">
                 <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
                 <div class="logo-con">
                     <img v-show="!collapsed" :src="maxLogo" key="max-logo" />
@@ -28,6 +27,8 @@
                     <Badge dot :count="newMessageNum">
                         <Icon type="md-notifications-outline" size="23" style="cursor:pointer" />
                     </Badge>
+                    <qr-code></qr-code>
+                    <epopen></epopen>
                     <full-screen></full-screen>
                     <error-store v-if="$config.errorLogStore"></error-store>
                     <user></user>
@@ -38,10 +39,11 @@
                     <div class="tag-nav-wrapper">
                         <tags-nav></tags-nav>
                     </div>
-                    <Content class="content-wrapper">
+                    <Content class="content-wrapper" id="mainScrollFlag">
                         <keep-alive :include="cacheList">
-                            <router-view/>
+                            <router-view></router-view>
                         </keep-alive>
+                        <Spin size="large" fix v-if="spinShow"></Spin>
                         <ABackTop :height="100" :bottom="80" :right="50" container=".content-wrapper"></ABackTop>
                     </Content>
                 </Layout>
@@ -50,38 +52,34 @@
     </Layout>
 </template>
 <script>
-import SideMenu from '@C/side-menu'
+import SideMenu from '@C/side-menu' // 组件::左侧树菜单
 import TagsNav from '@C/tags-nav'
 import User from '@C/user'
 import ABackTop from '@C/a-back-top'
-import FullScreen from '@C/fullscreen'
+import FullScreen from '@C/fullscreen' // 组件::全屏按钮
 import ErrorStore from '@C/error-store'
-import CustomBreadCrumb from '@C/custom-bread-crumb'
-import { mapMutations, mapActions } from 'vuex'
+import CustomBreadCrumb from '@C/custom-bread-crumb' // 组件::面包屑
+import qrCode from '@C/qrcode' // 组件::二维码
+import epopen from '@C/epopen' // 组件::EP编辑
 import minLogo from '@/assets/images/logo-min.jpg'
 import maxLogo from '@/assets/images/logo.jpg'
 import '@S/main.less'
 export default {
     name: 'Main',
-    components: { SideMenu, TagsNav, FullScreen, ErrorStore, User, ABackTop, CustomBreadCrumb },
+    components: { SideMenu, TagsNav, FullScreen, ErrorStore, User, ABackTop, CustomBreadCrumb, qrCode, epopen },
     data () {
         return {
             collapsed: false, // 折叠标记
             minLogo, // 最小图标
             maxLogo, // 最大图标
-            weblink: [
-                'www.zdao.com',
-                'www.qichacha.com',
-                'www.tianyancha.com',
-                'maimai.cn'
-            ],
+            weblink: [ 'www.zdao.com', 'www.qichacha.com', 'www.tianyancha.com', 'maimai.cn' ],
             isFullscreen: false
         }
     },
     computed: {
-        menuList () { return this.$store.state.system.menuList }, // 左边树 数据源
         newMessageNum () { return this.$store.state.system.newMessageNum || 0 }, // 新消息数量 0隐藏 null表红点 数字代表数量
         breadCrumbList () { return this.$store.state.system.breadCrumbList }, // 面包屑
+        spinShow () { return this.$store.state.system.spinLoading || false }, // 新消息数量 0隐藏 null表红点 数字代表数量
 
         cacheList () {
             // const list = [ 'ParentView', ...this.tagNavList.length ? this.tagNavList.filter(item => !(item.meta && item.meta.notCache)).map(item => item.name) : [] ]

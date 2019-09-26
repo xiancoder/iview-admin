@@ -47,15 +47,8 @@
 </template>
 
 <script>
-import beforeClose from '@/router/before-close'
-import { objEqual } from '@/utils/object'
-const routeEqual = (route1, route2) => {
-    const params1 = route1.params || {}
-    const params2 = route2.params || {}
-    const query1 = route1.query || {}
-    const query2 = route2.query || {}
-    return (route1.name === route2.name) && objEqual(params1, params2) && objEqual(query1, query2)
-}
+import beforeCloseFun from '@/router/before-close'
+import { routeEqual } from '@/router'
 export default {
     name: 'TagsNav',
     data () {
@@ -74,10 +67,7 @@ export default {
     },
     computed: {
         list () { return this.$store.state.system.tagNavList || [] }, // 历史记录tab
-        currentRouteObj () { // 获得当前页内容
-            const { name, params, query } = this.$route
-            return { name, params, query }
-        }
+        currentRouteName () { return this.$route.name } // 当前路由
     },
     methods: {
         handlescroll (e) {
@@ -105,37 +95,37 @@ export default {
                 }
             }
         },
-        handleTagsOption (type) {
-            if (type.includes('all')) {
-                // 关闭所有，除了home
-                let res = this.list.filter(item => item.name === this.$config.homeName)
-                this.$emit('on-close', res, 'all')
-            } else if (type.includes('others')) {
-                // 关闭除当前页和home页的其他页
-                let res = this.list.filter(item => routeEqual(this.currentRouteObj, item) || item.name === this.$config.homeName)
-                handleCloseTag(res, 'others', this.currentRouteObj)
+
+        handleTagsOption (type) { // 关闭其他 关闭所有
+            if (type.includes('all')) { // 关闭所有
+                this.handleCloseTag([])
+            } else if (type.includes('others')) { // 关闭除当前页和home页的其他页
+                let res = this.list.filter(item => item.name === this.currentRouteName || item.name === this.$config.homeName)
+                this.handleCloseTag(res, {})
                 setTimeout(() => {
-                    this.getTagElementByRoute(this.currentRouteObj)
-                }, 100)
+                    this.getTagElementByRoute(this.currentRouteName)
+                }, 200)
             }
         },
-        handleClose (current) {
-            if (current.meta && current.meta.beforeCloseName && current.meta.beforeCloseName in beforeClose) {
-                new Promise(beforeClose[current.meta.beforeCloseName]).then(close => {
-                    if (close) {
-                        this.close(current)
-                    }
+        handleClose (route) { // 触发关闭单一标签 且如果关闭之前有动作就触发
+            if (route.beforeCloseFun && route.beforeCloseFun in beforeCloseFun) {
+                new Promise(beforeCloseFun[route.beforeCloseFun]).then(close => {
+                    if (close) { this.close(route) }
                 })
             } else {
-                this.close(current)
+                let res = this.list.filter(item => route.name !== item.name)
+                this.handleCloseTag(res, route)
             }
         },
-        close (route) {
-            let res = this.list.filter(item => !routeEqual(route, item))
-            handleCloseTag(res, undefined, route)
+        handleCloseTag (res, route) { // 关闭标签 即重置数据
+            if (res.length === 0 || route.name === this.currentRouteName) {
+                const name = this.$config.homeName
+                this.$router.push({name})
+            }
+            this.$store.dispatch('system/setTagNavList', res)
         },
-        isCurrentTag (item) {
-            return routeEqual(this.currentRouteObj, item)
+        isCurrentTag (item) { // 是否当前标签
+            return this.currentRouteName === item.name
         },
         moveToView (tag) {
             const outerWidth = this.$refs.scrollOuter.offsetWidth
@@ -165,9 +155,7 @@ export default {
             })
         },
         contextMenu (item, e) {
-            if (item.name === this.$config.homeName) {
-                return
-            }
+            if (item.name === this.$config.homeName) { return }
             this.visible = true
             const offsetLeft = this.$el.getBoundingClientRect().left
             this.contextMenuLeft = e.clientX - offsetLeft + 10
@@ -176,18 +164,6 @@ export default {
         closeMenu () {
             this.visible = false
         },
-        handleCloseTag (res, type, route) {
-            if (type !== 'others') {
-                if (type === 'all') {
-                    this.turnToPage(this.$config.homeName)
-                } else {
-                    if (routeEqual(this.$route, route)) {
-                        this.closeTag(route)
-                    }
-                }
-            }
-            this.setTagNavList(res)
-        },
         turnToPage (route) {
             let { name, params, query } = {}
             if (typeof route === 'string') name = route
@@ -195,10 +171,6 @@ export default {
                 name = route.name
                 params = route.params
                 query = route.query
-            }
-            if (name.indexOf('isTurnByHref_') > -1) {
-                window.open(name.split('_')[1])
-                return
             }
             this.$router.push({ name, params, query })
         },

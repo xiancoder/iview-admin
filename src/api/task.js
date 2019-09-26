@@ -1,5 +1,40 @@
 import axios from 'axios'
+import { success, error } from '@/tools'
 export const api = {
+    found ({id, taskName, taskPriority, completeTime, taskContent, personLiable, fileList, correlation}) { // 管理员登录
+        if (taskPriority !== 2) { completeTime = '' }
+        let fd = new FormData();
+        fd.append('id', id || null)
+        fd.append('taskName', taskName);
+        fd.append('taskPriority', taskPriority);
+        fd.append('completeTime', completeTime || null);
+        fd.append('taskContent', taskContent);
+        fd.append('personLiable', personLiable);
+        fd.append('correlation', correlation.length === 0 ? null : correlation);
+        for (let file in fileList) {
+            fd.append('file', fileList[file]);
+        }
+        return new Promise((resolve, reject) => {
+            axios.request({
+                method: 'post',
+                url: 'api/task/found',
+                data: fd,
+                headers: { 'Content-Type': 'multipart/form-data' },
+                timeout: 300000
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.res === 1) {
+                    success(res.msg)
+                    resolve()
+                } else {
+                    error(res.msg)
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 中止操作
+            })
+        })
+    },
     pullUsers () { // 获取所有相关人员
         return new Promise((resolve, reject) => {
             axios({

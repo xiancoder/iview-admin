@@ -32,7 +32,7 @@
         height: ~"calc(100% - 80px)";
         overflow: auto;
     }
-    .left-sider{
+    .left-sider{z-index: 10000;
         .ivu-layout-sider-children{
             overflow-y: scroll;
             margin-right: -18px;
@@ -148,7 +148,7 @@ div.api{
 }
 /* //////////////////////////////////////////////////////////////////////////// */
 /* 页面内容范围 */
-.single-page {
+.xianFrom {
     /* 复写表单样式 */
     .ivu-form{width: 100%; padding: 30px 0px; border-left: 1px solid #dcdee2; border-right: 1px solid #dcdee2;}
     /* label 距离 */
@@ -176,6 +176,8 @@ div.api{
 /* //////////////////////////////////////////////////////////////////////////// */
 /* 表单标题和tab */
 .xian-title-tabs{ margin-top: 30px;}
+.xian-title-tabs .ivu-tabs{margin-bottom: 32px;}
+.xian-title-tabs .ivu-tabs .ivu-tabs-bar { border-bottom: 1px solid #dcdee2; margin-bottom: 0; margin-left: 40px; }
 .xian-title-tabs h1{ font-size: 26px; font-weight: 400; margin: 0 0 20px 20px;}
 .xian-title-tabs .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-nav-container { height: 32px; padding-left: 19px; }
 .xian-title-tabs .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab { margin: 0; margin-right: 15px; }

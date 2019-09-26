@@ -1,6 +1,9 @@
 import axios from 'axios'
+import { success, error } from '@/tools'
 export const api = {
     login ({ userName, password }) { // 管理员登录
+        userName = userName.trim() // 参数格式处理
+        password = password.trim() // 参数格式处理
         return new Promise((resolve, reject) => {
             axios.request({
                 method: 'POST',
@@ -9,11 +12,17 @@ export const api = {
                     'un': userName,
                     'pw': password
                 }
-            }).then(response => {
-                const res = response.data // 返回值是整个结果对象
-                resolve((res && res.data && res.data.token) || '')
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res.code === 200) { // 服务器说ok
+                    success('登录成功')
+                    resolve(res && res.data && res.data.token)
+                } else { // 服务器说error
+                    error(res.msg || '登录失败')
+                    reject(res && res.data)
+                }
             }).catch(e => {
-                reject(e)
+                error(e.message) // ajax异常后 中止操作
             })
         })
     },
@@ -22,10 +31,13 @@ export const api = {
             axios({
                 method: 'GET',
                 url: 'api/system/getUserInfo',
-                data: { }
+                data: {}
             }).then(response => {
                 const res = response.data
                 resolve((res && res.data) || {})
+            }).catch(e => {
+                error(e.message) // 默认报错
+                reject(e.message)
             })
         })
     },

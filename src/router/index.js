@@ -1,12 +1,11 @@
 import Vue from 'vue'
-import iView from 'iview'
 import Router from 'vue-router'
 import { Store } from '@/store'
 import { objEqual } from '@/utils/object'
+import { LoadingBarRun } from '@/tools'
 import { doCustomTimes } from '@/utils/function'
 import routes from './routers'
-// import config from '@/config'
-// const { homeName } = config
+import Config from '@/config'
 
 Vue.use(Router)
 // 路由实例 需要挂载到vue
@@ -72,68 +71,32 @@ export const routeHasExist = (tagNavList, routeItem) => {
     })
     return res
 }
-export const getRouteTitleHandled = (route) => {
-    let router = {...route}
-    let meta = {...route.meta}
-    let title = ''
-    if (meta.title) {
-        if (typeof meta.title === 'function') {
-            meta.__titleIsFunction__ = true
-            title = meta.title(router)
-        } else title = meta.title
-    }
-    meta.title = title
-    router.meta = meta
-    return router
-}
-
-// const LOGIN_PAGE_NAME = 'login'
-
-/* const turnTo = (to, access, next) => {
-    if (canTurnTo(to.name, access, routes)) next() // 有权限，可访问
-    else next({ replace: true, name: 'error_401' }) // 无权限，重定向到401页面
-} */
-
 router.beforeEach((to, from, next) => {
-    iView.LoadingBar.start() // 顶部进度条
+    LoadingBarRun(true) // 顶部进度条
     Store.dispatch('system/setBreadCrumb', to.name) // 左侧树数据源
-
+    Store.dispatch('system/routeSpin', true) // 路由视图loading
+    const scroller = document.getElementById('mainScrollFlag')
+    if (scroller) scroller.scrollTo(0, 0)
     next() // 跳转
-    /* const token = getToken()
-    if (!token && to.name !== LOGIN_PAGE_NAME) {
-    // 未登录且要跳转的页面不是登录页
-    next({
-    name: LOGIN_PAGE_NAME // 跳转到登录页
-    })
-    } else if (!token && to.name === LOGIN_PAGE_NAME) {
-    // 未登陆且要跳转的页面是登录页
-    next() // 跳转
-    } else if (token && to.name === LOGIN_PAGE_NAME) {
-    // 已登录且要跳转的页面是登录页
-    next({
-    name: homeName // 跳转到homeName页
-    })
+    const isCurrentLocked = Store.state.system.locking
+    const isCurrentLogined = Store.state.system.token
+    if (isCurrentLocked && to.name !== 'locking') { // 判断当前是否是锁定状态
+        next({ replace: true, name: 'locking' })
+    } else if (!isCurrentLocked && to.name === 'locking') {
+        next(false)
+    } else if (!isCurrentLogined && to.name !== Config.loginName) { // 判断是否已经登录且前往的页面不是登录页
+        next({ replace: true, name: Config.loginName })
+    } else if (isCurrentLogined && to.name === Config.loginName) { // 判断是否已经登录且前往的是登录页
+        next({ replace: true, name: Config.homeName })
     } else {
-    if (store.state.user.hasGetInfo) {
-    turnTo(to, store.state.user.access, next)
-    } else {
-    store.dispatch('getUserInfo').then(user => {
-    // 拉取用户信息，通过用户权限和跳转的页面的name来判断是否有权限访问;access必须是一个数组，如：['super_admin'] ['super_admin', 'admin']
-    turnTo(to, user.access, next)
-    }).catch(() => {
-    setToken('')
-    next({
-    name: 'login'
-    })
-    })
+        Store.dispatch('system/hasPower', to.name).then((bool) => {
+            if (bool) {next()} else {next({name: 'error404'})}
+        })
     }
-    } */
 })
-
 router.afterEach(to => {
-    console.log(to)
+    LoadingBarRun(false) // 顶部进度条
     Store.dispatch('system/setTitle', to.name) // 左侧树数据源
-    // Store.dispatch('system/addTagNav', { route: to, type: 'push' }) // 增加页面缓存标签
-    iView.LoadingBar.finish()
-    window.scrollTo(0, 0)
+    Store.dispatch('system/addTagNav', to) // 增加页面缓存标签
+    Store.dispatch('system/routeSpin', false) // 路由视图loading
 })

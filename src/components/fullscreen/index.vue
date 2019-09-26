@@ -18,11 +18,11 @@ export default {
         }
     },
     computed: {
-        flag () { return this.$store.state.app.isFullScreen } // 全屏状态
+        flag () { return this.$store.state.system.isFullScreen } // 全屏状态
     },
     methods: {
         handleChange () { // 修改全屏状态
-            this.$store.commit('app/setFullScreen', !this.flag)
+            this.$store.commit('system/setFullScreen', !this.flag)
         }
     }
 }

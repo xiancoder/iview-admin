@@ -16,12 +16,7 @@
             </div>
             <div class="message-page-con message-list-con">
                 <Spin fix v-if="listLoading" size="large"></Spin>
-                <Menu
-                    width="auto"
-                    active-name=""
-                    :class="titleClass"
-                    @on-select="handleView"
-                >
+                <Menu width="auto" active-name="" :class="titleClass" @on-select="handleView" >
                     <MenuItem v-for="item in messageList" :name="item.msgid" :key="`msg_${item.msgid}`">
                         <div>
                             <p class="msg-title">{{ item.title }}</p>
@@ -60,7 +55,7 @@ const listDic = {
     trash: 'messageTrashList'
 }
 export default {
-    name: 'message_page',
+    name: 'messagepage',
     data () {
         return {
             listLoading: true,
@@ -75,14 +70,8 @@ export default {
             messageUnreadList: state => state.user.messageUnreadList,
             messageReadedList: state => state.user.messageReadedList,
             messageTrashList: state => state.user.messageTrashList,
-            messageList () {
-                return this[listDic[this.currentMessageType]]
-            },
-            titleClass () {
-                return {
-                    'not-unread-list': this.currentMessageType !== 'unread'
-                }
-            }
+            messageList () { return this[listDic[this.currentMessageType]] },
+            titleClass () { return { 'not-unread-list': this.currentMessageType !== 'unread' } }
         }),
         ...mapGetters([
             'messageUnreadCount',

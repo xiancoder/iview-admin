@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { router } from '@/router'
-import { Message, Modal } from 'iview'
+import { Message, Modal, LoadingBar } from 'iview'
 /// ////////////////////////////////////////////////////
 // 常用的操作封装
 /// ////////////////////////////////////////////////////
@@ -115,6 +115,13 @@ export const h = { // 通用渲染格式 for 表格 (即将废弃)
         }
     },
     end: null // 错误占位符
+}
+export const LoadingBarRun = (flag) => { // 二次确认框
+    if (flag) {
+        LoadingBar.start()
+    } else {
+        LoadingBar.finish()
+    }
 }
 Vue.prototype.$tool = {
     success,

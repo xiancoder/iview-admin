@@ -14,15 +14,8 @@ export default {
     data () {
         return {
             columns: [
-                {
-                    type: 'index',
-                    title: '序号',
-                    width: 100
-                },
-                {
-                    key: 'type',
-                    title: '类型',
-                    width: 100,
+                { type: 'index', title: '序号', width: 100 },
+                { key: 'type', title: '类型', width: 100,
                     render: (h, { row }) => {
                         return (
                             <div>
@@ -31,50 +24,34 @@ export default {
                         )
                     }
                 },
-                {
-                    key: 'code',
-                    title: '编码',
+                { key: 'code', title: '编码',
                     render: (h, { row }) => {
                         return (
                             <span>{ row.code === 0 ? '-' : row.code }</span>
                         )
                     }
                 },
-                {
-                    key: 'mes',
-                    title: '信息'
-                },
-                {
-                    key: 'url',
-                    title: 'URL'
-                },
-                {
-                    key: 'time',
-                    title: '时间',
+                { key: 'mes', title: '信息' },
+                { key: 'url', title: 'URL' },
+                { key: 'time', title: '时间', sortable: true, sortType: 'desc',
                     render: (h, { row }) => {
                         return (
                             <span>{ dayjs(row.time).format('YYYY-MM-DD HH:mm:ss') }</span>
                         )
-                    },
-                    sortable: true,
-                    sortType: 'desc'
+                    }
                 }
             ]
         }
     },
     computed: {
-        errorList () {
-            return this.$store.state.app.errorList
-        }
+        errorList () { return this.$store.state.system.errorList }
     },
     methods: {
         ...mapMutations([
             'setHasReadErrorLoggerStatus'
         ]),
         exportData () {
-            this.$refs.table.exportCsv({
-                filename: '错误日志.csv'
-            })
+            this.$refs.table.exportCsv({ filename: '错误日志.csv' })
         }
     },
     activated () {

@@ -96,25 +96,30 @@ export default [
             {power: '0000', path: '024tools', title: '自定义 $tool'},
             {power: '0000', path: '025rule', title: '本框架开发规范'},
             {power: '0000', path: '026iviewDefault', title: 'iview改变默认配置'},
-            {power: '0000', path: '027filter', title: '过滤器收集'},
+            {power: '0000', path: '027filter', title: '过滤器整理'},
+            {power: '0000', path: '028pluginLike', title: '插件比喻'},
+            {power: '0000', path: '029unitTest', title: '单元测试'},
+            {power: '0000', path: '030vueVision', title: 'vue几个版本'},
+            {power: '0000', path: '031mockjs', title: '玩转假数据'},
+            {power: '0000', path: '032api', title: 'api流程梳理'},
             {power: '1299', path: '100newBee', title: '大牛养成'}
         ]
     }),
     makeTwoLevelRoute({
         path: 'components', title: '组件', icon: 'logo-buffer',
         children: [
-            {power: '0000', path: 'treeselectpage', icon: 'md-arrow-dropdown-circle', title: '树状下拉选择器'},
-            {power: '0000', path: 'counttopage', icon: 'md-trending-up', title: '数字渐变'},
-            {power: '0000', path: 'draglistpage', icon: 'ios-infinite', title: '拖拽列表'},
-            {power: '0000', path: 'dragdrawerpage', icon: 'md-list', title: '可拖拽抽屉'},
-            {power: '0000', path: 'orgtreepage', icon: 'ios-people', title: '组织结构树'},
-            {power: '0000', path: 'treetablepage', icon: 'md-git-branch', title: '树状表格'},
-            {power: '0000', path: 'cropperpage', icon: 'md-crop', title: '图片裁剪'},
-            {power: '0000', path: 'tablespage', icon: 'md-grid', title: '多功能表格'},
-            {power: '0000', path: 'splitpanepage', icon: 'md-pause', title: '分割窗口'},
-            {power: '0000', path: 'markdownpage', icon: 'logo-markdown', title: 'Markdown编辑器'},
-            {power: '0000', path: 'editorpage', icon: 'ios-create', title: '富文本编辑器'},
-            {power: '0000', path: 'iconspage', icon: 'bear', title: '自定义图标'}
+            {power: '0000', path: 'treeselect', icon: 'md-arrow-dropdown-circle', title: '树状下拉选择器'},
+            {power: '0000', path: 'countto', icon: 'md-trending-up', title: '数字渐变'},
+            {power: '0000', path: 'draglist', icon: 'ios-infinite', title: '拖拽列表'},
+            {power: '0000', path: 'dragdrawer', icon: 'md-list', title: '可拖拽抽屉'},
+            {power: '0000', path: 'orgtree', icon: 'ios-people', title: '组织结构树'},
+            {power: '0000', path: 'treetable', icon: 'md-git-branch', title: '树状表格'},
+            {power: '0000', path: 'cropper', icon: 'md-crop', title: '图片裁剪'},
+            {power: '0000', path: 'tables', icon: 'md-grid', title: '多功能表格'},
+            {power: '0000', path: 'splitpane', icon: 'md-pause', title: '分割窗口'},
+            {power: '0000', path: 'markdown', icon: 'logo-markdown', title: 'Markdown编辑器'},
+            {power: '0000', path: 'editor', icon: 'ios-create', title: '富文本编辑器'},
+            {power: '0000', path: 'icons', icon: 'bear', title: '自定义图标'}
         ]
     }),
     makeTwoLevelRoute({
@@ -127,8 +132,8 @@ export default [
     makeTwoLevelRoute({
         path: 'excel', title: 'EXCEL导入导出', icon: 'ios-stats',
         children: [
-            {power: '0000', path: 'treeselectpage', icon: 'md-add', title: '导入EXCEL'},
-            {power: '0000', path: 'counttopage', icon: 'md-download', title: '导出EXCEL'}
+            {power: '0000', path: 'treeselect', icon: 'md-add', title: '导入EXCEL'},
+            {power: '0000', path: 'countto', icon: 'md-download', title: '导出EXCEL'}
         ]
     }),
     {
@@ -154,19 +159,19 @@ export default [
     {
         path: '/tools_methods', name: 'tools_methods', hideInBread: true, component: Main,
         children: [
-            {path: 'tools_methods_page', name: 'tools_methods_page', icon: 'ios-hammer', title: '工具方法', beforeCloseName: 'before_close_normal', component: () => import('@V/tools-methods/tools-methods.vue')}
+            {path: 'tools_methods_', name: 'tools_methods_', icon: 'ios-hammer', title: '工具方法', beforeCloseName: 'before_close_normal', component: () => import('@V/tools-methods/tools-methods.vue')}
         ]
     },
     {
         path: '/i18n', name: 'i18n', hideInBread: true, component: Main,
         children: [
-            {path: 'i18n_page', name: 'i18n_page', icon: 'md-planet', title: 'i18n - {{ i18n_page }}', component: () => import('@V/i18n/i18n-page.vue')}
+            {path: 'i18n_', name: 'i18n_', icon: 'md-planet', title: 'i18n - {{ i18n_page }}', component: () => import('@V/i18n/i18n-page.vue')}
         ]
     },
     {
         path: '/directive', name: 'directive', hideInBread: true, component: Main,
         children: [
-            {path: 'directive_page', name: 'directive_page', icon: 'ios-navigate', title: '指令', component: () => import('@V/directive/directive.vue')}
+            {path: 'directive_', name: 'directive_', icon: 'ios-navigate', title: '指令', component: () => import('@V/directive/directive.vue')}
         ]
     },
     {

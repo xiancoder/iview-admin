@@ -8,10 +8,6 @@
 <script>
 import axios from 'axios'
 export default {
-    computed: {
-    },
-    props: {
-    },
     methods: {
         handleMe () {
             // $route.path 当前路由对象的路径，如'/vi
@@ -22,9 +18,9 @@ export default {
             console.info('即EP将打开文件', this.$route.path)
             let url = this.$route.path.replace(/\//g, '\\')
             axios.get(
-                'http://localhost:5002/epOpen', {
+                'http://localhost:4010/api/open/ep', {
                     params: {
-                        project: 'R14.project.OApc',
+                        project: 'R20.iview-admin-xian',
                         path: 'views' + url + '.vue'
                     }
                 }
@@ -34,8 +30,6 @@ export default {
                 console.info('失败', error)
             })
         }
-    },
-    mounted () {
     }
 }
 </script>

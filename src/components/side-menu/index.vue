@@ -1,8 +1,10 @@
 <template>
     <div class="side-menu-wrapper">
         <slot></slot>
-        <Menu ref="menu" v-show="!collapsed" :active-name="activeName" :open-names="openedNames"
-            :accordion="accordion" :theme="theme" width="auto" @on-select="handleSelect">
+        <Menu ref="menu" v-show="!collapsed"
+            :active-name="activeName" :open-names="openedNames"
+            :accordion="accordion" :theme="theme" width="auto"
+            @on-open-change="handleSelectBox" @on-select="handleSelect">
             <template v-for="item in menuList">
                 <template v-if="item.children && item.children.length === 1">
                     <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item">
@@ -24,11 +26,13 @@
         </Menu>
         <div class="menu-collapsed" v-show="collapsed" :list="menuList">
             <template v-for="item in menuList">
-                <collapsed-menu v-if="item.children && item.children.length > 1" @on-click="handleSelect" hide-title
+                <collapsed-menu v-if="item.children && item.children.length > 1"
+                     @on-click="handleSelect" hide-title
                     :root-icon-size="rootIconSize" :icon-size="iconSize" :theme="theme"
                     :parent-item="item" :key="`drop-menu-${item.name}`">
                 </collapsed-menu>
-                <Tooltip transfer v-else :content="item.children && item.children[0] ? item.children[0].title : item.title"
+                <Tooltip transfer v-else
+                    :content="item.children && item.children[0] ? item.children[0].title : item.title"
                     placement="right" :key="`drop-menu-${item.name}`">
                     <a @click="handleSelect(getNameOrHref(item, true))" class="drop-menu-a" :style="{textAlign: 'center'}">
                         <common-icon :size="rootIconSize" :color="textColor"
@@ -44,32 +48,42 @@ import SideMenuItem from './side-menu-item.vue'
 import CollapsedMenu from './collapsed-menu.vue'
 import { getUnion } from '@/utils/array'
 import mixin from './mixin'
-
 export default {
     name: 'SideMenu',
     mixins: [ mixin ],
-    components: {
-        SideMenuItem,
-        CollapsedMenu
-    },
-    props: {
-        menuList: { type: Array, default () { return [] } },
-        collapsed: { type: Boolean },
-        theme: { type: String, default: 'dark' },
-        rootIconSize: { type: Number, default: 20 },
-        iconSize: { type: Number, default: 16 },
-        accordion: Boolean,
-        activeName: { type: String, default: '' },
-        openNames: { type: Array, default: () => [] }
-    },
+    components: { SideMenuItem, CollapsedMenu },
     data () {
         return {
-            openedNames: []
+            openedNames: [],
+            iconSize: 16,
+            rootIconSize: 20,
+            accordion: true,
+            openNames: [] // 左边树的展开状态
         }
     },
+    props: {
+        collapsed: { type: Boolean }
+    },
+    computed: {
+        menuList () { return this.$store.state.system.menuList }, // 左边树 数据源
+        theme () { return this.$store.state.system.theme }, // 主题
+        activeName () { // 左边树 选中
+            const pageName = this.$route.name || ''
+            this.openNames = [pageName.replace(/\_.+/g, '')]
+            return pageName.replace(/\@.+/g, '')
+        },
+        textColor () { return this.theme === 'dark' ? '#fff' : '#495060' } // 主题颜色
+    },
     methods: {
-        handleSelect (name) {
-            this.$emit('on-select', name)
+        handleSelect (select) {
+            const name = select
+            this.$router.push({ name })
+        },
+        handleSelectBox (selectArr) {
+            const select = selectArr[0]
+            if (!select) return false
+            const path = this.$store.state.system.routeList[select].path
+            this.$router.push({ path })
         },
         getOpenedNamesByActiveName (name) {
             return this.$route.matched.map(item => item.name).filter(item => item !== name)
@@ -77,11 +91,6 @@ export default {
         updateOpenName (name) {
             if (name === this.$config.homeName) this.openedNames = []
             else this.openedNames = this.getOpenedNamesByActiveName(name)
-        }
-    },
-    computed: {
-        textColor () {
-            return this.theme === 'dark' ? '#fff' : '#495060'
         }
     },
     watch: {
@@ -104,5 +113,5 @@ export default {
 }
 </script>
 <style lang="less">
-@import './side-menu.less';
+    @import './side-menu.less';
 </style>

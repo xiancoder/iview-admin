@@ -15,7 +15,7 @@ export default {
         ...mapGetters([
             'errorCount'
         ]),
-        countComputed () { return this.$store.state.app.hasReadErrorPage ? 0 : this.count }
+        countComputed () { return this.$store.state.system.errorCount ? 0 : this.count }
     },
     methods: {
         openErrorLoggerPage () {

@@ -1,5 +1,5 @@
 <template>
-    <div class="blogCss">
+    <div class="blogCss xianFrom">
         <div class="blog">
             <!-- <div class="blogTitle">发布任务表单</div> -->
             <div class="blogContent" v-highlight>
@@ -52,7 +52,7 @@
                     </FormItem>
                     <FormItem style="margin-top: 50px">
                         <Button type="default" @click="cancel">返回</Button>
-                        <Button type="primary" :loading="loading === '1'" style="margin: 0 15px" @click="handleSubmit('formItem')">发布</Button>
+                        <Button type="primary" :loading="loading" style="margin: 0 15px" @click="handleSubmit('formItem')">发布</Button>
                     </FormItem>
                 </Form>
             </div>
@@ -65,8 +65,8 @@
     </div>
 </template>
 <script>
-import axios from 'axios'
 import '@/plugins/vueEditor'
+import { success, error } from '@/tools'
 export default {
     data () {
         return {
@@ -100,66 +100,33 @@ export default {
             correlation: [],
             fileList: [],
             list: [],
-            loading: ''
+            loading: false
         };
     },
     methods: {
         init () {
-            this.$get('api/task/allusers', {
-            }).then((res) => {
-                this.list = res.data.data.list;
-            });
+            this.$api.user.pullUserList().then(list => {
+                this.list = list
+            })
         },
         handleMenuSelected (name) {
-            this.$Message.info('选中页面：' + name)
+            success('选中页面：' + name + '不跳转没写路由')
         },
         handleUpload (file) {
-            if (file.size > 52420000) {
-                this.$Message.info({
-                    content: '文件过大'
-                });
-            } else {
-                this.fileList.push(file);
-            }
+            if (file.size > 52420000) { return error('文件过大') }
+            this.fileList.push(file);
             return false;
         },
         removeFile (index) {
             this.fileList.splice(index, 1);
         },
         postForm () {
-            if (this.formItem.taskPriority !== 2) {
-                this.formItem.completeTime = '';
-            }
-            let pa = new FormData();
-            pa.append('id', this.formItem.id === '' ? null : this.formItem.id);
-            pa.append('taskName', this.formItem.taskName);
-            pa.append('taskPriority', this.formItem.taskPriority);
-            pa.append('completeTime', this.formItem.completeTime === '' ? null : this.formItem.completeTime);
-            pa.append('taskContent', this.formItem.taskContent);
-            pa.append('personLiable', this.formItem.personLiable);
-            pa.append('correlation', this.correlation.length === 0 ? null : this.correlation);
-            for (let file in this.fileList) {
-                pa.append('file', this.fileList[file]);
-            }
-            let config = {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
-                timeout: 300000
-            };
-            axios.post('api/task/found', pa, config
-            ).then((res) => {
-                if (res.data.data && res.data.data.res === 1) {
-                    this.$Message.info({
-                        content: '操作成功'
-                    });
-                    this.$router.push({name: 'task_mine'});
-                } else {
-                    this.$Message.info({
-                        content: res.data.data || '操作失败'
-                    });
-                }
-            });
+            this.loading = true
+            this.$api.task.found().then((res) => {
+                this.$router.push({name: 'task_mine'});
+            }, (res) => {
+                this.loading = false
+            })
         },
         handleSubmit (name) {
             this.$refs[name].validate((valid) => {

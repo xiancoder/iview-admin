@@ -40,7 +40,9 @@
 <script>
 export default {
     data () {
-        return {}
+        return {
+            switchValue: ''
+        }
     },
     methods: {},
     mounted () {

@@ -1,5 +1,5 @@
 <template>
-    <div class="blogCss">
+    <div class="blogCss xianFrom">
         <div class="blog">
             <div class="blogTitle">关于Vue中的校验</div>
             <div class="blogContent" v-highlight>
@@ -167,6 +167,7 @@
     </div>
 </template>
 <script>
+import '@/plugins/vueEditor'
 export default {
     data () {
         const validatePw1 = (rule, value, callback) => {

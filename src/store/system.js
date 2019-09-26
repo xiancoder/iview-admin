@@ -1,10 +1,11 @@
 import config from '@/config'
 import { Api } from '@/api'
-import { power2routes, getRouteTitleHandled, routeHasExist } from '@/router'
+import { power2routes } from '@/router'
 import { cache } from '@/cache'
 export const store = {
     namespaced: true, // 作用域
     state: {
+        theme: '', // 主题
         isFullScreen: false, // 全屏 不能默认设置全屏
         breadCrumbList: [], // 面包屑内容
         routeList: [], // 一维路由信息列表
@@ -74,7 +75,6 @@ export const store = {
                 let r3 = state.routeList[routeName]
                 if (r3) { bca.push(r3) }
             }
-            console.log(routeName, state.routeList, bca)
             commit('updateBreadCrumb', bca)
         },
         setTitle ({ state }, routeName) { // 修改title
@@ -148,17 +148,29 @@ export const store = {
             power2routes([]) // 传递给路由模块计算解析
         },
         hasPower ({ state }, name) { // 判断是否有权限
-            return state.menuListNoPower[name] === null
+            const routeInfo = state.routeList[name] || {}
+            return routeInfo.power
         },
-        addTagNav ({ state }, { route, type = 'unshift' }) {
-            let router = getRouteTitleHandled(route)
-            if (!routeHasExist(state.tagNavList, router)) {
-                if (type === 'push') state.tagNavList.push(router)
-                else {
-                    if (router.name === config.homeName) state.tagNavList.unshift(router)
-                    else state.tagNavList.splice(1, 0, router)
-                }
+        addTagNav ({ state }, route) {
+            const name = route.name
+            const routeInfo = state.routeList[name]
+            if (!routeInfo) return false
+            try {
+                state.tagNavList.forEach((row, index, arr) => {
+                    if (name === row.name) throw new Error(index)
+                })
+            } catch (e) {
+                if (e.message) state.tagNavList.splice(e.message, 1)
             }
+            state.tagNavList.push({
+                name,
+                title: routeInfo.title,
+                query: route.query,
+                param: route.param
+            })
+        },
+        setTagNavList ({ state }, list) {
+            state.tagNavList = list
         },
         logout ({ commit }) { // 登出
             return new Promise((resolve, reject) => {
