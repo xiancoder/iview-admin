@@ -1,9 +1,6 @@
 export default {
     props: {
-        parentItem: {
-            type: Object,
-            default: () => {}
-        },
+        parentItem: { type: Object, default: () => {} },
         theme: String,
         iconSize: Number
     },

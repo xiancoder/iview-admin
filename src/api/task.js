@@ -50,18 +50,8 @@ export const api = {
         })
     },
     listMine ({ // 我的任务
-        taskPriority,
-        taskStatus,
-        restart,
-        overdue,
-        founder,
-        personLiable,
-        implement,
-        taskName,
-        pause,
-        beginAndEnd = ['', ''],
-        index,
-        size
+        taskPriority, taskStatus, restart, overdue, founder, personLiable, implement,
+        taskName, pause, beginAndEnd = ['', ''], index, size
     }) {
         let v1 = beginAndEnd[0]
         let v2 = beginAndEnd[1]
@@ -129,11 +119,16 @@ export const api = {
                 method: 'GET',
                 url: '/api/task/aboutme',
                 data: {}
-            }).then(res => {
-                resolve(res.data.data)
-            }).catch(err => {
-                console.error('接口回调异常')
-                reject(err)
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data) {
+                    resolve(res.data)
+                } else {
+                    error(res.msg || '获取数据失败')
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 中止操作
             })
         })
     },

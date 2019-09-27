@@ -14,12 +14,12 @@ export const api = {
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
-                if (res.code === 200) { // 服务器说ok
-                    success('登录成功')
-                    resolve(res && res.data && res.data.token)
-                } else { // 服务器说error
-                    error(res.msg || '登录失败')
-                    reject(res && res.data)
+                if (res && res.data && res.data.token) {
+                    success(res.msg || '登录成功')
+                    resolve(res.data.token)
+                } else {
+                    error(res.msg)
+                    reject()
                 }
             }).catch(e => {
                 error(e.message) // ajax异常后 中止操作
@@ -32,12 +32,16 @@ export const api = {
                 method: 'GET',
                 url: 'api/system/getUserInfo',
                 data: {}
-            }).then(response => {
+            }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
-                resolve((res && res.data) || {})
+                if (res && res.data) {
+                    resolve(res.data)
+                } else {
+                    error(res.msg)
+                    reject()
+                }
             }).catch(e => {
-                error(e.message) // 默认报错
-                reject(e.message)
+                error(e.message) // ajax异常后 中止操作
             })
         })
     },
@@ -47,10 +51,16 @@ export const api = {
                 method: 'GET',
                 url: 'api/system/getNewMessageNum',
                 data: { }
-            }).then(response => {
-                const res = response.data
-                // 0隐藏 null表红点 数字代表数量
-                resolve((res && res.data && res.data.res) || null)
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data // 0隐藏 null表红点 数字代表数量
+                if (res && res.data && res.data.res) {
+                    resolve(res.data.res)
+                } else {
+                    error(res.msg)
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 中止操作
             })
         })
     },
@@ -60,10 +70,16 @@ export const api = {
                 method: 'GET',
                 url: 'api/system/powerlist',
                 data: { }
-            }).then(response => {
-                const res = response.data
-                // 改造一下权限列表
-                resolve((res && res.data && res.data.list) || null)
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data // 0隐藏 null表红点 数字代表数量
+                if (res && res.data && res.data.list) {
+                    resolve(res.data.list)
+                } else {
+                    error(res.msg)
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 中止操作
             })
         })
     },
@@ -72,10 +88,18 @@ export const api = {
             axios({
                 method: 'GET',
                 url: '/api/system/logout',
-                data: { }
-            }).then(response => {
-                const res = response.data // 返回值是整个结果对象
-                resolve((res && res.data && res.data.res) || 0)
+                data: {}
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data // 0隐藏 null表红点 数字代表数量
+                if (res && res.data && res.data.res) {
+                    success(res.msg || '退出成功')
+                    resolve()
+                } else {
+                    error(res.msg)
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 中止操作
             })
         })
     },
@@ -84,10 +108,18 @@ export const api = {
             axios({
                 method: 'GET',
                 url: '/api/system/clearCache',
-                data: { }
-            }).then(response => {
-                const res = response.data
-                resolve((res && res.data && res.data.res) || 0)
+                data: {}
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data // 0隐藏 null表红点 数字代表数量
+                if (res && res.data && res.data.res) {
+                    success(res.msg || '清除缓存成功')
+                    resolve()
+                } else {
+                    error(res.msg)
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 中止操作
             })
         })
     }

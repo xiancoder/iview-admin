@@ -24,9 +24,9 @@ module.exports = {
     lintOnSave: true,
     // 运行时编译
     runtimeCompiler: true,
+    // 方便别名
     chainWebpack: config => {
         config.resolve.alias
-            .set('vue', resolve('vue/dist/vue.esm.js')) // 指定vue版本 - es6完整版本
             .set('@', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
             .set('@C', resolve('src/components'))
             .set('@S', resolve('src/style'))

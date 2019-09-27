@@ -1,0 +1,80 @@
+/**
+ * 功能：单元测试页面
+ * 作者：liuyp
+ * 时间：2019年9月18日16:44:53
+ * 语句: npm test
+ */
+
+import { expect } from 'chai'
+import * as numberJs from '@/utils/number.js'
+describe('[数字]常用方法', function () {
+    it('数字两位补全/fillup2Digit', function () {
+        expect(numberJs.fillup2Digit(1)).equal('01')
+        expect(numberJs.fillup2Digit(10)).equal('10')
+        expect(numberJs.fillup2Digit(100)).equal('10')
+    })
+    it('数字转中文(全兼容)/number2Chinese', function () {
+        expect(numberJs.number2Chinese(2.67)).equal('二点六七')
+        expect(numberJs.number2Chinese(23.67)).equal('二十三点六七')
+        expect(numberJs.number2Chinese(20.67)).equal('二十点六七')
+        expect(numberJs.number2Chinese(234.67)).equal('二百三十四点六七')
+        expect(numberJs.number2Chinese(204.67)).equal('二百零四点六七')
+        expect(numberJs.number2Chinese(2345.67)).equal('二千三百四十五点六七')
+        expect(numberJs.number2Chinese(2040.67)).equal('二千零四十点六七')
+        expect(numberJs.number2Chinese(23456.67)).equal('二万三千四百五十六点六七')
+        expect(numberJs.number2Chinese(20006.67)).equal('二万零六点六七')
+        expect(numberJs.number2Chinese(234567.67)).equal('二十三万四千五百六十七点六七')
+        expect(numberJs.number2Chinese(204007.67)).equal('二十万四千零七点六七')
+        expect(numberJs.number2Chinese(2345678.67)).equal('二百三十四万五千六百七十八点六七')
+        expect(numberJs.number2Chinese(20450070.67)).equal('二千零四十五万零七十点六七')
+        expect(numberJs.number2Chinese(23456789.67)).equal('二千三百四十五万六千七百八十九点六七')
+        expect(numberJs.number2Chinese(20202020.67)).equal('二千零二十万二千零二十点六七')
+        expect(numberJs.number2Chinese(5533)).equal('五千五百三十三')
+        expect(numberJs.number2Chinese(5533.1)).equal('五千五百三十三点一')
+        expect(numberJs.number2Chinese(5533.04)).equal('五千五百三十三点零四')
+    })
+    it('数字转中文(零至万)/number2Chinese2', function () {
+        expect(numberJs.number2Chinese2(2)).equal('二')
+        expect(numberJs.number2Chinese2(22)).equal('二十二')
+        expect(numberJs.number2Chinese2(222)).equal('二百二十二')
+        expect(numberJs.number2Chinese2(2222)).equal('二千二百二十二')
+        // expect(numberJs.number2Chinese2(22022)).equal('二万二千零二十二')
+        // expect(numberJs.number2Chinese2(220022)).equal('二十二万零二十二')
+        // expect(numberJs.number2Chinese2(2200222)).equal('二百二十万零二百二十二')
+        // expect(numberJs.number2Chinese2(222002222)).equal('二亿二千二百二十万二千二百二十二')
+    })
+    it('数字千分格式/thousand', function () {
+        expect(numberJs.thousand(2)).equal('2')
+        expect(numberJs.thousand(22)).equal('22')
+        expect(numberJs.thousand(222)).equal('222')
+        expect(numberJs.thousand(2222)).equal('2,222')
+        expect(numberJs.thousand(1234567890)).equal('1,234,567,890')
+        expect(numberJs.thousand(222.2)).equal('222.2')
+        expect(numberJs.thousand(22.22)).equal('22.22')
+        expect(numberJs.thousand(2.222)).equal('2.222')
+        expect(numberJs.thousand(1234567.890)).equal('1,234,567.89')
+    })
+    it('数字转大写金额/money2Chinese', function () {
+        expect(numberJs.money2Chinese(2.67)).equal('贰圆陆角柒分')
+        expect(numberJs.money2Chinese(23.67)).equal('贰拾叁圆陆角柒分')
+        expect(numberJs.money2Chinese(20.67)).equal('贰拾圆陆角柒分')
+        expect(numberJs.money2Chinese(234.67)).equal('贰佰叁拾肆圆陆角柒分')
+        expect(numberJs.money2Chinese(204.67)).equal('贰佰零肆圆陆角柒分')
+        expect(numberJs.money2Chinese(2345.67)).equal('贰仟叁佰肆拾伍圆陆角柒分')
+        expect(numberJs.money2Chinese(2040.67)).equal('贰仟零肆拾圆陆角柒分')
+        expect(numberJs.money2Chinese(23456.67)).equal('贰万叁仟肆佰伍拾陆圆陆角柒分')
+        expect(numberJs.money2Chinese(20006.67)).equal('贰万零陆圆陆角柒分')
+        expect(numberJs.money2Chinese(234567.67)).equal('贰拾叁万肆仟伍佰陆拾柒圆陆角柒分')
+        expect(numberJs.money2Chinese(204007.67)).equal('贰拾万零肆仟零柒圆陆角柒分')
+        expect(numberJs.money2Chinese(2345678.67)).equal('贰佰叁拾肆万伍仟陆佰柒拾捌圆陆角柒分')
+        expect(numberJs.money2Chinese(20450070.67)).equal('贰仟零肆拾伍万零柒拾圆陆角柒分')
+        expect(numberJs.money2Chinese(23456789.67)).equal('贰仟叁佰肆拾伍万陆仟柒佰捌拾玖圆陆角柒分')
+        expect(numberJs.money2Chinese(20202020.67)).equal('贰仟零贰拾万零贰仟零贰拾圆陆角柒分')
+        expect(numberJs.money2Chinese(5533)).equal('伍仟伍佰叁拾叁圆整')
+        expect(numberJs.money2Chinese(5533.1)).equal('伍仟伍佰叁拾叁圆壹角')
+        expect(numberJs.money2Chinese(5533.04)).equal('伍仟伍佰叁拾叁圆肆分')
+        expect(numberJs.money2Chinese(1191.86)).equal('壹仟壹佰玖拾壹圆捌角陆分')
+        expect(numberJs.money2Chinese(891.86)).equal('捌佰玖拾壹圆捌角陆分')
+        expect(numberJs.money2Chinese(891.80)).equal('捌佰玖拾壹圆捌角')
+    })
+})

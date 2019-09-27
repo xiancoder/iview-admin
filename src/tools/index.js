@@ -1,9 +1,21 @@
 import Vue from 'vue'
 import { router } from '@/router'
 import { Message, Modal, LoadingBar } from 'iview'
+import { type } from '@/utils/object'
+import { cache } from '@/cache'
 /// ////////////////////////////////////////////////////
 // 常用的操作封装
 /// ////////////////////////////////////////////////////
+export const goto = (config) => { // 弹框提示
+    const current = router.history.current
+    if (type(config) === 'string') config = { name: config }
+    if (config.name === current.name || config.path === current.path) {
+        return router.replace(config).catch(err => {
+            if (err.name === 'NavigationDuplicated') return console.log('仙', '路由重复打开小问题')
+        })
+    }
+    router.push(config)
+}
 export const alert = (msg) => { // 弹框提示
     Message.info({ content: msg || '处理中，请稍后' })
 }
@@ -29,7 +41,7 @@ export const jumpto = (name, obj) => { // 跳转
 export const saveParamState = (obj) => { // 保存当前参数
     const time = new Date().getTime()
     const name = router.history.current.name
-    window.localStorage.setItem(name + time, JSON.stringify(obj));
+    cache.setParamState(name + time, JSON.stringify(obj))
     const query = { 'search': time }
     router.push({ name, query })
 }
@@ -38,7 +50,7 @@ export const getParamState = () => { // 获取当前参数
     if (time) {
         try {
             const name = router.history.current.name
-            const obj = window.localStorage.getItem(name + time);
+            const obj = cache.getParamState(name + time)
             return JSON.parse(obj)
         } catch (e) {
             return {}
@@ -124,6 +136,8 @@ export const LoadingBarRun = (flag) => { // 二次确认框
     }
 }
 Vue.prototype.$tool = {
+    goto,
+    alert,
     success,
     error,
     confirm,

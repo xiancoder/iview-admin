@@ -47,6 +47,7 @@
 import SideMenuItem from './side-menu-item.vue'
 import CollapsedMenu from './collapsed-menu.vue'
 import { getUnion } from '@/utils/array'
+import { goto } from '@/tools'
 import mixin from './mixin'
 export default {
     name: 'SideMenu',
@@ -57,8 +58,7 @@ export default {
             openedNames: [],
             iconSize: 16,
             rootIconSize: 20,
-            accordion: true,
-            openNames: [] // 左边树的展开状态
+            accordion: true
         }
     },
     props: {
@@ -67,23 +67,20 @@ export default {
     computed: {
         menuList () { return this.$store.state.system.menuList }, // 左边树 数据源
         theme () { return this.$store.state.system.theme }, // 主题
-        activeName () { // 左边树 选中
-            const pageName = this.$route.name || ''
-            this.openNames = [pageName.replace(/\_.+/g, '')]
-            return pageName.replace(/\@.+/g, '')
-        },
+        activeName () { return (this.$route.name || '').replace(/\@.+/g, '') }, // 左边树 选中
+        openNames () { return [(this.$route.name || '').replace(/\_.+/g, '')] }, // 左边树的展开状态
         textColor () { return this.theme === 'dark' ? '#fff' : '#495060' } // 主题颜色
     },
     methods: {
         handleSelect (select) {
             const name = select
-            this.$router.push({ name })
+            goto({ name })
         },
         handleSelectBox (selectArr) {
             const select = selectArr[0]
             if (!select) return false
             const path = this.$store.state.system.routeList[select].path
-            this.$router.push({ path })
+            goto({ path })
         },
         getOpenedNamesByActiveName (name) {
             return this.$route.matched.map(item => item.name).filter(item => item !== name)

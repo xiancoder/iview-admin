@@ -106,6 +106,19 @@ export default [
         ]
     }),
     makeTwoLevelRoute({
+        path: 'task', title: '任务管理', icon: 'md-buffer',
+        children: [
+            { power: '0401', path: 'mine', title: '我的任务' },
+            { power: '0402', path: 'mine@publish', title: '我发布的任务', hideMenu: true },
+            { power: '0402', path: 'mine@conscient', title: '我负责的任务', hideMenu: true },
+            { power: '0403', path: 'mine@executive', title: '我执行的任务', hideMenu: true },
+            { power: '0404', path: 'mine@besend', title: '抄送我的任务', hideMenu: true },
+            { power: '0406', path: 'mine@@info', title: '任务详情', hideMenu: true },
+            { power: '0405', path: 'mine@@release', title: '发布任务', hideMenu: true },
+            { power: '0407', path: 'mine@@restart', title: '重启任务', hideMenu: true }
+        ]
+    }),
+    makeTwoLevelRoute({
         path: 'components', title: '组件', icon: 'logo-buffer',
         children: [
             {power: '0000', path: 'treeselect', icon: 'md-arrow-dropdown-circle', title: '树状下拉选择器'},

@@ -1,0 +1,24 @@
+/**
+ * 功能：单元测试页面
+ * 作者：liuyp
+ * 时间：2019年9月18日16:46:14
+ * 语句: npm test
+ */
+
+import { expect } from 'chai'
+import * as arrayJs from '@/utils/array.js'
+describe('[数组]常用方法', function () {
+    it('测试数组两个数组是否一致', function () {
+        expect(arrayJs.contrast([1, 2, 3, 4], [1, 2, 3, 4])).equal(true);
+    });
+    it('测试数组去重/arrayUnique', function () {
+        expect(arrayJs.arrayUnique([1, 2, 3, 3, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7]).toString()).equal('1,2,3,4,5,6,7')
+    });
+    it('数组简化为一维/arrayFlatten', function () {
+        expect(arrayJs.arrayFlatten([1, [2, 3], 4, [5, [6, [7, [8]]], 9], 0]).toString()).equal('1,2,3,4,5,6,7,8,9,0')
+    })
+    it('数组去重/arrayUnique', function () {
+        expect(arrayJs.arrayUnique([1, 2, 3, 1, 2, 3]).length).equal(3)
+        expect(arrayJs.arrayUnique([{ id: 1 }, { id: 2 }, { id: 1 }, { id: 3 }], 'id').length).equal(3)
+    })
+})

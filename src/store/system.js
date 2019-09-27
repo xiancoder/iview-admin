@@ -13,15 +13,15 @@ export const store = {
         avatorImgPath: '', // 用户头像
         userName: '', // 用户名
         userId: '', // 用户id
-        token: cache.getUserToken(), // 服务器token
-        access: '', // 登录标识??
+        token: cache.getUserToken() || '', // 服务器token
+        access: !!cache.getUserToken() || false, // 登录标识
         newMessageNum: 0, // 新消息数量
         powerList: [], // 权限列表
         lang: '', // 语言
         spinLoading: false, // 路由视图加载中
         locking: false, // 锁屏状态
         shrink: false, // 页面折叠状态
-        tagNavList: [], // 历史记录tab
+        tagNavList: cache.getTagNavList() || [], // 历史记录tab
         errorList: [], // 错误列表
         author: 'liuyp' // 版权所有
     },
@@ -36,8 +36,10 @@ export const store = {
         updateAvator (state, avatorPath) { state.avatorImgPath = avatorPath }, // 设置头像
         updateUserId (state, id) { state.userId = id }, // 设置管理员ID
         updateUserName (state, name) { state.userName = name }, // 设置管理员姓名
-        updateAccess (state, access) { state.access = access }, // 设置登录标识??
-        updateToken (state, token) { state.token = token }, // 设置服务器token
+        updateAccess (state, access) { state.access = access }, // 设置登录标识
+        updateToken (state, token) { cache.setUserToken(token); state.token = token }, // 设置服务器token
+        removeToken (state, token) { cache.clearAll(); state.token = '' }, // 设置服务器token
+        updateTagNavList (state, list) { cache.setTagNavList(list); state.tagNavList = list }, // 设置历史记录tab
         updateNewMessageNum (state, num) { state.newMessageNum = num }, // 触发读取接口 保存最新消息数量
         updatePowerList (state, list) { state.powerList = list }, // 设置权限列表
         switchLang (state, lang) { state.lang = lang }, // 切换语言
@@ -47,9 +49,15 @@ export const store = {
             state.isFullScreen = flag
             if (flag) {
                 let main = document.body
-                if (main.requestFullscreen) { main.requestFullscreen() } else if (main.mozRequestFullScreen) { main.mozRequestFullScreen() } else if (main.webkitRequestFullScreen) { main.webkitRequestFullScreen() } else if (main.msRequestFullscreen) { main.msRequestFullscreen() }
+                if (main.requestFullscreen) { main.requestFullscreen() } else
+                if (main.mozRequestFullScreen) { main.mozRequestFullScreen() } else
+                if (main.webkitRequestFullScreen) { main.webkitRequestFullScreen() } else
+                if (main.msRequestFullscreen) { main.msRequestFullscreen() }
             } else {
-                if (document.exitFullscreen) { document.exitFullscreen() } else if (document.mozCancelFullScreen) { document.mozCancelFullScreen() } else if (document.webkitCancelFullScreen) { document.webkitCancelFullScreen() } else if (document.msExitFullscreen) { document.msExitFullscreen() }
+                if (document.exitFullscreen) { document.exitFullscreen() } else
+                if (document.mozCancelFullScreen) { document.mozCancelFullScreen() } else
+                if (document.webkitCancelFullScreen) { document.webkitCancelFullScreen() } else
+                if (document.msExitFullscreen) { document.msExitFullscreen() }
             }
         },
         setLocking (state, flag) { state.locking = flag }, // 设置页面锁定
@@ -93,7 +101,7 @@ export const store = {
             return new Promise((resolve, reject) => {
                 Api.system.login(param).then(token => {
                     commit('updateToken', token)
-                    cache.setUserToken(token)
+                    commit('updateAccess', true)
                     resolve()
                 }).catch(err => {
                     reject(err)
@@ -151,33 +159,35 @@ export const store = {
             const routeInfo = state.routeList[name] || {}
             return routeInfo.power
         },
-        addTagNav ({ state }, route) {
+        addTagNav ({ state, commit }, route) {
             const name = route.name
             const routeInfo = state.routeList[name]
             if (!routeInfo) return false
+            const list = Object.assign(state.tagNavList)
             try {
-                state.tagNavList.forEach((row, index, arr) => {
+                list.forEach((row, index, arr) => {
                     if (name === row.name) throw new Error(index)
                 })
             } catch (e) {
-                if (e.message) state.tagNavList.splice(e.message, 1)
+                if (e.message) list.splice(e.message, 1)
             }
-            state.tagNavList.push({
+            list.push({
                 name,
                 title: routeInfo.title,
                 query: route.query,
                 param: route.param
             })
+            commit('updateTagNavList', list)
         },
-        setTagNavList ({ state }, list) {
-            state.tagNavList = list
+        setTagNavList ({ commit }, list) {
+            commit('updateTagNavList', list)
         },
         logout ({ commit }) { // 登出
             return new Promise((resolve, reject) => {
                 Api.system.logout().then(flag => {
                     if (flag) {
-                        commit('updateToken', '')
-                        cache.clearAll()
+                        commit('removeToken', '')
+                        commit('updateAccess', false)
                         resolve()
                     }
                 }, errorMsg => {

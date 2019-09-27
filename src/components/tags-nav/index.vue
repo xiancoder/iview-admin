@@ -98,7 +98,8 @@ export default {
 
         handleTagsOption (type) { // 关闭其他 关闭所有
             if (type.includes('all')) { // 关闭所有
-                this.handleCloseTag([])
+                let res = this.list.filter(item => item.name === this.$config.homeName)
+                this.handleCloseTag(res, {name: this.currentRouteName})
             } else if (type.includes('others')) { // 关闭除当前页和home页的其他页
                 let res = this.list.filter(item => item.name === this.currentRouteName || item.name === this.$config.homeName)
                 this.handleCloseTag(res, {})

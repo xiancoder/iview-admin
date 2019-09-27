@@ -6,7 +6,6 @@ import { LoadingBarRun } from '@/tools'
 import { doCustomTimes } from '@/utils/function'
 import routes from './routers'
 import Config from '@/config'
-
 Vue.use(Router)
 // 路由实例 需要挂载到vue
 export const router = new Router({
@@ -17,7 +16,7 @@ export const router = new Router({
 // 由路由信息列表 整理成 树数据源 一维路由列表
 // 本算法只支持二层目录结构
 export const power2routes = (powerList) => { // 根据权限更新视图
-    console.info('仙', '根据权限更新视图')
+    console.info('仙', '根据权限更新视图', {powerList})
     // 目的是整理左边树数据源
     // 目的是整理一维视图
     const list = []
@@ -72,14 +71,14 @@ export const routeHasExist = (tagNavList, routeItem) => {
     return res
 }
 router.beforeEach((to, from, next) => {
+    console.info('仙', '准备跳转', to)
     LoadingBarRun(true) // 顶部进度条
     Store.dispatch('system/setBreadCrumb', to.name) // 左侧树数据源
     Store.dispatch('system/routeSpin', true) // 路由视图loading
     const scroller = document.getElementById('mainScrollFlag')
     if (scroller) scroller.scrollTo(0, 0)
-    next() // 跳转
     const isCurrentLocked = Store.state.system.locking
-    const isCurrentLogined = Store.state.system.token
+    const isCurrentLogined = Store.state.system.access
     if (isCurrentLocked && to.name !== 'locking') { // 判断当前是否是锁定状态
         next({ replace: true, name: 'locking' })
     } else if (!isCurrentLocked && to.name === 'locking') {
@@ -90,7 +89,8 @@ router.beforeEach((to, from, next) => {
         next({ replace: true, name: Config.homeName })
     } else {
         Store.dispatch('system/hasPower', to.name).then((bool) => {
-            if (bool) {next()} else {next({name: 'error404'})}
+            if (!bool) { return next({name: 'error404'}) }
+            next()
         })
     }
 })
@@ -99,4 +99,5 @@ router.afterEach(to => {
     Store.dispatch('system/setTitle', to.name) // 左侧树数据源
     Store.dispatch('system/addTagNav', to) // 增加页面缓存标签
     Store.dispatch('system/routeSpin', false) // 路由视图loading
+    console.info('仙', '跳转完成', to)
 })

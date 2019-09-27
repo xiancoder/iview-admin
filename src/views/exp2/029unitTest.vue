@@ -9,12 +9,16 @@
                 <Alert>3 测试提交返回跳转</Alert>
                 <Alert>4 常用的公共方法</Alert>
                 <Alert>5 前提是得调通!!!12312312</Alert>
-                </br>
+                <br/>
+                <h3>Counter.vue</h3>
+                <div class="num">{{ count }}</div>
+                <button @click="increment" id="inc">自增</button>
+                <h1>My To Do List</h1>
+                <br/>
                 <input v-model="newItem" >
-                <button @click="addItemToList">Add</button>
-                <!-- displays list -->
-                <ul>
-                    <li v-for="item in listItems" :key="item">{{ item }}</li>
+                <button @click="addItemToList" ref="myButton" id="myButton">Add</button>
+                <ul id="tryhere">
+                    <li v-for="item in listItems">{{ item }}</li>
                 </ul>
             </div>
             <div class="blogFooter">
@@ -30,14 +34,18 @@ export default {
     name: 'test',
     data () {
         return {
+            count: 0,
             listItems: ['buy food', 'play games', 'sleep'],
             newItem: ''
         }
     },
     methods: {
+        increment () {
+            this.count++
+        },
         addItemToList () {
-            this.listItems.push(this.newItem)
-            this.newItem = ''
+            this.listItems.push(this.newItem);
+            this.newItem = '';
         }
     }
 }
