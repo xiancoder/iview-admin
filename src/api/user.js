@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { error } from '@/tools'
-export const api = {
+export default {
     pullUserList () { // 拉取所有用户列表
         return new Promise((resolve, reject) => {
             axios.request({
@@ -12,11 +12,11 @@ export const api = {
                 if (res && res.data && res.data.list) {
                     resolve(res.data.list)
                 } else {
-                    error(res.msg || '获取数据失败')
+                    error(res.msg) // 报错并继续reject
                     reject()
                 }
             }).catch(e => {
-                error(e.message) // ajax异常后 中止操作
+                error(e.message) // ajax异常后 报错并中止操作
             })
         })
     }

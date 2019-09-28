@@ -1,6 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
-// import { Spin } from 'iview'
+import config from '@/config'
 const addErrorLog = errorInfo => {
     const { statusText, status, request: { responseURL } } = errorInfo
     let info = {
@@ -11,7 +11,6 @@ const addErrorLog = errorInfo => {
     }
     if (!responseURL.includes('save_error_logger')) store.dispatch('addErrorLog', info)
 }
-
 class HttpRequest {
     constructor (baseUrl = baseURL) {
         this.baseUrl = baseUrl
@@ -71,4 +70,6 @@ class HttpRequest {
         return instance(options)
     }
 }
+const baseUrl = process.env.NODE_ENV === 'development' ? config.baseUrl.dev : config.baseUrl.pro
+const axios = new HttpRequest(baseUrl)
 export default HttpRequest

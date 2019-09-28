@@ -5,23 +5,19 @@
 // 注意::状态管理不负责逻辑校验 不负责接口字段对应 等一系列适配行为 单纯负责存值取值调用
 import Vue from 'vue'
 import Vuex from 'vuex'
-import createPersistedState from 'vuex-persistedstate' // 状态持久化
+// import createPersistedState from 'vuex-persistedstate' // 状态持久化 独立到cache模块
 import * as system from './system' // 系统相关
 import * as user from './user' // 登录管理员相关
 import * as employee from './employee' // 职员相关
-import app2 from './app2' //
-import user2 from './user2' //
 // =====================================================================
 Vue.use(Vuex)
 const plugins = [
-    createPersistedState() // 状态持久化
+    // createPersistedState() // 状态持久化
 ]
 const modules = {
     system: system.store,
     user: user.store,
-    employee: employee.store,
-    app2,
-    user2
+    employee: employee.store
 }
 // 输出::状态实例
 export const Store = new Vuex.Store({ plugins, modules }) // 状态 实例化

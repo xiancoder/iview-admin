@@ -158,12 +158,6 @@
 ├── 启动.bat
 └── README.md // 项目目录
 
-
-
-
-
-
-
 <p align="center">
     <a href="https://www.iviewui.com">
         <img width="200" src="https://file.iviewui.com/logo-new.svg">
@@ -190,48 +184,6 @@ iView Admin is a front-end management background integration solution. It based 
 - [Base template recommends using](https://github.com/iview/iview-admin/tree/template)
 
 ![image](https://file.iviewui.com/admin-dist/admin-preview.png)
-
-## Features
-
-- Login / Logout
-- Permission Authentication
-    - A list of filters
-    - Permission to switch
-- i18n
-- Components
-    - Rich Text Editor
-    - Markdown Editor
-    - City Cascader
-    - Photos preview and edit
-    - Draggable list
-    - File upload
-    - Digital gradient
-    - split-pane
-- Form
-    - The article published
-    - Workflow
-- Table
-    - Drag-and-drop sort
-    - Searchable form
-    - Table export data
-        - Export to Csv file
-        - Export to Xls file
-    - Table to picture
-- Error Page
-    - 403
-    - 404
-    - 500
-- Router
-    - Dynamic routing
-    - With reference page
-- Theme
-- Shrink the sidebar
-- Tag navigation
-- Breadcrumb navigation
-- Full screen / exit full screen
-- Lock screen
-- The message center
-- Personal center
 
 ## Getting started
 ```bush

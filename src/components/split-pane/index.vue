@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { oneOf, on, off } from '@/libs/tools'
+import { on, off } from '@/utils/dom'
 import Trigger from './trigger.vue'
 export default {
     name: 'SplitPane',
@@ -36,7 +36,7 @@ export default {
         },
         mode: {
             validator (value) {
-                return oneOf(value, ['horizontal', 'vertical'])
+                return ['horizontal', 'vertical'].some(v => v === value)
             },
             default: 'horizontal'
         },

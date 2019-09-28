@@ -1,5 +1,5 @@
 import Mock from 'mockjs'
-import { doCustomTimes } from '@/libs/util'
+import { doCustomTimes } from '@/utils/function'
 import orgData from './data/org-data'
 import { treeData } from './data/tree-select'
 const Random = Mock.Random

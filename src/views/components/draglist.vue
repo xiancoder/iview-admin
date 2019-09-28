@@ -29,7 +29,6 @@
 </template>
 <script>
 import DragList from '@C/drag-list'
-import { getDragList } from '@/api/data'
 export default {
     name: 'drag_list_page',
     components: {
@@ -52,7 +51,7 @@ export default {
         }
     },
     mounted () {
-        getDragList().then(res => {
+        this.$api.data.getDragList().then(res => {
             this.list1 = res.data
             this.list2 = [res.data[0]]
         })

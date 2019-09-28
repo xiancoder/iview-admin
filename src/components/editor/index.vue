@@ -7,7 +7,6 @@
 <script>
 import Editor from 'wangeditor'
 import 'wangeditor/release/wangEditor.min.css'
-import { oneOf } from '@/libs/tools'
 export default {
     name: 'Editor',
     props: {
@@ -22,7 +21,7 @@ export default {
             type: String,
             default: 'html',
             validator: (val) => {
-                return oneOf(val, ['html', 'text'])
+                return ['html', 'text'].some(v => v === val)
             }
         },
         /**

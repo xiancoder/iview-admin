@@ -21,7 +21,35 @@
 
 <script>
 import PasteEditor from '@C/paste-editor'
-import { getTableDataFromArray } from '@/libs/util'
+/**
+ * @param {Array} array 表格数据二维数组
+ * @returns {Object} { columns, tableData }
+ * @description 从二维数组中获取表头和表格数据，将第一行作为表头，用于在iView的表格中展示数据
+ */
+export const getTableDataFromArray = (array) => {
+    let columns = []
+    let tableData = []
+    if (array.length > 1) {
+        let titles = array.shift()
+        columns = titles.map(item => {
+            return {
+                title: item,
+                key: item
+            }
+        })
+        tableData = array.map(item => {
+            let res = {}
+            item.forEach((col, i) => {
+                res[titles[i]] = col
+            })
+            return res
+        })
+    }
+    return {
+        columns,
+        tableData
+    }
+}
 export default {
     name: 'update_paste_page',
     components: {

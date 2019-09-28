@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { success, error } from '@/tools'
-export const api = {
+export default {
     found ({id, taskName, taskPriority, completeTime, taskContent, personLiable, fileList, correlation}) { // 管理员登录
         if (taskPriority !== 2) { completeTime = '' }
         let fd = new FormData();

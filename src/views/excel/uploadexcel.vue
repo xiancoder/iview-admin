@@ -33,7 +33,7 @@
   </div>
 </template>
 <script>
-import excel from '@/libs/excel'
+import excel from '@/utils/excel'
 export default {
     name: 'upload-excel',
     data () {

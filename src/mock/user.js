@@ -1,5 +1,5 @@
 import Mock from 'mockjs'
-import { doCustomTimes } from '@/libs/util'
+import { doCustomTimes } from '@/utils/function'
 const Random = Mock.Random
 
 export const getMessageInit = () => {

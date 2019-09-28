@@ -18,16 +18,14 @@
     </Card>
   </div>
 </template>
-
 <script>
-import { errorReq } from '@/api/data'
 export default {
     name: 'error_store_page',
     methods: {
         click () {
         },
         ajaxClick () {
-            errorReq()
+            this.$api.data.errorReq()
         }
     }
 }

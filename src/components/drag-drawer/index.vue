@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import RenderDom from '@/libs/render-dom'
+import RenderDom from '@C/render-dom'
 import DragDrawerTrigger from './drag-drawer-trigger.vue'
 import Mixin from './mixin'
 import { on, off } from '@/utils/dom'

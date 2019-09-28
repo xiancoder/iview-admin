@@ -6,7 +6,6 @@
 <script>
 import CodeMirror from 'codemirror'
 import 'codemirror/lib/codemirror.css'
-import { forEach } from '@/libs/tools'
 import createPlaceholder from './plugins/placeholder'
 export default {
     name: 'PasteEditor',
@@ -90,7 +89,7 @@ export default {
      * @description 标记不符合格式的一行
      */
         clearLineClass () {
-            forEach(this.pasteDataArr, (item, index) => {
+            this.pasteDataArr.forEach((item, index) => {
                 this.editor.removeLineClass(index, 'text', 'incorrect-row')
             })
         }

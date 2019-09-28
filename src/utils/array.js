@@ -78,7 +78,16 @@ export const arrayFlatten = (ac) => {
     }
     return array;
 }
-
+// forEach
+export const forEach = (arr, fn) => {
+    if (!arr.length || !fn) return
+    let i = -1
+    let len = arr.length
+    while (++i < len) {
+        let item = arr[i]
+        fn(item, i, arr)
+    }
+}
 /**
  * @param {Array} arr1
  * @param {Array} arr2

@@ -1,38 +1,27 @@
-// 项目::接口控制
-// 负责::所有的接口在这里记录
-// 注意::页面增删改查逻辑相关接口由接口负责
-// 注意::用户相关系统相关的接口由状态来负责(负责调用 其代码还是写在这里的)
-// 注意::传参的整理 字段对应 结果的整理 关键内容挑选 容错
-// 注意::ajax异常 使用通用报错方法 否则执行promise回调 不管逻辑的正确与否
-/*
-    1.get方法：
-        this.$service.get(<url>, { params: {<参数>} } ).then(res => { //调用成功 }).catch(err => { //调用失败 });
-    2.post方法：
-        this.$service.post(<url>, {<参数>} ).then(res => { //调用成功 }).catch(err => { //调用失败 });
-    3.form-data上传文件： <  通过append向params对象添加数据: params.append('file', this.file); >
-        this.$service.request({ method: 'post', url: <url>, data: <form-data格式>,
-        headers: { 'Content-Type': 'multipart/form-data' } }).then(res => { });
-*/
 import Vue from 'vue'
 import axios from 'axios'
 import { Store } from '@/store'
-import * as system from './system'
-import * as user from './user'
-import * as employee from './employee'
-import * as department from './department'
-import * as position from './position'
-import * as role from './role'
-import * as task from './task'
+import system from './system'
+import user from './user'
+import task from './task'
+import data from './data'
 // =====================================================================
-// 输出::接口列表
-export const Api = {
-    system: system.api,
-    user: user.api,
-    employee: employee.api,
-    department: department.api,
-    position: position.api,
-    role: role.api,
-    task: task.api
+export const Api = { system, user, task, data } // 接口列表
+Vue.prototype.$axios = axios // 挂载axios
+Vue.prototype.$api = Api // 挂载api
+Vue.prototype.$post = function (url, params) { // 将axios 的 post 方法，绑定到 vue 实例上面的 $post
+    return new Promise((resolve, reject) => {
+        axios.post(url, params)
+            .then(resolve, reject)
+            .catch(err => { reject(err) })
+    })
+}
+Vue.prototype.$get = function (url, params) { // 将axios 的 get 方法，绑定到 vue 实例上面的 $get
+    return new Promise((resolve, reject) => {
+        axios.get(url, { params: params })
+            .then(resolve, reject)
+            .catch(err => { reject(err) })
+    })
 }
 axios.defaults.headers = { 'X-Requested-With': 'XMLHttpRequest' } // 设置默认请求头，如果不需要可以取消这一步
 axios.defaults.timeout = 20000 // 请求超时的时间限制
@@ -70,19 +59,3 @@ axios.interceptors.response.use( // 请求到结果的拦截处理
         return Promise.reject(error)
     }
 )
-Vue.prototype.$axios = axios // 挂载axios
-Vue.prototype.$api = Api // 挂载api
-Vue.prototype.$post = function (url, params) { // 将axios 的 post 方法，绑定到 vue 实例上面的 $post
-    return new Promise((resolve, reject) => {
-        axios.post(url, params)
-            .then(resolve, reject)
-            .catch(err => { reject(err) })
-    })
-}
-Vue.prototype.$get = function (url, params) { // 将axios 的 get 方法，绑定到 vue 实例上面的 $get
-    return new Promise((resolve, reject) => {
-        axios.get(url, { params: params })
-            .then(resolve, reject)
-            .catch(err => { reject(err) })
-    })
-}

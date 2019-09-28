@@ -1,11 +1,9 @@
-import { setToken, getToken } from '@/libs/util'
-
 export default {
     state: {
         userName: '',
         userId: '',
         avatorImgPath: '',
-        token: getToken(),
+        token: '',
         access: '',
         hasGetInfo: false,
         unreadCount: 0,
@@ -29,7 +27,6 @@ export default {
         },
         setToken (state, token) {
             state.token = token
-            setToken(token)
         },
         setHasGetInfo (state, status) {
             state.hasGetInfo = status

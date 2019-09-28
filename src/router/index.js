@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import { Store } from '@/store'
 import { objEqual } from '@/utils/object'
 import { LoadingBarRun } from '@/tools'
-import { doCustomTimes } from '@/utils/function'
 import routes from './routers'
 import Config from '@/config'
 Vue.use(Router)
@@ -57,18 +56,6 @@ export const routeEqual = (route1, route2) => {
     const query1 = route1.query || {}
     const query2 = route2.query || {}
     return (route1.name === route2.name) && objEqual(params1, params2) && objEqual(query1, query2)
-}
-
-/**
- * 判断打开的标签列表里是否已存在这个新添加的路由对象
- */
-export const routeHasExist = (tagNavList, routeItem) => {
-    let len = tagNavList.length
-    let res = false
-    doCustomTimes(len, (index) => {
-        if (routeEqual(tagNavList[index], routeItem)) res = true
-    })
-    return res
 }
 router.beforeEach((to, from, next) => {
     console.info('仙', '准备跳转', to)
