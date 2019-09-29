@@ -5,6 +5,7 @@ const USERTOKEN = 'Xian_loginToken_' // 登录userToken
 const TAGNAV = 'Xian_tagNavList_' // 历史记录标签
 const PARAMSTATE = 'Xian_paramState_' // 路由页面传参记录
 const LANG = 'Xian_language_' // 路由页面传参记录
+const LOCKING = 'Xian_locking_' // 路由页面传参记录
 export const cache = {
     setGlobelConfig (v) { storage.set(GLOBELCONFIG, v) }, // 存储系统配置
     getGlobelConfig () { return storage.get(GLOBELCONFIG) }, // 获取系统配置
@@ -17,6 +18,8 @@ export const cache = {
     getParamState () { return storage.get(PARAMSTATE) }, // 获取页面参数
     setLang (v) { storage.set(LANG, v) }, // 存储页面语言
     getLang () { return storage.get(LANG) }, // 获取页面语言
+    setLocking (v) { storage.set(LOCKING, v) }, // 存储锁屏状态
+    getLocking () { return storage.get(LOCKING) }, // 获取锁屏状态
     clearAll () { storage.clear() } // 清除所有
 }
 Vue.prototype.$ls = cache

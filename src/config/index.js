@@ -8,7 +8,6 @@ const config = {
         pro: 'https://produce.com'
     },
     homeName: 'home_index', // 默认打开的首页的路由name值
-    loginName: 'login', // 默认打开的登录的路由name值
     errorLogStore: true // 错误日志配置记录 (顶部标记,错误上报)
 }
 Vue.prototype.$config = config

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>xian</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="liuyp <whereispal5@163.com>">
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth/640;
+        document.write('<meta name="viewport" content="width=640,initial-scale='+phoneScale+',minimum-scale='+phoneScale+',maximum-scale='+phoneScale+',target-densitydpi=device-dpi">');
+    </script>
+    <!--<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=2.0, user-scalable=1" />-->
+    <link rel="stylesheet" href=''/>
+    <style type='text/css'>
+     #photo { width: 350px; height: 250px; }
+    </style>
+    <script src=""></script>
+    <script type="text/javascript" src="jquery.1.9.1.min.js"></script>
+    <script src="exif.min.js"></script>
+</head>
+<body>
+    <div class="main">
+    <div class="inwrap">
+    <h2>Exif.js 读取图像的元数据 上传照片获取数据</h2>
+    <div class="detail">
+    <p>Exif.js 提供了 JavaScript 读取图像的原始数据的功能扩展，例如：拍照方向、相机设备型号、拍摄时间、ISO 感光度、GPS 地理位置等数据。</p>
+    </div>
+    <div class="example">
+    <div class="clearfix">
+    <div class="photos">
+    <h3>选择图片文件进行预览</h3>
+    <div id="upfile" class="upfile">
+    <label id="demo-preview" for="file"></label>
+    <input type="file" id="file" accept="image/*">
+    </div>
+    <p>请使用设备（如相机、手机、摄像头等）拍摄的照片进行测试，这样的照片才有 EXIF 数据。</p>
+    </div>
+    <div class="info">
+    <h3>查看 EXIF 信息</h3>
+    <h4>EXIF.getAllTags() orientation值	旋转角度 1	0° 3	180° 6	顺时针90° 8	逆时针90°</h4>
+    <div id="demo-log" class="log"></div>
+    <!-- <h4>EXIF.pretty()</h4>
+    <textarea id="demo-val" class="input full" rows="20" readonly></textarea> -->
+    </div> </div> </div> </div> </div> </div>
+    <!-- <input accept="image/*" id="file" type="file" /> -->
+    <br/>
+    <br/> 预览：
+    <br/>
+    <img id="photo" src="" />
+    <div style="width: 350px; height: 350px; margin: 100px; background: red;">
+        <div id="photo22" style="width:350px;height:250px"></div>
+    </div>
+    <br/>
+    <br/>
+    <button id="drawBtn">draw on Canvas</button>
+    <br/>
+    <canvas id="canvas" width="350" height="250"></canvas>
+    <br/>
+    <img id="img1" src="4.jpg" />
+    <canvas id="canvas1" width="350" height="250"></canvas>
+</body>
+</html>
+<script type="text/javascript">
+    var img = document.getElementById('img1')
+    var canvas = document.getElementById('canvas1')
+    var ctx = canvas.getContext("2d")
+    ctx.translate(175, 125)
+    ctx.rotate(-Math.PI / 2)
+    ctx.drawImage(img, 0, 0)
+    //上传照片
+    $("#file").change(function() {
+        drawTempPhoto();
+    });
+    //在Canvas上draw
+    $("#drawBtn").click(function() {
+        drawPhoto($("#photo")[0], 0, 0, 350, 250);
+    });
+
+    //绘制照片
+    function drawTempPhoto() {
+        //检验是否为图像文件
+        var file = document.getElementById("file").files[0];
+        if (!/image\/\w+/.test(file.type)) {
+            alert("看清楚哦，这个需要图片！");
+            return false;
+        }
+        var reader = new FileReader();
+        //将文件以Data URL形式读入页面
+        reader.readAsDataURL(file);
+        reader.onload = function(e) {
+            //预览效果
+            var img = $("#photo")[0];
+            //加载图片，此处的this.result为base64格式
+            img.src = this.result;
+            var img22 = $("#photo22");
+            img22.css('background-image', 'url('+this.result+')');
+            img22.css('background-size', '350px 250px');
+            img22.css('transform-origin', '0 0');
+            img22.css('transform', 'translateX(250px) rotate(90deg)');
+        }
+    }
+    //绘制照片
+    function drawPhoto(photo, x, y, w, h) {
+        var canvas = document.getElementById("canvas");
+        console.log(xxx.Orientation)
+        if (canvas.getContext) {
+            var ctx = canvas.getContext("2d");
+            //draw on Canvas
+            var img = new Image();
+            img.onload = function() {
+                var canvas_w = Number(ctx.canvas.width);
+                var canvas_h = Number(ctx.canvas.height);
+                // 执行Canvas的drawImage语句
+                if( xxx.Orientation == 8 ){
+                    ctx.translate(0, 250)
+                    ctx.rotate(-Math.PI / 2)
+                }
+                if( xxx.Orientation == 6 ){
+                    ctx.translate(250, 0)
+                    ctx.rotate(Math.PI / 2)
+                }
+                ctx.drawImage(img, x, y, w, h);
+            }
+            img.src = photo.src; // 设置图片源地址
+        }
+    }
+</script>
+<script>
+    (function(){
+      var upfileBox = $('#upfile');
+      var fileInput = $('#file');
+      var fileLabel = $('#demo-preview');
+      var demoLog = $('#demo-log');
+      var demoVal = $('#demo-val');
+      if (typeof window.FileReader === 'function' || typeof window.FileReader === 'object') {
+        upfileBox.addClass('upfile-advanced');
+
+        var oFile = new FileReader();
+        var passFileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png)$/i;
+
+        oFile.onloadend = function(oFREvent){
+          fileLabel.attr('class', '');
+
+          var state = oFREvent.currentTarget.readyState;
+          if (state === 2) {
+            fileLabel.addClass('set').css('backgroundImage', 'url(' + oFREvent.target.result + ')');
+          } else {
+            fileLabel.addClass('error');
+          };
+        };
+
+        fileInput.on('change', function(e){
+          if (!e.target || !e.target.files.length || !e.target.files[0]) {return};
+
+          var _file = e.target.files[0];
+
+          if (!passFileType.test(_file.type)) {return};
+
+          oFile.readAsDataURL(_file);
+
+          EXIF.getData(_file, function(){
+            // var _dataTxt = EXIF.pretty(this);
+            window.xxx = EXIF.getAllTags(this);
+            var _dataJson = JSON.stringify(xxx);
+      
+            demoLog.html(_dataJson.replace('Orientation','<font color="#ff0000">Orientation</font>'));
+            // demoVal.val(_dataTxt);
+
+            var _rotate = 0;
+            var _orientation = EXIF.getTag(this, 'Orientation');
+
+            if (_orientation == 3) {
+              _rotate = 180;
+            } else if (_orientation == 6) {
+              _rotate = 90;
+            } else if (_orientation == 8) {
+              _rotate = 270;
+            };
+
+            fileLabel.addClass('rotate-' + _rotate);
+          });
+        });
+      };
+    })();
+</script>

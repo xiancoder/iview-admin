@@ -1,11 +1,12 @@
 import config from '@/config'
 import { Api } from '@/api'
 import { power2routes } from '@/router'
+import { specialRouterList } from '@/router/routers'
 import { cache } from '@/cache'
 export const store = {
     namespaced: true, // 作用域
     state: {
-        theme: '', // 主题
+        theme: 'dark', // 主题
         isFullScreen: false, // 全屏 不能默认设置全屏
         breadCrumbList: [], // 面包屑内容
         routeList: [], // 一维路由信息列表
@@ -19,7 +20,7 @@ export const store = {
         powerList: [], // 权限列表
         lang: '', // 语言
         spinLoading: false, // 路由视图加载中
-        locking: false, // 锁屏状态
+        locking: cache.getLocking() || false, // 锁屏状态
         shrink: false, // 页面折叠状态
         tagNavList: cache.getTagNavList() || [], // 历史记录tab
         errorList: [], // 错误列表
@@ -60,7 +61,7 @@ export const store = {
                 if (document.msExitFullscreen) { document.msExitFullscreen() }
             }
         },
-        setLocking (state, flag) { state.locking = flag }, // 设置页面锁定
+        setLocking (state, flag) { cache.setLocking(flag); state.locking = flag }, // 设置页面锁定
         changeShrink (state, flag) { state.shrink = flag } // 设置左边树折叠状态
     },
     actions: {
@@ -111,7 +112,7 @@ export const store = {
         isLogined ({ commit }) { // 检查管理员是否登录
             return new Promise((resolve, reject) => {
                 const token = cache.getUserToken()
-                if (token) {resolve()} else {reject()}
+                resolve(!!token)
             })
         },
         clearLs ({ commit }) { // 初始化环境
@@ -147,9 +148,12 @@ export const store = {
             })
         },
         getPowerList ({ commit }) { // 触发读取接口
-            Api.system.getPowerList().then(powerList => { // 读取权限
-                commit('updatePowerList', powerList)
-                power2routes(powerList) // 传递给路由模块计算解析
+            return new Promise((resolve, reject) => {
+                Api.system.getPowerList().then(powerList => { // 读取权限
+                    commit('updatePowerList', powerList)
+                    power2routes(powerList) // 传递给路由模块计算解析
+                    resolve()
+                })
             })
         },
         getBasePowerList ({ commit }) { // 触发读取接口
@@ -161,6 +165,7 @@ export const store = {
         },
         addTagNav ({ state, commit }, route) {
             const name = route.name
+            if (specialRouterList.includes(name)) return false
             const routeInfo = state.routeList[name]
             if (!routeInfo) return false
             const list = Object.assign(state.tagNavList)

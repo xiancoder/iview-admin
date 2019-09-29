@@ -7,3 +7,19 @@ moment.locale('en', {
         y: '一年', yy: '%d 年'
     }
 });
+// =======================================================================
+// = 额外代码
+// =======================================================================
+const toTime = new Date()
+toTime.setHours(18)
+toTime.setMinutes(30)
+if (window.Notification && Notification.permission !== 'denied') {
+    Notification.requestPermission(function (status) {
+        var x = setInterval(function () {
+            var note = new Notification('通知', { body: '距离下班还有' + moment(toTime).toNow(true) })
+            note.onclick = () => { // 在这里实现用户点击后的逻辑
+                clearInterval(x)
+            }
+        }, 10 * 60 * 1000)
+    })
+}

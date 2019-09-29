@@ -1,21 +1,5 @@
 import Main from '@V/main'
 import parentView from '@C/parent-view'
-
-/**
- * iview-admin中meta除了原生参数外可配置的参数:
- * meta: {
- *    title: { String|Number|Function }
- *                 显示在侧边栏、面包屑和标签栏的文字
- *                 使用'{{ 多语言字段 }}'形式结合多语言使用，例子看多语言的路由配置;
- *                 可以传入一个回调函数，参数是当前路由对象，例子看动态路由和带参路由
- *    hideInBread: (false) 设为true后此级路由将不会出现在面包屑中，示例看QQ群路由配置
- *    hideInMenu: (false) 设为true后在左侧菜单不会显示该页面选项
- *    notCache: (false) 设为true后页面在切换标签后不会缓存，如果需要缓存，无需设置这个字段，而且需要设置页面组件name属性和路由配置的name一致
- *    access: (null) 可访问该页面的权限数组，当前路由设置的权限会影响子路由
- *    icon: (-) 该页面在左侧菜单、面包屑和标签导航处显示的图标，如果是自定义图标，需要在图标名称前加下划线'_'
- *    beforeCloseName: (-) 设置该字段，则在关闭当前tab页时会去'@/router/before-close.js'里寻找该字段名对应的方法，作为关闭前的钩子函数
- * }
- */
 // 处理两层路由
 const makeTwoLevelRoute = (config) => {
     config.name = config.path
@@ -43,15 +27,12 @@ const makeOneLevelRoute = (config) => {
     config.path = '/' + config.path
     return config
 }
+export const specialRouterList = ['error401', 'error404', 'error500', 'login', 'locking']
 // 路由视图文件名必须和路由名字路径一致 方便查找定位
-export default [
+export const routerList = [
     {path: '/', redirect: '/home/index'}, // 默认路由视图
-    // {path: '/*', redirect: '/error404'}, // 默认404视图
     makeOneLevelRoute({ path: 'login', title: '登录' }),
     makeOneLevelRoute({ path: 'locking', title: '锁屏' }),
-    makeOneLevelRoute({ path: 'error404', title: '页面不存在' }),
-    makeOneLevelRoute({ path: 'error401', title: '权限不足' }),
-    makeOneLevelRoute({ path: 'error500', title: '服务端错误' }),
     makeTwoLevelRoute({
         path: 'home', title: '首页', icon: 'md-globe',
         children: [
@@ -93,6 +74,7 @@ export default [
             {power: '0000', path: '021route@add', title: '路由跳转添加', hideMenu: true},
             {power: '0000', path: '022vfor', title: 'v-for循环'},
             {power: '0000', path: '023eslint', title: 'EsLint 校验规则'},
+            {power: '0000', path: '034eslintignore', title: 'Eslint管理'},
             {power: '0000', path: '024tools', title: '自定义 $tool'},
             {power: '0000', path: '025rule', title: '本框架开发规范'},
             {power: '0000', path: '026iviewDefault', title: 'iview改变默认配置'},
@@ -102,6 +84,8 @@ export default [
             {power: '0000', path: '030vueVision', title: 'vue几个版本'},
             {power: '0000', path: '031mockjs', title: '玩转假数据'},
             {power: '0000', path: '032api', title: 'api流程梳理'},
+            {power: '0000', path: '033exports', title: '混用exports'},
+            {power: '0000', path: '035iospic', title: 'iOS图片旋转bug'},
             {power: '1299', path: '100newBee', title: '大牛养成'}
         ]
     }),
@@ -121,17 +105,17 @@ export default [
     makeTwoLevelRoute({
         path: 'components', title: '组件', icon: 'logo-buffer',
         children: [
-            {power: '0000', path: 'treeselect', icon: 'md-arrow-dropdown-circle', title: '树状下拉选择器'},
-            {power: '0000', path: 'countto', icon: 'md-trending-up', title: '数字渐变'},
-            {power: '0000', path: 'draglist', icon: 'ios-infinite', title: '拖拽列表'},
+            {power: '0000', path: 'cropper', icon: 'md-crop', title: '图片裁剪'},
+            {power: '0000', path: 'splitpane', icon: 'md-pause', title: '分割窗口'},
             {power: '0000', path: 'dragdrawer', icon: 'md-list', title: '可拖拽抽屉'},
+            {power: '0000', path: 'countto', icon: 'md-trending-up', title: '数字渐变'},
             {power: '0000', path: 'orgtree', icon: 'ios-people', title: '组织结构树'},
             {power: '0000', path: 'treetable', icon: 'md-git-branch', title: '树状表格'},
-            {power: '0000', path: 'cropper', icon: 'md-crop', title: '图片裁剪'},
             {power: '0000', path: 'tables', icon: 'md-grid', title: '多功能表格'},
-            {power: '0000', path: 'splitpane', icon: 'md-pause', title: '分割窗口'},
             {power: '0000', path: 'markdown', icon: 'logo-markdown', title: 'Markdown编辑器'},
             {power: '0000', path: 'editor', icon: 'ios-create', title: '富文本编辑器'},
+            {power: '0000', path: 'treeselect', icon: 'md-arrow-dropdown-circle', title: '树状下拉选择器'},
+            {power: '0000', path: 'draglist', icon: 'ios-infinite', title: '拖拽列表'},
             {power: '0000', path: 'icons', icon: 'bear', title: '自定义图标'}
         ]
     }),
@@ -162,7 +146,11 @@ export default [
             },
             {path: 'level_2_3', name: 'level_2_3', icon: 'md-funnel', title: '二级-3', component: () => import('@V/multilevel/level-2-3.vue')}
         ]
-    }
+    },
+    makeOneLevelRoute({ path: 'error404', title: '页面不存在' }),
+    makeOneLevelRoute({ path: 'error401', title: '权限不足' }),
+    makeOneLevelRoute({ path: 'error500', title: '服务端错误' }),
+    {path: '/*', redirect: '/error404'} // 默认404视图
     /*
     {path: '/401', name: 'error_401', hideInMenu: true, component: () => import('@V/error-page/401.vue')},
     {path: '/500', name: 'error_500', hideInMenu: true, component: () => import('@V/error-page/500.vue')},

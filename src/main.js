@@ -19,25 +19,33 @@ import '@/utils' // 常用方法 -挂载$util
 import '@/validate' // 常用校验 -挂载$validate
 import App from '@/App.vue' // 页面主体
 // =====================================================================
-new Vue({ // 实例化
-    el: '#app',
-    router,
-    store: Store,
-    // i18n,
-    render: h => h(App),
-    mounted () {},
-    beforeCreate () {
-        Store.dispatch('system/setFullScreen') // 恢复一下全屏状态
-        Store.dispatch('system/isLogined').then(() => { // 用户是否登录
-            console.info('仙', 'ls:token存在')
-            Store.dispatch('system/getPowerList') // 读取权限 更新权限视图
-            Store.dispatch('system/getUserInfo') // 获取用户信息
-            Store.dispatch('system/getNewMessageNum') // 获取未读最新消息
-        }, () => {
-            console.info('仙', 'ls:token不存在')
-            Store.dispatch('system/getBasePowerList') // 读取基本页面权限 更新权限视图
-            Store.dispatch('system/clearLs') // 清理页面
-            router.push('login')
-        })
+const begin = async function () {
+    const isLogined = await Store.dispatch('system/isLogined')
+    console.info('仙', '登录标识', isLogined)
+    if (!isLogined) {
+        await Store.dispatch('system/clearLs') // 清理页面
+        router.push('login')
+    } else {
+        Store.dispatch('system/getUserInfo') // 获取用户信息
+        Store.dispatch('system/getNewMessageNum') // 获取未读最新消息
+        await Store.dispatch('system/getPowerList') // 读取权限 更新权限视图
     }
-})
+    new Vue({ // 实例化
+        el: '#app',
+        router,
+        store: Store,
+        // i18n,
+        render: h => h(App),
+        mounted () {
+            setTimeout(() => {
+                const loading = document.querySelector('.fullloading')
+                loading.classList.add('hide')
+                setTimeout(() => { loading.remove() }, 1e3)
+            }, 2e3)
+        },
+        beforeCreate () {
+            Store.dispatch('system/setFullScreen') // 恢复一下全屏状态
+        }
+    })
+}
+begin()

@@ -1,54 +1,45 @@
 <template>
-  <div>
-    <div v-if="searchable && searchPlace === 'top'" class="search-con search-con-top">
-      <Select v-model="searchKey" class="search-col">
-        <Option v-for="item in columns" v-if="item.key !== 'handle'" :value="item.key" :key="`search-col-${item.key}`">{{ item.title }}</Option>
-      </Select>
-      <Input @on-change="handleClear" clearable placeholder="输入关键字搜索" class="search-input" v-model="searchValue"/>
-      <Button @click="handleSearch" class="search-btn" type="primary"><Icon type="search"/>&nbsp;&nbsp;搜索</Button>
+    <div>
+        <div v-if="searchable && searchPlace === 'top'" class="search-con search-con-top">
+            <Select v-model="searchKey" class="search-col">
+                <Option v-for="item in columns" v-if="item.key !== 'handle'"
+                    :value="item.key" :key="`search-col-${item.key}`">
+                    {{ item.title }}
+                </Option>
+            </Select>
+            <Input @on-change="handleClear" clearable placeholder="输入关键字搜索"
+                class="search-input" v-model="searchValue"/>
+            <Button @click="handleSearch" class="search-btn" type="primary">
+                <Icon type="search"/>
+                &nbsp;&nbsp;
+                搜索
+            </Button>
+        </div>
+        <Table
+            ref="tablesMain" :data="insideTableData" :columns="insideColumns" :stripe="stripe"
+            :border="border" :show-header="showHeader" :width="width" :height="height"
+            :loading="loading" :disabled-hover="disabledHover" :highlight-row="highlightRow"
+            :row-class-name="rowClassName" :size="size" :no-data-text="noDataText"
+            :no-filtered-data-text="noFilteredDataText" @on-current-change="onCurrentChange"
+            @on-select="onSelect" @on-select-cancel="onSelectCancel" @on-select-all="onSelectAll"
+            @on-selection-change="onSelectionChange" @on-sort-change="onSortChange"
+            @on-filter-change="onFilterChange" @on-row-click="onRowClick"
+            @on-row-dblclick="onRowDblclick" @on-expand="onExpand"
+        >
+            <slot name="header" slot="header"></slot>
+            <slot name="footer" slot="footer"></slot>
+            <slot name="loading" slot="loading"></slot>
+        </Table>
+        <div v-if="searchable && searchPlace === 'bottom'" class="search-con search-con-top">
+            <Select v-model="searchKey" class="search-col">
+                <Option v-for="item in columns" v-if="item.key !== 'handle'" :value="item.key" :key="`search-col-${item.key}`">{{ item.title }}</Option>
+            </Select>
+            <Input placeholder="输入关键字搜索" class="search-input" v-model="searchValue"/>
+            <Button class="search-btn" type="primary"><Icon type="search"/>&nbsp;&nbsp;搜索</Button>
+        </div>
+        <a id="hrefToExportTable" style="display: none;width: 0px;height: 0px;"></a>
     </div>
-    <Table
-      ref="tablesMain"
-      :data="insideTableData"
-      :columns="insideColumns"
-      :stripe="stripe"
-      :border="border"
-      :show-header="showHeader"
-      :width="width"
-      :height="height"
-      :loading="loading"
-      :disabled-hover="disabledHover"
-      :highlight-row="highlightRow"
-      :row-class-name="rowClassName"
-      :size="size"
-      :no-data-text="noDataText"
-      :no-filtered-data-text="noFilteredDataText"
-      @on-current-change="onCurrentChange"
-      @on-select="onSelect"
-      @on-select-cancel="onSelectCancel"
-      @on-select-all="onSelectAll"
-      @on-selection-change="onSelectionChange"
-      @on-sort-change="onSortChange"
-      @on-filter-change="onFilterChange"
-      @on-row-click="onRowClick"
-      @on-row-dblclick="onRowDblclick"
-      @on-expand="onExpand"
-    >
-      <slot name="header" slot="header"></slot>
-      <slot name="footer" slot="footer"></slot>
-      <slot name="loading" slot="loading"></slot>
-    </Table>
-    <div v-if="searchable && searchPlace === 'bottom'" class="search-con search-con-top">
-      <Select v-model="searchKey" class="search-col">
-        <Option v-for="item in columns" v-if="item.key !== 'handle'" :value="item.key" :key="`search-col-${item.key}`">{{ item.title }}</Option>
-      </Select>
-      <Input placeholder="输入关键字搜索" class="search-input" v-model="searchValue"/>
-      <Button class="search-btn" type="primary"><Icon type="search"/>&nbsp;&nbsp;搜索</Button>
-    </div>
-    <a id="hrefToExportTable" style="display: none;width: 0px;height: 0px;"></a>
-  </div>
 </template>
-
 <script>
 import TablesEdit from './edit.vue'
 import handleBtns from './handle-btns'
@@ -56,91 +47,31 @@ import './index.less'
 export default {
     name: 'Tables',
     props: {
-        value: {
-            type: Array,
-            default () {
-                return []
-            }
-        },
-        columns: {
-            type: Array,
-            default () {
-                return []
-            }
-        },
+        value: { type: Array, default () { return [] } },
+        columns: { type: Array, default () { return [] } },
         size: String,
-        width: {
-            type: [Number, String]
-        },
-        height: {
-            type: [Number, String]
-        },
-        stripe: {
-            type: Boolean,
-            default: false
-        },
-        border: {
-            type: Boolean,
-            default: false
-        },
-        showHeader: {
-            type: Boolean,
-            default: true
-        },
-        highlightRow: {
-            type: Boolean,
-            default: false
-        },
-        rowClassName: {
-            type: Function,
-            default () {
-                return ''
-            }
-        },
-        context: {
-            type: Object
-        },
-        noDataText: {
-            type: String
-        },
-        noFilteredDataText: {
-            type: String
-        },
-        disabledHover: {
-            type: Boolean
-        },
-        loading: {
-            type: Boolean,
-            default: false
-        },
-        /**
-     * @description 全局设置是否可编辑
-     */
-        editable: {
-            type: Boolean,
-            default: false
-        },
-        /**
-     * @description 是否可搜索
-     */
-        searchable: {
-            type: Boolean,
-            default: false
-        },
-        /**
-     * @description 搜索控件所在位置，'top' / 'bottom'
-     */
-        searchPlace: {
-            type: String,
-            default: 'top'
-        }
+        width: { type: [Number, String] },
+        height: { type: [Number, String] },
+        stripe: { type: Boolean, default: false },
+        border: { type: Boolean, default: false },
+        showHeader: { type: Boolean, default: true },
+        highlightRow: { type: Boolean, default: false },
+        rowClassName: { type: Function, default () { return '' } },
+        context: { type: Object },
+        noDataText: { type: String },
+        noFilteredDataText: { type: String },
+        disabledHover: { type: Boolean },
+        loading: { type: Boolean, default: false },
+        editable: { type: Boolean, default: false }, // 全局设置是否可编辑
+        searchable: { type: Boolean, default: false }, // 是否可搜索
+        searchPlace: { type: String, default: 'top' } // 搜索控件所在位置，'top' / 'bottom'
     },
     /**
-   * Events
-   * @on-start-edit 返回值 {Object} ：同iview中render函数中的params对象 { row, index, column }
-   * @on-cancel-edit 返回值 {Object} 同上
-   * @on-save-edit 返回值 {Object} ：除上面三个参数外，还有一个value: 修改后的数据
-   */
+     * Events
+     * @on-start-edit 返回值 {Object} ：同iview中render函数中的params对象 { row, index, column }
+     * @on-cancel-edit 返回值 {Object} 同上
+     * @on-save-edit 返回值 {Object} ：除上面三个参数外，还有一个value: 修改后的数据
+    */
     data () {
         return {
             insideColumns: [],
@@ -215,7 +146,7 @@ export default {
             this.insideTableData = this.value.filter(item => item[this.searchKey].indexOf(this.searchValue) > -1)
         },
         handleTableData () {
-            this.insideTableData = this.value.map((item, index) => {
+            this.insideTableData = (this.value || []).map((item, index) => {
                 let res = item
                 res.initRowIndex = index
                 return res

@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import { Store } from '@/store'
 import { objEqual } from '@/utils/object'
 import { LoadingBarRun } from '@/tools'
-import routes from './routers'
+import { routerList as routes, specialRouterList } from './routers'
 import Config from '@/config'
 Vue.use(Router)
 // 路由实例 需要挂载到vue
@@ -64,22 +64,30 @@ router.beforeEach((to, from, next) => {
     Store.dispatch('system/routeSpin', true) // 路由视图loading
     const scroller = document.getElementById('mainScrollFlag')
     if (scroller) scroller.scrollTo(0, 0)
-    const isCurrentLocked = Store.state.system.locking
-    const isCurrentLogined = Store.state.system.access
-    if (isCurrentLocked && to.name !== 'locking') { // 判断当前是否是锁定状态
-        next({ replace: true, name: 'locking' })
-    } else if (!isCurrentLocked && to.name === 'locking') {
-        next(false)
-    } else if (!isCurrentLogined && to.name !== Config.loginName) { // 判断是否已经登录且前往的页面不是登录页
-        next({ replace: true, name: Config.loginName })
-    } else if (isCurrentLogined && to.name === Config.loginName) { // 判断是否已经登录且前往的是登录页
-        next({ replace: true, name: Config.homeName })
-    } else {
-        Store.dispatch('system/hasPower', to.name).then((bool) => {
-            if (!bool) { return next({name: 'error404'}) }
-            next()
-        })
+    const isLocked = Store.state.system.locking
+    const goLocking = ['locking'].includes(to.name)
+    if (isLocked && !goLocking) { // 锁定状态不允许去其他页面
+        return next({ replace: true, name: 'locking' })
     }
+    if (!isLocked && goLocking) { // 非锁定状态不允许去锁定页面
+        return next(false)
+    }
+    const isLogined = Store.state.system.access
+    const goLogin = ['login'].includes(to.name)
+    if (!isLogined && !goLogin) { // 未登录状态不允许去其他页面
+        return next({ replace: true, name: 'login' })
+    }
+    if (isLogined && goLogin) { // 登录状态不允许去注册登录页
+        return next({ replace: true, name: Config.homeName })
+    }
+    if (specialRouterList.includes(to.name)) { // 默认页面不走鉴权
+        return next()
+    }
+    Store.dispatch('system/hasPower', to.name).then((bool) => { // 鉴权
+        console.info('仙', '鉴权页面', bool)
+        if (!bool) { return next({name: 'error401'}) }
+        next()
+    })
 })
 router.afterEach(to => {
     LoadingBarRun(false) // 顶部进度条

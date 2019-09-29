@@ -147,9 +147,9 @@
                     <Divider orientation="left">富文本校验</Divider>
                     <FormItem label="任务内容" prop="rich1">
                         <vue-html5-editor :content="frm.rich1"
-                            @change="frm.rich1 = value" :height="140" style="width: 600px;">
+                            @change="val=>frm.rich1=val" :height="140" style="width: 600px;">
                         </vue-html5-editor>
-                        <div class="ivu-form-item-notice-tip">必填【不完美】【字段写两遍】</div>
+                        <div class="ivu-form-item-notice-tip">必填【不完美】【字段写两遍】{{frm.rich1}}</div>
                     </FormItem>
                     <Divider orientation="left">提交</Divider>
                     <FormItem style="margin-top: 50px">
