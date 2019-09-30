@@ -35,7 +35,7 @@
     </div>
 </template>
 <script>
-import moment from 'moment'
+import { dateFormat } from '@/utils/date'
 export default {
     name: 'task_restart',
     data () {
@@ -89,7 +89,7 @@ export default {
             })
         },
         postForm () {
-            this.formItem.completeTime = moment(this.formItem.completeTime).format('YYYY-MM-DD')
+            this.formItem.completeTime = dateFormat(this.formItem.completeTime)
             this.formItem.id = parseInt(this.$route.query.taskId)
             this.$post('api/task/restartSpecial', this.formItem).then((res) => {
                 if (res.data.data && res.data.data.res === 1) {

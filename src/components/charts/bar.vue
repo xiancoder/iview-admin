@@ -1,7 +1,6 @@
 <template>
-  <div ref="dom" class="charts chart-bar"></div>
+    <div ref="dom" class="charts chart-bar"></div>
 </template>
-
 <script>
 import echarts from 'echarts'
 import tdTheme from './theme.json'
@@ -29,22 +28,10 @@ export default {
             let xAxisData = Object.keys(this.value)
             let seriesData = Object.values(this.value)
             let option = {
-                title: {
-                    text: this.text,
-                    subtext: this.subtext,
-                    x: 'center'
-                },
-                xAxis: {
-                    type: 'category',
-                    data: xAxisData
-                },
-                yAxis: {
-                    type: 'value'
-                },
-                series: [{
-                    data: seriesData,
-                    type: 'bar'
-                }]
+                title: { text: this.text, subtext: this.subtext, x: 'center' },
+                xAxis: { type: 'category', data: xAxisData },
+                yAxis: { type: 'value' },
+                series: [{ data: seriesData, type: 'bar' }]
             }
             this.dom = echarts.init(this.$refs.dom, 'tdTheme')
             this.dom.setOption(option)

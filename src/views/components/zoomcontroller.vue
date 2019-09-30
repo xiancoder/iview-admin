@@ -9,35 +9,19 @@
     </button>
   </div>
 </template>
-
 <script>
 export default {
     name: 'ZoomController',
     props: {
-        value: {
-            type: Number,
-            default: 100
-        },
-        step: {
-            type: Number,
-            default: 20
-        },
-        min: {
-            type: Number,
-            default: 10
-        },
-        max: {
-            type: Number,
-            default: 200
-        }
+        value: { type: Number, default: 100 },
+        step: { type: Number, default: 20 },
+        min: { type: Number, default: 10 },
+        max: { type: Number, default: 200 }
     },
     methods: {
         scale (type) {
             const zoom = this.value + (type === 'down' ? -this.step : this.step)
-            if (
-                (zoom < this.min && type === 'down') ||
-        (zoom > this.max && type === 'up')
-            ) {
+            if ((zoom < this.min && type === 'down') || (zoom > this.max && type === 'up')) {
                 return
             }
             this.$emit('input', zoom)
@@ -45,7 +29,6 @@ export default {
     }
 }
 </script>
-
 <style lang="less">
 .trans(@duration) {
   transition: ~"all @{duration} ease-in";

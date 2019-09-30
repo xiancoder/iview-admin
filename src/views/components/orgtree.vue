@@ -1,25 +1,26 @@
 <template>
-  <Card shadow style="height: 100%;width: 100%;overflow:hidden">
-    <div class="department-outer">
-      <div class="tip-box">
-        <b style="margin-right: 20px;">powered by <a target="blank" href="https://github.com/lison16">Lison</a></b>
-        <a target="blank" href="https://github.com/lison16/v-org-tree" style="margin-right: 10px;">v-org-tree文档</a>
-      </div>
-      <div class="zoom-box">
-        <zoom-controller v-model="zoom" :min="20" :max="200"></zoom-controller>
-      </div>
-      <div class="view-box">
-        <org-view
-          v-if="data"
-          :data="data"
-          :zoom-handled="zoomHandled"
-          @on-menu-click="handleMenuClick"
-        ></org-view>
-      </div>
-    </div>
-  </Card>
+    <Card shadow style="height: 100%;width: 100%;overflow:hidden">
+        <div class="department-outer">
+            <div class="tip-box">
+                <b style="margin-right: 20px;">
+                    powered by <a target="blank" href="https://github.com/lison16">Lison</a>
+                </b>
+                <a target="blank" href="https://github.com/lison16/v-org-tree" style="margin-right: 10px;">
+                    v-org-tree文档
+                </a>
+            </div>
+            <div class="zoom-box">
+                <zoom-controller v-model="zoom" :min="20" :max="200">
+                </zoom-controller>
+            </div>
+            <div class="view-box">
+                <org-view v-if="data" :data="data" :zoom-handled="zoomHandled"
+                    @on-menu-click="handleMenuClick">
+                </org-view>
+            </div>
+        </div>
+    </Card>
 </template>
-
 <script>
 import OrgView from './orgview.vue'
 import ZoomController from './zoomcontroller.vue'
@@ -31,10 +32,7 @@ const menuDic = {
 }
 export default {
     name: 'org_tree_page',
-    components: {
-        OrgView,
-        ZoomController
-    },
+    components: { OrgView, ZoomController },
     data () {
         return {
             data: null,
@@ -42,9 +40,7 @@ export default {
         }
     },
     computed: {
-        zoomHandled () {
-            return this.zoom / 100
-        }
+        zoomHandled () { return this.zoom / 100 }
     },
     methods: {
         setDepartmentData (data) {
@@ -69,6 +65,3 @@ export default {
     }
 }
 </script>
-
-<style>
-</style>

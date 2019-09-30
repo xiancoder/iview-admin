@@ -13,6 +13,7 @@
     </div>
 </template>
 <script>
+import '@/plugins/treetable'
 export default {
     name: 'tree_table_page',
     data () {

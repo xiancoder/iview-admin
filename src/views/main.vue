@@ -29,6 +29,7 @@
                     </Badge>
                     <qr-code></qr-code>
                     <epopen></epopen>
+                    <lock-screen></lock-screen>
                     <full-screen></full-screen>
                     <error-store v-if="$config.errorLogStore"></error-store>
                     <user></user>
@@ -55,6 +56,7 @@
 import SideMenu from '@C/side-menu' // 组件::左侧树菜单
 import TagsNav from '@C/tags-nav'
 import User from '@C/user'
+import LockScreen from '@C/lockscreen'
 import ABackTop from '@C/a-back-top'
 import FullScreen from '@C/fullscreen' // 组件::全屏按钮
 import ErrorStore from '@C/error-store'
@@ -66,7 +68,7 @@ import maxLogo from '@/assets/images/logo.jpg'
 import '@S/main.less'
 export default {
     name: 'Main',
-    components: { SideMenu, TagsNav, FullScreen, ErrorStore, User, ABackTop, CustomBreadCrumb, qrCode, epopen },
+    components: { SideMenu, TagsNav, FullScreen, ErrorStore, User, ABackTop, CustomBreadCrumb, qrCode, epopen, LockScreen },
     data () {
         return {
             collapsed: false, // 折叠标记

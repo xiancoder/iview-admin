@@ -54,8 +54,8 @@
     </div>
 </template>
 <script>
-import moment from 'moment'
 import tab from './mine'
+import { sevenRange } from '@/utils/date'
 import { extend, extendF } from '@/utils/object'
 import { h, jumpto, saveParamState, getParamState } from '@/tools'
 export default {
@@ -67,10 +67,7 @@ export default {
         const overdueList = this.$api.task.overdue()
         const pauseList = this.$api.task.pause()
         this.$api.user.pullUserList().then(list => { this.dataSet.userData = list })
-        const beginAndEnd = ['', '']
-        const today = moment().utc()
-        beginAndEnd[1] = today.format('YYYY-MM-DD')
-        beginAndEnd[0] = today.subtract(6, 'days').format('YYYY-MM-DD')
+        const beginAndEnd = sevenRange()
         return {
             loading: false,
             dataSet: {

@@ -90,7 +90,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'task', title: '任务管理', icon: 'md-buffer',
+        path: 'task', title: '任务管理', icon: 'logo-buffer',
         children: [
             { power: '0401', path: 'mine', title: '我的任务' },
             { power: '0402', path: 'mine@publish', title: '我发布的任务', hideMenu: true },
@@ -99,7 +99,24 @@ export const routerList = [
             { power: '0404', path: 'mine@besend', title: '抄送我的任务', hideMenu: true },
             { power: '0406', path: 'mine@@info', title: '任务详情', hideMenu: true },
             { power: '0405', path: 'mine@@release', title: '发布任务', hideMenu: true },
-            { power: '0407', path: 'mine@@restart', title: '重启任务', hideMenu: true }
+            { power: '0407', path: 'mine@@restart', title: '重启任务', hideMenu: true },
+            { power: '0401', path: 'subordinate', title: '下属任务' }
+        ]
+    }),
+    makeTwoLevelRoute({
+        path: 'order', title: '工单管理', icon: 'md-mail',
+        children: [
+            { power: '0401', path: 'mine', title: '我的工单' },
+            { power: '0402', path: 'mine@sendList', title: '已发工单', hideMenu: true },
+            { power: '0402', path: 'mine@receiveList', title: '已收工单', hideMenu: true },
+            { power: '0402', path: 'mine@draftsList', title: '草稿箱', hideMenu: true },
+            { power: '0402', path: 'mine@endList', title: '已结工单', hideMenu: true },
+            { power: '0402', path: 'mine@@info', title: '工单详情', hideMenu: true },
+            { power: '0402', path: 'mine@@release', title: '工单发布', hideMenu: true },
+            { power: '0401', path: 'subordinate', title: '下属工单' },
+            { power: '0402', path: 'subordinate@@info', title: '工单详情', hideMenu: true },
+            { power: '0401', path: 'group', title: '组管理' },
+            { power: '0402', path: 'group@edit', title: '组添加/编辑', hideMenu: true }
         ]
     }),
     makeTwoLevelRoute({
@@ -147,40 +164,16 @@ export const routerList = [
             {path: 'level_2_3', name: 'level_2_3', icon: 'md-funnel', title: '二级-3', component: () => import('@V/multilevel/level-2-3.vue')}
         ]
     },
-    makeOneLevelRoute({ path: 'error404', title: '页面不存在' }),
-    makeOneLevelRoute({ path: 'error401', title: '权限不足' }),
-    makeOneLevelRoute({ path: 'error500', title: '服务端错误' }),
-    {path: '/*', redirect: '/error404'} // 默认404视图
     /*
-    {path: '/401', name: 'error_401', hideInMenu: true, component: () => import('@V/error-page/401.vue')},
-    {path: '/500', name: 'error_500', hideInMenu: true, component: () => import('@V/error-page/500.vue')},
-    {path: '*', name: 'error_404', hideInMenu: true, component: () => import('@V/error-page/404.vue')}
-    {path: '', name: 'doc', title: '文档', href: 'https://lison16.github.io/iview-admin-doc/#/', icon: 'ios-book'},
-
-    {
-        path: '/tools_methods', name: 'tools_methods', hideInBread: true, component: Main,
-        children: [
-            {path: 'tools_methods_', name: 'tools_methods_', icon: 'ios-hammer', title: '工具方法', beforeCloseName: 'before_close_normal', component: () => import('@V/tools-methods/tools-methods.vue')}
-        ]
-    },
     {
         path: '/i18n', name: 'i18n', hideInBread: true, component: Main,
         children: [
             {path: 'i18n_', name: 'i18n_', icon: 'md-planet', title: 'i18n - {{ i18n_page }}', component: () => import('@V/i18n/i18n-page.vue')}
         ]
     },
-    {
-        path: '/directive', name: 'directive', hideInBread: true, component: Main,
-        children: [
-            {path: 'directive_', name: 'directive_', icon: 'ios-navigate', title: '指令', component: () => import('@V/directive/directive.vue')}
-        ]
-    },
-    {
-        path: '/argu', name: 'argu', hideInMenu: true, component: Main,
-        children: [
-            {path: 'params/:id', name: 'params', icon: 'md-flower', title: route => `{{ params }}-${route.params.id}`, notCache: true, beforeCloseName: 'before_close_normal', component: () => import('@V/argu-page/params.vue')},
-            {path: 'query', name: 'query', icon: 'md-flower', title: route => `{{ query }}-${route.query.id}`, notCache: true, component: () => import('@V/argu-page/query.vue')}
-        ]
-    },
      */
+    makeOneLevelRoute({ path: 'error404', title: '页面不存在' }),
+    makeOneLevelRoute({ path: 'error401', title: '权限不足' }),
+    makeOneLevelRoute({ path: 'error500', title: '服务端错误' }),
+    {path: '/*', redirect: '/error404'} // 默认404视图
 ]

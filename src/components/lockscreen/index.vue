@@ -1,8 +1,3 @@
-<style scoped>
-    .hand{
-        cursor: pointer
-    }
-</style>
 <template>
     <Tooltip content="锁屏" placement="bottom" theme="light" class="hand">
         <Icon type="md-lock" :size="23" @click="lockScreen()"></Icon>
@@ -65,3 +60,8 @@ export default {
     }
 }
 </script>
+<style scoped>
+    .hand{
+        cursor: pointer
+    }
+</style>

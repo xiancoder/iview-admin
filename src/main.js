@@ -18,6 +18,9 @@ import '@/tools' // 常用工具 -挂载$tool
 import '@/utils' // 常用方法 -挂载$util
 import '@/validate' // 常用校验 -挂载$validate
 import App from '@/App.vue' // 页面主体
+/* eslint-disable */
+if (process.env.NODE_ENV !== 'production') require('@/mock') // 实际打包时应该不引入mock
+console.info('仙', '目前环境', process.env.NODE_ENV)
 // =====================================================================
 const begin = async function () {
     const isLogined = await Store.dispatch('system/isLogined')

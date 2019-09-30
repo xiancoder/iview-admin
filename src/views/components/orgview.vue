@@ -1,50 +1,26 @@
 <template>
-  <div
-    ref="dragWrapper"
-    class="org-tree-drag-wrapper"
-    @mousedown="mousedownView"
-    @contextmenu="handleDocumentContextmenu"
-  >
-    <div class="org-tree-wrapper" :style="orgTreeStyle">
-      <v-org-tree
-        v-if="data"
-        :data="data"
-        :node-render="nodeRender"
-        :expand-all="true"
-        @on-node-click="handleNodeClick"
-        collapsable
-      ></v-org-tree>
+    <div ref="dragWrapper" class="org-tree-drag-wrapper" @mousedown="mousedownView"
+        @contextmenu="handleDocumentContextmenu" >
+        <div class="org-tree-wrapper" :style="orgTreeStyle">
+            <v-org-tree v-if="data" :data="data" :node-render="nodeRender"
+                :expand-all="true" @on-node-click="handleNodeClick" collapsablew >
+            </v-org-tree>
+        </div>
     </div>
-  </div>
 </template>
-
 <script>
 import { on, off } from '@/utils/dom'
+import '@/plugins/orgtree'
 const menuList = [
-    {
-        key: 'edit',
-        label: '编辑部门'
-    },
-    {
-        key: 'detail',
-        label: '查看部门'
-    },
-    {
-        key: 'new',
-        label: '新增子部门'
-    },
-    {
-        key: 'delete',
-        label: '删除部门'
-    }
+    { key: 'edit', label: '编辑部门' },
+    { key: 'detail', label: '查看部门' },
+    { key: 'new', label: '新增子部门' },
+    { key: 'delete', label: '删除部门' }
 ]
 export default {
     name: 'OrgView',
     props: {
-        zoomHandled: {
-            type: Number,
-            default: 1
-        },
+        zoomHandled: { type: Number, default: 1 },
         data: Object
     },
     data () {
@@ -62,9 +38,7 @@ export default {
     computed: {
         orgTreeStyle () {
             return {
-                transform: `translate(-50%, -50%) scale(${this.zoomHandled}, ${
-                    this.zoomHandled
-                })`,
+                transform: `translate(30%, 30%) scale(${this.zoomHandled}, ${this.zoomHandled})`,
                 marginLeft: `${this.orgTreeOffsetLeft}px`,
                 marginTop: `${this.orgTreeOffsetTop}px`
             }
@@ -78,11 +52,7 @@ export default {
             this.currentContextMenuId = ''
         },
         getBgColor (data) {
-            return this.currentContextMenuId === data.id
-                ? data.isRoot
-                    ? '#0d7fe8'
-                    : '#5d6c7b'
-                : ''
+            return this.currentContextMenuId === data.id ? data.isRoot ? '#0d7fe8' : '#5d6c7b' : ''
         },
         nodeRender (h, data) {
             return (
@@ -102,8 +72,7 @@ export default {
                         nativeOn-click={this.handleDropdownClick}
                         on-on-click={this.handleContextMenuClick.bind(this, data)}
                         style={{
-                            transform: `scale(${1 / this.zoomHandled}, ${1 /
-                this.zoomHandled})`
+                            transform: `scale(${1 / this.zoomHandled}, ${1 / this.zoomHandled})`
                         }}
                         v-click-outside={this.closeMenu}
                     >
@@ -120,9 +89,7 @@ export default {
         },
         contextmenu (data, $event) {
             let event = $event || window.event
-            event.preventDefault
-                ? event.preventDefault()
-                : (event.returnValue = false)
+            event.preventDefault ? event.preventDefault() : (event.returnValue = false)
             this.currentContextMenuId = data.id
         },
         setDepartmentData (data) {
@@ -167,6 +134,3 @@ export default {
     }
 }
 </script>
-
-<style>
-</style>

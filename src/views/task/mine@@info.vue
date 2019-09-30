@@ -227,7 +227,7 @@
     </div>
 </template>
 <script>
-import moment from 'moment'
+import { dateFormat } from '@/utils/date'
 import '@/plugins/vueEditor'
 import {success, error, confirm, jumpto} from '@/tools'
 export default {
@@ -299,7 +299,7 @@ export default {
     },
     methods: {
         goto (name, query) { // 跳转目录
-            if (name === 'restart') { jumpto('tast_mine@restart', {taskId: this.$route.query.taskId}) }
+            if (name === 'restart') { jumpto('tast_mine@@restart', {taskId: this.$route.query.taskId}) }
         },
         init () {
             if (this.$route.query.role) {
@@ -500,7 +500,7 @@ export default {
             } else {
                 this.$post('api/task/founderedit', {
                     taskId: this.$route.query.taskId,
-                    entime: this.deadline === '' || this.deadline === null ? null : moment(this.deadline).format('YYYY-MM-DD'),
+                    entime: this.deadline === '' || this.deadline === null ? null : dateFormat(this.deadline),
                     correlation: this.correlationBox
                 }).then((res) => {
                     if (res.data.data && res.data.data.res === 1) {

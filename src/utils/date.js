@@ -189,6 +189,26 @@ export const dateFormater = (dataStr, pattern) => {
     pattern = pattern || 'YYYY-MM-DD HH:mm:ss'
     return moment(dataStr).format(pattern);
 }
+export const dateFormat = (dataStr, pattern) => { // 专门为项目服务的'YYYY-MM-DD'格式
+    pattern = pattern || 'YYYY-MM-DD'
+    return moment(dataStr).format(pattern);
+}
+/// ///////////////////////////////////////////////////////////////////////////
+// 获取今天之前一周时间的字符串数组
+// =====================
+// liuyp 2019年9月30日15:16:59
+/// ///////////////////////////////////////////////////////////////////////////
+/* export function sevenRange () { // 放弃 未测试 也许更好
+    const today = moment().format('YYYY-MM-DD');
+    const last7 = moment().subtract(6,'days').format('YYYY-MM-DD');
+    return [last7, today];
+} */
+export function sevenRange () {
+    const date = new Date()
+    const today = dateFormat(date)
+    const last7 = dateFormat(dateSub(today, 6, 'd'))
+    return [last7, today];
+}
 /// ///////////////////////////////////////////////////////////////////////////
 // 时间戳转换日期
 // 防止ios出现日期bug 统一后台来的时间戳
