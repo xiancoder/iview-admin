@@ -3,29 +3,16 @@
         <div class="task_top">
             <span>任务详情</span>
             <div style="float: right">
-                <Button type="primary" @click="del">删除</Button>
                 <Button type="primary" @click="taskComplete">通过</Button>
                 <Button type="primary" @click="modal.restart=true">重启</Button>
-                <Button type="primary" @click="modal.edit=true">编辑</Button>
+                <Button type="primary" @click="taskEdit">编辑</Button>
+                <Button type="primary" @click="taskAccept">接受任务</Button>
                 <Button type="primary" @click="taskTimeout">暂停</Button>
                 <Button type="primary" @click="taskRecovery">恢复</Button>
+                <Button type="primary" @click="taskDel">删除</Button>
                 <Button type="primary" @click="taskAbandon">废弃</Button>
                 <Button type="primary" @click="taskCommit">提交验收</Button>
                 <Button type="primary" @click="changeLeader">变更负责人</Button>
-                <Button type="primary" @click="modal.accept=true">接受任务</Button>
-                <!--
-                <Button type="primary" @click="del" v-show="taskStatus==4&&user_name==taskInfo.founder">删除</Button>
-                <Button type="primary" @click="taskComplete" v-show="taskStatus==2&&role==1&&pause==0">通过</Button>
-                <Button type="primary" @click="taskRestart" v-show="taskStatus==2&&role==1&&pause==0">重启</Button>
-                <Button type="primary" @click="editTask" v-show="(taskStatus==0 || taskStatus==1 || taskStatus==2)&&role==1&&pause==0">编辑</Button>
-                <Button type="primary" @click="taskTimeout" v-show="(taskStatus==0 || taskStatus==1 || taskStatus==2)&&role==1&&pause==0">暂停</Button>
-                <Button type="primary" @click="taskRecovery" v-show="(taskStatus==0 || taskStatus==1 || taskStatus==2)&&role==1&&pause==1">恢复</Button>
-                <Button type="primary" @click="taskAbandon" v-show="(taskStatus==0 || taskStatus==1 || taskStatus==2)&&role==1">废弃</Button>
-                <Button type="primary" @click="editTask" v-show="(taskStatus==1 || taskStatus==2)&&pause==0&&role==2">编辑</Button>
-                <Button type="primary" @click="taskCommit" v-show="taskStatus==1&&pause==0&&role==2">提交验收</Button>
-                <Button type="primary" @click="changeLeader" v-show="taskStatus==0&&pause==0&&role==2">变更负责人</Button>
-                <Button type="primary" @click="acceptTask" v-show="taskStatus==0&&pause==0&&role==2">接受任务</Button>
-                -->
             </div>
         </div>
         <Row>
@@ -42,27 +29,31 @@
                         </tr>
                         <tr>
                             <td>优先级：</td> <td>{{taskInfo.taskPriority}}</td>
-                            <td>计划完成日期：</td> <td>{{taskInfo.completeTime || '-'}}</td>
+                            <td>计划完成日期：</td> <td>{{taskInfo.completeTime||'-'}}</td>
                         </tr>
                         <tr>
                             <td>负责人：</td> <td>{{inChargeName}}</td>
                             <td>执行人：</td> <td>
-                                <span v-show="operatorName.length==0">-</span>
-                                <span v-for="(op,index) in operatorName" :key="index">
-                                    {{op}}<span v-show="operatorName.length!==1&&index!==(operatorName.length - 1)">,</span>
-                                </span>
+                                <span v-show="operatorNames.length==0">-</span>
+                                <span v-for="(op,index) in operatorNames" :key="index">
+                                    {{op}},
+                                </span>( 用样式来实现逗号... )
                             </td>
                         </tr>
                         <tr>
                             <td>抄送人：</td> <td colspan="3">
-                                <span v-show="correlationName.length==0">-</span>
-                                <span v-for="(co,index) in correlationName" :key="index">
-                                    {{co}}<span v-show="correlationName.length !== 1 && index !== (correlationName.length - 1)">,</span>
-                                </span>
+                                <span v-show="correlationNames.length==0">-</span>
+                                <span v-for="(co,index) in correlationNames" :key="index">
+                                    {{co}}
+                                </span>( 用样式来实现逗号... )
                             </td>
                         </tr>
                         <tr>
-                            <td>任务内容：</td> <td colspan="3"><div style="border: 1px solid #ddd;border-radius: 4px;padding: 10px" v-html="content" class="task_content"></div></td>
+                            <td>任务内容：</td>
+                            <td colspan="3">
+                                <div style="border: 1px solid #ddd;border-radius: 4px;padding: 10px" v-html="content" class="task_content">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td>附件：</td> <td colspan="3">
@@ -73,10 +64,10 @@
                         <tr>
                             <td>追加需求：</td> <td colspan="3">
                                 <div v-show="extraList.length==0">-</div>
-                                <div v-for="(record,index) in extraList" :key="index">
+                                <div v-for="(row,index) in extraList" :key="index">
                                     <Divider v-show="index !== 0" style="margin: 10px 0"/>
-                                    <div v-html="record.taskContent" class="task_content"></div>
-                                    <a v-for="(file,index) in record.taskEnclosure" :key="index" :href="file" download="">{{urlName(file)}}</a>
+                                    <div v-html="row.taskContent" class="task_content"></div>
+                                    <a v-for="(file,index) in row.taskEnclosure" :key="index" :href="file" download="">{{urlName(file)}}</a>
                                 </div>
                             </td>
                         </tr>
@@ -86,7 +77,7 @@
             <Col span="1">&nbsp;</Col>
             <Col span="5">
                 <Card class="right-Card" :bordered="true" style="margin-bottom: 20px"
-                    v-show="(taskStatus==0 || taskStatus==1) && role==1 && pause==0">
+                    v-show="(taskInfo.taskStatus==0 || taskInfo.taskStatus==1) && role==1 && taskInfo.pause==0">
                     <p slot="title" class="car-title">追加需求</p>
                     <div style="text-align:center">
                         <Button type="primary" ghost @click="addRequest()">写需求</Button>
@@ -112,7 +103,9 @@
                 </div>
                 <div style="white-space: pre">{{log.content}}</div>
             </div>
-            <div style="text-align: center"><Button v-show="logButton" type="primary" ghost @click="moreLog" :loading="loading">加载更多</Button></div>
+            <div style="text-align: center" v-show="logMoreButton">
+                <Button type="primary" ghost @click="moreLog" :loading="loading">加载更多</Button>
+            </div>
         </div>
         <!-- *********************************** -->
         <Modal v-model="modal.restart" title="重启" :closable="false" :mask-closable="false">
@@ -137,14 +130,14 @@
                     </Select>
                 </FormItem>
                 <FormItem label="抄送人：">
-                    <Select v-model="from.edit.correlation" :label-in-value="true" @on-change="v=>{changeCorrelation(v)}"
+                    <Select v-model="from.edit.correlation" :label-in-value="true"
                         multiple filterable style="width: 250px">
                         <Option v-for="option in dataSet.userList" :value="option.userId" :key="option.userId" :label="option.userName">
                         </Option>
                     </Select>
                 </FormItem>
                 <FormItem label="执行人：">
-                    <Select v-model="from.edit.operator" :label-in-value="true" @on-change="v=>{changeOperator(v)}"
+                    <Select v-model="from.edit.operator" :label-in-value="true"
                         multiple filterable style="width: 250px">
                         <Option v-for="option in dataSet.userList" :value="option.userId" :key="option.userId" :label="option.userName">
                         </Option>
@@ -152,9 +145,9 @@
                 </FormItem>
             </Form>
             <div slot="footer">
-                <Button type="text" @click="cancelEdit">取消</Button>
                 <Button type="primary" @click="saveRelease" v-show="role==1">保存</Button>
                 <Button type="primary" @click="saveLeader" v-show="role==2">保存</Button>
+                <Button type="text" @click="modal.edit=false">取消</Button>
             </div>
         </Modal>
         <Modal v-model="modal.accept" title="接受任务" :closable="false" :mask-closable="false">
@@ -166,15 +159,15 @@
                 </FormItem>
                 <FormItem label="执行人：">
                     <Select v-model="from.accept.operator" :label-in-value="true"
-                        @on-change="v=>{ changeOperator(v)}" multiple filterable style="width: 250px">
+                        multiple filterable style="width: 250px">
                         <Option v-for="option in dataSet.userList" :value="option.userId"
                             :key="option.userId" :label="option.userName"></Option>
                     </Select>
                 </FormItem>
             </Form>
             <div slot="footer">
-                <Button type="text" @click="cancelAccept">取消</Button>
                 <Button type="primary" @click="saveAccept">保存</Button>
+                <Button type="text" @click="modal.accept=false">取消</Button>
             </div>
         </Modal>
         <Modal v-model="modal.changeLeader" title="变更负责人" :closable="false" :mask-closable="false">
@@ -187,7 +180,7 @@
                 </FormItem>
             </Form>
             <div slot="footer">
-                <Button type="text" @click="cancelChange">取消</Button>
+                <Button type="text" @click="modal.changeLeader=false">取消</Button>
                 <Button type="primary" @click="saveChange">保存</Button>
             </div>
         </Modal>
@@ -195,7 +188,7 @@
             <Form :label-width="100">
                 <FormItem label="* 任务内容：">
                     <vue-html5-editor :content="from.request.requestContent" class="task_content"
-                        @change="contentChange" :height="100" style="display: inline-block;width: 80%">
+                        :height="100" style="display: inline-block;width: 80%">
                     </vue-html5-editor>
                 </FormItem>
                 <FormItem label="* 添加附件：">
@@ -208,7 +201,7 @@
                 </FormItem>
             </Form>
             <div slot="footer">
-                <Button type="text" @click="cancelRequest()">取消</Button>
+                <Button type="text" @click="modal.request=false">取消</Button>
                 <Button type="primary" @click="saveRequest()">保存</Button>
             </div>
         </Modal>
@@ -228,160 +221,95 @@
 </template>
 <script>
 import { dateFormat } from '@/utils/date'
-import '@/plugins/vueEditor'
+import { deepClone } from '@/utils/object'
 import {success, error, confirm, jumpto} from '@/tools'
+import '@/plugins/vueEditor'
 export default {
     data () {
         return {
-            modal: { // 弹窗开关
-                restart: false,
-                edit: false,
-                accept: false,
-                changeLeader: false,
-                request: false,
-                comment: false
-            },
+            taskId: 0, // 任务ID 穿参 不存在时候报错
             taskInfo: {}, // 详情
-            // 简短便变量方便判断显示隐藏
-            taskStatus: '',
-            pause: '', // 0：正常，1：暂停
-            role: '', // 1：发布人，2：负责人，0：其他
+            taskLog: [], // 轨迹列表
+            page: 2, // 轨迹分页
+            logMoreButton: false, // 更多轨迹按钮
+            modal: { // 弹窗开关
+                restart: false, // 重启任务
+                edit: false, // 编辑任务
+                accept: false, // 接受任务
+                changeLeader: false, // 变更负责人
+                request: false, // 追加需求
+                comment: false // 添加评论
+            },
             from: { // 弹窗表单
-                edit: {
+                restart: {}, // 重启
+                edit: { // 编辑任务
                     deadline: '',
                     inCharge: '',
                     correlation: [],
                     operator: []
                 },
-                accept: {
+                accept: { // 接受任务
                     deadline: '',
                     operator: ''
                 },
-                changeLeader: {
+                changeLeader: { // 变更负责人
                     inCharge: ''
                 },
-                request: {
+                request: { // 追加需求
                     requestContent: '',
-                    requestFile: ''
+                    requestFile: []
                 },
-                comment: {
+                comment: { // 添加评论
                     commentContent: ''
                 }
             },
-            dataSet: {
+            dataSet: { // 数据源
                 userList: []
             },
-            inChargeName: '',
-            correlationOrigin: [],
-            correlationName: [],
-            correlationBox: [],
-            operatorOrigin: [],
-            operatorName: [],
-            operatorBox: [],
-            content: '',
-            fileList: [],
-            urlName: function (url) {
-                let index = url.lastIndexOf('_')
-                url = url.substring(index + 1, url.length)
-                return url
-            },
-            extraList: [],
-            // 右侧弹框
-            requestContent: '',
-            requestFile: [],
-            commentContent: '',
-            // 轨迹
-            taskLog: [],
-            page: 2,
-            logButton: false,
             loading: false
         }
     },
+    computed: { // 简短便变量方便判断显示隐藏
+        role () { return (this.taskInfo.role || [])[0] || '' }, // 1：发布人，2：负责人，0：其他
+        inCharge () { return (this.taskInfo.personLiable || {}).userId }, // 负责人ID
+        deadline () { return this.taskInfo.completeTime }, // 负责人
+        inChargeName () { return (this.taskInfo.personLiable || {}).userName }, // 负责人
+        correlationIds () { return (this.taskInfo.correlation || []).map(row => {return row.userId}) }, // 抄送人id列表
+        correlationNames () { return (this.taskInfo.correlation || []).map(row => {return row.userName}) }, // 抄送人name列表
+        operatorIds () { return (this.taskInfo.implement || []).map(row => {return row.userId}) }, // 执行人id列表
+        operatorNames () { return (this.taskInfo.implement || []).map(row => {return row.userName}) }, // 执行人name列表
+        content () { return (this.taskInfo && this.taskInfo.task_content && this.taskInfo.task_content[0] && this.taskInfo.task_content[0].taskContent) || '' }, // 任务内容
+        fileList () { return (this.taskInfo && this.taskInfo.task_content && this.taskInfo.task_content[0] && this.taskInfo.task_content[0].taskEnclosure) || '' }, // 附件
+        extraList () { return deepClone(this.taskInfo.task_content || [{}]).shift() } // 追加需求
+    },
     methods: {
         goto (name, query) { // 跳转目录
-            if (name === 'restart') { jumpto('tast_mine@@restart', {taskId: this.$route.query.taskId}) }
+            if (name === 'restart') { jumpto('tast_mine@@restart', {taskId: this.taskId}) }
         },
-        init () {
-            if (this.$route.query.role) {
-                this.role = parseInt(this.$route.query.role)
-            }
-            this.$get('api/task/allusers', {
-            }).then((res) => {
-                this.dataSet.userList = res.data.data.list
-            })
-            // 账号信息
-            this.$get('api/system/login_user', {
-            }).then(res => {
-                this.user_name = res.data.data.userName
-            })
-            this.getInfo()
-            this.getLog()
+        getDataSet () { // 初始化数据源
+            this.$api.user.pullUserList().then(list => { this.dataSet.userList = list })
         },
-        getInfo () {
-            this.correlationOrigin = []
-            this.operatorOrigin = []
-            this.correlationName = []
-            this.operatorName = []
-            this.$get('api/task/detail', {
-                taskId: this.$route.query.taskId
-            }).then((res) => {
-                // 简短便变量方便判断显示隐藏
-                this.taskInfo = res.data.data.res
-                this.taskStatus = this.taskInfo.taskStatus
-                this.pause = this.taskInfo.pause
-                this.inCharge = this.taskInfo.personLiable.userId
-                this.inChargeName = this.taskInfo.personLiable.userName
-                this.deadline = this.taskInfo.completeTime
-                if (!this.$route.query.role && this.$route.query.role !== 0) {
-                    this.role = this.taskInfo.role[0]
-                }
-                if (this.taskInfo.correlation.length > 0) {
-                    for (let i = 0; i < this.taskInfo.correlation.length; i++) {
-                        this.correlationOrigin.push(this.taskInfo.correlation[i].userId)
-                        // this.correlationName = this.correlationName + this.taskInfo.correlation[i].userName + ' '
-                        this.correlationName.push(this.taskInfo.correlation[i].userName)
-                    }
-                    this.correlation = this.correlationOrigin
-                }
-                if (this.taskInfo.implement.length > 0) {
-                    for (let i = 0; i < this.taskInfo.implement.length; i++) {
-                        this.operatorOrigin.push(this.taskInfo.implement[i].userId)
-                        // this.operatorName = this.operatorName + this.taskInfo.implement[i].userName + ' '
-                        this.operatorName.push(this.taskInfo.implement[i].userName)
-                    }
-                    this.operator = this.operatorOrigin
-                }
-                this.content = this.taskInfo.task_content[0].taskContent
-                if (this.taskInfo.task_content[0].taskEnclosure) {
-                    this.fileList = this.taskInfo.task_content[0].taskEnclosure
-                }
-                this.extraList = JSON.parse(JSON.stringify(this.taskInfo.task_content))
-                this.extraList.shift()
+        getDetail () { // 读取详情
+            const id = this.taskId
+            this.$api.task.getDetail({id}).then(obj => {
+                this.taskInfo = obj
             })
         },
-        // 任务通过
-        taskComplete () {
-            confirm('确认要通过验收吗？').then(() => {
-                this.$post('api/task/checkpass', {
-                    taskId: this.$route.query.taskId
-                }).then((res) => {
-                    if (res.data.data && res.data.data.res === 1) {
-                        success('操作成功')
-                        this.getInfo()
-                        this.getLog()
-                    } else if (res.data.data.res === -1) {
-                        error('没有操作权限')
-                    } else {
-                        error(res.data.data || '操作失败')
-                    }
-                })
+        getLog () { // 任务轨迹
+            const taskId = this.taskId
+            this.$get('api/task/tasklog', { taskId, page_index: 1, page_size: 5 }).then((res) => {
+                this.taskLog = res.data.data.list
+                this.logButton = res.data.data.rowcount > 5
             })
         },
-        // 弹窗 重启 Fun
-        restartNow () {
-            this.$get('api/task/restart', {
-                id: this.$route.query.taskId
-            }).then((res) => {
+        urlName: function (url) { // 处理格式
+            let index = url.lastIndexOf('_')
+            url = url.substring(index + 1, url.length)
+            return url
+        },
+        restartNow () { // 重启 直接重启
+            const id = this.taskId
+            this.$get('api/task/restart', {id}).then((res) => {
                 if (res.data.data && res.data.data.res === 1) {
                     success('操作成功')
                     this.getInfo()
@@ -395,113 +323,27 @@ export default {
                 this.modal.restart = false
             })
         },
-        restartChange () {
-            this.modal.restart = false
+        restartChange () { // 重启 修改重启
             this.goto('restart')
+            this.modal.restart = false
         },
-        // 暂停恢复
-        taskTimeout () {
-            confirm('确认要暂停任务吗？').then(() => {
-                this.$post('api/task/setpause', {
-                    taskId: this.$route.query.taskId,
-                    isSuspend: 1
-                }).then((res) => {
-                    if (res.data.data && res.data.data.res === 1) {
-                        success('操作成功')
-                        this.getInfo()
-                        this.getLog()
-                    } else {
-                        error(res.data.data || '操作失败')
-                    }
-                })
-            })
+        taskEdit () { // 编辑 开始编辑
+            this.from.edit = {
+                deadline: this.deadline,
+                inCharge: this.inCharge,
+                correlation: Object.assign(this.correlationIds),
+                operator: Object.assign(this.operatorIds)
+            }
+            this.modal.edit = true
         },
-        taskRecovery () {
-            confirm('确认要恢复任务吗？').then(() => {
-                this.$post('api/task/setpause', {
-                    taskId: this.$route.query.taskId,
-                    isSuspend: 0
-                }).then((res) => {
-                    if (res.data.data && res.data.data.res === 1) {
-                        success('操作成功')
-                        this.getInfo()
-                        this.getLog()
-                    } else {
-                        error(res.data.data || '操作失败')
-                    }
-                })
-            })
-        },
-        // 删除任务
-        del () {
-            confirm('确认要删除任务吗？').then(() => {
-                this.$post('api/task/delete', {
-                    taskId: this.$route.query.taskId
-                }).then((res) => {
-                    if (res.data.data && res.data.data.res === 1) {
-                        success('操作成功')
-                        this.$router.go(-1)
-                    } else {
-                        error(res.data.data || '操作失败')
-                    }
-                })
-            })
-        },
-        // 废弃任务
-        taskAbandon () {
-            confirm('确认要废弃任务吗？').then(() => {
-                this.$post('api/task/giveup', {
-                    taskId: this.$route.query.taskId
-                }).then((res) => {
-                    if (res.data.data && res.data.data.res === 1) {
-                        success('操作成功')
-                        this.getInfo()
-                        this.getLog()
-                    } else {
-                        error(res.data.data || '操作失败')
-                    }
-                })
-            })
-        },
-        // 提交验收
-        taskCommit () {
-            confirm('确认要提交验收吗？').then(() => {
-                this.$post('api/task/commit', {
-                    taskId: this.$route.query.taskId
-                }).then((res) => {
-                    if (res.data.data && res.data.data.res === 1) {
-                        success('操作成功')
-                        this.getInfo()
-                        this.getLog()
-                    } else if (res.data.data.res === -1) {
-                        error('没有操作权限')
-                    } else {
-                        error(res.data.data || '操作失败')
-                    }
-                })
-            })
-        },
-        cancelEdit () {
-            this.modal.edit = false
-            this.deadline = this.taskInfo.completeTime
-            this.inCharge = this.taskInfo.personLiable.userId
-            this.correlation = this.correlationOrigin
-            this.operator = this.operatorOrigin
-        },
-        changeCorrelation (v) {
-            this.correlationBox = v
-        },
-        changeOperator (v) {
-            this.operatorBox = v
-        },
-        saveRelease () {
-            if ((this.deadline === '' || this.deadline === null) && this.taskInfo.taskPriority === 0) {
+        saveRelease () { // 发布添加
+            if (this.taskInfo.taskPriority === 0 && !this.from.edit.deadline) {
                 error('请选择完成日期')
             } else {
                 this.$post('api/task/founderedit', {
-                    taskId: this.$route.query.taskId,
-                    entime: this.deadline === '' || this.deadline === null ? null : dateFormat(this.deadline),
-                    correlation: this.correlationBox
+                    taskId: this.taskId,
+                    entime: this.from.edit.deadline ? dateFormat(this.from.edit.deadline) : null,
+                    correlation: this.from.edit.correlation
                 }).then((res) => {
                     if (res.data.data && res.data.data.res === 1) {
                         success('操作成功')
@@ -516,11 +358,11 @@ export default {
                 this.modal.edit = false
             }
         },
-        saveLeader () {
+        saveLeader () { // 发布修改
             this.$post('api/task/change', {
-                taskId: this.$route.query.taskId,
+                taskId: this.taskId,
                 personLiable: this.inCharge,
-                implement: this.operatorBox
+                implement: this.from.edit.correlation
             }).then((res) => {
                 if (res.data.data && res.data.data.res === 1) {
                     success('操作成功')
@@ -533,15 +375,21 @@ export default {
             })
             this.modal.edit = false
         },
-        // 接受任务
-        saveAccept () {
-            if (this.deadline === '' || this.deadline === null) {
+        taskAccept () { // 接受
+            this.from.accept = {
+                deadline: this.deadline,
+                operator: Object.assign(this.operatorIds)
+            }
+            this.modal.accept = true
+        },
+        saveAccept () { // 接受任务
+            if (!this.from.accept.deadline) {
                 error('请选择完成日期')
             } else {
                 this.$post('api/task/accept', {
-                    taskId: this.$route.query.taskId,
-                    entime: this.deadline,
-                    implement: this.operatorBox
+                    taskId: this.taskId,
+                    entime: this.from.accept.deadline,
+                    implement: this.from.accept.operator
                 }).then((res) => {
                     if (res.data.data && res.data.data.res === 1) {
                         success('操作成功')
@@ -556,26 +404,97 @@ export default {
                 this.modal.accept = false
             }
         },
-        cancelAccept () {
-            this.modal.accept = false
-            this.deadline = this.taskInfo.completeTime
-            this.operator = this.operatorOrigin
+        taskTimeout () { // 暂停恢复
+            confirm('确认要暂停任务吗？').then(() => {
+                this.$post('api/task/settaskInfo.pause', {
+                    taskId: this.taskId,
+                    isSuspend: 1
+                }).then((res) => {
+                    if (res.data.data && res.data.data.res === 1) {
+                        success('操作成功')
+                        this.getInfo()
+                        this.getLog()
+                    } else {
+                        error(res.data.data || '操作失败')
+                    }
+                })
+            })
         },
-        // 变更负责人
-        changeLeader () {
+        taskRecovery () { // 恢复任务
+            confirm('确认要恢复任务吗？').then(() => {
+                this.$post('api/task/settaskInfo.pause', {
+                    taskId: this.taskId,
+                    isSuspend: 0
+                }).then((res) => {
+                    if (res.data.data && res.data.data.res === 1) {
+                        success('操作成功')
+                        this.getInfo()
+                        this.getLog()
+                    } else {
+                        error(res.data.data || '操作失败')
+                    }
+                })
+            })
+        },
+        taskDel () { // 删除任务
+            confirm('确认要删除任务吗？').then(() => {
+                this.$post('api/task/delete', {
+                    taskId: this.taskId
+                }).then((res) => {
+                    if (res.data.data && res.data.data.res === 1) {
+                        success('操作成功')
+                        this.$router.go(-1)
+                    } else {
+                        error(res.data.data || '操作失败')
+                    }
+                })
+            })
+        },
+        taskAbandon () { // 废弃任务
+            confirm('确认要废弃任务吗？').then(() => {
+                this.$post('api/task/giveup', {
+                    taskId: this.taskId
+                }).then((res) => {
+                    if (res.data.data && res.data.data.res === 1) {
+                        success('操作成功')
+                        this.getInfo()
+                        this.getLog()
+                    } else {
+                        error(res.data.data || '操作失败')
+                    }
+                })
+            })
+        },
+        taskComplete () { // 任务通过
+            confirm('确认要通过验收吗？').then(() => {
+                this.$post('api/task/checkpass', {
+                    taskId: this.taskId
+                }).then((res) => {
+                    if (res.data.data && res.data.data.res === 1) {
+                        success('操作成功')
+                        this.getInfo()
+                        this.getLog()
+                    } else if (res.data.data.res === -1) {
+                        error('没有操作权限')
+                    } else {
+                        error(res.data.data || '操作失败')
+                    }
+                })
+            })
+        },
+        changeLeader () { // 变更负责人
+            this.from.changeLeader = {
+                inCharge: this.inCharge
+            }
             this.modal.changeLeader = true
         },
-        cancelChange () {
-            this.modal.changeLeader = false
-            this.inCharge = this.taskInfo.personLiable.userId
-        },
-        saveChange () {
-            if (this.inCharge === '') {
+        saveChange () { // 提交变更负责人
+            if (this.from.changeLeader.inCharge === '') {
                 error('请选择负责人')
             } else {
                 this.$post('api/task/changeleader', {
-                    taskId: this.$route.query.taskId,
-                    userId: this.inCharge
+                    taskId: this.taskId,
+                    userId: this.from.changeLeader.inCharge
                 }).then((res) => {
                     if (res.data.data && res.data.data.res === 1) {
                         success('操作成功')
@@ -589,38 +508,22 @@ export default {
                 this.modal.changeLeader = false
             }
         },
-        // 追加需求
-        addRequest () {
-            this.modal.request = true
-            this.requestContent = ''
-            this.requestFile = []
-        },
-        contentChange (val) {
-            this.requestContent = val
-        },
-        handleUpload (file) {
-            if (file.size > 52420000) {
-                error('文件过大')
-            } else {
-                this.requestFile.push(file)
+        addRequest () { // 追加需求
+            this.from.changeLeader = {
+                requestContent: '',
+                requestFile: []
             }
-            return false
+            this.modal.request = true
         },
-        removeFile (index) {
-            this.requestFile.splice(index, 1)
-        },
-        cancelRequest () {
-            this.modal.request = false
-        },
-        saveRequest () {
-            if (this.requestContent === '') {
+        saveRequest () { // 提交追加需求
+            if (this.from.changeLeader.requestContent === '') {
                 error('请填写任务内容')
             } else {
                 let pa = new FormData()
-                pa.append('id', this.$route.query.taskId)
-                pa.append('taskAddContent', this.requestContent)
-                for (let file in this.requestFile) {
-                    pa.append('file', this.requestFile[file])
+                pa.append('id', this.taskId)
+                pa.append('taskAddContent', this.from.changeLeader.requestContent)
+                for (let file in this.from.changeLeader.requestFile) {
+                    pa.append('file', this.from.changeLeader.requestFile[file])
                 }
                 let config = {
                     headers: {
@@ -641,21 +544,28 @@ export default {
                 this.modal.request = false
             }
         },
-        // 添加评论
-        addComment () {
+        handleUpload (file) {
+            if (file.size > 52420000) {
+                error('文件过大')
+            } else {
+                this.requestFile.push(file)
+            }
+            return false
+        },
+        removeFile (index) {
+            this.requestFile.splice(index, 1)
+        },
+        addComment () { // 添加评论
+            this.from.comment.commentContent = ''
             this.modal.comment = true
-            this.commentContent = ''
         },
-        cancelComment () {
-            this.modal.comment = false
-        },
-        saveComment () {
-            if (this.commentContent === '') {
+        saveComment () { // 保存添加评论
+            if (this.from.comment.commentContent === '') {
                 error('请填写评论内容')
             } else {
                 this.$post('api/task/discussadd', {
-                    taskId: this.$route.query.taskId,
-                    content: this.commentContent
+                    taskId: this.taskId,
+                    content: this.from.comment.commentContent
                 }).then((res) => {
                     if (res.data.data && res.data.data.res === 1) {
                         success('操作成功')
@@ -669,23 +579,27 @@ export default {
                 this.modal.comment = false
             }
         },
-        // 任务轨迹
-        getLog () {
-            this.$get('api/task/tasklog', {
-                taskId: this.$route.query.taskId,
-                page_index: 1,
-                page_size: 5
-            }).then((res) => {
-                this.taskLog = res.data.data.list
-                if (res.data.data.rowcount > 5) {
-                    this.logButton = true
-                }
+        taskCommit () { // 提交验收
+            confirm('确认要提交验收吗？').then(() => {
+                this.$post('api/task/commit', {
+                    taskId: this.taskId
+                }).then((res) => {
+                    if (res.data.data && res.data.data.res === 1) {
+                        success('操作成功')
+                        this.getInfo()
+                        this.getLog()
+                    } else if (res.data.data.res === -1) {
+                        error('没有操作权限')
+                    } else {
+                        error(res.data.data || '操作失败')
+                    }
+                })
             })
         },
-        moreLog () {
+        moreLog () { // 更多日志
             this.loading = true
             this.$get('api/task/tasklog', {
-                taskId: this.$route.query.taskId,
+                taskId: this.taskId,
                 page_index: this.page,
                 page_size: 5
             }).then((res) => {
@@ -705,7 +619,11 @@ export default {
         }
     },
     mounted () {
-        this.init()
+        this.taskId = parseInt(this.taskId || 0)
+        if (this.taskId) error('参数错误,请返回')
+        this.getDataSet()
+        this.getDetail()
+        this.getLog()
     }
 }
 </script>

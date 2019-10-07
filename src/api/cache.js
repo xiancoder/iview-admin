@@ -34,29 +34,23 @@ function buildUrl (url, params = {}) {
 // 缓存,建议只给get加缓存
 export default config => {
     const { url, method, params, data } = config
-    // 建立索引
-    let index
+    let index // 建立索引
     if (method === 'get') { index = buildUrl(url, params) } else { index = buildUrl(url, data) }
     let responsePromise = cache.get(index)
     if (responsePromise) {
         return Promise.resolve(JSON.parse(JSON.stringify(responsePromise))) // 对象是引用，为了防止污染数据源
     } else {
         responsePromise = (async () => {
-            console.info(111);
             try {
-                console.info(222);
                 const response = await axios.defaults.adapter(config)
                 cache.set(index, response)
                 return Promise.resolve(JSON.parse(JSON.stringify(response))) // 同时发送多次一样的请求，没办法防止污染数据源，只有业务中去实现
             } catch (reason) {
-                console.info(333);
                 cache.clear(index)
                 return Promise.reject(reason)
             }
         })()
-        console.info(444);
-        // put the promise for the non-transformed response into cache as a placeholder
-        cache.set(index, responsePromise)
+        cache.set(index, responsePromise) // put the promise for the non-transformed response into cache as a placeholder
     }
     return responsePromise
 }

@@ -5,7 +5,7 @@ import { mount } from '@vue/test-utils'
 import Hello from '@V/exp2/029unitTest'
 Vue.use(iView)
 // 单独测试单一文件 npm run test:unit tests\unit\029unitTest.spec.js
-describe('[正式开始搞单元测试]', () => {
+describe('[单元测试029unitTest]', () => {
     /* it('点击按钮后, count的值应该为1', () => {
         const Constructor = Vue.extend(Hello) // 获取组件实例
         const vm = new Constructor().$mount() // 挂载组件

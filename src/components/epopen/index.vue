@@ -20,7 +20,7 @@ export default {
             axios.get(
                 'http://localhost:4010/api/open/ep', {
                     params: {
-                        project: 'R20.iview-admin-xian',
+                        project: 'R20.iview-admin',
                         path: 'views' + url + '.vue'
                     }
                 }

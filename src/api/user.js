@@ -19,5 +19,6 @@ export default {
                 error(e.message) // ajax异常后 报错并中止操作
             })
         })
-    }
+    },
+    end () {} // 错误占位符
 }

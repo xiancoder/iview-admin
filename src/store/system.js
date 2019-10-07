@@ -3,7 +3,7 @@ import { Api } from '@/api'
 import { power2routes } from '@/router'
 import { specialRouterList } from '@/router/routers'
 import { cache } from '@/cache'
-export const store = {
+export default {
     namespaced: true, // 作用域
     state: {
         theme: 'dark', // 主题
@@ -11,9 +11,14 @@ export const store = {
         breadCrumbList: [], // 面包屑内容
         routeList: [], // 一维路由信息列表
         menuList: [], // 路由结构 (过滤掉无权限页面)
-        avatorImgPath: '', // 用户头像
-        userName: '', // 用户名
-        userId: '', // 用户id
+        userAvatorPath: '', // 管理员头像
+        userName: '', // 管理员名
+        userId: '', // 管理员ID
+        userEmail: '', // 管理员EMAIL
+        userDeptId: '', // 管理员部门ID
+        userRoleId: '', // 管理员角色ID
+        userRoleName: '', // 管理员角色NAME
+        userPostId: '', // 管理员职位ID
         token: cache.getUserToken() || '', // 服务器token
         access: !!cache.getUserToken() || false, // 登录标识
         newMessageNum: 0, // 新消息数量
@@ -34,9 +39,14 @@ export const store = {
         updateBreadCrumb (state, list) { state.breadCrumbList = list }, // 面包屑内容
         updateRoutePowerList (state, list) { state.routeList = list }, // 设置一维路由信息列表 完整信息
         updateMenuList (state, list) { state.menuList = list }, // 路由配置列表(已经过滤)
-        updateAvator (state, avatorPath) { state.avatorImgPath = avatorPath }, // 设置头像
-        updateUserId (state, id) { state.userId = id }, // 设置管理员ID
-        updateUserName (state, name) { state.userName = name }, // 设置管理员姓名
+        updateUserAvatorPath (state, v) { state.userAvatorPath = v }, // 设置管理员头像
+        updateUserName (state, v) { state.userName = v }, // 设置管理员名
+        updateUserId (state, v) { state.userId = v }, // 设置管理员ID
+        updateUserEmail (state, v) { state.userEmail = v }, // 设置管理员EMAIL
+        updateUserDeptId (state, v) { state.userDeptId = v }, // 设置管理员部门ID
+        updateUserRoleId (state, v) { state.userRoleId = v }, // 设置管理员角色ID
+        updateUserRoleName (state, v) { state.userRoleName = v }, // 设置管理员角色NAME
+        updateUserPostId (state, v) { state.userPostId = v }, // 设置管理员职位ID
         updateAccess (state, access) { state.access = access }, // 设置登录标识
         updateToken (state, token) { cache.setUserToken(token); state.token = token }, // 设置服务器token
         removeToken (state, token) { cache.clearAll(); state.token = '' }, // 设置服务器token
@@ -128,9 +138,14 @@ export const store = {
         getUserInfo ({ state, commit }) { // 获取管理员相关信息
             return new Promise((resolve, reject) => {
                 Api.system.getUserInfo(state.token).then(data => {
-                    commit('updateAvator', data.avator)
-                    commit('updateUserName', data.userName)
-                    commit('updateUserId', data.id)
+                    commit('updateUserAvatorPath', data.userPhoto) // 设置管理员头像
+                    commit('updateUserName', data.userName) // 设置管理员名
+                    commit('updateUserId', data.id) // 设置管理员ID
+                    commit('updateUserEmail', data.email) // 设置管理员EMAIL
+                    commit('updateUserDeptId', data.deptId) // 设置管理员部门ID
+                    commit('updateUserRoleId', data.roleId) // 设置管理员角色ID
+                    commit('updateUserRoleName', data.roleName) // 设置管理员角色NAME
+                    commit('updateUserPostId', data.postId) // 设置管理员职位ID
                     resolve()
                 }).catch(err => {
                     reject(err)

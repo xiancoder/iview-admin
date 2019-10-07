@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[单元测试037unitTest] snapshot test 1`] = `
+<div class="blogCss">
+  <div class="blog">
+    <div class="blogTitle">Axios的单元测试例</div>
+    <div class="blogContent router">
+      <div class="example axios">
+        <h2 class="example_title">Axios的单元测试例</h2>
+        <app-button-stub type="primary" size="lg">从后台接口获取数据</app-button-stub>
+      </div>
+    </div>
+  </div>
+</div>
+`;

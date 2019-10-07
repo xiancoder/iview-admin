@@ -1,4 +1,4 @@
-export const store = {
+export default {
     namespaced: true, // 作用域
     state: {
         unreadCount: 0,

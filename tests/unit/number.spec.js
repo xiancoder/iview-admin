@@ -7,6 +7,7 @@
 
 import { expect } from 'chai'
 import * as numberJs from '@/utils/number.js'
+
 describe('[数字]常用方法', function () {
     it('数字两位补全/fillup2Digit', function () {
         expect(numberJs.fillup2Digit(1)).equal('01')
@@ -38,10 +39,6 @@ describe('[数字]常用方法', function () {
         expect(numberJs.number2Chinese2(22)).equal('二十二')
         expect(numberJs.number2Chinese2(222)).equal('二百二十二')
         expect(numberJs.number2Chinese2(2222)).equal('二千二百二十二')
-        // expect(numberJs.number2Chinese2(22022)).equal('二万二千零二十二')
-        // expect(numberJs.number2Chinese2(220022)).equal('二十二万零二十二')
-        // expect(numberJs.number2Chinese2(2200222)).equal('二百二十万零二百二十二')
-        // expect(numberJs.number2Chinese2(222002222)).equal('二亿二千二百二十万二千二百二十二')
     })
     it('数字千分格式/thousand', function () {
         expect(numberJs.thousand(2)).equal('2')
@@ -53,6 +50,20 @@ describe('[数字]常用方法', function () {
         expect(numberJs.thousand(22.22)).equal('22.22')
         expect(numberJs.thousand(2.222)).equal('2.222')
         expect(numberJs.thousand(1234567.890)).equal('1,234,567.89')
+    })
+    it('数字估算/estimate', function () {
+        expect(numberJs.estimate(12.33)).equal('12')
+        expect(numberJs.estimate(123456)).equal('12万')
+        expect(numberJs.estimate(12345)).equal('1.2万')
+        expect(numberJs.estimate(1234)).equal('1234')
+        expect(numberJs.estimate(123)).equal('123')
+        expect(numberJs.estimate(12)).equal('12')
+        expect(numberJs.estimate2(12.33)).equal('12')
+        expect(numberJs.estimate2(123456)).equal('12万')
+        expect(numberJs.estimate2(12345)).equal('1.2万')
+        expect(numberJs.estimate2(1234)).equal('1234')
+        expect(numberJs.estimate2(123)).equal('123')
+        expect(numberJs.estimate2(12)).equal('12')
     })
     it('数字转大写金额/money2Chinese', function () {
         expect(numberJs.money2Chinese(2.67)).equal('贰圆陆角柒分')

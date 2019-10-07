@@ -86,7 +86,42 @@ export const routerList = [
             {power: '0000', path: '032api', title: 'api流程梳理'},
             {power: '0000', path: '033exports', title: '混用exports'},
             {power: '0000', path: '035iospic', title: 'iOS图片旋转bug'},
-            {power: '1299', path: '100newBee', title: '大牛养成'}
+            {power: '0000', path: '036unitTest', title: '单元测试路由'},
+            {power: '0000', path: '037unitTest', title: '单元测试Axios'},
+            {power: '0000', path: '038unitTest', title: '表单单元流程'}
+        ]
+    }),
+    makeTwoLevelRoute({
+        path: 'exp3', title: '经验集卷三', icon: 'md-globe',
+        children: [
+            {power: '0000', path: '041zhihu3layout', title: '三大框架简比'},
+            {power: '0000', path: '100newBee', title: '大牛养成'}
+        ]
+    }),
+    makeTwoLevelRoute({
+        path: 'employee', title: '人事管理', icon: 'md-contacts',
+        children: [
+            { power: '0000', path: 'branchStaff', title: '部门与人员' },
+            { power: '0000', path: 'branchStaff@positions', title: '职位管理', hideMenu: true },
+            { power: '0000', path: 'branchStaff@employeeInfo', title: '员工信息', hideMenu: true },
+            { power: '0000', path: 'branchStaff@employeeEdit', title: '编辑员工信息', hideMenu: true },
+            { power: '0000', path: 'workCalendar', title: '工作日历' },
+            { power: '0000', path: 'approvalConfig', title: '审批配置' },
+            { power: '0000', path: 'approvalConfig@processAdd', title: '添加流程', hideMenu: true },
+            { power: '0000', path: 'approvalConfig@overtimeAdd', title: '添加流程', hideMenu: true },
+            { power: '0000', path: 'attendance', title: '考勤管理' },
+            { power: '0000', path: 'attendance@detail', title: '明细表', hideMenu: true },
+            { power: '0000', path: 'attendance@processAdd', title: '添加流程', hideMenu: true },
+            { power: '0000', path: 'attendance@remain', title: '剩余假期', hideMenu: true },
+            { power: '0000', path: 'attendance@vacation', title: '请假', hideMenu: true },
+            { power: '0000', path: 'attendance@duty', title: '值班', hideMenu: true },
+            { power: '0000', path: 'attendance@overtime', title: '加班', hideMenu: true },
+            { power: '0000', path: 'attendance@noCheck', title: '未打卡', hideMenu: true },
+            { power: '0000', path: 'attendance@outwork', title: '外出', hideMenu: true },
+            { power: '0000', path: 'attendance@busTrip', title: '出差', hideMenu: true },
+            { power: '9999', path: 'nopower', title: '无权限测试' },
+            { power: '0000', path: 'cc@edit', title: '抄送人添加/编辑', hideMenu: true },
+            { power: '0000', path: 'cc@list', title: '抄送人配置', hideMenu: true }
         ]
     }),
     makeTwoLevelRoute({

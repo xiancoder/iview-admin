@@ -14,11 +14,11 @@
 export default {
     name: 'tree-drop',
     props: {
-        disabled: { type: Boolean, default: false },
-        value: { type: Number, default: '' },
-        name: { type: String, default: '' },
-        placeholder: { type: String, default: '' },
-        data: { type: Array, default: [] }
+        disabled: { type: Boolean, default: () => {return ''} },
+        value: { type: Number, default: () => {return ''} },
+        name: { type: String, default: () => {return ''} },
+        placeholder: { type: String, default: () => {return ''} },
+        data: { type: Array, default: () => {return []} }
     },
     data () {
         return {

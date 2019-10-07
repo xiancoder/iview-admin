@@ -48,11 +48,9 @@ export const off = (function () {
         }
     }
 })()
-/// ///////////////////////////////////////////////////////////////////////////
 // 阻止事件冒泡 防止默认行为
 // =====================
 // liuyp 2018年12月27日19:44:45
-/// ///////////////////////////////////////////////////////////////////////////
 export const eventStop = (ev) => {
     /* IE和Chrome下是window.event FF下是e */
     ev = ev || window.event;
@@ -61,11 +59,9 @@ export const eventStop = (ev) => {
     /* 阻止事件冒泡 */
     if (ev.stopPropagation) { ev.stopPropagation() } else { ev.cancelBubble = true; }
 }
-/// ///////////////////////////////////////////////////////////////////////////
 // 事件发生的目标
 // =====================
 // liuyp 2018年12月27日19:44:45
-/// ///////////////////////////////////////////////////////////////////////////
 export const eventTarget = (ev) => {
     ev = ev || window.event;
     /* IE和Chrome下是srcElement FF下是target */

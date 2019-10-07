@@ -17,7 +17,8 @@ module.exports = {
     // 例如：https://www.foobar.com/my-app/
     // 需要将它改为'/my-app/'
     // iview-admin线上演示打包路径： https://file.iviewui.com/admin-dist/
-    baseUrl: BASE_URL,
+    // baseUrl: BASE_URL,
+    publicPath: BASE_URL,
     // tweak internal webpack configuration.
     // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
     // 如果你不需要使用eslint，把lintOnSave设为false即可

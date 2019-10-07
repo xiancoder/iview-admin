@@ -20,7 +20,7 @@
 // post 基本上没有复用的
 // 固定数据有很多 且不建议使用promise方式
 // *********************************************
-export const store = {
+export default {
     namespaced: true, // 作用域
     state: {
     },

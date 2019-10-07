@@ -6,18 +6,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 // import createPersistedState from 'vuex-persistedstate' // 状态持久化 独立到cache模块
-import * as system from './system' // 系统相关
-import * as user from './user' // 登录管理员相关
-import * as employee from './employee' // 职员相关
+import system from './system' // 系统相关
+import user from './user' // 登录管理员相关
+import employee from './employee' // 职员相关
 // =====================================================================
 Vue.use(Vuex)
 const plugins = [
     // createPersistedState() // 状态持久化
 ]
-const modules = {
-    system: system.store,
-    user: user.store,
-    employee: employee.store
-}
+const modules = { system, user, employee }
 // 输出::状态实例
 export const Store = new Vuex.Store({ plugins, modules }) // 状态 实例化

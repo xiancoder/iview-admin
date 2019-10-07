@@ -5,8 +5,17 @@ import system from './system'
 import user from './user'
 import task from './task'
 import data from './data'
+import unit from './unit'
+
+import department from './department'
+import employee from './employee'
+import position from './position'
+import role from './role'
 // =====================================================================
-export const Api = { system, user, task, data } // 接口列表
+export const Api = {
+    system, user, task, data, unit,
+    department, employee, position, role
+} // 接口列表
 Vue.prototype.$axios = axios // 挂载axios
 Vue.prototype.$api = Api // 挂载api
 Vue.prototype.$post = function (url, params) { // 将axios 的 post 方法，绑定到 vue 实例上面的 $post

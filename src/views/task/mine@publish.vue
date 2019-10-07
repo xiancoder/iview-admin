@@ -42,7 +42,7 @@
             <Input type="text" v-model="search.taskName" placeholder="任务名称、任务编号" @on-enter="getList()"/>
             <Button type="primary" @click="getList()">搜索</Button>
             <Button type="default" @click="getList('reset')">重置</Button>
-            <Button type="primary" class="fr" @click="goto('add')">发布任务</Button>
+            <Button type="primary" class="fr" @click="goto('add')" v-if='optionSearch!=1'>发布任务</Button>
         </div>
         <Table :loading="loading" :columns="columns1" :data="dataSet.tableData" ></Table>
         <div class="tableFooter">
@@ -61,23 +61,16 @@ import { h, jumpto, saveParamState, getParamState } from '@/tools'
 export default {
     components: { tab },
     data () {
-        const taskPriorityList = this.$api.task.priority()
-        const taskStatuList = this.$api.task.status()
-        const restartList = this.$api.task.restart()
-        const overdueList = this.$api.task.overdue()
-        const pauseList = this.$api.task.pause()
-        this.$api.user.pullUserList().then(list => { this.dataSet.userData = list })
-        const beginAndEnd = sevenRange()
         return {
             loading: false,
             dataSet: {
-                taskPriorityList,
-                taskStatuList,
-                restartList,
-                overdueList,
-                userData: [],
-                pauseList,
-                tableData: []
+                'taskPriorityList': [],
+                'taskStatuList': [],
+                'restartList': [],
+                'overdueList': [],
+                'userData': [],
+                'pauseList': [],
+                'tableData': []
             },
             search: {
                 'taskPriority': '', // 级别 0:一般 1：重要 2：紧急
@@ -89,7 +82,7 @@ export default {
                 'implement': '', // 执行人
                 'taskName': '', // 任务名称
                 'pause': '', // 是否暂停
-                beginAndEnd // 开始结束时间
+                'beginAndEnd': sevenRange() // 开始结束时间
             },
             page: { // 分页
                 index: 1,
@@ -143,7 +136,15 @@ export default {
     methods: {
         goto (name, query) { // 跳转目录
             if (name === 'add') { jumpto('task_mine@release') }
-            if (name === 'info') { jumpto('task_mine@info', query) }
+            if (name === 'info') { jumpto('task_mine@@info', query) }
+        },
+        getDataSet () { // 初始化数据源
+            this.$api.task.priority().then(list => { this.dataSet.taskPriorityList = list })
+            this.$api.task.status().then(list => { this.dataSet.taskStatuList = list })
+            this.$api.task.restart().then(list => { this.dataSet.restartList = list })
+            this.$api.task.overdue().then(list => { this.dataSet.overdueList = list })
+            this.$api.task.pause().then(list => { this.dataSet.pauseList = list })
+            this.$api.user.pullUserList().then(list => { this.dataSet.userData = list })
         },
         getList: function (fun) {
             if (!this.searchParam1234) { this.searchParam1234 = {} } // 下发参数
@@ -176,6 +177,7 @@ export default {
     },
     mounted: function () {
         this.getList('init')
+        this.getDataSet()
     }
 }
 </script>
