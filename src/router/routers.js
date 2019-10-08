@@ -88,7 +88,8 @@ export const routerList = [
             {power: '0000', path: '035iospic', title: 'iOS图片旋转bug'},
             {power: '0000', path: '036unitTest', title: '单元测试路由'},
             {power: '0000', path: '037unitTest', title: '单元测试Axios'},
-            {power: '0000', path: '038unitTest', title: '表单单元流程'}
+            {power: '0000', path: '038unitTest', title: '表单单元流程'},
+            {power: '0000', path: '039unitTest', title: '复杂单元流程'}
         ]
     }),
     makeTwoLevelRoute({

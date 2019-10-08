@@ -12,15 +12,16 @@
                         <p>{{ frm.text1 }}</p>
                     </FormItem>
                     <FormItem label="输入框" prop="input1">
-                        <Input type="text" v-model="frm.input1" placeholder="请输入XXXX" style="width: 450px"/>
+                        <Input type="text" class="flag" v-model="frm.input1" placeholder="请输入XXXX" style="width: 450px"/>
                     </FormItem>
                     <FormItem label="输入框" prop="input2">
-                        <Input type="text" v-model="frm.input2" placeholder="请输入XXXX" style="width: 450px"/>
+                        <Input type="text" class="flag" v-model="frm.input2" placeholder="请输入XXXX" style="width: 450px"/>
                     </FormItem>
                     <FormItem label="测试">
-                        <Button id="tijiao" type="primary" @click="handleSubmit('formValidateId')">测试</Button>
+                        <Button type="primary" class="flagBtn" @click="handleSubmit('formValidateId')">测试</Button>
                     </FormItem>
                 </Form>
+                <input type="text" value="3333">
             </div>
         </div>
     </div>
@@ -42,7 +43,9 @@ export default {
                     { required: true, message: '输入框不能为空' },
                     { type: 'string', max: 50, message: '最多输入50个字符' }
                 ]
-            }
+            },
+            testResult: [],
+            testResult2: []
         }
     },
     methods: {
@@ -56,14 +59,21 @@ export default {
             })
         },
         handleSubmit (name) {
-            this.$refs[name].validate(valid => {
-                if (!valid) { return false }
-                this.$api.unit.submit(this.frm).then(info => { // ajax
-                    this.goto('table')
-                    console.log('提交成功了')
-                }, () => {
-                    console.error('提交失败了')
-                })
+            this.testResult.push(1)
+            // this.$refs[name].validate(valid => {
+            this.testResult.push(2)
+            // if (!valid) { return false }
+            this.testResult.push(3)
+            this.submit()
+            // })
+        },
+        submit (name) {
+            this.$api.unit.submit(this.frm).then(info => { // ajax
+                this.testResult2.push(4)
+                this.goto('table')
+                console.log('提交成功了')
+            }, () => {
+                console.error('提交失败了')
             })
         }
     },
