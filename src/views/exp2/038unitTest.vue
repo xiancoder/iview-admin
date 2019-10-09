@@ -60,12 +60,13 @@ export default {
         },
         handleSubmit (name) {
             this.testResult.push(1)
-            // this.$refs[name].validate(valid => {
-            this.testResult.push(2)
-            // if (!valid) { return false }
-            this.testResult.push(3)
-            this.submit()
-            // })
+            console.log(this.$refs[name].validate)
+            this.$refs[name].validate(valid => {
+                this.testResult.push(2)
+                if (!valid) { return false }
+                this.testResult.push(3)
+                this.submit()
+            })
         },
         submit (name) {
             this.$api.unit.submit(this.frm).then(info => { // ajax

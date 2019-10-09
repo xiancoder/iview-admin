@@ -4,7 +4,7 @@ import axios from 'axios'
 
 jest.mock('axios')
 jest.mock('@/api/staff', () => ({
-    JobList: jest.fn(() => Promise.resolve({ data: [1, 2, 3, 4, 5] })),
+    JobList: jest.fn(() => Promise.resolve({ data: 'value2' })),
     restList: jest.fn(() => Promise.resolve({ data: {} }))
 }))
 
@@ -78,20 +78,27 @@ describe.skip('测试异步行为', () => {
 describe('039unitTest', () => {
     const wrapper1 = mount(C039unitTest)
     const wrapper2 = shallowMount(C039unitTest)
-    it('是个vue页面', () => {
+    test('是个vue页面', () => {
         expect(wrapper1.isVueInstance()).toBeTruthy()
     })
-    it('点击实时执行', () => {
+    test('点击实时执行', () => {
         wrapper2.find('button#aaa').trigger('click')
-        expect(wrapper2.find('div#bbb').text()).toContain('1')
+        expect(wrapper2.find('span#bbb').text()).toContain('1')
     })
-    it('mock假装ajax', done => {
+    test('mock假装ajax1', done => {
         // wrapper2.vm.getJobList() // 直接这样调用 this会混乱
-        wrapper2.find('button#ggg2').trigger('click')
-        expect(wrapper2.vm.jList.length).toBe(0)
+        expect(wrapper2.vm.jList1).toBe('key') // 失败了 估计是jest的mock有问题
+        wrapper2.find('button#ggg').trigger('click')
         wrapper2.vm.$nextTick(() => {
-            expect(wrapper2.vm.jList.length).toBe(5)
+            expect(wrapper2.vm.jList1).toBe('value')
             done()
         })
-    }, 10e3)
+    }, 3e3)
+    test('mock假装ajax2', done => {
+        wrapper2.find('button#ggg2').trigger('click')
+        wrapper2.vm.$nextTick(() => {
+            expect(wrapper2.vm.jList2).toBe('value2')
+            done()
+        })
+    }, 3e3)
 })

@@ -9,10 +9,7 @@ import axios from 'axios'
 const service = axios.request
 // 员工管理 获取职位列表
 export function JobList () {
-    return service({
-        url: '/api/Job/dropdownlist',
-        method: 'get'
-    })
+    return Promise.resolve({ data: 'value2' })
 }
 // 获取上级领导下拉列表
 export function LeaderList (data) {

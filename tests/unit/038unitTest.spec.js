@@ -63,10 +63,12 @@ describe('[单元测试038.表单单元流程]', () => {
                 expect(mockFn1).toBeCalled() // 断言函数被触发且只触发一次
                 const mockFn2 = jest.fn()
                 wrapper.setMethods({ 'submit': mockFn2 })
-                wrapper.find('.flagBtn').vm.$emit('click')
-                expect(wrapper.vm.testResult).toEqual([1, 2, 3]) // 输入框测试
-                expect(mockFn2).toBeCalled() // 断言函数被触发且只触发一次
-                done()
+                const buttonValidate = wrapper.find({ ref: 'formValidateId' })
+                buttonValidate.trigger('click')
+                wrapper.vm.$nextTick(() => { // 异步监听
+                    expect(wrapper.vm.testResult).toEqual([1, 2, 3]) // 输入框测试
+                    expect(mockFn2).toBeCalled() // 断言函数被触发且只触发一次
+                })
             })
         })
     })

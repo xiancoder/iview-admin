@@ -30,9 +30,9 @@
                 <p>但是this指针真的是做个用的吗？其他人读你的代码的时候能猜得出来这些东西是哪儿来的吗？IDE能猜得出来那都是些什么吗？</p>
                 <p>vue 那翔一般的 ts 支持，谁敢拿来用（</p>
                 <p>Vuetify：我目前商业项目中使用的主力框架，比antd要华丽，组件数量相似，易用性非常棒，整体一致性极好。文档很棒，而且有中文版文档。源码我仔细看过很多，水平很高，做得也用心。不过作者不是中国人（Vue在中国的使用率是远高于其它地区）</p><p class="ztext-empty-paragraph"><br></p>
-<p>Quasar：组件极为丰富的框架，而且挺新潮Web Mobile、Mobile App、PWA都无缝支持。看知乎的时候一个知乎er推荐的，我研究了一下，真的非常赞</p><p class="ztext-empty-paragraph"><br></p>
+                <p>Quasar：组件极为丰富的框架，而且挺新潮Web Mobile、Mobile App、PWA都无缝支持。看知乎的时候一个知乎er推荐的，我研究了一下，真的非常赞</p><p class="ztext-empty-paragraph"><br></p>
                 <p>Vux： 国内S级移动组件库，这是一款非常伟大的移动端组件库，优化深度充分，能在微信内良好兼容。作者乃真正的“无产阶级战士”！其github首页写道：“VUX 并不是大团队维护的项目，没有捐赠，纯靠热情”。而且作者也是知乎er</p><p class="ztext-empty-paragraph"><br></p>
-<p>再说antd，原来在商业项目中使用过几回，也是优秀的React组件库，中国人（阿里系，严格来说是蚂蚁金服）开发，从组件交互非常贴合中国人的使用习惯。而且还在快速发展中。其实阿里系有个图表的项目，忘了叫什么了，其实也是非常NB，很推荐。在知乎很少听大家提，可能有点太专了。不过他并不是只支持react，而是无差别支持R和V（A我就没印象了）</p><p class="ztext-empty-paragraph"><br></p>
+                <p>再说antd，原来在商业项目中使用过几回，也是优秀的React组件库，中国人（阿里系，严格来说是蚂蚁金服）开发，从组件交互非常贴合中国人的使用习惯。而且还在快速发展中。其实阿里系有个图表的项目，忘了叫什么了，其实也是非常NB，很推荐。在知乎很少听大家提，可能有点太专了。不过他并不是只支持react，而是无差别支持R和V（A我就没印象了）</p><p class="ztext-empty-paragraph"><br></p>
                 <p>vue的生态全不全，请移步我的一个Vue资源站，全部有Demo，可以自己了解（咱不空口白牙说虚的）（这个站是我本人做的，没有广告，只为自己和朋友看着方便）</p>
                 <p><a target="_blank" href="https://link.zhihu.com/?target=http%3A//vue.awesometiny.com">vue资源精选-前端组件库资源-前端选型</a></p>
 
@@ -68,6 +68,9 @@
         </div>
     </div>
 </template>
+<style type="text/css">
+    .blogContent p {text-indent: 2em;}
+</style>
 <script>
 export default {
     data () {
