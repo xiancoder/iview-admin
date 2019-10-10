@@ -10,7 +10,7 @@
                 <strong>{{response.date}}</strong>
                 <Poptip class="readDiv" placement="bottom">
                     <span class="fontBlue" @click="getState">阅读状态</span>
-                    <table slot="content">
+                    <Table border slot="content">
                         <thead>
                             <tr>
                                 <td style="padding:0 5px; font-weight:bold; ">收件人</td>

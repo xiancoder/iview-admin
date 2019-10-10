@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div style="height:20px;"></div>
-                <Table :loading="loading" :columns="columns1" :data='data1'>
+                <Table border :loading="loading" :columns="columns1" :data='data1'>
                     <template slot-scope="{ row, index }" slot="state">
                         <span v-show="row.state == 0" style='color:red;'>异常</span>
                         <span v-show="row.state == 1">正常</span>

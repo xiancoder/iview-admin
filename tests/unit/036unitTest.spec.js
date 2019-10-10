@@ -1,3 +1,9 @@
+/**
+* 功能：单元测试页面
+* 作者：liuyp
+* 时间：2019年10月10日14:56:59
+* 语句: npm run test:unit tests/unit/036unitTest.spec.js
+*/
 import { shallowMount } from '@vue/test-utils'
 import TestPage from '@V/exp2/036unitTest'
 import AppButton from '@V/exp2/036unitTest@addbutton'

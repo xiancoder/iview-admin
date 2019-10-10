@@ -55,7 +55,7 @@ export default {
     components: { SideMenuItem, CollapsedMenu },
     data () {
         return {
-            openedNames: [],
+            openedNames: [], // 左边树的展开状态数组
             iconSize: 16,
             rootIconSize: 20,
             accordion: true
@@ -72,14 +72,18 @@ export default {
         textColor () { return this.theme === 'dark' ? '#fff' : '#495060' } // 主题颜色
     },
     methods: {
-        handleSelect (select) {
+        handleSelect (select) { // 直接跳转
+            console.info('仙', '二级菜单直接跳转', select)
             const name = select
             goto({ name })
         },
-        handleSelectBox (selectArr) {
+        handleSelectBox (selectArr) { // 一级页面跳第一个子页面
             const select = selectArr[0]
             if (!select) return false
+            console.info('仙', '一级页面不跳 觉得烦了')
+            return false // 觉得烦了 先不跳
             const path = this.$store.state.system.routeList[select].path
+            console.info('仙', '一级页面', select, '跳第一个子页面', path)
             goto({ path })
         },
         getOpenedNamesByActiveName (name) {

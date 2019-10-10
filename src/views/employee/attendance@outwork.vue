@@ -11,7 +11,7 @@
             <Button type="default" @click="resetSearch">重置</Button>
         </div>
         <div style="height:20px;"></div>
-        <Table :loading="loading" :columns="columns1" :data='data1'>
+        <Table border :loading="loading" :columns="columns1" :data='data1'>
         </Table>
         <Page class="fr" style="margin: 15px 0" ref="pager" :total="rowcount" :page-size="30" show-total show-elevator @on-change="handleSearch()"/>
     </div>

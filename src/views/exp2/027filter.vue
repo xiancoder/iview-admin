@@ -3,7 +3,7 @@
         <div class="blog">
             <div class="blogTitle">过滤器收集</div>
             <div class="blogContent" v-highlight>
-                <div class="api"><table>
+                <div class="api"><Table border>
                 <thead><tr><th>写法</th> <th>原值</th> <th>过滤</th> <th>说明</th></tr></thead>
                 <tbody>
                 <tr><td>[[v1|dateformat]]</td> <td>{{ v1 }}</td> <td>{{ v1|dateformat }}</td> <td>日期格式化</td></tr>

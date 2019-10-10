@@ -20,7 +20,7 @@
             <Button type="default" @click="resetSearch">重置</Button>
         </div>
         <div style="height:20px;"></div>
-        <Table class="order_table" :loading="loading" :columns="columns" :data='response' @on-row-click="toInfo">
+        <Table border class="order_table" :loading="loading" :columns="columns" :data='response' @on-row-click="toInfo">
             <template slot-scope="{row}" slot="workName">
                 <div class="overHidden_order">{{row.workName}}：{{row.workContent}}</div>
             </template>

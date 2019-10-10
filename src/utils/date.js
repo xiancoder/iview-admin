@@ -78,36 +78,35 @@ export const date2cnDate = function (D) {
     let yy = D.getFullYear()
     let mm = D.getMonth() + 1
     let dd = D.getDate()
-    if (yy < 100) yy = '19' + yy
     const numString = ['\u4e00', '\u4e8c', '\u4e09', '\u56db', '\u4e94', '\u516d', '\u4e03', '\u516b', '\u4e5d', '\u5341']
     const monString = ['\u6b63', '\u4e8c', '\u4e09', '\u56db', '\u4e94', '\u516d', '\u4e03', '\u516b', '\u4e5d', '\u5341', '\u51ac', '\u814a']
-    const CalendarData = [0xA4B, 0x5164B, 0x6A5, 0x6D4, 0x415B5, 0x2B6, 0x957, 0x2092F, 0x497, 0x60C96, 0xD4A, 0xEA5, 0x50DA9, 0x5AD, 0x2B6, 0x3126E, 0x92E, 0x7192D, 0xC95, 0xD4A, 0x61B4A, 0xB55, 0x56A, 0x4155B, 0x25D, 0x92D, 0x2192B, 0xA95, 0x71695, 0x6CA, 0xB55, 0x50AB5, 0x4DA, 0xA5B, 0x30A57, 0x52B, 0x8152A, 0xE95, 0x6AA, 0x615AA, 0xAB5, 0x4B6, 0x414AE, 0xA57, 0x526, 0x31D26, 0xD95, 0x70B55, 0x56A, 0x96D, 0x5095D, 0x4AD, 0xA4D, 0x41A4D, 0xD25, 0x81AA5, 0xB54, 0xB6A, 0x612DA, 0x95B, 0x49B, 0x41497, 0xA4B, 0xA164B, 0x6A5, 0x6D4, 0x615B4, 0xAB6, 0x957, 0x5092F, 0x497, 0x64B, 0x30D4A, 0xEA5, 0x80D65, 0x5AC, 0xAB6, 0x5126D, 0x92E, 0xC96, 0x41A95, 0xD4A, 0xDA5, 0x20B55, 0x56A, 0x7155B, 0x25D, 0x92D, 0x5192B, 0xA95, 0xB4A, 0x416AA, 0xAD5, 0x90AB5, 0x4BA, 0xA5B, 0x60A57, 0x52B, 0xA93, 0x40E95]
-    const madd = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
-    // let cYear
     let cMonth
     let cDay
     let TheDate
+    // 农历每月仅仅能是29或30天，一年用12(或13)个二进制位表示，从高到低，相应位为1表示30天，否则29天
+    const CalendarData = [2635, 333387, 1701, 1748, 267701, 694, 2391, 133423, 1175, 396438, 3402, 3749, 331177, 1453, 694, 201326, 2350, 465197, 3221, 3402, 400202, 2901, 1386, 267611, 605, 2349, 137515, 2709, 464533, 1738, 2901, 330421, 1242, 2651, 199255, 1323, 529706, 3733, 1706, 398762, 2741, 1206, 267438, 2647, 1318, 204070, 3477, 461653, 1386, 2413, 330077, 1197, 2637, 268877, 3365, 531109, 2900, 2922, 398042, 2395, 1179, 267415, 2635, 661067, 1701, 1748, 398772, 2742, 2391, 330031, 1175, 1611, 200010, 3749, 527717, 1452, 2742, 332397, 2350, 3222, 268949, 3402, 3493, 133973, 1386, 464219, 605, 2349, 334123, 2709, 2890, 267946, 2773, 592565, 1210, 2651, 395863, 1323, 2707, 265877]
+    const madd = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
     const GetBit = (m, n) => { return (m >> n) & 1 }
     const e2c = (a, b, c) => {
         TheDate = new Date(a, b, c)
         let total
         let m
-        let n
-        let k
+        let n = 0
+        let k = 0
         let isEnd = false
         let tmp = TheDate.getYear()
         if (tmp < 1900) { tmp += 1900 }
         total = (tmp - 1921) * 365 + Math.floor((tmp - 1921) / 4) + madd[TheDate.getMonth()] + TheDate.getDate() - 38
         if (TheDate.getYear() % 4 === 0 && TheDate.getMonth() > 1) total++
-        for (m = 0; m > 0; m++) {
-            k = (CalendarData[m] < 0xfff) ? 11 : 12
+        for (m = 0; m >= 0; m++) {
+            k = (CalendarData[m] < 4095) ? 11 : 12
             for (n = k; n >= 0; n--) {
                 if (total <= 29 + GetBit(CalendarData[m], n)) { isEnd = true; break }
                 total = total - 29 - GetBit(CalendarData[m], n)
             } if (isEnd) break
         }
         // cYear = 1921 + m
-        cMonth = k - n + 1
+        cMonth = (k - n + 1) % 12
         cDay = total
         if (k === 12) {
             if (cMonth === Math.floor(CalendarData[m] / 0x10000) + 1) cMonth = 1 - cMonth
@@ -115,18 +114,20 @@ export const date2cnDate = function (D) {
         }
     }
     const GetcDateString = () => {
-        var tmp = ''
+        let tmp = ''
         if (cMonth < 1) {
             tmp += '(\u95f0)'
             tmp += monString[-cMonth - 1]
-        } else { tmp += monString[cMonth - 1] }
+        } else {
+            tmp += monString[cMonth - 1]
+        }
         tmp += '\u6708'
         tmp += (cDay < 11) ? '\u521d' : ((cDay < 20) ? '\u5341' : ((cDay < 30) ? '\u5eff' : '\u4e09\u5341'))
         if (cDay % 10 !== 0 || cDay === 10) { tmp += numString[(cDay - 1) % 10] }
         return tmp
     }
     const GetLunarDay = (solarYear, solarMonth, solarDay) => {
-        if (solarYear < 1921 || solarYear > 2020) { return '' } else {
+        if (solarYear < 1921 || solarYear > 2050) { return '' } else {
             solarMonth = (parseInt(solarMonth) > 0) ? (solarMonth - 1) : 11
             e2c(solarYear, solarMonth, solarDay)
             return GetcDateString()
@@ -465,4 +466,29 @@ export const timeLong2 = (date1, date2) => {
         day = maxDay[index] - d1 + d2
     }
     return ((month) ? (month + '月零') : '') + day + '天'
+}
+// 是否超时日期
+export const isDateBeOverdue = (d, deadline) => {
+    const checkDateTime = function (d) {
+        const _date = new Date(d)
+        const Now = new Date(deadline || '')
+        const DiffTime = _date.getTime() - Now.getTime()
+        if (_date.getFullYear() === 1970 || _date.getFullYear() < Now.getFullYear()) {
+            // 若是传入的时间转换成1970年...那肯定不是我们后台要传的时间
+            // 小于这个年份的也必然不是,谁的后台token过期时间超过一年的...
+            return false
+        }
+        if (DiffTime > 60000) {
+            // 过期结束时间必须大于传入时间
+            // 当过期时间还大于一分钟的时候,
+            return true
+        } else {
+            // 否则返回false,从外部调用这个函数拿到返回值,
+            // 做二步处理,续期还是强制退出什么鬼的
+            return false
+        }
+    }
+    // 任何不能给Date识别的参数,子函数调用的返回值为NaN
+    const tc = new Date(d).getTime()
+    return isNaN(tc) || tc === 0 ? false : checkDateTime(d)
 }

@@ -1,6 +1,6 @@
 let idTmr = 0
 let uri = 'data:application/vnd.ms-excel;base64,';
-let template = '<html><head><meta charset="UTF-8"></head><body><table>{table}</table></body></html>';
+let template = '<html><head><meta charset="UTF-8"></head><body><Table border>{table}</table></body></html>';
 let base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))); };
 let format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }); };
 const tableToExcel = (table, aId, name) => {

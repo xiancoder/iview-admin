@@ -55,7 +55,7 @@
             </div>
         </div>
         <div style="height:20px;"></div>
-        <Table :loading="loading" :columns="columns1" :data='data1' ></Table>
+        <Table border :loading="loading" :columns="columns1" :data='data1' ></Table>
         <Page ref="pager" :total=rowcount :page-size=obj.page_size show-total show-elevator style="margin: 15px 0;float: right;clear: both" @on-change="handleSearch()"/>
     </div>
 </template>

@@ -1,3 +1,9 @@
+/**
+* 功能：单元测试页面
+* 作者：liuyp
+* 时间：2019年10月10日14:56:59
+* 语句: npm run test:unit tests/unit/037unitTest.spec.js
+*/
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import AxiosTest from '@V/exp2/037unitTest'
 import axios from 'axios'

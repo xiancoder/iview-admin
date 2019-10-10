@@ -60,12 +60,12 @@ export default {
         },
         handleSubmit (name) {
             this.testResult.push(1)
-            console.log(this.$refs[name].validate)
+            console.log('为什么这里是空', this.$refs[name].validate)
             this.$refs[name].validate(valid => {
                 this.testResult.push(2)
                 if (!valid) { return false }
                 this.testResult.push(3)
-                this.submit()
+                // this.submit()
             })
         },
         submit (name) {

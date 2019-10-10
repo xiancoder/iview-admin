@@ -33,7 +33,7 @@
             <span style="color: red;font-size: 14px">提示：为保证足够的认领时间，每月30日12:00前必须上传款项。</span>
         </div>
         <br />
-        <Table :loading="pageLoading"
+        <Table border :loading="pageLoading"
             :columns="tableColumns"
             :data="tabelList">
             <template slot-scope="{ row, index }" slot="id">

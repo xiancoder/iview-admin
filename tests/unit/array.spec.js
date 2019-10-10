@@ -1,9 +1,9 @@
 /**
- * 功能：单元测试页面
- * 作者：liuyp
- * 时间：2019年9月18日16:46:14
- * 语句: npm test
- */
+* 功能：单元测试页面
+* 作者：liuyp
+* 时间：2019年9月18日16:46:14
+* 语句: npm run test:unit tests/unit/array.spec.js
+*/
 
 import { expect } from 'chai'
 import * as arrayJs from '@/utils/array.js'

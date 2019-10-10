@@ -24,7 +24,7 @@
                         <Button type="default" @click="yunxiTable.reset">重置</Button>
                         <Button type="default" @click="download">下载</Button>
                     </div>
-                    <Table :loading="loading" :columns="columns1" :data="yunxiTable.tableData"
+                    <Table border :loading="loading" :columns="columns1" :data="yunxiTable.tableData"
                         @on-sort-change="yunxiTable.sort">
                     </Table>
                     <div class="tableFooter">

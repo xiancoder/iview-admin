@@ -98,6 +98,7 @@ export const routerList = [
             {power: '0000', path: '041zhihu3layout', title: '三大框架简比'},
             {power: '0000', path: '042tablesearch', title: '表格搜索纠结分页'},
             {power: '0000', path: '043rule', title: '规范想法'},
+            {power: '0000', path: '044npmls', title: '查看包版本号'},
             {power: '0000', path: '100newBee', title: '大牛养成'}
         ]
     }),

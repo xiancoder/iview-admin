@@ -15,7 +15,7 @@
                             </div>
                         </div>
                         <div class="card_content">
-                            <table style="width: 100%;table-layout: fixed">
+                            <Table border style="width: 100%;table-layout: fixed">
                                 <tbody>
                                 <tr>
                                     <td style="width: 100px">员工姓名</td>
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <div class="card_content">
-                            <table style="width: 100%;table-layout: fixed">
+                            <Table border style="width: 100%;table-layout: fixed">
                                 <tbody>
                                 <tr>
                                     <td style="width: 100px">职位</td>
@@ -104,7 +104,7 @@
                             </div>
                         </div>
                         <div class="card_content">
-                            <table style="width: 100%;table-layout: fixed">
+                            <Table border style="width: 100%;table-layout: fixed">
                                 <tbody>
                                 <tr>
                                     <td style="width: 100px">OA系统角色</td>
@@ -150,7 +150,7 @@
                         </div>
                     </Modal>
                 </div>
-                <Table :columns="columns1" :data="data1"></Table>
+                <Table border :columns="columns1" :data="data1"></Table>
                 <div class="task_top" style="margin-top: 20px">
                     <span>账号轨迹</span>
                 </div>

@@ -167,30 +167,26 @@
                     </ButtonGroup>
                 </div>
                 <hr />
-                <div v-highlight>
-                    <script type="text/html">
-                        <ButtonGroup>
-                            <Button type="primary">L</Button>
-                            <Button>M</Button>
-                            <Button>M</Button>
-                            <Button type="dashed">R</Button>
-                        </ButtonGroup>
-                        <ButtonGroup shape="circle">
-                            <Button icon="ios-color-wand-outline"></Button>
-                            <Button icon="ios-sunny-outline"></Button>
-                            <Button icon="ios-crop"></Button>
-                            <Button icon="ios-color-filter-outline"></Button>
-                        </ButtonGroup>
-                    </script>
-                </div>
+                <script type="text/html">
+                    <ButtonGroup>
+                        <Button type="primary">L</Button>
+                        <Button>M</Button>
+                        <Button>M</Button>
+                        <Button type="dashed">R</Button>
+                    </ButtonGroup>
+                    <ButtonGroup shape="circle">
+                        <Button icon="ios-color-wand-outline"></Button>
+                        <Button icon="ios-sunny-outline"></Button>
+                        <Button icon="ios-crop"></Button>
+                        <Button icon="ios-color-filter-outline"></Button>
+                    </ButtonGroup>
+                </script>
                 <hr />
-                <div v-highlight>
-                    <script type="text/html">
-                        <Button to="/components/icon-en">Normal</Button>
-                        <Button to="/components/icon-en" replace>No history</Button>
-                        <Button to="//iviewui.com" target="_blank">New window</Button>
-                    </script>
-                </div>
+                <script type="text/html">
+                    <Button to="/components/icon-en">Normal</Button>
+                    <Button to="/components/icon-en" replace>No history</Button>
+                    <Button to="//iviewui.com" target="_blank">New window</Button>
+                </script>
                 <hr />
                 <Collapse simple>
                     <Panel name="1">

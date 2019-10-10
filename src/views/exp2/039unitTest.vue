@@ -49,7 +49,10 @@
                     // 4 测试xx(){} 666
                     // 5 测试xx:()=>{} 获取不到this</font>
                 </pre>
-                <p></p>
+                <p>测试风格：</p>
+                <p>TDD(测试驱动开发)和BDD（行为驱动开发）这两种，他们的不同是什么？</p>
+                <p>TDD关注多有功能是否被正确的实现，每个功能都具备对于的测试用例；BDD关注整体行为是否符合规格预期，适合自顶向下的设计方式</p>
+                <p>TDD表达方式偏向于功能说明书的风格；BDD的表达方式更接近于自己的语言习惯</p>
                 <p></p>
             </div>
             <div class="blogFooter">
@@ -74,18 +77,18 @@ export default {
     },
     mounted: function () {
         // 还得单元测试那 都住掉
-        const xxx1 = function () {console.log('1测试function(){}',this ? this.zuoyongyu : '获取不到this') }
+        // const xxx1 = function () {console.log('1测试function(){}', this ? this.zuoyongyu : '获取不到this') }
         // xxx1()
-        const xxx2 = () => {console.log('2测试()=>{}',this ? this.zuoyongyu : '获取不到this') }
+        // const xxx2 = () => {console.log('2测试()=>{}', this ? this.zuoyongyu : '获取不到this') }
         // xxx2()
         // this.testZYZ1()
         // this.testZYZ2()
         // this.testZYZ3()
     },
     methods: {
-        testZYZ1: function () { console.log('3测试xx:function(){}',this ? this.zuoyongyu : '获取不到this') },
-        testZYZ2 () { console.log('4测试xx(){}',this ? this.zuoyongyu : '获取不到this') },
-        testZYZ3: () => { console.log('5测试xx:()=>{}',this ? this.zuoyongyu : '获取不到this') },
+        testZYZ1: function () { console.log('3测试xx:function(){}', this ? this.zuoyongyu : '获取不到this') },
+        testZYZ2 () { console.log('4测试xx(){}', this ? this.zuoyongyu : '获取不到this') },
+        testZYZ3: () => { console.log('5测试xx:()=>{}', this ? this.zuoyongyu : '获取不到this') },
         axiosgetx () {
             return Promise.resolve({ data: 'value' })
         },

@@ -18,7 +18,7 @@
             <Button type="default" @click="resetSearch()">重置</Button>
             <Button type="default" class="fr" @click="download()">下载</Button>
         </div>
-        <Table :loading="loading" :columns="columns1" :data='option.data1'>
+        <Table border :loading="loading" :columns="columns1" :data='option.data1'>
         </Table>
         <Page class="fr" style="margin: 15px 0" ref="pager" :current="page.index" :page-size="page.size"
             :total="page.rowCount" show-total show-elevator @on-change="handleSearch()"

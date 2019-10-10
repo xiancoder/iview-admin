@@ -1,6 +1,11 @@
+/**
+* 功能：单元测试页面
+* 作者：liuyp
+* 时间：2019年10月10日14:56:59
+* 语句: npm run test:unit tests/unit/038unitTest.spec.js
+*/
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import fromTest from '@V/exp2/038unitTest'
-import axios from 'axios'
 import iView from 'iview'
 import '@/tools' // 常用工具 -挂载$tool
 import '@/utils' // 常用方法 -挂载$util
@@ -57,19 +62,27 @@ describe('[单元测试038.表单单元流程]', () => {
                 wrapper.vm.$emit('input', '2222')
             })
             expect(wrapper.vm.frm).toEqual({ input1: '2222', input2: '2222' }) // 输入框测试
+
+            wrapper.vm.handleSubmit('formValidateId')
+            wrapper.vm.$nextTick(() => { // 异步监听
+                expect(wrapper.vm.testResult).toEqual([1, 2, 3]) // 输入框测试
+            })
+            /*
             wrapper.vm.submit()
             wrapper.vm.$nextTick(() => { // 异步监听
                 expect(wrapper.vm.testResult2).toEqual([4]) // 输入框测试
                 expect(mockFn1).toBeCalled() // 断言函数被触发且只触发一次
                 const mockFn2 = jest.fn()
                 wrapper.setMethods({ 'submit': mockFn2 })
-                const buttonValidate = wrapper.find({ ref: 'formValidateId' })
+                // const buttonValidate = wrapper.find({ ref: 'formValidateId' })
+                const buttonValidate = wrapper.find('.flagBtn')
                 buttonValidate.trigger('click')
                 wrapper.vm.$nextTick(() => { // 异步监听
                     expect(wrapper.vm.testResult).toEqual([1, 2, 3]) // 输入框测试
                     expect(mockFn2).toBeCalled() // 断言函数被触发且只触发一次
                 })
             })
+            */
         })
     })
 })

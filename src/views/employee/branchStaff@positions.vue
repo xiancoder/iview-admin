@@ -119,7 +119,7 @@
                 <Button type="default" @click="resetSearch">重置</Button>
             </div>
             <div style="height:20px;"></div>
-            <Table :loading="loading" :columns="columns1" :data='data1'>
+            <Table border :loading="loading" :columns="columns1" :data='data1'>
                 <template slot-scope="{ row }" slot="postName">
                     <span>{{ row.postName }}</span>
                 </template>

@@ -44,7 +44,8 @@
             <Button type="default" @click="getList('reset')">重置</Button>
             <Button type="primary" class="fr" @click="goto('add')" v-if='optionSearch!=1'>发布任务</Button>
         </div>
-        <Table :loading="loading" :columns="columns1" :data="dataSet.tableData" ></Table>
+        <Table border :loading="loading" :columns="columns1" :data="dataSet.tableData">
+        </Table>
         <div class="tableFooter">
             <Button @click="handleSelectAll(true)">Set all selected</Button>
             <Page ref="pager" :page-size="page.size" :current="page.index" :total="page.rowCount"

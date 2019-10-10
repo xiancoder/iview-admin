@@ -15,7 +15,7 @@
             <a class="out_port" style="margin-right: 10px" @click="importModal()">值班导入</a>
         </div>
         <div style="height:20px;"></div>
-        <Table :loading="loading" :columns="columns1" :data='data1'>
+        <Table border :loading="loading" :columns="columns1" :data='data1'>
             <template slot-scope="{ row, index }" slot="userName">
                 <span>{{row.userName || '-'}}</span>
             </template>

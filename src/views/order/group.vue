@@ -6,7 +6,7 @@
             <Button type="default" @click="getList(0)">重置</Button>
             <Button type="primary" class="fr" @click="toAdd">新建组</Button>
         </div>
-        <Table :loading="loading" :columns="tableColumns" :data='currentTable' class="margin-top-20">
+        <Table border :loading="loading" :columns="tableColumns" :data='currentTable' class="margin-top-20">
             <template slot-scope="{ row, index }" slot="userName">
                 <span class="notwrap_2">{{row.userName}}</span>
             </template>

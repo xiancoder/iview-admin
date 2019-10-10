@@ -1,11 +1,11 @@
 /**
- * 功能：单元测试页面
- * 作者：liuyp
- * 时间：2019年8月14日13:59:06
- * 时间：2019年9月18日16:34:52
- * 时间：2019年10月3日23:29:22
- * 语句: npm test
- */
+* 功能：单元测试页面
+* 作者：liuyp
+* 时间：2019年8月14日13:59:06
+* 时间：2019年9月18日16:34:52
+* 时间：2019年10月3日23:29:22
+* 语句: npm run test:unit tests/unit/date.spec.js
+*/
 
 import { expect } from 'chai'
 import * as dateJs from '@/utils/date.js'
@@ -65,7 +65,10 @@ describe('[日期]常用方法', function () {
         expect(dateJs.dateFormat(today)).equal('2017-11-12')
     })
     it('根据日期获取往前一周时间/sevenRange', function () {
+        expect(dateJs.sevenRange(new Date(2009, 6, 6)).join(',')).equal('2009-06-30,2009-07-06')
         expect(dateJs.sevenRange(new Date(2019, 9, 3)).join(',')).equal('2019-09-27,2019-10-03')
+        expect(dateJs.sevenRange(new Date(2019, 8, 13)).join(',')).equal('2019-09-07,2019-09-13')
+        expect(dateJs.sevenRange(new Date(2019, 7, 6)).join(',')).equal('2019-07-31,2019-08-06')
     })
     it('根据时间戳获得日期字符串/timestamp2Date', function () {
         expect(dateJs.timestamp2Date('1553765124101')).equal('2019-03-28 17:25:24')
@@ -125,7 +128,7 @@ describe('[日期]常用方法', function () {
         expect(dateJs.timeLong('2016.01.01 08:20:00', '2017.08.26 16:45:36')).equal('1年7个月25天8小时25分钟')
         expect(dateJs.timeLong('2016.01.01 16:00:00', '2016.01.26 22:40:00')).equal('25天6小时40分钟')
         expect(dateJs.timeLong('2016.01.01 16:00:00', '2016.01.01 22:40:00')).equal('6小时40分钟')
-        expect(dateJs.timeLong('2019.09.30 24:00:00', '2019.10.06 24:00:00')).equal('7天')
+        expect(dateJs.timeLong('2019.09.30 24:00:00', '2019.10.06 24:00:00')).equal('6天')
         expect(dateJs.timeLong2('20191005', '20191008')).equal('3天')
         expect(dateJs.timeLong2('20190930', '20191006')).equal('7天')
         expect(dateJs.timeLong2('20190905', '20191008')).equal('1月零3天')
@@ -144,5 +147,18 @@ describe('[日期]常用方法', function () {
         expect(dateJs.computeRangeByMouth(2019, 10).toString()).equal('2019-09-26,2019-10-25')
         expect(dateJs.computeRangeByMouth(2019, 11).toString()).equal('2019-10-26,2019-11-25')
         expect(dateJs.computeRangeByMouth(2019, 12).toString()).equal('2019-11-26,2019-12-25')
+    })
+    it('查看日期是否过期/isDateBeOverdue', function () {
+        expect(dateJs.isDateBeOverdue(21312445)).equal(false) // 這種非標準的時間戳只會轉成1970這種,已經過期
+        expect(dateJs.isDateBeOverdue(undefined)).equal(false) // 传入undefined为false,不传参就是undefined
+        expect(dateJs.isDateBeOverdue(null)).equal(false) // 传入null虽然返回0,但也是false
+        expect(dateJs.isDateBeOverdue('1988-10-21')).equal(false) // 歷史悠久的也是錯的
+        expect(dateJs.isDateBeOverdue('1970-13-51')).equal(false) // 非標準格式的返回false
+        expect(dateJs.isDateBeOverdue('s2018ww-13-51')).equal(false) // 非標準的日期也是false
+        expect(dateJs.isDateBeOverdue('safdaserw')).equal(false) // 普通字符串會返回fasle
+        expect(dateJs.isDateBeOverdue(1533097116565, new Date(2018, 11, 2))).equal(false) // 已經過期
+        expect(dateJs.isDateBeOverdue(1544284800000, new Date(2018, 11, 2))).equal(true)
+        expect(dateJs.isDateBeOverdue('2018-12-01', new Date(2018, 11, 2))).equal(false) // 標準格式的返回true
+        expect(dateJs.isDateBeOverdue('2018/12/09', new Date(2018, 11, 2))).equal(true) // 標準格式的返回true
     })
 })

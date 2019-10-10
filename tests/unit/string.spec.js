@@ -1,9 +1,9 @@
 /**
- * 功能：单元测试页面
- * 作者：颂杨
- * 时间：2019-4-9
- * 语句: npm test
- */
+* 功能：单元测试页面
+* 作者：颂杨
+* 时间：2019-4-9
+* 语句: npm run test:unit tests/unit/string.spec.js
+*/
 
 import { expect } from 'chai'
 import * as stringJs from '@/utils/string.js'
@@ -39,5 +39,14 @@ describe('字符串常用方法', function () {
         expect(stringJs.repeat('*', 3)).equal('***')
         expect(stringJs.repeat('abc', 2)).equal('abcabc')
         expect(stringJs.repeat('abc', 0)).equal('')
+    })
+    it('解析一个url请求/url2obj', function () {
+        const url = 'https://www.baidu.com/s?wd=aaa&pn=10&oq=bbb&tn=ccc&ie=utf-8&rsv_idx=2&rsv_pq=ddd&rsv_t=fff'
+        const url1 = stringJs.url2obj(url)
+        expect(url1.wd).equal('aaa')
+        expect(url1.pn).equal('10')
+        const url2 = { a: 111, b: 222, c: 333 }
+        expect('https://www.baidu.com/s?' + stringJs.obj2url(url2)).equal('https://www.baidu.com/s?a=111&b=222&c=333')
+        expect(stringJs.urlChange('https://www.baidu.com/s?a=111&b=222&c=333', 'a', 222)).equal('https://www.baidu.com/s?a=222&b=222&c=333')
     })
 })

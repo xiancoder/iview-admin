@@ -4,7 +4,7 @@
             <span>节假日设置</span>
             <Button type="primary" style="float: right" @click="openDate(1,0)">添加</Button>
         </h2>
-        <Table :columns="columns1" :data="tableData1" class="space">
+        <Table border :columns="columns1" :data="tableData1" class="space">
             <template slot-scope="{ row, index }" slot="date">
                 {{row.begin}}至{{row.end}}
             </template>
@@ -17,7 +17,7 @@
             <span>例外工作日设置</span>
             <Button type="primary" style="float: right" @click="openDate(2,0)">添加</Button>
         </h2>
-        <Table :columns="columns2" :data="tableData2" class="space">
+        <Table border :columns="columns2" :data="tableData2" class="space">
             <template slot-scope="{ row, index }" slot="date">
                 {{row.begin}}至{{row.end}}
             </template>

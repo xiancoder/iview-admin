@@ -71,3 +71,74 @@ export const palindrome = (str) => {
     if (lowRegStr[0] !== lowRegStr[lowRegStr.length - 1]) { return false }
     return palindrome(lowRegStr.slice(1, lowRegStr.length - 1))
 }
+// 获得url字符串中所有的参数
+// =====================
+// liuyp 2019年1月22日19:49:31
+export const url2obj = (e) => {
+    let t = {}
+    let r = e.substr(1 + e.indexOf('?'))
+    r = r.split('&')
+    for (let n = 0; n < r.length; n++) {
+        let o = r[n].split('=')
+        t[o[0]] = decodeURIComponent(o.slice(1).join('='))
+    }
+    return t
+}
+// 对象转换为url参数格式
+// =====================
+// liuyp 2019年1月22日19:49:31
+export const obj2url = (url) => {
+    let arr = []
+    let en = encodeURIComponent;
+    for (let name in url) {
+        arr.push(en(name) + '=' + en(url[name]))
+    }
+    return arr.join('&');
+}
+// URL_添加参数
+// =====================
+// liuyp 2019年1月22日19:49:31
+export const urlChange = function (destiny, par, parvalue) {
+    var pattern = par + '=([^&]*)'
+    var replaceText = par + '=' + parvalue
+    if (destiny.match(pattern)) {
+        var tmp = '\\' + par + '=[^&]*'
+        tmp = destiny.replace(new RegExp(tmp), replaceText)
+        return (tmp);
+    } else {
+        if (destiny.match('[\?]')) {
+            return destiny + '&' + replaceText;
+        } else {
+            return destiny + '?' + replaceText
+        }
+    }
+}
+// 详细解析一个url,这段代码来自腾讯空间脚本
+// =====================
+// liuyp 2019年1月22日19:49:31
+export const urlInfo = function (c) {
+    let a = document.createElement('a');
+    a.href = c;
+    return {
+        source: c, host: a.hostname, port: a.port, query: a.search,
+        protocol: a.protocol.replace(':', ''),
+        params: (function () {
+            let b = {}
+            let seg = a.search.replace(/^\?/, '').split('&')
+            let len = seg.length
+            let i = 0
+            let s
+            for (;i < len; i++) {
+                if (!seg[i]) { continue }
+                s = seg[i].split('=')
+                b[s[0]] = s[1]
+            }
+            return b
+        })(),
+        file: (a.pathname.match(/\/([^\/?#]+)$/i) || [''])[1],
+        hash: a.hash.replace('#', ''),
+        path: a.pathname.replace(/^([^\/])/g, '/$1'),
+        relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [''])[1],
+        segments: a.pathname.replace(/^\//, '').split('/')
+    }
+}

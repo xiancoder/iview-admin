@@ -1,3 +1,9 @@
+/**
+* 功能：单元测试页面
+* 作者：liuyp
+* 时间：2019年10月10日14:56:59
+* 语句: npm run test:unit tests/unit/039unitTest.spec.js
+*/
 import { shallowMount, mount } from '@vue/test-utils'
 import C039unitTest from '@V/exp2/039unitTest'
 import axios from 'axios'

@@ -35,7 +35,7 @@
             <a class="out_port" style="margin-right: 10px" @click="detailCreate(2)">生成考勤</a>
             <a class="out_port" download="" target="_blank" :href="url" style="margin-right: 10px" @click="outPort">批量导出</a> -->
         </div>
-        <Table :loading="loading" :columns="tableColumns" :data='currentTable' border stripe class="table_center">
+        <Table border :loading="loading" :columns="tableColumns" :data='currentTable' border stripe class="table_center">
             <template slot-scope="{ row, index }" slot="slot1">
                 <h3>{{row.userName}}</h3>
                 <br />

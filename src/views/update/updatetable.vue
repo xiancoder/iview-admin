@@ -12,7 +12,7 @@
       </Card>
     </i-col>
     <i-col span="18">
-      <Table :height="500" :columns="columns" :data="tableData"/>
+      <Table border :height="500" :columns="columns" :data="tableData"/>
     </i-col>
   </Row>
 </template>

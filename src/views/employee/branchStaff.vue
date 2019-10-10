@@ -50,7 +50,7 @@
                     <Button type="primary" @click="statusModalOk">确定</Button>
                 </div>
             </Modal>
-            <Table :size="'large'":columns="tableColumns" highlight-row ref="selection" :loading="loading"
+            <Table border :size="'large'":columns="tableColumns" highlight-row ref="selection" :loading="loading"
                 @on-current-change="onTableClick" @on-selection-change="onTableSelect" :data="tableDataSet">
             </Table>
             <div class="layoutFooter">

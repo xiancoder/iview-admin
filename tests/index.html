@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>xian</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="liuyp <whereispal5@163.com>">
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth/640;
+        document.write('<meta name="viewport" content="width=640,initial-scale='+phoneScale+',minimum-scale='+phoneScale+',maximum-scale='+phoneScale+',target-densitydpi=device-dpi">');
+    </script>
+    <!--<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=2.0, user-scalable=1" />-->
+    <link rel="stylesheet" href=''/>
+    <style type='text/css'></style>
+    <script src=""></script>
+</head>
+<body>
+</body>
+</html>
+<script type="text/javascript">
+const urlChange = function (destiny, par, parvalue) {
+    var pattern = par + '=([^&]*)'
+    var replaceText = par + '=' + parvalue
+    if (destiny.match(pattern)) {
+        var tmp = '\\' + par + '=[^&]*'
+        console.log(destiny, new RegExp(tmp))
+        tmp = destiny.replace(new RegExp(tmp), replaceText)
+        return tmp
+    } else {
+        if (destiny.match('[\?]')) {
+            return destiny + '&' + replaceText;
+        } else {
+            return destiny + '?' + replaceText
+        }
+    }
+}
+console.log(urlChange('https://www.baidu.com/s?a=111&b=222&c=333', 'a', 222))
+</script>

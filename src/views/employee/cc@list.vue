@@ -4,7 +4,7 @@
             <TabPane label="审批人配置" name="approval"></TabPane>
             <TabPane label="抄送人配置" name="cc">
                 <div style="height: 30px"><Button type="primary" @click="ccAdd" class="fr margin-right-10">添加抄送人设置</Button></div>
-                <Table :loading="loading" ref="selection" :columns="tableColumns" :data="currentTable" style="margin-top: 20px">
+                <Table border :loading="loading" ref="selection" :columns="tableColumns" :data="currentTable" style="margin-top: 20px">
                     <template slot-scope="{ row, index }" slot="userName">
                         {{row.userName.join(',')}}
                     </template>
