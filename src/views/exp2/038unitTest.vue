@@ -21,6 +21,9 @@
                         <Button type="primary" class="flagBtn" @click="handleSubmit('formValidateId')">测试</Button>
                     </FormItem>
                 </Form>
+                <p>曾经单元测试走到这里 this.$refs[name].validate 总是报错是空</p>
+                <p>原因 单元测试中 mount()会渲染所有组件 而 shallowMount()只搞一层</p>
+                <p>参考 <a href="https://blog.csdn.net/duola8789/article/details/80434962">Jest结合Vue-test-utils使用的初步实践</a></p>
             </div>
         </div>
     </div>

@@ -89,7 +89,8 @@ export const routerList = [
             {power: '0000', path: '036unitTest', title: '单元测试路由'},
             {power: '0000', path: '037unitTest', title: '单元测试Axios'},
             {power: '0000', path: '038unitTest', title: '表单单元流程'},
-            {power: '0000', path: '039unitTest', title: '复杂单元流程'}
+            {power: '0000', path: '039unitTest', title: '复杂单元流程'},
+            {power: '0000', path: '100newBee', title: '空'}
         ]
     }),
     makeTwoLevelRoute({
@@ -107,7 +108,10 @@ export const routerList = [
             {power: '0000', path: '050loadrule', title: 'vue文件加载规则'},
             {power: '0000', path: '051iavatar', title: 'IviewAvatar'},
             {power: '0000', path: '052serverUpload', title: 'node文件上传'},
-            {power: '0000', path: '052serverimg', title: 'node静态资源'},
+            {power: '0000', path: '053serverimg', title: 'node静态资源'},
+            {power: '0000', path: '054fileDown', title: '文件下载进度条'},
+            {power: '0000', path: '055ajaxcache', title: '异步请求缓存'},
+            {power: '0000', path: '056igrid', title: 'iviewGrid'},
             {power: '0000', path: '100newBee', title: '大牛养成'}
         ]
     }),
