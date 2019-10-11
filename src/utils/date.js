@@ -468,17 +468,17 @@ export const timeLong2 = (date1, date2) => {
     return ((month) ? (month + '月零') : '') + day + '天'
 }
 // 是否超时日期
-export const isDateBeOverdue = (d, deadline) => {
+export const isDateNotBeOverdue = (d, deadline) => {
     const checkDateTime = function (d) {
         const _date = new Date(d)
-        const Now = new Date(deadline || '')
+        const Now = deadline ? new Date(deadline) : new Date()
         const DiffTime = _date.getTime() - Now.getTime()
         if (_date.getFullYear() === 1970 || _date.getFullYear() < Now.getFullYear()) {
             // 若是传入的时间转换成1970年...那肯定不是我们后台要传的时间
             // 小于这个年份的也必然不是,谁的后台token过期时间超过一年的...
             return false
         }
-        if (DiffTime > 60000) {
+        if (DiffTime > 60e3) {
             // 过期结束时间必须大于传入时间
             // 当过期时间还大于一分钟的时候,
             return true

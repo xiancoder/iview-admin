@@ -98,8 +98,30 @@ export const routerList = [
             {power: '0000', path: '041zhihu3layout', title: '三大框架简比'},
             {power: '0000', path: '042tablesearch', title: '表格搜索纠结分页'},
             {power: '0000', path: '043rule', title: '规范想法'},
-            {power: '0000', path: '044npmls', title: '查看包版本号'},
+            {power: '0000', path: '044iselect', title: 'IviewSelect'},
+            {power: '0000', path: '045iinput', title: 'IviewInput'},
+            {power: '0000', path: '046idatepk', title: 'IviewDatepacker'},
+            {power: '0000', path: '047iradio', title: 'IviewRadio'},
+            {power: '0000', path: '048itag', title: 'IviewTag'},
+            {power: '0000', path: '049mount', title: '钩子函数流程'},
+            {power: '0000', path: '050loadrule', title: 'vue文件加载规则'},
+            {power: '0000', path: '051iavatar', title: 'IviewAvatar'},
+            {power: '0000', path: '052serverUpload', title: 'node文件上传'},
+            {power: '0000', path: '052serverimg', title: 'node静态资源'},
             {power: '0000', path: '100newBee', title: '大牛养成'}
+        ]
+    }),
+    makeTwoLevelRoute({
+        path: 'tool', title: '趁手工具第三代', icon: 'md-globe',
+        children: [
+            {power: '0000', path: 'str2bs64', title: '文字转bs64'},
+            {power: '0000', path: 'img2bs64', title: '图片转bs64'},
+            {power: '0000', path: 'unicode', title: 'unicode转码'},
+            {power: '0000', path: 'md5', title: 'md5转码'},
+            {power: '0000', path: 'url', title: 'url转码'},
+            {power: '0000', path: 'repeat', title: '字符重复'},
+            {power: '0000', path: 'norepeat', title: '去重'},
+            {power: '0000', path: 'strformat', title: '文本格式化'}
         ]
     }),
     makeTwoLevelRoute({

@@ -148,17 +148,25 @@ describe('[日期]常用方法', function () {
         expect(dateJs.computeRangeByMouth(2019, 11).toString()).equal('2019-10-26,2019-11-25')
         expect(dateJs.computeRangeByMouth(2019, 12).toString()).equal('2019-11-26,2019-12-25')
     })
-    it('查看日期是否过期/isDateBeOverdue', function () {
-        expect(dateJs.isDateBeOverdue(21312445)).equal(false) // 這種非標準的時間戳只會轉成1970這種,已經過期
-        expect(dateJs.isDateBeOverdue(undefined)).equal(false) // 传入undefined为false,不传参就是undefined
-        expect(dateJs.isDateBeOverdue(null)).equal(false) // 传入null虽然返回0,但也是false
-        expect(dateJs.isDateBeOverdue('1988-10-21')).equal(false) // 歷史悠久的也是錯的
-        expect(dateJs.isDateBeOverdue('1970-13-51')).equal(false) // 非標準格式的返回false
-        expect(dateJs.isDateBeOverdue('s2018ww-13-51')).equal(false) // 非標準的日期也是false
-        expect(dateJs.isDateBeOverdue('safdaserw')).equal(false) // 普通字符串會返回fasle
-        expect(dateJs.isDateBeOverdue(1533097116565, new Date(2018, 11, 2))).equal(false) // 已經過期
-        expect(dateJs.isDateBeOverdue(1544284800000, new Date(2018, 11, 2))).equal(true)
-        expect(dateJs.isDateBeOverdue('2018-12-01', new Date(2018, 11, 2))).equal(false) // 標準格式的返回true
-        expect(dateJs.isDateBeOverdue('2018/12/09', new Date(2018, 11, 2))).equal(true) // 標準格式的返回true
+    it('查看日期是否没有过期/isDateNotBeOverdue', function () {
+        expect(dateJs.isDateNotBeOverdue(21312445)).equal(false) // 這種非標準的時間戳只會轉成1970這種,已經過期
+        expect(dateJs.isDateNotBeOverdue(undefined)).equal(false) // 传入undefined为false,不传参就是undefined
+        expect(dateJs.isDateNotBeOverdue(null)).equal(false) // 传入null虽然返回0,但也是false
+        expect(dateJs.isDateNotBeOverdue('1988-10-21')).equal(false) // 歷史悠久的也是錯的
+        expect(dateJs.isDateNotBeOverdue('1970-13-51')).equal(false) // 非標準格式的返回false
+        expect(dateJs.isDateNotBeOverdue('s2018ww-13-51')).equal(false) // 非標準的日期也是false
+        expect(dateJs.isDateNotBeOverdue('safdaserw')).equal(false) // 普通字符串會返回fasle
+        expect(dateJs.isDateNotBeOverdue(1533097116565, new Date(2018, 11, 2))).equal(false) // 已經過期
+        expect(dateJs.isDateNotBeOverdue(1544284800000, new Date(2018, 11, 2))).equal(true)
+        expect(dateJs.isDateNotBeOverdue('2018-12-01', new Date(2018, 11, 2))).equal(false) // 標準格式的返回true
+        expect(dateJs.isDateNotBeOverdue('2018/12/09', new Date(2018, 11, 2))).equal(true) // 標準格式的返回true
+        expect(dateJs.isDateNotBeOverdue(+new Date(2018, 11, 2, 10, 10, 10), new Date(2018, 11, 2, 12, 0, 0))).equal(false)
+        expect(dateJs.isDateNotBeOverdue(+new Date(2018, 11, 2, 11, 10, 10), new Date(2018, 11, 2, 12, 0, 0))).equal(false)
+        expect(dateJs.isDateNotBeOverdue(+new Date(2018, 11, 2, 12, 10, 10), new Date(2018, 11, 2, 12, 0, 0))).equal(true)
+        expect(dateJs.isDateNotBeOverdue(+new Date(2018, 11, 2, 14, 10, 10), new Date(2018, 11, 2, 12, 0, 0))).equal(true)
+        expect(dateJs.isDateNotBeOverdue(+new Date(2018, 11, 2, 17, 10, 10), new Date(2018, 11, 2, 12, 0, 0))).equal(true)
+        expect(dateJs.isDateNotBeOverdue(+new Date(2018, 11, 3, 10, 10, 10), new Date(2018, 11, 2, 12, 0, 0))).equal(true)
+        expect(dateJs.isDateNotBeOverdue(+new Date(2018, 11, 6, 10, 10, 10), new Date(2018, 11, 2, 12, 0, 0))).equal(true)
+        expect(dateJs.isDateNotBeOverdue(+new Date(2018, 10, 2, 10, 10, 10), new Date(2018, 11, 2, 12, 0, 0))).equal(false)
     })
 })

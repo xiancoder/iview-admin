@@ -146,7 +146,7 @@ export default {
             });
         },
         contentChange (value) {
-            this.formItem.taskContent = value;
+            this.frm.taskContent = value;
         }
     },
     mounted () {

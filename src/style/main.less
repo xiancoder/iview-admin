@@ -32,7 +32,7 @@
         height: ~"calc(100% - 80px)";
         overflow: auto;
     }
-    .left-sider{z-index: 10000;
+    .left-sider{z-index: 1200;
         .ivu-layout-sider-children{
             overflow-y: scroll;
             margin-right: -18px;
@@ -88,7 +88,7 @@
 /* 顶部各项按钮 */
 .main-header{
     width: 100%; height: 60px; transition: all .3s; box-shadow: 0 2px 1px 1px rgba(100,100,100,.1);
-    z-index: 10000; display: flex; background: #fff;
+    z-index: 1000; display: flex; background: #fff;
     .main-header-left{ height: 60px; width: 40%; flex-grow:1;
         > * { margin-left: 20px; }
         .sider-trigger-a{
@@ -194,9 +194,9 @@ div.api{
 .ivu-form-item-notice-tip{position: absolute; top: 100%; left: 0; line-height: 1; padding-top: 6px; color: #9E9E9E;}
 .ivu-form-item-notice-tip + .ivu-form-item-error-tip{background: white; width: 100%;}
 /* 下拉框不被其他框架遮挡 */
-.ivu-select .ivu-select-dropdown{z-index: 9000;}
+.ivu-select .ivu-select-dropdown{z-index: 1200;}
 /* loading遮挡 */
-.ivu-spin-fix{z-index: 10000;}
+.ivu-spin-fix{z-index: 5000;}
 /* 表格自定义项 */
 .tableLayout{position: relative;
     .ivu-table{ cursor: pointer; }
@@ -248,5 +248,5 @@ pre.prettyprint {
     .pln { color: #39382e; }
 }
 /* markdown 编辑器 样式复写 */
-.markdown-wrapper .CodeMirror-fullscreen { z-index: 20000 !important; }
+.markdown-wrapper .CodeMirror-fullscreen { z-index: 6000 !important; }
 .CodeMirror-fullscreen { top: 0 !important; }

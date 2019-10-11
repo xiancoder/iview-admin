@@ -3,15 +3,15 @@
         <div class="blog">
             <div class="blogTitle">发布任务表单</div>
             <div class="blogContent" v-highlight>
-                <code class="html">
-                    &lt;div v_for=&quot;alias in expression&quot;&gt; { { alias } }&lt;/div&gt;
-                    &lt;div v_for=&quot;item in items&quot;&gt;{ { item } }&lt;/div&gt;
-                    &lt;div v_for=&quot;(item, index) in items&quot;&gt;{ { item } } { { index } }&lt;/div&gt;
-                    &lt;div v_for=&quot;val in object&quot;&gt;&lt;/div&gt;
-                    &lt;div v_for=&quot;(val, key) in object&quot;&gt;&lt;/div&gt;
-                    &lt;div v_for=&quot;(val, key, index) in object&quot;&gt;&lt;/div&gt;
-                    &lt;div v_for=&quot;itme in items&quot; :key=&quot;item.id&quot;&gt; { { item.text } }&lt;/div&gt;
-                </code>
+                <script type="text/html">
+                    &lt;div v-for=&quot;alias in expression&quot;&gt; { { alias } }&lt;/div&gt;
+                    &lt;div v-for=&quot;item in items&quot;&gt;{ { item } }&lt;/div&gt;
+                    &lt;div v-for=&quot;(item, index) in items&quot;&gt;{ { item } } { { index } }&lt;/div&gt;
+                    &lt;div v-for=&quot;val in object&quot;&gt;&lt;/div&gt;
+                    &lt;div v-for=&quot;(val, key) in object&quot;&gt;&lt;/div&gt;
+                    &lt;div v-for=&quot;(val, key, index) in object&quot;&gt;&lt;/div&gt;
+                    &lt;div v-for=&quot;itme in items&quot; :key=&quot;item.id&quot;&gt; { { item.text } }&lt;/div&gt;
+                </script>
                 <p>一个title 处 可能有 一个或多个按钮， 按钮对应不同的响应事件</p>
                 <p>按钮个数 根据传入的数据length 来循环渲染， 每条数据对应的事件名称 通过动态绑定</p>
                 <!-- 多个button组件-->

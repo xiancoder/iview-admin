@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[单元测试038.表单单元流程] 验证保存快照 1`] = `
+<div class="blogCss xianFrom">
+  <div class="blog">
+    <div class="blogTitle">表单的单元测试 (mock赋值 - 模拟操作 - mock提交 - 校验)</div>
+    <div class="blogContent">
+      <div class="xian-title-tabs">
+        <h1>表单名称</h1>
+        <div class="ivu-divider ivu-divider-horizontal ivu-divider-default">
+          <!---->
+        </div>
+      </div>
+      <form autocomplete="off" class="ivu-form ivu-form-label-right">
+        <div class="ivu-form-item"><label class="ivu-form-item-label" style="width: 150px;">正常文本</label>
+          <div class="ivu-form-item-content" style="margin-left: 150px;">
+            <p></p>
+            <!---->
+          </div>
+        </div>
+        <div class="ivu-form-item ivu-form-item-required ivu-form-item-error"><label class="ivu-form-item-label" style="width: 150px;">输入框</label>
+          <div class="ivu-form-item-content" style="margin-left: 150px;">
+            <div class="flag ivu-input-wrapper ivu-input-wrapper-default ivu-input-type" style="width: 450px;">
+              <!---->
+              <!----> <i class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate" name="fade"></i> <input autocomplete="off" spellcheck="false" type="text" placeholder="请输入XXXX" class="ivu-input ivu-input-default">
+              <!---->
+            </div>
+            <div class="ivu-form-item-error-tip" name="fade">输入框不能为空</div>
+          </div>
+        </div>
+        <div class="ivu-form-item ivu-form-item-required ivu-form-item-error"><label class="ivu-form-item-label" style="width: 150px;">输入框</label>
+          <div class="ivu-form-item-content" style="margin-left: 150px;">
+            <div class="flag ivu-input-wrapper ivu-input-wrapper-default ivu-input-type" style="width: 450px;">
+              <!---->
+              <!----> <i class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate" name="fade"></i> <input autocomplete="off" spellcheck="false" type="text" placeholder="请输入XXXX" class="ivu-input ivu-input-default">
+              <!---->
+            </div>
+            <div class="ivu-form-item-error-tip" name="fade">输入框不能为空</div>
+          </div>
+        </div>
+        <div class="ivu-form-item"><label class="ivu-form-item-label" style="width: 150px;">测试</label>
+          <div class="ivu-form-item-content" style="margin-left: 150px;"><button type="button" class="flagBtn ivu-btn ivu-btn-primary">
+              <!---->
+              <!----> <span>测试</span></button>
+            <!---->
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

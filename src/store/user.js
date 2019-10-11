@@ -4,7 +4,8 @@ export default {
         unreadCount: 0,
         messageUnreadList: [],
         messageReadedList: [],
-        messageTrashList: []
+        messageTrashList: [],
+        testState: 0
     },
     mutations: {
         setMessageCount (state, count) { state.unreadCount = count },
@@ -27,6 +28,9 @@ export default {
         removeReaded ({ commit }, { msgid }) { // 删除一个已读消息到回收站
         },
         restoreTrash ({ commit }, { msgid }) { // 还原一个已删除消息到已读消息
+        },
+        handleTestState ({ state }, testState) {
+            state.testState = testState
         }
     }
 }

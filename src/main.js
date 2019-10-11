@@ -26,8 +26,7 @@ const begin = async function () {
     const isLogined = await Store.dispatch('system/isLogined')
     console.info('仙', '登录标识', isLogined)
     if (!isLogined) {
-        await Store.dispatch('system/clearLs') // 清理页面
-        router.push('login')
+        Store.dispatch('system/logout') // 进入登录页
     } else {
         Store.dispatch('system/getUserInfo') // 获取用户信息
         Store.dispatch('system/getNewMessageNum') // 获取未读最新消息

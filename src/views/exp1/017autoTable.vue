@@ -52,19 +52,12 @@
             @on-change="handleGoPage"/>
         <br />
         <hr />
+        <Alert type="error">1 能用箭头函数的/杜绝使用<b>var me = this</b></Alert>
+        <Alert type="success">2 写HTML时候属性超过3个的话/建议换行/每行3个属性/其中if for 指令提前</Alert>
+        <Alert>3 精简所有用到的组件 为模板化配凑做准备</Alert>
+        <Alert>4 公共部分拆分 mixin注入式继承</Alert>
+        <Alert>5 尝试使用页面生成</Alert>
         <div>所有变量在线查看 searchDataBack = {{searchDataBack}}</div>
-        <Collapse simple>
-            <Panel name="1">
-                规范建议
-                <div slot="content">
-                    <Alert type="error">1 能用箭头函数的/杜绝使用<b>var me = this</b></Alert>
-                    <Alert type="success">2 写HTML时候属性超过3个的话/建议换行/每行3个属性/其中if for 指令提前</Alert>
-                    <Alert>3 精简所有用到的组件 为模板化配凑做准备</Alert>
-                    <Alert>4 公共部分拆分 mixin注入式继承</Alert>
-                    <Alert>5 尝试使用页面生成</Alert>
-                </div>
-            </Panel>
-        </Collapse>
     </div>
 </template>
 <script>

@@ -1,6 +1,6 @@
 import config from '@/config'
 import { Api } from '@/api'
-import { power2routes } from '@/router'
+import { power2routes, router } from '@/router'
 import { specialRouterList } from '@/router/routers'
 import { cache } from '@/cache'
 export default {
@@ -125,12 +125,6 @@ export default {
                 resolve(!!token)
             })
         },
-        clearLs ({ commit }) { // 初始化环境
-            return new Promise((resolve, reject) => {
-                console.info('仙', '清场')
-                resolve()
-            })
-        },
         routeSpin ({ commit }, bool) { // 启动关闭路由视图loading
             if (bool) commit('updateRouteSpin', true)
             else setTimeout(function () { commit('updateRouteSpin', false) }, 500)
@@ -202,16 +196,21 @@ export default {
         setTagNavList ({ commit }, list) {
             commit('updateTagNavList', list)
         },
+        gologin ({ commit }) { // 去登录页
+            return new Promise((resolve, reject) => {
+            })
+        },
         logout ({ commit }) { // 登出
             return new Promise((resolve, reject) => {
+                console.info('仙', '登出清场')
                 Api.system.logout().then(flag => {
-                    if (flag) {
-                        commit('removeToken', '')
-                        commit('updateAccess', false)
-                        resolve()
-                    }
+                    console.info('登出结果', flag)
                 }, errorMsg => {
-                    alert(123)
+                    console.error('登出失败')
+                }).finally(res => {
+                    commit('removeToken', '')
+                    router.push('login')
+                    resolve()
                 })
             })
         }

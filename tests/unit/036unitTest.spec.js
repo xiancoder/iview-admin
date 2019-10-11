@@ -43,6 +43,11 @@ describe('[单元测试036unitTest]', () => {
         wrapper.vm.goVIPs() // 执行函数
         expect(mockPush).toBeCalled() // 期望结果
     })
+    it('普通输入框可以直接setValue内容', () => {
+        const textInput = wrapper.find('input')
+        textInput.setValue('4444')
+        expect(textInput.element.value).toEqual('4444')
+    })
 })
 describe('[AppButton.vue]', () => {
     /**

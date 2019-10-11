@@ -1,3 +1,4 @@
+// 没想好怎么用
 import axios from 'axios'
 // 数据存储
 export const cache = {

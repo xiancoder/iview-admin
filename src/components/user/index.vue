@@ -24,13 +24,10 @@ export default {
     },
     methods: {
         logout () {
-            this.$store.dispatch('system/logout').then(() => {
-                console.info('仙', '管理员退出喽')
-                this.$router.push({ name: 'login' })
-            })
+            this.$store.dispatch('system/logout')
         },
         message () {
-            this.$router.push({ name: 'home_message' })
+            this.$router.push({name: 'home_message'})
         },
         handleClick (name) {
             switch (name) {
