@@ -1,0 +1,31 @@
+<template>
+    <div class="blogCss">
+        <div class="blog">
+            <div class="blogTitle">vue-router 怎么操作页面的历史记录？</div>
+            <div class="blogContent" v-highlight>
+                <p>1111111111111111111111111111</p>
+                <p><Button @click="jump2()">我是页面1我要跳页面2</Button></p>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">green</Tag>
+                <Tag color="cyan">cyan</Tag>
+                <Tag color="blue">blue</Tag>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    data () {
+        return {}
+    },
+    methods: {
+        jump2 () {
+            this.$router.push({'name': 'exp3_057history@2'})
+        }
+    },
+    mounted () {
+        console.log('我是页面1')
+    }
+}
+</script>

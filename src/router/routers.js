@@ -112,6 +112,47 @@ export const routerList = [
             {power: '0000', path: '054fileDown', title: '文件下载进度条'},
             {power: '0000', path: '055ajaxcache', title: '异步请求缓存'},
             {power: '0000', path: '056igrid', title: 'iviewGrid'},
+            {power: '0000', path: '057history', title: '路由历史记录'},
+            {power: '0000', path: '057history@1', title: '路由历史记录1', hideMenu: true},
+            {power: '0000', path: '057history@2', title: '路由历史记录2', hideMenu: true},
+            {power: '0000', path: '057history@3', title: '路由历史记录3', hideMenu: true},
+            {power: '0000', path: '058routerpic', title: '路由浏览图片'},
+            {power: '0000', path: '059debounce', title: '防抖节流测试'},
+            {power: '0000', path: '060newtabopen', title: '新页面打开'}
+        ]
+    }),
+    makeTwoLevelRoute({
+        path: 'exp4', title: '经验集卷四', icon: 'md-globe',
+        children: [
+            {power: '0000', path: '061whilePromise', title: 'Promise挂起'},
+            {power: '0000', path: '062fanyinhao', title: '反引号推广'},
+            {power: '0000', path: '063flexbox', title: 'flex布局基础'},
+            {power: '0000', path: '064flexlayout', title: 'flex深层应用'},
+            {power: '0000', path: '065gridbox', title: 'grid布局基础'},
+            {power: '0000', path: '066redux', title: 'redux基础'},
+            {power: '0000', path: '067promiseEs6', title: 'promise基础'},
+            {power: '0000', path: '068kengopacity', title: 'opacity的坑'},
+            {power: '0000', path: '069kengfloat', title: 'float的坑'},
+            {power: '0000', path: '069kengfloat', title: 'z-index的坑'},
+            {power: '0000', path: '070csszindex', title: 'float的坑'},
+            {power: '0000', path: '071colgroup', title: '表格列属性'},
+            {power: '0000', path: '072uglifyjs', title: 'uglifyjs拯救'},
+            {power: '0000', path: '073typeError', title: '弱类型之坑'},
+            {power: '0000', path: '074webpack', title: 'webpack检查主机'},
+            {power: '0000', path: '075devtool', title: '开发者工具'},
+            {power: '0000', path: '076single', title: '单点登录概述'},
+            {power: '0000', path: '077refer', title: 'referer的操作'},
+            {power: '0000', path: '078void0bug', title: 'void(0)跳转bug'},
+            {power: '0000', path: '079microsoftyahei', title: '微软雅黑版权'},
+            {power: '0000', path: '080yin', title: '名词缩写发音'}
+        ]
+    }),
+    makeTwoLevelRoute({
+        path: 'exp5', title: '经验集卷五', icon: 'md-globe',
+        children: [
+            {power: '0000', path: '081templete', title: '标签templete'},
+            {power: '0000', path: '082download', title: 'JS控制下载文档'},
+            {power: '0000', path: '083innerDB', title: 'innerDB数据库'},
             {power: '0000', path: '100newBee', title: '大牛养成'}
         ]
     }),

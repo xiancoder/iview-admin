@@ -29,6 +29,7 @@ export default {
         shrink: false, // 页面折叠状态
         tagNavList: cache.getTagNavList() || [], // 历史记录tab
         errorList: [], // 错误列表
+        doNotDrawRouter: false, // 不要渲染路由
         author: 'liuyp' // 版权所有
     },
     getters: {
@@ -72,7 +73,8 @@ export default {
             }
         },
         setLocking (state, flag) { cache.setLocking(flag); state.locking = flag }, // 设置页面锁定
-        changeShrink (state, flag) { state.shrink = flag } // 设置左边树折叠状态
+        changeShrink (state, flag) { state.shrink = flag }, // 设置左边树折叠状态
+        noRender (state, flag) { state.doNotDrawRouter = flag } // 不要渲染路由 为了回退再前进
     },
     actions: {
         setFullScreen ({ commit }, flag) { // 重置一下全屏状态
@@ -212,6 +214,12 @@ export default {
                     router.push('login')
                     resolve()
                 })
+            })
+        },
+        noRender ({ commit }, bool) { // 去登录页
+            return new Promise((resolve, reject) => {
+                commit('noRender', bool)
+                resolve()
             })
         }
     }

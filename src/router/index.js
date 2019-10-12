@@ -59,6 +59,7 @@ export const routeEqual = (route1, route2) => {
 }
 router.beforeEach((to, from, next) => {
     console.info('仙', '准备跳转', to)
+    if (Store.state.system.doNotDrawRouter) { return } // 回退再前进 之间的页面不做渲染
     LoadingBarRun(true) // 顶部进度条
     Store.dispatch('system/setBreadCrumb', to.name) // 左侧树数据源
     Store.dispatch('system/routeSpin', true) // 路由视图loading
@@ -70,7 +71,7 @@ router.beforeEach((to, from, next) => {
         return next({ replace: true, name: 'locking' })
     }
     if (!isLocked && goLocking) { // 非锁定状态不允许去锁定页面
-        return next(false)
+        return next(false) // 中止一切 复原url
     }
     const isLogined = Store.state.system.access
     const goLogin = ['login'].includes(to.name)

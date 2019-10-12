@@ -36,6 +36,10 @@
                             </Row>
                         </p>
                         <script v-pre type="text/js">
+                            <Row>
+                                <Col span="12"></Col>
+                                <Col span="12"></Col>
+                            </Row>
                             <Row :gutter="16">
                                 <Col span="8" class="rowcolbox"><div>col-8</div></Col>
                                 <Col span="8" class="rowcolbox"><div>col-8</div></Col>
