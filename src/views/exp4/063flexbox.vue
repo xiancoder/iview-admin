@@ -11,18 +11,7 @@
                 <p>基本概念 : Flex容器/Flex项目/水平的主轴/垂直的交叉轴</p>
                 <p>项目默认沿主轴排列</p>
                 <p>============================================</p>
-                <Row>
-                    <Col span="24">
-                        <script type="text/html">
-                            .box{
-                                display: flex;
-                                /*display: inline-flex; 行内元素 */
-                                display: -webkit-flex; /* Safari */
-                                background:#ddd;
-                                border:1px solid red;
-                            }
-                        </script>
-                    </Col>
+                <Row :gutter="16">
                     <Col span="12">
                         <p>flex-direction属性决定主轴的方向（即项目的排列方向）</p>
                         <script type="text/html">
@@ -156,28 +145,28 @@
                                 -webkit-align-items: center; /* Safari 7.0+ */
                             }
                         </script>
-                        <div>
-                            <div class="box box41">
+                        <Row>
+                            <Col span="6" class="box box41">
                                 <div class="item red"></div>
                                 <div class="item yellow" style="height:100px"></div>
                                 <div class="item blue"></div>
-                            </div>
-                            <div class="box box42">
+                            </Col>
+                            <Col span="6" class="box box42">
                                 <div class="item red"></div>
                                 <div class="item yellow" style="height:100px"></div>
                                 <div class="item blue"></div>
-                            </div>
-                            <div class="box box43">
+                            </Col>
+                            <Col span="6" class="box box43">
                                 <div class="item red"></div>
                                 <div class="item yellow" style="height:100px"></div>
                                 <div class="item blue"></div>
-                            </div>
-                            <div class="box box44">
+                            </Col>
+                            <Col span="6" class="box box44">
                                 <div class="item red" style="height:auto"></div>
                                 <div class="item yellow" style="height:auto"></div>
                                 <div class="item blue" style="height:auto"></div>
-                            </div>
-                        </div>
+                            </Col>
+                        </Row>
                         <p>align-content 属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>
                         <script type="text/html">
                             .box {
@@ -226,6 +215,8 @@
                                 <div class="item blue"></div>
                             </Col>
                         </Row>
+                    </Col>
+                    <Col span="12">
                         <p>order 属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
                         <script type="text/html">
                             .box {
@@ -317,7 +308,14 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
+    .box{
+        display: flex;
+        /*display: inline-flex; 行内元素 */
+        display: -webkit-flex; /* Safari */
+        background:#ddd;
+        border:1px solid red;
+    }
     .box11{flex-direction: row;}
     .box12{flex-direction: row-reverse;}
     .box13{flex-direction: column;}

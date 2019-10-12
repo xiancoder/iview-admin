@@ -4,53 +4,25 @@
             <div class="blogTitle">打开新页面</div>
             <div class="blogContent" v-highlight>
                 <p>业务需要 我要在新页面打开网页 / 而且是要打开多个</p>
-                <hr />
-                <p>
-                    之前收录的代码普遍使用的都是<code>a target="_new"</code>
-                    <a href=" tpl/tryidea/bgiframe/demo3.html#!/app111/s/t" target="_new"> demo3.html#!/app111/s/t</a>
-                    <a href=" tpl/tryidea/bgiframe/demo3.html#!/app222/s/t" target="_new"> demo3.html#!/app222/s/t</a>
-                </p>
+                <p> 之前收录的代码普遍使用的都是<b>a  href="<a href="http://www.baidu.com" target="_new">http://www.baidu.com</a>" target="_new"</b> </p>
                 <p>
                     效果呵呵 <span class="text-info">第一次打开完美</span>
                     || <span class="text-danger">第N次打开 会无限覆盖第一个</span>
                     || <span class="text-warning">放弃吧</span>
                 </p>
-                <p>
-                    基于这个原理制作的方法也就出错了
-                </p>
+                <p> 基于这个原理制作的方法也就出错了 </p>
                 <hr />
                 <p>
-                    尝试 纯HTML <code>a target="_blank"</code>
-                    <a href=" tpl/tryidea/bgiframe/demo1.html" target="_blank"> demo1.html</a>
-                    <a href=" tpl/tryidea/bgiframe/demo2.html" target="_blank"> demo2.html</a>
-                    <a href=" tpl/tryidea/bgiframe/demo3.html" target="_blank"> demo3.html</a>
+                    尝试 纯HTML
+                    <a href="http://www.baidu.com" target="_blank">http://www.baidu.com</a>
                     <span class="text-info">完美 </span>
                 </p>
                 <p>
-                    如果是携带不同参数的同一页面
-                    <a href=" tpl/tryidea/bgiframe/demo1.html?x=123" target="_blank"> demo1.html?x=123</a>
-                    <a href=" tpl/tryidea/bgiframe/demo1.html?x=234" target="_blank"> demo1.html?x=234</a>
-                    <span class="text-info">完美 </span>
-                </p>
-                <p>
-                    如果是携带不同参数的同一页面
-                    <a href=" tpl/tryidea/bgiframe/demo2.html#/app2/main" target="_blank"> demo2.html#/app2/main</a>
-                    <a href=" tpl/tryidea/bgiframe/demo2.html#/app5/main" target="_blank"> demo2.html#/app5/main</a>
-                    <span class="text-info">完美 </span>
-                </p>
-                <p>
-                    如果是angular参数格式
-                    <a href=" tpl/tryidea/bgiframe/demo3.html#!/app111/s/t" target="_blank"> demo3.html#!/app111/s/t</a>
-                    <a href=" tpl/tryidea/bgiframe/demo3.html#!/app222/s/t" target="_blank"> demo3.html#!/app222/s/t</a>
-                    <span class="text-info">完美 </span>
-                </p>
-                <p>
-                    基于这个原理重新制作的方法<code>_Open_tab</code>
-                    <a href="javascript:void(0)" @click="openTab('tpl/tryidea/bgiframe/demo3.html#!/app111/s/t')"> demo3.html#!/app111/s/t</a>
-                    <a href="javascript:void(0)" @click="openTab('tpl/tryidea/bgiframe/demo3.html#!/app222/s/t')"> demo3.html#!/app222/s/t</a>
+                    基于这个原理重新制作的方法<b>openTab</b>
+                    <a href="javascript:void(0)" @click="openTab('http://www.baidu.com')"> http://www.baidu.com</a>
                 </p>
                 <hr />
-                <p>参考资料 不大懂 直接加在<code>_Open_tab</code>方法中</p>
+                <p><code>参考资料 不大懂 直接加在openTab方法中</code></p>
                 <blockquote >
                     <h4><b>网页打开新窗口target=_blank不符合标准</b></h4>
                     <p>在HTML4.01/XHTML1.0/XHTML1.1严格DOCTYPE下，target="_blank"、target="_self"等等语法都是无效的，我们只能通过JavaScript来变通实现有朋友问为什么不允许使用target="_blank"？这个属性很方便啊。可能老外觉得不经过用户同意，没有明确提示就打开一个新窗口是不礼貌的。先不管这个取消是否合理，我们来看看解决办法。 </p>
@@ -101,13 +73,13 @@ export default {
             var top = (window.screen.availHeight - height) / 2 // 窗口的垂直位置;
             var left = (window.screen.availWidth - width) / 2 // 窗口的水平位置;
             window.open(
-                'tpl/tryidea/bgiframe/demo3.html#!/app111/s/t', 'newwindow',
+                'http://www.baidu.com', 'newwindow',
                 'height=' + height + ',width=' + width + ',top=' + top + ',left=' + left +
                 ',toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no'
             )
         },
         open23: function () {
-            window.open('tpl/tryidea/bgiframe/demo3.html#!/app111/s/t', '_blank')
+            window.open('http://www.baidu.com', '_blank')
         }
     },
     mounted () {

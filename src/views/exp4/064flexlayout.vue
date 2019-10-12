@@ -6,7 +6,7 @@
                 <p>流式布局: 好处 大大减少了css的兼容问题和代码量</p>
                 <p>流式布局: 坏处 必须手动指定空白单位数量</p>
                 <Row>
-                    <Col sm="16">
+                    <Col span="16">
                         <script type="text/html">
                             .box {
                                 width: 200px; height: 200px;
@@ -33,7 +33,7 @@
                             }
                         </script>
                     </Col>
-                    <Col sm="8">
+                    <Col span="8">
                         <div class="box">
                             <div class="item"><div>$</div></div> <div class="item"><div>$</div></div> <div class="item"><div>$</div></div> <div class="item"><div>$</div></div>
                             <div class="item"><div>$</div></div> <div class="item"><div>$</div></div> <div class="item"><div>$</div></div> <div class="item"><div>$</div></div>
@@ -62,7 +62,7 @@
                     <p>一行时候严格照着设计图来搞 两行也能兼容显示</p>
                     <p>三行就点点点了</p>
                     <Row>
-                        <Col sm="16">
+                        <Col span="16">
                             <script type="text/html">
                                 .box1 {
                                     width: 200px; height: 100px;
@@ -85,7 +85,7 @@
                                 }
                             </script>
                         </Col>
-                        <Col sm="8">
+                        <Col span="8">
                             <div class="box1">
                                 <div class="item1">阿斯顿发沙发沙发斯蒂芬</div>
                             </div>
@@ -119,7 +119,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
     .box {
         width: 200px; height: 200px;
         background-color: #000;
