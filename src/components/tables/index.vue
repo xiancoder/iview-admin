@@ -15,7 +15,7 @@
                 搜索
             </Button>
         </div>
-        <Table border
+        <Table
             ref="tablesMain" :data="insideTableData" :columns="insideColumns" :stripe="stripe"
             :border="border" :show-header="showHeader" :width="width" :height="height"
             :loading="loading" :disabled-hover="disabledHover" :highlight-row="highlightRow"

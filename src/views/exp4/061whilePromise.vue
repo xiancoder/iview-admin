@@ -3,7 +3,8 @@
         <div class="blog">
             <div class="blogTitle">尝试一下Promise的挂起状态</div>
             <div class="blogContent" v-highlight>
-                <script type="text/xian">
+                <h3>使用场景 当系统超时 用户超时时候 用户发出的请求都应该401未授权 当收到第一个401时候 停止ajax工具的可用性并重新请求token (小程序/非后台) 待新token来临之前所有请求均挂起 待新token来临后回复执行</h3>
+                <script type="text/js">
                     function aaa(){
                         return new Promise((resolve, reject) => {
                             setTimeout(() => {

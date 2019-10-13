@@ -4,7 +4,7 @@
             <div class="blogTitle">referer的操作</div>
             <div class="blogContent" v-highlight>
                 <p>1 可以禁用 </p>
-                <script type="text/xian">
+                <script type="text/html">
                     1.如果 referer-policy 的值为never：删除 http head 中的 referer；
                     2.如果 referer-policy 的值为default：如果当前页面使用的是 https 协议，而正要加载的资源使用的是普通的 http 协议，则将 http header 中的 referer 置为空；
                     3.如果 referer-policy 的值为 origin：只发送 origin 部分；

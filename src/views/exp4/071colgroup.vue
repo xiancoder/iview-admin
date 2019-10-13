@@ -18,7 +18,7 @@
                     <tr> <td>3476896</td> <td>My first HTML</td> <td>$53</td> </tr>
                     <tr> <td>5869207</td> <td>My first CSS</td> <td>$49</td> </tr>
                 </table>
-                <script type="text/xianjs">
+                <script type="text/html">
                     <table class="table">
                         <colgroup>
                             <col span="2" style="color:#fff;background-color:#2196F3;width:10%">

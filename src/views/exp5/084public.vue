@@ -1,0 +1,48 @@
+<template>
+    <div class="blogCss">
+        <div class="blog">
+            <div class="blogTitle">访问 public 文件夹下的资源</div>
+            <div class="blogContent" v-highlight>
+                <p>正常页面访问public中的图片 (:src才能引发资源引入)</p>
+                <p><img :src="'./logo.gongsi.jpg'" alt="" style="max-height:20px"/></p>
+                <script type="text/html">
+                    <img :src="'./logo.gongsi.jpg'" alt="" style="max-height:20px"/>
+                    // 编译不成功
+                    <img src="./logo.gongsi.jpg" alt="" />
+                </script>
+                <p>import 引入图片并使用</p>
+                <p><img :src="maxLogo" key="max-logo" style="max-height:20px" /></p>
+                <script type="text/js">
+                    import maxLogo from '@/assets/images/logo.jpg'
+                    data () { return { maxLogo } },
+                </script>
+                <script type="text/html">
+                    <img :src="maxLogo" key="max-logo" style="max-height:20px" />
+                </script>
+                <p>静态index模版使用</p>
+                <script type="text/html">
+                    <img src="<%= BASE_URL %>logo.gongsi.jpg"/>
+                </script>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">green</Tag>
+                <Tag color="cyan">cyan</Tag>
+                <Tag color="blue">blue</Tag>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+import maxLogo from '@/assets/images/logo.jpg'
+export default {
+    data () {
+        return {
+            maxLogo
+        }
+    },
+    methods: {
+    },
+    mounted () {
+    }
+}
+</script>

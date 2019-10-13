@@ -8,7 +8,7 @@
                 <p>详情页面</p>
                 <pre>this.$router.push({name:'vacation-info'，query:{id:32})</pre>
                 <p>不用直接控制变量的方式，用路由控制显示隐藏</p>
-                <script type="text/xian">
+                <script type="text/html">
                     computed:{
                         bigImg:function(){
                             return this.$route.query.id ? false : true;
@@ -16,11 +16,11 @@
                     },
                 </script>
                 <p>点击小图显示大图</p>
-                <script type="text/xian">
+                <script type="text/html">
                     this.$router.push({name:'vacation-info'}); //要跟原路由不同
                 </script>
                 <p>点击大图显示详情页</p>
-                <script type="text/xian">
+                <script type="text/html">
                     this.$router.go(-1)
                 </script>
             </div>

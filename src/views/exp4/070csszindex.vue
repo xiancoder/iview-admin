@@ -4,12 +4,12 @@
             <div class="blogTitle">广告中遇到的z-index上限的说明</div>
             <div class="blogContent" v-highlight>
                 <p>z-index 属性设置元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。</p>
-                <p><code>所有主流浏览器都支持 z-index 属性。</code></p>
-                <p>注释：任何的版本的 Internet Explorer （包括 IE8）都<code>不支持</code>属性值 "inherit"。</p>
-                <p>注释：元素可拥有<code>负</code>的 z-index 属性值。</p>
-                <p>注释：Z-index <code>仅能在定位元素</code>上奏效（(position属性值为 relative 或 absolute 或 fixed的对象)）！</p>
-                <p>这个属性<code>不会作用于窗口控件</code>，如 select 对象。</p>
-                <h2>z-index最大值是<code>2147483647</code>,超出后不会报错 但是 max+1 效果等同 max+100</h2>
+                <p><b>所有主流浏览器都支持 z-index 属性。</b></p>
+                <p>注释：任何的版本的 Internet Explorer （包括 IE8）都<b>不支持</b>属性值 "inherit"。</p>
+                <p>注释：元素可拥有<b>负</b>的 z-index 属性值。</p>
+                <p>注释：Z-index <b>仅能在定位元素</b>上奏效（(position属性值为 relative 或 absolute 或 fixed的对象)）！</p>
+                <p>这个属性<b>不会作用于窗口控件</b>，如 select 对象。</p>
+                <h2>z-index最大值是<b>2147483647</b>,超出后不会报错 但是 max+1 效果等同 max+100</h2>
             </div>
             <div class="blogFooter">
                 <Tag color="green">green</Tag>

@@ -5,42 +5,42 @@
             <div class="blogContent" v-highlight>
                 <p>流式布局: 好处 大大减少了css的兼容问题和代码量</p>
                 <p>流式布局: 坏处 必须手动指定空白单位数量</p>
+                <script type="text/css">
+                    .box {
+                        width: 200px; height: 200px;
+                        background-color: #000;
+                        border-left: 1px solid red; border-top: 1px solid red;
+                        display: flex; display: -webkit-flex;
+                        flex-flow: row wrap; -webkit-flex-flow: row wrap;
+                        align-content: flex-start; -webkit-align-content: flex-start;
+                    }
+                    .item {
+                        height: 50px;
+                        background-color: #fff;
+                        border-right: 1px solid red; border-bottom: 1px solid red;
+                        box-sizing: border-box;
+                        flex: 0 0 25%; -webkit-flex: 0 0 25%;
+                        display: flex; display: -webkit-flex;
+                        align-items: center; -webkit-align-items: center;
+                        flex-wrap: wrap; -webkit-flex-wrap: wrap;
+                    }
+                    .item div{
+                        height: 20px; width: 100%; line-height: 20px;
+                        background: #f4f4f4;
+                        text-align: center;
+                    }
+                </script>
+                <hr />
                 <Row>
-                    <Col span="16">
-                        <script type="text/html">
-                            .box {
-                                width: 200px; height: 200px;
-                                background-color: #000;
-                                border-left: 1px solid red; border-top: 1px solid red;
-                                display: flex; display: -webkit-flex;
-                                flex-flow: row wrap; -webkit-flex-flow: row wrap;
-                                align-content: flex-start; -webkit-align-content: flex-start;
-                            }
-                            .item {
-                                height: 50px;
-                                background-color: #fff;
-                                border-right: 1px solid red; border-bottom: 1px solid red;
-                                box-sizing: border-box;
-                                flex: 0 0 25%; -webkit-flex: 0 0 25%;
-                                display: flex; display: -webkit-flex;
-                                align-items: center; -webkit-align-items: center;
-                                flex-wrap: wrap; -webkit-flex-wrap: wrap;
-                            }
-                            .item div{
-                                height: 20px; width: 100%; line-height: 20px;
-                                background: #f4f4f4;
-                                text-align: center;
-                            }
-                        </script>
-                    </Col>
-                    <Col span="8">
+                    <Col span="12">
                         <div class="box">
                             <div class="item"><div>$</div></div> <div class="item"><div>$</div></div> <div class="item"><div>$</div></div> <div class="item"><div>$</div></div>
                             <div class="item"><div>$</div></div> <div class="item"><div>$</div></div> <div class="item"><div>$</div></div> <div class="item"><div>$</div></div>
                             <div class="item"><div>$</div></div> <div class="item"><div>$</div></div> <div class="item"><div>$</div></div> <div class="item"><div>$</div></div>
                             <div class="item"><div>$</div></div>
                         </div>
-                        <hr />
+                    </Col>
+                    <Col span="12">
                         <div class="box">
                             <div class="item"><div>$</div></div> <div class="item"><div>$</div></div> <div class="item"><div>$</div></div> <div class="item"><div>$</div></div>
                             <div class="item"><div>$</div></div> <div class="item"><div>$</div></div> <div class="item"><div>$</div></div> <div class="item"><div>$</div></div>
@@ -63,7 +63,7 @@
                     <p>三行就点点点了</p>
                     <Row>
                         <Col span="16">
-                            <script type="text/html">
+                            <script type="text/css">
                                 .box1 {
                                     width: 200px; height: 100px;
                                     background-color: #000;

@@ -3,7 +3,7 @@
         <div class="blog">
             <div class="blogTitle">反引号的推荐使用</div>
             <div class="blogContent" v-highlight>
-                <script type="text/xianjs">
+                <script type="text/js">
                     var a1 = `string text`; // "string text"
                     var a2 = `string text line 1
                                string text line 2`;// "string text line 1 换行 string text line 2"

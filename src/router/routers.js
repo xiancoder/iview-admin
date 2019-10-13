@@ -1,32 +1,6 @@
-import Main from '@V/main'
-import parentView from '@C/parent-view'
-// 处理两层路由
-const makeTwoLevelRoute = (config) => {
-    config.name = config.path
-    config.component = config.component || Main
-    config.path = '/' + config.path
-    config.children = config.children || []
-    config.children.forEach((v, i, a) => {
-        makeTwoLevelRouteItem(v, config.name)
-    })
-    return config
-}
-const makeTwoLevelRouteItem = (config, parentName) => {
-    const path = config.path
-    config.name = parentName + '_' + path
-    config.path = '/' + parentName + '/' + path
-    config.component = () => import('@V/' + parentName + '/' + path + '.vue')
-    config.meta = { keepAlive: false }
-    return config
-}
-// 处理一层路由
-const makeOneLevelRoute = (config) => {
-    const path = config.path
-    config.name = path
-    config.component = () => import('@V/' + path + '.vue')
-    config.path = '/' + config.path
-    return config
-}
+// import parentView from '@C/parent-view'
+import { makeTwoLevelRoute, makeOneLevelRoute } from './util'
+
 export const specialRouterList = ['error401', 'error404', 'error500', 'login', 'locking']
 // 路由视图文件名必须和路由名字路径一致 方便查找定位
 export const routerList = [
@@ -152,6 +126,13 @@ export const routerList = [
             {power: '0000', path: '081templete', title: '标签templete'},
             {power: '0000', path: '082download', title: 'JS控制下载文档'},
             {power: '0000', path: '083innerDB', title: 'innerDB数据库'},
+            {power: '0000', path: '084public', title: '请求public内容'},
+            {power: '0000', path: '085$set', title: 'vue$set的用法'},
+            {power: '0000', path: '086von', title: 'vue v-on深挖'},
+            {power: '0000', path: '087watch', title: 'vue watch深挖'},
+            {power: '0000', path: '088computed', title: 'vue computed深挖'},
+            {power: '0000', path: '089extends', title: 'vue组件的继承'},
+            {power: '0000', path: '090keepalive', title: 'keep-alive'},
             {power: '0000', path: '100newBee', title: '大牛养成'}
         ]
     }),
@@ -255,6 +236,7 @@ export const routerList = [
             {power: '0000', path: 'countto', icon: 'md-download', title: '导出EXCEL'}
         ]
     }),
+    /*
     {
         path: '/multilevel', name: 'multilevel', icon: 'md-menu', title: '多级菜单', component: Main,
         children: [
@@ -269,7 +251,6 @@ export const routerList = [
             {path: 'level_2_3', name: 'level_2_3', icon: 'md-funnel', title: '二级-3', component: () => import('@V/multilevel/level-2-3.vue')}
         ]
     },
-    /*
     {
         path: '/i18n', name: 'i18n', hideInBread: true, component: Main,
         children: [

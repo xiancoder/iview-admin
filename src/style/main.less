@@ -125,14 +125,16 @@
 /* 博客样式 */
 .blogCss{overflow: hidden; background: #f5f7f9;
     /*&:before{content: ""; position: absolute; top: 0; bottom: 0; left: 0; right: 0;  z-index: -10; }*/
-    .blog{ box-shadow: 0 0 1px rgba(0, 0, 0, 0.15); width: 80%; margin: 70px auto; padding: 60px 0 0; background: #fff; }
-    .blogTitle{ font-size: 39px; font-size: 1.5rem; line-height: 1.2308; margin-bottom: 1.2308em; padding: 0 60px; }
+    .blog{ -webkit-box-shadow: 0 0 6px 6px rgb(226, 226, 226); box-shadow: 0 0 6px 6px rgb(226, 226, 226); width: 80%; margin: 50px auto; padding: 60px 0 0; background: #fff;}
+    .blogTitle{ font-size: 39px; font-size: 1.5rem; line-height: 1.2308; margin-bottom: 1.2308em; border-bottom: 3px solid #2d8cf0; margin: 0 57px; padding: 20px 0 13px 0; }
     .blogContent{ padding: 10px 60px 0px;}
     .blogContent > p { font-size: 15px; line-height: 42px; }
     .blogContent p.commend{ display: block; margin: 10px 0; line-height: 20px; padding: 10px; background: #666; color: #00ef77; font-weight: bold; }
     .blogFooter{ min-height: 100px; background: #f8f8f8; padding: 18px 60px 0; margin: 50px 0 0 0; }
     /* 炫目横线 */
     hr{ display: block; width: 80%; margin: 20px auto; border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); }
+    pre{white-space: pre-wrap; }
+    blockquote { background: #f8f8f9; border-left: 8px solid #2d8cf0; padding: 10px 0 10px 20px; }
 }
 /* API样式 */
 table.api{ font-family:Consolas,Menlo,Courier,monospace; font-size:12px; border-collapse:collapse;
@@ -250,3 +252,54 @@ pre.prettyprint {
 /* markdown 编辑器 样式复写 */
 .markdown-wrapper .CodeMirror-fullscreen { z-index: 6000 !important; }
 .CodeMirror-fullscreen { top: 0 !important; }
+/* 文本 超链接 颜色 摘自bootstrap:css */
+a.text-primary:hover { color: #6254b2; }
+.text-primary { color: #7266ba; }
+.text-primary-lt { color: #8278c2; }
+.text-primary-lter { color: #9289ca; }
+.text-primary-dk { color: #6254b2; }
+.text-primary-dker { color: #564aa3; }
+a.bg-info:hover { background-color: #19a9d5; }
+a.text-info:hover { color: #19a9d5; }
+.text-info { color: #23b7e5; }
+.text-info-lt { color: #3abee8; }
+.text-info-lter { color: #51c6ea; }
+.text-info-dk { color: #19a9d5; }
+.text-info-dker { color: #1797be; }
+a.bg-success:hover { background-color: #23ad44; }
+a.text-success:hover { color: #23ad44; }
+.text-success { color: #27c24c; }
+.text-success-lt { color: #2ed556; }
+.text-success-lter { color: #43d967; }
+.text-success-dk { color: #23ad44; }
+.text-success-dker { color: #1e983b; }
+a.bg-warning:hover { background-color: #f9d21a; }
+a.text-warning:hover { color: #f9d21a; }
+.text-warning { color: #fad733; }
+.text-warning-lt { color: #fbdc4c; }
+.text-warning-lter { color: #fbe165; }
+.text-warning-dk { color: #f9d21a; }
+.text-warning-dker { color: #f4ca06; }
+a.bg-danger:hover { background-color: #ee3939; }
+a.text-danger:hover { color: #ee3939; }
+.text-danger { color: #f05050; }
+.text-danger-lt { color: #f26767; }
+.text-danger-lter { color: #f47f7f; }
+.text-danger-dk { color: #ee3939; }
+.text-danger-dker { color: #ec2121; }
+a.bg-dark:hover { background-color: #2f3342; }
+a.text-dark:hover { color: #2f3342; }
+.text-dark { color: #3a3f51; }
+.text-dark-lt { color: #454b60; }
+.text-dark-lter { color: #4f566f; }
+.text-dark-dk { color: #2f3342; }
+.text-dark-dker { color: #252833; }
+a.bg-#000000:hover { background-color: #131e25; }
+a.text-#000000:hover { color: #131e25; }
+.text-#000000 { color: #1c2b36; }
+.text-#000000-lt { color: #253847; }
+.text-#000000-lter { color: #2d4658; }
+.text-#000000-dk { color: #131e25; }
+.text-#000000-dker { color: #0b1014; }
+.text-white { color: #fff; }
+.text-muted { color: #777; }

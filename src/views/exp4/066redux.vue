@@ -45,7 +45,7 @@
                 <p>在我举手的时候 清洁工就在窗户外看到了我(sagas 监听) 不管我举手以后的行为如何 他都会做一件事 把厕所门前打扫干净</p>
                 <p><del>我上厕所的同时又有一个人来上厕所 我比较快 我走出厕所后清洁工就开始重新打扫卫生 整个厕所都扫一遍 把那个人也给扫了</del></p>
                 <p>我上厕所的同时又有一个人来上厕所 我比较快 我走出厕所后稍等另一人也出来了清洁工就开始重新打扫卫生 整个厕所都扫一遍</p>
-                <script type="text/xianjs">
+                <script type="text/js">
                     // # types #
                     // config.js
                     export const APPID = 'APPID'; // appid
@@ -60,7 +60,7 @@
                     // index.js
                     export * from './config';
                 </script>
-                <script type="text/xianjs">
+                <script type="text/js">
                     // # reducers #
                     // config.js
                     import { handleActions } from 'redux-actions';
@@ -82,7 +82,7 @@
                         userInfo
                     });
                 </script>
-                <script type="text/xianjs">
+                <script type="text/js">
                     // # actions #
                     // config.js
                     import { SESSIONID } from '../types/config';
@@ -93,7 +93,7 @@
                     // index.js
                     export * from './config';
                 </script>
-                <script type="text/xianjs">
+                <script type="text/js">
                     // # sagas #
                     // config.js
                     import wepy from 'wepy';

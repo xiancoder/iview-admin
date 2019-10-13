@@ -1,7 +1,7 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle"></div>
+            <div class="blogTitle">三大框架多方面比较</div>
             <div class="blogContent" v-highlight>
                 <p>我生活、工作中有很多的问题需要我去解决，使用能用 React 解决的问题，用 Vue 成本并不会变低。<b>他们都是同一时代的产品不同的解决方案而已</b>。当别人提起是 亚马逊 的商业模式正确还是 阿里巴巴 商业模式正确的时候，马云说：我希望两种模式都正确，如果世界只有一种模式，那就太无聊了。</p>
                 <p>现在的程序员经常被产品经理牵着鼻子走，明明是掌握更多信息的人，反而被一些外行瞎扯淡带跑。所以，程序员想提升自己的核心竞争力，就要有产品思维。<b>简单来说就是程序员真的是要比产品经理更懂市场，更懂产品，更会好好说话，才能提升自己的核心竞争力</b>。你们膜拜的 evan you 就是这样的人。</p>
@@ -68,9 +68,6 @@
         </div>
     </div>
 </template>
-<style type="text/css">
-    .blogContent p {text-indent: 2em;}
-</style>
 <script>
 export default {
     data () {

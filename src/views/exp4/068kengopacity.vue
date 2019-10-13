@@ -1,8 +1,12 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle"></div>
+            <div class="blogTitle">opacity透明度有坑</div>
             <div class="blogContent" v-highlight>
+                <script type="text/css">
+                    .box1{ background: red; height: 100px; width: 150px; opacity:0.5; }
+                    .box2{ background: rgba(225,0,0,0.5); height: 100px; width: 150px; }
+                </script>
                 <p>块级元素你使用了opacity来做透明度的话 它会使子元素跟着也透明</p>
                 <div style="background: #ddd;">
                     <div class="box1">

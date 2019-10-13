@@ -10,7 +10,7 @@
                 <p>与flex分为伸缩容器和伸缩项目类似，grid也分为网格容器和网格项目</p>
                 <table class="table"> <thead> <tr> <th ><span>Chrome</span></th> <th ><span>Opera</span></th> <th ><span>Firefox</span></th> <th ><span>IE</span></th> <th ><span>Edge</span></th> <th ><span>Safari</span></th> </tr> </thead> <tbody> <tr> <td  title="Chrome - " data-browser-name="Chrome"><span >57</span></td> <td  title="Opera - " data-browser-name="Opera"><span >44</span></td> <td  title="Firefox - " data-browser-name="Firefox"><span >52</span></td> <td  title="IE - " data-browser-name="IE"><span >11*</span></td> <td  title="Edge - " data-browser-name="Edge"><span >16</span></td> <td  title="Safari - " data-browser-name="Safari"><span >10.1</span></td> </tr> </tbody> </table>
                 <table class="table"> <thead> <tr> <th ><span>iOS Safari</span></th> <th ><span>Opera Mobile</span></th> <th ><span>Opera Mini</span></th> <th ><span>Android</span></th> <th ><span>Android Chrome</span></th> <th ><span>Android Firefox</span></th> </tr> </thead> <tbody> <tr> <td  title="iOS Safari - " data-browser-name="iOS Safari"><span >10.3</span></td> <td  title="Opera Mobile - " data-browser-name="Opera Mobile"><span >No</span></td> <td  title="Opera Mini - " data-browser-name="Opera Mini"><span >No</span></td> <td  title="Android - " data-browser-name="Android"><span >62</span></td> <td  title="Android Chrome - " data-browser-name="Android Chrome"><span >62</span></td> <td  title="Android Firefox - " data-browser-name="Android Firefox"><span >57</span></td> </tr> </tbody> </table>
-                <script type="text/xian">
+                <script type="text/css">
                     .box{
                         display: grid;
                         display: -webkit-grid; /* Safari */
@@ -23,7 +23,7 @@
                 <p>行的高度可以是任何非负值，长度可以是px、%、em等长度单位的值</p>
                 <Row>
                     <Col span="12">
-                        <script type="text/xianjs">
+                        <script type="text/css">
                             .box {
                                 /*容器属性*/
                                 grid-template-rows: 60px 70px 80px
@@ -37,7 +37,7 @@
                     </Col>
                 </Row>
                 <p>grid-template-columns指定的每个值来创建每列的列宽。</p>
-                <script type="text/xianjs">
+                <script type="text/css">
                     .box {
                         /*容器属性*/
                         grid-template-columns: 60px 70px 80px
@@ -51,7 +51,7 @@
                 <p>fr单位可以帮助我们创建一个弹列的网格轨道。它代表了网格容器中可用的空间（就像Flexbox中无单位的值）。</p>
                 <p>在这个示例中，网格容器分成了4等份（1 + 1 + 2 = 4），每一份（1fr）是网格容器宽度的四分之一。</p>
                 <p>所以item1和item2的宽度是网格容器的四分之一宽，item3是网格容器宽度的四分之二（2fr）</p>
-                <script type="text/xianjs">
+                <script type="text/css">
                     .box {
                         /*容器属性*/
                         grid-template-columns: 1fr 1fr 2fr
@@ -73,7 +73,7 @@
                 <p>通过grid-template-rows和grid-template-columns定义网格时，网格线可以被命名。</p>
                 <p>分配网格线名称必须用方括号[网格线名称]，然后后面紧跟网格轨道的尺寸值。</p>
                 <p>定义网格线名称时需要避免使用规范中出现的关键词，以免导致混乱。</p>
-                <script type="text/xianjs">
+                <script type="text/css">
                     .box {
                         /*容器属性*/
                         display: grid;
@@ -97,7 +97,7 @@
                 </div>
                 <p>minmax()函数来创建网格轨道的最小或最大尺寸。</p>
                 <p>可以接受任何长度值，也接受auto值。auto值允许网格轨道基于内容的尺寸拉伸或挤压</p>
-                <script type="text/xianjs">
+                <script type="text/css">
                     .box {
                         /*容器属性*/
                         grid-template-rows: minmax(100px, auto);
@@ -106,7 +106,7 @@
                 </script>
                 <p>repeat()可以创建重复的网格轨道。</p>
                 <p>这个适用于创建相等尺寸的网格项目和多个网格项目。</p>
-                <script type="text/xianjs">
+                <script type="text/css">
                     .box {
                         /*容器属性*/
                         grid-template-rows: repeat(3, 1fr);
@@ -118,7 +118,7 @@
                 <p>grid-gap 默认值为0</p>
                 <p>[注意]grid-gap只能创建列与列或行与行之间的间距，但不能创建列和行与网格容器边缘的间距</p>
                 <p>间距(Gap)可以设置任何非负值，长度值可以是px、%、em等单位值</p>
-                <script type="text/xianjs">
+                <script type="text/css">
                     .box {
                         /*容器属性*/
                         grid-column-gap: 6px
@@ -134,7 +134,7 @@
                 <p>【grid-row-start】 【grid-row-end】 【grid-column-start】 【grid-column-end】 默认值为auto</p>
                 <p>通过网格线可以定位网格项目。网格线实际上是代表线的开始、结束，两者之间就是网格列或行。</p>
                 <p>每条线是从网格轨道开始，网格的网格线从1开始，每条网格线逐步增加1</p>
-                <script type="text/xianjs">
+                <script type="text/css">
                     .item {
                         /*项目属性*/
                         grid-row-start: 2;
@@ -151,7 +151,7 @@
                 <p>【grid-row】 【grid-column】【grid-area】</p>
                 <p>grid-row是grid-row-start和grid-row-end的简写。</p>
                 <p>grid-area如果指定四个值，第一个值对应grid-row-start，第二个值对应grid-column-start，第三个值对应grid-row-end，第四个值对应grid-column-end</p>
-                <script type="text/xianjs">
+                <script type="text/css">
                     .item {
                         /*项目属性*/
                         grid-row: 2;
@@ -160,7 +160,7 @@
                     }
                 </script>
                 <p>【span】 关键词span后面紧随数字，表示合并多少个列或行</p>
-                <script type="text/xianjs">
+                <script type="text/css">
                     .item {
                         /*项目属性*/
                         grid-row: 1 / span 3;

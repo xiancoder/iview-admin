@@ -6,7 +6,7 @@
                 <p>从 3.2.0 版本开始支持 slot-scope 写法。</p>
                 <p>在 columns 的某列声明 slot 后，就可以在 Table 的 slot 中使用 slot-scope。</p>
                 <p>slot-scope 的参数有 3 个：当前行数据 row，当前列数据 column，当前行序号 index。</p>
-                <Table border border :columns="columns12" :data="data6"></Table>
+                <Table border :columns="columns12" :data="data6"></Table>
             </div>
             <div class="blogFooter">
                 <Tag color="green">green</Tag>

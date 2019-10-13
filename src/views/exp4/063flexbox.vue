@@ -10,284 +10,278 @@
                 </p>
                 <p>基本概念 : Flex容器/Flex项目/水平的主轴/垂直的交叉轴</p>
                 <p>项目默认沿主轴排列</p>
-                <p>============================================</p>
-                <Row :gutter="16">
-                    <Col span="12">
-                        <p>flex-direction属性决定主轴的方向（即项目的排列方向）</p>
-                        <script type="text/html">
-                            .box {
-                                /*容器属性*/
-                                flex-direction: row;/*主轴为水平方向，起点在左端。默认值*/
-                                flex-direction: row-reverse;/*主轴为水平方向，起点在右端*/
-                                flex-direction: column;/*主轴为垂直方向，起点在上沿。*/
-                                flex-direction: column-reverse;/*主轴为垂直方向，起点在下沿。*/
-                                -webkit-flex-direction: row-reverse; /* Safari 6.1+ */
-                            }
-                        </script>
-                        <Row>
-                            <Col span="6" class="box box11">
-                                <div class="item red"></div>
-                                <div class="item yellow"></div>
-                                <div class="item blue"></div>
-                            </Col>
-                            <Col span="6" class="box box12">
-                                <div class="item red"></div>
-                                <div class="item yellow"></div>
-                                <div class="item blue"></div>
-                            </Col>
-                            <Col span="6" class="box box13">
-                                <div class="item red"></div>
-                                <div class="item yellow"></div>
-                                <div class="item blue"></div>
-                            </Col>
-                            <Col span="6" class="box box14">
-                                <div class="item red"></div>
-                                <div class="item yellow"></div>
-                                <div class="item blue"></div>
-                            </Col>
-                        </Row>
-                        <p>flex-wrap 属性决定主轴上的项目是否换行，如果一条轴线排不下，换行。</p>
-                        <script type="text/html">
-                            .box {
-                                /*容器属性*/
-                                flex-wrap: nowrap;/*（默认）：不换行。*/
-                                flex-wrap: wrap;/*换行，第一行在上方。*/
-                                flex-wrap: wrap-reverse;/*换行，第一行在下方。*/
-                                -webkit-flex-wrap: wrap; /* Safari 6.1+ */
-                            }
-                        </script>
-                        <Row>
-                            <Col span="8">
-                                <div class="box box21">
-                                    <div class="item red"></div>
-                                    <div class="item yellow"></div>
-                                    <div class="item blue"></div>
-                                </div>
-                            </Col>
-                            <Col span="8">
-                                <div class="box box22">
-                                    <div class="item red"></div>
-                                    <div class="item yellow"></div>
-                                    <div class="item blue"></div>
-                                </div>
-                            </Col>
-                            <Col span="8">
-                                <div class="box box23">
-                                    <div class="item red"></div>
-                                    <div class="item yellow"></div>
-                                    <div class="item blue"></div>
-                                </div>
-                            </Col>
-                        </Row>
-                        <p>flex-flow 属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</p>
-                        <script type="text/html">
-                            .box {
-                                /*容器属性*/
-                                flex-flow: <flex-direction> || <flex-wrap>;
-                            }
-                        </script>
-                        <p>justify-content 属性定义了项目在主轴上的对齐方式。</p>
-                        <script type="text/html">
-                            .box {
-                                /*容器属性*/
-                                justify-content: flex-start;/*（默认值）：左对齐*/
-                                justify-content: flex-end;/*右对齐*/
-                                justify-content: center;/*居中*/
-                                justify-content: space-between;/*两端对齐，项目之间的间隔都相等。*/
-                                justify-content: space-around;/*每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。*/
-                                -webkit-justify-content: space-around; /* Safari 6.1+ */
-                            }
-                        </script>
-                        <div class="box box31">
-                            <div class="item red"></div>
-                            <div class="item blue"></div>
-                            <div class="item yellow" style="width:100px"></div>
-                            <div class="item red"></div>
-                            <div class="item blue"></div>
-                        </div>
-                        <div class="box box32">
-                            <div class="item red"></div>
-                            <div class="item blue"></div>
-                            <div class="item yellow" style="width:100px"></div>
-                            <div class="item red"></div>
-                            <div class="item blue"></div>
-                        </div>
-                        <div class="box box33">
-                            <div class="item red"></div>
-                            <div class="item blue"></div>
-                            <div class="item yellow" style="width:100px"></div>
-                            <div class="item red"></div>
-                            <div class="item blue"></div>
-                        </div>
-                        <div class="box box34">
-                            <div class="item red"></div>
-                            <div class="item blue"></div>
-                            <div class="item yellow" style="width:100px"></div>
-                            <div class="item red"></div>
-                            <div class="item blue"></div>
-                        </div>
-                        <div class="box box35">
-                            <div class="item red"></div>
-                            <div class="item blue"></div>
-                            <div class="item yellow" style="width:100px"></div>
-                            <div class="item red"></div>
-                            <div class="item blue"></div>
-                        </div>
-                        <p>align-items 属性定义项目在交叉轴上如何对齐。</p>
-                        <script type="text/html">
-                            .box {
-                                /*容器属性*/
-                                align-items: flex-start;/*交叉轴的起点对齐。*/
-                                align-items: flex-end;/*交叉轴的终点对齐。*/
-                                align-items: center;/*交叉轴的中点对齐。*/
-                                align-items: baseline;/*项目的第一行文字的基线对齐。*/
-                                align-items: stretch;/*（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。*/
-                                -webkit-align-items: center; /* Safari 7.0+ */
-                            }
-                        </script>
-                        <Row>
-                            <Col span="6" class="box box41">
-                                <div class="item red"></div>
-                                <div class="item yellow" style="height:100px"></div>
-                                <div class="item blue"></div>
-                            </Col>
-                            <Col span="6" class="box box42">
-                                <div class="item red"></div>
-                                <div class="item yellow" style="height:100px"></div>
-                                <div class="item blue"></div>
-                            </Col>
-                            <Col span="6" class="box box43">
-                                <div class="item red"></div>
-                                <div class="item yellow" style="height:100px"></div>
-                                <div class="item blue"></div>
-                            </Col>
-                            <Col span="6" class="box box44">
-                                <div class="item red" style="height:auto"></div>
-                                <div class="item yellow" style="height:auto"></div>
-                                <div class="item blue" style="height:auto"></div>
-                            </Col>
-                        </Row>
-                        <p>align-content 属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>
-                        <script type="text/html">
-                            .box {
-                                /*先决条件*/
-                                flex-wrap: wrap;
-                                -webkit-flex-wrap: wrap;
-                                /*容器属性*/
-                                align-content: flex-start;/*与交叉轴的起点对齐。*/
-                                align-content: flex-end;/*与交叉轴的终点对齐。*/
-                                align-content: center;/*与交叉轴的中点对齐。*/
-                                align-content: space-between;/*与交叉轴两端对齐，轴线之间的间隔平均分布。*/
-                                align-content: space-around;/*每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。*/
-                                align-content: stretch;/*（默认值）：轴线占满整个交叉轴。*/
-                                -webkit-align-content: center; /* Safari 7.0+ */
-                            }
-                        </script>
-                        <Row>
-                            <Col span="4" class=" box box51">
-                                <div class="item red"></div>
-                                <div class="item yellow"></div>
-                                <div class="item blue"></div>
-                            </Col>
-                            <Col span="4" class=" box box52">
-                                <div class="item red"></div>
-                                <div class="item yellow"></div>
-                                <div class="item blue"></div>
-                            </Col>
-                            <Col span="4" class=" box box53">
-                                <div class="item red"></div>
-                                <div class="item yellow"></div>
-                                <div class="item blue"></div>
-                            </Col>
-                            <Col span="4" class=" box box54">
-                                <div class="item red"></div>
-                                <div class="item yellow"></div>
-                                <div class="item blue"></div>
-                            </Col>
-                            <Col span="4" class=" box box55">
-                                <div class="item red"></div>
-                                <div class="item yellow"></div>
-                                <div class="item blue"></div>
-                            </Col>
-                            <Col span="4" class=" box box56">
-                                <div class="item red"></div>
-                                <div class="item yellow"></div>
-                                <div class="item blue"></div>
-                            </Col>
-                        </Row>
+                <hr />
+                <p>flex-direction属性决定主轴的方向（即项目的排列方向）</p>
+                <script type="text/css">
+                    .box {
+                        /*容器属性*/
+                        flex-direction: row;/*主轴为水平方向，起点在左端。默认值*/
+                        flex-direction: row-reverse;/*主轴为水平方向，起点在右端*/
+                        flex-direction: column;/*主轴为垂直方向，起点在上沿。*/
+                        flex-direction: column-reverse;/*主轴为垂直方向，起点在下沿。*/
+                        -webkit-flex-direction: row-reverse; /* Safari 6.1+ */
+                    }
+                </script>
+                <Row>
+                    <Col span="6" class="box box11">
+                        <div class="item red"></div>
+                        <div class="item yellow"></div>
+                        <div class="item blue"></div>
                     </Col>
-                    <Col span="12">
-                        <p>order 属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
-                        <script type="text/html">
-                            .box {
-                                /*项目属性*/
-                                order: <integer>;
-                                -webkit-order: <integer>; /* Safari 7.0+ */
-                            }
-                        </script>
+                    <Col span="6" class="box box12">
+                        <div class="item red"></div>
+                        <div class="item yellow"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                    <Col span="6" class="box box13">
+                        <div class="item red"></div>
+                        <div class="item yellow"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                    <Col span="6" class="box box14">
+                        <div class="item red"></div>
+                        <div class="item yellow"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                </Row>
+                <p>flex-wrap 属性决定主轴上的项目是否换行，如果一条轴线排不下，换行。</p>
+                <script type="text/css">
+                    .box {
+                        /*容器属性*/
+                        flex-wrap: nowrap;/*（默认）：不换行。*/
+                        flex-wrap: wrap;/*换行，第一行在上方。*/
+                        flex-wrap: wrap-reverse;/*换行，第一行在下方。*/
+                        -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+                    }
+                </script>
+                <Row>
+                    <Col span="8">
                         <div class="box box21">
-                            <div class="item red" style="order:3"></div>
-                            <div class="item yellow" style="order:1"></div>
-                            <div class="item blue" style="order:2"></div>
-                        </div>
-                        <p>flex-grow 属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p>
-                        <p>如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。</p>
-                        <p>如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
-                        <script type="text/html">
-                            .box {
-                                /*项目属性*/
-                                flex-grow: <integer>; /* default 0 */
-                                -webkit-flex-grow: <integer>; /* Safari 7.0+ */
-                            }
-                        </script>
-                        <div class="box box21">
-                            <div class="item red" style="flex-grow:1"></div>
-                            <div class="item yellow" style="flex-grow:1"></div>
-                            <div class="item blue" style="flex-grow:1"></div>
-                        </div>
-                        <p>flex-shrink 属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
-                        <p>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。</p>
-                        <p>如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。</p>
-                        <script type="text/html">
-                            .box {
-                                /*项目属性*/
-                                flex-shrink: <integer>; /* default 1 */
-                                -webkit-flex-shrink: <integer>; /* Safari 7.0+ */
-                            }
-                        </script>
-                        <p>flex-basis 属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。</p>
-                        <p>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p>
-                        <script type="text/html">
-                            .box {
-                                /*项目属性*/
-                                flex-basis: <length> | auto; /* default auto */
-                                -webkit-flex-basis: <length> | auto; /* Safari 7.0+ */
-                            }
-                        </script>
-                        <p>flex 属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。</p>
-                        <p>该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。</p>
-                        <script type="text/html">
-                            .box {
-                                /*项目属性*/
-                                flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
-                                -webkit-flex: auto; /* Safari 7.0+ */
-                            }
-                        </script>
-                        <p>align-self 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。</p>
-                        <p>默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
-                        <script type="text/html">
-                            .box {
-                                /*项目属性*/
-                                align-self: auto | flex-start | flex-end | center | baseline | stretch;
-                            }
-                        </script>
-                        <div class="box box41" style="height:100px">
                             <div class="item red"></div>
-                            <div class="item yellow" style="align-self:flex-end"></div>
+                            <div class="item yellow"></div>
+                            <div class="item blue"></div>
+                        </div>
+                    </Col>
+                    <Col span="8">
+                        <div class="box box22">
+                            <div class="item red"></div>
+                            <div class="item yellow"></div>
+                            <div class="item blue"></div>
+                        </div>
+                    </Col>
+                    <Col span="8">
+                        <div class="box box23">
+                            <div class="item red"></div>
+                            <div class="item yellow"></div>
                             <div class="item blue"></div>
                         </div>
                     </Col>
                 </Row>
+                <p>flex-flow 属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</p>
+                <script type="text/css">
+                    .box {
+                        /*容器属性*/
+                        flex-flow: <flex-direction> || <flex-wrap>;
+                    }
+                </script>
+                <p>justify-content 属性定义了项目在主轴上的对齐方式。</p>
+                <script type="text/css">
+                    .box {
+                        /*容器属性*/
+                        justify-content: flex-start;/*（默认值）：左对齐*/
+                        justify-content: flex-end;/*右对齐*/
+                        justify-content: center;/*居中*/
+                        justify-content: space-between;/*两端对齐，项目之间的间隔都相等。*/
+                        justify-content: space-around;/*每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。*/
+                        -webkit-justify-content: space-around; /* Safari 6.1+ */
+                    }
+                </script>
+                <div class="box box31">
+                    <div class="item red"></div>
+                    <div class="item blue"></div>
+                    <div class="item yellow" style="width:100px"></div>
+                    <div class="item red"></div>
+                    <div class="item blue"></div>
+                </div>
+                <div class="box box32">
+                    <div class="item red"></div>
+                    <div class="item blue"></div>
+                    <div class="item yellow" style="width:100px"></div>
+                    <div class="item red"></div>
+                    <div class="item blue"></div>
+                </div>
+                <div class="box box33">
+                    <div class="item red"></div>
+                    <div class="item blue"></div>
+                    <div class="item yellow" style="width:100px"></div>
+                    <div class="item red"></div>
+                    <div class="item blue"></div>
+                </div>
+                <div class="box box34">
+                    <div class="item red"></div>
+                    <div class="item blue"></div>
+                    <div class="item yellow" style="width:100px"></div>
+                    <div class="item red"></div>
+                    <div class="item blue"></div>
+                </div>
+                <div class="box box35">
+                    <div class="item red"></div>
+                    <div class="item blue"></div>
+                    <div class="item yellow" style="width:100px"></div>
+                    <div class="item red"></div>
+                    <div class="item blue"></div>
+                </div>
+                <p>align-items 属性定义项目在交叉轴上如何对齐。</p>
+                <script type="text/css">
+                    .box {
+                        /*容器属性*/
+                        align-items: flex-start;/*交叉轴的起点对齐。*/
+                        align-items: flex-end;/*交叉轴的终点对齐。*/
+                        align-items: center;/*交叉轴的中点对齐。*/
+                        align-items: baseline;/*项目的第一行文字的基线对齐。*/
+                        align-items: stretch;/*（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。*/
+                        -webkit-align-items: center; /* Safari 7.0+ */
+                    }
+                </script>
+                <Row>
+                    <Col span="6" class="box box41">
+                        <div class="item red"></div>
+                        <div class="item yellow" style="height:100px"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                    <Col span="6" class="box box42">
+                        <div class="item red"></div>
+                        <div class="item yellow" style="height:100px"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                    <Col span="6" class="box box43">
+                        <div class="item red"></div>
+                        <div class="item yellow" style="height:100px"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                    <Col span="6" class="box box44">
+                        <div class="item red" style="height:auto"></div>
+                        <div class="item yellow" style="height:auto"></div>
+                        <div class="item blue" style="height:auto"></div>
+                    </Col>
+                </Row>
+                <p>align-content 属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>
+                <script type="text/css">
+                    .box {
+                        /*先决条件*/
+                        flex-wrap: wrap;
+                        -webkit-flex-wrap: wrap;
+                        /*容器属性*/
+                        align-content: flex-start;/*与交叉轴的起点对齐。*/
+                        align-content: flex-end;/*与交叉轴的终点对齐。*/
+                        align-content: center;/*与交叉轴的中点对齐。*/
+                        align-content: space-between;/*与交叉轴两端对齐，轴线之间的间隔平均分布。*/
+                        align-content: space-around;/*每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。*/
+                        align-content: stretch;/*（默认值）：轴线占满整个交叉轴。*/
+                        -webkit-align-content: center; /* Safari 7.0+ */
+                    }
+                </script>
+                <Row>
+                    <Col span="4" class=" box box51">
+                        <div class="item red"></div>
+                        <div class="item yellow"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                    <Col span="4" class=" box box52">
+                        <div class="item red"></div>
+                        <div class="item yellow"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                    <Col span="4" class=" box box53">
+                        <div class="item red"></div>
+                        <div class="item yellow"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                    <Col span="4" class=" box box54">
+                        <div class="item red"></div>
+                        <div class="item yellow"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                    <Col span="4" class=" box box55">
+                        <div class="item red"></div>
+                        <div class="item yellow"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                    <Col span="4" class=" box box56">
+                        <div class="item red"></div>
+                        <div class="item yellow"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                </Row>
+                <p>order 属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
+                <script type="text/css">
+                    .box {
+                        /*项目属性*/
+                        order: <integer>;
+                        -webkit-order: <integer>; /* Safari 7.0+ */
+                    }
+                </script>
+                <div class="box box21">
+                    <div class="item red" style="order:3"></div>
+                    <div class="item yellow" style="order:1"></div>
+                    <div class="item blue" style="order:2"></div>
+                </div>
+                <p>flex-grow 属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p>
+                <p>如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。</p>
+                <p>如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
+                <script type="text/css">
+                    .box {
+                        /*项目属性*/
+                        flex-grow: <integer>; /* default 0 */
+                        -webkit-flex-grow: <integer>; /* Safari 7.0+ */
+                    }
+                </script>
+                <div class="box box21">
+                    <div class="item red" style="flex-grow:1"></div>
+                    <div class="item yellow" style="flex-grow:1"></div>
+                    <div class="item blue" style="flex-grow:1"></div>
+                </div>
+                <p>flex-shrink 属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
+                <p>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。</p>
+                <p>如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。</p>
+                <script type="text/css">
+                    .box {
+                        /*项目属性*/
+                        flex-shrink: <integer>; /* default 1 */
+                        -webkit-flex-shrink: <integer>; /* Safari 7.0+ */
+                    }
+                </script>
+                <p>flex-basis 属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。</p>
+                <p>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p>
+                <script type="text/css">
+                    .box {
+                        /*项目属性*/
+                        flex-basis: <length> | auto; /* default auto */
+                        -webkit-flex-basis: <length> | auto; /* Safari 7.0+ */
+                    }
+                </script>
+                <p>flex 属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。</p>
+                <p>该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。</p>
+                <script type="text/css">
+                    .box {
+                        /*项目属性*/
+                        flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+                        -webkit-flex: auto; /* Safari 7.0+ */
+                    }
+                </script>
+                <p>align-self 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。</p>
+                <p>默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
+                <script type="text/css">
+                    .box {
+                        /*项目属性*/
+                        align-self: auto | flex-start | flex-end | center | baseline | stretch;
+                    }
+                </script>
+                <div class="box box41" style="height:100px">
+                    <div class="item red"></div>
+                    <div class="item yellow" style="align-self:flex-end"></div>
+                    <div class="item blue"></div>
+                </div>
             </div>
             <div class="blogFooter">
                 <Tag color="green">green</Tag>

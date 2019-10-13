@@ -2,10 +2,10 @@
     <div class="blogCss">
         <div class="blog">
             <div class="blogTitle">uglifyjs来解救NG任礼游非amd模式老项目</div>
-            <div class="blogContent" v-highlight>
+            <div class="blogContent" v-highlight v-betterpre>
                 <h2>UglifyJS中文文档</h2>
                 <p><a href="https://segmentfault.com/a/1190000008995453#articleHeader8">资料来源 https://segmentfault.com/a/1190000008995453#articleHeader8</a></p>
-                <pre batter-pre>
+                <pre >
                     parse 解释
                     compress 压缩
                     mangle 混淆
@@ -24,11 +24,11 @@
                 <hr />
                 <p>首先确认一直你已经安装了最新的node.js(装完后或许需要重启一下电脑)</p>
                 <p>然后安装</p>
-                <pre>npm install uglify-js -g</pre>
+                <code>npm install uglify-js -g</code>
                 <p>然后使用</p>
-                <pre>uglifyjs [input files] [options]</pre>
+                <code>uglifyjs [input files] [options]</code>
                 <p>以下是可用的选项：</p>
-                <pre batter-pre>
+                <pre>
                     --source-map 指定输出的文件产生一份sourcemap
                     --source-map-root 此路径中的源码编译后会产生sourcemap
                     --source-map-url 放在//#sourceMappingURL的sourcemap路径.  默认是 --source-map传入的值.
@@ -68,7 +68,7 @@
                     --pure-funcs 假如返回值没被调用则可以安全移除的函数。 例如`--pure-funcs Math.floor console.info`(需要设置 `--compress`)
                 </pre>
                 <p>批处理</p>
-                <script type="text/xianjs">
+                <script type="text/php">
                     @echo off
                     :: 设置压缩JS文件的根目录，脚本会自动按树层次查找和压缩所有的JS
                     ::（注意路劲中不能有空格）
@@ -82,7 +82,7 @@
                     echo done!
                     pause & exit
                 </script>
-                <script type="text/xianjs">
+                <script type="text/php">
                     @echo off
                     :: 设置压缩JS文件的根目录，脚本会自动按树层次查找和压缩所有的JS
                     ::（注意路劲中不能有空格）
