@@ -2,19 +2,20 @@ import axios from 'axios'
 import { success, error } from '@/tools'
 export default {
     found ({id, taskName, taskPriority, completeTime, taskContent, personLiable, fileList, correlation}) { // 发布任务
-        if (taskPriority !== 2) { completeTime = '' }
-        let fd = new FormData();
-        fd.append('id', id || null)
-        fd.append('taskName', taskName);
-        fd.append('taskPriority', taskPriority);
-        fd.append('completeTime', completeTime || null);
-        fd.append('taskContent', taskContent);
-        fd.append('personLiable', personLiable);
-        fd.append('correlation', correlation.length === 0 ? null : correlation);
-        for (let file in fileList) {
-            fd.append('file', fileList[file]);
-        }
+        // 如果参数传递有形参要求 但不传对象来 会卡住 且不报错
         return new Promise((resolve, reject) => {
+            if (taskPriority !== 2) { completeTime = '' }
+            let fd = new FormData();
+            fd.append('id', id || null)
+            fd.append('taskName', taskName);
+            fd.append('taskPriority', taskPriority);
+            fd.append('completeTime', completeTime || null);
+            fd.append('taskContent', taskContent);
+            fd.append('personLiable', personLiable);
+            fd.append('correlation', correlation.length === 0 ? null : correlation);
+            for (let file in fileList) {
+                fd.append('file', fileList[file]);
+            }
             axios.request({
                 method: 'post',
                 url: 'api/task/found',

@@ -48,7 +48,7 @@
 
 <script>
 import beforeCloseFun from '@/router/before-close'
-import { routeEqual } from '@/router'
+import { routeEqual } from '@/router/util'
 export default {
     name: 'TagsNav',
     data () {

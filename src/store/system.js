@@ -30,6 +30,7 @@ export default {
         tagNavList: cache.getTagNavList() || [], // 历史记录tab
         errorList: [], // 错误列表
         doNotDrawRouter: false, // 不要渲染路由
+        cacheList: [], // keepalive的页面
         author: 'liuyp' // 版权所有
     },
     getters: {
@@ -51,6 +52,7 @@ export default {
         updateAccess (state, access) { state.access = access }, // 设置登录标识
         updateToken (state, token) { cache.setUserToken(token); state.token = token }, // 设置服务器token
         removeToken (state, token) { cache.clearAll(); state.token = '' }, // 设置服务器token
+        updateCacheList (state, list) { state.cacheList = list }, // 设置keepalive的页面
         updateTagNavList (state, list) { cache.setTagNavList(list); state.tagNavList = list }, // 设置历史记录tab
         updateNewMessageNum (state, num) { state.newMessageNum = num }, // 触发读取接口 保存最新消息数量
         updatePowerList (state, list) { state.powerList = list }, // 设置权限列表
@@ -130,6 +132,29 @@ export default {
         routeSpin ({ commit }, bool) { // 启动关闭路由视图loading
             if (bool) commit('updateRouteSpin', true)
             else setTimeout(function () { commit('updateRouteSpin', false) }, 500)
+        },
+        keepalive ({ state, commit }, toname) { // 启动关闭路由视图loading
+            if (state.cacheList && state.cacheList.length) {
+                let includes = false
+                let ins = false
+                state.cacheList.forEach(row => {
+                    if (toname.includes(row)) { includes = true }
+                    if (toname === row) { ins = true }
+                })
+                if (ins) {
+                    console.info('仙', '路由keepAlive*')
+                    return false
+                }
+                if (includes) {
+                    const x = Object.assign(state.cacheList)
+                    x.push(toname)
+                    commit('updateCacheList', x)
+                    console.info('仙', '路由keepAlive+', x)
+                    return false
+                }
+            }
+            console.info('仙', '路由keepAlive-', toname)
+            commit('updateCacheList', [toname])
         },
         getUserInfo ({ state, commit }) { // 获取管理员相关信息
             return new Promise((resolve, reject) => {

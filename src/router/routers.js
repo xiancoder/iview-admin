@@ -132,10 +132,21 @@ export const routerList = [
             {power: '0000', path: '087watch', title: 'vue watch深挖'},
             {power: '0000', path: '088computed', title: 'vue computed深挖'},
             {power: '0000', path: '089extends', title: 'vue组件的继承'},
-            {power: '0000', path: '090keepalive', title: 'keep-alive'},
-            {power: '0000', path: '100newBee', title: '大牛养成'}
+            {power: '0000', path: '090keepalive', title: 'keep-alive', keepAlive: true},
+            {power: '0000', path: '090keepalive@add', title: 'keep-alive编辑页', hideMenu: true},
+            {power: '0000', path: '091textcss', title: '文本样式'},
+            {power: '0000', path: '092waining', title: '警告内容样式'},
+            {power: '0000', path: '093ddd', title: '换行/省略号'},
+            {power: '0000', path: '094mouse', title: '鼠标样式'},
+            {power: '0000', path: '095qqimg', title: 'qq头像排列'},
+            {power: '0000', path: '096xiewen', title: '斜纹样式'},
+            {power: '0000', path: '097shadow', title: '阴影样式'},
+            {power: '0000', path: '098sidai', title: '丝带样式'},
+            {power: '0000', path: '099css3xingzhuang', title: 'css3绘制各种形状'},
+            {power: '0000', path: '100autofontsize', title: '自动字体大小'}
         ]
     }),
+
     makeTwoLevelRoute({
         path: 'tool', title: '趁手工具第三代', icon: 'md-globe',
         children: [

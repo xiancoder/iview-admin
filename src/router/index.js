@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import { Store } from '@/store'
-import { objEqual } from '@/utils/object'
 import { LoadingBarRun } from '@/tools'
 import { routerList as routes, specialRouterList } from './routers'
 import Config from '@/config'
@@ -45,26 +44,17 @@ export const power2routes = (powerList) => { // 根据权限更新视图
     Store.dispatch('system/setMenuList', list) // 左侧树数据源
     Store.dispatch('system/setRoutePowerList', listOneLevel) // 一维数组
 }
-/**
- * @description 根据name/params/query判断两个路由对象是否相等
- * @param {*} route1 路由对象
- * @param {*} route2 路由对象
- */
-export const routeEqual = (route1, route2) => {
-    const params1 = route1.params || {}
-    const params2 = route2.params || {}
-    const query1 = route1.query || {}
-    const query2 = route2.query || {}
-    return (route1.name === route2.name) && objEqual(params1, params2) && objEqual(query1, query2)
-}
 router.beforeEach((to, from, next) => {
     console.info('仙', '准备跳转', to)
     if (Store.state.system.doNotDrawRouter) { return } // 回退再前进 之间的页面不做渲染
     LoadingBarRun(true) // 顶部进度条
     Store.dispatch('system/setBreadCrumb', to.name) // 左侧树数据源
     Store.dispatch('system/routeSpin', true) // 路由视图loading
+    // 滚动条位置
     const scroller = document.getElementById('mainScrollFlag')
     if (scroller) scroller.scrollTo(0, 0)
+    // 路由keepAlive管理
+    Store.dispatch('system/keepalive', to.name) // 左侧树数据源
     const isLocked = Store.state.system.locking
     const goLocking = ['locking'].includes(to.name)
     if (isLocked && !goLocking) { // 锁定状态不允许去其他页面

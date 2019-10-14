@@ -82,13 +82,8 @@ export default {
         newMessageNum () { return this.$store.state.system.newMessageNum || 0 }, // 新消息数量 0隐藏 null表红点 数字代表数量
         breadCrumbList () { return this.$store.state.system.breadCrumbList }, // 面包屑
         spinShow () { return this.$store.state.system.spinLoading || false }, // 新消息数量 0隐藏 null表红点 数字代表数量
-
-        cacheList () {
-            // const list = [ 'ParentView', ...this.tagNavList.length ? this.tagNavList.filter(item => !(item.meta && item.meta.notCache)).map(item => item.name) : [] ]
-            // return list
-            return []
-        },
-        local () { return this.$store.state.app.local }
+        local () { return this.$store.state.app.local },
+        cacheList () { return this.$store.state.system.cacheList } // 被缓存的页面
     },
     methods: {
         turnToPage (route) {

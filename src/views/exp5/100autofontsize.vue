@@ -1,8 +1,9 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle"></div>
+            <div class="blogTitle">自动根据div的宽度来计算文本字体大小</div>
             <div class="blogContent" v-highlight>
+                <div v-autofs style="width:200px;height:100px;background:Red;color: #fff;">新一代网站域名.</div>
             </div>
             <div class="blogFooter">
                 <Tag color="green">green</Tag>
