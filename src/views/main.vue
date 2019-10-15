@@ -41,9 +41,13 @@
                         <tags-nav></tags-nav>
                     </div>
                     <Content class="content-wrapper" id="mainScrollFlag">
-                        <keep-alive :include="cacheList">
-                            <router-view></router-view>
-                        </keep-alive>
+                        <!-- 动态换场指令 transition vuerouter 提供 -->
+                        <!-- 页面缓存功能 vue提供 keep-alive -->
+                        <transition :name="transitionName">
+                            <keep-alive :include="cacheList">
+                                <router-view></router-view>
+                            </keep-alive>
+                        </transition>
                         <Spin size="large" fix v-if="spinShow"></Spin>
                         <ABackTop :height="100" :bottom="80" :right="50" container=".content-wrapper"></ABackTop>
                     </Content>
@@ -74,6 +78,7 @@ export default {
             collapsed: false, // 折叠标记
             minLogo, // 最小图标
             maxLogo, // 最大图标
+            transitionName: '', // 动画方式
             weblink: [ 'www.zdao.com', 'www.qichacha.com', 'www.tianyancha.com', 'maimai.cn' ],
             isFullscreen: false
         }
@@ -101,38 +106,16 @@ export default {
         }
     },
     watch: {
-        /* '$route' (newRoute) {
-            const { name, query, params, meta } = newRoute
-            this.addTag({
-                route: { name, query, params, meta },
-                type: 'push'
-            })
-            this.setBreadCrumb(newRoute)
-            this.setTagNavList(getNewTagList(this.tagNavList, newRoute))
-            this.$refs.sideMenu.updateOpenName(newRoute.name)
-        } */
+        watch: {
+            //监听路由 根据路由深度 决定页面的出现动画方式
+            '$route' (to, from) {
+                const toDepth = to.path.split('/').length
+                const fromDepth = from.path.split('/').length
+                this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+            }
+        }
     },
     mounted () {
-        /**
-         * @description 初始化设置面包屑导航和标签导航
-        this.setTagNavList()
-        this.setHomeRoute(routers)
-        const { name, params, query, meta } = this.$route
-        this.addTag({
-            route: { name, params, query, meta }
-        })
-        this.setBreadCrumb(this.$route)
-        // 设置初始语言
-        this.setLocal(this.$i18n.locale)
-        // 如果当前打开页面不在标签栏中，跳到homeName页
-        if (!this.tagNavList.find(item => item.name === this.$route.name)) {
-            this.$router.push({
-                name: this.$config.homeName
-            })
-        }
-        // 获取未读消息条数
-        this.getUnreadMessageCount()
-         */
     }
 }
 </script>

@@ -7,8 +7,15 @@ import Config from '@/config'
 Vue.use(Router)
 // 路由实例 需要挂载到vue
 export const router = new Router({
-    routes
-    // mode: 'history' // 此模式可以使用 http://localhost:8081/login 来访问
+    routes,
+    mode: 'hash',
+    // mode: 'history', // 此模式可以使用 http://localhost:8081/login 来访问
+    scrollBehavior (to, from, savedPosition) {
+        // return 期望滚动到哪个的位置
+        if (savedPosition) { return savedPosition } else { return { x: 0, y: 0 } } }
+        // 如果你要模拟“滚动到锚点”的行为：
+        // if (to.hash) { return { selector: to.hash } }
+    }
 })
 // 辅助状态管理 解析路由结构
 // 由路由信息列表 整理成 树数据源 一维路由列表
@@ -51,8 +58,9 @@ router.beforeEach((to, from, next) => {
     Store.dispatch('system/setBreadCrumb', to.name) // 左侧树数据源
     Store.dispatch('system/routeSpin', true) // 路由视图loading
     // 滚动条位置
-    const scroller = document.getElementById('mainScrollFlag')
-    if (scroller) scroller.scrollTo(0, 0)
+    // 放弃 有更好的方法 路由提供了 scrollBehavior 钩子
+    // const scroller = document.getElementById('mainScrollFlag')
+    // if (scroller) scroller.scrollTo(0, 0)
     // 路由keepAlive管理
     Store.dispatch('system/keepalive', to.name) // 左侧树数据源
     const isLocked = Store.state.system.locking
