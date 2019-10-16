@@ -1,13 +1,12 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">单点登录的流程概述</div>
+            <div class="blogTitle">【大前端】认识单点登录 单点登录的流程概述</div>
             <div class="blogContent" v-highlight>
                 <p>叶小钗</p>
                 <p><a href="https://www.cnblogs.com/yexiaochai/p/4422460.html?from=timeline&tdsourcetag=s_pctim_aiomsg">
                     https://www.cnblogs.com/yexiaochai/p/4422460.html?from=timeline&tdsourcetag=s_pctim_aiomsg
                 </a></p>
-                <mark><h3>【大前端】认识单点登录</h3></mark>
                 <blockquote>
                     <h5>听过 < demo过 < 实际工作用过 < 实际工作中被坑过< 实际工作中被多次坑过或者深入研究总结过</h5>
                     <footer class="text-right">知识的珍贵程度排名</footer>

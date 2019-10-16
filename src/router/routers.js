@@ -1,7 +1,7 @@
 // import parentView from '@C/parent-view'
 import { makeTwoLevelRoute, makeOneLevelRoute } from './util'
 
-export const specialRouterList = ['error401', 'error404', 'error500', 'login', 'locking']
+export const specialRouterList = ['error403', 'error404', 'error500', 'login', 'locking']
 // 路由视图文件名必须和路由名字路径一致 方便查找定位
 export const routerList = [
     {path: '/', redirect: '/home/index'}, // 默认路由视图
@@ -64,7 +64,7 @@ export const routerList = [
             {power: '0000', path: '037unitTest', title: '单元测试Axios'},
             {power: '0000', path: '038unitTest', title: '表单单元流程'},
             {power: '0000', path: '039unitTest', title: '复杂单元流程'},
-            {power: '0000', path: '100newBee', title: '空'}
+            {power: '0000', path: '040meta', title: 'meta标签'}
         ]
     }),
     makeTwoLevelRoute({
@@ -270,7 +270,7 @@ export const routerList = [
     },
      */
     makeOneLevelRoute({ path: 'error404', title: '页面不存在' }),
-    makeOneLevelRoute({ path: 'error401', title: '权限不足' }),
+    makeOneLevelRoute({ path: 'error403', title: '权限不足' }),
     makeOneLevelRoute({ path: 'error500', title: '服务端错误' }),
     {path: '/*', redirect: '/error404'} // 默认404视图
 ]

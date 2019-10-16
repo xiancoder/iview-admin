@@ -12,6 +12,33 @@ import Hello from '@V/exp2/029unitTest'
 Vue.use(iView)
 // 单独测试单一文件 npm run test:unit tests\unit\029unitTest.spec.js
 describe('[单元测试029unitTest]', () => {
+    it('可以实现直接获取vm的data 测试count默认为0', () => {
+        const wrapper = mount(Hello)
+        expect(wrapper.vm.count).to.equal(0)
+    })
+    it('可以根据ID定位元素模拟点击 点击增加1', () => {
+        const wrapper = mount(Hello)
+        wrapper.find('#inc').trigger('click')
+        expect(wrapper.vm.count).to.equal(1)
+    })
+    it('修改vm的data并点击按钮并查看dom结构', () => {
+        const wrapper = mount(Hello)
+        wrapper.vm.newItem = 'xxx'
+        const button = wrapper.find('#myButton')
+        button.trigger('click') // 触发点击事件
+        expect(wrapper.find('#tryhere').text()).to.contain('xxx')
+        expect(wrapper.vm.listItems).to.contain('xxx')
+    })
+    it('未使用Vue-test-utils: 正确渲染h3的文字为Counter.vue', () => {
+        const Constructor = Vue.extend(Hello)
+        const vm = new Constructor().$mount()
+        const H3 = vm.$el.querySelector('h3').textContent
+        expect(H3).to.equal('Counter.vue')
+    })
+    it('使用Vue-test-Utils: 正确渲染h3的文字为Counter.vue', () => {
+        const wrapper = mount(Hello)
+        expect(wrapper.find('h3').text()).to.equal('Counter.vue')
+    })
     /* it('点击按钮后, count的值应该为1', () => {
         const Constructor = Vue.extend(Hello) // 获取组件实例
         const vm = new Constructor().$mount() // 挂载组件
@@ -45,31 +72,4 @@ describe('[单元测试029unitTest]', () => {
         expect(vm.text()).to.contain('brush my teeth')
         expect(vm.props().listItems).to.contain('brush my teeth')
     }) */
-    it('测试 count 默认为 0', () => {
-        const wrapper = mount(Hello)
-        expect(wrapper.vm.count).to.equal(0)
-    })
-    it('点击增加 1', () => {
-        const wrapper = mount(Hello)
-        wrapper.find('#inc').trigger('click')
-        expect(wrapper.vm.count).to.equal(1)
-    })
-    it('增加项目并点击按钮查看dom结构', () => {
-        const wrapper = mount(Hello)
-        wrapper.vm.newItem = 'xxx'
-        const button = wrapper.find('#myButton')
-        button.trigger('click') // 触发点击事件
-        expect(wrapper.find('#tryhere').text()).to.contain('xxx')
-        expect(wrapper.vm.listItems).to.contain('xxx')
-    })
-    it('未使用Vue-test-utils: 正确渲染h3的文字为Counter.vue', () => {
-        const Constructor = Vue.extend(Hello)
-        const vm = new Constructor().$mount()
-        const H3 = vm.$el.querySelector('h3').textContent
-        expect(H3).to.equal('Counter.vue')
-    })
-    it('使用Vue-test-Utils: 正确渲染h3的文字为Counter.vue', () => {
-        const wrapper = mount(Hello)
-        expect(wrapper.find('h3').text()).to.equal('Counter.vue')
-    })
 })

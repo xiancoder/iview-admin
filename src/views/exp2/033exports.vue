@@ -12,11 +12,11 @@
                 <p>运行一下以前的一个Vue+webpack的 vue仿新闻网站  小项目，报错</p>
                 <p>Uncaught TypeError: Cannot assign to read only property 'exports' of object '#&lt;Object&gt;' </p>
                 <p>点开错误的文件，标注错误的地方是这样的一段代码：</p>
-                <script type="text/html" v-span>
-                    1 import {normalTime} from './timeFormat';
-                    2 module.exports={
-                    3     normalTime
-                    4 };
+                <script type="text/html">
+                    import {normalTime} from './timeFormat';
+                    module.exports={
+                        normalTime
+                    };
                 </script>
                 <p>就是 module.exports; </p>
                 <p>同过谷歌查找，和论坛各种搜索:原因如下：</p>
@@ -26,8 +26,8 @@
                 <p>解决办法就是统一改成ES6的方式编写即可.</p>
                 <p></p>
                 <script type="text/html">
-                    1 import {normalTime} from './timeFormat';
-                    2 export default normalTime;
+                    import {normalTime} from './timeFormat';
+                    export default normalTime;
                 </script>
             </div>
             <div class="blogFooter">

@@ -379,19 +379,19 @@ export const compareIP = function (ipBegin, ipEnd) {
         if (temp1[i] > temp2[i]) { return 1; } else if (temp1[i] < temp2[i]) { return -1; }
     } return 0
 }
-//保留两位小数
-//功能：将浮点数四舍五入，取小数点后2位
+// 保留两位小数
+// 功能：将浮点数四舍五入，取小数点后2位
 export const toDecimal = function (x) {
     var f = parseFloat(x)
     if (isNaN(f)) { return }
     f = Math.round(x * 100) / 100
     return f
 }
-//强制保留2位小数，如：2，会在2后面补上00.即2.00
+// 强制保留2位小数，如：2，会在2后面补上00.即2.00
 export const toDecimal2 = function (x) {
     var f = parseFloat(x)
     if (isNaN(f)) { return false }
-    var f = Math.round(x*100)/100
+    f = Math.round(x * 100) / 100
     var s = f.toString()
     var rs = s.indexOf('.')
     if (rs < 0) {
@@ -410,12 +410,12 @@ export const toDecimal3 = function (s) {
     s = parseFloat(s)
     if (isNaN(s)) { return 0 }
     // return s.substring(0,s.indexOf(".") + 3) // 非小数 报错
-    return s.replace(/([0-9]+/.[0-9]{2})[0-9]*/, '$1') // 挺好 略麻烦
+    return s.replace(/([0-9]+\.[0-9]{2})[0-9]*/, '$1') // 挺好 略麻烦
 }
 export const fomatFloat = function (src, pos) {
-     return Math.round(src*Math.pow(10, pos))/Math.pow(10, pos)
+    return Math.round(src * Math.pow(10, pos)) / Math.pow(10, pos)
 }
-//四舍五入
+// 四舍五入
 // "保留2位小数：" + toDecimal(3.14159267))
 // "强制保留2位小数：" + toDecimal2(3.14159267))
 // "保留2位小数：" + toDecimal(3.14559267))
@@ -423,19 +423,19 @@ export const fomatFloat = function (src, pos) {
 // "保留2位小数：" + fomatFloat(3.14559267, 2))
 // "保留1位小数：" + fomatFloat(3.15159267, 1))
 
-//五舍六入
+// 五舍六入
 // "保留2位小数：" + 1000.003.toFixed(2))
 // "保留1位小数：" + 1000.08.toFixed(1))
 // "保留1位小数：" + 1000.04.toFixed(1))
 // "保留1位小数：" + 1000.05.toFixed(1))
 
-//科学计数
+// 科学计数
 // 3.1415.toExponential(2))
 // 3.1455.toExponential(2))
 // 3.1445.toExponential(2))
 // 3.1465.toExponential(2))
 // 3.1665.toExponential(1))
-//精确到n位，不含n位
+// 精确到n位，不含n位
 // "精确到小数点第2位" + 3.1415.toPrecision(2))
 // "精确到小数点第3位" + 3.1465.toPrecision(3))
 // "精确到小数点第2位" + 3.1415.toPrecision(2))

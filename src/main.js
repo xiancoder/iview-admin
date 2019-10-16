@@ -17,7 +17,7 @@ import { Store } from '@/store' // 状态管理 -挂载$stroe
 import '@/tools' // 常用工具 -挂载$tool
 import '@/utils' // 常用方法 -挂载$util
 import '@/validate' // 常用校验 -挂载$validate
-import App from '@/App.vue' // 页面主体
+// import App from '@/App.vue' // 页面主体
 /* eslint-disable */
 if (process.env.NODE_ENV !== 'production') require('@/mock') // 实际打包时应该不引入mock
 console.info('仙', '目前环境', process.env.NODE_ENV)
@@ -27,12 +27,23 @@ new Vue({ // 实例化
     router,
     store: Store,
     // i18n,
-    render: h => h(App),
-    beforeCreate () {
+    // render: h => h(App), // 因为app没有有效内容 所以放弃app.vue文件
+    render: h => h('router-view'),
+    beforeCreate() {
         // 在实例初始化之后，数据观测(data observer
         // 开始监控Data对象数据变化)和初始化事件(init event，Vue内部初始化事件)之前被调用
+        Store.dispatch('system/isLogined').then(isLogined => { //dispatch 默认返回的是 Promise
+            console.info('仙', '读取登录标识', isLogined)
+            if (!isLogined) {
+                Store.dispatch('system/gologin') // 进入登录页
+            } else {
+                Store.dispatch('system/getUserInfo') // 获取用户信息
+                Store.dispatch('system/getNewMessageNum') // 获取未读最新消息
+                Store.dispatch('system/getPowerList') // 读取权限 更新权限视图
+            }
+        })
         Store.dispatch('system/setFullScreen') // 恢复一下全屏状态
-    }
+    },
     created: function() {
         // 在实例已经创建完成之后被调用。
         // 实例已完成以下的配置：数据观测(data observer)，属性和方法的运算，event事件回调。
@@ -69,31 +80,5 @@ new Vue({ // 实例化
         // 在实例销毁之后调用。
         // 调用后，所有的事件监听器会被移除，所有的子实例也会被销毁。
         // 该钩子在服务器端渲染期间不被调用
-    }
-    beforeRouteEnter: async (to, from, next) => {
-        // vue 路由指定钩子事件
-        // 在渲染该组件的对应路由被 confirm 前调用
-        // 不！能！获取组件实例 `this` 因为当钩子执行前，组件实例还没被创建
-        const isLogined = await Store.dispatch('system/isLogined')
-        console.info('仙', '登录标识', isLogined)
-        if (!isLogined) {
-            Store.dispatch('system/logout') // 进入登录页
-        } else {
-            Store.dispatch('system/getUserInfo') // 获取用户信息
-            Store.dispatch('system/getNewMessageNum') // 获取未读最新消息
-            await Store.dispatch('system/getPowerList') // 读取权限 更新权限视图
-        }
-    },
-    beforeRouteUpdate (to, from, next) {
-        // vue 路由指定钩子事件
-        // 在当前路由改变，但是改组件被复用时调用
-        // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
-        // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
-        // 可以访问组件实例 `this`
-    },
-    beforeRouteLeave (to, from, next) {
-        // vue 路由指定钩子事件
-        // 导航离开该组件的对应路由时调用
-        // 可以访问组件实例 `this`
     }
 })

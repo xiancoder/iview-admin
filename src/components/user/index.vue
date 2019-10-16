@@ -23,17 +23,11 @@ export default {
         unreadCount () { return this.$store.state.system.newMessageNum }
     },
     methods: {
-        logout () {
-            this.$store.dispatch('system/logout')
-        },
-        message () {
-            this.$router.push({name: 'home_message'})
-        },
         handleClick (name) {
             switch (name) {
-                case 'logout': this.logout()
+                case 'logout': this.$store.dispatch('system/logout')
                     break
-                case 'message': this.message()
+                case 'message': this.$router.push({name: 'home_message'})
                     break
             }
         }

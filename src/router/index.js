@@ -8,14 +8,14 @@ Vue.use(Router)
 // 路由实例 需要挂载到vue
 export const router = new Router({
     routes,
-    mode: 'hash',
-    // mode: 'history', // 此模式可以使用 http://localhost:8081/login 来访问
-    scrollBehavior (to, from, savedPosition) {
+    mode: 'hash'
+    // mode: 'history', // 此模式可以使用 http://localhost:8081/login 来访问 但是刷新就汇报错
+    /* scrollBehavior: (to, from, savedPosition) => { // 注意: 这个功能只在 HTML5 history 模式下可用。
         // return 期望滚动到哪个的位置
-        if (savedPosition) { return savedPosition } else { return { x: 0, y: 0 } } }
+        if (savedPosition) { return savedPosition } else { return { x: 0, y: 0 } }
         // 如果你要模拟“滚动到锚点”的行为：
         // if (to.hash) { return { selector: to.hash } }
-    }
+    } */
 })
 // 辅助状态管理 解析路由结构
 // 由路由信息列表 整理成 树数据源 一维路由列表
@@ -49,7 +49,7 @@ export const power2routes = (powerList) => { // 根据权限更新视图
         listOneLevel[one.name] = { title: one.title, path: one.path, power: true }
     })
     Store.dispatch('system/setMenuList', list) // 左侧树数据源
-    Store.dispatch('system/setRoutePowerList', listOneLevel) // 一维数组
+    Store.dispatch('system/setRoutePowerList', listOneLevel) // 一维扁平对象
 }
 router.beforeEach((to, from, next) => {
     console.info('仙', '准备跳转', to)
@@ -59,8 +59,9 @@ router.beforeEach((to, from, next) => {
     Store.dispatch('system/routeSpin', true) // 路由视图loading
     // 滚动条位置
     // 放弃 有更好的方法 路由提供了 scrollBehavior 钩子
-    // const scroller = document.getElementById('mainScrollFlag')
-    // if (scroller) scroller.scrollTo(0, 0)
+    // 不再放弃 钩子有问题
+    const scroller = document.getElementById('mainScrollFlag')
+    if (scroller) scroller.scrollTo(0, 0)
     // 路由keepAlive管理
     Store.dispatch('system/keepalive', to.name) // 左侧树数据源
     const isLocked = Store.state.system.locking
@@ -84,7 +85,7 @@ router.beforeEach((to, from, next) => {
     }
     Store.dispatch('system/hasPower', to.name).then((bool) => { // 鉴权
         console.info('仙', '鉴权页面', bool)
-        if (!bool) { return next({name: 'error401'}) }
+        if (!bool) { return next({name: 'error403'}) }
         next()
     })
 })

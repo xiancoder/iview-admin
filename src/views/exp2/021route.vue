@@ -18,7 +18,7 @@
                 </script>
                 <p>vue路由 <a href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#全局前置守卫">https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#全局前置守卫</a></p>
                 <p>用Vue.js + vue-router创建单页应用，是非常简单的。使用Vue.js时，我们就已经把组件组合成一个应用了，当你要把vue-router加进来，只需要配置组件和路由映射，然后告诉vue-router在哪里渲染他们。 </p>
-                <script type="text/js">
+                <script type="text/html">
                     <div id="app">
                       <h1>Hello App!</h1>
                       <p>
@@ -42,9 +42,6 @@
                         <!-- 带查询参数，下面的结果为 /register?plan=private -->
                         <router-link :to="{ path: 'register', query: { plan: 'private' }}">Register</router-link>
                       </p>
-                      <!-- 路由出口 -->
-                      <!-- 路由匹配到的组件将渲染在这里 -->
-                      <router-view></router-view>
                     </div>
                 </script>
                 <p>要注意，以/开头的嵌套路径会被当作根路径。这让你充分的使用嵌套组件而无须设置嵌套的路径。</p>
@@ -94,8 +91,6 @@
                 <script type="text/js">
                     export const router = new Router({
                         routes,
-                        mode: 'hash',
-                        // mode: 'history', // 此模式可以使用 http://localhost:8081/login 来访问
                         scrollBehavior (to, from, savedPosition) {
                             // return 期望滚动到哪个的位置
                             if (savedPosition) { return savedPosition } else { return { x: 0, y: 0 } } }
@@ -104,6 +99,7 @@
                         }
                     })
                 </script>
+                <p><span style="background-color: #ffff00;">注意: 这个功能只在 HTML5 history 模式下可用。</span></p>
                 <p>路由懒加载</p>
                 <p> 当打包构建应用时，Javascript包会变得非常大，影响页面加载。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了。 </p>
                 <p> 结合Vue的异步组件和Webpack的code splitting feature，轻松实现路由组件的懒加载。 </p>
@@ -143,6 +139,26 @@ export default {
         go2 () {
             this.$router.push({ path: '/exp1/021route@add', query: { value: 'test1' } })
         }
+    },
+    beforeRouteEnter: (to, from, next) => {
+        // vue 路由指定钩子事件
+        console.log('在渲染该组件的对应路由被 confirm 前调用')
+        // 不！能！获取组件实例 `this` 因为当钩子执行前，组件实例还没被创建
+        next()
+    },
+    beforeRouteUpdate (to, from, next) {
+        // vue 路由指定钩子事件
+        console.log('在当前路由改变，但是改组件被复用时调用')
+        // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+        // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+        // 可以访问组件实例 `this`
+        next()
+    },
+    beforeRouteLeave (to, from, next) {
+        // vue 路由指定钩子事件
+        console.log('导航离开该组件的对应路由时调用')
+        // 可以访问组件实例 `this`
+        next()
     }
 }
 </script>

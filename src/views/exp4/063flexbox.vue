@@ -22,7 +22,7 @@
                         -webkit-flex-direction: row-reverse; /* Safari 6.1+ */
                     }
                 </script>
-                <Row>
+                <Row style="width:900px">
                     <Col span="6" class="box box11">
                         <div class="item red"></div>
                         <div class="item yellow"></div>
@@ -54,7 +54,7 @@
                         -webkit-flex-wrap: wrap; /* Safari 6.1+ */
                     }
                 </script>
-                <Row>
+                <Row style="width:900px">
                     <Col span="8">
                         <div class="box box21">
                             <div class="item red"></div>
@@ -96,41 +96,43 @@
                         -webkit-justify-content: space-around; /* Safari 6.1+ */
                     }
                 </script>
-                <div class="box box31">
-                    <div class="item red"></div>
-                    <div class="item blue"></div>
-                    <div class="item yellow" style="width:100px"></div>
-                    <div class="item red"></div>
-                    <div class="item blue"></div>
-                </div>
-                <div class="box box32">
-                    <div class="item red"></div>
-                    <div class="item blue"></div>
-                    <div class="item yellow" style="width:100px"></div>
-                    <div class="item red"></div>
-                    <div class="item blue"></div>
-                </div>
-                <div class="box box33">
-                    <div class="item red"></div>
-                    <div class="item blue"></div>
-                    <div class="item yellow" style="width:100px"></div>
-                    <div class="item red"></div>
-                    <div class="item blue"></div>
-                </div>
-                <div class="box box34">
-                    <div class="item red"></div>
-                    <div class="item blue"></div>
-                    <div class="item yellow" style="width:100px"></div>
-                    <div class="item red"></div>
-                    <div class="item blue"></div>
-                </div>
-                <div class="box box35">
-                    <div class="item red"></div>
-                    <div class="item blue"></div>
-                    <div class="item yellow" style="width:100px"></div>
-                    <div class="item red"></div>
-                    <div class="item blue"></div>
-                </div>
+                <Row style="width:900px">
+                    <Col span="24" class="box box31">
+                        <div class="item red"></div>
+                        <div class="item blue"></div>
+                        <div class="item yellow" style="width:100px"></div>
+                        <div class="item red"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                    <Col span="24" class="box box32">
+                        <div class="item red"></div>
+                        <div class="item blue"></div>
+                        <div class="item yellow" style="width:100px"></div>
+                        <div class="item red"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                    <Col span="24" class="box box33">
+                        <div class="item red"></div>
+                        <div class="item blue"></div>
+                        <div class="item yellow" style="width:100px"></div>
+                        <div class="item red"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                    <Col span="24" class="box box34">
+                        <div class="item red"></div>
+                        <div class="item blue"></div>
+                        <div class="item yellow" style="width:100px"></div>
+                        <div class="item red"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                    <Col span="24" class="box box35">
+                        <div class="item red"></div>
+                        <div class="item blue"></div>
+                        <div class="item yellow" style="width:100px"></div>
+                        <div class="item red"></div>
+                        <div class="item blue"></div>
+                    </Col>
+                </Row>
                 <p>align-items 属性定义项目在交叉轴上如何对齐。</p>
                 <script type="text/css">
                     .box {
@@ -143,7 +145,7 @@
                         -webkit-align-items: center; /* Safari 7.0+ */
                     }
                 </script>
-                <Row>
+                <Row style="width:900px">
                     <Col span="6" class="box box41">
                         <div class="item red"></div>
                         <div class="item yellow" style="height:100px"></div>
@@ -181,7 +183,7 @@
                         -webkit-align-content: center; /* Safari 7.0+ */
                     }
                 </script>
-                <Row>
+                <Row style="width:900px">
                     <Col span="4" class=" box box51">
                         <div class="item red"></div>
                         <div class="item yellow"></div>

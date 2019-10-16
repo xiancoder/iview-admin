@@ -34,10 +34,10 @@
                         :key="`tag-nav-${index}`"
                         :name="item.name"
                         :data-route-item="item"
-                        @on-close="handleClose(item)"
-                        @click.native="handleClick(item)"
                         :closable="item.name !== $config.homeName"
                         :color="isCurrentTag(item) ? 'primary' : 'default'"
+                        @on-close="handleClose(item)"
+                        @click.native="handleClick(item)"
                         @contextmenu.prevent.native="contextMenu(item, $event)"
                     >{{ item.title }}</Tag>
                 </transition-group>
@@ -95,7 +95,6 @@ export default {
                 }
             }
         },
-
         handleTagsOption (type) { // 关闭其他 关闭所有
             if (type.includes('all')) { // 关闭所有
                 let res = this.list.filter(item => item.name === this.$config.homeName)

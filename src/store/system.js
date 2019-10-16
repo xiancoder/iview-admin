@@ -51,7 +51,7 @@ export default {
         updateUserPostId (state, v) { state.userPostId = v }, // 设置管理员职位ID
         updateAccess (state, access) { state.access = access }, // 设置登录标识
         updateToken (state, token) { cache.setUserToken(token); state.token = token }, // 设置服务器token
-        removeToken (state, token) { cache.clearAll(); state.token = '' }, // 设置服务器token
+        removeToken (state, token) { cache.clearAll(); state.token = ''; state.access = false }, // 设置服务器token
         updateCacheList (state, list) { state.cacheList = list }, // 设置keepalive的页面
         updateTagNavList (state, list) { cache.setTagNavList(list); state.tagNavList = list }, // 设置历史记录tab
         updateNewMessageNum (state, num) { state.newMessageNum = num }, // 触发读取接口 保存最新消息数量
@@ -124,10 +124,9 @@ export default {
             })
         },
         isLogined ({ commit }) { // 检查管理员是否登录
-            return new Promise((resolve, reject) => {
-                const token = cache.getUserToken()
-                resolve(!!token)
-            })
+            const token = cache.getUserToken()
+            commit('updateAccess', !!token)
+            return !!token
         },
         routeSpin ({ commit }, bool) { // 启动关闭路由视图loading
             if (bool) commit('updateRouteSpin', true)
@@ -195,9 +194,25 @@ export default {
         getBasePowerList ({ commit }) { // 触发读取接口
             power2routes([]) // 传递给路由模块计算解析
         },
-        hasPower ({ state }, name) { // 判断是否有权限
-            const routeInfo = state.routeList[name] || {}
-            return routeInfo.power
+        hasPower ({ state }, name) { // 判断是否有权限 得多考虑权限没有返回的情况
+            return new Promise((resolve, reject) => {
+                const logic = () => {
+                    const routeInfo = state.routeList[name] || {}
+                    resolve(routeInfo.power)
+                }
+                let num = 10
+                if (state.menuList.length === 0) {
+                    const i = setInterval(() => {
+                        if (num < 0) {clearInterval(i); return}
+                        num--
+                        if (state.menuList.length === 0) {return}
+                        clearInterval(i)
+                        logic()
+                    }, 1e3)
+                    return
+                }
+                logic()
+            })
         },
         addTagNav ({ state, commit }, route) {
             const name = route.name
@@ -225,18 +240,20 @@ export default {
         },
         gologin ({ commit }) { // 去登录页
             return new Promise((resolve, reject) => {
+                commit('removeToken', '')
+                router.push('login')
             })
         },
         logout ({ commit }) { // 登出
             return new Promise((resolve, reject) => {
                 console.info('仙', '登出清场')
-                Api.system.logout().then(flag => {
-                    console.info('登出结果', flag)
-                }, errorMsg => {
-                    console.error('登出失败')
-                }).finally(res => {
+                Api.system.logout().then(() => {
+                    console.info('登出成功')
                     commit('removeToken', '')
                     router.push('login')
+                    resolve()
+                }, errorMsg => {
+                    console.error('登出失败')
                     resolve()
                 })
             })
