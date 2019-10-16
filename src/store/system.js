@@ -3,14 +3,22 @@ import { Api } from '@/api'
 import { power2routes, router } from '@/router'
 import { specialRouterList } from '@/router/routers'
 import { cache } from '@/cache'
+const lsToken = cache.getUserToken() || ''
+const lsLocking = cache.getLocking() || false
+const lsTagNavList = cache.getTagNavList() || []
 export default {
-    namespaced: true, // 作用域
-    state: {
-        theme: 'dark', // 主题
-        isFullScreen: false, // 全屏 不能默认设置全屏
-        breadCrumbList: [], // 面包屑内容
-        routeList: [], // 一维路由信息列表
-        menuList: [], // 路由结构 (过滤掉无权限页面)
+    namespaced: true, // 作用域,配置上以后才能够dispach system/xxx 建议必须 不同的状态里有相同字段值
+    state: { // 缓存字段以及默认值
+        theme: 'dark', // 主题 todo 计划做白色和黑色主题
+
+        isFullScreen: false, // 全屏 为header中组件按钮准备 但是不能默认设置全屏 即刷新就全屏
+
+        breadCrumbList: [], // 面包屑内容数组 实时解析路由 首页-一级路由-二级路由
+        routeList: [], // 一维化列表 所有的路由信息 主要是使用权限 名称
+        menuList: [], // 左边树形目录列表(已经过滤) 所有的有权限路由列表
+        powerList: [], // 权限列表 请求后台得到的页面权限列表 todo 似乎没有保存的必要???
+        tagNavList: lsTagNavList, // 历史记录tab列表
+
         userAvatorPath: '', // 管理员头像
         userName: '', // 管理员名
         userId: '', // 管理员ID
@@ -19,28 +27,41 @@ export default {
         userRoleId: '', // 管理员角色ID
         userRoleName: '', // 管理员角色NAME
         userPostId: '', // 管理员职位ID
-        token: cache.getUserToken() || '', // 服务器token
-        access: !!cache.getUserToken() || false, // 登录标识
+
+        token: lsToken, // 服务器token 用于存在header中与服务器交换数据使用
+        access: !!lsToken, // 登录标识 根据token来判断
+        locking: lsLocking, // 锁屏状态
+
         newMessageNum: 0, // 新消息数量
-        powerList: [], // 权限列表
-        lang: '', // 语言
-        spinLoading: false, // 路由视图加载中
-        locking: cache.getLocking() || false, // 锁屏状态
-        shrink: false, // 页面折叠状态
-        tagNavList: cache.getTagNavList() || [], // 历史记录tab
-        errorList: [], // 错误列表
-        doNotDrawRouter: false, // 不要渲染路由
-        cacheList: [], // keepalive的页面
-        author: 'liuyp' // 版权所有
+
+        lang: '', // 系统表现语言 资源国际化没有完成 todo
+
+        spinLoading: false, // 路由视图加载中 main.vue组件的loadiing效果
+
+        shrink: false, // 界面左边树形菜单折叠状态
+
+        doNotDrawRouter: false, // 不要渲染路由 目的是管理url的前进和后退
+
+        cacheList: [], // keepalive的缓存页面 缓存方式是 组件页面设置name 加入此数组即可
+
+        errorList: [], // 错误列表 todo 收集系统所有的错误 伺机发送
+
+        author: 'liuyp' // 版权所有 结尾容错
     },
     getters: {
         errorCount: state => state.errorList.length
     },
-    mutations: {
-        fullScreen (state, flag) { state.isFullScreen = flag }, // 重置全屏状态
-        updateBreadCrumb (state, list) { state.breadCrumbList = list }, // 面包屑内容
-        updateRoutePowerList (state, list) { state.routeList = list }, // 设置一维路由信息列表 完整信息
-        updateMenuList (state, list) { state.menuList = list }, // 路由配置列表(已经过滤)
+    mutations: { // 触发事件 注意 vue只有mutations才能触发任意使用状态的代码位置的监听渲染 建议大写
+        //THEME
+
+        FULLSCREEN (state, flag) { state.isFullScreen = flag }, // 修改全屏状态
+
+        BREADCRUMBLIST (state, list) { state.breadCrumbList = list }, // 面包屑内容
+        ROUTELIST (state, list) { state.routeList = list }, // 设置一维路由信息列表 完整信息
+        MENULIST (state, list) { state.menuList = list }, // 左边树形目录列表(已经过滤)
+        POWERLIST (state, list) { state.powerList = list }, // 设置权限列表
+        TAGNAVLIST (state, list) { cache.setTagNavList(list); state.tagNavList = list }, // 设置历史记录tab
+
         updateUserAvatorPath (state, v) { state.userAvatorPath = v }, // 设置管理员头像
         updateUserName (state, v) { state.userName = v }, // 设置管理员名
         updateUserId (state, v) { state.userId = v }, // 设置管理员ID
@@ -53,9 +74,7 @@ export default {
         updateToken (state, token) { cache.setUserToken(token); state.token = token }, // 设置服务器token
         removeToken (state, token) { cache.clearAll(); state.token = ''; state.access = false }, // 设置服务器token
         updateCacheList (state, list) { state.cacheList = list }, // 设置keepalive的页面
-        updateTagNavList (state, list) { cache.setTagNavList(list); state.tagNavList = list }, // 设置历史记录tab
         updateNewMessageNum (state, num) { state.newMessageNum = num }, // 触发读取接口 保存最新消息数量
-        updatePowerList (state, list) { state.powerList = list }, // 设置权限列表
         switchLang (state, lang) { state.lang = lang }, // 切换语言
         updateRouteSpin (state, bool) { state.spinLoading = bool }, // 路由视图loading
         addError (state, error) { state.errorList.push(error) }, // 记录错误
