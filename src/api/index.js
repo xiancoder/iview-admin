@@ -10,11 +10,12 @@ import department from './department'
 import employee from './employee'
 import position from './position'
 import role from './role'
-// =====================================================================
+
 export const Api = {
     system, user, task, data, unit,
     department, employee, position, role
 } // 接口列表
+
 Vue.prototype.$axios = axios // 挂载axios
 Vue.prototype.$api = Api // 挂载api
 Vue.prototype.$post = function (url, params) { // 将axios 的 post 方法，绑定到 vue 实例上面的 $post
@@ -31,6 +32,7 @@ Vue.prototype.$get = function (url, params) { // 将axios 的 get 方法，绑�
             .catch(err => { reject(err) })
     })
 }
+
 axios.defaults.headers = { 'X-Requested-With': 'XMLHttpRequest' } // 设置默认请求头，如果不需要可以取消这一步
 axios.defaults.timeout = 20000 // 请求超时的时间限制
 axios.interceptors.request.use( // 开始设置请求 发起的拦截处理

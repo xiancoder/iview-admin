@@ -1,44 +1,43 @@
 <template>
   <Drawer ref="drawerWrapper"
-          :value="value"
-          @input="handleInput"
-          :width="width"
-          :class-name="outerClasses"
-          v-bind="$attrs"
-          v-on="$listeners">
+    :value="value"
+    @input="handleInput"
+    :width="width"
+    :class-name="outerClasses"
+    v-bind="$attrs"
+    v-on="$listeners">
     <!-- 所有插槽内容显示在这里 ↓ -->
-
     <template v-for="(slots, slotsName) in $slots">
       <template v-if="slotsName !== 'default'">
         <render-dom v-for="(render, index) in slots"
-                    :key="`b_drawer_${slotsName}_${index}`"
-                    :render="() => render"
-                    :slot="slotsName">
+            :key="`b_drawer_${slotsName}_${index}`"
+            :render="() => render"
+            :slot="slotsName">
         </render-dom>
       </template>
       <template v-else>
         <div :class="`${prefix}-body-wrapper`"
-             :key="`b_drawer_${slotsName}`">
+            :key="`b_drawer_${slotsName}`">
           <render-dom v-for="(render, index) in slots"
-                      :key="`b_drawer_${slotsName}_${index}`"
-                      :render="() => render"
-                      :slot="slotsName">
+            :key="`b_drawer_${slotsName}_${index}`"
+            :render="() => render"
+            :slot="slotsName">
           </render-dom>
         </div>
       </template>
     </template>
     <!-- 所有插槽内容显示在这里 ↑ -->
     <div v-if="draggable"
-         :style="triggerStyle"
-         :class="`${prefix}-trigger-wrapper`"
-         @mousedown="handleTriggerMousedown">
-      <slot name="trigger">
-        <drag-drawer-trigger></drag-drawer-trigger>
-      </slot>
+        :style="triggerStyle"
+        :class="`${prefix}-trigger-wrapper`"
+        @mousedown="handleTriggerMousedown">
+        <slot name="trigger">
+            <drag-drawer-trigger></drag-drawer-trigger>
+        </slot>
     </div>
     <div v-if="$slots.footer"
-         :class="`${prefix}-footer`">
-      <slot name="footer"></slot>
+        :class="`${prefix}-footer`">
+        <slot name="footer"></slot>
     </div>
   </Drawer>
 </template>
@@ -57,24 +56,12 @@ export default {
     },
     mixins: [Mixin],
     props: {
-        value: {
-            type: Boolean,
-            default: false
-        },
-        width: {
-            type: [String, Number],
-            default: 256
-        },
+        value: { type: Boolean, default: false },
+        width: { type: [String, Number], default: 256 },
         // 是否可拖动修改宽度
-        draggable: {
-            type: Boolean,
-            default: false
-        },
+        draggable: { type: Boolean, default: false },
         // 最小拖动宽度
-        minWidth: {
-            type: [String, Number],
-            default: 256
-        }
+        minWidth: { type: [String, Number], default: 256 }
     },
     data () {
         return {

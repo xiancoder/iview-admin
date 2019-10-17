@@ -6,43 +6,42 @@
 // =====================================================================
 import Vue from 'vue' // 核心
 import '@/api' // 接口管理 -挂载$api
-import '@/cache' // 缓存管理 -挂载$ls
 import '@/config' // 全局参数 -挂载$config
 import '@/directive' // 指令
 import '@/filter' // 过滤器
 // import { i18n } from '@/i18n' // 资源国际化
 import '@/plugins' // 三方插件
-import { router } from '@/router' // 路由 -挂载$router
 import { Store } from '@/store' // 状态管理 -挂载$stroe
+import { router } from '@/router' // 路由 -挂载$router
 import '@/tools' // 常用工具 -挂载$tool
 import '@/utils' // 常用方法 -挂载$util
 import '@/validate' // 常用校验 -挂载$validate
-// import App from '@/App.vue' // 页面主体
+
 /* eslint-disable */
 if (process.env.NODE_ENV !== 'production') require('@/mock') // 实际打包时应该不引入mock
+
 console.info('仙', '目前环境', process.env.NODE_ENV)
-// =====================================================================
+
 new Vue({ // 实例化
     el: '#app',
     router,
     store: Store,
     // i18n,
+    // import App from '@/App.vue' // 页面主体
     // render: h => h(App), // 因为app没有有效内容 所以放弃app.vue文件
     render: h => h('router-view'),
     beforeCreate() {
         // 在实例初始化之后，数据观测(data observer
         // 开始监控Data对象数据变化)和初始化事件(init event，Vue内部初始化事件)之前被调用
-        Store.dispatch('system/isLogined').then(isLogined => { //dispatch 默认返回的是 Promise
-            console.info('仙', '读取登录标识', isLogined)
-            if (!isLogined) {
-                Store.dispatch('system/gologin') // 进入登录页
-            } else {
-                Store.dispatch('system/getUserInfo') // 获取用户信息
-                Store.dispatch('system/getNewMessageNum') // 获取未读最新消息
-                Store.dispatch('system/getPowerList') // 读取权限 更新权限视图
-            }
-        })
-        Store.dispatch('system/setFullScreen') // 恢复一下全屏状态
+        const isLogined = Store.getters['system/access']
+        console.info('仙', '读取登录标识', isLogined)
+        if (!isLogined) {
+            Store.dispatch('system/gologin') // 进入登录页
+        } else {
+            Store.dispatch('system/getUserInfo') // 获取用户信息
+            Store.dispatch('system/getNewMessageNum') // 获取未读最新消息
+            Store.dispatch('system/getPowerList') // 读取权限 更新权限视图
+        }
     },
     created: function() {
         // 在实例已经创建完成之后被调用。

@@ -1,49 +1,49 @@
 <template>
-  <div class="cropper-wrapper">
-    <div class="img-box">
-      <img class="cropper-image" :id="imgId" alt="">
-    </div>
-    <div class="right-con">
-      <div v-if="preview" class="preview-box" :id="previewId"></div>
-      <div class="button-box">
-        <slot>
-          <Upload action="image/upload" :before-upload="beforeUpload">
-            <Button style="width: 150px;" type="primary">上传图片</Button>
-          </Upload>
-        </slot>
-        <div v-show="insideSrc">
-          <Button type="primary" @click="rotate">
-            <Icon type="md-refresh" :size="18"/>
-          </Button>
-          <Button type="primary" @click="shrink">
-            <Icon type="md-remove" :size="18"/>
-          </Button>
-          <Button type="primary" @click="magnify">
-            <Icon type="md-add" :size="18"/>
-          </Button>
-          <Button type="primary" @click="scale('X')">
-            <Icon custom="iconfont icon-shuipingfanzhuan" :size="18"/>
-          </Button>
-          <Button type="primary" @click="scale('Y')">
-            <Icon custom="iconfont icon-chuizhifanzhuan" :size="18"/>
-          </Button>
-          <Button type="primary" @click="move(0, -moveStep)">
-            <Icon type="md-arrow-round-up" :size="18"/>
-          </Button>
-          <Button type="primary" @click="move(-moveStep, 0)">
-            <Icon type="md-arrow-round-back" :size="18"/>
-          </Button>
-          <Button type="primary" @click="move(0, moveStep)">
-            <Icon type="md-arrow-round-down" :size="18"/>
-          </Button>
-          <Button type="primary" @click="move(moveStep, 0)">
-            <Icon type="md-arrow-round-forward" :size="18"/>
-          </Button>
-          <Button style="width: 150px;margin-top: 10px;" type="primary" @click="crop">{{ cropButtonText }}</Button>
+    <div class="cropper-wrapper">
+        <div class="img-box">
+            <img class="cropper-image" :id="imgId" alt="">
         </div>
-      </div>
+        <div class="right-con">
+            <div v-if="preview" class="preview-box" :id="previewId"></div>
+            <div class="button-box">
+                <slot>
+                    <Upload action="image/upload" :before-upload="beforeUpload">
+                        <Button style="width: 150px;" type="primary">上传图片</Button>
+                    </Upload>
+                </slot>
+                <div v-show="insideSrc">
+                    <Button type="primary" @click="rotate">
+                        <Icon type="md-refresh" :size="18"/>
+                    </Button>
+                    <Button type="primary" @click="shrink">
+                        <Icon type="md-remove" :size="18"/>
+                    </Button>
+                    <Button type="primary" @click="magnify">
+                        <Icon type="md-add" :size="18"/>
+                    </Button>
+                    <Button type="primary" @click="scale('X')">
+                        <Icon custom="iconfont icon-shuipingfanzhuan" :size="18"/>
+                    </Button>
+                    <Button type="primary" @click="scale('Y')">
+                        <Icon custom="iconfont icon-chuizhifanzhuan" :size="18"/>
+                    </Button>
+                    <Button type="primary" @click="move(0, -moveStep)">
+                        <Icon type="md-arrow-round-up" :size="18"/>
+                    </Button>
+                    <Button type="primary" @click="move(-moveStep, 0)">
+                        <Icon type="md-arrow-round-back" :size="18"/>
+                    </Button>
+                    <Button type="primary" @click="move(0, moveStep)">
+                        <Icon type="md-arrow-round-down" :size="18"/>
+                    </Button>
+                    <Button type="primary" @click="move(moveStep, 0)">
+                        <Icon type="md-arrow-round-forward" :size="18"/>
+                    </Button>
+                    <Button style="width: 150px;margin-top: 10px;" type="primary" @click="crop">{{ cropButtonText }}</Button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -53,22 +53,10 @@ import 'cropperjs/dist/cropper.min.css'
 export default {
     name: 'Cropper',
     props: {
-        src: {
-            type: String,
-            default: ''
-        },
-        preview: {
-            type: Boolean,
-            default: true
-        },
-        moveStep: {
-            type: Number,
-            default: 4
-        },
-        cropButtonText: {
-            type: String,
-            default: '裁剪'
-        }
+        src: { type: String, default: '' },
+        preview: { type: Boolean, default: true },
+        moveStep: { type: Number, default: 4 },
+        cropButtonText: { type: String, default: '裁剪' }
     },
     data () {
         return {

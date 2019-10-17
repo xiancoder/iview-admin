@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { error } from '@/tools'
+
 export default {
     list () { // 获得部门列表树
         return new Promise((resolve, reject) => {
@@ -6,12 +8,16 @@ export default {
                 method: 'GET',
                 url: '/api/hr/getdepartment',
                 data: {}
-            }).then(res => {
-                const list = res.data.data.departments // res 是信息头的那一层 包含特多
-                resolve(list) // 直接返回列表
-            }).catch(err => {
-                console.error('接口回调异常')
-                reject(err)
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data) {
+                    resolve(res.data)
+                } else {
+                    error(res.msg) // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
             })
         })
     },
@@ -29,12 +35,16 @@ export default {
                     parentId: (fun === 'c') ? id : 'null', // 辅助 添加时为id 编辑时为空
                     name
                 }
-            }).then(res => {
-                const info = res.data // res 是信息头的那一层 包含特多
-                resolve((info.data && info.data.res === 1) ? null : info.msg) // 直接换算结果
-            }).catch(err => {
-                console.error('接口回调异常')
-                reject(err)
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.res) {
+                    resolve(res.data.res)
+                } else {
+                    error(res.msg) // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
             })
         })
     },
@@ -48,12 +58,16 @@ export default {
                 data: {
                     id
                 }
-            }).then(res => {
-                const info = res.data // res 是信息头的那一层 包含特多
-                resolve((info.data && info.data.res === 1) ? null : info.msg) // 直接换算结果
-            }).catch(err => {
-                console.error('接口回调异常')
-                reject(err)
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.res) {
+                    resolve(res.data.res)
+                } else {
+                    error(res.msg) // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
             })
         })
     },
@@ -75,12 +89,16 @@ export default {
                     departmentid: depIds, // 对应后台字段
                     isHeader: flag // 对应后台字段
                 }
-            }).then(res => {
-                const info = res.data // res 是信息头的那一层 包含特多
-                resolve((info.data && info.data.res === 1) ? null : info.msg) // 直接换算结果
-            }).catch(err => {
-                console.error('接口回调异常')
-                reject(err)
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.res) {
+                    resolve(res.data.res)
+                } else {
+                    error(res.msg) // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
             })
         })
     },

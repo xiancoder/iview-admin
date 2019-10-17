@@ -29,6 +29,10 @@ export const i18n = new VueI18n({
     messages
 })
 
+export const showTitle = (item, vm) => {
+    return vm.$config.useI18n ? vm.$t(item.name) : ((item.meta && item.meta.title) || item.name)
+}
+
 // vue-i18n 5.x写法
 // Vue.locale('zh-CN', Object.assign(zhCnLocale, customZhCn))
 // Vue.locale('en-US', Object.assign(zhTwLocale, customZhTw))

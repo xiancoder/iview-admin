@@ -1,6 +1,6 @@
 # 完美vue项目
 
-
+```
 ├── dist // 项目打包生成文件的目录
 ├── build // 打包配置
     ├── env.js
@@ -79,11 +79,10 @@
         ├── otherRouter.js // 所有辅助页面声明
         └── index.js
     ├── store // 状态管理
-        ├── app.js // app相关
-        ├── cache.js // 缓存相关
-        ├── employee.js // 职员相关
-        ├── user.js // 登录用户相关
-        └── index.js
+          ├── system.js // 系统相关
+          ├── employee.js // 职员相关
+          ├── user.js // 登录用户相关
+          └── index.js //出口
     ├── styles // 样式管理
         ├── common.less // 通用reset
         ├── loading.less // cao这是啥
@@ -157,6 +156,7 @@
 ├── td_icon.ico
 ├── 启动.bat
 └── README.md // 项目目录
+```
 
 <p align="center">
     <a href="https://www.iviewui.com">

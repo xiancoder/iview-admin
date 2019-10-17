@@ -4,7 +4,9 @@ import { Store } from '@/store'
 import { LoadingBarRun } from '@/tools'
 import { routerList as routes, specialRouterList } from './routers'
 import Config from '@/config'
+
 Vue.use(Router)
+
 // 路由实例 需要挂载到vue
 export const router = new Router({
     routes,
@@ -17,6 +19,7 @@ export const router = new Router({
         // if (to.hash) { return { selector: to.hash } }
     } */
 })
+
 // 辅助状态管理 解析路由结构
 // 由路由信息列表 整理成 树数据源 一维路由列表
 // 本算法只支持二层目录结构
@@ -48,14 +51,41 @@ export const power2routes = (powerList) => { // 根据权限更新视图
         }
         listOneLevel[one.name] = { title: one.title, path: one.path, power: true }
     })
-    Store.dispatch('system/setMenuList', list) // 左侧树数据源
-    Store.dispatch('system/setRoutePowerList', listOneLevel) // 一维扁平对象
+    return { list, listOneLevel }
 }
+
+// 辅助状态管理 解析单路由结构
+// 根据路由名称解析前因后果
+// 本算法只支持 同名称结果和 @符号子类
+export const power2BreadCrumb = (routeList, routeName) => {
+    const bca = []
+    let r0 = { title: '首页', path: '/home/index' }
+    bca.push(r0)
+    if (
+        routeList &&
+        routeName &&
+        routeName.indexOf('_') > -1 &&
+        routeName !== 'home_index'
+    ) {
+        let l1 = routeName.replace(/_.*$/g, '')
+        let r1 = routeList[l1]
+        if (r1 && l1 !== 'home') { bca.push(r1) }
+        if (routeName.indexOf('@') > -1) {
+            let l2 = routeName.replace(/@.*$/g, '').replace(/^.*_/g, '')
+            let r2 = routeList[l2]
+            if (r2) { bca.push(r2) }
+        }
+        let r3 = routeList[routeName]
+        if (r3) { bca.push(r3) }
+    }
+    return bca
+}
+
 router.beforeEach((to, from, next) => {
     console.info('仙', '准备跳转', to)
     if (Store.state.system.doNotDrawRouter) { return } // 回退再前进 之间的页面不做渲染
     LoadingBarRun(true) // 顶部进度条
-    Store.dispatch('system/setBreadCrumb', to.name) // 左侧树数据源
+    Store.dispatch('system/setBreadCrumbList', to.name) // 左侧树数据源
     Store.dispatch('system/routeSpin', true) // 路由视图loading
     // 滚动条位置
     // 放弃 有更好的方法 路由提供了 scrollBehavior 钩子
@@ -72,7 +102,7 @@ router.beforeEach((to, from, next) => {
     if (!isLocked && goLocking) { // 非锁定状态不允许去锁定页面
         return next(false) // 中止一切 复原url
     }
-    const isLogined = Store.state.system.access
+    const isLogined = Store.getters['system/access']
     const goLogin = ['login'].includes(to.name)
     if (!isLogined && !goLogin) { // 未登录状态不允许去其他页面
         return next({ replace: true, name: 'login' })
@@ -89,6 +119,7 @@ router.beforeEach((to, from, next) => {
         next()
     })
 })
+
 router.afterEach(to => {
     LoadingBarRun(false) // 顶部进度条
     Store.dispatch('system/setTitle', to.name) // 左侧树数据源

@@ -1,59 +1,72 @@
 <template>
-    <Layout style="height: 100%" class="main">
-        <Sider hide-trigger collapsible :width="200" :collapsed-width="64"
-            v-model="collapsed" class="left-sider" :style="{overflow: 'hidden'}">
-            <side-menu :collapsed="collapsed">
-                <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
-                <div class="logo-con">
-                    <img v-show="!collapsed" :src="maxLogo" key="max-logo" />
-                    <img v-show="collapsed" :src="minLogo" key="min-logo" />
+    <Layout style="height:100%" :class="['main',themeMiddle?'mianMiddle':'']">
+        <!-- Layout：布局容器，其下可嵌套 HeaderSiderContentFooter或 Layout 本身，可以放在任何父容器中。 -->
+        <!-- Header：顶部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。 -->
+        <!-- Sider：侧边栏，自带默认样式及基本功能，其下可嵌套任何元素，只能放在 Layout 中。 -->
+        <!-- Content：内容部分，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。 -->
+        <!-- Footer：底部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。 -->
+        <Layout style="height:100%">
+            <Sider hide-trigger collapsible
+                :width="200" :collapsed-width="64" v-model="collapsed" class="left-sider">
+                <div :class="['logocon',themeLogoFlex?'logoconflex':'']"
+                    :style="{'background': themeLogoBgColor}">
+                    <img v-show="!collapsed" :src="maxLogo"/>
+                    <img v-show="collapsed" :src="minLogo"/>
                 </div>
-            </side-menu>
-        </Sider>
-        <Layout>
-            <div class="main-header">
-                <Row type="flex" justify="start" align="middle" class="main-header-left">
-                    <a @click="handleCollapsedChange" type="text" :class="['sider-trigger-a', collapsed ? 'collapsed' : '']">
-                        <Icon type="md-menu" size="26" />
-                    </a>
-                    <custom-bread-crumb show-icon :list="breadCrumbList">
-                    </custom-bread-crumb>
-                </Row>
-                <Row type="flex" justify="end" align="middle" class="main-header-right">
-                    <a class="main-header-right-linkIcon" :href="`https://${row}/`" target="_blank"
-                        v-for="(row, key) in weblink" :name="key" :key="`link-${key}`">
-                        <img :src="`./${row}.png`">
-                    </a>
-                    <Badge dot :count="newMessageNum">
-                        <Icon type="md-notifications-outline" size="23" style="cursor:pointer" />
-                    </Badge>
-                    <qr-code></qr-code>
-                    <epopen></epopen>
-                    <lock-screen></lock-screen>
-                    <full-screen></full-screen>
-                    <error-store v-if="$config.errorLogStore"></error-store>
-                    <user></user>
-                </Row>
-            </div>
-            <Content class="main-content-con">
-                <Layout class="main-layout-con">
-                    <div class="tag-nav-wrapper">
-                        <tags-nav></tags-nav>
+                <div class="logocon" v-show="themeLogoFlex"></div>
+                <side-menu :collapsed="collapsed"/>
+            </Sider>
+            <Layout style="height:100%" class="right-sider">
+                <Header class="main-header":style="{'background': themeFgColor}">
+                    <Row type="flex" justify="start" class="main-header-left">
+                        <a @click="handleCollapsedChange" type="text"
+                            :class="['sidertrigger', collapsed?'collapsed':'']">
+                            <Icon type="md-menu" size="26" />
+                        </a>
+                        <custom-bread-crumb show-icon :list="breadCrumbList"/>
+                    </Row>
+                    <Row type="flex" justify="end" class="main-header-right">
+                        <a class="main-header-right-linkIcon"
+                            :href="`https://${row}/`" target="_blank"
+                            v-for="(row, key) in weblink" :name="key" :key="`link-${key}`">
+                            <img :src="`./${row}.png`">
+                        </a>
+                        <div>
+                            <Button type="text" style="padding: 0;">
+                                <Badge dot :count="newMessageNum">
+                                    <Icon type="md-notifications-outline" size="23"/>
+                                </Badge>
+                            </Button>
+                        </div>
+                        <div><qr-code/></div>
+                        <div><epopen/></div>
+                        <div><lock-screen/></div>
+                        <div><full-screen/></div>
+                        <div><error-store v-if="$config.errorLogStore"/></div>
+                        <div><user/></div>
+                    </Row>
+                </Header>
+                <Content class="main-content-con">
+                    <div class="main-layout-con">
+                        <div class="tag-nav-wrapper">
+                            <tags-nav></tags-nav>
+                        </div>
+                        <div class="content-wrapper" id="mainScrollFlag">
+                            <!-- 动态换场指令 transition vuerouter 提供 -->
+                            <!-- 页面缓存功能 vue提供 keep-alive -->
+                            <transition :name="transitionName">
+                                <keep-alive :include="cacheList">
+                                    <router-view></router-view>
+                                </keep-alive>
+                            </transition>
+                            <Spin size="large" fix v-if="spinShow"></Spin>
+                            <ABackTop :height="100" :bottom="80" :right="50" container=".content-wrapper"></ABackTop>
+                        </div>
                     </div>
-                    <Content class="content-wrapper" id="mainScrollFlag">
-                        <!-- 动态换场指令 transition vuerouter 提供 -->
-                        <!-- 页面缓存功能 vue提供 keep-alive -->
-                        <transition :name="transitionName">
-                            <keep-alive :include="cacheList">
-                                <router-view></router-view>
-                            </keep-alive>
-                        </transition>
-                        <Spin size="large" fix v-if="spinShow"></Spin>
-                        <ABackTop :height="100" :bottom="80" :right="50" container=".content-wrapper"></ABackTop>
-                    </Content>
-                </Layout>
-            </Content>
+                </Content>
+            </Layout>
         </Layout>
+        <Footer class="main-footer"> &copy;东胜神州傲来国无限技术公司 2010 - 2020 如来佛祖备案 </Footer>
     </Layout>
 </template>
 <script>
@@ -70,12 +83,18 @@ import epopen from '@C/epopen' // 组件::EP编辑
 import minLogo from '@/assets/images/logo-min.jpg'
 import maxLogo from '@/assets/images/logo.jpg'
 import '@S/main.less'
+
 export default {
-    name: 'Main',
+    name: 'Main', // 注册为组件时候name可以用来递归自己
     components: { SideMenu, TagsNav, FullScreen, ErrorStore, User, ABackTop, CustomBreadCrumb, qrCode, epopen, LockScreen },
     data () {
         return {
-            collapsed: false, // 折叠标记
+            themeMiddle: false, // 主题::主体局中
+            themeLogoFlex: false, // 主题::logo固定
+            themeLogoBgColor: '#fff', // 主题::logo背景颜色
+            themeBgColor: '#515a6e', // 主题::主体背景颜色
+            themeFgColor: '#fff', // 主题::主体前景颜色
+
             minLogo, // 最小图标
             maxLogo, // 最大图标
             transitionName: '', // 动画方式
@@ -88,6 +107,7 @@ export default {
         breadCrumbList () { return this.$store.state.system.breadCrumbList }, // 面包屑
         spinShow () { return this.$store.state.system.spinLoading || false }, // 新消息数量 0隐藏 null表红点 数字代表数量
         local () { return this.$store.state.app.local },
+        collapsed () { return this.$store.state.system.shrink }, // 折叠状态
         cacheList () { return this.$store.state.system.cacheList } // 被缓存的页面
     },
     methods: {
@@ -102,7 +122,7 @@ export default {
             this.$router.push({ name, params, query })
         },
         handleCollapsedChange (state) {
-            this.collapsed = !this.collapsed
+            this.$store.dispatch('system/setShrink', !this.collapsed)
         }
     },
     watch: {

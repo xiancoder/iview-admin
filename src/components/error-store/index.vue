@@ -1,11 +1,9 @@
 <template>
-    <div class="error-store">
+    <Button type="text" @click="openErrorLoggerPage" style="padding: 0;">
         <Badge dot :count="countComputed">
-            <Button type="text" @click="openErrorLoggerPage">
-                <Icon :size="20" type="ios-bug"/>
-            </Button>
+            <Icon :size="23" type="ios-bug"/>
         </Badge>
-    </div>
+    </Button>
 </template>
 <script>
 import { mapGetters } from 'vuex'
@@ -24,14 +22,3 @@ export default {
     }
 }
 </script>
-<style lang="less">
-.error-store{
-    margin-right: 12px;
-    .ivu-badge-dot{
-        top: 20px;
-    }
-    .ivu-btn.ivu-btn-text{
-        padding: 5px 1px 6px;
-    }
-}
-</style>

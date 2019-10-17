@@ -7,7 +7,7 @@
             {{ userName }}
             <Icon :size="18" type="md-arrow-dropdown"></Icon>
             <DropdownMenu slot="list">
-                <DropdownItem name="message"> 消息中心<Badge style="margin-left: 10px" :count="unreadCount"></Badge> </DropdownItem>
+                <DropdownItem name="message">消息中心<Badge style="margin-left: 10px" :count="unreadCount"></Badge> </DropdownItem>
                 <DropdownItem name="logout">退出登录</DropdownItem>
             </DropdownMenu>
         </Dropdown>
@@ -18,7 +18,7 @@ import './user.less'
 export default {
     name: 'User',
     computed: {
-        userAvatar () { return this.$store.state.system.avatarImgPath }, // 用户头像
+        userAvatar () { return this.$store.state.system.userAvatorPath }, // 用户头像
         userName () { return this.$store.state.system.userName }, // 用户名
         unreadCount () { return this.$store.state.system.newMessageNum }
     },

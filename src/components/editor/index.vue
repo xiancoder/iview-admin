@@ -10,34 +10,14 @@ import 'wangeditor/release/wangEditor.min.css'
 export default {
     name: 'Editor',
     props: {
-        value: {
-            type: String,
-            default: ''
-        },
-        /**
-     * 绑定的值的类型, enum: ['html', 'text']
-     */
-        valueType: {
-            type: String,
-            default: 'html',
+        value: { type: String, default: '' },
+        valueType: { type: String, default: 'html',
             validator: (val) => {
                 return ['html', 'text'].some(v => v === val)
             }
         },
-        /**
-     * @description 设置change事件触发时间间隔
-     */
-        changeInterval: {
-            type: Number,
-            default: 200
-        },
-        /**
-     * @description 是否开启本地存储
-     */
-        cache: {
-            type: Boolean,
-            default: true
-        }
+        changeInterval: { type: Number, default: 200 },
+        cache: { type: Boolean, default: true }
     },
     computed: {
         editorId () {
@@ -66,7 +46,6 @@ export default {
     }
 }
 </script>
-
 <style lang="less">
 .editor-wrapper *{
   z-index: 100 !important;

@@ -1,5 +1,6 @@
 <template>
     <div class="side-menu-wrapper">
+        <!-- 插槽 需要放在菜单上面的内容，如Logo -->
         <slot></slot>
         <Menu ref="menu" v-show="!collapsed"
             :active-name="activeName" :open-names="openedNames"

@@ -1,9 +1,9 @@
 <template>
-    <div class="xian-btn-con">
-        <Tooltip content="editplus打开本页面" placement="bottom">
-            <Icon @click.native="handleMe" type="ios-folder-open" :size="23"></Icon>
+    <Button type="text" @click.native="handleMe" style="padding: 0;">
+        <Tooltip content="editplus打开本页面" placement="bottom" theme="light" class="hand">
+            <Icon :size="23" type="ios-folder-open"/>
         </Tooltip>
-    </div>
+    </Button>
 </template>
 <script>
 import axios from 'axios'

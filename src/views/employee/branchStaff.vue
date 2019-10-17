@@ -73,9 +73,8 @@ export default {
         // 职位状态
         const stateList = this.$api.employee.pullStatus()
         const stateList2 = stateList.slice(1)
-        console.log(stateList)
         return {
-            accountNum: sessionStorage.getItem('account'),
+            accountNum: 1, // sessionStorage.getItem('account'),
             tableDataSet: [], // 表格数据
             tableColumns: [ // 表格配置
                 {
@@ -294,7 +293,7 @@ export default {
             this.saveParamState(this.searchParam1234) // 存url
             this.$api.employee.list(this.searchParam1234).then((info) => { // ajax
                 this.loading = false; // 加载完成
-                this.tableDataSet = info.data
+                this.tableDataSet = info.list
                 this.page.rowCount = info.rowCount
             })
         },
@@ -413,10 +412,13 @@ export default {
 </script>
 <style scoped lang="less">
     .layout{
-        .layoutLeft{overflow:auto;position: fixed;top: 75px;left: 215px;bottom: 0;width: 277px;
+        .layoutLeft{
+            overflow: auto; position: fixed; top: 125px; left: 222px; bottom: 0; width: 277px;
         }
-        .layoutRight{display: inline-block;padding-left: 280px;
-            .layoutTool2{margin-bottom:15px;
+        .layoutRight{
+            display: inline-block;padding-left: 280px;
+            .layoutTool2{
+                margin-bottom:15px;
                 > *{margin-right: 10px;}
                 span{ display: inline-block; line-height: 30px; height: 31px; vertical-align: bottom;}
             }

@@ -1,7 +1,9 @@
 <template>
-    <Tooltip content="锁屏" placement="bottom" theme="light" class="hand">
-        <Icon type="md-lock" :size="23" @click="lockScreen()"></Icon>
-    </Tooltip>
+    <Button type="text" @click="lockScreen" style="padding: 0;">
+        <Tooltip content="锁屏" placement="bottom" theme="light" class="hand">
+            <Icon :size="23" type="md-lock"/>
+        </Tooltip>
+    </Button>
 </template>
 <script>
 export default {
@@ -20,7 +22,7 @@ export default {
                 lockScreenBack.style.transition = 'all 0s'
                 this.$router.push({ name: 'locking' })
             }, 800)
-            this.$store.commit('app/setLocking', true)
+            this.$store.dispatch('app/setLocking', true)
         }
     },
     mounted () {

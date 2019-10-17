@@ -1,26 +1,6 @@
-// *********************************************
-// ajax分离结构
-// 放弃三层结构 因为不实用 被打脸了
-// 2019年7月17日09:44:04 liuyp
-// 放弃action和ajax结合方式 不实用 不方便
-// 2019年7月26日15:03:15 liuyp
-// ======================================
-// 第一部分 只获取需要的字段(前端想要的格式)
-// 第二部分 对一些参数进行默认值处理(接口想要的格式)
-// 第三部分 对一些参数转换字段名(接口想要的名字)
-// 第四部分 ajax传参以及返回值处理 注意401 500错误已经被处理
-// *********************************************
-// 名字代表一切
-// list 获取(符合条件) 理解顺序 list(获取) employee(员工) [根据条件]
-// pull 拉取(下拉框特定) 理解顺序 pull(拉取) employee(员工) status(状态) [根据条件]
-// edit 编辑(指定) 理解顺序 edit(编辑) employee(员工) status(状态) [根据条件]
-// *********************************************
-// 状态管理依旧 将ajax部分独立处理
-// get 请求用的最多 复用率比较大
-// post 基本上没有复用的
-// 固定数据有很多 且不建议使用promise方式
-// *********************************************
 import axios from 'axios'
+import { error } from '@/tools'
+
 export default {
     list ({ // 获取所有人员
         depId, // null为所有
@@ -44,13 +24,16 @@ export default {
                     pageIndex: page, // 对应后台字段
                     pageSize
                 }
-            }).then(res => {
-                const info = res.data // (内有date和rowCount)
-                // resolve() 只能接受并处理一个参数，多余的参数会被忽略掉。 spec上就是这样规定。
-                resolve(info) // 传递res 取出data
-            }).catch(err => {
-                console.error('接口回调异常')
-                reject(err)
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data) {
+                    resolve(res.data)
+                } else {
+                    error(res.msg) // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
             })
         })
     },
@@ -64,11 +47,16 @@ export default {
                 data: {
                     userId
                 }
-            }).then(res => {
-                resolve(res.data.data.result)
-            }).catch(err => {
-                console.error('接口回调异常')
-                reject(err)
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.result) {
+                    resolve(res.data.result)
+                } else {
+                    error(res.msg) // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
             })
         })
     },
@@ -96,12 +84,16 @@ export default {
                     id: usersIds,
                     userStatus: parseInt(userStatus || 0)
                 }
-            }).then(res => {
-                const info = res.data
-                resolve((info.data && info.data.res === 1) ? null : info.msg) // 直接换算结果
-            }).catch(err => {
-                console.error('接口回调异常')
-                reject(err)
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.res) {
+                    resolve()
+                } else {
+                    error(res.msg) // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
             })
         })
     },
@@ -121,12 +113,16 @@ export default {
                     id: usersIds,
                     departmentid: departmentids
                 }
-            }).then(res => {
-                const info = res.data
-                resolve((info.data && info.data.res === 1) ? null : info.msg) // 直接换算结果
-            }).catch(err => {
-                console.error('接口回调异常')
-                reject(err)
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.res) {
+                    resolve()
+                } else {
+                    error(res.msg) // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
             })
         })
     },

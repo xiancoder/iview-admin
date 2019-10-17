@@ -1,17 +1,24 @@
 <style lang="less">
-    @import "./common.less";
+    .no-select{
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
 </style>
 <template>
-  <div>
-    <Card title="导出EXCEL">
-      <Row>
-        <Button icon="md-download" :loading="exportLoading" @click="exportExcel">导出文件</Button>
-      </Row>
-    </Card>
-    <Row class="margin-top-10">
-      <Table border :columns="tableTitle" :data="tableData"></Table>
-    </Row>
-  </div>
+    <div>
+        <Card title="导出EXCEL">
+            <Row>
+                <Button icon="md-download" :loading="exportLoading" @click="exportExcel">导出文件</Button>
+            </Row>
+        </Card>
+        <Row class="margin-top-10">
+            <Table border :columns="tableTitle" :data="tableData"></Table>
+        </Row>
+    </div>
 </template>
 <script>
 import excel from '@/utils/excel'
@@ -21,35 +28,14 @@ export default {
         return {
             exportLoading: false,
             tableTitle: [
-                {
-                    title: '一级分类',
-                    key: 'category1'
-                },
-                {
-                    title: '二级分类',
-                    key: 'category2'
-                },
-                {
-                    title: '三级分类',
-                    key: 'category3'
-                }
+                { title: '一级分类', key: 'category1' },
+                { title: '二级分类', key: 'category2' },
+                { title: '三级分类', key: 'category3' }
             ],
             tableData: [
-                {
-                    category1: 1,
-                    category2: 2,
-                    category3: 3
-                },
-                {
-                    category1: 4,
-                    category2: 5,
-                    category3: 6
-                },
-                {
-                    category1: 7,
-                    category2: 8,
-                    category3: 9
-                }
+                { category1: 1, category2: 2, category3: 3 },
+                { category1: 4, category2: 5, category3: 6 },
+                { category1: 7, category2: 8, category3: 9 }
             ]
         }
     },
@@ -70,12 +56,6 @@ export default {
                 this.$Message.info('表格数据不能为空！')
             }
         }
-    },
-    created () {
-
-    },
-    mounted () {
-
     }
 }
 </script>
