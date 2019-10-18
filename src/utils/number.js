@@ -379,65 +379,52 @@ export const compareIP = function (ipBegin, ipEnd) {
         if (temp1[i] > temp2[i]) { return 1; } else if (temp1[i] < temp2[i]) { return -1; }
     } return 0
 }
-// 保留两位小数
-// 功能：将浮点数四舍五入，取小数点后2位
-export const toDecimal = function (x) {
-    var f = parseFloat(x)
-    if (isNaN(f)) { return }
-    f = Math.round(x * 100) / 100
-    return f
+// 保留x位小数
+// 功能：将浮点数四舍五入，取小数点后x位
+export const toDecimal = function (num, pos) {
+    let result = parseFloat(num)
+    if (isNaN(num)) { return 0 }
+    pos = pos || 2
+    const bit10 = Math.pow(10, pos)
+    result = Math.round(num * bit10) / bit10
+    return result
 }
 // 强制保留2位小数，如：2，会在2后面补上00.即2.00
-export const toDecimal2 = function (x) {
-    var f = parseFloat(x)
-    if (isNaN(f)) { return false }
-    f = Math.round(x * 100) / 100
-    var s = f.toString()
+export const toDecimalForce = function (num, pos) {
+    let result = parseFloat(num)
+    if (isNaN(num)) { return 0 }
+    pos = pos || 2
+    const bit10 = Math.pow(10, pos)
+    result = Math.round(num * bit10) / bit10
+    var s = result.toString()
     var rs = s.indexOf('.')
     if (rs < 0) {
         rs = s.length
         s += '.'
     }
-    while (s.length <= rs + 2) {
-        s += '0'
-    }
+    while (s.length <= rs + pos) { s += '0' }
     return s
 }
-// 一个数字字符串 小数 的 保留两位处理
+// 一个数字字符串 小数 的 保留两位 格式限定处理
 // 非四舍五入 直接舍
-// 资料收集
-export const toDecimal3 = function (s) {
+export const toDecimalFormat = function (s) {
     s = parseFloat(s)
     if (isNaN(s)) { return 0 }
     // return s.substring(0,s.indexOf(".") + 3) // 非小数 报错
-    return s.replace(/([0-9]+\.[0-9]{2})[0-9]*/, '$1') // 挺好 略麻烦
+    return s.toString().replace(/([0-9]+\.[0-9]{2})[0-9]*/, '$1') // 挺好 略麻烦
 }
-export const fomatFloat = function (src, pos) {
-    return Math.round(src * Math.pow(10, pos)) / Math.pow(10, pos)
-}
-// 四舍五入
-// "保留2位小数：" + toDecimal(3.14159267))
-// "强制保留2位小数：" + toDecimal2(3.14159267))
-// "保留2位小数：" + toDecimal(3.14559267))
-// "强制保留2位小数：" + toDecimal2(3.15159267))
-// "保留2位小数：" + fomatFloat(3.14559267, 2))
-// "保留1位小数：" + fomatFloat(3.15159267, 1))
-
 // 五舍六入
-// "保留2位小数：" + 1000.003.toFixed(2))
-// "保留1位小数：" + 1000.08.toFixed(1))
-// "保留1位小数：" + 1000.04.toFixed(1))
-// "保留1位小数：" + 1000.05.toFixed(1))
-
+// "保留2位小数 1000.003.toFixed(2) "1000.00"
+// "保留1位小数 1000.08.toFixed(1) "1000.1"
+// "保留1位小数 1000.04.toFixed(1) "1000.1"
+// "保留1位小数 1000.05.toFixed(1) "1000.2"
 // 科学计数
-// 3.1415.toExponential(2))
-// 3.1455.toExponential(2))
-// 3.1445.toExponential(2))
-// 3.1465.toExponential(2))
-// 3.1665.toExponential(1))
+// 3.1415.toExponential(2) "3.14e+0"
+// 3.1455.toExponential(2) "3.15e+0"
+// 3.1445.toExponential(2) "3.14e+0"
+// 3.1665.toExponential(1) "3.2e+0"
 // 精确到n位，不含n位
-// "精确到小数点第2位" + 3.1415.toPrecision(2))
-// "精确到小数点第3位" + 3.1465.toPrecision(3))
-// "精确到小数点第2位" + 3.1415.toPrecision(2))
-// "精确到小数点第2位" + 3.1455.toPrecision(2))
-// "精确到小数点第5位" + 3.141592679287.toPrecision(5));
+// "精确到小数点第2位 3.1415.toPrecision(2) "3.1"
+// "精确到小数点第3位 3.1465.toPrecision(3) "3.15"
+// "精确到小数点第2位 3.1455.toPrecision(2) "3.1"
+// "精确到小数点第5位 3.141592679287.toPrecision(5) 3.1416"

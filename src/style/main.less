@@ -1,21 +1,20 @@
-.size{
-  width: 100%;
-  height: 100%;
-}
+/* reset 经典重置 */
+.size{ width: 100%; height: 100%; }
 html,body{
-  .size;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
+    .size;
+    overflow: hidden; margin: 0; padding: 0;
 }
 #app {
-  .size;
+    .size;
 }
-
-
-
-
-
+.tc{ text-align: center; }
+.fl{ float: left; }
+.fr{ float:right; }
+.clear:after{ display:block;clear:both;content:"";visibility:hidden;height:0; }
+.clear{ zoom:1; }
+.hand{ cursor: pointer }
+/* 当a元素没有文本值，但 href 属性有链接的时候显示链接 */
+a[href^="http"]:empty::before { content: attr(href); }
 
 /* 变量 */
 @siderTtriggerSize: 40px;
@@ -30,10 +29,6 @@ html,body{
             height: 60px; padding: 10px;
             img{
                 height: 44px; width: auto; display: block; margin: 0 auto;
-            }
-            &.logoconflex{
-                display: block; position: absolute; top: 0; left: 0; width: 100%;
-                z-index: 1000;
             }
         }
         /* 复写 树形菜单微调 */
@@ -112,6 +107,15 @@ html,body{
             display: none !important;
         }
     }
+    &.logoconflex{
+        .logocon{
+            display: block; position: absolute; top: 0; left: 0; width: 100%;
+            z-index: 1000;
+        }
+        .left-sider:before{
+            content:' ';display:block;height:60px;
+        }
+    }
     /* 底部公司名 */
     .main-footer{
         padding: 0px;
@@ -123,23 +127,15 @@ html,body{
     /* 内容结构 */
     .main-content-con{
         overflow: hidden;
-        padding-bottom: 50px;
         .main-layout-con{
-            height: 100%;
-            overflow: hidden;
+            height: 100%; overflow-x: hidden;overflow-y: scroll;
         }
-    }
-
-
-    .tag-nav-wrapper{
-        padding: 0;
-        height:40px;
-        background:#F0F0F0;
-    }
-    .content-wrapper{
-        padding: 18px;
-        height: ~"calc(100% - 0px)";
-        overflow: auto;
+        .tag-nav-wrapper{
+            padding: 0; height:40px; background:#F0F0F0;
+            .content-wrapper{
+                padding: 18px; height: ~"calc(100% - 0px)"; overflow: auto; padding-bottom: 100px !important;
+            }
+        }
     }
 }
 .ivu-menu-item > i{
@@ -175,35 +171,44 @@ html,body{
 .ivu-select-dropdown.ivu-dropdown-transfer{
     max-height: 400px;
 }
-
-
-
-/* reset */
-.tc{ text-align: center; }
-.fl{ float: left; }
-.fr{ float:right; }
-.clear:after{ display:block;clear:both;content:"";visibility:hidden;height:0; }
-.clear{ zoom:1; }
-.hand{ cursor: pointer }
-
-
 /* 项目样式 */
 .prodectCss{overflow: hidden; background: #fefefe;
 }
 /* 博客样式 */
-.blogCss{overflow: hidden; background: #f5f7f9;
-    /*&:before{content: ""; position: absolute; top: 0; bottom: 0; left: 0; right: 0;  z-index: -10; }*/
-    .blog{ -webkit-box-shadow: 0 0 6px 6px rgb(226, 226, 226); box-shadow: 0 0 6px 6px rgb(226, 226, 226); width: 80%; margin: 50px auto; padding: 60px 0 0; background: #fff;}
-    .blogTitle{ font-size: 39px; font-size: 1.5rem; line-height: 1.2308; margin-bottom: 1.2308em; border-bottom: 3px solid #2d8cf0; margin: 0 57px; padding: 20px 0 13px 0; }
-    .blogContent{ padding: 10px 60px 0px;}
-    .blogContent > p { font-size: 15px; line-height: 42px; }
-    .blogContent p.commend{ display: block; margin: 10px 0; line-height: 20px; padding: 10px; background: #666; color: #00ef77; font-weight: bold; }
-    .blogContent > ul{padding-left: 22px; }
-    .blogContent > pre{white-space: pre-wrap; }
-    .blogContent > blockquote { background: #f8f8f9; border-left: 8px solid #2d8cf0; padding: 10px 0 10px 20px; }
-    .blogFooter{ min-height: 100px; background: #f8f8f8; padding: 18px 60px 0; margin: 50px 0 0 0; }
-    /* 炫目横线 */
-    hr{ display: block; width: 80%; margin: 20px auto; border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); }
+.blogCss{
+    overflow: hidden; background: #f5f7f9;
+    /*&:before{
+        content: ""; position: absolute; top: 0; bottom: 0; left: 0; right: 0;  z-index: -10;
+    }*/
+    .blog{
+        -webkit-box-shadow: 0 0 6px 6px rgb(226, 226, 226);
+        box-shadow: 0 0 6px 6px rgb(226, 226, 226); width: 80%;
+        margin: 50px auto; padding: 60px 0 0; background: #fff;
+        .blogTitle{
+            font-size: 39px; font-size: 1.5rem; line-height: 1.2308;
+            margin-bottom: 1.2308em; border-bottom: 3px solid #2d8cf0;
+            margin: 0 57px; padding: 20px 0 13px 0;
+        }
+        .blogContent{
+            padding: 10px 60px;
+            & > p { font-size: 15px; line-height: 42px; }
+            p.commend{
+                display: block; margin: 10px 0; line-height: 20px;
+                padding: 10px; background: #666; color: #00ef77; font-weight: bold;
+            }
+            & > ul{padding-left: 22px; }
+            & > pre{white-space: pre-wrap; }
+            & > blockquote { background: #f8f8f9; border-left: 8px solid #2d8cf0; padding: 10px 0 10px 20px; }
+        }
+        .blogFooter{
+            min-height: 100px; background: #f8f8f8; padding: 18px 60px 0; margin: 50px 0 0 0;
+        }
+        /* 炫目横线 */
+        hr{
+            display: block; width: 80%; margin: 20px auto; border: 0; height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+        }
+    }
 }
 /* API样式 */
 table.api{ font-family:Consolas,Menlo,Courier,monospace; font-size:12px; border-collapse:collapse;
@@ -221,11 +226,33 @@ div.api{
         & td,
         & th { border: 1px solid #e9e9e9; padding: 8px 16px; text-align: left; }
         & th { background: #f7f7f7; white-space: nowrap; color: #5c6b77; font-weight: 600; }
-        & code { display: inline-block; background: #f7f7f7; font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace; margin: 0 3px; padding: 1px 5px; border-radius: 3px; color: #666; border: 1px solid #eee; }
+        & code {
+            display: inline-block; background: #f7f7f7;
+            font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace; margin: 0 3px;
+            padding: 1px 5px; border-radius: 3px; color: #666; border: 1px solid #eee;
+        }
+    }
+}
+/* 表格自定义项 */
+.tableLayout{
+    position: relative; padding:20px;
+    .ivu-table{ cursor: pointer; }
+    /* 工具栏 就是盛放搜索项的那块 */
+    .tableTool{
+        display: inline-block;width: 100%;
+        > *{margin-right: 10px;max-width: 180px;margin-bottom: 10px;vertical-align: middle;}
+        > .fr{margin-right: 0;margin-left: 10px;}
+    }
+    /* 表格页脚 放置分页的那块 */
+    .tableFooter{
+        margin: 15px 0; padding: 0 10px; overflow: hidden;
+        > *{margin-right: 10px;}
+        > .fr{margin-right: 0;margin-left: 10px;}
     }
 }
 /* 页面内容范围 */
 .xianFrom {
+    position: relative; padding:20px;
     /* 复写表单样式 */
     .ivu-form{width: 100%; padding: 30px 0px; border-left: 1px solid #dcdee2; border-right: 1px solid #dcdee2;}
     /* label 距离 */
@@ -245,11 +272,18 @@ div.api{
     .ivu-form-item-error .ivu-checkbox-inner { border-color: #ed4014 !important; }
 }
 /* 表单项多文件上传 复制的官网样式 */
-.xian-review-list{ display: inline-block; width: 60px; height: 60px; text-align: center; line-height: 60px; border: 1px solid #dcdee2; border-radius: 4px; overflow: hidden; background: #fff; position: relative; box-shadow: 0 1px 1px rgba(0,0,0,.2); margin-right: 4px; }
-.xian-review-list img{ width: 100%; height: 100%; }
-.xian-review-list-cover{ display: none; position: absolute; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,.6); }
+.xian-review-list{
+    display: inline-block; width: 60px; height: 60px; text-align: center;
+    line-height: 60px; border: 1px solid #dcdee2; border-radius: 4px; overflow: hidden;
+    background: #fff; position: relative; box-shadow: 0 1px 1px rgba(0,0,0,.2); margin-right: 4px;
+    img{ width: 100%; height: 100%; }
+}
+.xian-review-list-cover{
+    display: none; position: absolute; top: 0; bottom: 0;
+    left: 0; right: 0; background: rgba(0,0,0,.6);
+    i{ color: #fff; font-size: 20px; cursor: pointer; margin: 0 2px; }
+}
 .xian-review-list:hover .xian-review-list-cover{ display: block; }
-.xian-review-list-cover i{ color: #fff; font-size: 20px; cursor: pointer; margin: 0 2px; }
 /* //////////////////////////////////////////////////////////////////////////// */
 /* 表单标题和tab */
 .xian-title-tabs{ margin-top: 30px;
@@ -262,26 +296,16 @@ div.api{
 }
 /* 自定义的表单内容提示 */
 /* 错误提示 将遮挡 内容提示 */
-.ivu-form-item-notice-tip{position: absolute; top: 100%; left: 0; line-height: 1; padding-top: 6px; color: #9E9E9E;}
-.ivu-form-item-notice-tip + .ivu-form-item-error-tip{background: white; width: 100%;}
+.ivu-form-item-notice-tip{
+    position: absolute; top: 100%; left: 0; line-height: 1; padding-top: 6px; color: #9E9E9E;
+    & + .ivu-form-item-error-tip{
+        background: white; width: 100%;
+    }
+}
 /* 下拉框不被其他框架遮挡 */
 .ivu-select .ivu-select-dropdown{z-index: 1200;}
 /* loading遮挡 */
 .ivu-spin-fix{z-index: 5000;}
-/* 表格自定义项 */
-.tableLayout{position: relative;
-    .ivu-table{ cursor: pointer; }
-    /* 工具栏 就是盛放搜索项的那块 */
-    .tableTool{display: inline-block;width: 100%;
-        > *{margin-right: 10px;max-width: 180px;margin-bottom: 10px;vertical-align: middle;}
-        > .fr{margin-right: 0;margin-left: 10px;}
-    }
-    /* 表格页脚 放置分页的那块 */
-    .tableFooter{margin-top:15px;
-        > *{margin-right: 10px;}
-        > .fr{margin-right: 0;margin-left: 10px;}
-    }
-}
 /* placeholder 全局统一 */
 ::-webkit-input-placeholder { /* WebKit browsers */ color: #bbbec4; font-size: 12px; }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */ color: #bbbec4; font-size: 12px; }

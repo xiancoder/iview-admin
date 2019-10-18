@@ -12,8 +12,7 @@ export const routerList = [
         children: [
             {power: '0000', path: 'index', title: '首页'},
             {power: '0000', path: 'message', icon: 'md-notifications', title: '消息中心'},
-            {power: '0000', path: 'errorlogger', icon: 'md-bug', title: '错误收集'},
-            {power: '0000', path: 'errorstore', icon: 'md-bug', title: '错误收集'}
+            {power: '0000', path: 'errorlogger', icon: 'md-bug', title: '错误收集测试'}
         ]
     }),
     makeTwoLevelRoute({
@@ -146,7 +145,12 @@ export const routerList = [
             {power: '0000', path: '100autofontsize', title: '自动字体大小'}
         ]
     }),
-
+    makeTwoLevelRoute({
+        path: 'exp6', title: '经验集.卷六', icon: 'md-globe',
+        children: [
+            {power: '0000', path: '101looknodown', title: '评审看不下去代码'}
+        ]
+    }),
     makeTwoLevelRoute({
         path: 'tool', title: '趁手工具第三代', icon: 'md-globe',
         children: [

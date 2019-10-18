@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 export default {
     pull ({ // 获得职位列表
         deptId // 部门id

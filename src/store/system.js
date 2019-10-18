@@ -35,6 +35,7 @@ export default {
         newMessageNum: 0, // 新消息数量
 
         errorList: [], // 错误列表 todo 收集系统所有的错误 伺机发送
+        paramList: {}, // 页面请求参数记录 根据url中的时间戳对应读取
 
         end: 1 // 结尾容错
     },
@@ -70,7 +71,11 @@ export default {
         CACHELIST (state, a) { state.cacheList = a },
 
         NEWMESSAGENUM (state, num) { state.newMessageNum = num },
-        ERRORLIST (state, error) { state.errorList.push(error) }
+
+        ERRORLIST (state, error) { state.errorList.push(error) },
+        // PARAMLIST 不需要触发渲染
+
+        END: function () {} // 结尾容错
     },
     actions: {
         setTheme ({ commit }, v) { commit('THEME', v) }, // 修改主题
@@ -227,7 +232,11 @@ export default {
                 })
             })
         },
-        pushError ({ commit }, error) { commit('ERRORLIST', error) }, // 增加一个错误
+        pushError ({ state, commit }, error) { // 增加一个错误
+            commit('ERRORLIST', error)
+            console.log('定时下发报错信息记录', state.errorList)
+        },
+        // pageParamList ({ state }, { title, content }) {}, // 不需要 也不好实现
 
         // 公共逻辑操作
         setTitle ({ state }, routeName) { // 修改title

@@ -123,5 +123,17 @@ export default {
             })
         })
     },
+    saveErrorLogger (info) { // vue错误上报
+        return new Promise((resolve, reject) => {
+            console.error('仙', '错误日志', info)
+            axios.request({
+                method: 'post',
+                url: 'api/data/errorlogger',
+                data: info
+            }).then(response => { // 请注意这个返回值是整个结果对象
+            }).catch(e => {
+            })
+        })
+    },
     end () {} // 错误占位符
 }

@@ -1,19 +1,21 @@
 <template>
-    <Layout style="height:100%" :class="['main',themeMiddle?'mianMiddle':'']">
+    <Layout style="height:100%" :class="[
+            'main',
+            themeMiddle?'mianMiddle':'',
+            themeLogoFlex?'logoconflex':''
+        ]">
         <!-- Layout：布局容器，其下可嵌套 HeaderSiderContentFooter或 Layout 本身，可以放在任何父容器中。 -->
         <!-- Header：顶部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。 -->
         <!-- Sider：侧边栏，自带默认样式及基本功能，其下可嵌套任何元素，只能放在 Layout 中。 -->
         <!-- Content：内容部分，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。 -->
         <!-- Footer：底部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。 -->
         <Layout style="height:100%">
-            <Sider hide-trigger collapsible
-                :width="200" :collapsed-width="64" v-model="collapsed" class="left-sider">
-                <div :class="['logocon',themeLogoFlex?'logoconflex':'']"
-                    :style="{'background': themeLogoBgColor}">
-                    <img v-show="!collapsed" :src="maxLogo"/>
-                    <img v-show="collapsed" :src="minLogo"/>
+            <Sider hide-trigger collapsible class="left-sider"
+                :width="200" :collapsed-width="64" v-model="collapsed">
+                <div class="logocon" :style="{'background': themeLogoBgColor}">
+                    <img :src="logoPath"/>
                 </div>
-                <div class="logocon" v-show="themeLogoFlex"></div>
+                <search-menu />
                 <side-menu :collapsed="collapsed"/>
             </Sider>
             <Layout style="height:100%" class="right-sider">
@@ -47,11 +49,11 @@
                     </Row>
                 </Header>
                 <Content class="main-content-con">
-                    <div class="main-layout-con">
+                    <div class="main-layout-con" id="mainScrollFlag">
                         <div class="tag-nav-wrapper">
                             <tags-nav></tags-nav>
                         </div>
-                        <div class="content-wrapper" id="mainScrollFlag">
+                        <div class="content-wrapper">
                             <!-- 动态换场指令 transition vuerouter 提供 -->
                             <!-- 页面缓存功能 vue提供 keep-alive -->
                             <transition :name="transitionName">
@@ -73,6 +75,7 @@
 import SideMenu from '@C/side-menu' // 组件::左侧树菜单
 import TagsNav from '@C/tags-nav'
 import User from '@C/user'
+import SearchMenu from '@C/search-menu'
 import LockScreen from '@C/lockscreen'
 import ABackTop from '@C/a-back-top'
 import FullScreen from '@C/fullscreen' // 组件::全屏按钮
@@ -86,7 +89,10 @@ import '@S/main.less'
 
 export default {
     name: 'Main', // 注册为组件时候name可以用来递归自己
-    components: { SideMenu, TagsNav, FullScreen, ErrorStore, User, ABackTop, CustomBreadCrumb, qrCode, epopen, LockScreen },
+    components: {
+        SideMenu, TagsNav, FullScreen, ErrorStore, User, ABackTop,
+        CustomBreadCrumb, qrCode, epopen, LockScreen, SearchMenu
+    },
     data () {
         return {
             themeMiddle: false, // 主题::主体局中
@@ -98,11 +104,11 @@ export default {
             minLogo, // 最小图标
             maxLogo, // 最大图标
             transitionName: '', // 动画方式
-            weblink: [ 'www.zdao.com', 'www.qichacha.com', 'www.tianyancha.com', 'maimai.cn' ],
-            isFullscreen: false
+            weblink: [ 'www.zdao.com', 'www.qichacha.com', 'www.tianyancha.com', 'maimai.cn' ] // 外链链接
         }
     },
     computed: {
+        logoPath () { return this.collapsed ? minLogo : maxLogo }, // 根据折叠状态切换图片
         newMessageNum () { return this.$store.state.system.newMessageNum || 0 }, // 新消息数量 0隐藏 null表红点 数字代表数量
         breadCrumbList () { return this.$store.state.system.breadCrumbList }, // 面包屑
         spinShow () { return this.$store.state.system.spinLoading || false }, // 新消息数量 0隐藏 null表红点 数字代表数量

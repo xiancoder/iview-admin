@@ -90,8 +90,12 @@ router.beforeEach((to, from, next) => {
     // 滚动条位置
     // 放弃 有更好的方法 路由提供了 scrollBehavior 钩子
     // 不再放弃 钩子有问题
-    const scroller = document.getElementById('mainScrollFlag')
-    if (scroller) scroller.scrollTo(0, 0)
+    try {
+        const scroller = document.getElementById('mainScrollFlag')
+        if (scroller) scroller.scrollTo(0, 0)
+    } catch (e) {
+        console.error('IE不支持scrollTo')
+    }
     // 路由keepAlive管理
     Store.dispatch('system/keepalive', to.name) // 左侧树数据源
     const isLocked = Store.state.system.locking

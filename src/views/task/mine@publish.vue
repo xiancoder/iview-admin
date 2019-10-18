@@ -63,6 +63,8 @@ export default {
     components: { tab },
     data () {
         return {
+            listAjaxName: 'listMine',
+            optionSearch: 1,
             loading: false,
             dataSet: {
                 'taskPriorityList': [],
@@ -129,10 +131,6 @@ export default {
                 {title: '状态', key: 'taskStatus'}
             ]
         };
-    },
-    props: {
-        listAjaxName: {type: String, default: 'listMine'}, // 本页面同意作为模板给另外三个兄弟节点使用
-        optionSearch: {type: Number, default: 1} // 本页面同意作为模板给另外三个兄弟节点使用
     },
     methods: {
         goto (name, query) { // 跳转目录

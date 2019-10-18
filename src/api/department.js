@@ -1,7 +1,15 @@
 import axios from 'axios'
 import { error } from '@/tools'
+import cacher from './cache'
 
 export default {
+    listCache () { // 获得部门列表树(这个不经常改 可以缓存)
+        return cacher({
+            method: 'GET',
+            url: '/api/hr/getdepartmentCache',
+            data: {}
+        })
+    },
     list () { // 获得部门列表树
         return new Promise((resolve, reject) => {
             axios({

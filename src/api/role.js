@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 export default {
     list () { // 获取所有角色
         return new Promise((resolve, reject) => {

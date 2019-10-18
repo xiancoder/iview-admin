@@ -34,7 +34,6 @@ export default {
     }
 }
 </script>
-
 <style lang="less">
 .common{ float: left; height: 100%; display: table; text-align: center; }
 .size{ width: 100%; height: 100%; }

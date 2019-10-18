@@ -6,7 +6,7 @@
 // =====================================================================
 import Vue from 'vue' // 核心
 import '@/api' // 接口管理 -挂载$api
-import '@/config' // 全局参数 -挂载$config
+import config from '@/config' // 全局参数 -挂载$config
 import '@/directive' // 指令
 import '@/filter' // 过滤器
 // import { i18n } from '@/i18n' // 资源国际化
@@ -21,6 +21,19 @@ import '@/validate' // 常用校验 -挂载$validate
 if (process.env.NODE_ENV !== 'production') require('@/mock') // 实际打包时应该不引入mock
 
 console.info('仙', '目前环境', process.env.NODE_ENV)
+
+// 当开关开启同时为研发环境 执行vue报错记录功能
+// 处理错误信息, 进行错误上报
+// err错误对象 // vm Vue实例 // `info` 是 Vue 特定的错误信息，比如错误所在的生命周期钩子
+if (config.errorLogStore || process.env.NODE_ENV === 'development') {
+    Vue.config.errorHandler = (error, vm, mes) => {
+        let info = { type: 'script', code: 0, mes: '[' + mes + ']' + error.message, url: window.location.href }
+        console.error(error, vm, mes)
+        Vue.nextTick(() => {
+            Store.dispatch('system/pushError', info)
+        })
+    }
+}
 
 new Vue({ // 实例化
     el: '#app',

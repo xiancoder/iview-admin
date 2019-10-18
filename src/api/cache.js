@@ -1,5 +1,6 @@
 // 没想好怎么用
 import axios from 'axios'
+import config from '@/config'
 // 数据存储
 export const cache = {
     data: {},
@@ -11,7 +12,7 @@ export const cache = {
     },
     get (key) {
         const now = +(new Date())
-        if (this.time[key] && now - this.time[key] < 30 * 1000) {
+        if (this.time[key] && now - this.time[key] < config.cacheTime) {
             return this.data[key]
         }
         delete this.time[key]
@@ -33,7 +34,7 @@ function buildUrl (url, params = {}) {
     return url
 }
 // 缓存,建议只给get加缓存
-export default config => {
+export default (config) => {
     const { url, method, params, data } = config
     let index // 建立索引
     if (method === 'get') { index = buildUrl(url, params) } else { index = buildUrl(url, data) }

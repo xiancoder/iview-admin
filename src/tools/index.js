@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import { router } from '@/router'
 import { Message, Modal, LoadingBar } from 'iview'
+import { Store } from '@/store' // 状态管理 -挂载$stroe
 import { type } from '@/utils/object'
-import { cache } from '@/cache'
 /// ////////////////////////////////////////////////////
 // 常用的操作封装
 /// ////////////////////////////////////////////////////
@@ -41,23 +41,18 @@ export const jumpto = (name, obj) => { // 跳转
 export const saveParamState = (obj) => { // 保存当前参数
     const time = new Date().getTime()
     const name = router.history.current.name
-    cache.setParamState(name + time, JSON.stringify(obj))
+    const paramList = Store.state.system.paramList
+    paramList[name + time] = obj
     const query = { 'search': time }
     router.push({ name, query })
 }
 export const getParamState = () => { // 获取当前参数
     const time = router.history.current.query.search
     if (time) {
-        try {
-            const name = router.history.current.name
-            const obj = cache.getParamState(name + time)
-            return JSON.parse(obj)
-        } catch (e) {
-            return {}
-        }
-    }
-    if (window.history.length <= 1) {
-        window.localStorage.clear()
+        const name = router.history.current.name
+        const paramList = Store.state.system.paramList
+        const obj = paramList[name + time]
+        return obj
     }
     return {}
 }
@@ -128,7 +123,7 @@ export const h = { // 通用渲染格式 for 表格 (即将废弃)
     },
     end: null // 错误占位符
 }
-export const LoadingBarRun = (flag) => { // 二次确认框
+export const LoadingBarRun = (flag) => { // 顶部进度条执行
     if (flag) {
         LoadingBar.start()
     } else {
@@ -144,16 +139,6 @@ Vue.prototype.$tool = {
     jumpto,
     saveParamState,
     getParamState,
-    h
-}
-/// ////////////////////////////////////////////////////
-// 有用的正则列表
-/// ////////////////////////////////////////////////////
-export const RegExtApi = {
-    // 校验金钱(小数点后最多两位)
-    // 可以校验0.xx 0.x 0 10 123.xx
-    money: /^([0-9]|[1-9][0-9]+)(\.[0-9]{1,2})?$/
-}
-Vue.prototype.$regext = {
-    ...RegExtApi
+    h,
+    LoadingBarRun
 }

@@ -161,16 +161,14 @@ export default {
         })
     },
     status () { // 任务级别
-        return new Promise((resolve, reject) => {
-            resolve([
-                { id: '-1', name: '全部状态' },
-                { id: '0', name: '待接受' },
-                { id: '1', name: '执行中' },
-                { id: '2', name: '待验收' },
-                { id: '3', name: '已通过' },
-                { id: '4', name: '已废弃' }
-            ])
-        })
+        return Promise.resolve([
+            { id: '-1', name: '全部状态' },
+            { id: '0', name: '待接受' },
+            { id: '1', name: '执行中' },
+            { id: '2', name: '待验收' },
+            { id: '3', name: '已通过' },
+            { id: '4', name: '已废弃' }
+        ])
     },
     restart () { // 任务类型
         return new Promise((resolve, reject) => {

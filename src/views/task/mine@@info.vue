@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="xianFrom">
         <div class="task_top">
             <span>任务详情</span>
             <div style="float: right">

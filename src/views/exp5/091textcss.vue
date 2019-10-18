@@ -76,6 +76,10 @@
                     .tt1{ text-indent:2em;}
                     .tt2{letter-spacing:8px;}
                 </script>
+                <p>逗号分隔的列表</p>
+                <p class="xianUtil">
+                    <ul class="liComma"> <li>1</li> <li>2</li> <li>3</li> <li>4</li> <li>5</li> </ul>
+                </p>
             </div>
             <div class="blogFooter">
                 <Tag color="green">green</Tag>

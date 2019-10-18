@@ -12,6 +12,10 @@
                 </script>
                 <p>import 引入图片并使用</p>
                 <p><img :src="maxLogo" key="max-logo" style="max-height:20px" /></p>
+                <p>黑白图像</p>
+                <p class="xianUtil">
+                    <img :src="maxLogo" key="max-logo" style="max-height:20px" class="BlackAndWhitePhoto" />
+                </p>
                 <script type="text/js">
                     import maxLogo from '@/assets/images/logo.jpg'
                     data () { return { maxLogo } },
