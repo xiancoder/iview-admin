@@ -101,7 +101,7 @@
 </template>
 <script>
 import axios from 'axios'
-import upload from './054fileDown@upload'
+import upload from './014fileDown@upload'
 export default {
     data () {
         return {
