@@ -11,6 +11,11 @@
                     <p>5 用户点击分页时候 <font color="red">实际搜索项拷贝给表面搜索项</font> 刷新页面 </p>
                     <p>6 本来想直接在data声明一个大对象来处理所有表格相关的内容和方法 似乎作用域不支持这样做 this在对象声明时候就绑定了</p>
                     <p>6 即 ()=>{} 可以是this绑定在外 但是如果{}对象中使用 其对象就是this</p>
+                    <p>1 能用箭头函数的/杜绝使用<b>var me = this</b></p>
+                    <p>2 写HTML时候属性超过3个的话/建议换行/每行3个属性/其中if for 指令提前</p>
+                    <p>3 精简所有用到的组件 为模板化配凑做准备</p>
+                    <p>4 公共部分拆分 mixin注入式继承</p>
+                    <p>5 尝试使用页面生成</p>
                 </div>
                 <div class="blogFooter">
                     <Tag color="green">green</Tag>
@@ -45,9 +50,9 @@
     </div>
 </template>
 <script>
-import { extend, extendF } from '@/utils/object'
 import { debounce, nothing } from '@/utils/function'
-import { h, saveParamState, getParamState } from '@/tools'
+import { h } from '@/tools'
+import mixin from './009mixin'
 export default {
     data () {
         return {
@@ -74,12 +79,13 @@ export default {
             end1: 1 // 防呆设计
         }
     },
+    mixins: [mixin],
     methods: {
         getDataSet () { // 初始化数据源
             this.$api.task.priority().then(list => { this.dataSet.taskPriorityList = list })
             this.$api.task.status().then(list => { this.dataSet.taskStatuList = list })
         },
-        download: debounce(() => { // 操作 任何操作将重置搜索项
+        download: debounce(function () { // 操作 任何操作将重置搜索项
             console.log(this.yunxiTable.serrchParam)
             this.yunxiTable.search()
         }),
@@ -88,53 +94,6 @@ export default {
     mounted: function () {
         this.yunxiTable.init(this)
         this.getDataSet()
-    },
-    beforeMount: function () {
-        this.yunxiTable = { // 有用内容
-            'serrchParam': null, // 实际搜索项
-            'serrchBack': null, // 搜索项备份
-            'tableData': [] // 表格内容
-        }
-        this.yunxiTable.init = () => { // 初始化
-            if (!this.yunxiTable.serrchParam) {this.yunxiTable.serrchParam = {}} // 下发参数
-            if (!this.yunxiTable.serrchBack) {this.yunxiTable.serrchBack = extend({}, this.search)} // 备份
-            const query = getParamState()
-            extend(this.search, query) // 设置表现搜索项成url缓存
-            extendF(this.page, query)
-            extendF(this.order, query)
-            this.yunxiTable.ajax()
-        }
-        this.yunxiTable.search = () => { // 搜索
-            extend(this.yunxiTable.serrchParam, this.search) // 设置实际搜索项成表现搜索项
-            this.yunxiTable.goPage(1)
-        }
-        this.yunxiTable.reset = () => { // 重置
-            extend(this.search, this.yunxiTable.serrchBack) // 重置表现搜索项成备份搜索项
-            this.yunxiTable.search()
-        }
-        this.yunxiTable.goPage = (page) => { // 跳转页
-            extendF(this.search, this.yunxiTable.serrchParam) // 恢复表现搜索项成实际搜索项
-            this.page.pageIndex = page
-            this.yunxiTable.ajax()
-        }
-        this.yunxiTable.sort = (param) => { // 排序功能
-            // column/* 当前列数据 */, key/* 排序依据的指标 */, order/* 排序的顺序 值为 asc 或 desc */
-            this.order.orderKey = param.key
-            this.order.order = param.order
-            this.yunxiTable.ajax()
-        }
-        this.yunxiTable.ajax = debounce(() => { // 业务ajax
-            extend(this.yunxiTable.serrchParam, this.search) // 设置实际搜索项
-            extend(this.yunxiTable.serrchParam, this.page) // 设置分页
-            extend(this.yunxiTable.serrchParam, this.order) // 设置排序
-            saveParamState(this.yunxiTable.serrchParam) // 存url
-            this.loading = true // 加载中
-            this.$api.task.listMine(this.yunxiTable.serrchParam).then((info) => { // ajax
-                this.loading = false; // 加载完成
-                this.yunxiTable.tableData = info.list
-                this.page.rowCount = info.rowCount
-            })
-        })
     }
 }
 </script>

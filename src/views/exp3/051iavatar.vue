@@ -14,11 +14,15 @@
                     <Avatar shape="square" icon="ios-person" size="small" />
                 </div>
                 <div class="demo-avatar">
+                    <p>混合写法 有图片显示图片 没有图片显示文字 图片破图没有补救措施</p>
                     <Avatar icon="ios-person" />
                     <Avatar>U</Avatar>
                     <Avatar>USER</Avatar>
                     <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
                     <Avatar style="color: #f56a00;background-color: #fde3cf">U</Avatar>
+                    <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg">U</Avatar>
+                    <Avatar src="https://i.loli.net/2017/08/21/599a5214724243.jpg">U</Avatar>
+                    <Avatar src="">U</Avatar>
                     <Avatar style="background-color: #87d068" icon="ios-person" />
                 </div>
                 <div class="demo-avatar-badge">

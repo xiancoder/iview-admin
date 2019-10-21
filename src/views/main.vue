@@ -45,7 +45,28 @@
                         <div><lock-screen/></div>
                         <div><full-screen/></div>
                         <div><error-store v-if="$config.errorLogStore"/></div>
-                        <div><user/></div>
+                        <div>
+                            <div class="user-avatar-dropdown">
+                                <Dropdown @on-click="handleClick">
+                                    <Badge :dot="!!unreadCount">
+                                        <Avatar :src="userAvatar">{{ userName.substr(0,1) }}</Avatar>
+                                    </Badge>
+                                    {{ userName }}
+                                    <Icon :size="18" type="md-arrow-dropdown"></Icon>
+                                    <DropdownMenu slot="list">
+                                        <DropdownItem name="message">
+                                            消息中心 <Badge style="margin-left: 10px" :count="unreadCount"></Badge>
+                                        </DropdownItem>
+                                        <DropdownItem name="themeDrawer">
+                                            主题修改
+                                        </DropdownItem>
+                                        <DropdownItem name="logout">
+                                            退出登录
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
+                            </div>
+                        </div>
                     </Row>
                 </Header>
                 <Content class="main-content-con">
@@ -69,12 +90,23 @@
             </Layout>
         </Layout>
         <Footer class="main-footer"> &copy;东胜神州傲来国无限技术公司 2010 - 2020 如来佛祖备案 </Footer>
+        <Drawer title="系统界面控制" :closable="false" v-model="theme.Drawer">
+            <Card title="主题变动" icon="ios-options" :padding="0" shadow style="width: 100%;">
+                <CellGroup>
+                    <Cell title="页面主体局中">
+                        <i-switch v-model="themeMiddle" slot="extra" />
+                    </Cell>
+                    <Cell title="页面Logo固定">
+                        <i-switch v-model="themeLogoFlex" slot="extra" />
+                    </Cell>
+                </CellGroup>
+            </Card>
+        </Drawer>
     </Layout>
 </template>
 <script>
 import SideMenu from '@C/side-menu' // 组件::左侧树菜单
 import TagsNav from '@C/tags-nav'
-import User from '@C/user'
 import SearchMenu from '@C/search-menu'
 import LockScreen from '@C/lockscreen'
 import ABackTop from '@C/a-back-top'
@@ -90,7 +122,7 @@ import '@S/main.less'
 export default {
     name: 'Main', // 注册为组件时候name可以用来递归自己
     components: {
-        SideMenu, TagsNav, FullScreen, ErrorStore, User, ABackTop,
+        SideMenu, TagsNav, FullScreen, ErrorStore, ABackTop,
         CustomBreadCrumb, qrCode, epopen, LockScreen, SearchMenu
     },
     data () {
@@ -101,6 +133,9 @@ export default {
             themeBgColor: '#515a6e', // 主题::主体背景颜色
             themeFgColor: '#fff', // 主题::主体前景颜色
 
+            theme: {
+                Drawer: false
+            },
             minLogo, // 最小图标
             maxLogo, // 最大图标
             transitionName: '', // 动画方式
@@ -114,9 +149,22 @@ export default {
         spinShow () { return this.$store.state.system.spinLoading || false }, // 新消息数量 0隐藏 null表红点 数字代表数量
         local () { return this.$store.state.app.local },
         collapsed () { return this.$store.state.system.shrink }, // 折叠状态
-        cacheList () { return this.$store.state.system.cacheList } // 被缓存的页面
+        cacheList () { return this.$store.state.system.cacheList }, // 被缓存的页面
+        userAvatar () { return this.$store.state.system.userAvatorPath }, // 用户头像
+        userName () { return this.$store.state.system.userName }, // 用户名
+        unreadCount () { return this.$store.state.system.newMessageNum }
     },
     methods: {
+        handleClick (name) {
+            switch (name) {
+                case 'logout': this.$store.dispatch('system/logout')
+                    break
+                case 'message': this.$router.push({name: 'home_message'})
+                    break
+                case 'themeDrawer': this.theme.Drawer = !this.theme.Drawer
+                    break
+            }
+        },
         turnToPage (route) {
             let { name, params, query } = {}
             if (typeof route === 'string') name = route

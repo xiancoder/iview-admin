@@ -36,7 +36,7 @@
                 </script>
                 <p>每个页面都注册引用了页头组件 似乎即使是login也要使用这个组件 全局组件沦落到单页组件分别声明调用</p>
                 <p class="textdanger">用户进入系统第一层能看到的页面都应整理注册为全局组件</p>
-                <script type="text/html">
+                <script type="text/js">
                     import { XHeader } from 'vux'
                     export default {
                         components: { // 组件声明
@@ -46,19 +46,58 @@
                 </script>
                 <p>method 结构是vue提供的监听方法集合 跟平时普通的方法还是有点区别的</p>
                 <p class="textdanger">如下的 arraySwitch 写在vue实例以外 做临时函数来调用 减少污染和误解</p>
-                <script type="text/html">
+                <script type="text/js">
                     init () { this.info.approverList = list.map(this.arraySwitch) },
                     arraySwitch (value) { let arr = []; arr.push(value); return arr; }
                 },
                 </script>
-                <p></p>
-                <script type="text/html">
+                <p>易读性 易读性 一眼就能看到我想要的内容叫易读性 这样简单的代码我翻都要翻很久 不爽</p>
+                <script type="text/js">
+                    {
+                        title: '日期',
+                        key: 'dateStr',
+                        fixed: 'left',
+                        width: 110,
+                        align: 'center'
+                    },
+                    {
+                        title: '姓名',
+                        key: 'userName',
+                        width: 80,
+                        align: 'center'
+                    },
+                    {
+                        title: '部门',
+                        key: 'deptName',
+                        width: 110,
+                        align: 'center'
+                    },
+                    {
+                        title: '工号',
+                        key: 'workNum',
+                        width: 114,
+                        align: 'center'
+                    },
+                    //这样不好么
+                    { title: '日期', key: 'dateStr', fixed: 'left', width: 110, align: 'center' },
+                    { title: '姓名', key: 'userName', width: 80, align: 'center' },
+                    { title: '部门', key: 'deptName', width: 110, align: 'center' },
+                    { title: '工号', key: 'workNum', width: 114, align: 'center' },
                 </script>
-                <p></p>
-                <script type="text/html">
+                <p>请注意 不要再使用self=this 或者 me=this 并不是不能用 而是水平低</p>
+                <script type="text/js">
+                    let self = this;
+                    setTimeout(function () { self.loading = false; }, 2000);
+                    // 请高端
+                    setTimeout(() => { this.loading = false; }, 2000);
                 </script>
-                <p></p>
-                <script type="text/html">
+                <p>第一种写法渲染有三次判断 即三次停顿 而第二种好一些</p>
+                <script type="text/js">
+                    <span v-if="item.status==1">已结束</span>
+                    <span v-if="item.status==3">已约</span>
+                    <span v-if="item.status==4">休息</span>
+                    // 嗯嗯
+                    <span>{{ ['','已结束','','已约','休息'][item.status] }}</span>
                 </script>
                 <p></p>
                 <script type="text/html">

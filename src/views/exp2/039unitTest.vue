@@ -36,18 +36,24 @@
                         this.testZYZ1()
                         this.testZYZ2()
                         this.testZYZ3()
+                        this.testB1()
+                        this.testB2()
                     },
                     methods: {
                         testZYZ1: function () { console.log('3测试xx:function(){}',this ? this.zuoyongyu : '获取不到this') },
                         testZYZ2 () { console.log('4测试xx(){}',this ? this.zuoyongyu : '获取不到this') },
                         testZYZ3: () => { console.log('5测试xx:()=>{}',this ? this.zuoyongyu : '获取不到this') }
+                        testB1: debounce(function () { console.log('8测试xx:function(){}', this ? this.zuoyongyu : '获取不到this') }),
+                        testB2: debounce(() => { console.log('9测试xx:()=>{}', this ? this.zuoyongyu : '获取不到this') }),
                     }
                     <font color="red">// 结果
                     // 1 测试function(){} 获取不到this
                     // 2 测试()=>{} 666
                     // 3 测试xx:function(){} 666
                     // 4 测试xx(){} 666
-                    // 5 测试xx:()=>{} 获取不到this</font>
+                    // 5 测试xx:()=>{} 获取不到this
+                    // 8 测试xx:function(){} 666
+                    // 9 测试xx:()=>{} 获取不到this</font>
                 </pre>
                 <p>测试风格：</p>
                 <p>TDD(测试驱动开发)和BDD（行为驱动开发）这两种，他们的不同是什么？</p>
@@ -65,6 +71,7 @@
 </template>
 <script>
 import { JobList } from '@/api/staff'
+import { debounce } from '@/utils/function'
 export default {
     data () {
         return {
@@ -84,11 +91,15 @@ export default {
         // this.testZYZ1()
         // this.testZYZ2()
         // this.testZYZ3()
+        // this.testB1()
+        // this.testB2()
     },
     methods: {
         testZYZ1: function () { console.log('3测试xx:function(){}', this ? this.zuoyongyu : '获取不到this') },
         testZYZ2 () { console.log('4测试xx(){}', this ? this.zuoyongyu : '获取不到this') },
         testZYZ3: () => { console.log('5测试xx:()=>{}', this ? this.zuoyongyu : '获取不到this') },
+        testB1: debounce(function () { console.log('8测试xx:function(){}', this ? this.zuoyongyu : '获取不到this') }),
+        testB2: debounce(() => { console.log('9测试xx:()=>{}', this ? this.zuoyongyu : '获取不到this') }),
         axiosgetx () {
             return Promise.resolve({ data: 'value' })
         },

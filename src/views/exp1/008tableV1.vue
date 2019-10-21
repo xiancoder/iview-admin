@@ -2,7 +2,7 @@
     <div>
         <div class="blogCss">
             <div class="blog">
-                <div class="blogTitle">表格页第三版想法</div>
+                <div class="blogTitle">表格页第一版正式想法</div>
                 <div class="blogContent" v-highlight>
                     <p>1 声明data 按照功能划分 搜索项/分页/排序/表格列属性</p>
                     <p>2 声明method 按照需要 首先放置 goto所有可能跳转 然后 hendleAjax, hendleSearch, hendleSort, hendlePage</p>
@@ -11,6 +11,21 @@
                     <p>5 表格页作为最常用的第一层页面 其alert/comfime 请用js调用 其model请封装插件引入调用方便修改</p>
                     <p>6</p>
                     <p></p>
+                </div>
+                <div class="blogFooter">
+                    <Tag color="green">green</Tag>
+                    <Tag color="cyan">cyan</Tag>
+                    <Tag color="blue">blue</Tag>
+                </div>
+            </div>
+        </div>
+        <div class="blogCss">
+            <div class="blog">
+                <div class="blogTitle">统一化写法带来的好处</div>
+                <div class="blogContent" v-highlight>
+                    <p>1 方便了互相抄袭 复制粘贴永远是编码最简便的方式</p>
+                    <p>2 方便了后来接手的人更加容易的切入主题</p>
+                    <p>3 方便了统一化的单元测试的写法 初始值/搜索项/分页/排序/单按钮跳转/复位</p>
                 </div>
                 <div class="blogFooter">
                     <Tag color="green">green</Tag>
@@ -47,7 +62,7 @@
 </template>
 <script>
 import { extend, extendF } from '@/utils/object'
-import { debounce, nothing } from '@/utils/function'
+import { debounce } from '@/utils/function'
 import { h, saveParamState, getParamState } from '@/tools'
 export default {
     data () {
@@ -74,48 +89,48 @@ export default {
             ],
             'serrchParam': null, // 实际搜索项
             'serrchBack': null, // 搜索项备份
-            'tableData': [] // 表格内容
-        }
-        this.yunxiTable.init = () => { // 初始化
-            if (!this.yunxiTable.serrchParam) {this.yunxiTable.serrchParam = {}} // 下发参数
-            if (!this.yunxiTable.serrchBack) {this.yunxiTable.serrchBack = extend({}, this.yunxiTable.search)} // 备份
-            const query = getParamState()
-            extend(this.yunxiTable.search, query) // 设置表现搜索项成url缓存
-            extendF(this.yunxiTable.page, query)
-            extendF(this.yunxiTable.order, query)
-            this.yunxiTable.ajax()
-        }
-        this.yunxiTable.hendleSearch = () => { // 搜索
-            extend(this.yunxiTable.serrchParam, this.yunxiTable.search) // 设置实际搜索项成表现搜索项
-            this.yunxiTable.goPage(1)
-        }
-        this.yunxiTable.hendleReset = () => { // 重置
-            extend(this.yunxiTable.search, this.yunxiTable.serrchBack) // 重置表现搜索项成备份搜索项
-            this.yunxiTable.search()
-        }
-        this.yunxiTable.hendleGoPage = (page) => { // 跳转页
-            extendF(this.yunxiTable.search, this.yunxiTable.serrchParam) // 恢复表现搜索项成实际搜索项
-            this.yunxiTable.page.pageIndex = page
-            this.yunxiTable.ajax()
-        }
-        this.yunxiTable.hendleSort = (param) => { // 排序功能
-            // column/* 当前列数据 */, key/* 排序依据的指标 */, order/* 排序的顺序 值为 asc 或 desc */
-            this.yunxiTable.order.orderKey = param.key
-            this.yunxiTable.order.order = param.order
-            this.yunxiTable.ajax()
-        }
-        this.yunxiTable.ajax = debounce(() => { // 业务ajax
-            extend(this.yunxiTable.serrchParam, this.yunxiTable.search) // 设置实际搜索项
-            extend(this.yunxiTable.serrchParam, this.yunxiTable.page) // 设置分页
-            extend(this.yunxiTable.serrchParam, this.yunxiTable.order) // 设置排序
-            saveParamState(this.yunxiTable.serrchParam) // 存url
-            this.loading = true // 加载中
-            this.$api.task.listMine(this.yunxiTable.serrchParam).then((info) => { // ajax
-                this.yunxiTable.loading = false; // 加载完成
-                this.yunxiTable.tableData = info.list
-                this.yunxiTable.page.rowCount = info.rowCount
+            'tableData': [], // 表格内容
+            init: () => { // 初始化
+                if (!this.yunxiTable.serrchParam) {this.yunxiTable.serrchParam = {}} // 下发参数
+                if (!this.yunxiTable.serrchBack) {this.yunxiTable.serrchBack = extend({}, this.yunxiTable.search)} // 备份
+                const query = getParamState()
+                extend(this.yunxiTable.search, query) // 设置表现搜索项成url缓存
+                extendF(this.yunxiTable.page, query)
+                extendF(this.yunxiTable.order, query)
+                this.yunxiTable.ajax()
+            },
+            hendleSearch: () => { // 搜索
+                extend(this.yunxiTable.serrchParam, this.yunxiTable.search) // 设置实际搜索项成表现搜索项
+                this.yunxiTable.goPage(1)
+            },
+            hendleReset: () => { // 重置
+                extend(this.yunxiTable.search, this.yunxiTable.serrchBack) // 重置表现搜索项成备份搜索项
+                this.yunxiTable.search()
+            },
+            hendleGoPage: (page) => { // 跳转页
+                extendF(this.yunxiTable.search, this.yunxiTable.serrchParam) // 恢复表现搜索项成实际搜索项
+                this.yunxiTable.page.pageIndex = page
+                this.yunxiTable.ajax()
+            },
+            hendleSort: (param) => { // 排序功能
+                // column/* 当前列数据 */, key/* 排序依据的指标 */, order/* 排序的顺序 值为 asc 或 desc */
+                this.yunxiTable.order.orderKey = param.key
+                this.yunxiTable.order.order = param.order
+                this.yunxiTable.ajax()
+            },
+            ajax: debounce(() => { // 业务ajax
+                extend(this.yunxiTable.serrchParam, this.yunxiTable.search) // 设置实际搜索项
+                extend(this.yunxiTable.serrchParam, this.yunxiTable.page) // 设置分页
+                extend(this.yunxiTable.serrchParam, this.yunxiTable.order) // 设置排序
+                saveParamState(this.yunxiTable.serrchParam) // 存url
+                this.yunxiTable.loading = true // 加载中
+                this.$api.task.listMine(this.yunxiTable.serrchParam).then((info) => { // ajax
+                    this.yunxiTable.loading = false; // 加载完成
+                    this.yunxiTable.tableData = info.list
+                    this.yunxiTable.page.rowCount = info.rowCount
+                })
             })
-        })
+        }
         return {
             yunxiTable,
             dataSet: {
@@ -130,14 +145,13 @@ export default {
             this.$api.task.priority().then(list => { this.dataSet.taskPriorityList = list })
             this.$api.task.status().then(list => { this.dataSet.taskStatuList = list })
         },
-        download: debounce(() => { // 操作 任何操作将重置搜索项
+        download: debounce(function () { // 操作 任何操作将重置搜索项
             console.log(this.yunxiTable.serrchParam)
             this.yunxiTable.search()
-        }),
-        end2: nothing // 防呆设计
+        })
     },
     mounted: function () {
-        this.yunxiTable.init(this)
+        this.yunxiTable.init()
         this.getDataSet()
     }
 }

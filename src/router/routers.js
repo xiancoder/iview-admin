@@ -25,22 +25,14 @@ export const routerList = [
             {power: '0000', path: '005oldTable', title: '原生表格'},
             {power: '0000', path: '006editITable', title: '编辑表格'},
             {power: '0000', path: '007tablesearch', title: '表格搜索纠结分页'},
-            {power: '0000', path: '007tablesearch@1', title: '表格规范v1'},
-            {power: '0000', path: '007tablesearch@2', title: '表格mixin'},
-            {power: '0000', path: '007tablesearch@3', title: '表格规范v2'},
-            {power: '0000', path: '008mockjs', title: '玩转假数据'},
-            {power: '0000', path: '009autoTable', title: '自动化表格规范'},
-            {power: '0000', path: '010loadrule', title: 'vue文件加载规则'},
-            {power: '0000', path: '011name', title: '命名法'},
-            {power: '0000', path: '012serverUpload', title: 'node文件上传'},
-            {power: '0000', path: '013serverimg', title: 'node静态资源'},
-            {power: '0000', path: '014fileDown', title: '文件下载进度条'},
-            {power: '0000', path: '015ajaxcache', title: '异步请求缓存'},
-            {power: '0000', path: '016mount', title: '钩子函数流程'},
-            {power: '0000', path: '017ibutton', title: 'IviewButton'},
-            {power: '0000', path: '018state', title: '状态的触发/监听'},
-            {power: '0000', path: '019cmd', title: 'Node执行CMD'},
-            {power: '0000', path: '020pginfo', title: 'Node查看包版本'}
+            {power: '0000', path: '008tableV1', title: '表格规范v1'},
+            {power: '0000', path: '009tableMixin', title: '表格mixin'},
+            {power: '0000', path: '010tableMockData', title: '表格假数据玩转'},
+            {power: '0000', path: '011tableTools', title: '表格搜索项写法'},
+            {power: '0000', path: '012tableModel', title: '表格信息框写法'},
+            {power: '0000', path: '013tableSum', title: '表格总计框写法'},
+            {power: '0000', path: '014tableFrom', title: '表格依附表单弹框'},
+            {power: '0000', path: '014from1', title: '表单', hideMenu: true}
         ]
     }),
     makeTwoLevelRoute({
@@ -74,7 +66,7 @@ export const routerList = [
         children: [
             {power: '0000', path: '041zhihu3layout', title: '三大框架简比'},
             {power: '0000', path: '042jsx', title: 'JSX详解'},
-            {power: '0000', path: '043rule', title: '规范想法'},
+            {power: '0000', path: '043ibutton', title: 'IviewButton'},
             {power: '0000', path: '044iselect', title: 'IviewSelect'},
             {power: '0000', path: '045iinput', title: 'IviewInput'},
             {power: '0000', path: '046idatepk', title: 'IviewDatepacker'},
@@ -151,7 +143,17 @@ export const routerList = [
     makeTwoLevelRoute({
         path: 'exp6', title: '经验集.卷六', icon: 'md-globe',
         children: [
-            {power: '0000', path: '101looknodown', title: '评审看不下去代码'}
+            {power: '0000', path: '101looknodown', title: '评审看不下去代码'},
+            {power: '0000', path: '111name', title: '命名法'},
+            {power: '0000', path: '112serverUpload', title: 'node文件上传'},
+            {power: '0000', path: '113serverimg', title: 'node静态资源'},
+            {power: '0000', path: '114fileDown', title: '文件下载进度条'},
+            {power: '0000', path: '115ajaxcache', title: '异步请求缓存'},
+            {power: '0000', path: '116mount', title: '钩子函数流程'},
+            {power: '0000', path: '117rule', title: '规范想法'},
+            {power: '0000', path: '118state', title: '状态的触发/监听'},
+            {power: '0000', path: '119cmd', title: 'Node执行CMD'},
+            {power: '0000', path: '120pginfo', title: 'Node查看包版本'}
         ]
     }),
     makeTwoLevelRoute({

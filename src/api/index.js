@@ -49,7 +49,18 @@ axios.interceptors.response.use( // 请求到结果的拦截处理
         return response
     },
     error => { // 错误的请求结果处理，这里的代码根据后台的状态码来决定错误的输出信息
-        if (!error || !error.response) { return Promise.reject(new Error('请求失败')) } // 先判断错误 后处理正确
+        // 断网 或者 请求超时 状态
+        if (!error.response) {
+            // 请求超时状态
+            if (error.message.includes('timeout')) {
+                // console.log('超时了');
+                Promise.reject(new Error('请求超时，请检查网络是否连接正常'))
+            } else {
+                // 可以展示断网组件
+                // console.log('断网了');
+                Promise.reject(new Error('请求失败，请检查网络是否已连接'))
+            }
+        }
         switch (error.response.status) {
             case 400: error.message = '错误请求'; break
             case 401:
@@ -57,13 +68,13 @@ axios.interceptors.response.use( // 请求到结果的拦截处理
                 Store.dispatch('system/logout') // 登出
                 break
             case 403: error.message = '没有权限'; break
-            case 404: error.message = '请求错误，未找到该资源'; break
+            case 404: error.message = '网络请求不存在'; break
             case 405: error.message = '请求方法未允许'; break
             case 408: error.message = '请求超时'; break
             case 413: error.message = '文件过大'; break
             case 500: error.message = '服务器错误'; break
             case 501: error.message = '网络未实现'; break
-            case 502: error.message = '网络错误'; break
+            case 502: error.message = '系统正在升级，请稍后重试'; break
             case 503: error.message = '服务不可用'; break
             case 504: error.message = '网络超时'; break
             case 505: error.message = 'http版本不支持该请求'; break

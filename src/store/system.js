@@ -234,7 +234,7 @@ export default {
         },
         pushError ({ state, commit }, error) { // 增加一个错误
             commit('ERRORLIST', error)
-            console.log('定时下发报错信息记录', state.errorList)
+            console.log('定时下发报错信息记录')
         },
         // pageParamList ({ state }, { title, content }) {}, // 不需要 也不好实现
 
