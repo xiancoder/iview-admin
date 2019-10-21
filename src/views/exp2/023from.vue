@@ -48,7 +48,12 @@
                         </div>
                     </FormItem>
                     <FormItem label="任务内容" prop="taskContent" :show-message="frm.taskContent == ''">
-                        <vue-html5-editor :content="frm.taskContent" class="task_content" @change="contentChange" :height="140" style="width: 600px;"></vue-html5-editor>
+                        <vue-html5-editor :content="frm.taskContent" class="task_content" @change="contentChange"
+                            :height="140" style="width: 600px;">
+                        </vue-html5-editor>
+                    </FormItem>
+                    <FormItem label="富文本测试" prop="taskContent">
+                        <p>通过修改源码实现了拖拽文件 粘贴文件的 功能 : {{ frm.taskContent }}</p>
                     </FormItem>
                     <FormItem style="margin-top: 50px">
                         <Button type="default" @click="cancel">返回</Button>

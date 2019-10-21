@@ -43,7 +43,7 @@ export const routerList = [
             {power: '0000', path: '022extends', title: 'vue组件的继承'},
             {power: '0000', path: '023from', title: '表单样式'},
             {power: '0000', path: '024validate', title: '表单校验'},
-            {power: '0000', path: '025rule', title: '本框架开发规范'},
+            {power: '0000', path: '025vvvali', title: '复杂表单校验'},
             {power: '0000', path: '026iviewDefault', title: 'iview改变默认配置'},
             {power: '0000', path: '027filter', title: '过滤器整理'},
             {power: '0000', path: '028pluginLike', title: '插件比喻'},

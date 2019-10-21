@@ -127,7 +127,7 @@ export default {
                 'taskPriorityList': [],
                 'taskStatuList': []
             },
-            startDate: new Date(2019,3,4),
+            startDate: new Date(2019, 3, 4),
             end1: 1 // 防呆设计
         }
     },
@@ -144,15 +144,15 @@ export default {
             this.yunxiTable.search()
         }),
         handleSubmit1 (res) { // 表单1 提交完毕
-            this.model.show1=false
-            if ( res === 1 ) {
+            this.model.show1 = false
+            if (res === 1) {
                 this.yunxiTable.ajax()
             }
         },
         gogo (res) { // 表单1 提交完毕
-            const name = "exp1_014from1"
+            const name = 'exp1_014from1'
             this.$router.push({name})
-        },
+        }
     },
     mounted: function () {
         this.yunxiTable.init()

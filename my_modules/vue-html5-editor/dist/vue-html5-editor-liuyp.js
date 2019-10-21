@@ -1264,6 +1264,56 @@
                 this$1.$emit('change', content.innerHTML);
                 this$1.saveCurrentRange();
             }, false);
+
+            //////////////////////////////////////////
+            const eventStop = (ev) => {
+                ev = ev || window.event;
+                if (ev.preventDefault) { ev.preventDefault() } else { ev.returnValue = false; }
+                if (ev.stopPropagation) { ev.stopPropagation() } else { ev.cancelBubble = true; }
+            }
+            function eventTarget(ev) {
+                ev = ev || window.event;
+                return ev.target || ev.srcElement;
+            }
+            content.addEventListener("dragenter", eventStop);
+            content.addEventListener("dragleave", eventStop);
+            content.addEventListener("dragover", eventStop);
+            content.addEventListener("drop", function(e){
+                var fileList = e.dataTransfer.files; // 获取文件对象
+                if(fileList.length == 0){ return false; }
+                for( var i=0,l=fileList.length;i<l;i++){
+                    turnImg( fileList[i] );
+                }
+                eventStop(e); // 取消默认浏览器拖拽效果
+            }, false);
+            function turnImg( file ){
+                //检测文件是不是图片
+                if(file.type.indexOf('image') === -1){
+                    alert("您拖的不是图片！");
+                    return false;
+                }
+                //拖拉图片到浏览器，可以实现预览功能
+                var UURL = (window.webkitURL)?window.webkitURL:window.URL;
+                var img = UURL.createObjectURL(file);
+                var filename = file.name; //图片名称
+                var filesize = Math.floor((file.size)/1024); 
+                if(filesize>500){
+                    alert("上传大小不能超过500K.");
+                    return false;
+                }
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function (e) {
+                    var dataURL = reader.result;
+                    var image = "<img src='"+dataURL+"' style='max-width: 100%;max-height: 300px;'>";
+                    content.innerHTML += image;
+                    this$1.$emit('change', content.innerHTML);
+                    this$1.saveCurrentRange();
+                }
+            }
+            ///////////////////////////////////////////
+
+
             content.addEventListener('mouseout', function (e) {
                 if (e.target === content) {
                     this$1.saveCurrentRange();
@@ -1274,7 +1324,28 @@
                     this$1.saveCurrentRange();
                 }
             };
-            content.addEventListener('paste', function (e) {
+            content.addEventListener('paste', function (event) {
+                if (event.clipboardData || event.originalEvent) {
+                    var clipboardData = (event.clipboardData || event.originalEvent.clipboardData);
+                    if(clipboardData.items.length){
+                        var blob;
+                        for (var i = 0; i < clipboardData.items.length; i++) {
+                            if (clipboardData.items[i].type.indexOf("image") !== -1) {
+                                blob = clipboardData.items[i].getAsFile();
+                            }
+                        }
+                        if(blob){
+                            var render = new FileReader();
+                            render.onload = function (evt) {
+                                //输出base64编码
+                                var base64 = evt.target.result;
+                                var image = "<img src='"+base64+"' style='max-width: 100%;max-height: 300px;'>";
+                                content.innerHTML += image;
+                            }
+                            render.readAsDataURL(blob);
+                        }
+                    }
+                }
                 setTimeout(function () {
                     this$1.$emit('change', content.innerHTML);
                     this$1.saveCurrentRange();

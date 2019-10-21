@@ -157,6 +157,9 @@
                         <Button type="primary" :loading="loading === '1'" style="margin: 0 15px" @click="handleSubmit('formValidateId')">发布</Button>
                     </FormItem>
                 </Form>
+                写个空输入框也不行....@.@
+                <input type="text" />
+                <input type="password" />
             </div>
             <div class="blogFooter">
                 <Tag color="green">green</Tag>

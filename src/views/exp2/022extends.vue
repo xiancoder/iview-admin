@@ -3,7 +3,7 @@
         <div class="blog">
             <div class="blogTitle">组件的extends继承</div>
             <div class="blogContent" v-highlight>
-                <script type="text/js">
+                <script type="text/js" v-pre>
                     import Vue from 'vue'
                     const compoent = {
                         props: {
@@ -43,20 +43,19 @@
                             console.log(this.$parent.$options.name)  //通过this.$parent调用父组件的值
                         }
                     };
-                    //第二种继承方式
-                    // const CompVue = Vue.extend(compoent)
-                    // new CompVue({
-                    //   el: '#root',
-                    //   propsData: {
-                    //     propOne: 'xxx'
-                    //   },
-                    //   data: {
-                    //     text: '123'
-                    //   },
-                    //   mounted () {
-                    //     console.log('instance mounted')
-                    //   }
-                    // })
+                    const CompVue = Vue.extend(compoent) // 第二种继承方式
+                    new CompVue({
+                        el: '#root',
+                        propsData: {
+                            propOne: 'xxx'
+                        },
+                        data: {
+                            text: '123'
+                        },
+                        mounted () {
+                            console.log('instance mounted')
+                        }
+                    })
                 </script>
             </div>
             <div class="blogFooter">

@@ -28,11 +28,12 @@
 </template>
 <script>
 import { error, success } from '@/tools'
+import { dateFormat } from '@/utils/date'
 export default {
     data () {
         return {
             loading: false,
-            dataSet:{
+            dataSet: {
                 userData: []
             },
             frm: {
@@ -47,11 +48,11 @@ export default {
                 explain: [
                     { max: 200, message: '最多输入200个字符' }
                 ]
-            },
+            }
         }
     },
     props: {
-        startDate: { type: Date, default: () => {return new Date()} },
+        startDate: { type: Date, default: () => {return new Date()} }
     },
     methods: {
         getDataSet () { // 初始化数据源
@@ -70,7 +71,7 @@ export default {
                     this.loading2 = true;
                     this.$post('api/task/found', {
                         'id': this.endId,
-                        'endTime': moment(this.frm.date).format('YYYY-MM-DD'),
+                        'endTime': dateFormat(this.frm.date),
                         'endDesc': this.frm.explain,
                         'users': this.frm.correlation
                     }).then(response => { // 请注意这个返回值是整个结果对象
@@ -89,7 +90,7 @@ export default {
         },
         cancel () {
             this.$emit('on-submit', 0)
-        },
+        }
     },
     mounted () {
         this.getDataSet()
