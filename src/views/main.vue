@@ -75,13 +75,12 @@
                             <tags-nav></tags-nav>
                         </div>
                         <div class="content-wrapper">
-                            <!-- 动态换场指令 transition vuerouter 提供 -->
+                            <!-- 动态换场指令 transition vuerouter 提供 没生效 -->
+                            <!-- <transition :name="transitionName"> </transition> -->
                             <!-- 页面缓存功能 vue提供 keep-alive -->
-                            <transition :name="transitionName">
-                                <keep-alive :include="cacheList">
-                                    <router-view></router-view>
-                                </keep-alive>
-                            </transition>
+                            <keep-alive :include="cacheList">
+                                <router-view></router-view>
+                            </keep-alive>
                             <Spin size="large" fix v-if="spinShow"></Spin>
                             <ABackTop :height="100" :bottom="80" :right="50" container=".content-wrapper"></ABackTop>
                         </div>
@@ -98,6 +97,10 @@
                     </Cell>
                     <Cell title="页面Logo固定">
                         <i-switch v-model="themeLogoFlex" slot="extra" />
+                    </Cell>
+                    <Cell title="页面Logo背景色" extra="白色" :selected="themeLogoBgColor=='#fff'">
+                    </Cell>
+                    <Cell title="页面Logo背景色" extra="灰色" :selected="themeLogoBgColor=='#515a6e'">
                     </Cell>
                 </CellGroup>
             </Card>

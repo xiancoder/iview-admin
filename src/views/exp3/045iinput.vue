@@ -125,9 +125,6 @@ export default {
         }
     },
     methods: {
-        epopen () {
-            alert('未知位置')
-        }
     }
 }
 </script>

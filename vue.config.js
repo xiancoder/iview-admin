@@ -44,14 +44,9 @@ module.exports = {
         stats: { colors: true },
         port: 4011, // 设置访问的端口号
         proxy: {
-            // 匹配代理的url
-            '/api': {
-                // 目标服务器地址
-                target: 'http://localhost:4010/',
-                // 路径重写
-                pathRewrite: {'^/api': '/api'},
-                changeOrigin: true
-            }
+            // 匹配代理的url // 目标服务器地址 // 路径重写
+            '/api': { target: 'http://localhost:4010/', pathRewrite: {'^/api': '/web'}, changeOrigin: true },
+            '/epopen': { target: 'http://localhost:4010/', pathRewrite: {'^/epopen': '/epopen'}, changeOrigin: true }
         }
     }
 }

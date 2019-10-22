@@ -73,6 +73,7 @@ export default {
         NEWMESSAGENUM (state, num) { state.newMessageNum = num },
 
         ERRORLIST (state, error) { state.errorList.push(error) },
+        CLEARERRORLIST (state, error) { state.errorList = [] },
         // PARAMLIST 不需要触发渲染
 
         END: function () {} // 结尾容错
@@ -129,6 +130,8 @@ export default {
             const routeInfo = state.routeList[name]
             if (!routeInfo) return false
             const list = Object.assign(state.tagNavList)
+            /*
+            // 记录一下 foreach 怎样停下来
             try {
                 list.forEach((row, index, arr) => {
                     if (name === row.name) throw new Error(index)
@@ -136,12 +139,19 @@ export default {
             } catch (e) {
                 if (e.message) list.splice(e.message, 1)
             }
-            list.push({
+            */
+            const index = list.findIndex(function (row) { return name === row.name })
+            const data = {
                 name,
                 title: routeInfo.title,
                 query: route.query,
                 param: route.param
-            })
+            }
+            if (index !== -1) {
+                list[index] = data
+            } else {
+                list.push(data)
+            }
             commit('TAGNAVLIST', list)
         },
 
@@ -232,12 +242,48 @@ export default {
                 })
             })
         },
-        pushError ({ state, commit }, error) { // 增加一个错误
+        pushError ({ commit }, error) { // 增加一个错误
             commit('ERRORLIST', error)
             console.log('定时下发报错信息记录')
         },
-        // pageParamList ({ state }, { title, content }) {}, // 不需要 也不好实现
+        clearError ({ commit }) { // 错误太多 看着烦
+            commit('CLEARERRORLIST')
+            console.log('清空报错信息记录')
+        },
 
+        // pageParamList ({ state }, { title, content }) {}, // 不需要 也不好实现
+        setTabHiddenWatching () {
+            const hiddenProperty = ['hidden', 'webkitHidden', 'mozHidden', 'msHidden']
+            const len = hiddenProperty.length
+            let propertyKey = ''
+            for (var i = 0; i < len; i++) {
+                if (hiddenProperty[i] in document) {
+                    propertyKey = hiddenProperty[i] // 获取具体的hidden属性名
+                    break
+                }
+            }
+            let eventKey = '';
+            if (propertyKey && propertyKey !== '') {
+                eventKey = propertyKey.replace(/hidden/i, 'visibilitychange')
+            }
+            // 获取具体事件名eventKey
+            const tabPageVisibilityManager = function (pauseCallback, resumeCallback) {
+                document.addEventListener(eventKey, function () {
+                    if (!document[propertyKey]) {
+                        if (resumeCallback) { resumeCallback() }
+                    } else {
+                        if (pauseCallback) { pauseCallback() }
+                    }
+                })
+            }
+            let oldTitle = ''
+            tabPageVisibilityManager(function () { // 暂停
+                oldTitle = window.document.title
+                window.document.title = `已离开 | ${oldTitle}`
+            }, function () { // 恢复
+                window.document.title = oldTitle
+            });
+        },
         // 公共逻辑操作
         setTitle ({ state }, routeName) { // 修改title
             const title = config.title || ''

@@ -18,7 +18,7 @@ export default {
             console.info('即EP将打开文件', this.$route.path)
             let url = this.$route.path.replace(/\//g, '\\')
             axios.get(
-                'http://localhost:4010/api/open/ep', {
+                'http://localhost:4010/epopen', {
                     params: {
                         project: 'R20.iview-admin',
                         path: 'views' + url + '.vue'

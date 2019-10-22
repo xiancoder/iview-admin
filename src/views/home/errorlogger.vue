@@ -20,7 +20,8 @@
         </Card>
         <br />
         <div>
-            <Button @click="exportData" type="primary" style="margin: 0 10px 10px 0;">导出日志记录</Button>
+            <Button @click="hendleExportData" type="primary" style="margin: 0 10px 10px 0;">导出日志记录</Button>
+            <Button @click="hendleClearData" type="default" style="margin: 0 10px 10px 0;">清空错误列表</Button>
             <b>注：这里只会显示成功保存到服务端的错误日志，而且页面错误日志不会在浏览器持久化存储，刷新页面即会丢失</b>
             <Table border ref="table" :columns="columns" :data="errorList"></Table>
         </div>
@@ -67,8 +68,11 @@ export default {
         errorList () { return this.$store.state.system.errorList }
     },
     methods: {
-        exportData () {
+        hendleExportData () {
             this.$refs.table.exportCsv({ filename: '错误日志.csv' })
+        },
+        hendleClearData () {
+            this.$store.dispatch('system/clearError') // 清空错误日志记录表
         },
         click () {
             throw new Error('我试一下看看是否被捕获')
@@ -81,7 +85,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

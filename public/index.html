@@ -10,10 +10,10 @@
   <body>
     <style type="text/css">
         .fullloading {width:0;height:0;position:relative; -webkit-transition: opacity 1s ease-in-out; -moz-transition: opacity 1s ease-in-out; -o-transition: opacity 1s ease-in-out; transition: opacity 1s ease-in-out; }
-        .fullloading i { content: ''; position: fixed;box-sizing: border-box; top: 50%; left: 50%; border-radius: 50%; width: 90px; height: 90px; z-index: 20300; border: 3px solid #fefefe; border-left-color: #D7000F; border-top-color: #D7000F; margin: -45px 0 0 -45px; -webkit-animation-name: spin; -webkit-animation-duration: 1s; -webkit-animation-iteration-count: infinite; animation-name: spin; animation-duration: 1s; animation-iteration-count: infinite;-webkit-animation-timing-function: cubic-bezier(0.55, 0.15, 0.45, 0.85); animation-timing-function: cubic-bezier(0.55, 0.15, 0.45, 0.85);}
+        .fullloading i { content: ''; position: fixed;box-sizing: border-box; top: 50%; left: 50%; border-radius: 50%; width: 90px; height: 90px; z-index: 203000; border: 3px solid #fefefe; border-left-color: #D7000F; border-top-color: #D7000F; margin: -45px 0 0 -45px; -webkit-animation-name: spin; -webkit-animation-duration: 1s; -webkit-animation-iteration-count: infinite; animation-name: spin; animation-duration: 1s; animation-iteration-count: infinite;-webkit-animation-timing-function: cubic-bezier(0.55, 0.15, 0.45, 0.85); animation-timing-function: cubic-bezier(0.55, 0.15, 0.45, 0.85);}
         .fullloading.hide{ opacity:0; filter: alpha(opacity=0); }
-        .fullloading img {position: fixed;box-sizing: border-box; top: 50%; left: 50%; border-radius: 50%; width: 90px; height: 90px; z-index: 20200; margin: -45px 0 0 -45px;}
-        .fullloading b { content: ''; position: fixed; color: #fff; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(#fff6e4,#8b9da9); z-index: 20100; text-align: center; display: -webkit-flex; display: -ms-flexbox; display: flex; }
+        .fullloading img {position: fixed;box-sizing: border-box; top: 50%; left: 50%; border-radius: 50%; width: 90px; height: 90px; z-index: 202000; margin: -45px 0 0 -45px;}
+        .fullloading b { content: ''; position: fixed; color: #fff; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(#fff6e4,#8b9da9); z-index: 201000; text-align: center; display: -webkit-flex; display: -ms-flexbox; display: flex; }
         @-webkit-keyframes spin { 0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
         @keyframes spin { 0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
     </style>
@@ -24,5 +24,27 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script src="http://xiaowiba.com/live2d_models/L2Dwidget.min.js"></script>
+    <script>
+        L2Dwidget.init({
+            "model":{
+                "scale":1,"hHeadPos":0.5,"vHeadPos":0.618,
+                "jsonPath":"<%= BASE_URL %>hijiki.model.json"
+            },
+            "display":{
+                "superSample":2,"width":100,"height":220,"position":"right","hOffset":20,"vOffset":-120
+            },
+            "mobile":{
+                "show":false,"scale":0.4
+            },
+            "react":{
+                "opacityDefault":0.7,"opacityOnHover":0.2
+            }
+        });
+    </script>
+    <div id="live2d-widget">
+        <canvas id="live2dcanvas" width="200" height="440"
+        style="position: fixed; opacity: 1; right: 0px; bottom: 0; z-index: 99999; pointer-events: none;"></canvas>
+    </div>
   </body>
 </html>

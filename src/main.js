@@ -55,6 +55,7 @@ new Vue({ // 实例化
             Store.dispatch('system/getNewMessageNum') // 获取未读最新消息
             Store.dispatch('system/getPowerList') // 读取权限 更新权限视图
         }
+        Store.dispatch('system/setTabHiddenWatching') // 监听tab离开焦点事件
     },
     created: function() {
         // 在实例已经创建完成之后被调用。
