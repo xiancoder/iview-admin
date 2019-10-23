@@ -8,6 +8,7 @@ iView.Message.config({ top: 300, duration: 3 })
 // =====================================================================
 // 日期控件 指定 placeholder / 间隔字符 / 日期格式
 iView.DatePicker.mixins[0].props.placeholder.default = '请选择日期'
+iView.DatePicker.mixins[0].props.placement.default = 'bottom-end'
 iView.DatePicker.mixins[0].props.separator.default = ' 至 '
 iView.DatePicker.mixins[0].props.format.default = 'yyyy-MM-dd'
 // =====================================================================

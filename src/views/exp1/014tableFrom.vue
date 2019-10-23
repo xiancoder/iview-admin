@@ -40,8 +40,7 @@
                 />
             </div>
         </div>
-        <Modal v-model="model.show1" title="下线"
-            :closable="false" :mask-closable="false" footer-hide>
+        <Modal v-model="model.show1" title="下线" :closable="false" :mask-closable="false" footer-hide>
             <from1 :startDate="startDate" @on-submit="handleSubmit1"/>
         </Modal>
     </div>

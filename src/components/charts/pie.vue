@@ -32,7 +32,7 @@ export default {
                 legend: { orient: 'vertical', left: 'left', data: legend },
                 series: [
                     {
-                        type: 'pie', radius: '55%', center: ['50%', '60%'], data: this.value,
+                        type: 'pie', radius: ['30%', '70%'], center: ['50%', '60%'], data: this.value,
                         itemStyle: {
                             emphasis: { shadowBlur: 10, shadowOffsetX: 0, shadowColor: 'rgba(0, 0, 0, 0.5)' }
                         }

@@ -6,7 +6,9 @@
                 <p>跳转到我的添加编辑页面 this.$route.name = {{ routeName }}</p>
                 <p>注意 this.$route.name 和 this.$router.push</p>
                 <Button to="/exp1/021route@add">/exp1/021route@add</Button>
+                &nbsp;
                 <Button @click="go1()">go1</Button>
+                &nbsp;
                 <Button @click="go2()">go2</Button>
                 <script type="text/html">
                     go1 () { // 传递的参数刷新一下就没了 这是个bug
@@ -17,7 +19,9 @@
                     }
                 </script>
                 <p>vue路由 <a href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#全局前置守卫">https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#全局前置守卫</a></p>
-                <p>用Vue.js + vue-router创建单页应用，是非常简单的。使用Vue.js时，我们就已经把组件组合成一个应用了，当你要把vue-router加进来，只需要配置组件和路由映射，然后告诉vue-router在哪里渲染他们。 </p>
+                <p>用Vue.js + vue-router创建单页应用，是非常简单的。</p>
+                <p>使用Vue.js时，我们就已经把组件组合成一个应用了，当你要把vue-router加进来，只需要配置组件和路由映射，</p>
+                <p>然后告诉vue-router在哪里渲染他们。 </p>
                 <script type="text/html">
                     <div id="app">
                       <h1>Hello App!</h1>

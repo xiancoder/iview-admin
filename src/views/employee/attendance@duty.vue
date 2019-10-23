@@ -1,7 +1,7 @@
 <template>
-    <div class="prodectCss">
+    <div class="tableLayout">
         <tab></tab>
-        <div style="margin-top: 10px">
+        <div class="tableTool">
             <DatePicker style="width: 180px;margin-right: 10px" v-model="obj.dates" :editable="false" :clearable="false" format="yyyy-MM-dd" type="daterange" placement="bottom-start" placeholder="请选择日期" ></DatePicker>
             <Input style="width: 180px;margin-right: 10px" type="text" v-model="obj.keyword" placeholder="员工姓名" @on-enter="handleSearch(1)"/>
             <Select style="width: 200px" v-model="obj.dutyType">

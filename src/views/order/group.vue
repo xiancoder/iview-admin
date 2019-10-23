@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div>
+    <div class="tableLayout">
+        <div class="tableTool">
             <Input style="width: 180px" class="margin-right-10" type="text" placeholder="组名称、组成员搜索" v-model="keyword" @on-enter="getList()"/>
             <Button type="primary" class="margin-right-10" @click="getList()">搜索</Button>
             <Button type="default" @click="getList(0)">重置</Button>

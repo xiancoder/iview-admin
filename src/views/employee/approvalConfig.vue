@@ -1,58 +1,51 @@
-<style>
-   .searchBox .ivu-select{
-       width:150px;
-   }
-</style>
 <template>
-    <div class="prodectCss">
+    <div class="tableLayout">
         <Tabs value="approval" style="margin-top: 20px" @on-click="changeTab">
             <TabPane label="审批人配置" name="approval"></TabPane>
             <TabPane label="抄送人配置" name="cc"></TabPane>
         </Tabs>
-                <div class="searchBox">
-                    <div style="margin-top: 10px">
-                        <Input style="width: 180px;margin-right: 10px" type="text" placeholder="请出入流程名称" v-model="keyword" @on-enter="handleSearch(1)"/>
-                        <Select v-model="typeId" style="width: 180px">
-                            <Option :value='-1'>全部流程类型</Option>
-                            <Option v-for="project in typeList" :value="project.typeId" :key="project.typeId">{{project.typeName}}</Option>
-                        </Select>
-                        <!-- <department-tree style="width:180px;" v-model="department" :name="department_name" @set-name="(val)=>{department_name=val}"></department-tree> -->
-                        <tree-drop ref="depart"
-                            v-model="department"
-                            placeholder="请选择部门"
-                            :name="department_name"
-                            :data="departData"
-                            @on-change="dataChange"
-                            @nameSel="(val)=>{department_name=val}">
-                        </tree-drop>
-                        <Select v-model="usPosition">
-                            <Option :value='-1'>请选择职位</Option>
-                            <Option v-for="row in postList" :value="row.id" :label="row.name" :key="row.id"></Option>
-                        </Select>
-                        <Button type="primary" style="margin: 0 10px" @click="handleSearch(1)">搜索</Button>
-                        <Button type="default" @click="resetSearch">重置</Button>
-                    </div>
-                </div>
-                <div style="height:20px;"></div>
-                <Table border :loading="loading" :columns="columns1" :data='data1'>
-                    <template slot-scope="{ row, index }" slot="state">
-                        <span v-show="row.state == 0" style='color:red;'>异常</span>
-                        <span v-show="row.state == 1">正常</span>
-                    </template>
-                    <template slot-scope="{ row, index }" slot="operation">
-                        <a style="margin-right:20px;" @click="edit(row.type,row.id)">编辑</a>
-                        <a @click="deletes(row.id)">删除</a>
-                    </template>
-                </Table>
-                <Modal
-                    v-model="selectModal"
-                    title="添加流程类型"
-                    @on-ok="addOk">
-                    <RadioGroup v-model="addType">
-                        <Radio v-for='row in typeList' :key="row.typeId" :label="row.typeId">{{row.typeName}}</Radio>
-                    </RadioGroup>
-                </Modal>
-                <Page ref="pager" :total=rowcount :page-size=page_size show-total show-elevator style="margin: 15px 0;float: right;clear: both" @on-change="handleSearch()"/>
+        <div class="tableTool">
+            <Input style="width: 180px;margin-right: 10px" type="text" placeholder="请出入流程名称" v-model="keyword" @on-enter="handleSearch(1)"/>
+            <Select v-model="typeId" style="width: 180px">
+                <Option :value='-1'>全部流程类型</Option>
+                <Option v-for="project in typeList" :value="project.typeId" :key="project.typeId">{{project.typeName}}</Option>
+            </Select>
+            <!-- <department-tree style="width:180px;" v-model="department" :name="department_name" @set-name="(val)=>{department_name=val}"></department-tree> -->
+            <tree-drop ref="depart"
+                v-model="department"
+                placeholder="请选择部门"
+                :name="department_name"
+                :data="departData"
+                @on-change="dataChange"
+                @nameSel="(val)=>{department_name=val}">
+            </tree-drop>
+            <Select v-model="usPosition">
+                <Option :value='-1'>请选择职位</Option>
+                <Option v-for="row in postList" :value="row.id" :label="row.name" :key="row.id"></Option>
+            </Select>
+            <Button type="primary" style="margin: 0 10px" @click="handleSearch(1)">搜索</Button>
+            <Button type="default" @click="resetSearch">重置</Button>
+        </div>
+        <div style="height:20px;"></div>
+        <Table border :loading="loading" :columns="columns1" :data='data1'>
+            <template slot-scope="{ row, index }" slot="state">
+                <span v-show="row.state == 0" style='color:red;'>异常</span>
+                <span v-show="row.state == 1">正常</span>
+            </template>
+            <template slot-scope="{ row, index }" slot="operation">
+                <a style="margin-right:20px;" @click="edit(row.type,row.id)">编辑</a>
+                <a @click="deletes(row.id)">删除</a>
+            </template>
+        </Table>
+        <Modal
+            v-model="selectModal"
+            title="添加流程类型"
+            @on-ok="addOk">
+            <RadioGroup v-model="addType">
+                <Radio v-for='row in typeList' :key="row.typeId" :label="row.typeId">{{row.typeName}}</Radio>
+            </RadioGroup>
+        </Modal>
+        <Page ref="pager" :total=rowcount :page-size=page_size show-total show-elevator style="margin: 15px 0;float: right;clear: both" @on-change="handleSearch()"/>
         <Button type="primary" style="position: absolute;top: 20px;right: 20px;" @click="selectModal = true">添加流程</Button>
     </div>
 </template>

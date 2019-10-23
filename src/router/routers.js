@@ -1,12 +1,13 @@
 // import parentView from '@C/parent-view'
 import { makeTwoLevelRoute, makeOneLevelRoute } from './util'
 
-export const specialRouterList = ['error403', 'error404', 'error500', 'login', 'locking']
+export const specialRouterList = ['error403', 'error404', 'error500', 'login', 'locking', 'phone']
 // 路由视图文件名必须和路由名字路径一致 方便查找定位
 export const routerList = [
     {path: '/', redirect: '/home/index'}, // 默认路由视图
     makeOneLevelRoute({ path: 'login', title: '登录' }),
     makeOneLevelRoute({ path: 'locking', title: '锁屏' }),
+    makeOneLevelRoute({ path: 'phone', title: '移动端' }),
     makeTwoLevelRoute({
         path: 'home', title: '首页', icon: 'md-globe',
         children: [
@@ -47,13 +48,13 @@ export const routerList = [
             {power: '0000', path: '026iviewDefault', title: 'iview改变默认配置'},
             {power: '0000', path: '027filter', title: '过滤器整理'},
             {power: '0000', path: '028pluginLike', title: '插件比喻'},
-            {power: '0000', path: '029unitTest', title: '单元测试'},
+            {power: '0000', path: '029iospic', title: 'iOS图片旋转bug'},
             {power: '0000', path: '030vueVision', title: 'vue几个版本'},
             {power: '0000', path: '031mail', title: 'JS发邮件?'},
             {power: '0000', path: '032api', title: 'api流程梳理'},
             {power: '0000', path: '033exports', title: '混用exports'},
             {power: '0000', path: '034tools', title: '自定义 $tool'},
-            {power: '0000', path: '035iospic', title: 'iOS图片旋转bug'},
+            {power: '0000', path: '035unitTest', title: '单元测试入门'},
             {power: '0000', path: '036unitTest', title: '单元测试路由'},
             {power: '0000', path: '037unitTest', title: '单元测试Axios'},
             {power: '0000', path: '038unitTest', title: '表单单元流程'},
@@ -144,6 +145,9 @@ export const routerList = [
         path: 'exp6', title: '经验集.卷六', icon: 'md-globe',
         children: [
             {power: '0000', path: '101looknodown', title: '评审看不下去代码'},
+            {power: '0000', path: '102watchls', title: 'ls的监听和事件广播'},
+            {power: '0000', path: '103tabblur', title: '浏览器标签blur'},
+            {power: '0000', path: '104echart', title: 'echart'},
             {power: '0000', path: '111name', title: '命名法'},
             {power: '0000', path: '112serverUpload', title: 'node文件上传'},
             {power: '0000', path: '113serverimg', title: 'node静态资源'},

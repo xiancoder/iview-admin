@@ -627,59 +627,18 @@ export default {
     }
 }
 </script>
-<style>
-</style>
 <style scoped>
-    .task_top{
-        border-bottom: 1px solid #dddddd;
-        height: 35px;
-        line-height: 35px;
-        margin-bottom: 10px;
-    }
-    .task_top button{
-        margin-left: 5px;
-        height: 30px;
-    }
+    .task_top{ border-bottom: 1px solid #dddddd; height: 35px; line-height: 35px; margin-bottom: 10px; }
+    .task_top button{ margin-left: 5px; height: 30px; }
     .task_top span{
-        display: inline-block;
-        padding: 0 32px;
-        border-radius: 4px;
-        font-weight:lighter;
-        background-color: #495060;
-        color: #ffffff;
-        font-size: 14px;
-        height: 35px;
-        line-height: 35px;
+        display: inline-block; padding: 0 32px; border-radius: 4px; font-weight:lighter;
+        background-color: #495060; color: #ffffff; font-size: 14px; height: 35px; line-height: 35px;
     }
-    .info_container{
-        font-size: 14px;
-        padding: 0 30px 0 20px;
-    }
-    .info_container td{
-        padding-top: 20px;
-        vertical-align: top;
-    }
-    .info_container td:nth-child(odd){
-        text-align: right;
-    }
-    .info_container td:nth-child(even){
-        font-weight: bold;
-    }
-    .record_model{
-        font-weight: bold;
-        font-size: 13px;
-    }
-    .record_model span{
-        display: inline-block;
-        margin-left: 20px;
-        color: #999;
-        font-size: 12px!important;
-    }
-    .record_model img{
-        position: absolute;
-        top: 0;
-        left: -50px;
-        width: 30px;
-        height: 30px;
-    }
+    .info_container{ font-size: 14px; padding: 0 30px 0 20px; }
+    .info_container td{ padding-top: 20px; vertical-align: top; }
+    .info_container td:nth-child(odd){ text-align: right; }
+    .info_container td:nth-child(even){ font-weight: bold; }
+    .record_model{ font-weight: bold; font-size: 13px; }
+    .record_model span{ display: inline-block; margin-left: 20px; color: #999; font-size: 12px!important; }
+    .record_model img{ position: absolute; top: 0; left: -50px; width: 30px; height: 30px; }
 </style>

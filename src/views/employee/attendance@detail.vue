@@ -10,9 +10,9 @@
     }
 </style>
 <template>
-    <div class="prodectCss layout">
+    <div class="tableLayout">
         <tab></tab>
-        <div class="layoutTool">
+        <div class="tableTool">
             <DatePicker style="width: 180px" type="daterange" :clearable="false"
                 :editable="false" :value="date" @on-change="dateGet" format="yyyy-MM-dd">
             </DatePicker>

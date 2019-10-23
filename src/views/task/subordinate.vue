@@ -1,62 +1,59 @@
-<style>
-   .searchBox .ivu-select{
-       width:150px;
-   }
-</style>
 <template>
-    <div>
-        <div class="searchBox">
+    <div class="tableLayout">
+        <div class="tableTool">
             <Select v-model="obj.taskPriority">
-                <Option :value=-1>全部级别</Option>
-                <Option :value=2>紧急</Option>
-                <Option :value=1>重要</Option>
-                <Option :value=0>一般</Option>
+                <Option :value="-1">全部级别</Option>
+                <Option :value="2">紧急</Option>
+                <Option :value="1">重要</Option>
+                <Option :value="0">一般</Option>
             </Select>
             <Select v-model="obj.taskStatus">
-                <Option :value=-1>全部状态</Option>
-                <Option :value=0>待接受</Option>
-                <Option :value=1>执行中</Option>
-                <Option :value=2>待验收</Option>
-                <Option :value=3>已通过</Option>
-                <Option :value=4>已废弃</Option>
+                <Option :value="-1">全部状态</Option>
+                <Option :value="0">待接受</Option>
+                <Option :value="1">执行中</Option>
+                <Option :value="2">待验收</Option>
+                <Option :value="3">已通过</Option>
+                <Option :value="4">已废弃</Option>
             </Select>
             <Select v-model="obj.restart">
-                <Option :value=-1>全部任务类型</Option>
-                <Option :value=0>普通</Option>
-                <Option :value=1>重启</Option>
+                <Option :value="-1">全部任务类型</Option>
+                <Option :value="0">普通</Option>
+                <Option :value="1">重启</Option>
             </Select>
             <Select v-model="obj.overdue">
-                <Option :value=-1>全部逾期情况</Option>
-                <Option :value=0>未逾期</Option>
-                <Option :value=1>已逾期</Option>
+                <Option :value="-1">全部逾期情况</Option>
+                <Option :value="0">未逾期</Option>
+                <Option :value="1">已逾期</Option>
             </Select>
             <Select v-model="obj.pause">
-                <Option :value=-1>是否暂停</Option>
-                <Option :value=0>未暂停</Option>
-                <Option :value=1>已暂停</Option>
+                <Option :value="-1">是否暂停</Option>
+                <Option :value="0">未暂停</Option>
+                <Option :value="1">已暂停</Option>
             </Select>
             <Select v-model="obj.founder" filterable placeholder='请搜索 / 选择发布人'>
-                <Option :value=-1>全部发布人</Option>
-                <Option v-for='i in userData' :key=i.userId :value=i.userId>{{i.userName}}</Option>
+                <Option :value="-1">全部发布人</Option>
+                <Option v-for='i in userData' :key="i.userId" :value="i.userId">{{i.userName}}</Option>
             </Select>
-            <div style="margin-top: 10px">
-                <Select v-model="obj.personLiable" filterable placeholder='请搜索 / 选择负责人'>
-                    <Option :value=-1>全部负责人</Option>
-                    <Option v-for='i in userData' :key=i.userId :value=i.userId>{{i.userName}}</Option>
-                </Select>
-                <Select v-model="obj.implement" filterable placeholder='请搜索 / 选择执行人'>
-                    <Option :value=-1>全部执行人</Option>
-                    <Option v-for='i in userData' :key=i.userId :value=i.userId>{{i.userName}}</Option>
-                </Select>
-                <DatePicker v-model="value2" format="yyyy-MM-dd" type="daterange" placement="bottom-end" placeholder="请选择日期" style="width: 200px" @on-change="value2=$event"></DatePicker>
-                <Input type="text" v-model="obj.taskName" placeholder="任务名称、任务编号" @on-enter="handleSearch(1)" style="width: 200px"/>
-                <Button type="primary" style="margin: 0 10px" @click="handleSearch(1)">搜索</Button>
-                <Button type="default" @click="resetSearch">重置</Button>
-            </div>
+            <br />
+            <Select v-model="obj.personLiable" filterable placeholder='请搜索 / 选择负责人'>
+                <Option :value="-1">全部负责人</Option>
+                <Option v-for='i in userData' :key="i.userId" :value="i.userId">{{i.userName}}</Option>
+            </Select>
+            <Select v-model="obj.implement" filterable placeholder='请搜索 / 选择执行人'>
+                <Option :value="-1">全部执行人</Option>
+                <Option v-for='i in userData' :key="i.userId" :value="i.userId">{{i.userName}}</Option>
+            </Select>
+            <DatePicker v-model="value2" type="daterange" placeholder="请选择日期" @on-change="value2=$event">
+            </DatePicker>
+            <Input type="text" v-model="obj.taskName" placeholder="任务名称、任务编号" @on-enter="handleSearch(1)"/>
+            <Button type="primary" @click="handleSearch(1)">搜索</Button>
+            <Button type="default" @click="resetSearch">重置</Button>
         </div>
         <div style="height:20px;"></div>
-        <Table border :loading="loading" :columns="columns1" :data='data1' ></Table>
-        <Page ref="pager" :total=rowcount :page-size=obj.page_size show-total show-elevator style="margin: 15px 0;float: right;clear: both" @on-change="handleSearch()"/>
+        <Table border :loading="loading" :columns="columns1" :data='data1' >
+        </Table>
+        <Page ref="pager" :total="rowcount" :page-size="obj.page_size" show-total show-elevator
+            style="margin: 15px 0;float: right;clear: both" @on-change="handleSearch()"/>
     </div>
 </template>
 <script>

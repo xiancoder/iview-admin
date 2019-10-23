@@ -19,27 +19,30 @@
                 </Option>
             </Select>
             <Select v-model="search.pause" placeholder='请选择暂停状态'>
-                <Option v-for="option in dataSet.pauseList" :value="option.id" :key="option.id" :label="option.name" >
+                <Option v-for="option in dataSet.pauseList" :value="option.id"
+                    :key="option.id" :label="option.name" >
                 </Option>
             </Select>
             <br />
             <Select v-model="search.founder" placeholder='请搜索/选择发布人' v-if='optionSearch!=1'>
-                <Option v-for="option in dataSet.userData" :value="option.userId" :key="option.userId" :label="option.userName" >
+                <Option v-for="option in dataSet.userData" :value="option.userId"
+                    :key="option.userId" :label="option.userName" >
                 </Option>
             </Select>
             <Select v-model="search.personLiable" filterable placeholder='请搜索/选择负责人' v-if='optionSearch!=2'>
-                <Option v-for="option in dataSet.userData" :value="option.userId" :key="option.userId" :label="option.userName" >
+                <Option v-for="option in dataSet.userData" :value="option.userId"
+                    :key="option.userId" :label="option.userName" >
                 </Option>
             </Select>
             <Select v-model="search.implement" filterable placeholder='请搜索/选择执行人' v-if='optionSearch!=3'>
-                <Option v-for="option in dataSet.userData" :value="option.userId" :key="option.userId" :label="option.userName" >
+                <Option v-for="option in dataSet.userData" :value="option.userId"
+                    :key="option.userId" :label="option.userName" >
                 </Option>
             </Select>
-            <DatePicker v-model="search.beginAndEnd" format="yyyy-MM-dd" type="daterange"
-                placeholder="请选择日期" style="width: 200px" placement="bottom-end"
+            <DatePicker v-model="search.beginAndEnd" type="daterange" split-panels
                 @on-change="search.beginAndEnd=$event">
             </DatePicker>
-            <Input type="text" v-model="search.taskName" placeholder="任务名称、任务编号" @on-enter="getList()"/>
+            <Input type="text" v-model="search.taskName" placeholder="任务名称、任务编号"@on-enter="getList()"/>
             <Button type="primary" @click="getList()">搜索</Button>
             <Button type="default" @click="getList('reset')">重置</Button>
             <Button type="primary" class="fr" @click="goto('add')" v-if='optionSearch!=1'>发布任务</Button>

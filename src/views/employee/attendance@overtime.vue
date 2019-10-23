@@ -1,9 +1,7 @@
-<style lang="less" scoped>
-</style>
 <template>
-    <div class="prodectCss">
+    <div class="tableLayout">
         <tab></tab>
-        <div class="margin-top-10">
+        <div class="tableTool">
             <DatePicker style="width: 180px" type="daterange" :clearable="false" :editable="false" :value="date" @on-change="dateGet" format="yyyy-MM-dd" class="margin-right-10"></DatePicker>
             <Input style="width: 180px" class="margin-right-10" type="text" placeholder="员工姓名、工号" v-model="keyword" @on-enter="handleSearch(1)"/>
             <tree-drop ref="depart" v-model="depart" placeholder="请选择部门" :name="departName" :data="departData" @nameSel="(val)=>{departName = val}"></tree-drop>

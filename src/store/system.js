@@ -222,7 +222,7 @@ export default {
                 if (includes) {
                     const x = Object.assign(state.cacheList)
                     x.push(toname)
-                    commit('updateCacheList', x)
+                    commit('CACHELIST', x)
                     console.info('仙', '路由keepAlive+', x)
                     return false
                 }

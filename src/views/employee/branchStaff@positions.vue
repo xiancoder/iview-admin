@@ -77,8 +77,8 @@
     }
 </style>
 <template>
-    <div class="prodectCss position">
-        <div class="divLeft">
+    <div class="tableLayout">
+        <div class="tableTool">
             <Button type="primary" @click="addPost(0)" v-show="positions.length==0">添加根目录</Button>
             <Tree ref="treePosi" :data="positions" :render="positionContent"></Tree>
             <Modal v-model="showModal" :title="titleAdd" :closable="false" :mask-closable="false">

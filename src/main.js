@@ -5,6 +5,7 @@
 // 注意::代码格式以易读性为第一考虑要素
 // =====================================================================
 import Vue from 'vue' // 核心
+import '@/api/axios' // axios 配置
 import '@/api' // 接口管理 -挂载$api
 import config from '@/config' // 全局参数 -挂载$config
 import '@/directive' // 指令

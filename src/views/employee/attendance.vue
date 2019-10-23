@@ -1,5 +1,3 @@
-<style scoped lang="less">
-</style>
 <template>
     <div class="prodectCss">
         <tab></tab>

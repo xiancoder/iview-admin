@@ -1,7 +1,7 @@
 <template>
-    <div class="prodectCss">
+    <div class="tableLayout">
         <tab></tab>
-        <div style="margin: 10px 0 20px">
+        <div class="tableTool">
             <DatePicker v-model="obj.month" :options="option.month" type="month"
                 placeholder="请选择月份" style="width: 180px;margin-right: 10px;">
             </DatePicker>

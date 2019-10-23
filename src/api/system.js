@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { success, error } from '@/tools'
+
 export default {
     login ({ userName, password }) { // 管理员登录
         userName = userName.trim() // 参数格式处理
@@ -133,6 +134,22 @@ export default {
             }).then(response => { // 请注意这个返回值是整个结果对象
             }).catch(e => {
             })
+        })
+    },
+    unitTest1 ({ userName, password }) { // 单元测试尝试
+        userName = userName.trim() // 参数格式处理
+        password = password.trim() // 参数格式处理
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('ok')
+            }, 1e3)
+        })
+    },
+    unitTest2 () { // 单元测试尝试
+        return axios({
+            method: 'GET',
+            url: 'api/system/getUserInfo',
+            data: {}
         })
     },
     end () {} // 错误占位符

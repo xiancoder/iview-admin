@@ -33,7 +33,8 @@
 <script>
 import InforCard from '@C/info-card'
 import CountTo from '@C/count-to'
-import { ChartPie, ChartBar } from '@C/charts'
+import ChartPie from '@C/charts/pie.vue'
+import ChartBar from '@C/charts/bar.vue'
 import Example from './example.vue'
 export default {
     name: 'home',

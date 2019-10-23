@@ -1,12 +1,7 @@
-<style scoped lang="less">
-    .order_table{
-        cursor:pointer;
-    }
-</style>
 <template>
-    <div>
+    <div class="tableLayout">
         <tab-my :select="3"></tab-my>
-        <div style="margin-top: 10px">
+            <div class="tableTool">
             <Select style="width: 180px;margin-right: 10px" v-model="request.workType">
                 <Option value="0">全部</Option>
                 <Option value="1">工作</Option>
