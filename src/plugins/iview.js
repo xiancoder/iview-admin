@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import iView from 'view-design'
-import 'view-design/dist/styles/iview.css'
+import '@S/iview.less'
 // Vue原型链中 Message 是 iview 提供的
 // =====================================================================
 // 提示控件 指定 显示位置

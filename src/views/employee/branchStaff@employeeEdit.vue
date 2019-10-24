@@ -93,7 +93,7 @@
 <script>
 import { dateFormat } from '@/utils/date'
 import { extendF, deepClone } from '@/utils/object'
-import { common } from '@/mixin'
+import common from '@/mixin/utils'
 export default {
     mixins: [common],
     data () {

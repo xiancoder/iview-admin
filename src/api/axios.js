@@ -24,6 +24,7 @@ axios.interceptors.request.use( // 开始设置请求 发起的拦截处理
     config => { // config 代表发起请求的参数的实体
         const token = Store.state.user.token
         config.headers['token'] = token || ''
+        config.url = config.url.replace(/^[\/\\]/, '')
         return config
     },
     error => { return Promise.reject(error) }

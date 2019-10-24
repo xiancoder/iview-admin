@@ -148,6 +148,7 @@ export const routerList = [
             {power: '0000', path: '102watchls', title: 'ls的监听和事件广播'},
             {power: '0000', path: '103tabblur', title: '浏览器标签blur'},
             {power: '0000', path: '104echart', title: 'echart'},
+            {power: '0000', path: '105loadingcss', title: 'loading CSS'},
             {power: '0000', path: '111name', title: '命名法'},
             {power: '0000', path: '112serverUpload', title: 'node文件上传'},
             {power: '0000', path: '113serverimg', title: 'node静态资源'},

@@ -8,6 +8,11 @@ import systemApi from '@/api/system'
 import axios from 'axios'
 var CancelToken = axios.CancelToken
 
+jest.mock('@/tools/index.js', () => ({
+    success: (msg) => { console.log('成功', msg) },
+    error: (msg) => { console.log('失败', msg) }
+}))
+
 axios.interceptors.request.use( // 开始设置请求 发起的拦截处理
     config => { // config 代表发起请求的参数的实体
         config.url = 'http://localhost:4010/' + config.url.replace('api/', 'web/')
@@ -48,6 +53,26 @@ describe('api.spec.js', () => {
             expect(data).not.toBe(null)
             expect(data.id).not.toBe('')
             expect(data.email).toBe('whereispal5@163.com')
+        })
+    }, 3e3)
+    test('测试ajax getNewMessageNum', () => {
+        return systemApi.getNewMessageNum().then(res => {
+            expect(res).toBe(12)
+        })
+    }, 3e3)
+    test('测试ajax getPowerList', () => {
+        return systemApi.getPowerList().then(list => {
+            expect(list).not.toBe(null)
+        })
+    }, 3e3)
+    test('测试ajax logout', () => {
+        return systemApi.logout().then(res => {
+            expect(res).toBe(1)
+        })
+    }, 3e3)
+    test('测试ajax clearCache', () => {
+        return systemApi.clearCache().then(res => {
+            expect(res).toBe(1)
         })
     }, 3e3)
 })

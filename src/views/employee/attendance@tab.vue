@@ -6,7 +6,7 @@
     </ButtonGroup>
 </template>
 <script>
-import { common } from '@/mixin'
+import common from '@/mixin/utils'
 export default {
     mixins: [common],
     data () {

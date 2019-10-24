@@ -9,7 +9,6 @@ import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate' // 状态持久化
 import system from './system' // 系统相关
 import user from './user' // 登录管理员相关
-import employee from './employee' // 职员相关
 
 Vue.use(Vuex)
 
@@ -22,7 +21,7 @@ try {
     window.localStorage.setItem('user', '123')
     window.localStorage.removeItem('user')
 } catch (e) {
-    alert('您处于无痕浏览模式，如果操作不便，请调整浏览器浏览模式！')
+    alert('您处于无痕浏览模式，可能会发生意想不到的错误，请调整浏览器浏览模式！')
 }
 
 const plugins = [
@@ -37,8 +36,10 @@ const plugins = [
 ]
 const modules = {
     system,
-    user,
-    employee
+    user
 }
 // 输出::状态实例
-export const Store = new Vuex.Store({ plugins, modules }) // 状态 实例化
+export const Store = new Vuex.Store({ // 状态 实例化
+    plugins,
+    modules
+})

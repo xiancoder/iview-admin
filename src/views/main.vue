@@ -121,6 +121,7 @@ import epopen from '@C/epopen' // 组件::EP编辑
 import minLogo from '@/assets/images/logo-min.jpg'
 import maxLogo from '@/assets/images/logo.jpg'
 import '@S/main.less'
+import '@S/util.less'
 
 export default {
     name: 'Main', // 注册为组件时候name可以用来递归自己

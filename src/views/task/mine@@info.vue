@@ -17,7 +17,7 @@
         </div>
         <Row>
             <Col span="18" class="info_container">
-                <Table border style="width: 100%;table-layout: fixed">
+                <table style="width: 100%;table-layout: fixed">
                     <tbody>
                         <tr>
                             <td style="width: 100px">任务编号：</td> <td>{{taskInfo.taskNumber}}</td>

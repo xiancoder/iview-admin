@@ -14,15 +14,18 @@
     ├── 上传款项模板.csv
     ├── 值班表模板.csv
 ├── src // 源码
-    ├── api // axios/mock 请求
-        ├── app.js // app相关接口
-        ├── department.js // 部门有关接口
-        ├── employee.js // 职员有关接口
-        ├── position.js // 职位有关接口
-        ├── role.js // 角色有关接口
-        ├── task.js // 任务有关接口
-        ├── user.js // 登录用户有关接口
-        └── index.js
+    ├── api // 接口管理
+          ├── axios.js // axios配置
+          ├── cache.js // 缓存包装的axios实例
+          ├── department.js // 部门接口集合
+          ├── employee.js // 职员接口集合
+          ├── department.js // 部门接口集合
+          ├── position.js // 职位接口集合
+          ├── role.js // 角色接口集合
+          ├── staff.js // 参考用
+          ├── unit.js // 测试用
+          ├── system.js // 系统有关的接口集合
+          └── index.js //出口
     ├── assets // 附件
         └── index.js
     ├── cache // ls/ss管理
@@ -67,22 +70,23 @@
     ├── mixin 混入
         ├── tableMixin.js // 表格
         └── index.js // 也是表格(待处理)
-    ├── plugins // 三方插件声明
+    ├── plugins // 三方插件管理
         ├── fontawesome.js // 友好字体图案
-        ├── ionicons.js // 阿里字体图案
-        ├── iview.js // iview基本配置
-        ├── moment.js // 日期
+        ├── iview.js // iview 基本配置
+        ├── moment.js // 日期库
+        ├── orgtree.js // 树形控件
+        ├── treetable.js // 树形表格
         ├── vueEditor.js // 富文本
-        └── index.js
+        └── index.js //出口
     ├── router // 路由信息
-        ├── appRouter.js // 所有业务需要的页面声明
-        ├── otherRouter.js // 所有辅助页面声明
-        └── index.js
+        ├── before-close.js 关闭前提示
+        ├── router.js // 所有的注册路由列表
+        ├── util.js // 注册需要的简便方法
+        └── index.js //出口
     ├── store // 状态管理
-          ├── system.js // 系统相关
-          ├── employee.js // 职员相关
-          ├── user.js // 登录用户相关
-          └── index.js //出口
+        ├── system.js // 系统相关 或者一些与系统有关的用户接口
+        ├── user.js // 登录用户(管理员)相关
+        └── index.js //出口
     ├── styles // 样式管理
         ├── common.less // 通用reset
         ├── loading.less // cao这是啥

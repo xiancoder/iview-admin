@@ -1,4 +1,4 @@
-export const common = {
+export default {
     methods: {
         go (name, obj) {
             if (obj) {

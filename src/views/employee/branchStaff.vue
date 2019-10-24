@@ -65,7 +65,7 @@
 <script>
 import { extend, extendF } from '@/utils/object'
 import { h } from '@/tools'
-import { common } from '@/mixin'
+import common from '@/mixin/utils'
 export default {
     mixins: [common],
     data () {

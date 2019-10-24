@@ -88,13 +88,13 @@ export default {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'GET',
-                url: '/api/system/logout',
+                url: 'api/system/logout',
                 data: {}
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data // 0隐藏 null表红点 数字代表数量
                 if (res && res.data && res.data.res) {
                     success(res.msg || '退出成功')
-                    resolve()
+                    resolve(res.data.res)
                 } else {
                     error(res.msg) // 报错并继续reject
                     reject()
@@ -108,13 +108,13 @@ export default {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'GET',
-                url: '/api/system/clearCache',
+                url: 'api/system/clearCache',
                 data: {}
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data // 0隐藏 null表红点 数字代表数量
                 if (res && res.data && res.data.res) {
                     success(res.msg || '清除缓存成功')
-                    resolve()
+                    resolve(res.data.res)
                 } else {
                     error(res.msg) // 报错并继续reject
                     reject()
