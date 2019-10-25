@@ -6,6 +6,9 @@
                 <script type="text/js">
                     import Vue from 'vue'
                     Vue.component('Test', {
+                        data () { return {} },
+                        computed: { },
+                        methods: { },
                         props: { name: String },
                         template: `<div class="test">{ { name } }</div>`,
                         beforeCreate() { console.log('Test beforeCreate') },
@@ -17,6 +20,9 @@
                         updated() { console.log('Test updated') }
                     })
                     Vue.component('Test1', {
+                        data () { return {} },
+                        computed: { },
+                        methods: { },
                         props: { name: String },
                         template: '<div class="test1"><slot />{ { name } }</div>',
                         beforeCreate() { console.log('Test1 beforeCreate') },

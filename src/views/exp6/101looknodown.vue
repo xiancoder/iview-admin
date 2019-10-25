@@ -10,14 +10,14 @@
                 <hr>
                 <p>每个页面的开始都写一个引入样式 或者说 /main/xxx 一级路由闲的发慌 二级路由大事小事全干 </p>
                 <p class="textdanger">从名字就能看出来 一级路由洒洒水的活 被众多二级路由小弟吭哧吭哧的干</p>
-                <script type="text/html">
+                <script type="text/html" v-pre>
                     <style lang='less'>
                         @import '../main.less';
                     </style>
                 </script>
                 <p>在页面上尽量不要写枚举判断 ifelse全都放在js中 </p>
-                <p class="textinfo">不要在页面上走类似ifelseswitch的逻辑 最好是卸载js代码中</p>
-                <script type="text/html">
+                <p class="textinfo">不要在页面上走类似ifelseswitch的逻辑 最好是放在js代码中</p>
+                <script type="text/html" v-pre>
                     <img src='../../img/1.png' v-show="projectType === '事业1部'"/>
                     <img src='../../img/2.png' v-show="projectType === '事业2部'"/>
                     <img src='../../img/3.png' v-show="projectType === '事业3部'"/>
@@ -78,7 +78,9 @@
                         width: 114,
                         align: 'center'
                     },
-                    //这样不好么
+                </script>
+                <p>这样不好么</p>
+                <script type="text/js">
                     { title: '日期', key: 'dateStr', fixed: 'left', width: 110, align: 'center' },
                     { title: '姓名', key: 'userName', width: 80, align: 'center' },
                     { title: '部门', key: 'deptName', width: 110, align: 'center' },
@@ -88,11 +90,13 @@
                 <script type="text/js">
                     let self = this;
                     setTimeout(function () { self.loading = false; }, 2000);
-                    // 请高端
+                </script>
+                <p>这样不好么</p>
+                <script type="text/js">
                     setTimeout(() => { this.loading = false; }, 2000);
                 </script>
                 <p>第一种写法渲染有三次判断 即三次停顿 而第二种好一些</p>
-                <script type="text/js">
+                <script type="text/html" v-pre>
                     <span v-if="item.status==1">已结束</span>
                     <span v-if="item.status==3">已约</span>
                     <span v-if="item.status==4">休息</span>

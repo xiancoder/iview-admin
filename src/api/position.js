@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { error } from '@/tools'
 
 export default {
     pull ({ // 获得职位列表
@@ -11,12 +12,16 @@ export default {
                 data: {
                     deptId
                 }
-            }).then(res => {
-                const list = res.data.data.postlist
-                resolve(list) // 直接返回列表
-            }).catch(err => {
-                console.error('接口回调异常')
-                reject(err)
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data) {
+                    resolve(res.data)
+                } else {
+                    error(res.msg) // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
             })
         })
     },
@@ -30,12 +35,16 @@ export default {
                 data: {
                     deptId
                 }
-            }).then(res => {
-                const list = res.data.data.positions
-                resolve(list) // 直接返回列表
-            }).catch(err => {
-                console.error('接口回调异常')
-                reject(err)
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.positions) {
+                    resolve(res.data.positions)
+                } else {
+                    error(res.msg) // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
             })
         })
     },

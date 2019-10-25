@@ -1,21 +1,18 @@
 <template>
-    <div>
-        <Row>
-            <i-col span="12">
-                <Card>
-                    <div class="cropper-example cropper-first">
-                        <cropper
-                            :src="exampleImageSrc"
-                            crop-button-text="确认提交"
-                            @on-crop="handleCroped"
-                        ></cropper>
+    <div class="blogCss">
+        <div class="blog">
+            <div class="blogTitle">图片裁剪</div>
+            <div class="blogContent" v-highlight>
+                <Card style="width: 700px;margin:20px 0">
+                    <div class="cropper-first" style="height: 400px;">
+                        <cropper :src="exampleImageSrc" crop-button-text="确认提交" @on-crop="handleCroped">
+                        </cropper>
                     </div>
                 </Card>
-            </i-col>
-        </Row>
+            </div>
+        </div>
     </div>
 </template>
-
 <script>
 import Cropper from '@/components/cropper'
 export default {
@@ -37,9 +34,3 @@ export default {
     }
 }
 </script>
-
-<style lang="less">
-.cropper-example{
-  height: 400px;
-}
-</style>

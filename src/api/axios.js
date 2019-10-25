@@ -25,6 +25,11 @@ axios.interceptors.request.use( // 开始设置请求 发起的拦截处理
         const token = Store.state.user.token
         config.headers['token'] = token || ''
         config.url = config.url.replace(/^[\/\\]/, '')
+        if (config.method.toLowerCase() === 'get') {
+            config.params = config.params || config.data
+        } else { // 适用于这些请求方法 'PUT', 'POST', 和 'PATCH'
+            config.data = config.data || config.params
+        }
         return config
     },
     error => { return Promise.reject(error) }

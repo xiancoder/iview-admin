@@ -72,6 +72,8 @@ export const routerList = [
             {power: '0000', path: '045iinput', title: 'IviewInput'},
             {power: '0000', path: '046idatepk', title: 'IviewDatepacker'},
             {power: '0000', path: '047iradio', title: 'IviewRadio'},
+            {power: '0000', path: '047icheckbox', title: 'IviewCheckbox'},
+            {power: '0000', path: '047iswitch', title: 'IviewSwitch'},
             {power: '0000', path: '048itag', title: 'IviewTag'},
             {power: '0000', path: '049imodal', title: 'IviewModal'},
             {power: '0000', path: '050iicon', title: 'IviewIcon'},
@@ -122,11 +124,11 @@ export const routerList = [
             {power: '0000', path: '082download', title: 'JS控制下载文档'},
             {power: '0000', path: '083innerDB', title: 'innerDB数据库'},
             {power: '0000', path: '084public', title: '请求public内容'},
-            {power: '0000', path: '085$set', title: 'vue$set的用法'},
+            {power: '0000', path: '085$set', title: 'vue $set的用法'},
             {power: '0000', path: '086von', title: 'vue v-on深挖'},
             {power: '0000', path: '087watch', title: 'vue watch深挖'},
             {power: '0000', path: '088computed', title: 'vue computed深挖'},
-            {power: '0000', path: '089vfor', title: 'vue for循环'},
+            {power: '0000', path: '089vfor', title: 'vue v-for循环'},
             {power: '0000', path: '090keepalive', title: 'keep-alive', keepAlive: true},
             {power: '0000', path: '090keepalive@add', title: 'keep-alive编辑页', hideMenu: true},
             {power: '0000', path: '091textcss', title: '文本样式'},
@@ -149,6 +151,9 @@ export const routerList = [
             {power: '0000', path: '103tabblur', title: '浏览器标签blur'},
             {power: '0000', path: '104echart', title: 'echart'},
             {power: '0000', path: '105loadingcss', title: 'loading CSS'},
+            {power: '0000', path: '106yiyongxing', title: '易用性描述'},
+            {power: '0000', path: '107kaifakunjing', title: '需求开发|困境'},
+            {power: '0000', path: '108axios', title: 'Axios详解'},
             {power: '0000', path: '111name', title: '命名法'},
             {power: '0000', path: '112serverUpload', title: 'node文件上传'},
             {power: '0000', path: '113serverimg', title: 'node静态资源'},
@@ -162,6 +167,23 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
+        path: 'components', title: '组件', icon: 'logo-buffer',
+        children: [
+            {power: '0000', path: 'cropper', icon: 'md-crop', title: '图片裁剪'},
+            {power: '0000', path: 'splitpane', icon: 'md-pause', title: '分割窗口'},
+            {power: '0000', path: 'dragdrawer', icon: 'md-list', title: '可拖拽抽屉'},
+            {power: '0000', path: 'countto', icon: 'md-trending-up', title: '数字渐变'},
+            {power: '0000', path: 'orgtree', icon: 'ios-people', title: '组织结构树'},
+            {power: '0000', path: 'treetable', icon: 'md-git-branch', title: '树状表格'},
+            {power: '0000', path: 'tables', icon: 'md-grid', title: '多功能表格'},
+            {power: '0000', path: 'markdown', icon: 'logo-markdown', title: 'Markdown编辑器'},
+            {power: '0000', path: 'editor', icon: 'ios-create', title: '富文本编辑器'},
+            {power: '0000', path: 'treeselect', icon: 'md-arrow-dropdown-circle', title: '树状下拉选择器'},
+            {power: '0000', path: 'draglist', icon: 'ios-infinite', title: '拖拽列表'},
+            {power: '0000', path: 'icons', icon: 'bear', title: '自定义图标'}
+        ]
+    }),
+    makeTwoLevelRoute({
         path: 'tool', title: '趁手工具第三代', icon: 'md-globe',
         children: [
             {power: '0000', path: 'str2bs64', title: '文字转bs64'},
@@ -172,6 +194,20 @@ export const routerList = [
             {power: '0000', path: 'repeat', title: '字符重复'},
             {power: '0000', path: 'norepeat', title: '去重'},
             {power: '0000', path: 'strformat', title: '文本格式化'}
+        ]
+    }),
+    makeTwoLevelRoute({
+        path: 'update', title: '数据上传', icon: 'md-cloud-upload',
+        children: [
+            {power: '0000', path: 'updatetable', icon: 'md-arrow-dropdown-circle', title: '上传Csv'},
+            {power: '0000', path: 'updatepaste', icon: 'md-trending-up', title: '粘贴表格数据'}
+        ]
+    }),
+    makeTwoLevelRoute({
+        path: 'excel', title: 'EXCEL导入导出', icon: 'ios-stats',
+        children: [
+            {power: '0000', path: 'treeselect', icon: 'md-add', title: '导入EXCEL'},
+            {power: '0000', path: 'countto', icon: 'md-download', title: '导出EXCEL'}
         ]
     }),
     makeTwoLevelRoute({
@@ -228,37 +264,6 @@ export const routerList = [
             { power: '0402', path: 'subordinate@@info', title: '工单详情', hideMenu: true },
             { power: '0401', path: 'group', title: '组管理' },
             { power: '0402', path: 'group@edit', title: '组添加/编辑', hideMenu: true }
-        ]
-    }),
-    makeTwoLevelRoute({
-        path: 'components', title: '组件', icon: 'logo-buffer',
-        children: [
-            {power: '0000', path: 'cropper', icon: 'md-crop', title: '图片裁剪'},
-            {power: '0000', path: 'splitpane', icon: 'md-pause', title: '分割窗口'},
-            {power: '0000', path: 'dragdrawer', icon: 'md-list', title: '可拖拽抽屉'},
-            {power: '0000', path: 'countto', icon: 'md-trending-up', title: '数字渐变'},
-            {power: '0000', path: 'orgtree', icon: 'ios-people', title: '组织结构树'},
-            {power: '0000', path: 'treetable', icon: 'md-git-branch', title: '树状表格'},
-            {power: '0000', path: 'tables', icon: 'md-grid', title: '多功能表格'},
-            {power: '0000', path: 'markdown', icon: 'logo-markdown', title: 'Markdown编辑器'},
-            {power: '0000', path: 'editor', icon: 'ios-create', title: '富文本编辑器'},
-            {power: '0000', path: 'treeselect', icon: 'md-arrow-dropdown-circle', title: '树状下拉选择器'},
-            {power: '0000', path: 'draglist', icon: 'ios-infinite', title: '拖拽列表'},
-            {power: '0000', path: 'icons', icon: 'bear', title: '自定义图标'}
-        ]
-    }),
-    makeTwoLevelRoute({
-        path: 'update', title: '数据上传', icon: 'md-cloud-upload',
-        children: [
-            {power: '0000', path: 'updatetable', icon: 'md-arrow-dropdown-circle', title: '上传Csv'},
-            {power: '0000', path: 'updatepaste', icon: 'md-trending-up', title: '粘贴表格数据'}
-        ]
-    }),
-    makeTwoLevelRoute({
-        path: 'excel', title: 'EXCEL导入导出', icon: 'ios-stats',
-        children: [
-            {power: '0000', path: 'treeselect', icon: 'md-add', title: '导入EXCEL'},
-            {power: '0000', path: 'countto', icon: 'md-download', title: '导出EXCEL'}
         ]
     }),
     /*

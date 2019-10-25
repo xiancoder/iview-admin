@@ -84,6 +84,19 @@
                             <Spin size="large" fix v-if="spinShow"></Spin>
                             <ABackTop :height="100" :bottom="80" :right="50" container=".content-wrapper"></ABackTop>
                         </div>
+                        <div class="main-xiangzhaosha">
+                            <input class="xiangzhaosha-input" type="text" v-model="xiangzhaosha" placeholder="大声地说出我的名砸..你要找啥">
+                            <div class="xiangzhaosha-content">
+                                <div v-for="(item) in menuList">
+                                    <Button type="default">{{item.title}}</Button>
+                                    <Divider type="vertical" />
+                                    <template v-for="(item2) in item.children.filter(row=>{return row.title.includes(xiangzhaosha)})">
+                                        <Button type="dashed" :to="item2.path">{{item2.title}}</Button>
+                                        <Divider type="vertical" />
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </Content>
             </Layout>
@@ -140,6 +153,7 @@ export default {
             theme: {
                 Drawer: false
             },
+            xiangzhaosha: '', // 想找啥
             minLogo, // 最小图标
             maxLogo, // 最大图标
             transitionName: '', // 动画方式
@@ -152,6 +166,7 @@ export default {
         breadCrumbList () { return this.$store.state.system.breadCrumbList }, // 面包屑
         spinShow () { return this.$store.state.system.spinLoading || false }, // 新消息数量 0隐藏 null表红点 数字代表数量
         local () { return this.$store.state.app.local },
+        menuList () { return this.$store.state.system.menuList }, // 左边树 数据源
         collapsed () { return this.$store.state.system.shrink }, // 折叠状态
         cacheList () { return this.$store.state.system.cacheList }, // 被缓存的页面
         userAvatar () { return this.$store.state.system.userAvatorPath }, // 用户头像
@@ -184,6 +199,7 @@ export default {
         }
     },
     watch: {
+        /*
         watch: {
             // 监听路由 根据路由深度 决定页面的出现动画方式
             '$route' (to, from) {
@@ -192,6 +208,7 @@ export default {
                 this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
             }
         }
+        */
     },
     mounted () {
     }

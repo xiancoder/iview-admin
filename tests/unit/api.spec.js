@@ -12,7 +12,7 @@ jest.mock('@/tools/index.js', () => ({
     success: (msg) => { console.log('成功', msg) },
     error: (msg) => { console.log('失败', msg) }
 }))
-
+/*
 axios.interceptors.request.use( // 开始设置请求 发起的拦截处理
     config => { // config 代表发起请求的参数的实体
         config.url = 'http://localhost:4010/' + config.url.replace('api/', 'web/')
@@ -20,6 +20,8 @@ axios.interceptors.request.use( // 开始设置请求 发起的拦截处理
         return config
     }
 )
+*/
+axios.defaults.baseURL = 'https://localhost:4010/';
 
 describe('api.spec.js', () => {
     test('真实测试promise 没有问题', async () => {

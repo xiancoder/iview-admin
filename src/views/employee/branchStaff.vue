@@ -1,12 +1,12 @@
 <template>
-    <div class="prodectCss layout">
-         <div class="depart-tree layoutLeft">
+    <div class="tableLayout layout">
+        <div class="depart-tree layoutLeft">
             <Button type="primary" @click="value='',modalEditDept()" v-show="accountNum==0">添加根目录</Button>
             <Tree :data="dataSet.treeData" :render="treeDomDraw">
             </Tree>
          </div>
-         <div class="layoutRight">
-            <div class="layoutTool">
+        <div class="layoutRight">
+            <div class="tableTool">
                 <Select v-model="search.status" style="width:180px;">
                     <Option v-for="option in dataSet.stateList" :value="option.id" :key="option.id" :label="option.name" ></Option>
                 </Select>
@@ -19,55 +19,53 @@
                 <Button type="primary" class="fr" @click="goto('employeeEdit')" v-show="accountNum==0">添加员工</Button>
                 <Button type="primary" class="fr" @click="goto('positions')" v-show="accountNum==0">管理职位</Button>
             </div>
-            <div class="layoutTool2" v-show="tableSelectedUsers.length>0">
+            <div class="tableTool" v-show="tableSelectedUsers.length>0">
                 <span>已勾选<strong style="color:red"> {{tableSelectedUsers.length}} </strong>位员工</span>
                 <Button type="primary" @click="modal.dept = true">修改部门</Button>
                 <Button type="primary" @click="modal.status = true">修改状态</Button>
                 <Button type="primary" @click="setCurrentLeader(1)">设为本级负责人</Button>
                 <Button type="primary" @click="setCurrentLeader(0)" >取消本级负责人</Button>
             </div>
-            <Modal v-model="modal.dept" title="选择部门" :closable="false" :mask-closable="false">
-                <Tree :data="dataSet.treeData" :render="deptModalDomDraw"></Tree>
-                <div slot="footer">
-                    <Button type="default" @click="deptModalCancel">取消</Button>
-                    <Button type="primary" @click="deptModalOk">确定</Button>
-                </div>
-            </Modal>
-            <Modal v-model="modal.deptCreate" title="新建部门" :closable="false" :mask-closable="false">
-                <Input v-model="fromDeptCreateName" placeholder="请输入部门名称">
-                </Input>
-                <div slot="footer">
-                    <Button type="default" @click="deptCreateModalCancel">取消</Button>
-                    <Button type="primary" @click="deptCreateModalOk">确定</Button>
-                </div>
-            </Modal>
-            <Modal v-model="modal.status" title="选择状态" :closable="false" :mask-closable="false">
-                <Select v-model="fromUserStatus" style="width:100%;">
-                    <Option v-for="option in dataSet.stateList2" :value="option.id" :key="option.id" :label="option.name" ></Option>
-                </Select>
-                <div slot="footer">
-                    <Button type="default" @click="statusModalCancel">取消</Button>
-                    <Button type="primary" @click="statusModalOk">确定</Button>
-                </div>
-            </Modal>
             <Table border :size="'large'":columns="tableColumns" highlight-row ref="selection" :loading="loading"
                 @on-current-change="onTableClick" @on-selection-change="onTableSelect" :data="tableDataSet">
             </Table>
-            <div class="layoutFooter">
+            <div class="tableFooter">
                 <Button @click="handleSelectAll(true)">Set all selected</Button>
                 <Page ref="pager" :page-size="page.size" :current="page.index" :total="page.rowCount" show-total show-elevator class="fr"
                     @on-page-size-change="pageChange" @on-change="pageChange"
                 />
             </div>
-         </div>
+        </div>
+        <Modal v-model="modal.dept" title="选择部门" :closable="false" :mask-closable="false">
+            <Tree :data="dataSet.treeData" :render="deptModalDomDraw"></Tree>
+            <div slot="footer">
+                <Button type="default" @click="deptModalCancel">取消</Button>
+                <Button type="primary" @click="deptModalOk">确定</Button>
+            </div>
+        </Modal>
+        <Modal v-model="modal.deptCreate" title="新建部门" :closable="false" :mask-closable="false">
+            <Input v-model="fromDeptCreateName" placeholder="请输入部门名称">
+            </Input>
+            <div slot="footer">
+                <Button type="default" @click="deptCreateModalCancel">取消</Button>
+                <Button type="primary" @click="deptCreateModalOk">确定</Button>
+            </div>
+        </Modal>
+        <Modal v-model="modal.status" title="选择状态" :closable="false" :mask-closable="false">
+            <Select v-model="fromUserStatus" style="width:100%;">
+                <Option v-for="option in dataSet.stateList2" :value="option.id" :key="option.id" :label="option.name" ></Option>
+            </Select>
+            <div slot="footer">
+                <Button type="default" @click="statusModalCancel">取消</Button>
+                <Button type="primary" @click="statusModalOk">确定</Button>
+            </div>
+        </Modal>
     </div>
 </template>
 <script>
 import { extend, extendF } from '@/utils/object'
 import { h } from '@/tools'
-import common from '@/mixin/utils'
 export default {
-    mixins: [common],
     data () {
         // 固定数据源写在这里
         // 职位状态
@@ -128,6 +126,66 @@ export default {
         }
     },
     methods: {
+        go (name, obj) {
+            if (obj) {
+                this.$router.push({ name, obj });
+            } else if (name) {
+                this.$router.push({ name });
+            } else {
+                window.location.reload();
+            }
+        },
+        saveParamState (obj) {
+            const time = new Date().getTime()
+            const name = this.$router.history.current.name
+            window.localStorage.setItem(name + time, JSON.stringify(obj));
+            const query = { 'search': time }
+            // this.$router.replace({ name, query }) // 不能回退
+            this.$router.push({ name, query })
+        },
+        getParamState () {
+            const time = this.$route.query.search
+            const name = this.$router.history.current.name
+            if (time) {
+                try {
+                    const obj = window.localStorage.getItem(name + time);
+                    return JSON.parse(obj)
+                } catch (e) {
+                    return {}
+                }
+            }
+            if (window.history.length <= 1) {
+                window.localStorage.clear()
+            }
+            return {}
+        },
+        alert (msg) {
+            this.$Message.info({
+                content: msg || '处理中，请稍后'
+            });
+        },
+        success (msg) {
+            this.$Message.info({
+                content: msg || '保存成功'
+            });
+        },
+        error (msg) {
+            this.$Message.info({
+                content: msg || '保存失败',
+                duration: 10,
+                closable: true
+            });
+        },
+        confirm (msg) {
+            return new Promise((resolve, reject) => {
+                this.$Modal.confirm({
+                    title: '请确认',
+                    content: '<p>' + msg + '</p>',
+                    onOk: resolve || function () {},
+                    onCancel: reject || function () {}
+                });
+            });
+        },
         goto (name, query) { // 跳转目录
             if (name === 'employeeEdit') { this.go('employee_branchStaff@employeeEdit') }
             if (name === 'positions') { this.go('employee_branchStaff@positions') }
@@ -413,7 +471,8 @@ export default {
 <style scoped lang="less">
     .layout{
         .layoutLeft{
-            overflow: auto; position: fixed; top: 125px; left: 222px; bottom: 0; width: 277px;
+            overflow: auto; position: absolute; top: 20px; left: 31px; bottom: 0; width: 255px;
+            padding: 10px; background: #fff; border: 1px solid #dcdee2;
         }
         .layoutRight{
             display: inline-block;padding-left: 280px;
