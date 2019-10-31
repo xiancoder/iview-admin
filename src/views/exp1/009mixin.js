@@ -1,5 +1,5 @@
 import { extend, extendF } from '@/utils/object'
-import { saveParamState, getParamState } from '@/tools'
+import { saveParamState, getParamState } from '@/tools' // 自定义常用工具
 import { debounce } from '@/utils/function'
 
 export default {

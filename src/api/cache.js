@@ -1,6 +1,6 @@
 // 没想好怎么用
-import axios from 'axios'
-import config from '@/config'
+import axios from 'axios' // http请求库
+import config from '@/config' // 自定义配置
 // 数据存储
 export const cache = {
     data: {},

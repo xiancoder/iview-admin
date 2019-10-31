@@ -7,15 +7,15 @@
 import Vue from 'vue' // 核心
 import '@/api/axios' // axios 配置
 import '@/api' // 接口管理 -挂载$api
-import config from '@/config' // 全局参数 -挂载$config
+import config from '@/config' // 自定义配置 -挂载$config
 import '@/directive' // 指令
 import '@/filter' // 过滤器
 // import { i18n } from '@/i18n' // 资源国际化
 import '@/plugins' // 三方插件
-import { Store } from '@/store' // 状态管理 -挂载$stroe
-import { router } from '@/router' // 路由 -挂载$router
-import '@/tools' // 常用工具 -挂载$tool
-import '@/utils' // 常用方法 -挂载$util
+import { Store } from '@/store' // 自定义状态管理 -挂载$stroe
+import { router } from '@/router' // 自定义路由定义 -挂载$router
+import '@/tools' // 自定义常用工具 -挂载$tool
+import '@/utils' // 自定义常用方法 -挂载$util
 import '@/validate' // 常用校验 -挂载$validate
 
 /* eslint-disable */

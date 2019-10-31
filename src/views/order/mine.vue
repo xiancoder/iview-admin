@@ -7,7 +7,7 @@
     </ButtonGroup>
 </template>
 <script>
-import { goto } from '@/tools'
+import { goto } from '@/tools' // 自定义常用工具
 export default {
     mixins: [{methods: {goto}}],
     data () {

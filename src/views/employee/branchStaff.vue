@@ -64,7 +64,7 @@
 </template>
 <script>
 import { extend, extendF } from '@/utils/object'
-import { h } from '@/tools'
+import { h } from '@/tools' // 自定义常用工具
 export default {
     data () {
         // 固定数据源写在这里

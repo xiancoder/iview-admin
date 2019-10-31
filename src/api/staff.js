@@ -5,7 +5,7 @@
  * @Last Modified time: 2019-09-11 09:33:19
  * 员工接口相关  员工管理，角色管理
  */
-import axios from 'axios'
+import axios from 'axios' // http请求库
 const service = axios.request
 // 员工管理 获取职位列表
 export function JobList () {

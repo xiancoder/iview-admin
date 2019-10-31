@@ -4,7 +4,7 @@
             <div class="blogTitle">组件的extends继承</div>
             <div class="blogContent" v-highlight>
                 <script type="text/js" v-pre>
-                    import Vue from 'vue'
+                    import Vue from 'vue' // 核心
                     const compoent = {
                         props: {
                             propOne: String

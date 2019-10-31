@@ -48,7 +48,7 @@
 import SideMenuItem from './side-menu-item.vue'
 import CollapsedMenu from './collapsed-menu.vue'
 import { getUnion } from '@/utils/array'
-import { goto } from '@/tools'
+import { goto } from '@/tools' // 自定义常用工具
 import mixin from './mixin'
 export default {
     name: 'SideMenu',

@@ -61,7 +61,7 @@
 import tab from './mine'
 import { sevenRange } from '@/utils/date'
 import { extend, extendF } from '@/utils/object'
-import { h, jumpto, saveParamState, getParamState } from '@/tools'
+import { h, jumpto, saveParamState, getParamState } from '@/tools' // 自定义常用工具
 export default {
     components: { tab },
     data () {

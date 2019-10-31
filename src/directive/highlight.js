@@ -1,7 +1,7 @@
 // 代码高亮文件引入
 import hljs from 'highlight.js'
 // 引入
-import axios from 'axios'
+import axios from 'axios' // http请求库
 // 样式文件,文件里面还有其他样式可供选择
 import 'highlight.js/styles/atom-one-light.css'
 export default {

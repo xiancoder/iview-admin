@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { error } from '@/tools'
+import axios from 'axios' // http请求库
+import { error } from '@/tools' // 自定义常用工具
 export default {
     pullUserList () { // 拉取所有用户列表
         return new Promise((resolve, reject) => {

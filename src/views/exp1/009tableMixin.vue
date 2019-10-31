@@ -70,7 +70,7 @@
 </template>
 <script>
 import { debounce, nothing } from '@/utils/function'
-import { h } from '@/tools'
+import { h } from '@/tools' // 自定义常用工具
 import mixin from './009mixin'
 export default {
     data () {

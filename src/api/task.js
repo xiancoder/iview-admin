@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { success, error } from '@/tools'
+import axios from 'axios' // http请求库
+import { success, error } from '@/tools' // 自定义常用工具
 export default {
     found ({id, taskName, taskPriority, completeTime, taskContent, personLiable, fileList, correlation}) { // 发布任务
         // 如果参数传递有形参要求 但不传对象来 会卡住 且不报错

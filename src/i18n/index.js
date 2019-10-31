@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue' // 核心
 import VueI18n from 'vue-i18n'
 import customZhCn from './lang-zh-CN'
 import customZhTw from './lang-zh-TW'

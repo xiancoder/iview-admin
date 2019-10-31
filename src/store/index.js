@@ -4,7 +4,7 @@
 // 注意::页面增删改查逻辑相关接口由接口负责
 // 注意::状态管理不负责逻辑校验 不负责接口字段对应 等一系列适配行为 单纯负责存值取值调用
 
-import Vue from 'vue'
+import Vue from 'vue' // 核心
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate' // 状态持久化
 import system from './system' // 系统相关

@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { error } from '@/tools'
+import axios from 'axios' // http请求库
+import { error } from '@/tools' // 自定义常用工具
 
 export default {
     list ({ // 获取所有人员

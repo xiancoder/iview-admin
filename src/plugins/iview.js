@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue' // 核心
 import iView from 'view-design'
 import '@S/iview.less'
 // Vue原型链中 Message 是 iview 提供的

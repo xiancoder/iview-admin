@@ -222,7 +222,7 @@
 <script>
 import { dateFormat } from '@/utils/date'
 import { deepClone } from '@/utils/object'
-import {success, error, confirm, jumpto} from '@/tools'
+import {success, error, confirm, jumpto} from '@/tools' // 自定义常用工具
 import '@/plugins/vueEditor'
 export default {
     data () {

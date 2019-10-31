@@ -1,9 +1,9 @@
-import Vue from 'vue'
+import Vue from 'vue' // 核心
 import Router from 'vue-router'
-import { Store } from '@/store'
-import { LoadingBarRun } from '@/tools'
+import { Store } from '@/store' // 自定义状态管理
+import { LoadingBarRun } from '@/tools' // 自定义常用工具
 import { routerList as routes, specialRouterList } from './routers'
-import Config from '@/config'
+import Config from '@/config' // 自定义配置
 
 Vue.use(Router)
 

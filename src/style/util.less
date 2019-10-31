@@ -1,13 +1,16 @@
 /* 常用样式库 */
 /* 收集一些最可能用到的样式块 最多三层结构 */
 .xianUtil{
+    /* 图片灰显 */
     img.BlackAndWhitePhoto {
-        filter: grayscale(100%);
-        -webkit-filter: grayscale(100%);
-        -moz-filter: grayscale(100%);
-        -ms-filter: grayscale(100%);
-        -o-filter: grayscale(100%);
+        filter: grayscale(100%); -webkit-filter: grayscale(100%); -moz-filter: grayscale(100%);
+        -ms-filter: grayscale(100%); -o-filter: grayscale(100%);
     }
-    ul.liComma li { display:inline-block; }
-    ul.liComma > li:not(:last-child)::after { content: ","; }
+    /* 数组循环 逗号分割 */
+    ul.liComma li {
+        display:inline-block;
+    }
+    ul.liComma > li:not(:last-child)::after {
+        content: ",";
+}
 }

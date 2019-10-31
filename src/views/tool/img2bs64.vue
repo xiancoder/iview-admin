@@ -28,7 +28,7 @@
     </div>
 </template>
 <script>
-import { error } from '@/tools'
+import { error } from '@/tools' // 自定义常用工具
 export default {
     data () {
         return {

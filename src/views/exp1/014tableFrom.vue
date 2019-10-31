@@ -48,7 +48,7 @@
 <script>
 import { extend, extendF } from '@/utils/object'
 import { debounce } from '@/utils/function'
-import { h, saveParamState, getParamState } from '@/tools'
+import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工具
 import from1 from './014from1'
 export default {
     data () {

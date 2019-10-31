@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { success, error } from '@/tools'
+import axios from 'axios' // http请求库
+import { success, error } from '@/tools' // 自定义常用工具
 
 export default {
     login ({ userName, password }) { // 管理员登录

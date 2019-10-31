@@ -1,4 +1,4 @@
-import config from '@/config'
+import config from '@/config' // 自定义配置
 const { plugin } = config
 
 export default (Vue) => {

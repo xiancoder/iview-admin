@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import { router } from '@/router'
+import Vue from 'vue' // 核心
+import { router } from '@/router' // 自定义路由定义
 import { Message, Modal, LoadingBar } from 'iview'
-import { Store } from '@/store' // 状态管理 -挂载$stroe
+import { Store } from '@/store' // 自定义状态管理 // 状态管理 -挂载$stroe
 import { type } from '@/utils/object'
 /// ////////////////////////////////////////////////////
 // 常用的操作封装

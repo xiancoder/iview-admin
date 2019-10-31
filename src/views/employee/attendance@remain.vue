@@ -28,7 +28,7 @@
 <script>
 import treeDrop from '@C/tree-drop'
 import tab from './attendance@tab.vue'
-import {h} from '@/tools'
+import {h} from '@/tools' // 自定义常用工具
 import moment from 'moment'
 export default {
     components: {treeDrop, tab},

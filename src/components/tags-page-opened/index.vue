@@ -30,7 +30,7 @@
     </div>
 </template>
 <script>
-import Vue from 'vue';
+import Vue from 'vue' // 核心;
 import VueI18n from 'vue-i18n';
 Vue.use(VueI18n);
 export default {

@@ -44,8 +44,8 @@
     </div>
 </template>
 <script>
-import axios from 'axios'
-import Vue from 'vue'
+import axios from 'axios' // http请求库
+import Vue from 'vue' // 核心
 import VueHtml5Editor from 'vue-html5-editor'
 Vue.use(VueHtml5Editor, {
     // 全局组件名称，使用new VueHtml5Editor(options)时该选项无效

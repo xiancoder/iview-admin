@@ -1,6 +1,6 @@
-import config from '@/config'
+import config from '@/config' // 自定义配置
 import { Api } from '@/api'
-import { router, power2routes, power2BreadCrumb } from '@/router'
+import { router, power2routes, power2BreadCrumb } from '@/router' // 自定义路由定义
 import { specialRouterList } from '@/router/routers'
 
 export default {

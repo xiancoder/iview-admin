@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios' // http请求库
 
 export default {
     list () { // 获取所有角色

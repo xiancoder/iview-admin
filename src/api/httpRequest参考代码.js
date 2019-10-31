@@ -1,6 +1,6 @@
-import axios from 'axios'
-import store from '@/store'
-import config from '@/config'
+import axios from 'axios' // http请求库
+import store from '@/store' // 自定义状态管理
+import config from '@/config' // 自定义配置
 const addErrorLog = errorInfo => {
     const { statusText, status, request: { responseURL } } = errorInfo
     let info = {

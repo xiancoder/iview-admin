@@ -1,6 +1,6 @@
 // 项目::过滤器模块
 // 负责::所有的过滤器在这里初始化
-import Vue from 'vue'
+import Vue from 'vue' // 核心
 // =====================================================================
 import * as dateJs from '@/utils/date.js'
 import * as stringJs from '@/utils/string.js'

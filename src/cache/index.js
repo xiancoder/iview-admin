@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue' // 核心
 import storage from 'good-storage'// 开源storage的库，对localstorage和sessionstorage的封装
 import { isDateNotBeOverdue, dateAdd } from '@/utils/date'
 const GLOBELCONFIG = 'Xian_globelConfig_' // 系统全局配置

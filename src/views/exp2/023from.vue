@@ -71,7 +71,7 @@
 </template>
 <script>
 import '@/plugins/vueEditor'
-import { success, error } from '@/tools'
+import { success, error } from '@/tools' // 自定义常用工具
 export default {
     data () {
         return {

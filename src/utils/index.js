@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue' // 核心
 import * as object from './object'
 import * as array from './array'
 import * as date from './date'

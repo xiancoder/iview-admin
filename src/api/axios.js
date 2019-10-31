@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import axios from 'axios'
-import { Store } from '@/store'
+import Vue from 'vue' // 核心
+import axios from 'axios' // http请求库
+import { Store } from '@/store' // 自定义状态管理
 
 Vue.prototype.$axios = axios // 挂载axios
 Vue.prototype.$post = function (url, params) { // 将axios 的 post 方法，绑定到 vue 实例上面的 $post

@@ -6,7 +6,7 @@
     </Button>
 </template>
 <script>
-import axios from 'axios'
+import axios from 'axios' // http请求库
 export default {
     methods: {
         handleMe () {

@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue' // 核心
 const config = {
     title: 'OA',
     cookieExpires: 1, // token在Cookie中存储的天数，默认1天

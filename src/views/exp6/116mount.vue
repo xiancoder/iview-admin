@@ -4,7 +4,7 @@
             <div class="blogTitle">[VUE] 理清 Vue 中的钩子函数</div>
             <div class="blogContent" v-highlight>
                 <script type="text/js">
-                    import Vue from 'vue'
+                    import Vue from 'vue' // 核心
                     Vue.component('Test', {
                         data () { return {} },
                         computed: { },
@@ -69,7 +69,7 @@
                     })
                 </script>
                 <script type="text/js">
-                    import Vue from 'vue'
+                    import Vue from 'vue' // 核心
                     Vue.directive('dir', {
                         bind(el) { console.log('dir bind') console.log(!!el.parentNode) },
                         inserted(el) { console.log('dir inserted') console.log(!!el.parentNode) },

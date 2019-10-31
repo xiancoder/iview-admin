@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { success, error } from '@/tools'
+import axios from 'axios' // http请求库
+import { success, error } from '@/tools' // 自定义常用工具
 export default {
     getDetail ({ id }) { // 拉取一些假数据
         return new Promise((resolve, reject) => {

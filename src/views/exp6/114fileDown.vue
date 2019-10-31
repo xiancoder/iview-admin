@@ -100,7 +100,7 @@
     </div>
 </template>
 <script>
-import axios from 'axios'
+import axios from 'axios' // http请求库
 import upload from './114fileDown@upload'
 export default {
     data () {

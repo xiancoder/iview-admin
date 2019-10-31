@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue' // 核心
 import system from './system'
 import user from './user'
 import task from './task'
