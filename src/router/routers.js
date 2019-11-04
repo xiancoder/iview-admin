@@ -167,6 +167,12 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
+        path: 'exp7', title: '经验集.卷柒', icon: 'md-globe',
+        children: [
+            {power: '0000', path: '121youku', title: '优酷视频'}
+        ]
+    }),
+    makeTwoLevelRoute({
         path: 'components', title: '组件', icon: 'logo-buffer',
         children: [
             {power: '0000', path: 'cropper', icon: 'md-crop', title: '图片裁剪'},

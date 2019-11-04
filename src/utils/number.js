@@ -337,6 +337,11 @@ export const compare = function (a, b) {
     let bx = parseFloatRemoveNotNum(b)
     if (ax === bx) { return '=' } else { return ax > bx ? '>' : '<' }
 }
+export const gt = function (a, b) { var r = compare(a, b); return r === '>' }
+export const gte = function (a, b) { var r = compare(a, b); return r === '>' || r === '=' }
+export const lt = function (a, b) { var r = compare(a, b); return r === '<' }
+export const lte = function (a, b) { var r = compare(a, b); return r === '<' || r === '=' }
+export const eq = function (a, b) { var r = compare(a, b); return r === '=' }
 // 数字千分金钱
 // 返回一个千分金钱的字符串
 /* export const thousand = function (str) { // 可用 但过时

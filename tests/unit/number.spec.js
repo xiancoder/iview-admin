@@ -34,6 +34,80 @@ describe('[数字]常用方法', function () {
         expect(numberJs.number2Chinese(5533.1)).equal('五千五百三十三点一')
         expect(numberJs.number2Chinese(5533.04)).equal('五千五百三十三点零四')
     })
+    it('精准四则运算(加减乘除)/add/sub/mul/div', function () {
+        //////////////////////////////////////////////////////////////////////////////
+        // 数字计算
+        // 为了避免以后可能的计算精度问题
+        // 所有的数字业务必须使用工具库来计算
+        //////////////////////////////////////////////////////////////////////////////
+        // 原生代码计算浮点数 就是一坨shit
+        // 0.1+ 0.2 = 0.30000000000000004
+        // 6.6+1.32+1.2+1.2+1.2 = 11.519999999999998
+        // 6.6-1.32-1.2-1.2-1.2 = 1.679999999999999
+        // 6.6*1.31 = 8.645999999999999
+        // 1.1/10 = 0.11000000000000001
+        // 1.1/100 = 0.011000000000000001
+        // ludash 寄予厚望 依旧是一坨shit 不再尝试
+        // _.add(0.1, 0.2) = 0.30000000000000004
+        // _.sum([6.6, 1.32, 1.2, 1.2, 1.2]) = 11.519999999999998
+        // 只好使用很久以前收集的精准四则运算方法
+        expect(numberJs.add(0.1, 0.2)).equal(0.3)
+        expect(numberJs.add(0.3, 3)).equal(3.3)
+        expect(numberJs.add(0.9, 0.1)).equal(1)
+        expect(numberJs.add(0.11, 0.2)).equal(0.31)
+        expect(numberJs.add(2, 4)).equal(6)
+        expect(numberJs.add(121212, 131313)).equal(252525)
+        expect(numberJs.add(10000, 0.05)).equal(10000.05)
+        expect(numberJs.add(6.6, 1.32, 1.2, 1.2, 1.2)).equal(11.52)
+        expect(numberJs.sub(6.6, 1.32, 1.2, 1.2, 1.2)).equal(1.68)
+        expect(numberJs.sub(6.6, 1)).equal(5.6)
+        expect(numberJs.sub(12, 1)).equal(11)
+        expect(numberJs.sub(5, 1.2)).equal(3.8)
+        expect(numberJs.sub(100, 20)).equal(80)
+        expect(numberJs.sub(1000, 1)).equal(999)
+        expect(numberJs.sub(6.656, 0)).equal(6.656)
+        expect(numberJs.sub(6.656, 6.656)).equal(0)
+        expect(numberJs.mul(6.6, 1.32)).equal(8.712)
+        expect(numberJs.mul(1, 1.32)).equal(1.32)
+        expect(numberJs.mul(5, 10)).equal(50)
+        expect(numberJs.mul(1.11, 5)).equal(5.55)
+        expect(numberJs.mul(100, 100)).equal(10000)
+        expect(numberJs.mul(0.01, 100)).equal(1)
+        expect(numberJs.mul(0.1, 0.1)).equal(0.01)
+        expect(numberJs.div(6.6, 1.32)).equal(5)
+        expect(numberJs.div(1.1, 10)).equal(0.11)
+        expect(numberJs.div(100, 5)).equal(20)
+        expect(numberJs.div(50, 25)).equal(2)
+        expect(numberJs.div(250, 0.25)).equal(1000)
+        expect(numberJs.div(100, 100)).equal(1)
+        expect(numberJs.div(0, 1)).equal(0)
+        expect(numberJs.div(500, 1000)).equal(0.5)
+        expect(numberJs.div(6.6, 6.6)).equal(1)
+        expect(numberJs.div(6.666, 6)).equal(1.111)
+        // 请注意 传递字符串类型也不会报错 只会转成对应浮点进行计算
+        expect(numberJs.add('2', '4')).equal(6)
+        expect(numberJs.sub('12', '1')).equal(11)
+        expect(numberJs.mul('5', '10')).equal(50)
+        expect(numberJs.div('50', '25')).equal(2)
+        //////////////////////////////////////////////////////////////////////////////
+        // 数字比较
+        // 关于“字符串比对的规范”，案例：
+        // 案例1：金额为1,999.00元，因为没有对 逗号做处理造成支付不成功；
+        // 案例2：小时7:00与21:00比对，因处理不当造成21:00小于7:00
+        //////////////////////////////////////////////////////////////////////////////
+        expect(numberJs.lt('7', '21')).equal(true)
+        expect(numberJs.lt('1', '11')).equal(true)
+        expect(numberJs.lt('4', '22')).equal(true)
+        expect(numberJs.lt('12', '13')).equal(true)
+        expect(numberJs.lt('15', '51')).equal(true)
+        expect(numberJs.gt('21:00', '7:00')).equal(true)
+        expect(numberJs.gt('11:00', '7:00')).equal(true)
+        expect(numberJs.gt('21:30', '21:21')).equal(true)
+        expect(numberJs.gt('21:11', '7:11')).equal(true)
+        expect(numberJs.eq('1,999.00', '1999')).equal(true)
+        expect(numberJs.eq('1,000.00', '1000')).equal(true)
+        expect(numberJs.eq('1,999,999.00', '1999999')).equal(true)
+    })
     it('数字转中文(零至万)/number2Chinese2', function () {
         expect(numberJs.number2Chinese2(2)).equal('二')
         expect(numberJs.number2Chinese2(22)).equal('二十二')
