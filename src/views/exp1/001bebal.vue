@@ -40,6 +40,7 @@
                     }
                 </script>
                 <p>webpack 配置 babel-loader</p>
+                <h3 class="text-danger">当我使用了vuecli3以后就迷茫了 这些设置就对不上号了 但是依然生效 ???</h3>
                 <script type="text/js">
                     {
                         test: /\.js$/,
@@ -73,6 +74,9 @@
                         "comments": false
                     }
                 </script>
+                <p>像vue这种单页面应用，如果没有应用懒加载，运用webpack打包后的文件将会异常的大，造成进入首页时，需要加载的内容过多，时间过长，</p>
+                <p>会出啊先长时间的白屏，即使做了loading也是不利于用户体验，而运用懒加载则可以将页面进行划分，需要的时候加载页面，</p>
+                <p>可以有效的分担首页所承担的加载压力，减少首页加载用时</p>
             </div>
             <div class="blogFooter">
                 <Tag color="green">green</Tag>

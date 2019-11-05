@@ -274,7 +274,7 @@ export const add = function (/* arguments */) {
     let r2 = 0
     for (let i = 0; i < l; i++) { m = Math.max(places(args[i]), m) }
     m = Math.pow(10, m)
-    for (let i = 0; i < l; i++) { r2 += args[i] * m }
+    for (let i = 0; i < l; i++) { r2 += Math.round(args[i] * m) }
     return r2 / m
 }
 // 精准减法
@@ -290,8 +290,8 @@ export const sub = function (/* arguments */) {
     let r2 = args[0]
     for (let i = 0; i < l; i++) { m = Math.max(places(args[i]), m) }
     m = Math.pow(10, m)
-    r2 *= m
-    for (let i = 1; i < l; i++) { r2 -= args[i] * m }
+    r2 = Math.round(r2 * m)
+    for (let i = 1; i < l; i++) { r2 -= Math.round(args[i] * m) }
     return r2 / m
 }
 // 精准乘法

@@ -103,6 +103,32 @@
                     // 嗯嗯
                     <span>{{ ['','已结束','','已约','休息'][item.status] }}</span>
                 </script>
+                <p>同样的逻辑禁止走两遍 工作量多小都不行</p>
+                <script type="text/js">
+                    if (Cookies.get('userName')) {
+                        this.userName = Cookies.get('userName')
+                        this.storeName = true
+                    }
+                    // 低级问题 同样的逻辑走两遍
+                    const x = Cookies.get('userName')
+                    if (x) {
+                        this.userName = x
+                        this.storeName = true
+                    }
+                </script>
+                <p>ajax返回内容data.data长长的没完没了</p>
+                <script type="text/js">
+                    this.$get('api/system/menulist', {
+                    }).then((res) => {
+                        let menuList = res.data.data.list.listMenu
+                    })
+                    //
+                    this.$get('api/system/menulist', {
+                    }).then((response) => { // 著名response是完整返回对象
+                        const res = response.data // 业务逻辑
+                        let menuList = res.data.list.listMenu
+                    })
+                </script>
                 <p></p>
                 <script type="text/html">
                 </script>

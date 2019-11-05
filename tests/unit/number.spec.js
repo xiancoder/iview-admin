@@ -35,11 +35,11 @@ describe('[数字]常用方法', function () {
         expect(numberJs.number2Chinese(5533.04)).equal('五千五百三十三点零四')
     })
     it('精准四则运算(加减乘除)/add/sub/mul/div', function () {
-        //////////////////////////////////////////////////////////////////////////////
+        // ////////////////////////////////////////////////////////////////////////////
         // 数字计算
         // 为了避免以后可能的计算精度问题
         // 所有的数字业务必须使用工具库来计算
-        //////////////////////////////////////////////////////////////////////////////
+        // ////////////////////////////////////////////////////////////////////////////
         // 原生代码计算浮点数 就是一坨shit
         // 0.1+ 0.2 = 0.30000000000000004
         // 6.6+1.32+1.2+1.2+1.2 = 11.519999999999998
@@ -50,23 +50,44 @@ describe('[数字]常用方法', function () {
         // ludash 寄予厚望 依旧是一坨shit 不再尝试
         // _.add(0.1, 0.2) = 0.30000000000000004
         // _.sum([6.6, 1.32, 1.2, 1.2, 1.2]) = 11.519999999999998
-        // 只好使用很久以前收集的精准四则运算方法
+        // 精准四则运算方法
+        expect(numberJs.add(1, 1)).equal(2)
         expect(numberJs.add(0.1, 0.2)).equal(0.3)
         expect(numberJs.add(0.3, 3)).equal(3.3)
         expect(numberJs.add(0.9, 0.1)).equal(1)
         expect(numberJs.add(0.11, 0.2)).equal(0.31)
-        expect(numberJs.add(2, 4)).equal(6)
+        expect(numberJs.add(20000, 0.1)).equal(20000.1)
+        expect(numberJs.add(-2, 4)).equal(2)
+        expect(numberJs.add(-2, -4)).equal(-6)
+        expect(numberJs.add(-2.12345, 2.12345)).equal(0)
+        expect(numberJs.add(102, 2.24)).equal(104.24)
+        expect(numberJs.add(0.369, 369)).equal(369.369)
+        expect(numberJs.add(12, 21)).equal(33)
         expect(numberJs.add(121212, 131313)).equal(252525)
         expect(numberJs.add(10000, 0.05)).equal(10000.05)
+        expect(numberJs.add(1132.11, 1233.6)).equal(2365.71)
+        expect(numberJs.add(1132.11, 1233.62)).equal(2365.73)
+        expect(numberJs.add(1132.11, 1233.625)).equal(2365.735)
         expect(numberJs.add(6.6, 1.32, 1.2, 1.2, 1.2)).equal(11.52)
+        // 精准四则运算方法
+        expect(numberJs.sub(1, 1)).equal(0)
         expect(numberJs.sub(6.6, 1.32, 1.2, 1.2, 1.2)).equal(1.68)
         expect(numberJs.sub(6.6, 1)).equal(5.6)
         expect(numberJs.sub(12, 1)).equal(11)
         expect(numberJs.sub(5, 1.2)).equal(3.8)
         expect(numberJs.sub(100, 20)).equal(80)
         expect(numberJs.sub(1000, 1)).equal(999)
+        expect(numberJs.sub(0, 1.22)).equal(-1.22)
+        expect(numberJs.sub(400, 123)).equal(277)
+        expect(numberJs.sub(987654321, 1)).equal(987654320)
+        expect(numberJs.sub(5.22, 9.33)).equal(-4.11)
+        expect(numberJs.sub(1, -1)).equal(2)
         expect(numberJs.sub(6.656, 0)).equal(6.656)
         expect(numberJs.sub(6.656, 6.656)).equal(0)
+        expect(numberJs.sub(1132.11, 1233.6)).equal(-101.49)
+        expect(numberJs.sub(1233.6, 1132.11)).equal(101.49)
+        expect(numberJs.sub(110.12, 110)).equal(0.12)
+        // 精准四则运算方法
         expect(numberJs.mul(6.6, 1.32)).equal(8.712)
         expect(numberJs.mul(1, 1.32)).equal(1.32)
         expect(numberJs.mul(5, 10)).equal(50)
@@ -74,6 +95,7 @@ describe('[数字]常用方法', function () {
         expect(numberJs.mul(100, 100)).equal(10000)
         expect(numberJs.mul(0.01, 100)).equal(1)
         expect(numberJs.mul(0.1, 0.1)).equal(0.01)
+        // 精准四则运算方法
         expect(numberJs.div(6.6, 1.32)).equal(5)
         expect(numberJs.div(1.1, 10)).equal(0.11)
         expect(numberJs.div(100, 5)).equal(20)

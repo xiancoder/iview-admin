@@ -7,6 +7,8 @@
                 <p>在 columns 的某列声明 slot 后，就可以在 Table 的 slot 中使用 slot-scope。</p>
                 <p>slot-scope 的参数有 3 个：当前行数据 row，当前列数据 column，当前行序号 index。</p>
                 <Table border :columns="columns12" :data="data6"></Table>
+                <p class="text-info">这种用法说不好使吧 也好使 vue没有提供模版解析方法</p>
+                <p class="text-info">这种用法说好使吧 也并不好使 他的语法规则跟vue的不大一样</p>
             </div>
             <div class="blogFooter">
                 <Tag color="green">green</Tag>

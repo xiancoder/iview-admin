@@ -11,10 +11,10 @@
                 &nbsp;
                 <Button @click="go2()">go2</Button>
                 <script type="text/html">
-                    go1 () { // 传递的参数刷新一下就没了 这是个bug
+                    go1 () { // 传递的 params: { value: 'test1' } 刷新一下就没了 这是个bug
                         this.$router.push({ name: 'exp1_021route@add', params: { value: 'test1' } })
                     },
-                    go2 () { // 墙裂建议用这个啊 保证传参的存在
+                    go2 () { // 墙裂建议用 query: { value: 'test1' } 啊 保证传参的存在
                         this.$router.push({ path: '/exp1/021route@add', query: { value: 'test1' } })
                     }
                 </script>

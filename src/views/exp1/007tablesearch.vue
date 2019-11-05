@@ -11,6 +11,8 @@
                     <p>5 用户点击分页时候 <font color="red">实际搜索项拷贝给表面搜索项</font> 刷新页面 </p>
                     <p>6 本来想直接在data声明一个大对象来处理所有表格相关的内容和方法 似乎作用域不支持这样做 this在对象声明时候就绑定了</p>
                     <p>6 即 ()=>{} 可以是this绑定在外 但是如果{}对象中使用 其对象就是this</p>
+                    <p class="text-danger">7 以前老是纠结把公共方法集中起来 甚至抽象出来 现在我想通了 就大大方方的保留 没准小伙伴在使用中可以修改升级那</p>
+                    <p class="text-danger">8 大家都没有把这个重视起来 无语...</p>
                 </div>
                 <div class="blogFooter">
                     <Tag color="green">green</Tag>

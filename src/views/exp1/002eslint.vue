@@ -17,30 +17,30 @@
                             sourceType: 'module' // 设置"script"（默认）或"module"如果你的代码是在ECMAScript中的模块。
                         },
                         env: { browser: true, },
-                        // https: // github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
                         extends: 'standard',
-                        // required to lint *.vue files
                         plugins: [ 'html' ],
-                        // add your custom rules here
                         'rules': {
-                            // allow paren-less arrow functions
-                            'arrow-parens': 0,
-                            // allow async-await
-                            'generator-star-spacing': 0,
-                            // allow debugger during development
-                            'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-                            "no-unused-vars": [2, {
-                                // 允许声明未使用变量
-                                "vars": "local",
-                                // 参数不检查
-                                "args": "none"
-                            }],
-                            // 关闭语句强制分号结尾
-                            "semi": [0],
-                            // 空行最多不能超过100行
-                            "no-multiple-empty-lines": [0, {"max": 100}],
-                            // 关闭禁止混用tab和空格
-                            "no-mixed-spaces-and-tabs": [0],
+                            'generator-star-spacing': 'off', // 生成器函数*的前后空格
+                            'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off', // 禁止使用debugger
+                            'indent': ['error', 4, { 'SwitchCase': 1 }], // 缩进风格
+                            'quotes': ['error', 'single'], // 引号类型 `` '' ''
+                            'semi': 0, // 语句强制分号结尾
+                            'no-extra-semi': 2,//禁止多余的冒号
+                            'no-extra-boolean-cast': 2,//禁止不必要的bool转换
+                            'no-console': 0, // 禁止使用console
+                            'no-empty': 2, // 块语句中的内容不能为空
+                            'no-eq-null': 2, // 禁止对null使用==或!=运算符
+                            'no-new': 0, // 禁止在使用new构造一个实例后不赋值
+                            'no-fallthrough': 0, // 禁止switch穿透
+                            'object-curly-spacing': 0, // 对象先后有空格
+                            'no-useless-escape': 0, // 禁止正则字符转移
+                            'object-property-newline': 0, // 对象一个属性占一行
+                            'vue/no-parsing-error': 0, // 非法结束标签
+                            'vue/valid-v-for': 0, // v-for必须携带v-bind:key
+                            'vue/require-v-for-key': 0, // v-for必须携带v-bind:key
+                            'block-spacing': 0, // 花括号前后有空格
+                            'prefer-promise-reject-errors': 0, // reject必须给个错误理由
+                            'no-unreachable': 0 // 不能有无法执行的代码
                         }
                     }
                 </script>

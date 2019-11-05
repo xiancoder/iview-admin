@@ -29,6 +29,8 @@
                             }
                         }
                     }
+                    // 继承的方式很简单
+                    // 如下
                     const componet2 = {
                         extends: compoent, //第一种继承方式
                         propsData: {
