@@ -1,0 +1,144 @@
+<template>
+    <div class="blogCss">
+        <div class="blog">
+            <div class="blogTitle">日期范围框两个值的维护有点费劲???</div>
+            <br /><br />
+            <Divider orientation="right">项目使用的标准或规范</Divider>
+            <br /><br />
+            <div class="blogContent" v-highlight>
+                <p>将所有内容都写在标签上可以极大的方便复制粘贴党的使用</p>
+                <p>通常使用一周时间作为初始数据</p>
+                <Form ref="formValidateId" :model="frm" :label-width="150">
+                    <FormItem label="日期范围" prop="date2">
+                        <DatePicker type="daterange" placeholder="选择开始日期结束日期" style="width: 300px"
+                            :value="frm.date2" @on-change="frm.date2=$event" @on-clear="frm.date2=[]"
+                            split-panels>
+                        </DatePicker>
+                    </FormItem>
+                </Form>
+                <script type="text/html" v-pre>
+                    <!-- 建议直接拷贝使用 -->
+                    <!-- style 可以使用宽高边距 禁止超过3个样式 -->
+                    <!-- @on-change  -->
+                    <Form ref="formValidateId??" :model="frm" :label-width="150">
+                        <FormItem label="日期范围" prop="date2">
+                            <DatePicker type="daterange" placeholder="选择开始日期结束日期" style="width: 300px"
+                                :value="frm.date2" @on-change="frm.date2=$event" @on-clear="frm.date2=[]"
+                                split-panels>
+                            </DatePicker>
+                        </FormItem>
+                    </Form>
+                </script>
+                <p>测试: 如果此控件可以跟着数值变化 即可以动态改变 那么它就可以满足异步详情ajax</p>
+                <p><button @click="testData2">测试给date2赋值</button></p>
+                <p class="text-success">没问题 可以搞</p>
+                <p>如果需要校验 一般就是必填 或者 ???</p>
+                <Form ref="formValidateId2" :model="frm2" :rules="frmValidate" :label-width="150">
+                    <FormItem label="日期范围" prop="date2">
+                        <DatePicker type="daterange" placeholder="选择开始日期结束日期" style="width: 300px"
+                            :value="frm2.date2" @on-change="frm2.date2=$event" @on-clear="frm2.date2=[]"
+                            split-panels>
+                        </DatePicker>
+                    </FormItem>
+                    <FormItem style="margin-top: 50px">
+                        <Button type="primary" @click="handleSubmit('formValidateId2')">发布</Button>
+                    </FormItem>
+                </Form>
+                <script type="text/html" v-pre>
+                    <!-- 建议直接拷贝使用 -->
+                    <Form ref="formValidateId??" :model="frm2" :rules="frmValidate" :label-width="150">
+                        <FormItem label="日期范围" prop="date2">
+                            <DatePicker type="daterange" placeholder="选择开始日期结束日期" style="width: 300px"
+                                :value="frm2.date2" @on-change="frm2.date2=$event" @on-clear="frm2.date2=[]"
+                                split-panels>
+                            </DatePicker>
+                        </FormItem>
+                    </Form>
+                </script>
+                <script type="text/js">
+                    import { dateFormat, dateSub } from '@/utils/date'
+                    // --------------
+                    data () {
+                        let today = new Date() // 常用的是前七天
+                        return {
+                            frm: {
+                                date2: [dateFormat(dateSub(today, 6, 'd')), dateFormat(today)], // 日期范围测试
+                            }
+                        }
+                    },
+                </script>
+                <p>特殊情况 需要列出几个快捷选项</p>
+                <p>所有的配置项都堆在这里是为了方便使用 复制粘贴党的福音</p>
+                <Form ref="formValidateId3" :model="frm3" :label-width="150">
+                    <FormItem label="日期范围" prop="date2">
+                        <DatePicker type="daterange" placeholder="选择开始日期结束日期" style="width: 300px"
+                            :value="frm3.date2" @on-change="frm3.date2=$event" @on-clear="frm3.date2=[]"
+                            split-panels :options="{shortcuts: [
+                                { text: '过去一周', value () {return[new Date(new Date().getTime()-3600*1000*24*7), new Date()]}},
+                                { text: '过去一月', value () {return[new Date(new Date().getTime()-3600*1000*24*30), new Date()]}},
+                                { text: '过去三月', value () {return[new Date(new Date().getTime()-3600*1000*24*90), new Date()]}}
+                            ]}">
+                        </DatePicker>
+                    </FormItem>
+                </Form>
+                <script type="text/html" v-pre>
+                    <!-- 建议直接拷贝使用 -->
+                    <!-- 都堆在这里是为了方便使用 -->
+                    <FormItem label="日期范围" prop="date2">
+                        <DatePicker type="daterange" placeholder="选择开始日期结束日期" style="width: 300px"
+                            :value="frm.date2" @on-change="frm.date2=$event" @on-clear="frm.date2=[]"
+                            split-panels :options="{shortcuts: [
+                                { text: '过去一周', value () {return[new Date(new Date().getTime()-3600*1000*24*7), new Date()]}},
+                                { text: '过去一月', value () {return[new Date(new Date().getTime()-3600*1000*24*30), new Date()]}},
+                                { text: '过去三月', value () {return[new Date(new Date().getTime()-3600*1000*24*90), new Date()]}}
+                            ]}">
+                        </DatePicker>
+                    </FormItem>
+                </script>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">green</Tag>
+                <Tag color="cyan">cyan</Tag>
+                <Tag color="blue">blue</Tag>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+import { dateFormat, dateSub } from '@/utils/date'
+import { required4DateRange } from '@/validate'
+export default {
+    data () {
+        let today = new Date() // 常用的是前七天
+        return {
+            frm: {
+                date2: [dateFormat(dateSub(today, 6, 'd')), dateFormat(today)] // 日期范围测试
+            },
+            frm2: {
+                date2: [] // 日期范围测试
+            },
+            frm3: {
+                date2: [] // 日期范围测试
+            },
+            frmValidate: {
+                date2: [
+                    { validator: required4DateRange(() => this.frm2.date2, '我要的时间段必填') }
+                ]
+            }
+        }
+    },
+    methods: {
+        handleSubmit (name) {
+            console.log('handleSubmit', name)
+            this.$refs[name].validate((valid) => {
+                console.log(valid)
+            })
+        },
+        testData2 () {
+            this.frm.date2 = ['2014-05-09', '2014-06-09']
+        }
+    },
+    mounted () {
+    }
+}
+</script>

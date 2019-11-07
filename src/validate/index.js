@@ -1,3 +1,14 @@
+// 表单校验统一规范
+
+export const required4DateRange = (getV, msg) => {
+    msg = msg || '必选日期段!'
+    return (rule, value, callback) => {
+        const dates = getV()
+        if (!dates || dates.length === 0) { return callback(new Error(msg)) }
+        callback()
+    }
+}
+
 // 格式化价格（不含0）
 export function validatePrice (rule, value, callback) {
     let reg = /^((0\.([1-9](\d)?|[0][1-9]))|([1-9]([0-9]{1,5})?(\.\d{1,2})?)?)?$/;

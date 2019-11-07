@@ -17,7 +17,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'exp1', title: '经验集卷一', icon: 'md-globe',
+        path: 'exp1', title: '经验集.卷壹', icon: 'md-globe',
         children: [
             {power: '0000', path: '001bebal', title: 'bebal说明'},
             {power: '0000', path: '002eslint', title: 'EsLint 校验规则'},
@@ -37,7 +37,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'exp2', title: '经验集卷二', icon: 'md-globe',
+        path: 'exp2', title: '经验集.卷贰', icon: 'md-globe',
         children: [
             {power: '0000', path: '021route', title: '路由跳转'},
             {power: '0000', path: '021route@add', title: '路由跳转添加', hideMenu: true},
@@ -63,7 +63,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'exp3', title: '经验集卷三', icon: 'md-globe',
+        path: 'exp3', title: '经验集.卷叁', icon: 'md-globe',
         children: [
             {power: '0000', path: '041zhihu3layout', title: '三大框架简比'},
             {power: '0000', path: '042jsx', title: 'JSX详解'},
@@ -93,7 +93,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'exp4', title: '经验集卷四', icon: 'md-globe',
+        path: 'exp4', title: '经验集.卷肆', icon: 'md-globe',
         children: [
             {power: '0000', path: '061whilePromise', title: 'Promise挂起'},
             {power: '0000', path: '062fanyinhao', title: '反引号推广'},
@@ -118,7 +118,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'exp5', title: '经验集卷五', icon: 'md-globe',
+        path: 'exp5', title: '经验集.卷伍', icon: 'md-globe',
         children: [
             {power: '0000', path: '081templete', title: '标签templete'},
             {power: '0000', path: '082download', title: 'JS控制下载文档'},
@@ -144,7 +144,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'exp6', title: '经验集.卷六', icon: 'md-globe',
+        path: 'exp6', title: '经验集.卷陆', icon: 'md-globe',
         children: [
             {power: '0000', path: '101looknodown', title: '评审看不下去代码'},
             {power: '0000', path: '102watchls', title: 'ls的监听和事件广播'},
@@ -169,7 +169,16 @@ export const routerList = [
     makeTwoLevelRoute({
         path: 'exp7', title: '经验集.卷柒', icon: 'md-globe',
         children: [
-            {power: '0000', path: '121youku', title: '优酷视频'}
+            {power: '0000', path: '121youku', title: '优酷视频'},
+            {power: '0000', path: '122mimang', title: '略迷茫'}
+        ]
+    }),
+    makeTwoLevelRoute({
+        path: 'produce1', title: '工作集.卷壹', icon: 'md-globe',
+        children: [
+            {power: '0000', path: '201daterange', title: '日期范围两个对象'},
+            {power: '0000', path: '202api', title: 'api接口承上启下'},
+            {power: '0000', path: '203fromdifto', title: '来源提交格式不同'}
         ]
     }),
     makeTwoLevelRoute({

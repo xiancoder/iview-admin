@@ -162,18 +162,15 @@ export default {
 @-webkit-keyframes sk-circleFadeDelay { 0%, 39%, 100% { opacity: 0; } 40% { opacity: 1; } }
 @keyframes sk-circleFadeDelay { 0%, 39%, 100% { opacity: 0; } 40% { opacity: 1; } }
 
-
 .loading4432::before { content: ''; position: absolute; /*position: fixed;全页面*/ color: #fff; top: 0; left: 0; width: 100%; height: 100%; background: #5141d6; z-index: 3000; text-align: center; display: -webkit-flex; display: -ms-flexbox; display: flex; }
 .loading4432::after { content: ''; position: absolute; /*position: fixed;全页面*/ top: 50%; left: 50%; width: 70px; height: 70px; margin: -35px 0 0 -35px; pointer-events: none; z-index: 3001; border: 7px solid #4133b4; border-top-color: #fff; border-radius: 50%; -webkit-transition: opacity 0.3s; transition: opacity 0.3s; -webkit-animation: rotateLoader 0.8s linear infinite forwards; animation: rotateLoader 0.8s linear infinite forwards; }
 @-webkit-keyframes rotateLoader { to { -webkit-transform: rotate3d(0, 0, 1, 360deg); transform: rotate3d(0, 0, 1, 360deg); } }
 @keyframes rotateLoader { to { -webkit-transform: rotate3d(0, 0, 1, 360deg); transform: rotate3d(0, 0, 1, 360deg); } }
 
-
 .fullloading44322 i { content: ''; position: absolute; /*position: fixed;全页面*/  top: 50%; left: 50%; border-radius: 50%; width: 90px; height: 90px; z-index: 3001; border: 3px solid #959595; border-left-color: #D7000F; border-top-color: #D7000F; margin: -45px 0 0 -45px; -webkit-animation-name: spin; -webkit-animation-duration: 1s; -webkit-animation-iteration-count: infinite; animation-name: spin; animation-duration: 1s; animation-iteration-count: infinite;-webkit-animation-timing-function: cubic-bezier(0.55, 0.15, 0.45, 0.85); animation-timing-function: cubic-bezier(0.55, 0.15, 0.45, 0.85); }
 .fullloading44322 b { content: ''; position: absolute; /*position: fixed;全页面*/  color: #fff; top: 0; left: 0; width: 100%; height: 100%; background: #D6D6D6; z-index: 3000; text-align: center; display: -webkit-flex; display: -ms-flexbox; display: flex; }
 @-webkit-keyframes spin { 0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
 @keyframes spin { 0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
-
 
 @-webkit-keyframes spin { 0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
 @keyframes spin { 0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
@@ -186,5 +183,4 @@ export default {
 .downhill { -webkit-animation-timing-function: cubic-bezier(0.3, 0.1, 0.3, 0.85); animation-timing-function: cubic-bezier(0.3, 0.1, 0.3, 0.85); }
 .pendulum { -webkit-animation-timing-function: cubic-bezier(0.3, 1.65, 0.7, -0.65); animation-timing-function: cubic-bezier(0.3, 1.65, 0.7, -0.65); }
 .wtf { -webkit-animation-timing-function: cubic-bezier(1, -2.3, 1, 2.5); animation-timing-function: cubic-bezier(1, -2.3, 1, 2.5); }
-</style>
 </style>
