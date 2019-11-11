@@ -1,3 +1,8 @@
+import axios from 'axios' // http请求库
+import { error } from '@/tools' // 自定义常用工具
+import { dateFormat } from '@/utils/date' // 常用方法
+
+export default {
 
     /* 'title': '合同申请（保存草稿）',
         'url': 'api/contract/application_contract',
@@ -73,7 +78,7 @@
                     'companyName': '企业名称' // 企业名称
                     'contractNum': '合同编号' // 合同编号
                     'cusId': '1' // 客户id
-                    'contractName': '合同名称' // 
+                    'contractName': '合同名称'
                     'contractType': '1' // 合同类型
                     'contractTypeName': '广告主合同' // 合同类型名称
                     'contractPrice': 12, // 金额
@@ -285,7 +290,7 @@
                     'createUser': '申请人' // 申请人
                     'companyName': '企业名称' // 企业名称
                     'cusId': '1' // 客户id
-                    'contractName': '合同名称' // 
+                    'contractName': '合同名称'
                     'contractBeginStr': '2018-10-04', // 开始时间
                     'contractEndStr': '2018-10-04', // 结束时间
                     'isContinue': true, // 合同到期是否延续
@@ -461,8 +466,8 @@
                 'sourceNum': '原合同编号' // 原合同编号
                 'createdTime': '2018-07' // 创建时间
                 'createUser': '申请人' // 申请人
-                'contractName': '合同名称' // 
-                'changecontractName': '合同名称' // 
+                'contractName': '合同名称'
+                'changecontractName': '合同名称'
                 'contractType': '1' // 合同类型
                 'contractTypeName': '广告主合同' // 合同类型名称
                 'contractPrice': 12, // 金额
@@ -596,8 +601,8 @@
                         'createUser': '申请人' // 申请人
                         'companyName': '企业名称' // 企业名
                         'cusId': '1' // 客户id
-                        'contractName': '合同名称' // 
-                        'changecontractName': '合同名称' // 
+                        'contractName': '合同名称'
+                        'changecontractName': '合同名称'
                         'contractType': '1' // 合同类型
                         'contractTypeName': '广告主合同' // 合同类型名称
                         'companyName': '企业名称' // 企业名称
@@ -700,7 +705,7 @@
             'projectType': 1, // 所属项目
             'companyId': 1, // 合同主体
             'contractType': 1, // 合同类型
-            'type': 1, // 合同种类0.普通 1.框架
+            'type': 1, // 合同种类 0.普通 1.框架
             'begin': '2018-07-15', // 开始时间
             'end': '2018-07-15', // 结束时间
             'keyword': '',
@@ -726,6 +731,40 @@
             }
         }
     */
+    listAdOnLine ({ projectType, contractSubject, contractType, type, date, keyword, pageIndex, pageSize }) {
+        contractType = contractType === 0 ? '' : contractType;
+        type = type === -1 ? '' : type;
+        const companyId = contractSubject === 0 ? '' : contractSubject;
+        const begin = dateFormat(date[0]) // 请注意 i-datapicker 控件 使用value/onchange方式 和使用model方式赋值
+        const end = dateFormat(date[1]) // 其得到的结果分别为 字符串 日期对象 格式 必须要转换一下
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: '/api/confirmproject/online_ad',
+                data: {
+                    projectType,
+                    companyId,
+                    contractType,
+                    type,
+                    begin,
+                    end,
+                    keyword,
+                    pageIndex,
+                    pageSize
+                }
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.list) {
+                    resolve(res.data) // 有分页 返回父层级
+                } else {
+                    error(res.msg || '未获取到数据') // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
+            })
+        })
+    },
 
     /* 'title': '合同管理（下属合同管理）',
         'url': 'api/contract/subordinatecontract',
@@ -783,3 +822,6 @@
             }
         }
     */
+
+    end: 'api' // 防呆设计
+}

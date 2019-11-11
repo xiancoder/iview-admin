@@ -1,7 +1,7 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle"></div>
+            <div class="blogTitle">JS控制文件的下载 (没空写)</div>
             <div class="blogContent" v-highlight>
             </div>
             <div class="blogFooter">

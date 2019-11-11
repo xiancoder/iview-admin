@@ -1,6 +1,9 @@
+import axios from 'axios' // http请求库
+import { error } from '@/tools' // 自定义常用工具
 
+export default {
 
-    /* 'title': '广告维护申请/编辑',
+    /* 'title': '广告维护-申请/编辑',
         'url': '/api/maintain/edit',
         'method': 'post',
         'params': {
@@ -27,7 +30,7 @@
                 'node': 1, // 节点id
                 'approverUserId': 1 // 审批人id
                 'approverUserName': aaa // 审批人姓名
-                }] // 审批人
+            }] // 审批人
             'correlation': [1,2] // 抄送人（数组）
         }
         'response': {
@@ -39,7 +42,58 @@
         }
     */
 
-    /* 'title': '广告维护详情',
+    /* 'title': '广告维护-通过',
+        'url': '/api/maintain/pass',
+        'method': 'post',
+        'params': {
+            'id': 1,
+            'channel': '投放渠道',
+            'opinion': '审核意见'
+            'pwd': 'sdfsdf' // 签名密码
+        },
+        'response': {
+            'code': '200',
+            'msg': '',
+            'data': {
+                'res': 1
+            }
+        }
+    */
+
+    /* 'title': '广告维护-驳回',
+        'url': '/api/maintain/reject',
+        'method': 'post',
+        'params': {
+            'id': 1,
+            'opinion': '审核意见'
+            'pwd': 'sdfsdf' // 签名密码
+        },
+        'response': {
+            'code': '200',
+            'msg': '',
+            'data': {
+                'res': 1
+            }
+        }
+    */
+
+    /* 'title': '广告维护-转发',
+        'url': '/api/maintain/replace',
+        'method': 'post',
+        'params': {
+            'id': 1,
+            'approver': 1 // 转发人id
+        },
+        'response': {
+            'code': '200',
+            'msg': '',
+            'data': {
+                'res': 1
+            }
+        }
+    */
+
+    /* 'title': '广告维护-详情',
         'url': '/api/maintain/detail',
         'method': 'get',
         'params': {
@@ -111,53 +165,5 @@
         }
     */
 
-    /* 'title': '广告维护通过',
-        'url': '/api/maintain/pass',
-        'method': 'post',
-        'params': {
-            'id': 1,
-            'channel': '投放渠道',
-            'opinion': '审核意见'
-            'pwd': 'sdfsdf' // 签名密码
-        },
-        'response': {
-            'code': '200',
-            'msg': '',
-            'data': {
-                'res': 1
-            }
-        }
-    */
-
-    /* 'title': '广告维护驳回',
-        'url': '/api/maintain/reject',
-        'method': 'post',
-        'params': {
-            'id': 1,
-            'opinion': '审核意见'
-            'pwd': 'sdfsdf' // 签名密码
-        },
-        'response': {
-            'code': '200',
-            'msg': '',
-            'data': {
-                'res': 1
-            }
-        }
-    */
-
-    /* 'title': '广告维护转发',
-        'url': '/api/maintain/replace',
-        'method': 'post',
-        'params': {
-            'id': 1,
-            'approver': 1 // 转发人id
-        },
-        'response': {
-            'code': '200',
-            'msg': '',
-            'data': {
-                'res': 1
-            }
-        }
-    */
+    end: 'api' // 防呆设计
+}

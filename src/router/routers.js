@@ -178,7 +178,8 @@ export const routerList = [
         children: [
             {power: '0000', path: '201daterange', title: '日期范围两个对象'},
             {power: '0000', path: '202api', title: 'api接口承上启下'},
-            {power: '0000', path: '203fromdifto', title: '来源提交格式不同'}
+            {power: '0000', path: '203fromdifto', title: '来源提交格式不同'},
+            {power: '0000', path: '204trytransfer', title: '尝试多搜索+穿梭框'}
         ]
     }),
     makeTwoLevelRoute({

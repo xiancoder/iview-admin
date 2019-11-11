@@ -355,7 +355,7 @@ export default {
                 data: {
                     'departmentid': depId, // 对应后台字段
                     'userStatus': status, // 对应后台字段
-                    keyword
+                    keyword,
                     postIds,
                     'page_index': page, // 对应后台字段
                     'page_size': pageSize

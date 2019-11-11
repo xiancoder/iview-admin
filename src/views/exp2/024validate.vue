@@ -35,6 +35,9 @@
                         <Input type="text" v-model="frm.input15" placeholder="请输入XXXX" style="width: 450px"/>
                         <div class="ivu-form-item-notice-tip">必填+价格(整数6位，小数点2位)</div>
                     </FormItem>
+                    <FormItem label="文本域" prop="textarea1">
+                        <Input v-model="frm.textarea1" type="textarea" :autosize="{minRows: 3,maxRows: 5}" placeholder="请输入XXXX" />
+                    </FormItem>
                     <Divider orientation="left">数字框校验</Divider>
                     <FormItem label="数字框" prop="num1">
                         <InputNumber :max="100" :min="1" v-model="frm.num1" placeholder="请输入XXXX" style="width: 450px" :precision="0"></InputNumber>
@@ -201,6 +204,7 @@ export default {
                 input123: '', // 输入框测试
                 input14: '', // 输入框测试
                 input15: '', // 输入框测试
+                textarea1: '', // 文本域测试
                 num1: 0, // 数字框测试
                 select1: '', // 下拉框测试
                 select12: '', // 下拉框测试
@@ -239,6 +243,9 @@ export default {
                 input15: [
                     { required: true, message: '输入框不能为空' },
                     { pattern: /(^[1-9]\d{0,5}(\.[0-9]{1,2})?$)|(^0{1}\.[1-9]{1}$)|(^0{1}\.0{1}[1-9]{1}$)|(^0{1}\.[1-9]{1}[0-9]{1}$)/, message: '整数6位，小数点2位' }
+                ],
+                textarea1: [
+                    { required: true, message: '文本域不能为空' }
                 ],
                 num1: [
                     { required: true, message: '数字框不能为空' }

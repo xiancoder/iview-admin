@@ -1,5 +1,65 @@
+import axios from 'axios' // http请求库
+import { error } from '@/tools' // 自定义常用工具
 
-    /* 'title': '客户列表',
+export default {
+
+
+    /* 'title': '导入客户',
+        'url': '/api/customer/upload',
+        'method': 'post',
+        'params': {
+            'projectType': 1 所属项目（1：网维；2：云袭广告；3：加客）
+            'file': file
+        },
+        'response': {
+            'code': '200',
+            'msg': '',
+            'data': {
+                res: 1 // -1: 没有满足条件的数据;0: 保存失败;1: 保存成功;2: 部分成功
+                count：12 // 成功条数
+                errorUrl: '' // res=2时,有失败部分文件下载地址
+            }
+        }
+    */
+
+    /* 'title': '添加/取消关联客户',
+        'url': '/api/customer/relationaddorcancel',
+        'method': 'post',
+        'params': {
+            'cusId': 1 // 基准客户id
+            'releId': 1 // 关联客户id
+            'status': -1 // -1 取消关联,2添加关联
+        },
+        'response': {
+            'code': '200',
+            'msg': '',
+            'data': {
+                res: 1 // 1成功,0失败
+            }
+        }
+    */
+
+    /* 'title': '搜索关联客户',
+        'url': '/api/customer/searchrelevance',
+        'method': 'post',
+        'params': {
+            'cusId': 1 // 基准客户id
+            'releId': 1 // 关联客户id
+        },
+        'response': {
+            'code': '200',
+            'msg': '',
+            'data': {
+                res: 1 // 1成功,0失败
+            }
+        }
+    */
+
+
+
+
+
+    /* 'title': '客户-公海客户列表',
         'url': '/api/customer/getlistpublic',
         'method': 'get',
         'params': {
@@ -30,7 +90,7 @@
         }
     */
 
-    /* 'title': '客户列表-私海 此接不用了拆分成三个接口,我负责的客户,我联合跟进的客户,下属客户',
+    /* 'title': '客户-私海客户列表 此接不用了 拆分成三个接口,我负责的客户,我联合跟进的客户,下属客户',
         'url': '/api/customer/getlistprivate',
         'method': 'get',
         'params': {
@@ -65,25 +125,145 @@
         }
     */
 
-    /* 'title': '导入客户',
-        'url': '/api/customer/upload',
-        'method': 'post',
+    /* 'title': '客户-我负责的私海客户列表',
+        'url': '/api/customer/getlistleade',
+        'method': 'get',
         'params': {
-            'projectType': 1 所属项目（1：网维；2：云袭广告；3：加客）
-            'file': file
+            'projectType': 1, // 项目
+            'cusType': 1, // 客户类型,null 不限制
+            'cusLevel'1, // 客户级别,null 不限制
+            'teamWorkStatus': 1, // 合作状态,null不限制
+            'keyword': 1, // 关键字,null不限制
+            'page_index': 1,
+            'page_size': 30
         },
         'response': {
             'code': '200',
             'msg': '',
             'data': {
-                res: 1 // -1: 没有满足条件的数据;0: 保存失败;1: 保存成功;2: 部分成功
-                count：12 // 成功条数
-                errorUrl: '' // res=2时,有失败部分文件下载地址
+                'list': [{
+                    'id': 1, // id
+                    'busName': 'sss', // 企业客户名称
+                    'leader': 'duan', // 负责人
+                    'cusType': '渠道' // 企业客户类型
+                    'cusLevel': 'A' // 企业客户级别
+                    'teamWorkStatus': '合作中', // 合作状态
+                    'tel': '12345678911', // 联系电话
+                    'followUpLog': 'sss', // 最新跟进记录
+                    'contacters': [{'id': 1,'name': 'wang','post': '经理','tel': '17788212797'}]
+                }]
+                'rowcount': 22
             }
         }
     */
 
-    /* 'title': '企业详情',
+    /* 'title': '客户-我联合跟进的私海客户列表',
+        'url': '/api/customer/getlistunion',
+        'method': 'get',
+        'params': {
+            'projectType': 1, // 项目
+            'leader': 2, // 负责人,null 不限制
+            'cusType': 1, // 客户类型,null 不限制
+            'cusLevel'1, // 客户级别,null 不限制
+            'teamWorkStatus': 1, // 合作状态,null不限制
+            'keyword': 1, // 关键字,null不限制
+            'page_index': 1,
+            'page_size': 30
+        },
+        'response': {
+            'code': '200',
+            'msg': '',
+            'data': {
+                'list': [{
+                    'id': 1, // id
+                    'busName': 'sss', // 企业客户名称
+                    'leader': 'duan', // 负责人
+                    'cusType': '渠道' // 企业客户类型
+                    'cusLevel': 'A' // 企业客户级别
+                    'teamWorkStatus': '合作中', // 合作状态
+                    'tel': '12345678911', // 联系电话
+                    'followUpLog': 'sss', // 最新跟进记录
+                    'contacters': [{'id': 1,'name': 'wang','post': '经理','tel': '17788212797'}]
+                }]
+                'rowcount': 22
+            }
+        }
+    */
+
+    /* 'title': '客户-下属的私海客户列表',
+        'url': '/api/customer/getlistdept',
+        'method': 'get',
+        'params': {
+            'projectType': 1, // 项目
+            'leader': 2, // 负责人,null 不限制
+            'cusType': 1, // 客户类型,null 不限制
+            'cusLevel'1, // 客户级别,null 不限制
+            'teamWorkStatus': 1, // 合作状态,null不限制
+            'keyword': 1, // 关键字,null不限制
+            'page_index': 1,
+            'page_size': 30
+        },
+        'response': {
+            'code': '200',
+            'msg': '',
+            'data': {
+                'list': [{
+                    'id': 1, // id
+                    'busName': 'sss', // 企业客户名称
+                    'leader': 'duan', // 负责人
+                    'cusType': '渠道' // 企业客户类型
+                    'cusLevel': 'A' // 企业客户级别
+                    'teamWorkStatus': '合作中', // 合作状态
+                    'tel': '12345678911', // 联系电话
+                    'followUpLog': 'sss', // 最新跟进记录
+                    'contacters': [{'id': 1,'name': 'wang','post': '经理','tel': '17788212797'}]
+                }]
+                'rowcount': 22
+            }
+        }
+    */
+
+    /* 'title': '客户-可能有关联的客户列表',
+        'url': '/api/customer/relationmaybe',
+        'method': 'get',
+        'params': {
+            'id': 1
+        },
+        'response': {
+            'code': '200',
+            'msg': '',
+            'data': {
+                'list': [{
+                    'id': 1, // id
+                    'busName': 'sss', // 企业客户名称
+                    'leader': 'duan', // 负责人
+                    'common': '老板' // 类似内容
+                }]
+            }
+        }
+    */
+
+    /* 'title': '客户-有关联的客户列表',
+        'url': '/api/customer/relationalready',
+        'method': 'get',
+        'params': {
+            'id': 1
+        },
+        'response': {
+            'code': '200',
+            'msg': '',
+            'data': {
+                'list': [{
+                    'id': 1, // id
+                    'busName': 'sss', // 企业客户名称
+                    'leader': 'duan' // 负责人
+                }]
+            }
+        }
+    */
+
+
+    /* 'title': '客户-客户企业详情',
         'url': '/api/customer/detail',
         'method': 'get',
         'params': {
@@ -123,6 +303,86 @@
             }
         }
     */
+
+    /* 'title': '添加关联客户-搜索客户',
+        'url': '/api/customer/all',
+        'method': 'get',
+        'params': {
+            'keyword': 'ddd'
+        },
+        'response': {
+            'code': '200',
+            'msg': '',
+            'data': {
+                'customer': {
+                    'id': 1, // 企业id
+                    'busName': 'sss', // 企业客户名称
+                }
+            }
+        }
+    */
+
+
+
+
+    /* 'title': '企业联系人-列表',
+        'url': '/api/customer/contact',
+        'method': 'get',
+        'params': {
+            'id': 1, // 企业id
+        },
+        'response': {
+            'code': '200',
+            'msg': '',
+            'data': {
+                'list': [{
+                    'id': 1,
+                    'name' // 姓名
+                    'post' // 职位
+                    'tel' // 电话
+                    'qq' // QQ
+                    'wechat' // 微信
+                    'email' // 邮箱
+                    'remark' // 备注
+                    'busName' // 企业客户名称
+                }]
+            }
+        }
+    */
+
+    /* 'title': '企业联系人-详情',
+        'url': '/api/customer/contactdetail',
+        'method': 'get',
+        'params': {
+            'id': 1 // 联系人id
+        },
+        'response': {
+            'code': '200',
+            'msg': '',
+            'data': {
+                'result': {
+                    'id': 1,
+                    'name' // 姓名
+                    'post' // 职位
+                    'tel' // 电话
+                    'qq' // QQ
+                    'wechat' // 微信
+                    'email' // 邮箱
+                    'remark' // 备注
+                    'cusId': 1 // 企业id
+                    'busName' // 企业客户名称
+                }
+            }
+        }
+    */
+
+
+
+
+
+
+
+
 
     /* 'title': '负责人联合负责人右侧栏',
         'url': '/api/customer/leader',
@@ -173,30 +433,6 @@
         }
     */
 
-    /* 'title': '企业联系人-列表',
-        'url': '/api/customer/contact',
-        'method': 'get',
-        'params': {
-            'id': 1, // 企业id
-        },
-        'response': {
-            'code': '200',
-            'msg': '',
-            'data': {
-                'list': [{
-                    'id': 1,
-                    'name' // 姓名
-                    'post' // 职位
-                    'tel' // 电话
-                    'qq' // QQ
-                    'wechat' // 微信
-                    'email' // 邮箱
-                    'remark' // 备注
-                    'busName' // 企业客户名称
-                }]
-            }
-        }
-    */
 
     /* 'title': '添加/编辑企业联系人',
         'url': '/api/customer/addcontact',
@@ -222,121 +458,10 @@
         }
     */
 
-    /* 'title': '联系人详情',
-        'url': '/api/customer/contactdetail',
-        'method': 'get',
-        'params': {
-            'id': 1 // 联系人id
-        },
-        'response': {
-            'code': '200',
-            'msg': '',
-            'data': {
-                'result': {
-                    'id': 1,
-                    'name' // 姓名
-                    'post' // 职位
-                    'tel' // 电话
-                    'qq' // QQ
-                    'wechat' // 微信
-                    'email' // 邮箱
-                    'remark' // 备注
-                    'cusId': 1 // 企业id
-                    'busName' // 企业客户名称
-                }
-            }
-        }
-    */
 
-    /* 'title': '可能有关联客户',
-        'url': '/api/customer/relationmaybe',
-        'method': 'get',
-        'params': {
-            'id': 1
-        },
-        'response': {
-            'code': '200',
-            'msg': '',
-            'data': {
-                'list': [{
-                    'id': 1, // id
-                    'busName': 'sss', // 企业客户名称
-                    'leader': 'duan', // 负责人
-                    'common': '老板' // 类似内容
-                }]
-            }
-        }
-    */
 
-    /* 'title': '获取已关联客户',
-        'url': '/api/customer/relationalready',
-        'method': 'get',
-        'params': {
-            'id': 1
-        },
-        'response': {
-            'code': '200',
-            'msg': '',
-            'data': {
-                'list': [{
-                    'id': 1, // id
-                    'busName': 'sss', // 企业客户名称
-                    'leader': 'duan' // 负责人
-                }]
-            }
-        }
-    */
 
-    /* 'title': '添加/取消关联客户',
-        'url': '/api/customer/relationaddorcancel',
-        'method': 'post',
-        'params': {
-            'cusId': 1 // 基准客户id
-            'releId': 1 // 关联客户id
-            'status': -1 // -1 取消关联,2添加关联
-        },
-        'response': {
-            'code': '200',
-            'msg': '',
-            'data': {
-                res: 1 // 1成功,0失败
-            }
-        }
-    */
 
-    /* 'title': '搜索关联客户',
-        'url': '/api/customer/searchrelevance',
-        'method': 'post',
-        'params': {
-            'cusId': 1 // 基准客户id
-            'releId': 1 // 关联客户id
-        },
-        'response': {
-            'code': '200',
-            'msg': '',
-            'data': {
-                res: 1 // 1成功,0失败
-            }
-        }
-    */
-
-    /* 'title': '添加关联客户-搜索客户',
-        'url': '/api/customer/all',
-        'method': 'get',
-        'params': {
-            'keyword': 'ddd'
-        },
-        'response': {
-            'code': '200',
-            'msg': '',
-            'data': {
-                'customer': {
-                    'id': 1, // 企业id
-                    'busName': 'sss', // 企业客户名称
-                }
-            }
-        }
-    */
 
     /* 'title': '获取跟进记录',
         'url': '/api/customer/followuplog',
@@ -608,104 +733,6 @@
         }
     */
 
-    /* 'title': '客户列表-我负责的客户',
-        'url': '/api/customer/getlistleade',
-        'method': 'get',
-        'params': {
-            'projectType': 1, // 项目
-            'cusType': 1, // 客户类型,null 不限制
-            'cusLevel'1, // 客户级别,null 不限制
-            'teamWorkStatus': 1, // 合作状态,null不限制
-            'keyword': 1, // 关键字,null不限制
-            'page_index': 1,
-            'page_size': 30
-        },
-        'response': {
-            'code': '200',
-            'msg': '',
-            'data': {
-                'list': [{
-                    'id': 1, // id
-                    'busName': 'sss', // 企业客户名称
-                    'leader': 'duan', // 负责人
-                    'cusType': '渠道' // 企业客户类型
-                    'cusLevel': 'A' // 企业客户级别
-                    'teamWorkStatus': '合作中', // 合作状态
-                    'tel': '12345678911', // 联系电话
-                    'followUpLog': 'sss', // 最新跟进记录
-                    'contacters': [{'id': 1,'name': 'wang','post': '经理','tel': '17788212797'}]
-                }]
-                'rowcount': 22
-            }
-        }
-    */
-
-    /* 'title': '客户列表-我联合跟进的客户',
-        'url': '/api/customer/getlistunion',
-        'method': 'get',
-        'params': {
-            'projectType': 1, // 项目
-            'leader': 2, // 负责人,null 不限制
-            'cusType': 1, // 客户类型,null 不限制
-            'cusLevel'1, // 客户级别,null 不限制
-            'teamWorkStatus': 1, // 合作状态,null不限制
-            'keyword': 1, // 关键字,null不限制
-            'page_index': 1,
-            'page_size': 30
-        },
-        'response': {
-            'code': '200',
-            'msg': '',
-            'data': {
-                'list': [{
-                    'id': 1, // id
-                    'busName': 'sss', // 企业客户名称
-                    'leader': 'duan', // 负责人
-                    'cusType': '渠道' // 企业客户类型
-                    'cusLevel': 'A' // 企业客户级别
-                    'teamWorkStatus': '合作中', // 合作状态
-                    'tel': '12345678911', // 联系电话
-                    'followUpLog': 'sss', // 最新跟进记录
-                    'contacters': [{'id': 1,'name': 'wang','post': '经理','tel': '17788212797'}]
-                }]
-                'rowcount': 22
-            }
-        }
-    */
-
-    /* 'title': '客户列表-下属客户',
-        'url': '/api/customer/getlistdept',
-        'method': 'get',
-        'params': {
-            'projectType': 1, // 项目
-            'leader': 2, // 负责人,null 不限制
-            'cusType': 1, // 客户类型,null 不限制
-            'cusLevel'1, // 客户级别,null 不限制
-            'teamWorkStatus': 1, // 合作状态,null不限制
-            'keyword': 1, // 关键字,null不限制
-            'page_index': 1,
-            'page_size': 30
-        },
-        'response': {
-            'code': '200',
-            'msg': '',
-            'data': {
-                'list': [{
-                    'id': 1, // id
-                    'busName': 'sss', // 企业客户名称
-                    'leader': 'duan', // 负责人
-                    'cusType': '渠道' // 企业客户类型
-                    'cusLevel': 'A' // 企业客户级别
-                    'teamWorkStatus': '合作中', // 合作状态
-                    'tel': '12345678911', // 联系电话
-                    'followUpLog': 'sss', // 最新跟进记录
-                    'contacters': [{'id': 1,'name': 'wang','post': '经理','tel': '17788212797'}]
-                }]
-                'rowcount': 22
-            }
-        }
-    */
-
     /* 'title': '客户列表-添加客户',
         'url': '/api/customer/add_private',
         'method': 'post',
@@ -847,3 +874,6 @@
             }
         }
     */
+
+    end: 'api' // 防呆设计
+}

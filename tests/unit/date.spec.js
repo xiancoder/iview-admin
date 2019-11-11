@@ -63,6 +63,9 @@ describe('[日期]常用方法', function () {
         expect(dateJs.dateFormater(today, 'YYYY-MM-DD HH:mm:ss')).equal('2017-11-12 13:14:15')
         expect(dateJs.dateFormater(today, 'YYYY-MM-DD')).equal('2017-11-12')
         expect(dateJs.dateFormat(today)).equal('2017-11-12')
+        expect(dateJs.dateFormat(new Date(1988, 5, 2))).equal('1988-06-02')
+        expect(dateJs.dateFormat([2017, 1 - 1, 1])).equal('2017-01-01')
+        expect(dateJs.dateFormat(1573454365066)).equal('2019-11-11')
     })
     it('根据日期获取往前一周时间/sevenRange', function () {
         expect(dateJs.sevenRange(new Date(2009, 6, 6)).join(',')).equal('2009-06-30,2009-07-06')

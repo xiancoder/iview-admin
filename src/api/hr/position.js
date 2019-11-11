@@ -1,5 +1,5 @@
 import axios from 'axios' // http请求库
-import { error } from '@/tools' // 自定义常用工具
+import { success, error } from '@/tools' // 自定义常用工具
 
 export default {
 
@@ -42,9 +42,10 @@ export default {
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
                 if (res && res.data && res.data.res) {
+                    success(res.msg || '操作成功')
                     resolve(res.data.res)
                 } else {
-                    error(res.msg) // 报错并继续reject
+                    error(res.msg || '操作失败') // 报错并继续reject
                     reject()
                 }
             }).catch(e => {
@@ -83,9 +84,10 @@ export default {
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
                 if (res && res.data && res.data.res) {
+                    success(res.msg || '操作成功')
                     resolve(res.data.res)
                 } else {
-                    error(res.msg) // 报错并继续reject
+                    error(res.msg || '操作失败') // 报错并继续reject
                     reject()
                 }
             }).catch(e => {
@@ -126,8 +128,8 @@ export default {
         deptId,
         postId,
         state,
-        page_index,
-        page_size
+        pageIndex,
+        pageSize
     }) {
         return new Promise((resolve, reject) => {
             axios({
@@ -138,15 +140,15 @@ export default {
                     deptId,
                     postId,
                     state,
-                    pageIndex: page_index,
-                    pageSize: page_size
+                    page_index: pageIndex,
+                    page_size: pageSize
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
                 if (res && res.data) { // 两个有效内容
                     resolve(res.data)
                 } else {
-                    error(res.msg) // 报错并继续reject
+                    error(res.msg || '未读取到数据') // 报错并继续reject
                     reject()
                 }
             }).catch(e => {
@@ -190,7 +192,7 @@ export default {
                 if (res && res.data && res.data.positions) {
                     resolve(res.data.positions)
                 } else {
-                    error(res.msg) // 报错并继续reject
+                    error(res.msg || '未读取到数据') // 报错并继续reject
                     reject()
                 }
             }).catch(e => {

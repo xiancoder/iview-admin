@@ -1,3 +1,7 @@
+import axios from 'axios' // http请求库
+import { error } from '@/tools' // 自定义常用工具
+
+export default {
 
     /* 'title': '我的考勤-考勤列表',
         'url': '/api/attendance/attendance_list',
@@ -63,6 +67,31 @@
             }
         }
     */
+    confirm ({ date }) {
+        return new Promise((resolve, reject) => {
+            // 请注意 必填校验放外面
+            const begin = date[0]
+            const end = date[1]
+            axios({
+                method: 'POST',
+                url: '/api/attendance/confirm',
+                data: {
+                    begin,
+                    end
+                }
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.res) {
+                    resolve(res.data.res)
+                } else {
+                    error(res.msg) // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
+            })
+        })
+    },
 
     /* 'title': '能否查看值班表',
         'url': '/api/attendance/myduty_role',
@@ -99,3 +128,6 @@
             }
         }
     */
+
+    end: 'api' // 防呆设计
+}

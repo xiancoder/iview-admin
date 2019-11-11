@@ -1,4 +1,7 @@
+import axios from 'axios' // http请求库
+import { error } from '@/tools' // 自定义常用工具
 
+export default {
 
     /* 'title': '立项管理 列表',
         'url': 'api/confirmproject/list',
@@ -349,6 +352,27 @@
             }
         }
     */
+    adDetail ({ id }) {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: '/api/confirmproject/ad_detail',
+                data: {
+                    id
+                }
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.info) {
+                    resolve(res.data.info)
+                } else {
+                    error(res.msg || '未获取到数据') // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
+            })
+        })
+    },
 
     /* 'title': '详情 SSP',
         'url': 'api/confirmproject/ssp_detail',
@@ -471,6 +495,32 @@
             }
         }
     */
+    listAdOnLine ({ projectType, begin, end, keyword, pageIndex, pageSize }) {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: '/api/confirmproject/online_ad',
+                data: {
+                    projectType,
+                    begin,
+                    end,
+                    keyword,
+                    pageIndex,
+                    pageSize
+                }
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.list) {
+                    resolve(res.data) // 有分页 返回父层级
+                } else {
+                    error(res.msg || '未获取到数据') // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
+            })
+        })
+    },
 
     /* 'title': '下线获取审批人及抄送人',
         'url': 'api/confirmproject/get_user',
@@ -829,3 +879,6 @@
             }
         }
     */
+
+    end: 'api' // 防呆设计
+}
