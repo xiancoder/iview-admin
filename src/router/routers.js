@@ -170,7 +170,9 @@ export const routerList = [
         path: 'exp7', title: '经验集.卷柒', icon: 'md-globe',
         children: [
             {power: '0000', path: '121youku', title: '优酷视频'},
-            {power: '0000', path: '122mimang', title: '略迷茫'}
+            {power: '0000', path: '122mimang', title: '略迷茫'},
+            {power: '0000', path: '123gujia', title: '占位符骨架屏'},
+            {power: '0000', path: '124mulLevelTable', title: '尝试多层表格'}
         ]
     }),
     makeTwoLevelRoute({

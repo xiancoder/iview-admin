@@ -1,7 +1,7 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">API异步请求模块的使用麻烦的不行???那是你没看到有点和好处</div>
+            <div class="blogTitle">API异步请求模块的使用麻烦的不行???那是你没看到优点和好处</div>
             <Divider orientation="right">未应用于项目使用的标准或规范</Divider>
             <div class="blogContent" v-highlight>
                 <p>1 代码集中 相同逻辑的处理办法唾手可得</p>
