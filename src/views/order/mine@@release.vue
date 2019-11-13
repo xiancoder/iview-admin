@@ -227,7 +227,4 @@ export default {
         height: 31px;
         line-height: 31px;
     }
-    .vue-html5-editor{
-        color: #515a6e;
-    }
 </style>

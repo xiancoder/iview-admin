@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <Card>
-      <Table borders ref="tables" editable searchable search-place="top" :data="tableData" :columns="columns" @on-delete="handleDelete"/>
-      <Button style="margin: 10px 0;" type="primary" @click="exportExcel">导出为Csv文件</Button>
-    </Card>
-  </div>
+    <div style="margin:10px">
+        <Card>
+            <Table borders ref="tables" editable searchable search-place="top" :data="tableData" :columns="columns" @on-delete="handleDelete"/>
+            <Button style="margin: 10px 0;" type="primary" @click="exportExcel">导出为Csv文件</Button>
+        </Card>
+    </div>
 </template>
 
 <script>

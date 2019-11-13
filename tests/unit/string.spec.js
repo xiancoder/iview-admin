@@ -47,6 +47,10 @@ describe('字符串常用方法', function () {
         expect(url1.pn).equal('10')
         const url2 = { a: 111, b: 222, c: 333 }
         expect('https://www.baidu.com/s?' + stringJs.obj2url(url2)).equal('https://www.baidu.com/s?a=111&b=222&c=333')
+        expect(stringJs.obj2url({ a: '', b: '', c: '' })).equal('a=&b=&c=')
+        expect(stringJs.obj2url({ a: ' aa', b: 'b b', c: 'cc ' })).equal('a=%20aa&b=b%20b&c=cc%20')
+        expect(stringJs.obj2url({ ' aa': 'a', 'b b': 'b', 'cc ': 'c' })).equal('aa=a&b%20b=b&cc=c')
+        expect(stringJs.obj2url({ a: '=', b: '=', c: '=' })).equal('a=%3D&b=%3D&c=%3D')
         expect(stringJs.urlChange('https://www.baidu.com/s?a=111&b=222&c=333', 'a', 222)).equal('https://www.baidu.com/s?a=222&b=222&c=333')
     })
 })

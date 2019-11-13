@@ -6,6 +6,14 @@ export const type = (obj) => {
     let type = Object.prototype.toString.call(obj)
     return type.replace('[object ', '').replace(']', '').toLowerCase();
 }
+export const isArray = (arr) => {
+    return Object.prototype.toString.call(arr) === '[object Array]'
+}
+export const isFunction = (fn) => {
+    return Object.prototype.toString.call(fn) === '[object Function]'
+    return fn.constructor === Function
+    return fn instanceof Function
+}
 // 简单继承
 // @param s 子类
 // @param f 父类

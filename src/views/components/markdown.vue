@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <markdown-editor v-model="content"/>
-  </div>
+    <div style="margin:10px">
+        <markdown-editor v-model="content"/>
+    </div>
 </template>
 
 <script>
@@ -18,7 +18,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

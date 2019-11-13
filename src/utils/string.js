@@ -91,7 +91,7 @@ export const obj2url = (url) => {
     let arr = []
     let en = encodeURIComponent;
     for (let name in url) {
-        arr.push(en(name) + '=' + en(url[name]))
+        arr.push(en(name.replace(/^[ ]*|[ ]*$/g, '')) + '=' + en(url[name]))
     }
     return arr.join('&');
 }

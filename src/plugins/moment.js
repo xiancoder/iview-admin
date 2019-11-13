@@ -12,12 +12,22 @@ moment.locale('en', {
 // =======================================================================
 if (window.Notification && Notification.permission !== 'denied') {
     Notification.requestPermission(function (status) {
-        var x = setInterval(function () {
-            var note = new Notification('通知', { body: '当前时间' + moment(new Date()).format('YYYY-MM-DD HH:mm:ss') })
+        const joke = () => {
+            const msg = '当前时间' +
+                moment(new Date()).format('YYYY-MM-DD HH:mm:ss') +
+                '\n' +
+                '距离下班还有' +
+                (18.5 - new Date().getHours() - Math.round(new Date().getMinutes() / 6) / 10) +
+                '小时 (点击关闭实时提示)'
+            const note = new Notification('通知', {
+                body: msg
+            })
             note.onclick = () => { // 在这里实现用户点击后的逻辑
                 alert('浏览器提示已关闭')
                 clearInterval(x)
             }
-        }, 10 * 60 * 1000)
+        }
+        const x = setInterval(joke, 10 * 60 * 1000)
+        joke()
     })
 }
