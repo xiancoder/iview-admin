@@ -19,8 +19,24 @@
                                 <td >{{index+1}}</td>
                                 <td >{{user.name}}</td>
                                 <td >{{user.age}}</td>
-                                <td >{{user.school}}</td>
-                                <td ><button v-on:click="remove(index)">remove</button></td>
+                                <td >
+                                    {{user.school}}
+                                    <table border="1" v-if="user.friend.length">
+                                        <thead>
+                                            <tr>
+                                                <th>校友</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for ="(friend,index) in user.friend" v-bind:key="index">
+                                                <td >{{friend.name}}</td>
+                                                <td ><center><button>remove</button></center></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td ><center><button v-on:click="remove(index)">remove</button></center></td>
                             </tr>
                         </tbody>
                     </table>
@@ -41,12 +57,16 @@ export default {
         return {
             user: { 'name': '', 'age': '', 'school': '' },
             users: [
-                { 'name': '李磊', 'age': '25', 'school': '1洛阳理工本科生' },
-                { 'name': '李磊', 'age': '25', 'school': '2清华英雄联盟研究生' },
-                { 'name': '李磊', 'age': '25', 'school': '3洛阳理工附中毕业生' },
-                { 'name': '张成', 'age': '23', 'school': '4桂林电子科技本科生' },
-                { 'name': '张成', 'age': '23', 'school': '5蓝翔技校毕业生' },
-                { 'name': '炼心', 'age': '22', 'school': '6江西电子科技' }
+                { 'name': '李磊', 'age': '6', 'school': '无锡阳光幼儿园', 'friend': [{'name': '张成'}, {'name': '炼心'}] },
+                { 'name': '李磊', 'age': '15', 'school': '洛阳理工附中', 'friend': [{'name': '张成'}] },
+                { 'name': '李磊', 'age': '24', 'school': '桂林电子科技本科', 'friend': [] },
+                { 'name': '李磊', 'age': '32', 'school': '清华英雄联盟研究生', 'friend': [] },
+                { 'name': '张成', 'age': '7', 'school': '无锡阳光幼儿园', 'friend': [{'name': '李磊'}, {'name': '炼心'}] },
+                { 'name': '张成', 'age': '17', 'school': '洛阳理工附中', 'friend': [{'name': '李磊'}] },
+                { 'name': '炼心', 'age': '6', 'school': '无锡阳光幼儿园', 'friend': [{'name': '李磊'}, {'name': '张成'}] },
+                { 'name': '炼心', 'age': '15', 'school': '洛阳理工附中', 'friend': [] },
+                { 'name': '炼心', 'age': '24', 'school': '蓝翔技校毕业生', 'friend': [] },
+                { 'name': '炼心', 'age': '32', 'school': '江西电子科技研究生', 'friend': [] }
             ]
         }
     },

@@ -173,7 +173,9 @@ export const routerList = [
             {power: '0000', path: '122mimang', title: '略迷茫'},
             {power: '0000', path: '123gujia', title: '占位符骨架屏'},
             {power: '0000', path: '124mulLevelTable', title: '尝试多层表格'},
-            {power: '0000', path: '125vuehtml5editor', title: '富文本 html5editor'}
+            {power: '0000', path: '125vuehtml5editor', title: '富文本 html5editor'},
+            {power: '0000', path: '126vviewer', title: '小图大图预览插件'},
+            {power: '0000', path: '127enterLeave', title: '路由进入退出钩子'}
         ]
     }),
     makeTwoLevelRoute({

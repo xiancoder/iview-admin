@@ -1,8 +1,9 @@
 import Vue from 'vue' // 核心
 import { router } from '@/router' // 自定义路由定义
-import { Message, Modal, LoadingBar } from 'iview'
+import iView from '@/plugins/iview'
 import { Store } from '@/store' // 自定义状态管理 // 状态管理 -挂载$stroe
 import { type } from '@/utils/object'
+const { Message, Modal, LoadingBar, Notice } = iView
 /// ////////////////////////////////////////////////////
 // 常用的操作封装
 /// ////////////////////////////////////////////////////
@@ -30,9 +31,27 @@ export const confirm = (msg) => { // 二次确认框
         Modal.confirm({
             title: '请确认',
             content: '<p>' + msg + '</p>',
-            onOk: resolve || function () {},
-            onCancel: reject || function () {}
+            onOk: resolve,
+            onCancel: reject
         })
+    })
+}
+export const noticeNoSave = () => { // 二次确认框
+    return new Promise((resolve, reject) => {
+        Notice.info({
+            title: 'Notification title',
+            desc: 'The desc will hide when you set render.',
+            render: h => {
+                return h('span', [
+                    '本页面曾经有未提交的内容, 是否',
+                    h('a', {
+                        attrs: { href: 'javascript:void(0)' },
+                        on: { click: resolve }
+                    }, '恢复'),
+                    ' ??'
+                ])
+            }
+        });
     })
 }
 export const jumpto = (name, obj) => { // 跳转
