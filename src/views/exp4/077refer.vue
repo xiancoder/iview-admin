@@ -1,7 +1,7 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">referer的操作</div>
+            <div class="blogTitle">历史记录referer的操作</div>
             <div class="blogContent" v-highlight>
                 <p>1 可以禁用 </p>
                 <script type="text/html">

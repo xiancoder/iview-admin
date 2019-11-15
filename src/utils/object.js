@@ -6,13 +6,27 @@ export const type = (obj) => {
     let type = Object.prototype.toString.call(obj)
     return type.replace('[object ', '').replace(']', '').toLowerCase();
 }
-export const isArray = (arr) => {
-    return Object.prototype.toString.call(arr) === '[object Array]'
+export function isType (obj, type) {
+    return Object.prototype.toString.call(obj).toLowerCase() === '[object ' + type + ']'
 }
-export const isFunction = (fn) => {
-    return Object.prototype.toString.call(fn) === '[object Function]'
-    return fn.constructor === Function
-    return fn instanceof Function
+export function isEmpty (obj) { return obj === null || obj.length === 0 }
+export function isArray (obj) { return isType(obj, 'array'); }
+export function isBool (obj) { return isType(obj, 'boolean'); }
+export function isDate (obj) { return isType(obj, 'date'); }
+export function isNumber (obj) { return isType(obj, 'number'); }
+export function isObject (obj) { return isType(obj, 'object'); }
+export function isEmptyObject (obj) { return (JSON.stringify(obj) === '{}') }
+export function isRegExp (obj) { return isType(obj, 'regexp'); }
+export function isString (obj) { return isType(obj, 'string'); }
+export function isFunction (obj) { return isType(obj, 'function'); }
+export function isElement (obj) { return !!(obj && obj.nodeType === 1); }
+export function isDefined (obj) { return typeof obj !== 'undefined' }
+// OBJECT_是否只读内容 是否对象a的只读属性b
+// 属性继承自原型链
+// =====================
+// liuyp 2019年11月15日10:55:22
+export function ownProp (a, b) {
+    return Object.prototype.hasOwnProperty.call(a, b);
 }
 // 简单继承
 // @param s 子类

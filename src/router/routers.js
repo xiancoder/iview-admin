@@ -111,7 +111,7 @@ export const routerList = [
             {power: '0000', path: '074webpack', title: 'webpack检查主机'},
             {power: '0000', path: '075devtool', title: '开发者工具'},
             {power: '0000', path: '076single', title: '单点登录概述'},
-            {power: '0000', path: '077refer', title: 'referer的操作'},
+            {power: '0000', path: '077refer', title: '历史referer操作'},
             {power: '0000', path: '078void0bug', title: 'void(0)跳转bug'},
             {power: '0000', path: '079microsoftyahei', title: '微软雅黑版权'},
             {power: '0000', path: '080yin', title: '名词缩写发音'}

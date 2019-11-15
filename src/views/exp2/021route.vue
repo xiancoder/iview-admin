@@ -64,6 +64,62 @@
                 <p>router.replace(location) == </p>
                 <p> router.go(n) </p>
                 <p> 这个方法的参数是一个整数，意思是在history记录中向前或者后退多少步，类似window.history.go(n)</p>
+                <h2>===============================================================================</h2>
+                <h1>vue-route 的 beforeEach 实现导航守卫（路由跳转前验证登录）</h1>
+                <p>路由跳转前做一些验证，比如登录验证（未登录去登录页），是网站中的普遍需求。</p>
+                <p>对此，vue-route 提供的 beforeRouteUpdate 可以方便地实现导航守卫（navigation-guards）。</p>
+                <p>贴上文档地址：<a href="https://router.vuejs.org/zh-cn/advanced/navigation-guards.html"></a>https://router.vuejs.org/zh-cn/advanced/navigation-guards.html</p>
+                <p>你可以使用 router.beforeEach 注册一个全局前置守卫：</p>
+                <script type="text/js">
+                    const router = new VueRouter({ ... })
+                    router.beforeEach((to, from, next) => {
+                        // to: Route: 即将要进入的目标 路由对象
+                        // from: Route: 当前导航正要离开的路由
+                        // next: Function: 一定要调用该方法来 resolve 这个钩子。
+                        next(); // 进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是 confirmed （确认的）。
+                        next(false); // 中断当前的导航。如果浏览器的 URL 改变了（可能是用户手动或者浏览器后退按钮），那么 URL 地址会重置到 from 路由对应的地址。
+                        next('/'); next({ path: '/' }); // 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。
+                        next(error); // (2.4.0+) 如果传入 next 的参数是一个 Error 实例，则导航会被终止且该错误会被传递给 router.onError() 注册过的回调。
+                    })
+                </script>
+                <p>当一个导航触发时，全局前置守卫按照创建顺序调用。</p>
+                <p>守卫是异步解析执行，此时导航在所有守卫 resolve 完之前一直处于 等待中。</p>
+                <p>确保要调用 next 方法，否则钩子就不会被 resolved。</p>
+                <script type="text/js">
+                    const vueRouter = new Router({
+                        routes: [
+                            //......
+                            {
+                              path: '/account',
+                              name: 'account',
+                              component: Account,
+                              children: [
+                                {name: 'course', path: 'course', component: CourseList},
+                                {name: 'order', path: 'order', component: OrderList}
+                              ]
+                            }
+                        ]
+                    });
+                    vueRouter.beforeEach(function (to, from, next) {
+                        const nextRoute = [ 'account', 'order', 'course'];
+                        const auth = store.state.auth;
+                        //跳转至上述3个页面
+                        if (nextRoute.indexOf(to.name) >= 0) {
+                            //未登录
+                            if (!store.state.auth.IsLogin) {
+                                vueRouter.push({name: 'login'})
+                            }
+                        }
+                        //已登录的情况再去登录页，跳转至首页
+                        if (to.name === 'login') {
+                            if (auth.IsLogin) {
+                                vueRouter.push({name: 'home'});
+                            }
+                        }
+                        next();
+                    });
+                </script>
+                <p></p>
                 <p>重定向和别名</p>
                 <script type="text/js">
                     const router = new VueRouter({ routes: [ {path: '/a', redirect: '/b'} ] })
