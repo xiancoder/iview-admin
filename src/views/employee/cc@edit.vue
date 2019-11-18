@@ -1,5 +1,5 @@
 <template>
-    <div class="prodectCss">
+    <div class="tableLayout">
         <Form ref="formItem" :model="formItem" :rules="ruleValidate" :label-width="150">
             <h2><span>{{action}}抄送人配置</span></h2>
             <div>

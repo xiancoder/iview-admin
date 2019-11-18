@@ -63,7 +63,7 @@
     }
 </style>
 <template>
-    <div class="prodectCss">
+    <div class="tableLayout">
         <Form ref="formItem" :model="formData" :rules="ruleValidate" :label-width="150">
             <h2><span>{{wId?"编辑":"添加"}}<!-- 通过数组下标的方式取值 -->{{['加班','未打卡','','外出','出差'][type-8]}}流程</span></h2>
             <div>

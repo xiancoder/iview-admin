@@ -63,7 +63,7 @@
     }
 </style>
 <template>
-    <div class="prodectCss">
+    <div class="tableLayout">
         <Form ref="formItem" :model="formData" :rules="ruleValidate" :label-width="150">
             <h2><span>{{wId?"编辑":"添加"}}请假流程</span></h2>
             <div>

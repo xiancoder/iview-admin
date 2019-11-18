@@ -1,5 +1,5 @@
 <template>
-    <div class="prodectCss">
+    <div class="tableLayout">
         <tab></tab>
     </div>
 </template>

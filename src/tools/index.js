@@ -39,14 +39,13 @@ export const confirm = (msg) => { // 二次确认框
 export const noticeNoSave = () => { // 二次确认框
     return new Promise((resolve, reject) => {
         Notice.info({
-            title: 'Notification title',
-            desc: 'The desc will hide when you set render.',
+            title: '友情提示',
             render: h => {
                 return h('span', [
                     '本页面曾经有未提交的内容, 是否',
                     h('a', {
                         attrs: { href: 'javascript:void(0)' },
-                        on: { click: resolve }
+                        on: { 'click': resolve }
                     }, '恢复'),
                     ' ??'
                 ])

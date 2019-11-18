@@ -41,12 +41,7 @@ export default {
     }
 }
 </script>
-
 <style lang="less">
-.icon-code{
-  margin: 20px 0 10px;
-}
-.intro-p{
-  margin-bottom: 10px;
-}
+    .icon-code{ margin: 20px 0 10px; }
+    .intro-p{ margin-bottom: 10px; }
 </style>

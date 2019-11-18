@@ -3,6 +3,11 @@
         <div class="blog">
             <div class="blogTitle">路由进入询问恢复数据 / 路由退出询问是否保存</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 离开时后提示-确定-跳转 </p>
+                <p><Icon type="md-close" style="color:red"/> 离开时后提示-取消-不跳转 <i>但是左边树已经改变</i></p>
+                <p><Icon type="md-checkmark" style="color:green"/> 初次进入时候提示 '亲友未保存数据 是否恢复'</p>
+                <p><Icon type="md-close" style="color:red"/> 离开时候-确定-将数据保存在store(默认保存ls)</p>
+                <p><Icon type="md-close" style="color:red"/> 进入时候-切丁-将数据从store中读取出来</p>
                 <Form ref="form5596" :model="frm" :rules="frmValidate" :label-width="150">
                     <FormItem label="输入框" prop="input1">
                         <Input type="text" v-model="frm.input1" placeholder="匹配整数，小数限2位" style="width: 450px"/>
@@ -29,14 +34,16 @@ import pageLoadNoSave from '@/router/pageLoadNoSave'
 import pageConfirmToGo from '@/router/pageConfirmToGo'
 import regexp from '@/utils/regexp'
 export default {
-    mixins: [pageLoadNoSave, pageConfirmToGo],
+    mixins: [
+        pageLoadNoSave,
+        pageConfirmToGo
+    ],
     data () {
         return {
             loading: false,
             frm: {
                 input1: '',
-                input2: '',
-                input5: ''
+                input2: ''
             },
             frmValidate: {
                 input1: [
@@ -54,6 +61,8 @@ export default {
     methods: {
         beforeNoSaveNotice () {
             console.log('beforeNoSaveNotice')
+            this.frm.input1 = 'hahaha'
+            this.frm.input2 = 'hehehe'
         },
         beforeCloseConfirm () {
             console.log('beforeCloseConfirm')

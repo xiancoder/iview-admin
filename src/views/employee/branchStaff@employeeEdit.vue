@@ -1,5 +1,5 @@
 <template>
-    <div class="prodectCss info_container">
+    <div class="tableLayout info_container">
         <Form ref="formItem" :model="frm" :rules="ruleValidate" :label-width="150" class="myLayout">
             <div class="myLayoutLeft">
                 <h2><span>基本信息</span></h2>

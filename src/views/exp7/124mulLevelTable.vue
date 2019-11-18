@@ -3,6 +3,9 @@
         <div class="blog">
             <div class="blogTitle">多层表格尝试</div>
             <div class="blogContent" v-highlight>
+                <p>尝试一下如果将多对多关系用复杂的多层表格来展示</p>
+                <p>即 A多对多B 定义一个A维度表格 点击某个A就能搜到关联的B 再点B就能搜到关联的A ...</p>
+                <p><Icon type="md-close" style="color:red"/> 通过简单的演示 感觉更复杂了</p>
                 <div id="aptable">
                     <table border="1">
                         <thead>

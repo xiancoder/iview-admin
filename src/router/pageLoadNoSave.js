@@ -4,15 +4,13 @@
 import { noticeNoSave } from '@/tools'
 
 export default {
-    beforeRouteEnter (to, from, next) {
-        const that = this
-        noticeNoSave().then(() => {
-            console.log(123, that)
-            that.beforeNoSaveNotice()
+    beforeCreate () {
+        noticeNoSave().then((list) => {
+            this.beforeNoSaveNotice(list)
         })
-        next()
     },
-    beforeNoSaveNotice () {
+    beforeNoSaveNotice (list) {
         /* 做点啥紧急弥补操作 */
+        console.log(123, list)
     }
 }

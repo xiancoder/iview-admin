@@ -12,33 +12,15 @@
                     </Upload>
                 </slot>
                 <div v-show="insideSrc">
-                    <Button type="primary" @click="rotate">
-                        <Icon type="md-refresh" :size="18"/>
-                    </Button>
-                    <Button type="primary" @click="shrink">
-                        <Icon type="md-remove" :size="18"/>
-                    </Button>
-                    <Button type="primary" @click="magnify">
-                        <Icon type="md-add" :size="18"/>
-                    </Button>
-                    <Button type="primary" @click="scale('X')">
-                        <Icon custom="iconfont icon-shuipingfanzhuan" :size="18"/>
-                    </Button>
-                    <Button type="primary" @click="scale('Y')">
-                        <Icon custom="iconfont icon-chuizhifanzhuan" :size="18"/>
-                    </Button>
-                    <Button type="primary" @click="move(0, -moveStep)">
-                        <Icon type="md-arrow-round-up" :size="18"/>
-                    </Button>
-                    <Button type="primary" @click="move(-moveStep, 0)">
-                        <Icon type="md-arrow-round-back" :size="18"/>
-                    </Button>
-                    <Button type="primary" @click="move(0, moveStep)">
-                        <Icon type="md-arrow-round-down" :size="18"/>
-                    </Button>
-                    <Button type="primary" @click="move(moveStep, 0)">
-                        <Icon type="md-arrow-round-forward" :size="18"/>
-                    </Button>
+                    <Button type="primary" @click="rotate"> <Icon type="md-refresh" :size="18"/> </Button>
+                    <Button type="primary" @click="move(0, -moveStep)"> <Icon type="md-arrow-round-up" :size="18"/> </Button>
+                    <Button type="primary" @click="shrink"> <Icon type="md-remove" :size="18"/> </Button>
+                    <Button type="primary" @click="move(-moveStep, 0)"> <Icon type="md-arrow-round-back" :size="18"/> </Button>
+                    <Button type="primary" @click="magnify"> <Icon type="md-add" :size="18"/> </Button>
+                    <Button type="primary" @click="move(moveStep, 0)"> <Icon type="md-arrow-round-forward" :size="18"/> </Button>
+                    <Button type="primary" @click="scale('X')"> <Icon custom="iconfont icon-shuipingfanzhuan" :size="18"/> </Button>
+                    <Button type="primary" @click="move(0, moveStep)"> <Icon type="md-arrow-round-down" :size="18"/> </Button>
+                    <Button type="primary" @click="scale('Y')"> <Icon custom="iconfont icon-chuizhifanzhuan" :size="18"/> </Button>
                     <Button style="width: 150px;margin-top: 10px;" type="primary" @click="crop">{{ cropButtonText }}</Button>
                 </div>
             </div>

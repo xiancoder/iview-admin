@@ -132,7 +132,7 @@ import CustomBreadCrumb from '@C/custom-bread-crumb' // 组件::面包屑
 import qrCode from '@C/qrcode' // 组件::二维码
 import epopen from '@C/epopen' // 组件::EP编辑
 import minLogo from '@/assets/images/logo-min.jpg'
-import maxLogo from '@/assets/images/logo.jpg'
+import maxLogo from '@/assets/images/logo.gif'
 import '@S/main.less'
 import '@S/util.less'
 

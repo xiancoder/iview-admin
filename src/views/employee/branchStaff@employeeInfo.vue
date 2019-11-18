@@ -1,5 +1,5 @@
 <template>
-    <div class="prodectCss info_container">
+    <div class="tableLayout info_container">
         <h2 style="margin: 30px 0">
             {{infoList.userName}}
             <Button type="default" style="margin: 0 15px 0 50px" @click="edit" v-show="accountUser === '0'">编辑员工档案</Button>

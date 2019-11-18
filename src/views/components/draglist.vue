@@ -27,6 +27,7 @@
 </template>
 <script>
 import DragList from '@C/drag-list'
+import { getDragList } from '@/mock/data'
 export default {
     name: 'drag_list_page',
     components: { DragList },
@@ -47,62 +48,30 @@ export default {
         }
     },
     mounted () {
-        this.$api.data.getDragList().then(res => {
-            this.list1 = res.data
-            this.list2 = [res.data[0]]
-        })
+        const data = getDragList()
+        this.list1 = data
+        this.list2 = [data[0]]
     }
 }
 </script>
 <style lang="less">
 .drag-box-card{
-    display: inline-block;
-    width: 600px;
-    height: 560px;
-    .drag-item{
-        margin: 10px;
-    }
-    h3{
-        padding: 10px 15px;
-    }
-    .drop-box{
-        border: 1px solid #eeeeee;
-        height: 455px;
-        border-radius: 5px;
-    }
-    .left-drop-box{
-        margin-right: 10px;
-    }
-    .right-drop-box{
-        //
-    }
+    display: inline-block; width: 600px; height: 560px;
+    .drag-item{ margin: 10px; }
+    h3{ padding: 10px 15px; }
+    .drop-box{ border: 1px solid #eeeeee; height: 455px; border-radius: 5px; }
+    .left-drop-box{ margin-right: 10px; }
+    .right-drop-box{ }
 }
 .handle-log-box{
-    display: inline-block;
-    margin-left: 20px;
-    border: 1px solid #eeeeee;
-    vertical-align: top;
-    width: 200px;
-    height: 500px;
-    h3{
-        padding: 10px 14px;
-    }
+    display: inline-block; margin-left: 20px; border: 1px solid #eeeeee; vertical-align: top; width: 200px; height: 500px;
+    h3{ padding: 10px 14px; }
     .handle-inner-box{
-        height: ~"calc(100% - 44px)";
-        overflow: auto;
-        p{
-            padding: 14px 0;
-            margin: 0 14px;
-            border-bottom: 1px dashed #eeeeee;
-        }
+        height: ~"calc(100% - 44px)"; overflow: auto;
+        p{ padding: 14px 0; margin: 0 14px; border-bottom: 1px dashed #eeeeee; }
     }
 }
 .res-show-box{
-    display: inline-block;
-    margin-left: 20px;
-    border: 1px solid #eeeeee;
-    vertical-align: top;
-    width: 350px;
-    height: 570px;
+    display: inline-block; margin-left: 20px; border: 1px solid #eeeeee; vertical-align: top; width: 350px; height: 570px;
 }
 </style>

@@ -28,7 +28,16 @@
                         }
                     }
                 </script>
-                <h3> 页面刷新后，页面未保存的数据就会丢失，为了克服这个问题， vuex-persistedstate出现了</h3>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">green</Tag>
+                <Tag color="cyan">cyan</Tag>
+                <Tag color="blue">blue</Tag>
+            </div>
+        </div>
+        <div class="blog">
+            <div class="blogTitle">页面刷新后，页面未保存的数据就会丢失，为了克服这个问题， vuex-persistedstate出现了</div>
+            <div class="blogContent" v-highlight>
                 <p>我们总是习惯于放在浏览器的sessionStorage和localStorage中。但是用了vue后，vuex便出现了。</p>
                 <p>vuex优势：相比sessionStorage，存储数据更安全，<b>sessionStorage可以在控制台被看到</b>。</p>
                 <p>vuex劣势：在F5刷新页面后，vuex会重新更新state，所以，存储的数据会丢失。</p>
@@ -56,7 +65,8 @@
                         }
                     })]
                 </script>
-                <h2><font color="red">经过使用觉得过于好使 还是将cache部分独立出去作为功能模块来控制更条理清楚</font></h2>
+                <h2><font color="red"><del>经过使用觉得过于好使 还是将cache部分独立出去作为功能模块来控制更条理清楚</del></font></h2>
+                <h2><font color="red">经过使用觉得好使</font></h2>
             </div>
             <div class="blogFooter">
                 <Tag color="green">green</Tag>

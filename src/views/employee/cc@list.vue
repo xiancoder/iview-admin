@@ -1,5 +1,5 @@
 <template>
-    <div class="prodectCss">
+    <div class="tableLayout">
         <Tabs value="cc" style="margin-top: 20px" @on-click="changeTab">
             <TabPane label="审批人配置" name="approval"></TabPane>
             <TabPane label="抄送人配置" name="cc">

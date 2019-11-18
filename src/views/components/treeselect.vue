@@ -1,16 +1,27 @@
 <template>
-    <div>
-        <tree-select v-model="treeSelected" style="width: 300px;" check-strictly :expand-all="true" :load-data="loadData"
-            @on-change="handleTreeSelectChange" @on-toggle-expand="handleTreeSelectExpand"
-            @on-check-change="handleTreeSelectCheckChange" @on-select-change="handleTreeSelectClick" :data="treeData" >
-        </tree-select>
-        <Button @click="changeTreeSelectData">更新选中数据</Button>
-        <Button @click="changeTreeData">更新树数据</Button>
+    <div class="blogCss">
+        <div class="blog">
+            <div class="blogTitle">树</div>
+            <div class="blogContent" v-highlight>
+                <tree-select v-model="treeSelected" style="width: 300px;" check-strictly :expand-all="true" :load-data="loadData"
+                    @on-change="handleTreeSelectChange" @on-toggle-expand="handleTreeSelectExpand"
+                    @on-check-change="handleTreeSelectCheckChange" @on-select-change="handleTreeSelectClick" :data="treeData" >
+                </tree-select>
+                <Button @click="changeTreeSelectData">更新选中数据</Button>
+                <Button @click="changeTreeData">更新树数据</Button>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">green</Tag>
+                <Tag color="cyan">cyan</Tag>
+                <Tag color="blue">blue</Tag>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 import TreeSelect from '@C/tree-select'
+import { getTreeSelectData } from '@/mock/data'
 export default {
     name: 'tree_select_page',
     components: { TreeSelect },
@@ -21,10 +32,8 @@ export default {
         }
     },
     mounted () {
-        this.$api.data.getTreeSelectData().then(res => {
-            const { data } = res
-            this.treeData = data
-        })
+        const data = getTreeSelectData()
+        this.treeData = data
     },
     methods: {
         changeTreeSelectData () {

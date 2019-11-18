@@ -1,5 +1,5 @@
 <template>
-    <div class="prodectCss">
+    <div class="tableLayout">
         <h2>
             <span>节假日设置</span>
             <Button type="primary" style="float: right" @click="openDate(1,0)">添加</Button>

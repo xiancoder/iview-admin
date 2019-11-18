@@ -175,7 +175,20 @@ export const routerList = [
             {power: '0000', path: '124mulLevelTable', title: '尝试多层表格'},
             {power: '0000', path: '125vuehtml5editor', title: '富文本 html5editor'},
             {power: '0000', path: '126vviewer', title: '小图大图预览插件'},
-            {power: '0000', path: '127enterLeave', title: '路由进入退出钩子'}
+            {power: '0000', path: '127enterLeave', title: '路由进入退出钩子'},
+            {power: '0000', path: '128ipage', title: 'IviewPage'},
+            {power: '0000', path: '129pasteImg', title: '粘贴图片'},
+            {power: '0000', path: '130jslist', title: '好多技术栈'},
+            {power: '0000', path: '131package', title: '自定义脚本命令'},
+            {power: '0000', path: '132ref', title: '$ref讲解'},
+            {power: '0000', path: '133codetip', title: '编码建议'},
+            {power: '0000', path: '134somefont', title: '不可见,url,AscII字符'},
+            {power: '0000', path: '135doutu', title: '斗图神奇神器'},
+            {power: '0000', path: '136vuex', title: 'vuex讲解'},
+            {power: '0000', path: '137vue', title: 'vue公共方法'},
+            {power: '0000', path: '138globalclick', title: '全局相应点击'},
+            {power: '0000', path: '139git', title: '公司GIT管理流程'},
+            {power: '0000', path: '140tabs', title: '实现tabs'}
         ]
     }),
     makeTwoLevelRoute({

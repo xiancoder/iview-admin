@@ -3,6 +3,10 @@
         <div class="blog">
             <div class="blogTitle">vue点击图片预览放大（可旋转、翻转、缩放、上下切换、键盘操作）</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 效果很惊艳 </p>
+                <p><Icon type="md-checkmark" style="color:green"/> 可以动态的添加减少图片组</p>
+                <p><Icon type="md-close" style="color:red"/>但是怎样和富文本相配合 <i>还没想好</i></p>
+                <p></p>
                 <div>
                     <viewer :images="images" style="height: 200px;">
                         <img v-for="(item, index) in images" :src="item.src" :key="index" height="100">
