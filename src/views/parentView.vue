@@ -1,8 +1,7 @@
 <template>
-    <!-- 不再使用 -->
-  <keep-alive :include="cacheList" :exclude="notCacheName">
-    <router-view ref="child"/>
-  </keep-alive>
+    <keep-alive :include="cacheList" :exclude="notCacheName">
+        <router-view ref="child"/>
+    </keep-alive>
 </template>
 <script>
 export default {

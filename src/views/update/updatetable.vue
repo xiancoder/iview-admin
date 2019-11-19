@@ -1,24 +1,24 @@
 <template>
-  <Row :gutter="10">
-    <i-col span="6">
-      <Card>
-        <Upload action="" :before-upload="beforeUpload">
-          <Button icon="ios-cloud-upload-outline">上传Csv文件</Button>
-          &nbsp;&nbsp;&nbsp;&nbsp;点击上传Csv文件
-        </Upload>
-        <p>util.js提供两个方法用来实现这个功能：</p>
-        <p class="update-table-intro"><Icon style="margin-right: 10px;" :size="10" type="md-heart"/><span class="code-high-line">getArrayFromFile</span>：将Csv文件解析为二维数组</p>
-        <p class="update-table-intro"><Icon style="margin-right: 10px;" :size="10" type="md-heart"/><span class="code-high-line">getTableDataFromArray</span>：将二维数组转为表格数据，具体请看文档</p>
-      </Card>
-    </i-col>
-    <i-col span="18">
-      <Table border :height="500" :columns="columns" :data="tableData"/>
-    </i-col>
-  </Row>
+    <div style="padding:20px">
+        <Row :gutter="10">
+            <i-col span="6">
+                <Card>
+                    <Upload action="" :before-upload="beforeUpload">
+                        <Button icon="ios-cloud-upload-outline">上传Csv文件</Button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;点击上传Csv文件
+                    </Upload>
+                    <p>util.js提供两个方法用来实现这个功能：</p>
+                    <p class="update-table-intro"><Icon style="margin-right: 10px;" :size="10" type="md-heart"/><span class="code-high-line">getArrayFromFile</span>：将Csv文件解析为二维数组</p>
+                    <p class="update-table-intro"><Icon style="margin-right: 10px;" :size="10" type="md-heart"/><span class="code-high-line">getTableDataFromArray</span>：将二维数组转为表格数据，具体请看文档</p>
+                </Card>
+            </i-col>
+            <i-col span="18">
+                <Table border :height="500" :columns="columns" :data="tableData"/>
+            </i-col>
+        </Row>
+    </div>
 </template>
-
 <script>
-
 /**
  * @param {Object} file 从上传组件得到的文件对象
  * @returns {Promise} resolve参数是解析后的二维数组
@@ -44,7 +44,6 @@ export const getArrayFromFile = (file) => {
         }
     })
 }
-
 /**
  * @param {Array} array 表格数据二维数组
  * @returns {Object} { columns, tableData }
@@ -99,12 +98,7 @@ export default {
     }
 }
 </script>
-
 <style>
-.update-table-intro{
-  margin-top: 10px;
-}
-.code-high-line{
-  color: #2d8cf0;
-}
+    .update-table-intro{ margin-top: 10px; }
+    .code-high-line{ color: #2d8cf0; }
 </style>

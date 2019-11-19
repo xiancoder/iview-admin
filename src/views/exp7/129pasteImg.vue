@@ -4,7 +4,13 @@
             <div class="blogTitle">实际工作中如果用的好的话，这就是技术储备</div>
             <div class="blogContent" v-highlight>
                 <p>我要尝试一下从网站上，截图或者资料，然后通过拷贝复制粘贴的方式来，在浏览器上实时转换成bc64格式</p>
-                <textarea name="" id="fzzt" style="width:100%;height:300px"></textarea>
+                <div ref="insideDomRef" style="min-height: 150px; width: 400px; display: block; background: #FFC107;">
+                    <p v-bind="log"></p>
+                    <img :src="thispic" style="max-width:100%" alt="" />
+                </div>
+                <p>bs64 = {{thispic}}</p>
+                <p>文件上传路径是http://localhost:8086/{{ serverpath }} </p>
+                <ul><li>&lt;img src="http://localhost:8086/{{ serverpath }}" style="max-width:100%" alt="" /&gt;</li></ul>
                 <p>成功了</p>
                 <script type="text/js">
                     pasteEle.addEventListener("paste", function (e){
@@ -42,11 +48,54 @@
 <script>
 export default {
     data () {
-        return {}
+        return {
+            thispic: '',
+            serverpath: '~~~',
+            log: ''
+        }
     },
     methods: {
     },
     mounted () {
+        // `this` 指向 vm 实例
+        this.$refs.insideDomRef.addEventListener('paste', (event) => {
+            var items = (event.clipboardData || window.clipboardData).items
+            console.log(items)
+            var file = null
+            if (items && items.length) {
+                // 搜索剪切板items
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].type.indexOf('image') !== -1) {
+                        file = items[i].getAsFile()
+                        break
+                    }
+                }
+            } else {
+                this.log = '当前浏览器不支持'
+                return
+            }
+            if (!file) {
+                this.log = '粘贴内容非图片'
+                return
+            }
+            // 此时file就是我们的剪切板中的图片对象
+            // 如果需要预览，可以执行下面代码
+            var reader = new FileReader()
+            reader.onload = (event) => {
+                this.thispic = event.target.result
+            }
+            reader.readAsDataURL(file)
+            // this.update(file) 自定义的方法可以放外面么
+            /* const formData = new FormData() // 创建form对象
+            formData.append('addFile', file) // 通过append向form对象添加数据
+            const instance = axios.create({
+                withCredentials: true
+            })
+            instance.post('/ele_api/fileUpload', formData).then(response => {
+                console.log(response.data)
+                this.serverpath = response.data.data.path
+            }) */
+        })
     }
 }
 </script>
