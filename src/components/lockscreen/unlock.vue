@@ -5,8 +5,8 @@
     <transition name="show-unlock">
         <div class="unlock-body-con" v-if="showUnlock" @keydown.enter="handleUnlock">
             <div @click="handleClickAvator" class="unlock-avator-con" :style="{marginLeft: avatorLeft}">
-                <Avatar v-show="!userInfo.userPhoto" class="unlock-avator-img">{{userInfo.userName[0]}}</Avatar>
-                <Avatar v-show="userInfo.userPhoto" class="unlock-avator-img" :src="userInfo.userPhoto+ran" /></Avatar>
+                <Avatar v-show="!userAvatorPath" class="unlock-avator-img">{{userName}}</Avatar>
+                <Avatar v-show="userAvatorPath" class="unlock-avator-img" :src="userAvatorPath+ran" /></Avatar>
                 <div class="unlock-avator-cover">
                     <span><Icon type="unlocked" :size="30"></Icon></span>
                     <p>解锁</p>
@@ -44,7 +44,8 @@ export default {
         }
     },
     computed: {
-        userInfo () { return this.$store.state.user.userInfo } // 登录用户信息
+        userAvatorPath () { return this.$store.state.system.userAvatorPath }, // 管理员头像
+        userName () { return this.$store.state.system.userName } // 管理员名字
     },
     methods: {
         validator () {
@@ -60,7 +61,7 @@ export default {
                 this.avatorLeft = '0px'
                 this.inputLeft = '400px'
                 this.password = ''
-                this.$store.commit('app/setLocking', false)
+                this.$store.dispatch('system/setLocking', false)
                 this.$emit('on-unlock')
             } else {
                 this.$Message.error('密码错误,请重新输入。如果忘了密码，清除浏览器缓存重新登录即可，这里没有做后端验证')

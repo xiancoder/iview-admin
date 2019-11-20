@@ -79,9 +79,9 @@
                 <p>可以有效的分担首页所承担的加载压力，减少首页加载用时</p>
             </div>
             <div class="blogFooter">
-                <Tag color="green">green</Tag>
-                <Tag color="cyan">cyan</Tag>
-                <Tag color="blue">blue</Tag>
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
             </div>
         </div>
     </div>

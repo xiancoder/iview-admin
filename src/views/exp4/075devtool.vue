@@ -10,9 +10,9 @@
                 <p class="text-info">都不是 测试组 小姐姐无意百度到了原因 :: ctrl + 滚轮 = 开发者工具竟然TM也能缩放 </p>
             </div>
             <div class="blogFooter">
-                <Tag color="green">green</Tag>
-                <Tag color="cyan">cyan</Tag>
-                <Tag color="blue">blue</Tag>
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
             </div>
         </div>
     </div>

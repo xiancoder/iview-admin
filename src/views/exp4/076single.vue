@@ -27,9 +27,9 @@
                 <p>当在SSO验证结束后，会回到子系统，子系统会根据得到的ticket（SSO为此次登录生成的用户基本信息加密串）获取用户的基本信息，从而在本站设置登录态。</p>
             </div>
             <div class="blogFooter">
-                <Tag color="green">green</Tag>
-                <Tag color="cyan">cyan</Tag>
-                <Tag color="blue">blue</Tag>
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
             </div>
         </div>
     </div>

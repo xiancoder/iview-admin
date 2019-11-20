@@ -88,9 +88,9 @@
                 <p>官方文档在配上以上的总结，我已经像是在写react项目了，写起来还是蛮爽的。重点还是要对各种directives了解清楚，知道其实现原理，在转成jsx应该就没啥压力的。vue和react真是越来越像了。</p>
             </div>
             <div class="blogFooter">
-                <Tag color="green">green</Tag>
-                <Tag color="cyan">cyan</Tag>
-                <Tag color="blue">blue</Tag>
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
             </div>
         </div>
     </div>

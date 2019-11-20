@@ -9,6 +9,7 @@ import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate' // 状态持久化
 import system from './system' // 系统相关
 import user from './user' // 登录管理员相关
+import data from './data' // 数据
 
 Vue.use(Vuex)
 
@@ -36,7 +37,8 @@ const plugins = [
 ]
 const modules = {
     system,
-    user
+    user,
+    data
 }
 // 输出::状态实例
 export const Store = new Vuex.Store({ // 状态 实例化

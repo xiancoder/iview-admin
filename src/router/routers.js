@@ -197,7 +197,10 @@ export const routerList = [
         children: [
             {power: '0000', path: '141dspwhat', title: 'DSP项目产品思路'},
             {power: '0000', path: '142vhtml', title: 'v-html危险'},
-            {power: '0000', path: '143transform', title: 'transform形变'}
+            {power: '0000', path: '143transform', title: 'transform形变'},
+            {power: '0000', path: '144searchInput', title: 'IviewAutoComplete'},
+            {power: '0000', path: '145fromparam', title: '表单传参方式'},
+            {power: '0000', path: '146ipBox', title: '网摘IP框'}
         ]
     }),
     makeTwoLevelRoute({

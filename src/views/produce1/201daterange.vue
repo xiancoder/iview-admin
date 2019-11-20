@@ -149,9 +149,9 @@
                 <h3>注意：value 使用 v-model 时，值是 Date 类型，可以配合 @on-change 使用</h3>
             </div>
             <div class="blogFooter">
-                <Tag color="green">green</Tag>
-                <Tag color="cyan">cyan</Tag>
-                <Tag color="blue">blue</Tag>
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
             </div>
         </div>
     </div>

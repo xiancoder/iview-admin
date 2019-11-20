@@ -38,9 +38,9 @@
                 <p>对于图片如果想要获取粘贴的图片进行上传,只有直接右键复制的图片才能识别到,ctrl+c的并不能识别.....</p>
             </div>
             <div class="blogFooter">
-                <Tag color="green">green</Tag>
-                <Tag color="cyan">cyan</Tag>
-                <Tag color="blue">blue</Tag>
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
             </div>
         </div>
     </div>

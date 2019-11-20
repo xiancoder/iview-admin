@@ -12,9 +12,9 @@
                 <h2>z-index最大值是<b>2147483647</b>,超出后不会报错 但是 max+1 效果等同 max+100</h2>
             </div>
             <div class="blogFooter">
-                <Tag color="green">green</Tag>
-                <Tag color="cyan">cyan</Tag>
-                <Tag color="blue">blue</Tag>
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
             </div>
         </div>
     </div>

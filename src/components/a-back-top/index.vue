@@ -14,8 +14,8 @@ export default {
     name: 'ABackTop',
     props: {
         height: { type: Number, default: 400 },
-        bottom: { type: Number, default: 30 },
-        right: { type: Number, default: 30 },
+        bottom: { type: Number, default: 32 },
+        right: { type: Number, default: 18 },
         duration: { type: Number, default: 1000 },
         container: { type: null, default: window }
     },

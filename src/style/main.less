@@ -7,14 +7,6 @@ html,body{
 #app {
     .size;
 }
-.tc{ text-align: center; }
-.fl{ float: left; }
-.fr{ float:right; }
-.clear:after{ display:block;clear:both;content:"";visibility:hidden;height:0; }
-.clear{ zoom:1; }
-.hand{ cursor: pointer }
-/* 当a元素没有文本值，但 href 属性有链接的时候显示链接 */
-a[href^="http"]:empty::before { content: attr(href); }
 
 /* 变量 */
 @siderTtriggerSize: 40px;
@@ -29,6 +21,12 @@ a[href^="http"]:empty::before { content: attr(href); }
             height: 91px; padding: 10px;
             img{
                 height: 89px; width: auto; display: block; margin: 0 auto;
+            }
+        }
+        &.ivu-layout-sider-collapsed .logocon{
+            height: 36px;
+            img{
+                height: 27px;
             }
         }
         /* 复写 树形菜单微调 */
@@ -137,12 +135,6 @@ a[href^="http"]:empty::before { content: attr(href); }
             }
         }
     }
-}
-.ivu-menu-item > i{
-    margin-right: 12px !important;
-}
-.ivu-menu-submenu > .ivu-menu > .ivu-menu-item > i {
-    margin-right: 8px !important;
 }
 .collased-menu-dropdown{
     width: 100%;
@@ -287,20 +279,6 @@ div.api{
     i{ color: #fff; font-size: 20px; cursor: pointer; margin: 0 2px; }
 }
 .xian-review-list:hover .xian-review-list-cover{ display: block; }
-/* 表单可单用可以弹框嵌套使用 */
-.ivu-form-item.ivu-form-submit{
-    margin-top: 50px
-}
-.ivu-modal-body{
-    .ivu-form-item.ivu-form-submit{
-        margin: 0; height: 50px;
-        .ivu-form-item-content{
-            margin-left: 80px; text-align: right; position: absolute; bottom: 0; right: 0;
-            width: 100%; height: 55px; padding-right: 48px; padding-top: 8px;
-            border-top: 1px solid #ddd;
-        }
-    }
-}
 /* //////////////////////////////////////////////////////////////////////////// */
 /* 表单标题和tab */
 .xian-title-tabs{ margin-top: 30px;
@@ -311,33 +289,7 @@ div.api{
     .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-nav-container { height: 32px; padding-left: 19px; }
     .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab { margin: 0; margin-right: 15px; }
 }
-/* 自定义的表单内容提示 */
-/* 错误提示 将遮挡 内容提示 */
-.ivu-form-item-notice-tip{
-    position: absolute; top: 100%; left: 0; line-height: 1; padding-top: 6px; color: #9E9E9E;
-    & + .ivu-form-item-error-tip{
-        background: white; width: 100%;
-    }
-}
-/* 下拉框不被其他框架遮挡 */
-.ivu-select .ivu-select-dropdown{z-index: 1200;}
-/* loading遮挡 */
-.ivu-spin-fix{z-index: 5000;}
-/* placeholder 全局统一 */
-::-webkit-input-placeholder { /* WebKit browsers */ color: #bbbec4; font-size: 12px; }
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ color: #bbbec4; font-size: 12px; }
-::-moz-placeholder { /* Mozilla Firefox 19+ */ color: #bbbec4; font-size: 12px; }
-:-ms-input-placeholder { /* Internet Explorer 10+ */ color: #bbbec4; font-size: 12px; }
-/* scrollbar 统一宽高颜色 */
-::-webkit-scrollbar-track{background-color: #F5F5F5;}
-::-webkit-scrollbar{width: 6px;height:6px;background-color: #F5F5F5;}
-::-webkit-scrollbar-thumb{background-color: #999;}
-/* select 原生控制 */
-::selection { background:#e82828; color:#fff;}
-::-moz-selection { background:#e82828; color:#fff;}
-::-webkit-selection { background:#e82828; color:#fff;}
-/* 左边树形目录 */
-.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item { padding-left: 25px !important; }
+
 /* prettyprint */
 pre.prettyprint {
     text-align:left;position: relative;white-space: pre;line-height: 1.7;margin: 0 0 10px 0;

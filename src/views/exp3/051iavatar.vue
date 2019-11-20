@@ -40,9 +40,9 @@
                 <div class="api"><div class="anchor"><h2 id="API">API</h2>  <a href="#API">#</a></div> <div class="anchor"><h3 id="Avatar_props">Avatar props</h3>  <a href="#Avatar_props">#</a></div> <table><thead><tr><th>属性</th> <th>说明</th> <th>类型</th> <th>默认值</th></tr></thead> <tbody><tr><td>shape</td> <td>指定头像的形状，可选值为 circle、square</td> <td>String</td> <td>circle</td></tr> <tr><td>size</td> <td>设置头像的大小，可选值为 large、small、default</td> <td>String</td> <td>default</td></tr> <tr><td>src</td> <td>图片类头像的资源地址</td> <td>String</td> <td>-</td></tr> <tr><td>icon</td> <td>设置头像的图标类型，参考 <code>Icon</code> 组件</td> <td>String</td> <td>-</td></tr> <tr><td>custom-icon</td> <td>自定义图标</td> <td>String</td> <td>-</td></tr></tbody></table> <div class="anchor"><h3 id="Avatar_events">Avatar events</h3>  <a href="#Avatar_events">#</a></div> <table><thead><tr><th>事件名</th> <th>说明</th> <th>返回值</th></tr></thead> <tbody><tr><td>on-error <span class="ivu-badge"> <sup class="ivu-badge-count ivu-badge-count-alone">3.3.0</sup></span></td> <td>在设置 src 且图片加载不成功时触发</td> <td>event</td></tr></tbody></table></div>
             </div>
             <div class="blogFooter">
-                <Tag color="green">green</Tag>
-                <Tag color="cyan">cyan</Tag>
-                <Tag color="blue">blue</Tag>
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
             </div>
         </div>
     </div>

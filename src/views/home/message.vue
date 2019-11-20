@@ -72,17 +72,17 @@ export default {
     },
     computed: {
         ...mapState({
-            messageUnreadList: state => state.user.messageUnreadList,
-            messageReadedList: state => state.user.messageReadedList,
-            messageTrashList: state => state.user.messageTrashList,
-            messageList () { return this[listDic[this.currentMessageType]] },
-            titleClass () { return { 'not-unread-list': this.currentMessageType !== 'unread' } }
+            messageUnreadList: state => state.data.messageUnreadList,
+            messageReadedList: state => state.data.messageReadedList,
+            messageTrashList: state => state.data.messageTrashList
         }),
         ...mapGetters([
             'messageUnreadCount',
             'messageReadedCount',
             'messageTrashCount'
-        ])
+        ]),
+        messageList () { return this[listDic[this.currentMessageType]] },
+        titleClass () { return { 'not-unread-list': this.currentMessageType !== 'unread' } }
     },
     methods: {
         ...mapMutations([

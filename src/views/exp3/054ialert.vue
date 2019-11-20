@@ -129,9 +129,9 @@
                 <div class="api"> <table><thead><tr><th>属性</th> <th>说明</th> <th>类型</th> <th>默认值</th></tr></thead> <tbody><tr><td>type</td> <td>警告提示样式，可选值为<code>info</code>、<code>success</code>、<code>warning</code>、<code>error</code></td> <td>String</td> <td>info</td></tr> <tr><td>closable</td> <td>是否可关闭</td> <td>Boolean</td> <td>false</td></tr> <tr><td>show-icon</td> <td>是否显示图标</td> <td>Boolean</td> <td>false</td></tr></tbody></table> <div class="anchor"><h3 id="Alert_events">Alert events</h3>  <a href="#Alert_events">#</a></div> <table><thead><tr><th>事件名</th> <th>说明</th> <th>返回值</th></tr></thead> <tbody><tr><td>on-close</td> <td>关闭时触发</td> <td>event</td></tr></tbody></table> <div class="anchor"><h3 id="Alert_slot">Alert slot</h3>  <a href="#Alert_slot">#</a></div> <table><thead><tr><th>名称</th> <th>说明</th></tr></thead> <tbody><tr><td>无</td> <td>警告提示内容</td></tr> <tr><td>desc</td> <td>警告提示辅助性文字介绍</td></tr> <tr><td>icon</td> <td>自定义图标内容</td></tr> <tr><td>close</td> <td>自定义关闭内容</td></tr></tbody></table></div>
             </div>
             <div class="blogFooter">
-                <Tag color="green">green</Tag>
-                <Tag color="cyan">cyan</Tag>
-                <Tag color="blue">blue</Tag>
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
             </div>
         </div>
     </div>

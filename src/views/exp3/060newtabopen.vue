@@ -48,9 +48,9 @@
                 <table class="table"> <tbody> <tr><th align="left" width="20%">参数</th><th align="left" width="80%">说明</th></tr> <tr> <td>URL</td> <td>可选。打开指定的页面的URL。如果没有指定URL，打开与新的空白窗口</td> </tr> <tr> <td>name</td> <td>可选。指定target属性或窗口的名称。支持以下值： <ul> <li>_blank - URL加载到一个新的窗口。这是默认</li> <li>_parent - URL加载到父框架</li> <li>_self - URL替换当前页面</li> <li>_top - URL替换任何可加载的框架集</li> <li><em>name</em>&nbsp;- 窗口名称</li> </ul> </td> </tr> <tr> <td>specs</td> <td>可选。一个逗号分隔的项目列表。支持以下值：<br><br> <table class="table"> <tbody> <tr> <td>channelmode=yes|no|1|0</td> <td>是否要在影院模式显示 window。默认是没有的。仅限IE浏览器</td></tr> <tr> <td>directories=yes|no|1|0</td> <td>是否添加目录按钮。默认是肯定的。仅限IE浏览器</td> </tr> <tr> <td>fullscreen=yes|no|1|0</td> <td>浏览器是否显示全屏模式。默认是没有的。在全屏模式下的 window，还必须在影院模式。仅限IE浏览器</td> </tr> <tr> <td>height=pixels</td> <td>窗口的高度。最小.值为100</td> </tr> <tr> <td>left=pixels</td> <td>该窗口的左侧位置</td> </tr> <tr> <td>location=yes|no|1|0</td> <td>是否显示地址字段.默认值是yes</td> </tr> <tr> <td>menubar=yes|no|1|0</td> <td>是否显示菜单栏.默认值是yes</td> </tr> <tr> <td>resizable=yes|no|1|0</td> <td>是否可调整窗口大小.默认值是yes</td> </tr> <tr> <td>scrollbars=yes|no|1|0</td> <td>是否显示滚动条.默认值是yes</td> </tr> <tr> <td>status=yes|no|1|0</td> <td>是否要添加一个状态栏.默认值是yes</td> </tr> <tr> <td>titlebar=yes|no|1|0</td> <td>是否显示标题栏.被忽略，除非调用HTML应用程序或一个值得信赖的对话框.默认值是yes</td> </tr> <tr> <td>toolbar=yes|no|1|0</td> <td>是否显示浏览器工具栏.默认值是yes</td> </tr> <tr> <td>top=pixels</td> <td>窗口顶部的位置.仅限IE浏览器</td> </tr> <tr> <td>width=pixels</td> <td>窗口的宽度.最小.值为100</td> </tr> </tbody> </table> </td> </tr> <tr> <td>replace</td> <td>Optional.Specifies规定了装载到窗口的 URL 是在窗口的浏览历史中创建一个新条目，还是替换浏览历史中的当前条目。支持下面的值： <ul> <li>true - URL 替换浏览历史中的当前条目。</li> <li>false - URL 在浏览历史中创建新的条目。</li> </ul> </td> </tr> </tbody> </table>
             </div>
             <div class="blogFooter">
-                <Tag color="green">green</Tag>
-                <Tag color="cyan">cyan</Tag>
-                <Tag color="blue">blue</Tag>
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
             </div>
         </div>
     </div>

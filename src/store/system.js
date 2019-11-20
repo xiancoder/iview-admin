@@ -160,6 +160,9 @@ export default {
             } else {
                 list.push(data)
             }
+            if (list.length > 10) {
+                list.splice(1, 1)
+            }
             commit('TAGNAVLIST', list)
         },
 

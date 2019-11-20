@@ -1,65 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title></title>
-  </head>
-  <body>
-    <style type="text/css">
-        .fullloading {width:0;height:0;position:relative; -webkit-transition: opacity 1s ease-in-out; -moz-transition: opacity 1s ease-in-out; -o-transition: opacity 1s ease-in-out; transition: opacity 1s ease-in-out; }
-        .fullloading b { content: ''; position: fixed; color: #fff; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(#fff,#fff); z-index: 201000; text-align: center; display: -webkit-flex; display: -ms-flexbox; display: flex; }
-        @-webkit-keyframes spin { 0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
-        .fullloading .loadinglogo { position: fixed; top: 50%; left: 50%; width: 40px; height: 40px; z-index: 203000;margin-top:-20px;margin-left:-20px;}
-        .fullloading.hide{ opacity:0; filter: alpha(opacity=0); }
-        .fullloading .sk-spinner-chasing-dots.sk-spinner { margin: 0 auto; width: 40px; height: 40px; position: relative; text-align: center; -webkit-animation: sk-chasingDotsRotate 2s infinite linear; animation: sk-chasingDotsRotate 2s infinite linear; }
-        .fullloading .sk-spinner-chasing-dots .sk-dot1, .sk-spinner-chasing-dots .sk-dot2 { width: 60%; height: 60%; display: inline-block; position: absolute; top: 0; background-color: #23b7e5; border-radius: 100%; -webkit-animation: sk-chasingDotsBounce 2s infinite ease-in-out; animation: sk-chasingDotsBounce 2s infinite ease-in-out; }
-        .fullloading .sk-spinner-chasing-dots .sk-dot2 { top: auto; bottom: 0px; -webkit-animation-delay: -1s; animation-delay: -1s; }
-        @-webkit-keyframes sk-chasingDotsRotate { 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
-        @keyframes sk-chasingDotsRotate { 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
-        @-webkit-keyframes sk-chasingDotsBounce { 0%, 100% { -webkit-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); transform: scale(1); } }
-        @keyframes sk-chasingDotsBounce { 0%, 100% { -webkit-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); transform: scale(1); } }
-    </style>
-    <!-- loading界面 -->
-    <div class="fullloading">
-        <b></b>
-        <div class="loadinglogo">
-            <div class="sk-spinner sk-spinner-chasing-dots">
-                <div class="sk-dot1"></div>
-                <div class="sk-dot2"></div>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+        <title></title>
+    </head>
+    <body>
+        <style type="text/css">
+            .fullloading {width:0;height:0;position:relative; -webkit-transition: opacity 1s ease-in-out; -moz-transition: opacity 1s ease-in-out; -o-transition: opacity 1s ease-in-out; transition: opacity 1s ease-in-out; }
+            .fullloading b { content: ''; position: fixed; color: #fff; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(#fff,#fff); z-index: 201000; text-align: center; display: -webkit-flex; display: -ms-flexbox; display: flex; }
+            @-webkit-keyframes spin { 0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
+            .fullloading .loadinglogo { position: fixed; top: 50%; left: 50%; width: 40px; height: 40px; z-index: 203000;margin-top:-20px;margin-left:-20px;}
+            .fullloading.hide{ opacity:0; filter: alpha(opacity=0); }
+            .fullloading .sk-spinner-chasing-dots.sk-spinner { margin: 0 auto; width: 40px; height: 40px; position: relative; text-align: center; -webkit-animation: sk-chasingDotsRotate 2s infinite linear; animation: sk-chasingDotsRotate 2s infinite linear; }
+            .fullloading .sk-spinner-chasing-dots .sk-dot1, .sk-spinner-chasing-dots .sk-dot2 { width: 60%; height: 60%; display: inline-block; position: absolute; top: 0; background-color: #23b7e5; border-radius: 100%; -webkit-animation: sk-chasingDotsBounce 2s infinite ease-in-out; animation: sk-chasingDotsBounce 2s infinite ease-in-out; }
+            .fullloading .sk-spinner-chasing-dots .sk-dot2 { top: auto; bottom: 0px; -webkit-animation-delay: -1s; animation-delay: -1s; }
+            @-webkit-keyframes sk-chasingDotsRotate { 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
+            @keyframes sk-chasingDotsRotate { 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
+            @-webkit-keyframes sk-chasingDotsBounce { 0%, 100% { -webkit-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); transform: scale(1); } }
+            @keyframes sk-chasingDotsBounce { 0%, 100% { -webkit-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); transform: scale(1); } }
+        </style>
+        <!-- loading界面 -->
+        <div class="fullloading">
+            <b></b>
+            <div class="loadinglogo">
+                <div class="sk-spinner sk-spinner-chasing-dots">
+                    <div class="sk-dot1"></div>
+                    <div class="sk-dot2"></div>
+                </div>
             </div>
         </div>
-    </div>
-    <noscript>
-      <strong>We're sorry but iview-admin doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected
-    <script src="<%= BASE_URL %>L2Dwidget.0.min.js"></script>
-    <script src="<%= BASE_URL %>L2Dwidget.min.js"></script>
-    <script>
-        L2Dwidget.init({
-            "model":{
-                "scale":1,"hHeadPos":0.5,"vHeadPos":0.618,
-                "jsonPath":"<%= BASE_URL %>hijiki.model.json"
-            },
-            "display":{
-                "superSample":2,"width":100,"height":220,"position":"right","hOffset":20,"vOffset":-120
-            },
-            "mobile":{
-                "show":false,"scale":0.4
-            },
-            "react":{
-                "opacityDefault":0.7,"opacityOnHover":0.2
-            }
-        });
-    </script>
-    <div id="live2d-widget">
-        <canvas id="live2dcanvas" width="200" height="440"
-        style="position: fixed; opacity: 1; right: 0px; bottom: 0; z-index: 99999; pointer-events: none;"></canvas>
-    </div>
-     -->
-  </body>
+        <noscript>
+            <strong>We're sorry but iview-admin doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+        </noscript>
+        <div id="app"></div>
+    </body>
 </html>

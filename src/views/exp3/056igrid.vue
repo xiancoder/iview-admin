@@ -517,9 +517,9 @@
                                 <Tag color="gold">gold</Tag>
                                 <Tag color="yellow">yellow</Tag>
                                 <Tag color="lime">lime</Tag>
-                                <Tag color="green">green</Tag>
-                                <Tag color="cyan">cyan</Tag>
-                                <Tag color="blue">blue</Tag>
+                                <Tag color="green">收集</Tag>
+                                <Tag color="cyan">学习</Tag>
+                                <Tag color="blue">增长</Tag>
                                 <Tag color="geekblue">geekblue</Tag>
                                 <Tag color="purple">purple</Tag>
                                 <Tag color="#FFA2D3">Custom Color</Tag>
@@ -627,9 +627,9 @@
                 </Row>
             </div>
             <div class="blogFooter">
-                <Tag color="green">green</Tag>
-                <Tag color="cyan">cyan</Tag>
-                <Tag color="blue">blue</Tag>
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
             </div>
         </div>
     </div>

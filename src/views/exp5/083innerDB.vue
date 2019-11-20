@@ -38,9 +38,9 @@
                 <p>对于简单的数据，应该继续使用 localStorage；对于大量结构化数据，indexedDB 会更适合。当然如果你需要设置过期时间的短期存储，还是使用 cookie 存储吧。</p>
             </div>
             <div class="blogFooter">
-                <Tag color="green">green</Tag>
-                <Tag color="cyan">cyan</Tag>
-                <Tag color="blue">blue</Tag>
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
             </div>
         </div>
     </div>

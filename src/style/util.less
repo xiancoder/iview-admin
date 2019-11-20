@@ -12,5 +12,29 @@
     }
     ul.liComma > li:not(:last-child)::after {
         content: ",";
+    }
 }
-}
+/* 文本对齐 */
+.tc{ text-align: center; }
+.fl{ float: left; }
+.fr{ float:right; }
+/* 清空浮动 */
+.clear:after{ display:block;clear:both;content:"";visibility:hidden;height:0; }
+.clear{ zoom:1; }
+/* placeholder 全局统一 */
+::-webkit-input-placeholder { /* WebKit browsers */ color: #bbbec4; font-size: 12px; }
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ color: #bbbec4; font-size: 12px; }
+::-moz-placeholder { /* Mozilla Firefox 19+ */ color: #bbbec4; font-size: 12px; }
+:-ms-input-placeholder { /* Internet Explorer 10+ */ color: #bbbec4; font-size: 12px; }
+/* scrollbar 统一宽高颜色 */
+::-webkit-scrollbar-track{background-color: #F5F5F5;}
+::-webkit-scrollbar{width: 6px;height:6px;background-color: #F5F5F5;}
+::-webkit-scrollbar-thumb{background-color: #999;}
+/* select 原生控制 */
+::selection { background:#e82828; color:#fff;}
+::-moz-selection { background:#e82828; color:#fff;}
+::-webkit-selection { background:#e82828; color:#fff;}
+/* 小手 */
+.hand{ cursor: pointer }
+/* 当a元素没有文本值，但 href 属性有链接的时候显示链接 */
+a[href^="http"]:empty::before { content: attr(href); }

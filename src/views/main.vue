@@ -15,7 +15,6 @@
                 <div class="logocon" :style="{'background': themeLogoBgColor}">
                     <img :src="logoPath"/>
                 </div>
-                <search-menu />
                 <side-menu :collapsed="collapsed"/>
             </Sider>
             <Layout style="height:100%" class="right-sider">
@@ -82,21 +81,21 @@
                                 <router-view></router-view>
                             </keep-alive>
                             <Spin size="large" fix v-if="spinShow"></Spin>
-                            <ABackTop :height="100" :bottom="80" :right="50" container=".content-wrapper"></ABackTop>
+                            <ABackTop :height="100" :bottom="10" :right="42" container="#mainScrollFlag"></ABackTop>
                         </div>
                         <div class="main-xiangzhaosha">
                             <input class="xiangzhaosha-input" type="text" v-model="xiangzhaosha" placeholder="大声地说出我的名砸..你要找啥">
                             <div class="xiangzhaosha-content">
                                 <div v-for="(item) in menuList">
-                                    <Button type="default">{{item.title}}</Button>
-                                    <Divider type="vertical" />
+                                    {{item.title}}&nbsp;|&nbsp;
                                     <template v-for="(item2) in item.children.filter(row=>{return row.title.includes(xiangzhaosha)})">
-                                        <Button type="dashed" :to="item2.path">{{item2.title}}</Button>
-                                        <Divider type="vertical" />
+                                        <a :href="'#'+item2.path">{{item2.title}}</a>&nbsp;|&nbsp;
                                     </template>
                                 </div>
+                                <!-- template 里面放Button会导致页面滚动时候卡顿 -->
                             </div>
                         </div>
+                        <img :src="'./logo.xian.png'" style="position: fixed; bottom: 1px; right: 96px; z-index: 1001;">
                     </div>
                 </Content>
             </Layout>
@@ -123,7 +122,6 @@
 <script>
 import SideMenu from '@C/side-menu' // 组件::左侧树菜单
 import TagsNav from '@C/tags-nav'
-import SearchMenu from '@C/search-menu'
 import LockScreen from '@C/lockscreen'
 import ABackTop from '@C/a-back-top'
 import FullScreen from '@C/fullscreen' // 组件::全屏按钮
@@ -131,7 +129,7 @@ import ErrorStore from '@C/error-store'
 import CustomBreadCrumb from '@C/custom-bread-crumb' // 组件::面包屑
 import qrCode from '@C/qrcode' // 组件::二维码
 import epopen from '@C/epopen' // 组件::EP编辑
-import minLogo from '@/assets/images/logo-min.jpg'
+// import minLogo from '@/assets/images/logo-min.jpg'
 import maxLogo from '@/assets/images/logo.gif'
 import '@S/main.less'
 import '@S/util.less'
@@ -140,13 +138,13 @@ export default {
     name: 'Main', // 注册为组件时候name可以用来递归自己
     components: {
         SideMenu, TagsNav, FullScreen, ErrorStore, ABackTop,
-        CustomBreadCrumb, qrCode, epopen, LockScreen, SearchMenu
+        CustomBreadCrumb, qrCode, epopen, LockScreen
     },
     data () {
         return {
             themeMiddle: false, // 主题::主体局中
             themeLogoFlex: false, // 主题::logo固定
-            themeLogoBgColor: '#fff', // 主题::logo背景颜色
+            themeLogoBgColor: '#92caf6', // 主题::logo背景颜色
             themeBgColor: '#515a6e', // 主题::主体背景颜色
             themeFgColor: '#fff', // 主题::主体前景颜色
 
@@ -154,14 +152,14 @@ export default {
                 Drawer: false
             },
             xiangzhaosha: '', // 想找啥
-            minLogo, // 最小图标
+            // minLogo, // 最小图标
             maxLogo, // 最大图标
             transitionName: '', // 动画方式
             weblink: [ 'www.zdao.com', 'www.qichacha.com', 'www.tianyancha.com', 'maimai.cn' ] // 外链链接
         }
     },
     computed: {
-        logoPath () { return this.collapsed ? minLogo : maxLogo }, // 根据折叠状态切换图片
+        logoPath () { return maxLogo /* this.collapsed ? minLogo : maxLogo */ }, // 根据折叠状态切换图片
         newMessageNum () { return this.$store.state.system.newMessageNum || 0 }, // 新消息数量 0隐藏 null表红点 数字代表数量
         breadCrumbList () { return this.$store.state.system.breadCrumbList }, // 面包屑
         spinShow () { return this.$store.state.system.spinLoading || false }, // 新消息数量 0隐藏 null表红点 数字代表数量

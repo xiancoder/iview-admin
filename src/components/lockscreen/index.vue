@@ -22,7 +22,7 @@ export default {
                 lockScreenBack.style.transition = 'all 0s'
                 this.$router.push({ name: 'locking' })
             }, 800)
-            this.$store.dispatch('app/setLocking', true)
+            this.$store.dispatch('system/setLocking', true)
         }
     },
     mounted () {
