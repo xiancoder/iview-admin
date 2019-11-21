@@ -1,5 +1,6 @@
 import parentView from '@/views/parentView'
 import Main from '@V/main'
+import MarkDown from '@V/markDown'
 import { makeTwoLevelRoute, makeOneLevelRoute } from './util'
 
 export const specialRouterList = ['error403', 'error404', 'error500', 'login', 'locking', 'phone']
@@ -324,6 +325,12 @@ export const routerList = [
                 ]
             },
             {path: 'level_2_3', name: 'level_2_3', icon: 'md-funnel', title: '二级-3', component: () => import('@V/multilevel/level-2-3.vue')}
+        ]
+    },
+    {
+        path: '/wiki', name: 'wiki', icon: 'md-menu', title: 'wiki', component: MarkDown,
+        children: [
+            {power: '0000', path: 'wikiTry', name: 'wikiTry', icon: 'md-funnel', title: 'wiki尝试', component: () => import('@V/wiki/wikiTry.vue')}
         ]
     },
     {
