@@ -116,36 +116,26 @@ html,body{
     }
     /* 底部公司名 */
     .main-footer{
-        padding: 0px;
-        text-align: center;
-        background: #fff;
-        box-shadow: 1px 1px 10px #9d9d9d;
+        padding: 0px; text-align: center; background: #fff; box-shadow: 1px 1px 10px #9d9d9d;
         z-index: 1000;
     }
     /* 内容结构 */
     .main-content-con{
-        overflow: hidden;
+        position: relative; overflow: hidden;
         .main-layout-con{
             height: 100%; overflow-x: hidden;overflow-y: scroll;
         }
         .tag-nav-wrapper{
             padding: 0; height:40px; background:#F0F0F0;
-            .content-wrapper{
-                padding: 18px; height: ~"calc(100% - 0px)"; overflow: auto; padding-bottom: 100px !important;
-            }
+        }
+        .content-wrapper{
+            padding-bottom: 100px !important;
         }
     }
 }
 .collased-menu-dropdown{
-    width: 100%;
-    margin: 0;
-    line-height: normal;
-    padding: 7px 0 6px 16px;
-    clear: both;
-    font-size: 12px !important;
-    white-space: nowrap;
-    list-style: none;
-    cursor: pointer;
+    width: 100%; margin: 0; line-height: normal; padding: 7px 0 6px 16px; clear: both;
+    font-size: 12px !important; white-space: nowrap; list-style: none; cursor: pointer;
     transition: background 0.2s ease-in-out;
     &:hover{
         background: rgba(100, 100, 100, 0.1);
@@ -173,24 +163,29 @@ html,body{
         content: ""; position: absolute; top: 0; bottom: 0; left: 0; right: 0;  z-index: -10;
     }*/
     .blog{
-        -webkit-box-shadow: 0 0 6px 6px rgb(226, 226, 226);
-        box-shadow: 0 0 6px 6px rgb(226, 226, 226); width: 80%;
-        margin: 50px auto; padding: 60px 0 0; background: #fff;
+        -webkit-box-shadow: 0 0 6px 6px rgb(226, 226, 226); box-shadow: 0 0 6px 6px rgb(226, 226, 226);
+        width: 80%; margin: 50px auto; padding: 60px 0 0; background: #fff;
         .blogTitle{
-            font-size: 39px; font-size: 1.5rem; line-height: 1.2308;
-            margin-bottom: 1.2308em; border-bottom: 3px solid #2d8cf0;
-            margin: 0 57px; padding: 20px 0 13px 0;
+            font-size: 39px; font-size: 1.5rem; line-height: 1.2308; margin-bottom: 1.2308em;
+            border-bottom: 3px solid #2d8cf0; margin: 0 57px; padding: 20px 0 13px 0;
         }
         .blogContent{
             padding: 10px 60px;
-            & > p { font-size: 15px; line-height: 42px; }
-            p.commend{
-                display: block; margin: 10px 0; line-height: 20px;
-                padding: 10px; background: #666; color: #00ef77; font-weight: bold;
+            & > p {
+                font-size: 15px; line-height: 42px;
             }
-            & > ul{padding-left: 22px; }
-            & > pre{/*white-space: pre-wrap;*/ }
-            & > blockquote { background: #f8f8f9; border-left: 8px solid #2d8cf0; padding: 10px 0 10px 20px; }
+            p.commend{
+                display: block; margin: 10px 0; line-height: 20px; padding: 10px; background: #666;
+                color: #00ef77; font-weight: bold;
+            }
+            & > ul{
+                padding-left: 22px;
+            }
+            & > pre{
+            }
+            & > blockquote {
+                background: #f8f8f9; border-left: 8px solid #2d8cf0; padding: 10px 0 10px 20px;
+            }
         }
         .blogFooter{
             min-height: 100px; background: #f8f8f8; padding: 18px 60px 0; margin: 50px 0 0 0;
@@ -203,91 +198,161 @@ html,body{
     }
 }
 /* API样式 */
-table.api{ font-family:Consolas,Menlo,Courier,monospace; font-size:12px; border-collapse:collapse;
+table.api{
+    font-family:Consolas,Menlo,Courier,monospace; font-size:12px; border-collapse:collapse;
     border-spacing:0; empty-cells:show; border:1px solid #e9e9e9; width:100%; margin-bottom:24px;
-    th{background:#f7f7f7; white-space:nowrap; color:#5c6b77; font-weight:600}
-    td,th{border:1px solid #e9e9e9; padding:8px 16px; text-align:left}
-    td ul li{font-size:12px!important}
-    .demo-data{color:#b3b3b3}
+    th{
+        background:#f7f7f7; white-space:nowrap; color:#5c6b77; font-weight:600
+    }
+    td,th{
+        border:1px solid #e9e9e9; padding:8px 16px; text-align:left
+    }
+    td ul li{
+        font-size:12px!important
+    }
+    .demo-data{
+        color:#b3b3b3
+    }
 }
 div.api{
-    & h2 { font-size: 20px; font-weight: 400; }
-    & a { display: none; font-size: 24px; margin-left: 5px; position: relative; top: 2px; }
-    & h3 { font-size: 16px; font-weight: 400; }
-    & table { font-family: Consolas,Menlo,Courier,monospace; font-size: 12px; border-collapse: collapse; border-spacing: 0; empty-cells: show; border: 1px solid #e9e9e9; width: 100%; margin-bottom: 24px;
+    & h2 {
+        font-size: 20px; font-weight: 400;
+    }
+    & a {
+        display: none; font-size: 24px; margin-left: 5px; position: relative; top: 2px;
+    }
+    & h3 {
+        font-size: 16px; font-weight: 400;
+    }
+    & table {
+        font-family: Consolas,Menlo,Courier,monospace; font-size: 12px; border-collapse: collapse;
+        border-spacing: 0; empty-cells: show; border: 1px solid #e9e9e9; width: 100%; margin-bottom: 24px;
         & td,
-        & th { border: 1px solid #e9e9e9; padding: 8px 16px; text-align: left; }
-        & th { background: #f7f7f7; white-space: nowrap; color: #5c6b77; font-weight: 600; }
+        & th {
+            border: 1px solid #e9e9e9; padding: 8px 16px; text-align: left;
+        }
+        & th {
+            background: #f7f7f7; white-space: nowrap; color: #5c6b77; font-weight: 600;
+        }
         & code {
-            display: inline-block; background: #f7f7f7;
+            display: inline-block; background: #f7f7f7; padding: 1px 5px; color: #666; border-radius: 3px;
             font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace; margin: 0 3px;
-            padding: 1px 5px; border-radius: 3px; color: #666; border: 1px solid #eee;
+            border: 1px solid #eee;
         }
     }
 }
 /* 表格自定义项 */
 .tableLayout{
     position: relative; padding:20px;
-    .ivu-table{ cursor: pointer; }
+    .ivu-table{
+        cursor: pointer;
+    }
     /* 工具栏 就是盛放搜索项的那块 */
     .tableTool{
         display: inline-block;width: 100%;
         /* 表格搜索表单每个控件均长 */
-        > *{margin-right: 10px;max-width: 180px;margin-bottom: 10px;vertical-align: middle;}
+        > *{
+            margin-right: 10px;max-width: 180px;margin-bottom: 10px;vertical-align: middle;
+        }
         /* 日期范围控件得长一些 */
-        > .ivu-date-picker{max-width: 210px;}
-        > .fr{margin-right: 0;margin-left: 10px;}
+        > .ivu-date-picker{
+            max-width: 210px;
+        }
+        > .fr{
+            margin-right: 0;margin-left: 10px;
+        }
     }
     /* 表格页脚 放置分页的那块 */
     .tableFooter{
         margin: 15px 0; padding: 0 10px; overflow: hidden;
-        > *{margin-right: 10px;}
-        > .fr{margin-right: 0;margin-left: 10px;}
+        > *{
+            margin-right: 10px;
+        }
+        > .fr{
+            margin-right: 0;margin-left: 10px;
+        }
     }
 }
 /* 表单复写内容范围 */
 .xianFrom {
     position: relative; padding:20px;
     /* 复写表单样式 */
-    .ivu-form{width: 100%; padding: 30px 0px; border-left: 1px solid #dcdee2; border-right: 1px solid #dcdee2;}
+    .ivu-form{
+        width: 100%; padding: 30px 0px; border-left: 1px solid #dcdee2; border-right: 1px solid #dcdee2;
+    }
     /* label 距离 */
-    .ivu-form .ivu-form-item-label{ padding: 10px 36px 10px 0; box-sizing: border-box; min-width: 150px; position:relative; }
+    .ivu-form .ivu-form-item-label{
+        padding: 10px 36px 10px 0; box-sizing: border-box; min-width: 150px; position:relative;
+    }
     /* 必填样式 */
-    .ivu-form-item-required .ivu-form-item-label:before { content: "*"; display: inline-block; margin-right: 4px; line-height: 1; font-family: SimSun; font-size: 12px; color: #ed4014; position: absolute; right: 10px; }
+    .ivu-form-item-required .ivu-form-item-label:before {
+        content: "*"; display: inline-block; margin-right: 4px; line-height: 1; font-family: SimSun;
+        font-size: 12px; color: #ed4014; position: absolute; right: 10px;
+    }
     /* 表单项冒号 */
-    .ivu-form-item .ivu-form-item-label:after { content: "："; display: inline-block; margin-left: 10px; line-height: 1; }
+    .ivu-form-item .ivu-form-item-label:after {
+        content: "："; display: inline-block; margin-left: 10px; line-height: 1; }
     /* 表单项文件上传报错也变红 */
-    .ivu-form-item-error .ivu-upload-select .ivu-btn { border-color: #ed4014 !important; }
-    .ivu-form-item-error .ivu-upload-drag { border-color: #ed4014 !important; }
+    .ivu-form-item-error .ivu-upload-select .ivu-btn {
+        border-color: #ed4014 !important;
+    }
+    .ivu-form-item-error .ivu-upload-drag {
+        border-color: #ed4014 !important;
+    }
     /* 表单项富文本报错也变红 */
-    .ivu-form-item-error .vue-html5-editor { border-color: #ed4014 !important; }
-    .ivu-form-item-error .vue-html5-editor>.toolbar>ul { border-color: #ed4014 !important; }
+    .ivu-form-item-error .vue-html5-editor {
+        border-color: #ed4014 !important;
+    }
+    .ivu-form-item-error .vue-html5-editor>.toolbar>ul {
+        border-color: #ed4014 !important;
+    }
     /* 表单项单复选报错也变红 */
-    .ivu-form-item-error .ivu-radio-inner { border-color: #ed4014 !important; }
-    .ivu-form-item-error .ivu-checkbox-inner { border-color: #ed4014 !important; }
+    .ivu-form-item-error .ivu-radio-inner {
+        border-color: #ed4014 !important;
+    }
+    .ivu-form-item-error .ivu-checkbox-inner {
+        border-color: #ed4014 !important;
+    }
 }
 /* 表单项多文件上传 复制的官网样式 */
 .xian-review-list{
-    display: inline-block; width: 60px; height: 60px; text-align: center;
+    display: inline-block; width: 60px; height: 60px; background: #fff; text-align: center;
     line-height: 60px; border: 1px solid #dcdee2; border-radius: 4px; overflow: hidden;
-    background: #fff; position: relative; box-shadow: 0 1px 1px rgba(0,0,0,.2); margin-right: 4px;
-    img{ width: 100%; height: 100%; }
+    position: relative; box-shadow: 0 1px 1px rgba(0,0,0,.2); margin-right: 4px;
+    img{
+        width: 100%; height: 100%;
+    }
 }
 .xian-review-list-cover{
-    display: none; position: absolute; top: 0; bottom: 0;
-    left: 0; right: 0; background: rgba(0,0,0,.6);
-    i{ color: #fff; font-size: 20px; cursor: pointer; margin: 0 2px; }
+    display: none; position: absolute; top: 0; bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,.6);
+    i{
+        color: #fff; font-size: 20px; cursor: pointer; margin: 0 2px;
+    }
 }
-.xian-review-list:hover .xian-review-list-cover{ display: block; }
+.xian-review-list:hover .xian-review-list-cover{
+    display: block;
+}
 /* //////////////////////////////////////////////////////////////////////////// */
 /* 表单标题和tab */
-.xian-title-tabs{ margin-top: 30px;
-    .ivu-tabs{margin-bottom: 32px;}
+.xian-title-tabs{
+    margin-top: 30px;
+    .ivu-tabs{
+        margin-bottom: 32px;
+    }
     /* tab标签距离左边0 */
-    .ivu-tabs .ivu-tabs-bar { border-bottom: 1px solid #dcdee2; margin-bottom: 0; margin-left: 0; }
-    h1{ font-size: 26px; font-weight: 400; margin: 0 0 20px 20px;}
-    .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-nav-container { height: 32px; padding-left: 19px; }
-    .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab { margin: 0; margin-right: 15px; }
+    .ivu-tabs .ivu-tabs-bar {
+        border-bottom: 1px solid #dcdee2; margin-bottom: 0; margin-left: 0;
+    }
+    h1{
+        font-size: 26px; font-weight: 400; margin: 0 0 20px 20px;
+    }
+    .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-nav-container {
+        height: 32px; padding-left: 19px;
+    }
+    .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab {
+        margin: 0; margin-right: 15px;
+    }
 }
 
 /* prettyprint */

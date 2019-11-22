@@ -15,11 +15,14 @@ export const routerList = [
         children: [
             {power: '0000', path: 'index', title: '首页'},
             {power: '0000', path: 'message', icon: 'md-notifications', title: '消息中心'},
-            {power: '0000', path: 'errorlogger', icon: 'md-bug', title: '错误收集测试'}
+            {power: '0000', path: 'errorlogger', icon: 'md-bug', title: '错误收集测试'},
+            {power: '0000', path: 'error404', icon: 'md-boat', title: '页面不存在'},
+            {power: '0000', path: 'error403', icon: 'md-bonfire', title: '权限不足'},
+            {power: '0000', path: 'error500', icon: 'md-cafe', title: '服务端错误'}
         ]
     }),
     makeTwoLevelRoute({
-        path: 'exp1', title: '经验集.卷壹', icon: 'md-globe',
+        path: 'exp1', title: '经验集.卷壹', icon: 'md-camera',
         children: [
             {power: '0000', path: '001bebal', title: 'bebal说明'},
             {power: '0000', path: '002eslint', title: 'EsLint 校验规则'},
@@ -39,7 +42,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'exp2', title: '经验集.卷贰', icon: 'md-globe',
+        path: 'exp2', title: '经验集.卷贰', icon: 'md-cart',
         children: [
             {power: '0000', path: '021route', title: '路由跳转'},
             {power: '0000', path: '021route@add', title: '路由跳转添加', hideMenu: true},
@@ -65,7 +68,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'exp3', title: '经验集.卷叁', icon: 'md-globe',
+        path: 'exp3', title: '经验集.卷叁', icon: 'md-chatbubbles',
         children: [
             {power: '0000', path: '041zhihu3layout', title: '三大框架简比'},
             {power: '0000', path: '042jsx', title: 'JSX详解'},
@@ -95,7 +98,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'exp4', title: '经验集.卷肆', icon: 'md-globe',
+        path: 'exp4', title: '经验集.卷肆', icon: 'md-construct',
         children: [
             {power: '0000', path: '061whilePromise', title: 'Promise挂起'},
             {power: '0000', path: '062fanyinhao', title: '反引号推广'},
@@ -120,7 +123,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'exp5', title: '经验集.卷伍', icon: 'md-globe',
+        path: 'exp5', title: '经验集.卷伍', icon: 'md-color-fill',
         children: [
             {power: '0000', path: '081templete', title: '标签templete'},
             {power: '0000', path: '082download', title: 'JS控制下载文档'},
@@ -146,7 +149,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'exp6', title: '经验集.卷陆', icon: 'md-globe',
+        path: 'exp6', title: '经验集.卷陆', icon: 'md-easel',
         children: [
             {power: '0000', path: '101looknodown', title: '评审看不下去代码'},
             {power: '0000', path: '102watchls', title: 'ls的监听和事件广播'},
@@ -169,7 +172,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'exp7', title: '经验集.卷柒', icon: 'md-globe',
+        path: 'exp7', title: '经验集.卷柒', icon: 'md-flame',
         children: [
             {power: '0000', path: '121youku', title: '优酷视频'},
             {power: '0000', path: '122mimang', title: '略迷茫'},
@@ -194,18 +197,19 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'exp8', title: '经验集.卷捌', icon: 'md-globe',
+        path: 'exp8', title: '经验集.卷捌', icon: 'md-game-controller-b',
         children: [
             {power: '0000', path: '141dspwhat', title: 'DSP项目产品思路'},
             {power: '0000', path: '142vhtml', title: 'v-html危险'},
             {power: '0000', path: '143transform', title: 'transform形变'},
             {power: '0000', path: '144searchInput', title: 'IviewAutoComplete'},
             {power: '0000', path: '145fromparam', title: '表单传参方式'},
-            {power: '0000', path: '146ipBox', title: '网摘IP框'}
+            {power: '0000', path: '146copyTxt', title: '复制粘贴文本'},
+            {power: '0000', path: '147goodModal', title: '很好的弹框方式'}
         ]
     }),
     makeTwoLevelRoute({
-        path: 'produce1', title: '工作集.卷壹', icon: 'md-globe',
+        path: 'produce1', title: '工作集.卷壹', icon: 'md-heart',
         children: [
             {power: '0000', path: '201daterange', title: '日期范围两个对象'},
             {power: '0000', path: '202api', title: 'api接口承上启下'},
@@ -214,7 +218,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'tool', title: '趁手工具第三代', icon: 'md-globe',
+        path: 'tool', title: '趁手工具第三代', icon: 'md-images',
         children: [
             {power: '0000', path: 'str2bs64', title: '文字转bs64'},
             {power: '0000', path: 'img2bs64', title: '图片转bs64'},
@@ -328,9 +332,13 @@ export const routerList = [
         ]
     },
     {
-        path: '/wiki', name: 'wiki', icon: 'md-menu', title: 'wiki', component: MarkDown,
+        path: '/wiki', name: 'wiki', icon: 'md-infinite', title: '其他模式', component: MarkDown,
         children: [
-            {power: '0000', path: 'wikiTry', name: 'wikiTry', icon: 'md-funnel', title: 'wiki尝试', component: () => import('@V/wiki/wikiTry.vue')}
+            {power: '0000', path: 'wiki', name: 'wiki', icon: 'md-funnel', title: 'wiki', component: () => import('@V/other/wiki.vue')},
+            {power: '0000', path: 'music', name: 'music', icon: 'md-funnel', title: '音乐', component: () => import('@V/other/music.vue')},
+            {power: '0000', path: 'ad', name: 'ad', icon: 'md-funnel', title: '广告', component: () => import('@V/other/ad.vue')},
+            {power: '0000', path: 'firstPage', name: 'firstPage', icon: 'md-funnel', title: '首页', component: () => import('@V/other/firstPage.vue')},
+            {power: '0000', path: 'blog', name: 'blog', icon: 'md-funnel', title: '博客', component: () => import('@V/other/blog.vue')}
         ]
     },
     {

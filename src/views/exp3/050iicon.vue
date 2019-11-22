@@ -4,9 +4,9 @@
             <div class="blogTitle">iview 中的 Icon 全部列举</div>
             <div class="blogContent" v-highlight>
                 <script type="text/html">
-                    <Icon type="ios-loading"/> ios-loading
+                    <Icon type="ios-loading"/> ios-loading // 点击以下icon可以自动复制到完整html
                 </script>
-                <p style="font-size:26px">
+                <p style="font-size:26px" @click="copyHtml($event)">
                     <Icon type="ios-add"/> ios-add
                     <Icon type="md-add"/> md-add
                     <br/>
@@ -1188,11 +1188,22 @@
     </div>
 </template>
 <script>
+import { success } from '@/tools' // 自定义常用工具
+
 export default {
     data () {
         return { xx: 0.5 }
     },
-    methods: {},
+    methods: {
+        copyHtml (e) {
+            if (e.target.nodeName === 'I') {
+                let className = e.target.className
+                className = className.replace('ivu-icon ivu-icon-', '')
+                console.log(`<Icon type="${className}"/>`)
+                success('拼装成功, 查看console')
+            }
+        }
+    },
     mounted () {
     }
 }

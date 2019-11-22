@@ -13,6 +13,8 @@
                 <p><Icon type="md-close" style="color:red"/> 复制文件添加为附件 <i>还没想好</i></p>
                 <p><Icon type="md-checkmark" style="color:green"/> 从word复制格式到这里 <Button @click="test1()">点击测试</Button></p>
                 <p><Icon type="md-checkmark" style="color:green"/> 从excel复制格式到这里 <Button @click="test2()">点击测试</Button></p>
+                <p><Icon type="md-checkmark" style="color:green"/> html中 非富文本 原生事件 点击父元素 <del>冒泡</del> 捕获事件到img元素 获取src </p>
+                <p><Icon type="md-checkmark" style="color:green"/> 通过正则匹配html中的图片路径 配合小图大图组件进行显示 </p>
                 <p></p>
                 <Form ref="formValidateId" :model="frm" :label-width="150">
                     <FormItem label="任务内容" prop="rich1">

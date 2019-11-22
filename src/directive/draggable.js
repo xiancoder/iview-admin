@@ -1,5 +1,7 @@
+import Vue from 'vue' // 核心
 import { on } from '@/utils/dom'
-export default {
+
+const draggable = {
     inserted: (el, binding, vnode) => {
         let triggerDom = document.querySelector(binding.value.trigger)
         triggerDom.style.cursor = 'move'
@@ -39,3 +41,6 @@ export default {
         bodyDom.style.transform = ''
     }
 }
+Vue.directive('draggable', draggable) // 拖拽指令 v-draggable="options"
+
+export default draggable

@@ -1,16 +1,23 @@
-export default {
+import Vue from 'vue' // 核心
+
+const autofs = {
     bind: (el, binding) => {
-        el.innerHTML = '<div>' + el.innerHTML + '</div>'
-        const div = el.querySelector('div')
-        const h = parseInt((el.style.height || el.scrollHeight || el.offsetHeight).replace('px', ''))
-        for (let x = 12; x < 100; x++) {
-            div.style.fontSize = x + 'px'
-            const nh = div.clientHeight || div.offsetHeight
-            console.log(h, nh)
-            if (h < nh) {
-                div.style.fontSize = (x - 1) + 'px'
-                break
+        setTimeout(() => {
+            el.innerHTML = '<div>' + el.innerHTML + '</div>'
+            const div1 = el
+            const div2 = el.querySelector('div')
+            for (var i = 12, l = 100; i < l; i++) {
+                div2.style.fontSize = i + 'px'
+                console.log(div1.offsetHeight, div2.offsetHeight)
+                if (div1.offsetHeight < div2.offsetHeight) {
+                    div2.style.fontSize = (i - 1) + 'px'
+                    break
+                }
             }
-        }
+        }, 200)
     }
 }
+
+Vue.directive('autofs', autofs) // 自动文字字体大小 v-autofs
+
+export default autofs

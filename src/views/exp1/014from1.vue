@@ -2,6 +2,9 @@
     <div>
         <Form ref="formItem" :model="frm" :rules="frmRule"
             :label-width="80" style="width: 70%;margin: 0 auto">
+            <FormItem label="">
+                <h1>测试用表单</h1>
+            </FormItem>
             <FormItem label="下线日期" prop="date">
                 <DatePicker class="wid200" v-model="frm.date"
                     :clearable="false" :editable="false" format="yyyy-MM-dd" type="date"

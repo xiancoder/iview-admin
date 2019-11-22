@@ -53,8 +53,17 @@
                                     {{ userName }}
                                     <Icon :size="18" type="md-arrow-dropdown"></Icon>
                                     <DropdownMenu slot="list">
+                                        <DropdownItem name="accountInfo">
+                                            账户信息  <Badge style="margin-left: 10px" text="建设中"></Badge>
+                                        </DropdownItem>
                                         <DropdownItem name="message">
                                             消息中心 <Badge style="margin-left: 10px" :count="unreadCount"></Badge>
+                                        </DropdownItem>
+                                        <DropdownItem name="modifyPwd">
+                                            修改密码  <Badge style="margin-left: 10px" text="建设中"></Badge>
+                                        </DropdownItem>
+                                        <DropdownItem name="clear">
+                                            清理缓存  <Badge style="margin-left: 10px" text="建设中"></Badge>
                                         </DropdownItem>
                                         <DropdownItem name="themeDrawer">
                                             主题修改
@@ -69,6 +78,7 @@
                     </Row>
                 </Header>
                 <Content class="main-content-con">
+                    <Spin size="large" fix v-if="spinShow"></Spin>
                     <div class="main-layout-con" id="mainScrollFlag">
                         <div class="tag-nav-wrapper">
                             <tags-nav></tags-nav>
@@ -80,7 +90,6 @@
                             <keep-alive :include="cacheList">
                                 <router-view></router-view>
                             </keep-alive>
-                            <Spin size="large" fix v-if="spinShow"></Spin>
                             <ABackTop :height="100" :bottom="10" :right="42" container="#mainScrollFlag"></ABackTop>
                         </div>
                         <div class="main-xiangzhaosha">
@@ -174,11 +183,20 @@ export default {
     methods: {
         handleClick (name) {
             switch (name) {
-                case 'logout': this.$store.dispatch('system/logout')
+                case 'accountInfo':
                     break
-                case 'message': this.$router.push({name: 'home_message'})
+                case 'message':
+                    this.$router.push({name: 'home_message'})
                     break
-                case 'themeDrawer': this.theme.Drawer = !this.theme.Drawer
+                case 'modifyPwd':
+                    break
+                case 'clear':
+                    break
+                case 'themeDrawer':
+                    this.theme.Drawer = !this.theme.Drawer
+                    break
+                case 'logout':
+                    this.$store.dispatch('system/logout')
                     break
             }
         },

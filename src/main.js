@@ -5,8 +5,7 @@
 // 注意::代码格式以易读性为第一考虑要素
 // =====================================================================
 import Vue from 'vue' // 核心
-import '@/api/axios' // axios 配置
-import '@/api' // 接口管理 -挂载$api
+import '@/api' // 接口管理 / axios配置 -挂载$api
 import config from '@/config' // 自定义配置 -挂载$config
 import '@/directive' // 指令
 import '@/filter' // 过滤器
@@ -16,7 +15,6 @@ import { Store } from '@/store' // 自定义状态管理 -挂载$stroe
 import { router } from '@/router' // 自定义路由定义 -挂载$router
 import '@/tools' // 自定义常用工具 -挂载$tool
 import '@/utils' // 自定义常用方法 -挂载$util
-import '@/validate' // 常用校验 -挂载$validate
 
 /* eslint-disable */
 if (process.env.NODE_ENV !== 'production') require('@/mock') // 实际打包时应该不引入mock

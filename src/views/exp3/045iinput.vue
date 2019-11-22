@@ -91,3 +91,6 @@ export default {
     }
 }
 </script>
+<style scope>
+    .blogContent > div{margin:10px 0}
+</style>

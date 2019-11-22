@@ -4,9 +4,7 @@ const resolve = dir => {
     return path.join(__dirname, dir)
 }
 
-const BASE_URL = process.env.NODE_ENV === 'production'
-    ? '/'
-    : '/'
+const BASE_URL = process.env.NODE_ENV === 'production' ? '/' : '/'
 
 module.exports = {
     // 项目部署基础
