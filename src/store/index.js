@@ -28,9 +28,10 @@ try {
 const plugins = [
     createPersistedState({ // 状态持久化
         storage: window.localStorage,
-        reducer: (val) => {
+        reducer: (store) => {
+            const {theme, shrink, lang, tagNavList, token, locking, spinLoading, paramList} = store.system
             return { // 只储存指定的状态
-                system: val.system
+                system: {theme, shrink, lang, tagNavList, token, locking, spinLoading, paramList}
             }
         }
     })

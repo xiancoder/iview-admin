@@ -1,7 +1,7 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle"></div>
+            <div class="blogTitle">charts 图表插件</div>
             <div class="blogContent" v-highlight>
                 <Card shadow>
                     <chart-pie style="height: 300px;" :value="pieData" text="用户访问来源">

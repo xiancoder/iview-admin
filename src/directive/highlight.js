@@ -3,7 +3,7 @@ import hljs from 'highlight.js'
 // 引入
 import axios from 'axios' // http请求库
 // 样式文件,文件里面还有其他样式可供选择
-import 'highlight.js/styles/atom-one-light.css'
+import 'highlight.js/styles/github.css'
 export default {
     bind: (el, binding) => {
         const makeDom = () => {
@@ -51,7 +51,7 @@ export default {
                     .replace(/^[ ]*|[ ]*$/g, '')
                     .replace(/</g, '&lt;')
                     .replace(/>/g, '&gt;')
-                    .replace(/v-/g, 'v_')
+                    .replace(/v-/g, 'v\u002d') // - 转 unicode
                     .replace(/^[ ]*|[ ]*$/g, '')
                     .replace(new RegExp('\n' + (new Array(parseInt(uiBs) * 4 + 1).join(' ')), 'g'), '<br>')
                     .replace(/ /g, '&nbsp;')

@@ -160,7 +160,8 @@
                         <Button type="primary" :loading="loading === '1'" style="margin: 0 15px" @click="handleSubmit('formValidateId')">发布</Button>
                     </FormItem>
                 </Form>
-                写个空输入框也不行....@.@
+                <p class="text-danger">我想屏蔽掉浏览器的默认填写密码功能</p>
+                <p class="text-danger">失败了 写个空输入框也不行....@.@</p>
                 <input type="text" />
                 <input type="password" />
             </div>

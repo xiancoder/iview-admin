@@ -57,7 +57,8 @@
                                 <Button type="default" @click="submit">提交文章</Button>
                             </Col>
                             <Col span="12">
-                                <div v-html="text1" class="showDown"> </div>
+                                <!-- <div v-html="text1" class="showDown"> </div> -->
+                                <div id="edituser"> </div>
                             </Col>
                         </Row>
                     </Content>
@@ -67,6 +68,7 @@
     </div>
 </template>
 <script>
+import Vue from 'vue' // 核心
 import converter from '@/plugins/showdown'
 import { success, error } from '@/tools' // 自定义常用工具
 
@@ -92,10 +94,27 @@ export default {
                 this.frm.content = txt
                 success('获取文章')
             })
+        },
+        jump () {
+            alert(123)
         }
     },
     computed: {
-        text1 () { return converter.makeHtml(this.frm.content) }
+        /* text1 () {
+            return converter.makeHtml(this.frm.content)
+        } */
+    },
+    watch : {
+        'frm.content' (to, from) {
+            var MyComponent=Vue.extend({
+                template: '<div>' + converter.makeHtml(to) + '</div>',
+                methods: {
+                    jump: (n) => { this.jump() } // 可以
+                }
+            })
+            var component= new MyComponent().$mount()
+            document.getElementById('edituser').appendChild(component.$el)
+        }
     },
     mounted () {
         this.read()

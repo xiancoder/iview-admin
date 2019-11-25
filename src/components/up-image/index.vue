@@ -65,7 +65,8 @@
                 </div>
             </div>
         </div>
-        <Upload v-show="upShow" class="uploadDiv fl" type="select" ref="upload" :format="['jpg','jpeg','png']" :action="defaultAction" :data="imgType" :on-format-error="errorFormat" :on-success="addImage">
+        <Upload v-show="upShow" class="uploadDiv fl" type="select" ref="upload" :format="['jpg','jpeg','png']" :action="defaultAction"
+            :data="imgType" :on-format-error="errorFormat" :on-success="addImage">
             <Icon class="photoIcon" type="ios-camera" size="50"></Icon>
         </Upload>
         <Modal :footer-hide="true" :closable="false" v-model="bigImage" width="60">

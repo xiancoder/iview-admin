@@ -29,6 +29,7 @@
                         split-panels>
                     </DatePicker>
                 </script>
+                <p class="text-danger">请在pluagin.iview中配置 所有的引入三方脚本以及配置都放置在那里</p>
                 <script type="text/js">
                     // 日期控件 指定 placeholder 和 间隔字符
                     iView.DatePicker.mixins[0].props.placeholder.default = '请输入日期'

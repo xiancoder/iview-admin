@@ -3,7 +3,7 @@
         <div class="blog">
             <div class="blogTitle">评审了一下公司项目代码 列举一下看不下去的写法</div>
             <div class="blogContent" v-highlight>
-                <p>vue入门的门槛很低 即使你只会使用直拳冲拳季节闯荡江湖 但是但是但是</p>
+                <p>vue入门的门槛很低 即使你只会使用直拳冲拳 直接闯荡江湖 但是但是但是</p>
                 <p>查看一下一些同学的练武之路 你就会发现 直拳直拳直拳直拳直拳直拳直拳...</p>
                 <p>虽然可以通关 但留下了冗长冗长冗长的代码壮举</p>
                 <p class="textdanger">因此我建议 适当升级你的武功秘籍 省下大片的代码空间来写注释(本来就应该写)</p>
@@ -39,7 +39,7 @@
                 <script type="text/js">
                     import { XHeader } from 'vux'
                     export default {
-                        components: { // 组件声明
+                        components: { /* 组件声明 */
                             XHeader
                         }
                     }
@@ -48,8 +48,8 @@
                 <p class="textdanger">如下的 arraySwitch 写在vue实例以外 做临时函数来调用 减少污染和误解</p>
                 <script type="text/js">
                     init () { this.info.approverList = list.map(this.arraySwitch) },
-                    arraySwitch (value) { let arr = []; arr.push(value); return arr; }
-                },
+                        arraySwitch (value) { let arr = []; arr.push(value); return arr; }
+                    },
                 </script>
                 <p>易读性 易读性 一眼就能看到我想要的内容叫易读性 这样简单的代码我翻都要翻很久 不爽</p>
                 <script type="text/js">

@@ -6,13 +6,13 @@
                 <h1>修改密码 ~ ~</h1>
             </FormItem>
             <FormItem label="原密码" prop="input1">
-                <Input type="password" v-model="frm.input1" placeholder="请输入原密码" style="width: 450px"/>
+                <Input type="password" v-model="frm.input1" placeholder="请输入原密码" style="width: 250px"/>
             </FormItem>
             <FormItem label="密码" prop="pwd1">
-                <Input type="password" v-model="frm.pwd1" placeholder="请输入密码" style="width: 450px"/>
+                <Input type="password" v-model="frm.pwd1" placeholder="请输入密码" style="width: 250px"/>
             </FormItem>
             <FormItem label="重复密码" prop="pwd2">
-                <Input type="password" v-model="frm.pwd2" placeholder="请输入密码" style="width: 450px"/>
+                <Input type="password" v-model="frm.pwd2" placeholder="请输入密码" style="width: 250px"/>
             </FormItem>
             <FormItem class="ivu-form-submit">
                 <Button type="text" @click="cancel">取消</Button>
@@ -72,7 +72,6 @@ export default {
         }
     },
     mounted () {
-        this.getDataSet()
     }
 }
 </script>

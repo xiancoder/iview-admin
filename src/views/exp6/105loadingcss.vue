@@ -6,6 +6,7 @@
                 <p>spinkit使用CSS3的特性实现多种动画效果，元素移动、放大缩小、翻转、进度条加载效果等等，使用了很多CSS3新的特性。 </p>
                 <p>隐藏动画可以设置<b>opacity: 0</b>或<b>visibility: hidden</b>，此时动画仍在继续， </p>
                 <p>建议将其从DOM中删除，设置<b>display: none</b>或者<b>animation-play-state: paused</b>。</p>
+                <hr />
                 <Row :gutter="16">
                     <Col span="6" class="rowcolbox">
                         <p>动画：Rotat ing plane</p>
@@ -39,23 +40,28 @@
                         <p>动画：Fading circle</p>
                         <div class="spiner-example"> <div class="sk-spinner sk-spinner-fading-circle"> <div class="sk-circle1 sk-circle"></div> <div class="sk-circle2 sk-circle"></div> <div class="sk-circle3 sk-circle"></div> <div class="sk-circle4 sk-circle"></div> <div class="sk-circle5 sk-circle"></div> <div class="sk-circle6 sk-circle"></div> <div class="sk-circle7 sk-circle"></div> <div class="sk-circle8 sk-circle"></div> <div class="sk-circle9 sk-circle"></div> <div class="sk-circle10 sk-circle"></div> <div class="sk-circle11 sk-circle"></div> <div class="sk-circle12 sk-circle"></div> </div> </div>
                     </Col>
-                    <Col span="6" class="rowcolbox">
+                </Row>
+                <hr />
+                <Row :gutter="16">
+                    <Col span="8" class="rowcolbox">
                         <div style="width:300px;height:300px;position:relative" class="loading4432">sowhat</div>
                     </Col>
-                    <Col span="6" class="rowcolbox">
+                    <Col span="8" class="rowcolbox">
                         <div style="width:300px;height:300px;position:relative" class="fullloading44322"><i></i><b></b></div>
                     </Col>
+                    <Col span="8" class="rowcolbox">
+                        <table>
+                            <tr><td><div class="loading-icon perpetuum-mobile"></div></td><td><code>cubic-bezier(0.55, 0.15, 0.45, 0.85)</code></td></tr>
+                            <tr><td><div class="loading-icon impetus"></div></td><td><code>cubic-bezier(0.5, -0.35, 0.5, 1.35)</code></td></tr>
+                            <tr><td><div class="loading-icon full-circle"></div></td><td><code>cubic-bezier(0.6, 0, 0.4, 1)</code></td></tr>
+                            <tr><td><div class="loading-icon gravity"></div></td><td><code>cubic-bezier(0.5, 0.8, 0.5, 0.2)</code></td></tr>
+                            <tr><td><div class="loading-icon overshot"></div></td><td><code>cubic-bezier(0.65, 1.5, 0.6, 0.95)</code></td></tr>
+                            <tr><td><div class="loading-icon downhill"></div></td><td><code>cubic-bezier(0.3, 0.1, 0.3, 0.85)</code></td></tr>
+                            <tr><td><div class="loading-icon pendulum"></div></td><td><code>cubic-bezier(0.3, 1.65, 0.7, -0.65)</code></td></tr>
+                            <tr><td><div class="loading-icon wtf"></div></td><td><code>cubic-bezier(1, -2.3, 1, 2.5)</code></td></tr>
+                        </table>
+                    </Col>
                 </Row>
-                <table>
-                    <tr><td><div class="loading-icon perpetuum-mobile"></div></td><td><code>cubic-bezier(0.55, 0.15, 0.45, 0.85)</code></td></tr>
-                    <tr><td><div class="loading-icon impetus"></div></td><td><code>cubic-bezier(0.5, -0.35, 0.5, 1.35)</code></td></tr>
-                    <tr><td><div class="loading-icon full-circle"></div></td><td><code>cubic-bezier(0.6, 0, 0.4, 1)</code></td></tr>
-                    <tr><td><div class="loading-icon gravity"></div></td><td><code>cubic-bezier(0.5, 0.8, 0.5, 0.2)</code></td></tr>
-                    <tr><td><div class="loading-icon overshot"></div></td><td><code>cubic-bezier(0.65, 1.5, 0.6, 0.95)</code></td></tr>
-                    <tr><td><div class="loading-icon downhill"></div></td><td><code>cubic-bezier(0.3, 0.1, 0.3, 0.85)</code></td></tr>
-                    <tr><td><div class="loading-icon pendulum"></div></td><td><code>cubic-bezier(0.3, 1.65, 0.7, -0.65)</code></td></tr>
-                    <tr><td><div class="loading-icon wtf"></div></td><td><code>cubic-bezier(1, -2.3, 1, 2.5)</code></td></tr>
-                </table>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

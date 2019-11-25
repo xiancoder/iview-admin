@@ -3,24 +3,25 @@
         <div class="blog">
             <div class="blogTitle">发布任务表单</div>
             <div class="blogContent" v-highlight>
-                <script type="text/html">
-                    &lt;div v-for=&quot;alias in expression&quot;&gt; { { alias } }&lt;/div&gt;
-                    &lt;div v-for=&quot;item in items&quot;&gt;{ { item } }&lt;/div&gt;
-                    &lt;div v-for=&quot;(item, index) in items&quot;&gt;{ { item } } { { index } }&lt;/div&gt;
-                    &lt;div v-for=&quot;val in object&quot;&gt;&lt;/div&gt;
-                    &lt;div v-for=&quot;(val, key) in object&quot;&gt;&lt;/div&gt;
-                    &lt;div v-for=&quot;(val, key, index) in object&quot;&gt;&lt;/div&gt;
-                    &lt;div v-for=&quot;itme in items&quot; :key=&quot;item.id&quot;&gt; { { item.text } }&lt;/div&gt;
+                <script type="text/html" v-pre>
+                    <div v-for="alias in expression"> {{ alias }}</div>
+                    <div v-for="item in items">{{ item }}</div>
+                    <div v-for="(item, index) in items">{{ item }} {{ index }}</div>
+                    <div v-for="val in object"></div>
+                    <div v-for="(val, key) in object"></div>
+                    <div v-for="(val, key, index) in object"></div>
+                    <div v-for="itme in items" :key="item.id"> {{ item.text }}</div>
+                    <div v-for="(item, index) in items" :key="'xx'+index"> {{ item }}</div>
                 </script>
                 <hr />
                 <p>封装的组件 应对大量按钮和对应方法表</p>
                 <titleAddBtn :addBtnList="addBtnList" @clkCallBk="listenCall"></titleAddBtn>
-                <script type="text/html">
+                <script type="text/html" v-pre>
                     <titleAddBtn :addBtnList="addBtnList" @clkCallBk="listenCall"></titleAddBtn>
                 </script>
                 <hr />
                 <p>把if,show,for等语句抽取出来放在template上面，把绑定的事件放在temlpate里面的元，可以使html结构更加清晰，还可以改善一个标签过长的情况。</p>
-                <script type="text/html" v-pre>
+                <script type="text/html" v-pre v-pre>
                     <template v-for="(item, index) in listDemo">
                         <Button>测试 {{item.name}}</Button>
                         <Divider type="vertical" />
@@ -38,7 +39,7 @@
                 <p>而template是虚拟节点，不存在复用</p>
                 <p>如果你想要绑定的话，给下面的p和span标签绑定就好，一般只需要给和数据绑定有关的元素绑定key值</p>
                 <hr />
-                <script type="text/html" v-pre>
+                <script type="text/html" v-pre v-pre>
                     <xxx v-for="item in list1.filter(row=>{return row.includes(search)})">
                 </script>
                 <p>

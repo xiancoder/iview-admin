@@ -13,10 +13,22 @@
             </div>
         </div>
         <div class="blog">
-            <div class="blogTitle">Url字符</div>
+            <div class="blogTitle">超文本标记语言</div>
             <div class="blogContent">
                 <p></p>
                 <div><p>URL中一些字符的特殊含义，基本编码规则如下：</p> <p>1、空格换成加号(+)</p> <p>2、正斜杠(/)分隔目录和子目录</p> <p>3、问号(?)分隔URL和查询</p> <p>4、百分号(%)制定特殊字符</p> <p>5、#号指定书签</p> <p>6、&amp;号分隔参数</p> <table><tbody><tr><td>空格 - %20</td> <td>" - %22</td> <td># - %23</td> <td>% - %25</td></tr> <tr><td>&amp; - %26</td> <td>+ - %2B</td> <td>: - %3A</td> <td>= - %3D</td></tr> <tr><td>( - %28</td> <td>, - %2C</td> <td>; - %3B</td> <td>&gt; - %3E</td></tr> <tr><td>) - %29</td> <td>/ - %2F</td> <td>&lt; - %3C</td> <td>? - %3F</td></tr> <tr><td>@ - %40</td> <td>\ - %5C</td> <td>| - %7C</td> <td></td></tr></tbody></table></div>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
+            </div>
+        </div>
+        <div class="blog">
+            <div class="blogTitle">Url字符</div>
+            <div class="blogContent">
+                <p></p>
+                <table><tbody><tr><th><div>显示结果</div> </th><th><div>描述</div> </th><th><div>实体名称</div> </th><th><div>实体编号</div> </th></tr><tr><td></td><td><div>空格</div> </td><td><div>&amp;nbsp;</div> </td><td></td></tr><tr><td><div>&lt;</div> </td><td><div>小于号</div> </td><td><div>&amp;lt;</div> </td><td><div>&lt;</div> </td></tr><tr><td><div>&gt;</div> </td><td><div>大于号</div> </td><td><div>&amp;gt;</div> </td><td><div>&gt;</div> </td></tr><tr><td><div>&amp;</div> </td><td><div>和号</div> </td><td><div>&amp;amp;</div> </td><td><div>&amp;</div> </td></tr><tr><td><div>"</div> </td><td><div>引号</div> </td><td><div>&amp;quot;</div> </td><td><div>"</div> </td></tr><tr><td><div>'</div> </td><td><div>撇号</div> </td><td><div>&amp;apos; (IE不支持)</div> </td><td><div>'</div> </td></tr><tr><td><div>￠</div> </td><td><div>分</div> </td><td><div>&amp;cent;</div> </td><td><div>¢</div> </td></tr><tr><td><div>￡</div> </td><td><div>镑</div> </td><td><div>&amp;pound;</div> </td><td><div>£</div> </td></tr><tr><td><div>￥</div> </td><td><div>日元</div> </td><td><div>&amp;yen;</div> </td><td><div>¥</div> </td></tr><tr><td><div>€</div> </td><td><div>欧元</div> </td><td><div>&amp;euro;</div> </td><td><div>€</div> </td></tr><tr><td><div>§</div> </td><td><div>小节</div> </td><td><div>&amp;sect;</div> </td><td><div>§</div> </td></tr><tr><td><div>©</div> </td><td><div>版权</div> </td><td>&amp;copy;</td><td><div>©</div> </td></tr><tr><td><div>®</div> </td><td><div>注册商标</div> </td><td><div>&amp;reg;</div> </td><td><div>®</div> </td></tr><tr><td>™</td><td><div>商标</div> </td><td><div>&amp;trade;</div> </td><td><div>™</div> </td></tr><tr><td><div>×</div> </td><td><div>乘号</div> </td><td><div>&amp;times;</div> </td><td><div>×</div> </td></tr><tr><td><div>÷</div> </td><td><div>除号</div> </td><td><div>&amp;divide;</div> </td><td><div>÷</div> </td></tr></tbody></table>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

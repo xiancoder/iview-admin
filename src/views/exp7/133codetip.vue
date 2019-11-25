@@ -1,9 +1,8 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle"></div>
+            <div class="blogTitle">书写有多个属性且明显超过80字符的标签</div>
             <div class="blogContent" v-highlight>
-                <p>书写有多个属性且明显超过80字符的标签</p>
                 <p>如果一行不超过80放得下就写一行即使有三四五个属性只要看着不费力就行</p>
                 <script type="text/html">
                     <uib-pagination total-items="obj3.rowcount" ng-model="obj3.page" items-per-page="obj3.pagesize" boundary-links="true">

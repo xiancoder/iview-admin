@@ -1,7 +1,7 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle"></div>
+            <div class="blogTitle">优化弹窗的方式</div>
             <div class="blogContent" v-highlight>
                 <Button @click="model.show1=!model.show1">修改密码::弹框</Button>
             </div>
@@ -17,7 +17,7 @@
     </div>
 </template>
 <script>
-import from1 from './147goodFrom'
+import from1 from './147goodModalFrom'
 
 export default {
     components: {
@@ -36,7 +36,7 @@ export default {
     },
     methods: {
         handleSubmit1 () {
-            alert(123)
+            this.model.show1 = false
         }
     },
     mounted () {

@@ -46,7 +46,7 @@
                         <div><error-store v-if="$config.errorLogStore"/></div>
                         <div>
                             <div class="user-avatar-dropdown">
-                                <Dropdown @on-click="handleClick">
+                                <Dropdown @on-click="handleMenuClick">
                                     <Badge :dot="!!unreadCount">
                                         <Avatar :src="userAvatar">{{ userName.substr(0,1) }}</Avatar>
                                     </Badge>
@@ -73,6 +73,9 @@
                                         </DropdownItem>
                                     </DropdownMenu>
                                 </Dropdown>
+                                <Modal v-model="model.modifyPwd" title="修改密码" :closable="false" :mask-closable="false" footer-hide>
+                                    <modify-pwd @on-submit="modifyPwdSubmit"/>
+                                </Modal>
                             </div>
                         </div>
                     </Row>
@@ -96,15 +99,15 @@
                             <input class="xiangzhaosha-input" type="text" v-model="xiangzhaosha" placeholder="大声地说出我的名砸..你要找啥">
                             <div class="xiangzhaosha-content">
                                 <div v-for="(item) in menuList">
-                                    {{item.title}}&nbsp;|&nbsp;
-                                    <template v-for="(item2) in item.children.filter(row=>{return row.title.includes(xiangzhaosha)})">
+                                    {{item.title}} &nbsp; | &nbsp;
+                                    <template v-for="(item2) in item.children.filter(row=>{return row.title.toLowerCase().includes(xiangzhaosha.toLowerCase())})">
                                         <a :href="'#'+item2.path">{{item2.title}}</a>&nbsp;|&nbsp;
                                     </template>
                                 </div>
                                 <!-- template 里面放Button会导致页面滚动时候卡顿 -->
                             </div>
                         </div>
-                        <img :src="'./logo.xian.png'" style="position: fixed; bottom: 1px; right: 96px; z-index: 1001;">
+                        <img :src="'./logo.xian.png'" class="xianjscode">
                     </div>
                 </Content>
             </Layout>
@@ -143,11 +146,13 @@ import maxLogo from '@/assets/images/logo.gif'
 import '@S/main.less'
 import '@S/util.less'
 
+import modifyPwd from '@V/exp8/147goodModalFrom' // 修改密码框
+
 export default {
     name: 'Main', // 注册为组件时候name可以用来递归自己
     components: {
         SideMenu, TagsNav, FullScreen, ErrorStore, ABackTop,
-        CustomBreadCrumb, qrCode, epopen, LockScreen
+        CustomBreadCrumb, qrCode, epopen, LockScreen, modifyPwd
     },
     data () {
         return {
@@ -157,6 +162,9 @@ export default {
             themeBgColor: '#515a6e', // 主题::主体背景颜色
             themeFgColor: '#fff', // 主题::主体前景颜色
 
+            model: {
+                modifyPwd: false // 修改密码的弹窗
+            },
             theme: {
                 Drawer: false
             },
@@ -181,14 +189,14 @@ export default {
         unreadCount () { return this.$store.state.system.newMessageNum }
     },
     methods: {
-        handleClick (name) {
+        handleMenuClick (name) {
             switch (name) {
                 case 'accountInfo':
                     break
                 case 'message':
                     this.$router.push({name: 'home_message'})
                     break
-                case 'modifyPwd':
+                case 'modifyPwd': this.model.modifyPwd = !this.model.modifyPwd
                     break
                 case 'clear':
                     break
@@ -212,6 +220,9 @@ export default {
         },
         handleCollapsedChange (state) {
             this.$store.dispatch('system/setShrink', !this.collapsed)
+        },
+        modifyPwdSubmit () {
+            this.model.modifyPwd = false
         }
     },
     watch: {
@@ -230,3 +241,6 @@ export default {
     }
 }
 </script>
+<style type="text/css">
+    .xianjscode{position: fixed; bottom: 1px; right: 96px; z-index: 1001;}
+</style>

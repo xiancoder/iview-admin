@@ -193,7 +193,7 @@ export const routerList = [
             {power: '0000', path: '137vue', title: 'vue公共方法'},
             {power: '0000', path: '138globalclick', title: '全局相应点击'},
             {power: '0000', path: '139git', title: '公司GIT管理流程'},
-            {power: '0000', path: '140tabs', title: '实现tabs'}
+            {power: '0000', path: '140tabs', title: '兄弟页面统一tabs'}
         ]
     }),
     makeTwoLevelRoute({
@@ -205,7 +205,9 @@ export const routerList = [
             {power: '0000', path: '144searchInput', title: 'IviewAutoComplete'},
             {power: '0000', path: '145fromparam', title: '表单传参方式'},
             {power: '0000', path: '146copyTxt', title: '复制粘贴文本'},
-            {power: '0000', path: '147goodModal', title: '很好的弹框方式'}
+            {power: '0000', path: '147goodModal', title: '很好的弹框方式'},
+            {power: '0000', path: '148customFrom', title: '组件内外表单校验'},
+            {power: '0000', path: '149dynamicClick', title: '动态绑定事件'}
         ]
     }),
     makeTwoLevelRoute({
