@@ -1,7 +1,7 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">通过npm查看jquery版本</div>
+            <div class="blogTitle">通过npm查看jquery版本 (批量更新package.json中的dependencies依赖到最新版本)</div>
             <div class="blogContent" v-highlight>
                 <p>假设我们需要 jquery ，但是jquery现在有很多版本，我们如何通过npm查看呢？</p>
                 <p class="commend">npm view jquery versions</p>

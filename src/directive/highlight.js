@@ -4,6 +4,7 @@ import hljs from 'highlight.js'
 import axios from 'axios' // http请求库
 // 样式文件,文件里面还有其他样式可供选择
 import 'highlight.js/styles/github.css'
+import './highlight.less'
 export default {
     bind: (el, binding) => {
         const makeDom = () => {

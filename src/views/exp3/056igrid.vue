@@ -9,14 +9,14 @@
         <div class="blog">
             <div class="blogTitle">iview 布局</div>
             <div class="blogContent" v-highlight>
-                <p> xs ≥576px 响应式栅格，可为栅格数或一个包含其他属性的对象  Number | Object  -</p>
-                <p> sm ≥576px 响应式栅格，可为栅格数或一个包含其他属性的对象   Number | Object  -</p>
-                <p> md ≥768px 响应式栅格，可为栅格数或一个包含其他属性的对象   Number | Object  -</p>
-                <p> lg ≥992px 响应式栅格，可为栅格数或一个包含其他属性的对象   Number | Object  -</p>
-                <p> xl ≥1200px 响应式栅格，可为栅格数或一个包含其他属性的对象  Number | Object  -</p>
-                <p> xxl ≥1600px 响应式栅格，可为栅格数或一个包含其他属性的对象   Number | Object  -</p>
                 <Row :gutter="16">
                     <Col :md="12" :lg="12" :xl="12" :xxl="12">
+                        <p> xs ≥576px 响应式栅格，可为栅格数或一个包含其他属性的对象  Number | Object  -</p>
+                        <p> sm ≥576px 响应式栅格，可为栅格数或一个包含其他属性的对象   Number | Object  -</p>
+                        <p> md ≥768px 响应式栅格，可为栅格数或一个包含其他属性的对象   Number | Object  -</p>
+                        <p> lg ≥992px 响应式栅格，可为栅格数或一个包含其他属性的对象   Number | Object  -</p>
+                        <p> xl ≥1200px 响应式栅格，可为栅格数或一个包含其他属性的对象  Number | Object  -</p>
+                        <p> xxl ≥1600px 响应式栅格，可为栅格数或一个包含其他属性的对象   Number | Object  -</p>
                         <Alert show-icon closable> Grid 栅格 可以代替fixed布局 </Alert>
                         <Card>
                             <p slot="title">简单布局 + 间隔</p>
@@ -411,6 +411,7 @@
                                     <Button disabled>Today</Button>
                                     <Button disabled>Tomorrow</Button>
                                 </ButtonGroup>
+                                <br />
                                 <ButtonGroup vertical>
                                     <Button icon="logo-facebook"></Button>
                                     <Button icon="logo-twitter"></Button>

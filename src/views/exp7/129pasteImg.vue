@@ -1,8 +1,9 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">实际工作中如果用的好的话，这就是技术储备</div>
+            <div class="blogTitle">直接从剪贴板获得截图数据 并上传 走展示流程</div>
             <div class="blogContent" v-highlight>
+                <h3>实际工作中如果用的好的话，这就是技术储备</h3>
                 <p>我要尝试一下从网站上，截图或者资料，然后通过拷贝复制粘贴的方式来，在浏览器上实时转换成bc64格式</p>
                 <div ref="insideDomRef" style="min-height: 150px; width: 400px; display: block; background: #FFC107;">
                     <p v-bind="log"></p>
@@ -36,6 +37,57 @@
                 <table class="api"> <thead> <tr> <th align="left">值</th> <th align="left">说明</th> </tr> </thead> <tbody> <tr> <td align="left">text/plain</td> <td align="left">普通字符串</td> </tr> <tr> <td align="left">text/html</td> <td align="left">带有样式的html</td> </tr> <tr> <td align="left">Files</td> <td align="left">文件(例如剪切板中的数据)</td> </tr> </tbody> </table>
                 <p>坑在这里</p>
                 <p>对于图片如果想要获取粘贴的图片进行上传,只有直接右键复制的图片才能识别到,ctrl+c的并不能识别.....</p>
+                <hr />
+                <p>资料来源 https://www.zhangxinxu.com/wordpress/2018/09/ajax-upload-image-from-clipboard/</p>
+                <p>原生代码实现的 流程如下</p>
+                <p>创建一个div 并通过一系列语法 注册一个监听粘贴的方法</p>
+                <script type="text/js">
+                    this.$refs.insideDomRef.addEventListener('paste', (event) => {
+                    })
+                </script>
+                <p>注册好了以后就是从事件中获取到粘贴板中的文件</p>
+                <script type="text/js">
+                    var items = (event.clipboardData || window.clipboardData).items
+                    var file = null
+                    if (items && items.length) {
+                        /* 搜索剪切板items */
+                        for (var i = 0; i &lt; items.length; i++) {
+                            if (items[i].type.indexOf('image') !== -1) {
+                                file = items[i].getAsFile()
+                                break
+                            }
+                        }
+                    } else {
+                        this.log = '当前浏览器不支持'
+                        return
+                    }
+                    if (!file) {
+                        this.log = '粘贴内容非图片'
+                        return
+                    }
+                    // 此时file就是我们的剪切板中的图片对象
+                </script>
+                <p>直接就拿到了file对象 如果需要预览的话 可以执行下面代码</p>
+                <script type="text/js">
+                    var reader = new FileReader()
+                    reader.onload = (event) => {
+                        this.thispic = event.target.result
+                    }
+                    reader.readAsDataURL(file)
+                </script>
+                <p>this.update(file) 自定义的方法可以放外面么 ?????????????</p>
+                <p>使用axios 来提交文件 我对这段代码的理解似乎有问题 待研究</p>
+                <script type="text/js">
+                    let formData = new FormData() /* 创建form对象*/
+                    formData.append('addFile', file) /* 通过append向form对象添加数据*/
+                    const instance = axios.create({
+                        withCredentials: true
+                    })
+                    instance.post('http://127.0.0.1:5002/fileUpload', formData).then(response => {
+                        console.log(response.data)
+                        this.serverpath = response.data.data.path
+                    })
+                </script>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

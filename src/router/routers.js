@@ -168,7 +168,7 @@ export const routerList = [
             {power: '0000', path: '117rule', title: '规范想法'},
             {power: '0000', path: '118state', title: '状态的触发/监听'},
             {power: '0000', path: '119cmd', title: 'Node执行CMD'},
-            {power: '0000', path: '120pginfo', title: 'Node查看包版本'}
+            {power: '0000', path: '120pginfo', title: 'Node批量更新版本'}
         ]
     }),
     makeTwoLevelRoute({
@@ -207,7 +207,11 @@ export const routerList = [
             {power: '0000', path: '146copyTxt', title: '复制粘贴文本'},
             {power: '0000', path: '147goodModal', title: '很好的弹框方式'},
             {power: '0000', path: '148customFrom', title: '组件内外表单校验'},
-            {power: '0000', path: '149dynamicClick', title: '动态绑定事件'}
+            {power: '0000', path: '149dynamicClick', title: '动态绑定事件'},
+            {power: '0000', path: '150jscando', title: 'js权限能做到什么'},
+            {power: '0000', path: '151iframe', title: 'iframe父子页面'},
+            {power: '0000', path: '152websocket', title: 'WebSocket协议'},
+            {power: '0000', path: '153Ipop', title: 'IviewTooltip提示'}
         ]
     }),
     makeTwoLevelRoute({

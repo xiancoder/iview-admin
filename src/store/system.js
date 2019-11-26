@@ -90,8 +90,6 @@ export default {
             const bca = power2BreadCrumb(state.routeList, routeName)
             commit('BREADCRUMBLIST', bca)
         },
-        // setRouteList ({ commit }, a) { commit('ROUTELIST', a) }, // 保存一维路由
-        // setMenuList ({ commit }, a) { commit('MENULIST', a) },  // 保存左边树数据源
         getPowerList ({ commit }) { // 触发读取权限接口
             return new Promise((resolve, reject) => {
                 Api.system.getPowerList().then(powerList => { // 读取权限
@@ -118,12 +116,8 @@ export default {
                             return
                         }
                         num--
-                        if (state.powerList === null) {return}
+                        if (state.menuList === 0) {return}
                         clearInterval(i)
-                        if (state.powerList.length === 0) {
-                            alert('您的权限读取有误, 请联系管理员');
-                            return
-                        }
                         logic()
                     }, 1e3)
                     return
