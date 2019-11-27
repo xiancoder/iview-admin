@@ -2,7 +2,7 @@ import Vue from 'vue' // 核心
 import Router from 'vue-router'
 import { Store } from '@/store' // 自定义状态管理
 import { LoadingBarRun } from '@/tools' // 自定义常用工具
-import { routerList as routes, specialRouterList } from './routers'
+import { routerList as routes, specialRouterList, mainRouterList } from './routers'
 import Config from '@/config' // 自定义配置
 
 Vue.use(Router)
@@ -83,44 +83,72 @@ export const power2BreadCrumb = (routeList, routeName) => {
 
 router.beforeEach((to, from, next) => {
     console.info('仙', '准备跳转', to)
-    if (Store.state.system.doNotDrawRouter) { return } // 回退再前进 之间的页面不做渲染
-    LoadingBarRun(true) // 顶部进度条
-    Store.dispatch('system/setBreadCrumbList', to.name) // 左侧树数据源
-    Store.dispatch('system/routeSpin', true) // 路由视图loading
-    // 滚动条位置
-    // 放弃 有更好的方法 路由提供了 scrollBehavior 钩子
-    // 不再放弃 钩子有问题
-    try {
-        const scroller = document.getElementById('mainScrollFlag')
-        if (scroller) scroller.scrollTo(0, 0)
-    } catch (e) {
-        console.error('IE不支持scrollTo')
+
+    if (Store.state.system.doNotDrawRouter) { // 回退再前进 之间的页面不做渲染
+        console.info('仙', '准备跳转', '历史记录管理')
+        return
     }
-    // 路由keepAlive管理
-    Store.dispatch('system/keepalive', to.name) // 左侧树数据源
+
+    LoadingBarRun(true) // 顶部进度条
+
     const isLocked = Store.state.system.locking
     const goLocking = ['locking'].includes(to.name)
-    if (isLocked && !goLocking) { // 锁定状态不允许去其他页面
+    if (isLocked && !goLocking) {
+        console.info('仙', '准备跳转', '锁定状态不允许去其他页面')
         return next({ replace: true, name: 'locking' })
     }
-    if (!isLocked && goLocking) { // 非锁定状态不允许去锁定页面
-        return next(false) // 中止一切 复原url
-    }
+
     const isLogined = Store.getters['system/access']
     const goLogin = ['login'].includes(to.name)
-    if (!isLogined && !goLogin) { // 未登录状态不允许去其他页面
+    if (!isLogined && !goLogin) {
+        console.info('仙', '准备跳转', '未登录状态不允许去其他页面')
         return next({ replace: true, name: 'login' })
     }
-    if (isLogined && goLogin) { // 登录状态不允许去注册登录页
-        return next({ replace: true, name: Config.homeName })
-    }
-    if (specialRouterList.includes(to.name)) { // 默认页面不走鉴权
+
+    if (specialRouterList.includes(to.name)) {
+        console.info('仙', '准备跳转', '特殊页面 不走鉴权')
         return next()
     }
+
+    Store.dispatch('system/setBreadCrumbList', to.name) // 左侧树数据源
+    Store.dispatch('system/routeSpin', true) // 路由视图loading
+
+    if (mainRouterList.includes(to.name)) {
+        console.info('仙', '准备跳转', '默认首页 不走鉴权')
+        return next()
+    }
+
+    const goPowerPage = () => { // 权限页面的判断
+        Store.dispatch('system/keepalive', to.name) // 路由keepAlive管理 当前页缓存
+
+        if (!isLocked && goLocking) {
+            console.info('仙', '准备跳转', '非锁定状态不允许去锁定页面')
+            return next(false) // 中止一切 复原url
+        }
+
+        if (isLogined && goLogin) {
+            console.info('仙', '准备跳转', '登录状态不允许去注册登录页')
+            return next({ replace: true, name: Config.homeName })
+        }
+
+        // 滚动条位置
+        // 放弃 有更好的方法 路由提供了 scrollBehavior 钩子
+        // 不再放弃 钩子有问题
+        try {
+            const scroller = document.getElementById('mainScrollFlag')
+            if (scroller) scroller.scrollTo(0, 0)
+        } catch (e) {
+            console.error('IE不支持scrollTo')
+        }
+
+        console.info('仙', '准备跳转', '跳转成功')
+        next() // 进入页面
+    }
+
     Store.dispatch('system/hasPower', to.name).then((bool) => { // 鉴权
-        console.info('仙', '鉴权页面', bool)
+        console.info('仙', '准备跳转', '鉴权页面', bool ? '有权限' : '无权限')
         if (!bool) { return next({name: 'error403'}) }
-        next()
+        goPowerPage()
     })
 })
 

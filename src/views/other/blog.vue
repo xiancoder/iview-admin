@@ -104,15 +104,15 @@ export default {
             return converter.makeHtml(this.frm.content)
         } */
     },
-    watch : {
+    watch: {
         'frm.content' (to, from) {
-            var MyComponent=Vue.extend({
+            var MyComponent = Vue.extend({
                 template: '<div>' + converter.makeHtml(to) + '</div>',
                 methods: {
                     jump: (n) => { this.jump() } // 可以
                 }
             })
-            var component= new MyComponent().$mount()
+            var component = new MyComponent().$mount()
             document.getElementById('edituser').appendChild(component.$el)
         }
     },

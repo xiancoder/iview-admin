@@ -13,7 +13,7 @@ export default {
         breadCrumbList: [], // 面包屑内容数组 实时解析路由 首页-一级路由-二级路由
         routeList: [], // 一维化列表 所有的路由信息 主要是使用权限 名称
         menuList: [], // 左边树形目录列表(已经过滤) 所有的有权限路由列表
-        powerList: null, // 权限列表 请求后台得到的页面权限列表 todo 似乎没有保存的必要???
+        powerList: [], // 权限列表 请求后台得到的页面权限列表 todo 似乎没有保存的必要???
         tagNavList: [], // 历史记录tab列表
 
         userAvatorPath: '', // 管理员头像
@@ -108,21 +108,19 @@ export default {
                     resolve(routeInfo.power)
                 }
                 let num = 10
-                if (state.menuList.length === 0) {
-                    const i = setInterval(() => {
-                        if (num < 0) {
-                            clearInterval(i);
-                            alert('网络请求失败, 请刷新页面再试');
-                            return
-                        }
-                        num--
-                        if (state.menuList === 0) {return}
-                        clearInterval(i)
-                        logic()
-                    }, 1e3)
-                    return
+                const loop = () => {
+                    if (num < 0) {
+                        clearInterval(i);
+                        alert('网络请求失败, 请刷新页面再试');
+                        return
+                    }
+                    num--
+                    if (state.powerList.length === 0) {return}
+                    clearInterval(i)
+                    logic()
                 }
-                logic()
+                const i = setInterval(loop, 1e3)
+                loop()
             })
         },
         setTagNavList ({ commit }, a) { commit('TAGNAVLIST', a) }, // 历史记录列表

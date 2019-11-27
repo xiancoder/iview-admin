@@ -4,6 +4,9 @@ import MarkDown from '@V/markDown'
 import { makeTwoLevelRoute, makeOneLevelRoute } from './util'
 
 export const specialRouterList = ['error403', 'error404', 'error500', 'login', 'locking', 'phone']
+
+export const mainRouterList = ['home_index']
+
 // 路由视图文件名必须和路由名字路径一致 方便查找定位
 export const routerList = [
     {path: '/', redirect: '/home/index'}, // 默认路由视图

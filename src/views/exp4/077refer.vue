@@ -13,8 +13,7 @@
                 </script>
                 <p>点击测试一下 <a href="https://www.baidu.com" target="_new" class="btn-link">https://www.baidu.com</a> 使用控制台 document.referrer 看效果 <span class="text-success">测试有效</span></p>
                 <hr />
-                <p>2 可以去除 </p>
-                <p>3 可以伪造 </p>
+                <p>2 可以伪造 ??? </p>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

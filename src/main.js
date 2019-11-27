@@ -46,10 +46,8 @@ new Vue({ // 实例化
         // 在实例初始化之后，数据观测(data observer
         // 开始监控Data对象数据变化)和初始化事件(init event，Vue内部初始化事件)之前被调用
         const isLogined = Store.getters['system/access']
-        console.info('仙', '读取登录标识', isLogined)
-        if (!isLogined) {
-            Store.dispatch('system/gologin') // 进入登录页
-        } else {
+        if (isLogined) { // 未登录的话由路由负责判断并进入登录页
+            console.info('仙', '用户已经登陆')
             Store.dispatch('system/getUserInfo') // 获取用户信息
             Store.dispatch('system/getNewMessageNum') // 获取未读最新消息
             Store.dispatch('system/getPowerList') // 读取权限 更新权限视图
