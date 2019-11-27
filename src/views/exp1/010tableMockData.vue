@@ -4,7 +4,8 @@
         <div class="blog">
             <div class="blogTitle">MockJs 假数据生产专家</div>
             <div class="blogContent" v-highlight>
-                <h4><a href="http://mockjs.com/examples.html#Random\.id\(\)">http://mockjs.com/examples.html#Random\.id\(\)</a></h4>
+                <p><Icon type="md-close" style="color:red"/> 2019年11月27日17:46:54 实际引用不上 </p>
+                <p>详细文档 : <a href="http://mockjs.com/examples.html#Random\.id\(\)">http://mockjs.com/examples.html#Random\.id\(\)</a></p>
                 <script type="text/html">
                     Mock.mock({
                         "string|1-10": "★1" // 字符串 随机1-10个文本 ★1★1
@@ -198,22 +199,6 @@ export default {
             return new Promise((resolve, reject) => {
                 console.log('读取规范表格', '参数', param)
                 const Random = Mock.Random
-                /*
-                    'Boolean': Random.boolean, // 可以生成基本数据类型
-                    'Natural': Random.natural(1, 10), // 生成1到100之间自然数
-                    'Integer': Random.integer(1, 100), // 生成1到100之间的整数
-                    'Float': Random.float(0, 100, 0, 5), // 生成0到100之间的浮点数,小数点后尾数为0到5位
-                    'Character': Random.character(), // 生成随机字符串,可加参数定义规则
-                    'String': Random.string(2, 10), // 生成2到10个字符之间的字符串
-                    'Range': Random.range(0, 10, 2), // 生成一个随机数组
-                    'Date': Random.date(), // 生成一个随机日期,可加参数定义日期格式
-                    'Image': Random.image(Random.size, '#02adea', 'Hello'), // Random.size表示将从size数据中任选一个数据
-                    'Color': Random.color(), // 生成一个颜色随机值
-                    'Paragraph':Random.paragraph(2, 5), //生成2至5个句子的文本
-                    'Name': Random.name(), // 生成姓名
-                    'Url': Random.url(), // 生成web地址
-                    'Address': Random.province() // 生成地址
-                */
                 const list = []
                 for (let i = 0; i < 10; i++) { // 可自定义生成的个数
                     let template = {
@@ -255,15 +240,9 @@ export default {
         deleteMoney () {
         },
         statusChange (s) {
-            if (s === 0) {
-                return '未认领'
-            }
-            if (s === 1) {
-                return '部分认领'
-            }
-            if (s === 2) {
-                return '已认领'
-            }
+            if (s === 0) { return '未认领' }
+            if (s === 1) { return '部分认领' }
+            if (s === 2) { return '已认领' }
             return '异常'
         }
     },

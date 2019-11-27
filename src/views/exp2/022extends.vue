@@ -3,6 +3,7 @@
         <div class="blog">
             <div class="blogTitle">组件的extends继承</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 相比mixin 这种方式更好更随意 大力推广</p>
                 <script type="text/js" v-pre>
                     import Vue from 'vue' // 核心
                     const compoent = {

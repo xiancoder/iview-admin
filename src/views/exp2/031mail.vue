@@ -3,12 +3,16 @@
         <div class="blog">
             <div class="blogTitle">js 可以搞 Email邮箱 么???</div>
             <div class="blogContent" v-highlight>
-                <p>在前端开发中，JavaScript并没有提供直接操作Email邮箱的功能方法，但是遇到这样的需求，我们应该如何实现js发送邮件至指定邮箱功能呢？下面列举能够在通过前端实现邮件发送的几种方式：</p>
+                <p><Icon type="md-close" style="color:red"/> JS 没有独立调用发邮件权限 此类问题不再深入</p>
+                <hr />
+                <p>在前端开发中，JavaScript并没有提供直接操作Email邮箱的功能方法，但是遇到这样的需求，我们应该如何实现js发送邮件至指定邮箱功能呢？</p>
+                <p>下面列举能够在通过前端实现邮件发送的几种方式：</p>
                 <p>方式一：利用a标签的href属性(深链接)</p>
                 <script type="text/js" v-pre>
                     <a href="mailto:sample@fly63.com?subject=test&cc=sample@hotmail.com&subject=主题&body=内容">send mail</a>
                 </script>
-                <p>这种方式需要客户端安装有邮件客户端软件，比如 Foxmail,Outlook,YoMail之类的，mailto等于就是调用本机的邮件客户端，来进行发送邮件。记得需要配置邮箱的户手工配POP3和SMTP哦!!</p>
+                <p>这种方式需要客户端安装有邮件客户端软件，比如 Foxmail,Outlook,YoMail之类的，mailto等于就是调用本机的邮件客户端，来进行发送邮件。</p>
+                <p>记得需要配置邮箱的户手工配POP3和SMTP哦!!</p>
                 <p>方式二：利用js中location</p>
                 <script type="text/js" v-pre>
                     window.location="mailto:sample@fly63.com?subject=test&cc=sample@hotmail.com&subject=主题&body=内容";
@@ -32,7 +36,8 @@
                 </script>
                 <p>方式五： 使用node的emailjs</p>
                 <p>方式六： 使用jMail 第三方邮件操作组件 (服务器组件)</p>
-                <h1>综上 没有办法使用纯js实现发送邮件功能</h1>
+                <hr />
+                <h1 class="text-danger">综上 没有办法使用纯js实现发送邮件功能</h1>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

@@ -1,7 +1,7 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle"></div>
+            <div class="blogTitle">iview 提供的 头像</div>
             <div class="blogContent" v-highlight>
                 <div class="demo-avatar">
                     <Avatar icon="ios-person" size="large" />

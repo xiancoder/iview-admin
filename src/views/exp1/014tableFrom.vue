@@ -4,8 +4,13 @@
             <div class="blog">
                 <div class="blogTitle">表格 弹窗表单</div>
                 <div class="blogContent" v-highlight>
-                    <p>1 请将弹窗表单中的表单作为组件引入 而非直接在本页面中编写 (杜绝又臭又长)</p>
-                    <p></p>
+                    <p><Icon type="md-checkmark" style="color:red"/> 请将弹窗表单中的表单作为组件引入 而非直接在本页面中编写 (杜绝又臭又长)</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 2019年11月27日18:07:07 更新 如果逻辑复杂超过两三个输入框 最好独立出来</p>
+                    <script type="text/html">
+                        <Modal v-model="model.show1" title="下线" :closable="false" :mask-closable="false" footer-hide>
+                            <from1 :startDate="startDate" @on-submit="handleSubmit1"/>
+                        </Modal>
+                    </script>
                 </div>
                 <div class="blogFooter">
                     <Tag color="green">收集</Tag>

@@ -3,7 +3,8 @@
         <div class="blog">
             <div class="blogTitle">eslint 怎么限制只在src目录下工作？</div>
             <div class="blogContent" v-highlight>
-                <p>.eslintignore了解一下</p>
+                <p><Icon type="md-checkmark" style="color:green"/> 2019年11月27日17:21:10 亲测有效</p>
+                <p>默认生产的文件.eslintignore了解一下</p>
                 <script type="text/html">
                     .eslintignore
                     **/*.js

@@ -22,7 +22,7 @@
                         -webkit-flex-direction: row-reverse; /* Safari 6.1+ */
                     }
                 </script>
-                <Row style="width:900px">
+                <Row style="width:100%;max-width:900px">
                     <Col span="6" class="box box11">
                         <div class="item red"></div>
                         <div class="item yellow"></div>
@@ -54,7 +54,7 @@
                         -webkit-flex-wrap: wrap; /* Safari 6.1+ */
                     }
                 </script>
-                <Row style="width:900px">
+                <Row style="width:100%;max-width:900px">
                     <Col span="8">
                         <div class="box box21">
                             <div class="item red"></div>
@@ -96,7 +96,7 @@
                         -webkit-justify-content: space-around; /* Safari 6.1+ */
                     }
                 </script>
-                <Row style="width:900px">
+                <Row style="width:100%;max-width:900px">
                     <Col span="24" class="box box31">
                         <div class="item red"></div>
                         <div class="item blue"></div>
@@ -145,7 +145,7 @@
                         -webkit-align-items: center; /* Safari 7.0+ */
                     }
                 </script>
-                <Row style="width:900px">
+                <Row style="width:100%;max-width:900px">
                     <Col span="6" class="box box41">
                         <div class="item red"></div>
                         <div class="item yellow" style="height:100px"></div>
@@ -183,7 +183,7 @@
                         -webkit-align-content: center; /* Safari 7.0+ */
                     }
                 </script>
-                <Row style="width:900px">
+                <Row style="width:100%;max-width:900px">
                     <Col span="4" class=" box box51">
                         <div class="item red"></div>
                         <div class="item yellow"></div>

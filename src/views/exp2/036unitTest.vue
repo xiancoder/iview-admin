@@ -1,12 +1,12 @@
 <template>
-    <div class="blogCss">
-        <div class="blog">
-            <div class="blogTitle">路由跳转的单元测试例</div>
-            <div class="blogContent router">
-                <app-button size="lg" @click="goVIPs">跳转到exp2_029unitTest页面</app-button>
-                <input type="text" value="3333">
-            </div>
-        </div>
+    <div style="padding:20px;">
+        <h3>路由跳转的单元测试用例</h3>
+        <br /> <hr /> <br />
+        <p><Icon type="md-checkmark" style="color:green"/> 有效 可行 代码见test文件夹中</p>
+        <br /> <hr /> <br />
+        <app-button size="lg" @click="goVIPs">跳转 this.$router.push({ name: 'exp2_035unitTest' }) </app-button>
+        <br /> <br /> <hr /> <br />
+        <input type="text" value="3333">
     </div>
 </template>
 <script>
@@ -18,7 +18,7 @@ export default {
     },
     methods: {
         goVIPs () {
-            this.$router.push({ name: 'exp2_029unitTest' })
+            this.$router.push({ name: 'exp2_035unitTest' })
         }
     },
     mounted () {

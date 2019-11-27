@@ -1,7 +1,7 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">Radio单选</div>
+            <div class="blogTitle">i-switch 开关标记</div>
             <div class="blogContent" v-highlight>
                 <Alert type="warning" show-icon>注意：没有使用 iview-loader 时，必须使用 i-switch 标签。</Alert>
                 <div>

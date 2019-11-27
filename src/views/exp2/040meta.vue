@@ -32,12 +32,14 @@
                 <hr />
                 <p>详情可查看：<a href="http://www.cnblogs.com/lovesong/p/4355029.html">http://www.cnblogs.com/lovesong/p/4355029.html</a></p>
                 <p>用来告诉搜索机器人哪些页面需要索引，哪些页面不需要索引。</p>
-                <p>all：文件将被检索，且页面上的链接可以被查询，默认；</p>
-                <p>none：文件将不被检索，且页面上的链接不可以被查询；</p>
-                <p>index：文件将被检索；</p>
-                <p>follow：页面上的链接可以被查询；</p>
-                <p>noindex：文件将不被检索，但页面上的链接可以被查询；</p>
-                <p>nofollow：文件将不被检索，页面上的链接可以被查询。</p>
+                <ul>
+                    <li>all：文件将被检索，且页面上的链接可以被查询，默认；</li>
+                    <li>none：文件将不被检索，且页面上的链接不可以被查询；</li>
+                    <li>index：文件将被检索；</li>
+                    <li>follow：页面上的链接可以被查询；</li>
+                    <li>noindex：文件将不被检索，但页面上的链接可以被查询；</li>
+                    <li>nofollow：文件将不被检索，页面上的链接可以被查询。</li>
+                </ul>
                 <script type="text/html">
                     <meta name="参数"content="具体的描述">
                 </script>
@@ -77,10 +79,12 @@
                 </script>
                 <hr />
                 <p>设定页面使用的字符集</p>
-                <p>GB2312时，代表说明网站是采用的编码是简体中文；</p>
-                <p>ISO-8859-1时，代表说明网站是采用的编码是英文；</p>
-                <p>UTF-8时，代表世界通用的语言编码；</p>
-                <p>PS：html5页面的做法是直接使用&lt;meta charset="utf-8"/&gt;</p>
+                <ul>
+                    <li>GB2312时，代表说明网站是采用的编码是简体中文；</li>
+                    <li>ISO-8859-1时，代表说明网站是采用的编码是英文；</li>
+                    <li>UTF-8时，代表世界通用的语言编码；</li>
+                    <li>PS：html5页面的做法是直接使用&lt;meta charset="utf-8"/&gt;</li>
+                </ul>
                 <script type="text/html">
                     <meta http-equiv="content-Type" content="text/html; charset=utf-8">
                     <meta charset="UTF-8">
@@ -101,13 +105,15 @@
                 </script>
                 <hr />
                 <p>缓存机制</p>
-                <p>Public：指示响应可被任何缓存区缓存。</p>
-                <p>Private：指示对于单个用户的整个或部分响应消息，不能被共享缓存处理。这允许服务器仅仅描述当用户的部分响应消息，此响应消息对于其他用户的请求无效。</p>
-                <p>no-cache：指示请求或响应消息不能缓存。</p>
-                <p>no-store：用于防止重要的信息被无意的发布。在请求消息中发送将使得请求和响应消息都不使用缓存。</p>
-                <p>max-age：指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应。</p>
-                <p>min-fresh：指示客户机可以接收响应时间小于当前时间加上指定时间的响应。</p>
-                <p>max-stale：指示客户机可以接收超出超时期间的响应消息。如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息。</p>
+                <ul>
+                    <li>Public：指示响应可被任何缓存区缓存。</li>
+                    <li>Private：指示对于单个用户的整个或部分响应消息，不能被共享缓存处理。这允许服务器仅仅描述当用户的部分响应消息，此响应消息对于其他用户的请求无效。</li>
+                    <li>no-cache：指示请求或响应消息不能缓存。</li>
+                    <li>no-store：用于防止重要的信息被无意的发布。在请求消息中发送将使得请求和响应消息都不使用缓存。</li>
+                    <li>max-age：指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应。</li>
+                    <li>min-fresh：指示客户机可以接收响应时间小于当前时间加上指定时间的响应。</li>
+                    <li>max-stale：指示客户机可以接收超出超时期间的响应消息。如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息。</li>
+                </ul>
                 <script type="text/html">
                     <meta http-equiv="cache-control" content="no-cache">
                 </script>
@@ -142,10 +148,12 @@
                 </script>
                 <hr />
                 <p>清掉 referrer 即从本页面跳转的链接都不携带来源</p>
-                <p>如果 referer-policy的值为never：删除http head中的referer；</p>
-                <p>如果 referer-policy的值为default：如果当前页面使用的是https协议，而正要加载资源使用的是普通的http协议，则将http header中额referer置为空；</p>
-                <p>如果 referer-policy的值origin：只发送origin部分；</p>
-                <p>如果 referer-policy的值为always：不改变http header中的referer的值；</p>
+                <ul>
+                    <li>如果 referer-policy的值为never：删除http head中的referer；</li>
+                    <li>如果 referer-policy的值为default：如果当前页面使用的是https协议，而正要加载资源使用的是普通的http协议，则将http header中额referer置为空；</li>
+                    <li>如果 referer-policy的值origin：只发送origin部分；</li>
+                    <li>如果 referer-policy的值为always：不改变http header中的referer的值；</li>
+                </ul>
                 <script type="text/html">
                     <meta name="referrer" content="never">
                 </script>

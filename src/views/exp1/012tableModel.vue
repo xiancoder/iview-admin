@@ -2,11 +2,10 @@
     <div>
         <div class="blogCss">
             <div class="blog">
-                <div class="blogTitle">表格页弹框使用规范</div>
+                <div class="blogTitle">表格页弹框 最最最好不要在想 需要时候new一个 方式</div>
                 <div class="blogContent" v-highlight>
-                    <p>1 js控制弹出结束 一次性使用 其包含几种方式</p>
-                    <p>1 - 1 提示 / 错误 / 成功 / 警告 暂时不知道用在哪里 因为有一个确认的操作</p>
-                    <p>1 - 2 确认提示框</p>
+                    <p><Icon type="md-close" style="color:red"/> 思路本身就错了 这种类似jq的先定位在操作的思想</p>
+                    <p><Icon type="md-close" style="color:red"/> 2019年11月27日17:52:11 确认 不再这样想 所有的提示使用公共tool 所有的弹框单独编写</p>
                     <script type="text/js">
                         this.$Modal.confirm({
                             title: '核对考勤',
@@ -27,6 +26,7 @@
                     <p>作者：柳家忍</p>
                     <p>这道题我要强答一下，虽然 尤雨溪 大神说得非常在理，但是异步加载模态框也很一种很常见的需求，毕竟页面初次渲染的时候模态框部分的资源加载没有啥意义，因为操作完页面都可能用不到模态框，而如果模态框的内容比较重就造成请求资源的浪费了。（或许有时候我们该忽略这种浪费？）</p>
                     <p>作者：骗你是小猫咪</p>
+                        <hr />
                     <p>项目用到了大量的modal，正在考虑……主要思路：</p>
                     <p>1. 一个vue文件就是一个modal</p>
                     <p>2. modal可以复用（显示的文字可以通过参数来决定）</p>

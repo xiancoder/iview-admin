@@ -2,10 +2,10 @@
     <div>
         <div class="blogCss">
             <div class="blog">
-                <div class="blogTitle">表格 总计一列</div>
+                <div class="blogTitle">表格 总计信息列</div>
                 <div class="blogContent" v-highlight>
-                    <p>1 4.0.0出的新功能 似乎不是很好使 </p>
-                    <p>2 注册自定义数据格式 需求格式长的丑 </p>
+                    <p><Icon type="md-close" style="color:red"/> 4.0.0出的新功能 需求格式长的丑</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 满足需求 需要额外方法来整理数据</p>
                     <script type="text/html">
                         <Table border :loading="yunxiTable.loading" :columns="yunxiTable.columns"
                             :data="yunxiTable.tableData"

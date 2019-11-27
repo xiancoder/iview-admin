@@ -19,7 +19,7 @@ iView.Table.props.maxHeight.default = function () {
 }
 // =====================================================================
 // 消息通知的位置
-iView.Notice.config({ top: 120, duration: 10 });
+iView.Notice.config({ top: 70, duration: 10 });
 // =====================================================================
 Vue.use(iView)
 export default iView

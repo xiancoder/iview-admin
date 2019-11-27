@@ -17,6 +17,8 @@
                 <div>
                     点击icon可触发on-click事件 icon 在前
                     <Input prefix="ios-clock-outline" v-model="value" placeholder="Enter something..." style="width: 200px" />
+                </div>
+                <div>
                     点击icon可触发on-click事件 icon 在后
                     <Input suffix="ios-clock-outline" v-model="value" placeholder="Enter something..." style="width: 200px" />
                 </div>
@@ -27,36 +29,50 @@
                 <div>
                     搜索型输入框 search
                     <Input search placeholder="Enter something..." style="width: 200px" />
+                </div>
+                <div>
                     普通输入框最后渲染的是 行内元素DIV 但是携带先后装饰的没有此类效果
                     <Input search enter-button placeholder="Enter something..." style="width: 200px" />
                     <Input search enter-button="Search" placeholder="Enter something..." style="width: 200px" />
                 </div>
                 <div>
                     输入框禁止输入 disabled
-                    <Input v-model="value5" disabledplaceholder="Enter something..." style="width: 200px" />
+                    <Input v-model="value5" disabled placeholder="Enter something..." style="width: 200px" />
                 </div>
                 <div>
-                    <Input v-model="value5" type="textarea" placeholder="Enter something..." style="width: 200px" />
+                    <Input v-model="value5" type="textarea" :rows="4" placeholder="Enter something..." style="width: 200px" />
                 </div>
                 <div>
-                    <Input v-model="value6" type="textarea" :rows="4" placeholder="Enter something..." style="width: 200px" />
+                    适应文本高度的文本域 autosize
+                    <Input v-model="value6" type="textarea" :autosize="{minRows: 3,maxRows: 5}" placeholder="Enter something..." style="width: 200px" />
                 </div>
-                <div>
-                    <p>适应文本高度的文本域 autosize</p>
-                    <Input v-model="value5" :autosize="true" placeholder="Enter something..." style="width: 200px" />
-                </div>
+                <script type="text/html">
+                    <Input v-model="value6" type="textarea" :autosize="{minRows: 3,maxRows: 5}" placeholder="Enter something..." style="width: 200px" />
+                </script>
                 <div>
                     <Input v-model="value6" style="width: 200px">
                         <span slot="prepend">http://</span>
                         <span slot="append">.com</span>
                     </Input>
                 </div>
+                <script type="text/html">
+                    <Input v-model="value6" style="width: 200px">
+                        <span slot="prepend">http://</span>
+                        <span slot="append">.com</span>
+                    </Input>
+                </script>
                 <div>
                     <Poptip trigger="focus">
                         <Input v-model="value15" prefix="logo-usd" placeholder="Enter number" style="width: 120px" />
                         <div slot="content">{{ formatNumber }}</div>
                     </Poptip>
                 </div>
+                <script type="text/html">
+                    <Poptip trigger="focus">
+                        <Input v-model="value15" prefix="logo-usd" placeholder="Enter number" style="width: 120px" />
+                        <div slot="content">{{ formatNumber }}</div>
+                    </Poptip>
+                </script>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

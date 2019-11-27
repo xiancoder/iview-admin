@@ -2,39 +2,23 @@
     <div>
         <div class="blogCss">
             <div class="blog">
-                <div class="blogTitle">表格页 搜索/排序/分页/操作 的交叉影响</div>
+                <div class="blogTitle">表格 超级重复代码的 集中化管理</div>
                 <div class="blogContent" v-highlight>
-                    <p>1 初始化的时候 给表面搜索项深拷贝两份 <font color="red">一个是实际搜索项 一个是备份 </font></p>
-                    <p>2 用户点击搜索按钮时候 <font color="red">表面搜索项拷贝给实际搜索项</font> 排序内容不变 分页置为1 刷新页面 </p>
-                    <p>3 用户点击排序按钮时候 <font color="red">表面搜索项拷贝给实际搜索项</font> 分页置为1 刷新页面 </p>
-                    <p>4 用户点击操作按钮例如导出时候 <font color="red">表面搜索项拷贝给实际搜索项</font> 排序内容不变 不关分页 刷新页面 </p>
-                    <p>5 用户点击分页时候 <font color="red">实际搜索项拷贝给表面搜索项</font> 刷新页面 </p>
-                    <p>6 本来想直接在data声明一个大对象来处理所有表格相关的内容和方法 似乎作用域不支持这样做 this在对象声明时候就绑定了</p>
-                    <p>6 即 ()=>{} 可以是this绑定在外 但是如果{}对象中使用 其对象就是this</p>
-                    <p>1 能用箭头函数的/杜绝使用<b>var me = this</b></p>
-                    <p>2 写HTML时候属性超过3个的话/建议换行/每行3个属性/其中if for 指令提前</p>
-                    <p>3 精简所有用到的组件 为模板化配凑做准备</p>
-                    <p>4 公共部分拆分 mixin注入式继承</p>
-                    <p>5 尝试使用页面生成</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 流程已完善 </p>
+                    <p><Icon type="md-close" style="color:red"/> 2019年11月27日17:39:40 屏弃超重复代码集中化的思想</p>
+                    <p><Icon type="md-close" style="color:red"/> 2019年11月27日17:39:40 此尝试不应用于实际的表格</p>
                     <hr>
                     <p>我的想法是 各个模块的逻辑都大同小异</p>
                     <p>表格(搜索/排序/分页) 按钮(ajax下发/跳转) 表单(校验/转换格式/提交/跳转)</p>
                     <p>本来是挺简单的一套逻辑 或者叫 一系列功能</p>
                     <p>菜鸟的行为是 反正方法声明简单 不开eslint没人管 我随便起名 随便放 能执行就行</p>
                     <p>我擦擦擦擦 苦的是后期维护的人和接手的人</p>
-                    <p>因此 我在这里定义一套 [[约定俗成的编码规则]] 要求和我合作的人必须遵守或者改进</p>
-                    <p class="text-danger">1 本规范定义与2019年10月19日 第一版本 如和旧版本冲突默认遵守本版本</p>
-                    <p class="text-danger">2 因为有了mode编译压缩 所有变量/方法/临时方法 必须写注释</p>
-                    <p class="text-danger">3 vue编程templete必须放第一位 方便第一眼看出来这是什么页面</p>
-                    <p class="text-danger">3 vue编程script必须放第二位 其vue各个属性按照eslint规律排列</p>
-                    <p class="text-danger">3 vue编程style必须放第三位 必须scoped 其样式模块化 零散样式进入样式库</p>
-                    <p class="text-danger">4 vue编程tab必须抽取组件</p>
-                    <p class="text-danger">5 编码风格因人而异 不再强求 但要保证第一要点 易读</p>
-                    <p class="text-danger">5 易读的描述 缩进必须严谨 能一行写就一行 不要太长 多写注释</p>
-                    <p class="text-danger">6 所有的绑定事件触发的函数统一 hendleXxxx命名 按堆排放</p>
-                    <p class="text-danger">6 所有的绑定变量按堆排放 例如表格变量都放在obj中</p>
-                    <p class="text-danger"></p>
-                    <p></p>
+                    <script type="text/js">
+                        import mixin from './009mixin'
+                        export default {
+                            mixins: [mixin],
+                        }
+                    </script>
                 </div>
                 <div class="blogFooter">
                     <Tag color="green">收集</Tag>

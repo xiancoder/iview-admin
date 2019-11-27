@@ -1,14 +1,16 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">ESLint 规则 以及 习惯</div>
+            <div class="blogTitle">ESLint 我的习惯</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 非常有效 各项目基本都是随插随用</p>
                 <p>配置文件在项目根目录里，文件名以 .eslintrc.* 为名。</p>
                 <p>如果想保留eslint的语法检测，那就把不符合自己习惯的规则去掉吧。</p>
-                <p>配置文件在项目根目录里，文件名以 .eslintrc.* 为名。</p>
-                <p>"off"或者0 // 关闭规则关闭</p>
-                <p>"warn"或者1 // 在打开的规则作为警告（不影响退出代码）</p>
-                <p>"error"或者2 // 把规则作为一个错误（退出代码触发时为1）</p>
+                <ul>
+                    <li>"off"或者0 // 关闭规则关闭</li>
+                    <li>"warn"或者1 // 在打开的规则作为警告（不影响退出代码）</li>
+                    <li>"error"或者2 // 把规则作为一个错误（退出代码触发时为1）</li>
+                </ul>
                 <script type="text/js">
                     module.exports = {
                         root: true,
@@ -44,6 +46,16 @@
                         }
                     }
                 </script>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
+            </div>
+        </div>
+        <div class="blog">
+            <div class="blogTitle">ESLint 全部规则</div>
+            <div class="blogContent" v-highlight>
                 <Collapse simple>
                     <Panel name="1">
                         常见规则列表
@@ -239,9 +251,8 @@
             </div>
         </div>
         <div class="blog">
-            <div class="blogTitle">ESLint 规则 以及 习惯</div>
+            <div class="blogTitle">如何设置单个文件不检测ESlint语法？</div>
             <div class="blogContent" v-highlight>
-                <p>如何设置单个文件不检测ESlint语法？</p>
                 <script type="text/js">
                     // 整个文件范围内禁止规则出现警告
                     // 将/* eslint-disable */放置于文件最顶部

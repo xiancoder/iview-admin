@@ -1,10 +1,11 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">旧表格写法 + 合并单元格</div>
+            <div class="blogTitle">原生表格写法 + 遍历对比数据计算合并单元格</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 根据数据遍历匹配来确定每个单元格的合并 此方式可行</p>
+                <p><Icon type="md-close" style="color:red"/> 这种写法不提倡 只是为了尝试一下合并单元格</p>
                 <div id="aptable">
-                    <p>这种写法不提倡 只是为了尝试一下合并单元格</p>
                     <table border="1">
                         <thead>
                             <tr>
@@ -33,6 +34,30 @@
                         </tbody>
                     </table>
                 </div>
+                <script type="text/js">
+                    computeJoinTable (arr, iseq) {
+                        let session = null
+                        let level = 1
+                        return _ /* IM lodash */
+                            .chain(arr) /* 包装为lodash对象 */
+                            .reverse() /* 反序 */
+                            // .map((item) => { /* map方法有守护原值的功能 比较蛋疼 */
+                            .each((item) => { /* 遍历执行 替换原值 */
+                                console.log(item.school)
+                                item.level = 1
+                                if (session && iseq(session, item)) {
+                                    session.level = 0
+                                    item.level = ++level
+                                } else {
+                                    level = 1
+                                }
+                                session = item
+                                return item
+                            })
+                            .reverse() /* 反序 */
+                            .value()
+                    },
+                </script>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>
@@ -100,14 +125,5 @@ export default {
 }
 </script>
 <style scoped>
-    #aptable {
-        padding:20px;
-    }
-    #aptable table{
-        width: 100%;
-        max-width: 100%;
-        border-bottom: 1px solid #ddd;
-        position: relative;
-        margin-bottom: 0;
-    }
+    #aptable table{ width: 100%; max-width: 100%; border-bottom: 1px solid #ddd; position: relative; margin-bottom: 0; }
 </style>

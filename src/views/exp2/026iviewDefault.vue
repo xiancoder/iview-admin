@@ -1,8 +1,9 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">将iview默认配置设置好以后 再写组件就不用关心提示信息了</div>
+            <div class="blogTitle">iview每种控件都可以手动改变它的默认配置</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 将iview默认配置设置好以后 再写组件就不用关心提示信息了</p>
                 <Form ref="formValidateId" :model="frm" :rules="frmValidate" :label-width="150">
                     <FormItem label="日期框" prop="date1">
                         <DatePicker type="date" :value="frm.date1" @on-change="frm.date1=$event"

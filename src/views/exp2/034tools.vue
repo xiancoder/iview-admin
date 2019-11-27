@@ -1,8 +1,9 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">将常用的操作封装起来 目的是统一和集中</div>
+            <div class="blogTitle">将超级常用的操作封装起来 目的是风格统一和代码集中</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 绝妙 要求合作开发者必须配合</p>
                 <p>
                     信息提示统一使用
                     <Divider type="vertical" />

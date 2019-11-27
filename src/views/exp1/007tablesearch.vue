@@ -4,6 +4,9 @@
             <div class="blog">
                 <div class="blogTitle">表格页 搜索/排序/分页/操作 的交叉影响</div>
                 <div class="blogContent" v-highlight>
+                    <p><Icon type="md-checkmark" style="color:green"/> 流程已完善 </p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 2019年11月27日17:33:16 通过了检验 本套流程可以投入生产 </p>
+                    <hr />
                     <p>1 初始化的时候 给表面搜索项深拷贝两份 <font color="red">一个是实际搜索项 一个是备份 </font></p>
                     <p>2 用户点击搜索按钮时候 <font color="red">表面搜索项拷贝给实际搜索项</font> 排序内容不变 分页置为1 刷新页面 </p>
                     <p>3 用户点击排序按钮时候 <font color="red">表面搜索项拷贝给实际搜索项</font> 分页置为1 刷新页面 </p>
@@ -11,8 +14,6 @@
                     <p>5 用户点击分页时候 <font color="red">实际搜索项拷贝给表面搜索项</font> 刷新页面 </p>
                     <p>6 本来想直接在data声明一个大对象来处理所有表格相关的内容和方法 似乎作用域不支持这样做 this在对象声明时候就绑定了</p>
                     <p>6 即 ()=>{} 可以是this绑定在外 但是如果{}对象中使用 其对象就是this</p>
-                    <p class="text-danger">7 以前老是纠结把公共方法集中起来 甚至抽象出来 现在我想通了 就大大方方的保留 没准小伙伴在使用中可以修改升级那</p>
-                    <p class="text-danger">8 大家都没有把这个重视起来 无语...</p>
                 </div>
                 <div class="blogFooter">
                     <Tag color="green">收集</Tag>

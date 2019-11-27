@@ -4,6 +4,8 @@
             <div class="blog">
                 <div class="blogTitle">表格搜索项写法</div>
                 <div class="blogContent" v-highlight>
+                    <p><Icon type="md-checkmark" style="color:green"/> 有效 完美满足初衷 方便管理和继承</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 2019年11月27日17:48:04 不强制 但墙裂建议</p>
                     <p>1 表格搜索项 输入框 无默认值 最简单</p>
                     <script type="text/js">
                         search: {

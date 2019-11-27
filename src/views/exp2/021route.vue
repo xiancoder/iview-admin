@@ -1,74 +1,75 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">发布任务表单</div>
+            <div class="blogTitle">路由跳转 方法测试</div>
             <div class="blogContent" v-highlight>
-                <p>跳转到我的添加编辑页面 this.$route.name = {{ routeName }}</p>
-                <p>注意 this.$route.name 和 this.$router.push</p>
-                <Button to="/exp1/021route@add">/exp1/021route@add</Button>
+                <p><Icon type="md-checkmark" style="color:green"/> 墙裂建议使用name 并且穿参用 query: { value: 'test1' }</p>
+                <p>跳转到我的 添加/编辑 页面并携带参数 本页面路由 {{ routeName }}</p>
+                <p>要注意，以/开头的嵌套路径会被当作根路径。这让你充分的使用嵌套组件而无须设置嵌套的路径。</p>
+                <p>router.push() 这种方法会向history栈中添加记录 </p>
+                <Button to="/exp2/021route@add">to=/exp2/021route@add</Button>
                 &nbsp;
                 <Button @click="go1()">go1</Button>
                 &nbsp;
                 <Button @click="go2()">go2</Button>
                 <script type="text/html">
                     go1 () { // 传递的 params: { value: 'test1' } 刷新一下就没了 这是个bug
-                        this.$router.push({ name: 'exp1_021route@add', params: { value: 'test1' } })
+                        this.$router.push({ name: 'exp2_021route@add', params: { value: 'test1' } })
                     },
                     go2 () { // 墙裂建议用 query: { value: 'test1' } 啊 保证传参的存在
-                        this.$router.push({ path: '/exp1/021route@add', query: { value: 'test1' } })
+                        this.$router.push({ path: '/exp2/021route@add', query: { value: 'test1' } })
                     }
-                </script>
-                <p>vue路由 <a href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#全局前置守卫">https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#全局前置守卫</a></p>
-                <p>用Vue.js + vue-router创建单页应用，是非常简单的。</p>
-                <p>使用Vue.js时，我们就已经把组件组合成一个应用了，当你要把vue-router加进来，只需要配置组件和路由映射，</p>
-                <p>然后告诉vue-router在哪里渲染他们。 </p>
-                <script type="text/html">
-                    <div id="app">
-                      <h1>Hello App!</h1>
-                      <p>
-                        <!-- 使用 router-link 组件来导航. -->
-                        <!-- 通过传入 `to` 属性指定链接. -->
-                        <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
-                        <router-link to="/foo">Go to Foo</router-link>
-                        <router-link to="/bar">Go to Bar</router-link>### to
-                        <!-- 字符串 -->
-                        <router-link to="home">Home</router-link>
-                        <!-- 渲染结果 -->
-                        <a href="home">Home</a>
-                        <!-- 使用 v-bind 的 JS 表达式 -->
-                        <router-link v-bind:to="'home'">Home</router-link>
-                        <!-- 不写 v-bind 也可以，就像绑定别的属性一样 -->
-                        <router-link :to="'home'">Home</router-link>
-                        <!-- 同上 -->
-                        <router-link :to="{ path: 'home' }">Home</router-link>
-                        <!-- 命名的路由 -->
-                        <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
-                        <!-- 带查询参数，下面的结果为 /register?plan=private -->
-                        <router-link :to="{ path: 'register', query: { plan: 'private' }}">Register</router-link>
-                      </p>
-                    </div>
-                </script>
-                <p>要注意，以/开头的嵌套路径会被当作根路径。这让你充分的使用嵌套组件而无须设置嵌套的路径。</p>
-                <p>router.push() 这种方法会向history栈中添加记录 </p>
-                <script type="text/js">
-                    // 字符串
                     router.push('home')
-                    // 对象
                     router.push({ path: 'home' })
-                    // 命名的路由
                     router.push({ name: 'user', params: { userId: 123 }})
-                    // 带查询参数，变成 /register?plan=private
                     router.push({ path: 'register', query: { plan: 'private' }})
+                    router.replace(location)
+                    router.go(n) // 这个方法的参数是一个整数，意思是在history记录中向前或者后退多少步，类似window.history.go(n)
                 </script>
-                <p>router.replace(location) </p>
-                <p>router.replace(location) == </p>
-                <p> router.go(n) </p>
-                <p> 这个方法的参数是一个整数，意思是在history记录中向前或者后退多少步，类似window.history.go(n)</p>
-                <h2>===============================================================================</h2>
-                <h1>vue-route 的 beforeEach 实现导航守卫（路由跳转前验证登录）</h1>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
+            </div>
+        </div>
+        <div class="blog">
+            <div class="blogTitle">快捷的路由跳转按钮</div>
+            <div class="blogContent" v-highlight>
+                <script type="text/html">
+                    <!-- 使用 router-link 组件来导航. -->
+                    <!-- 通过传入 `to` 属性指定链接. -->
+                    <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+                    <router-link to="/foo">Go to Foo</router-link>
+                    <router-link to="/bar">Go to Bar</router-link>### to
+                    <!-- 字符串 -->
+                    <router-link to="home">Home</router-link>
+                    <!-- 渲染结果 -->
+                    <a href="home">Home</a>
+                    <!-- 使用 v-bind 的 JS 表达式 -->
+                    <router-link v-bind:to="'home'">Home</router-link>
+                    <!-- 不写 v-bind 也可以，就像绑定别的属性一样 -->
+                    <router-link :to="'home'">Home</router-link>
+                    <!-- 同上 -->
+                    <router-link :to="{ path: 'home' }">Home</router-link>
+                    <!-- 命名的路由 -->
+                    <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
+                    <!-- 带查询参数，下面的结果为 /register?plan=private -->
+                    <router-link :to="{ path: 'register', query: { plan: 'private' }}">Register</router-link>
+                </script>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
+            </div>
+        </div>
+        <div class="blog">
+            <div class="blogTitle">导航守卫（路由跳转前验证登录）</div>
+            <div class="blogContent" v-highlight>
                 <p>路由跳转前做一些验证，比如登录验证（未登录去登录页），是网站中的普遍需求。</p>
                 <p>对此，vue-route 提供的 beforeRouteUpdate 可以方便地实现导航守卫（navigation-guards）。</p>
-                <p>贴上文档地址：<a href="https://router.vuejs.org/zh-cn/advanced/navigation-guards.html"></a>https://router.vuejs.org/zh-cn/advanced/navigation-guards.html</p>
+                <p>贴上：<a href="https://router.vuejs.org/zh-cn/advanced/navigation-guards.html">文档地址</a></p>
                 <p>你可以使用 router.beforeEach 注册一个全局前置守卫：</p>
                 <script type="text/js">
                     const router = new VueRouter({ ... })
@@ -119,8 +120,16 @@
                         next();
                     });
                 </script>
-                <p></p>
-                <p>重定向和别名</p>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
+            </div>
+        </div>
+        <div class="blog">
+            <div class="blogTitle">重定向和别名</div>
+            <div class="blogContent" v-highlight>
                 <script type="text/js">
                     const router = new VueRouter({ routes: [ {path: '/a', redirect: '/b'} ] })
                     // 重定向的目标也可以是一个命名的路由：
@@ -138,7 +147,16 @@
                 <script type="text/js">
                     const router = new VueRouter({ mode: 'history', routes: [...] })
                 </script>
-                <p>过渡动效</p>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
+            </div>
+        </div>
+        <div class="blog">
+            <div class="blogTitle">过渡动效</div>
+            <div class="blogContent" v-highlight>
                 <p> 是基本的动态组件，所以我们可以用组件给它添加一些过渡效果。</p>
                 <p> 数据获取</p>
                 <p>有时候，进入某个路由后，需要从服务器获取数据。例如，在渲染用户信息时，你需要从服务器获取用户的数据，我们可以通过两种方式来实现：</p>
@@ -160,7 +178,17 @@
                     })
                 </script>
                 <p><span style="background-color: #ffff00;">注意: 这个功能只在 HTML5 history 模式下可用。</span></p>
-                <p>路由懒加载</p>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
+            </div>
+        </div>
+        <div class="blog">
+            <div class="blogTitle">路由懒加载</div>
+            <div class="blogContent" v-highlight>
+                <p class="text-danger">falsy 值 (虚值) 是在 Boolean 上下文中认定为 false 的值。</p>
                 <p> 当打包构建应用时，Javascript包会变得非常大，影响页面加载。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了。 </p>
                 <p> 结合Vue的异步组件和Webpack的code splitting feature，轻松实现路由组件的懒加载。 </p>
                 <p> 我们要做的就是把路由对应的组件定义成异步组件：</p>
@@ -175,7 +203,6 @@
                     // 或者
                     const Foo = resolve => require(['./Foo.vue'], resolve)
                 </script>
-                <p class="text-danger">falsy 值 (虚值) 是在 Boolean 上下文中认定为 false 的值。</p>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>
@@ -194,10 +221,10 @@ export default {
     },
     methods: {
         go1 () {
-            this.$router.push({ name: 'exp1_021route@add', params: { value: 'test1' } })
+            this.$router.push({ name: 'exp2_021route@add', params: { value: 'test1' } })
         },
         go2 () {
-            this.$router.push({ path: '/exp1/021route@add', query: { value: 'test1' } })
+            this.$router.push({ path: '/exp2/021route@add', query: { value: 'test1' } })
         }
     },
     beforeRouteEnter: (to, from, next) => {

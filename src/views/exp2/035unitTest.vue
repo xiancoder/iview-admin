@@ -1,8 +1,9 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">单元测试</div>
+            <div class="blogTitle">开始我的单元测试的入门之旅</div>
             <div class="blogContent">
+                <p><Icon type="md-checkmark" style="color:green"/> 有效 可行 代码见test文件夹中</p>
                 <p>单元测试的目的 任何改动影响了什么可以第一时间知道</p>
                 <p>1 测试接口增删改查 (提防接口同学觉得没事直接改数据)</p>
                 <p>2 测试赋值字段显示 (检查初始值)</p>

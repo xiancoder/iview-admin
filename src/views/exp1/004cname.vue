@@ -3,7 +3,7 @@
         <div class="blog">
             <div class="blogTitle">关于Vue中的组件name问题</div>
             <div class="blogContent" v-highlight>
-                <p>这里的name非必选项，看起来好像没啥用处，但是实际上这里用处还挺多的</p>
+                <p><Icon type="md-checkmark" style="color:green"/> 这里的name非必选项，看起来好像没啥用处，但是实际上这里用处还挺多的</p>
                 <p>1.当项目使用keep-alive时，可搭配组件name进行缓存过滤</p>
                 <p></p>
                 <p></p>

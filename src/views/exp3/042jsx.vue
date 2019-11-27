@@ -1,9 +1,10 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">JSX 入门</div>
+            <div class="blogTitle">Vue jsx全面指南</div>
             <div class="blogContent" v-highlight>
-                <h2>Vue jsx全面指南</h2>
+                <p><Icon type="md-close" style="color:red"/> 不建议入手 如果项目没有初始化 最好混用 因为语法干扰</p>
+                <hr />
                 <p>通常开发vue我们使用的是模板语法，独有的SFC在我们开发组件的时候非常方便，将script，template，style三者在同一个文件里面实现，大大提升了组件的可以移植性。</p>
                 <p>但是模板语法写多了也非常恶心，对于复杂动态渲染场景，模板都处理的很吃力，所以vue在2.0之后也增加了对jsx的支持，为了学习jsx，顺带可以理解下react</p>
                 <p>官方文档中关于jsx的使用介绍还是太少了，一开始写起来真的很不顺手，经过一个项目的使用，我把遇到的绝大多数情况总结下，希望可以帮到大家</p>

@@ -11,7 +11,7 @@
                     4.如果 referer-policy 的值为 always：不改变http header 中的 referer 的值，注意：这种情况下，如果当前页面使用了 https 协议，而要加载的资源使用的是 http 协议，加载资源的请求头中也会携带 referer。
                     <meta name="referrer" content="never">
                 </script>
-                <p>测试一下 <a href="https://www.baidu.com" target="_new" class="btn-link">https://www.baidu.com</a> 使用控制台 document.referrer 看效果 <span class="text-success">测试有效</span></p>
+                <p>点击测试一下 <a href="https://www.baidu.com" target="_new" class="btn-link">https://www.baidu.com</a> 使用控制台 document.referrer 看效果 <span class="text-success">测试有效</span></p>
                 <hr />
                 <p>2 可以去除 </p>
                 <p>3 可以伪造 </p>
