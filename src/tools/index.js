@@ -36,6 +36,30 @@ export const confirm = (msg) => { // 二次确认框
         })
     })
 }
+export const alertMsg = (msg, title) => { // 弹框提示
+    Modal.info({
+        title: title || '提示信息',
+        content: msg || '-'
+    })
+}
+export const errorMsg = (msg, title) => { // 弹框失败提示
+    Modal.error({
+        title: title || '失败信息',
+        content: msg || '保存失败'
+    })
+}
+export const successMsg = (msg, title) => { // 弹框成功提示
+    Modal.success({
+        title: title || '成功信息',
+        content: msg || '保存成功'
+    })
+}
+export const warningMsg = (msg, title) => { // 弹框警告提示
+    Modal.warning({
+        title: title || '警告信息',
+        content: msg || '-'
+    })
+}
 export const noticeNoSave = () => { // 二次确认框
     return new Promise((resolve, reject) => {
         Notice.info({
@@ -62,7 +86,8 @@ export const saveParamState = (obj) => { // 保存当前参数
     const paramList = Store.state.system.paramList
     paramList[name + time] = obj
     const query = { 'search': time }
-    router.push({ name, query })
+    console.log('保存参数是个问题???')
+    // router.push({ name, query })
 }
 export const getParamState = () => { // 获取当前参数
     const time = router.history.current.query.search
@@ -153,6 +178,10 @@ Vue.prototype.$tool = {
     alert,
     success,
     error,
+    alertMsg,
+    successMsg,
+    errorMsg,
+    warningMsg,
     confirm,
     jumpto,
     saveParamState,

@@ -7,7 +7,9 @@
                 <p>
                     信息提示统一使用
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="tryalert()">this.$tool.alert('处理进行中')</Button>
+                    <Button type="dashed" @click="tryalert('处理进行中')">this.$tool.alert('处理进行中')</Button>
+                    <Divider type="vertical" />
+                    <Button type="dashed" @click="tryalert2('处理进行中')">this.$tool.alert('处理进行中')</Button>
                 </p>
                 <p>
                     ajax成功统一使用
@@ -15,6 +17,10 @@
                     <Button type="dashed" @click="trysuccess('基本成功')">this.$tool.success('基本成功')</Button>
                     <Divider type="vertical" />
                     <Button type="dashed" @click="trysuccess()">this.$tool.success()</Button>
+                    <Divider type="vertical" />
+                    <Button type="dashed" @click="trysuccess2('基本成功')">this.$tool.successMsg('基本成功')</Button>
+                    <Divider type="vertical" />
+                    <Button type="dashed" @click="trysuccess2()">this.$tool.successMsg()</Button>
                 </p>
                 <p>
                     ajax失败统一使用
@@ -22,6 +28,20 @@
                     <Button type="dashed" @click="tryerror('基本失败')">this.$tool.error('基本失败')</Button>
                     <Divider type="vertical" />
                     <Button type="dashed" @click="tryerror()">this.$tool.error()</Button>
+                    <Divider type="vertical" />
+                    <Button type="dashed" @click="tryerror2('基本失败')">this.$tool.errorMsg('基本失败')</Button>
+                    <Divider type="vertical" />
+                    <Button type="dashed" @click="tryerror2()">this.$tool.errorMsg()</Button>
+                </p>
+                <p>
+                    警告
+                    <Divider type="vertical" />
+                    <Button type="dashed" @click="warningMsg('您的电脑要爆炸了')">this.$tool.warningMsg('您的电脑要爆炸了')</Button>
+                </p>
+                <p>
+                    用户选择确认
+                    <Divider type="vertical" />
+                    <Button type="dashed" @click="confirm()">this.$tool.confirm('这样操作可以么').then(() => { alert('同意') }).catch(() => { alert('不同意') })</Button>
                 </p>
                 <p>
                     页面跳转统一使用
@@ -62,11 +82,15 @@ export default {
         }
     },
     methods: {
-        tryalert () { this.$tool.alert('处理进行中') },
+        tryalert (msg) { this.$tool.alert(msg) },
+        tryalert2 (msg) { this.$tool.alertMsg(msg) },
         trysuccess (msg) { this.$tool.success(msg) },
+        trysuccess2 (msg) { this.$tool.successMsg(msg) },
         tryerror (msg) { this.$tool.error(msg) },
-        tryconfirm () { this.$tool.confirm('这样操作可以么') },
+        tryerror2 (msg) { this.$tool.errorMsg(msg) },
+        tryconfirm () { this.$tool.confirm('这样操作可以么').then(() => { alert('同意') }).catch(() => { alert('不同意') }) },
         jumpto () { this.$tool.jumpto() },
+        warningMsg (msg) { this.$tool.warningMsg(msg) },
         saveParamState () { this.$tool.saveParamState({x: (+new Date())}) },
         getParamState () { this.paramState = this.$tool.getParamState() },
         LoadingBarRun (b) { this.$tool.LoadingBarRun(b) }

@@ -8,11 +8,6 @@
                     <p><Icon type="md-close" style="color:red"/> 2019年11月27日17:39:40 屏弃超重复代码集中化的思想</p>
                     <p><Icon type="md-close" style="color:red"/> 2019年11月27日17:39:40 此尝试不应用于实际的表格</p>
                     <hr>
-                    <p>我的想法是 各个模块的逻辑都大同小异</p>
-                    <p>表格(搜索/排序/分页) 按钮(ajax下发/跳转) 表单(校验/转换格式/提交/跳转)</p>
-                    <p>本来是挺简单的一套逻辑 或者叫 一系列功能</p>
-                    <p>菜鸟的行为是 反正方法声明简单 不开eslint没人管 我随便起名 随便放 能执行就行</p>
-                    <p>我擦擦擦擦 苦的是后期维护的人和接手的人</p>
                     <script type="text/js">
                         import mixin from './009mixin'
                         export default {
