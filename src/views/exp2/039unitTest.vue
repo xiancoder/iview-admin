@@ -1,7 +1,7 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">入门 Jest框架 x VueTestUtils</div>
+            <div class="blogTitle">入门 Jest框架 x vue的绑定作用域</div>
             <div class="blogContent">
                 <p>单测使用 Jest 框架， 方法库用集成jest的 Vue Test Utils <a href="https://links.jianshu.com/go?to=%255Bhttps%3A%2F%2Fjestjs.io%2Fdocs%2Fzh-Hans%2Fgetting-started%255D%28https%3A%2F%2Fjestjs.io%2Fdocs%2Fzh-Hans%2Fgetting-started%29" target="_blank">Jest</a> 是 <a href="https://links.jianshu.com/go?to=javascript" target="_blank">Facebook</a> 开发的一款 JavaScript 测试框架, 在 Facebook 内部广泛用来测试各种 JavaScript 代码。</p>
                 <p>点击测试异步行为 <button @click="fetchResults" /> <span id="bbb"> {{ count }} </span><button id="aaa" @click="increment">Increment</button></p>
@@ -15,7 +15,13 @@
                 <hr>
                 <p>vue 单元测试，用的mocha ，如何模拟组件里面的mousedown事件，测试里面click()可以使用</p>
                 <p>mocha是用于做单元测试的框架 你说的那个是用selenium框架去模拟用户的行为</p>
-                <p></p>
+            </div>
+            <div class="blogFooter">
+            </div>
+        </div>
+        <div class="blog">
+            <div class="blogTitle">大发现啊大发现啊大发现啊</div>
+            <div class="blogContent">
                 <p>点击测试异步行为 <button id="ggg" @click="getJobList1">getJobList1</button> / <button id="ggg2" @click="getJobList2">getJobList2</button> / jList1 = {{jList1}} / jList2 = {{jList2}}</p>
                 <h2>我擦擦擦 xxx () { 是this指向有效的声明方式 () => {} 就不是了么</h2>
                 <h1>大发现啊大发现啊大发现啊<font color="red"> 大发现啊 </font>大发现啊大发现啊大发现啊</h1>
@@ -55,16 +61,19 @@
                     // 8 测试xx:function(){} 666
                     // 9 测试xx:()=>{} 获取不到this</font>
                 </pre>
-                <p>测试风格：</p>
+            </div>
+            <div class="blogFooter">
+            </div>
+        </div>
+        <div class="blog">
+            <div class="blogTitle">测试风格：</div>
+            <div class="blogContent">
                 <p>TDD(测试驱动开发)和BDD（行为驱动开发）这两种，他们的不同是什么？</p>
                 <p>TDD关注多有功能是否被正确的实现，每个功能都具备对于的测试用例；BDD关注整体行为是否符合规格预期，适合自顶向下的设计方式</p>
                 <p>TDD表达方式偏向于功能说明书的风格；BDD的表达方式更接近于自己的语言习惯</p>
                 <p></p>
             </div>
             <div class="blogFooter">
-                <br>
-                <br>
-                <br>
             </div>
         </div>
     </div>

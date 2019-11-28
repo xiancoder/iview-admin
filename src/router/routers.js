@@ -5,7 +5,9 @@ import { makeTwoLevelRoute, makeOneLevelRoute } from './util'
 
 export const specialRouterList = ['error403', 'error404', 'error500', 'login', 'locking', 'phone']
 
-export const mainRouterList = ['home_index']
+export const homePage = 'home_index'
+
+export const mainRouterList = [homePage]
 
 // 路由视图文件名必须和路由名字路径一致 方便查找定位
 export const routerList = [
@@ -67,7 +69,7 @@ export const routerList = [
             {power: '0000', path: '036unitTest', title: '单元测试路由'},
             {power: '0000', path: '037unitTest', title: '单元测试 Axios'},
             {power: '0000', path: '038unitTest', title: '表单单元流程'},
-            {power: '0000', path: '039unitTest', title: '入门 Jest 框架'},
+            {power: '0000', path: '039unitTest', title: 'Jest和方法this坑'},
             {power: '0000', path: '040meta', title: 'Meta 标签详解'}
         ]
     }),
@@ -97,7 +99,7 @@ export const routerList = [
             {power: '0000', path: '057history@2', title: '路由历史记录2', hideMenu: true},
             {power: '0000', path: '057history@3', title: '路由历史记录3', hideMenu: true},
             {power: '0000', path: '058routerpic', title: '路由浏览图片'},
-            {power: '0000', path: '059debounce', title: '防抖节流测试(没写)'},
+            {power: '0000', path: '059debounce', title: '防抖节流测试'},
             {power: '0000', path: '060newtabopen', title: '新页面打开'}
         ]
     }),
@@ -215,7 +217,11 @@ export const routerList = [
             {power: '0000', path: '150jscando', title: 'js权限能做到什么'},
             {power: '0000', path: '151iframe', title: 'iframe 父子页面'},
             {power: '0000', path: '152websocket', title: 'WebSocket 协议'},
-            {power: '0000', path: '153Ipop', title: 'IviewTooltip 提示'}
+            {power: '0000', path: '153Ipop', title: 'IviewTooltip 提示'},
+            {power: '0000', path: '154deeplink', title: '深链接的深入研究'},
+            {power: '0000', path: '155border', title: 'border 边框样式列举'},
+            {power: '0000', path: '156img404', title: '图片404补偿'},
+            {power: '0000', path: '157formData', title: 'FormData'}
         ]
     }),
     makeTwoLevelRoute({

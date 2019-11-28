@@ -71,7 +71,7 @@ export default {
                     { pattern: regexp.a04, message: '15或18位 身份证号' }
                 ],
                 input5: [
-                        { required: true, message: '输入框不能为空' },
+                    { required: true, message: '输入框不能为空' },
                     { type: 'string', max: 11, message: '最多输入11个字符' },
                     { pattern: regexp.a05, message: '广义范围手机号' }
                 ]

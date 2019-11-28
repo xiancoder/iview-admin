@@ -73,6 +73,28 @@
                 <Tag color="blue">增长</Tag>
             </div>
         </div>
+        <div class="blog">
+            <div class="blogTitle">Css3 transform-origin</div>
+            <div class="blogContent">
+                <Row>
+                    <Col span="6"><div class="box__wrapper"><h6> transform-origin: <span>top</span> </h6> <div class="box box--origin-top"> <div class="origin"></div> </div> </div></Col>
+                    <Col span="6"><div class="box__wrapper"><h6> transform-origin: <span>left</span> </h6> <div class="box box--origin-left"> <div class="origin"></div> </div> </div></Col>
+                    <Col span="6"><div class="box__wrapper"><h6> transform-origin: <span>bottom</span> </h6> <div class="box box--origin-bottom"> <div class="origin"></div> </div> </div></Col>
+                    <Col span="6"><div class="box__wrapper"><h6> transform-origin: <span>right</span> </h6> <div class="box box--origin-right"> <div class="origin"></div> </div> </div></Col>
+                </Row>
+                <Row>
+                    <Col span="6"><div class="box__wrapper"><h6> transform-origin: <span>0px 0px </span> </h6> <div class="box box--origin-0-0"> <div class="origin"></div> </div> </div></Col>
+                    <Col span="6"><div class="box__wrapper"><h6> transform-origin: <span>50px 50px</span> </h6> <div class="box box--origin-50-50"> <div class="origin"></div> </div> </div></Col>
+                    <Col span="6"><div class="box__wrapper"><h6> transform-origin: <span>100px 0px</span> </h6> <div class="box box--origin-100-0"> <div class="origin"></div> </div> </div></Col>
+                    <Col span="6"><div class="box__wrapper"><h6> transform-origin: <span>0px 100px</span> </h6> <div class="box box--origin-0-100"> <div class="origin"></div> </div> </div></Col>
+                </Row>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -109,4 +131,29 @@ export default {
     .perspective-200 .box { -webkit-perspective: 200px; perspective: 200px; }
     .to-100-0-0 { -webkit-transform-origin: 100% 0 0; transform-origin: 100% 0 0; }
     .to-0-100-0 { -webkit-transform-origin: 0 100% 0; transform-origin: 0 100% 0; }
+
+    @-webkit-keyframes rotate { from { -webkit-transform: rotate(-30deg); transform: rotate(-30deg); }
+    to { -webkit-transform: rotate(30deg); transform: rotate(30deg); } }
+    @keyframes rotate { from { -webkit-transform: rotate(-30deg); transform: rotate(-30deg); }
+    to { -webkit-transform: rotate(30deg); transform: rotate(30deg); } }
+    .box__wrapper { background: #35393b; float: left; height: 200px; margin: 5px; text-align: center; width: 210px; }
+    .box__wrapper .box { -webkit-animation: rotate 3s infinite alternate ease; animation: rotate 3s infinite alternate ease; background: #ebebeb; height: 100px; margin: 0 auto; width: 100px; }
+    .box__wrapper .box .origin { background: #1bcdd0; border: 2px solid #1d1f20; border-radius: 50%; height: 10px; margin-left: -7px; margin-top: -7px; position: absolute; width: 10px; }
+    .box__wrapper h6 { font-size: 15px; line-height: 50px;}
+    .box--origin-top { -webkit-transform-origin: top; transform-origin: top; }
+    .box--origin-top .origin { left: 50px; }
+    .box--origin-left { -webkit-transform-origin: left; transform-origin: left; }
+    .box--origin-left .origin { left: 0px; top: 50px; }
+    .box--origin-bottom { -webkit-transform-origin: bottom; transform-origin: bottom; }
+    .box--origin-bottom .origin { left: 50px; top: 100px; }
+    .box--origin-right { -webkit-transform-origin: right; transform-origin: right; }
+    .box--origin-right .origin { left: 100px; top: 50px; }
+    .box--origin-0-0 { -webkit-transform-origin: 0px 0px; transform-origin: 0px 0px; }
+    .box--origin-0-0 .origin { left: 0px; top: 0px; }
+    .box--origin-50-50 { -webkit-transform-origin: 50px 50px; transform-origin: 50px 50px; }
+    .box--origin-50-50 .origin { left: 50px; top: 50px; }
+    .box--origin-100-0 { -webkit-transform-origin: 100px 0px; transform-origin: 100px 0px; }
+    .box--origin-100-0 .origin { left: 100px; top: 0px; }
+    .box--origin-0-100 { -webkit-transform-origin: 0px 100px; transform-origin: 0px 100px; }
+    .box--origin-0-100 .origin { left: 0px; top: 100px; }
 </style>

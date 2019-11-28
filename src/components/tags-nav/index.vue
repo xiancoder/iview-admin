@@ -34,7 +34,7 @@
                         :key="`tag-nav-${index}`"
                         :name="item.name"
                         :data-route-item="item"
-                        :closable="item.name !== $config.homeName"
+                        :closable="item.name !== homePage"
                         :color="isCurrentTag(item) ? 'primary' : 'default'"
                         @on-close="handleClose(item)"
                         @click.native="handleClick(item)"
@@ -49,10 +49,13 @@
 <script>
 import beforeCloseFun from '@/router/before-close'
 import { routeEqual } from '@/router/util'
+import { homePage } from '@/router/routers'
+
 export default {
     name: 'TagsNav',
     data () {
         return {
+            homePage,
             tagBodyLeft: 0,
             rightOffset: 40,
             outerPadding: 4,
@@ -97,10 +100,10 @@ export default {
         },
         handleTagsOption (type) { // 关闭其他 关闭所有
             if (type.includes('all')) { // 关闭所有
-                let res = this.list.filter(item => item.name === this.$config.homeName)
+                let res = this.list.filter(item => item.name === homePage)
                 this.handleCloseTag(res, {name: this.currentRouteName})
             } else if (type.includes('others')) { // 关闭除当前页和home页的其他页
-                let res = this.list.filter(item => item.name === this.currentRouteName || item.name === this.$config.homeName)
+                let res = this.list.filter(item => item.name === this.currentRouteName || item.name === homePage)
                 this.handleCloseTag(res, {})
                 setTimeout(() => {
                     this.getTagElementByRoute(this.currentRouteName)
@@ -119,7 +122,7 @@ export default {
         },
         handleCloseTag (res, route) { // 关闭标签 即重置数据
             if (res.length === 0 || route.name === this.currentRouteName) {
-                const name = this.$config.homeName
+                const name = homePage
                 this.$router.push({name})
             }
             this.$store.dispatch('system/setTagNavList', res)
@@ -155,7 +158,7 @@ export default {
             })
         },
         contextMenu (item, e) {
-            if (item.name === this.$config.homeName) { return }
+            if (item.name === homePage) { return }
             this.visible = true
             const offsetLeft = this.$el.getBoundingClientRect().left
             this.contextMenuLeft = e.clientX - offsetLeft + 10

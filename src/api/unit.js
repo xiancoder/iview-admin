@@ -41,5 +41,35 @@ export default {
             })
         })
     },
+    formData ({id, name, files}) { // 测试formdata表单格式
+        return new Promise((resolve, reject) => {
+            let fd = new FormData()
+            fd.append('id', id || null)
+            fd.append('name', name || '')
+
+            if(files && files[0]) fd.append('file1', files[0])
+            if(files && files[1]) fd.append('file2', files[1])
+            if(files && files[2]) fd.append('file3', files[2])
+
+            axios.request({
+                method: 'post',
+                url: 'api/task/found',
+                data: fd,
+                headers: { 'Content-Type': 'multipart/form-data' },
+                timeout: 300000
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.res === 1) {
+                    success(res.msg)
+                    resolve()
+                } else {
+                    error(res.msg)
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 中止操作
+            })
+        })
+    },
     end () {} // 错误占位符
 }

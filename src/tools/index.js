@@ -86,8 +86,7 @@ export const saveParamState = (obj) => { // 保存当前参数
     const paramList = Store.state.system.paramList
     paramList[name + time] = obj
     const query = { 'search': time }
-    console.log('保存参数是个问题???')
-    // router.push({ name, query })
+    router.replace({ name, query })
 }
 export const getParamState = () => { // 获取当前参数
     const time = router.history.current.query.search

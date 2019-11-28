@@ -5,6 +5,7 @@
     </div>
 </template>
 <script>
+import { homePage } from '@/router/routers'
 export default {
     name: 'backBtnGroup',
     data () {
@@ -16,7 +17,7 @@ export default {
     methods: {
         backHome () {
             this.$router.replace({
-                name: this.$config.homeName
+                name: homePage
             })
         },
         backPrev () {

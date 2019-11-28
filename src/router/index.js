@@ -82,12 +82,17 @@ export const power2BreadCrumb = (routeList, routeName) => {
 }
 
 router.beforeEach((to, from, next) => {
-    console.info('仙', '准备跳转', to)
+    if (to && from && to.name === from.name) { // 本页面跳转 不做各种表示
+        console.info('仙', '参数变更')
+        return next()
+    }
 
     if (Store.state.system.doNotDrawRouter) { // 回退再前进 之间的页面不做渲染
         console.info('仙', '准备跳转', '历史记录管理')
         return
     }
+
+    console.info('仙', '准备跳转', to)
 
     LoadingBarRun(true) // 顶部进度条
 
@@ -152,10 +157,16 @@ router.beforeEach((to, from, next) => {
     })
 })
 
-router.afterEach(to => {
+router.afterEach((to, from) => {
+    if (to && from && to.name === from.name) { // 本页面跳转 不做各种表示
+        return false
+    }
+
     LoadingBarRun(false) // 顶部进度条
+
     Store.dispatch('system/setTitle', to.name) // 左侧树数据源
     Store.dispatch('system/addTagNav', to) // 增加页面缓存标签
     Store.dispatch('system/routeSpin', false) // 路由视图loading
+
     console.info('仙', '跳转完成', to)
 })

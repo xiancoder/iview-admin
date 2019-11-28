@@ -50,6 +50,8 @@ import CollapsedMenu from './collapsed-menu.vue'
 import { getUnion } from '@/utils/array'
 import { goto } from '@/tools' // 自定义常用工具
 import mixin from './mixin'
+import { homePage } from '@/router/routers'
+
 export default {
     name: 'SideMenu',
     mixins: [ mixin ],
@@ -91,7 +93,7 @@ export default {
             return this.$route.matched.map(item => item.name).filter(item => item !== name)
         },
         updateOpenName (name) {
-            if (name === this.$config.homeName) this.openedNames = []
+            if (name === homePage) this.openedNames = []
             else this.openedNames = this.getOpenedNamesByActiveName(name)
         }
     },
