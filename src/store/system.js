@@ -1,7 +1,7 @@
 import config from '@/config' // 自定义配置
 import { Api } from '@/api'
 import { router, power2routes, power2BreadCrumb } from '@/router' // 自定义路由定义
-import { specialRouterList } from '@/router/routers'
+import { specialPowerList } from '@/router/routers'
 
 export default {
     namespaced: true, // 作用域,配置上以后才能够dispach system/xxx 建议必须 不同的状态里有相同字段值
@@ -126,7 +126,7 @@ export default {
         setTagNavList ({ commit }, a) { commit('TAGNAVLIST', a) }, // 历史记录列表
         addTagNav ({ state, commit }, route) { // 添加历史记录标签
             const name = route.name
-            if (specialRouterList.includes(name)) return false
+            if (specialPowerList.includes(name)) return false
             const routeInfo = state.routeList[name]
             if (!routeInfo) return false
             const list = Object.assign(state.tagNavList)

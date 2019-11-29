@@ -2,7 +2,7 @@ import Vue from 'vue' // 核心
 import Router from 'vue-router'
 import { Store } from '@/store' // 自定义状态管理
 import { LoadingBarRun } from '@/tools' // 自定义常用工具
-import { routerList as routes, specialRouterList, mainRouterList } from './routers'
+import { routerList as routes, specialPowerList, loginPowerList, lockPowerList } from './routers'
 import Config from '@/config' // 自定义配置
 
 Vue.use(Router)
@@ -97,20 +97,22 @@ router.beforeEach((to, from, next) => {
     LoadingBarRun(true) // 顶部进度条
 
     const isLocked = Store.state.system.locking
-    const goLocking = ['locking'].includes(to.name)
-    if (isLocked && !goLocking) {
+    const goLocking = lockPowerList.includes(to.name)
+    if (isLocked) {
+        if (goLocking) { return next() }
         console.info('仙', '准备跳转', '锁定状态不允许去其他页面')
         return next({ replace: true, name: 'locking' })
     }
 
     const isLogined = Store.getters['system/access']
-    const goLogin = ['login'].includes(to.name)
-    if (!isLogined && !goLogin) {
+    const goLogin = loginPowerList.includes(to.name)
+    if (!isLogined) {
+        if (goLogin) { return next() }
         console.info('仙', '准备跳转', '未登录状态不允许去其他页面')
         return next({ replace: true, name: 'login' })
     }
 
-    if (specialRouterList.includes(to.name)) {
+    if (specialPowerList.includes(to.name)) {
         console.info('仙', '准备跳转', '特殊页面 不走鉴权')
         return next()
     }
@@ -118,8 +120,8 @@ router.beforeEach((to, from, next) => {
     Store.dispatch('system/setBreadCrumbList', to.name) // 左侧树数据源
     Store.dispatch('system/routeSpin', true) // 路由视图loading
 
-    if (mainRouterList.includes(to.name)) {
-        console.info('仙', '准备跳转', '默认首页 不走鉴权')
+    if (specialPowerList.includes(to.name)) {
+        console.info('仙', '准备跳转', '默认页面 不走鉴权')
         return next()
     }
 

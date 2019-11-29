@@ -3,18 +3,22 @@ import Main from '@V/main'
 import MarkDown from '@V/markDown'
 import { makeTwoLevelRoute, makeOneLevelRoute } from './util'
 
-export const specialRouterList = ['error403', 'error404', 'error500', 'login', 'locking', 'phone']
+export const homePage = 'home_index' // 首页
 
-export const homePage = 'home_index'
+export const specialPowerList = [homePage, 'error403', 'error404', 'error500'] // 必须登录的不走鉴权的核心页面
 
-export const mainRouterList = [homePage]
+export const loginPowerList = ['login', 'regiest', 'ccode', 'phone'] // 未登录时候可以访问的页面
+
+export const lockPowerList = ['locking'] // 锁屏时候可以访问的页面
 
 // 路由视图文件名必须和路由名字路径一致 方便查找定位
 export const routerList = [
     {path: '/', redirect: '/home/index'}, // 默认路由视图
     makeOneLevelRoute({ path: 'login', title: '登录' }),
-    makeOneLevelRoute({ path: 'locking', title: '锁屏' }),
+    makeOneLevelRoute({ path: 'regiest', title: '注册' }),
+    makeOneLevelRoute({ path: 'ccode', title: '二次验证' }),
     makeOneLevelRoute({ path: 'phone', title: '移动端' }),
+    makeOneLevelRoute({ path: 'locking', title: '锁屏' }),
     makeTwoLevelRoute({
         path: 'home', title: '首页', icon: 'md-globe',
         children: [
@@ -37,6 +41,8 @@ export const routerList = [
             {power: '0000', path: '006editITable', title: '编辑表格'},
             {power: '0000', path: '007tableRules', title: '表格-规范说明'},
             {power: '0000', path: '008tableV1', title: '表格-模版v1'},
+            {power: '0000', path: '008tableBatch', title: '表格-批量操作'},
+            {power: '0000', path: '008tableNoData', title: '表格-无数据'},
             {power: '0000', path: '008tableObj', title: '表格-超集中(废弃)'},
             {power: '0000', path: '009tableMixin', title: '表格-mixin(废弃)'},
             {power: '0000', path: '010mockData', title: '假数据mock专家'},
@@ -220,8 +226,17 @@ export const routerList = [
             {power: '0000', path: '153Ipop', title: 'IviewTooltip 提示'},
             {power: '0000', path: '154deeplink', title: '深链接的深入研究'},
             {power: '0000', path: '155border', title: 'border 边框样式列举'},
-            {power: '0000', path: '156img404', title: '图片404补偿'},
-            {power: '0000', path: '157formData', title: 'FormData'}
+            {power: '0000', path: '156img404', title: '图片404补偿(无效)'},
+            {power: '0000', path: '157formData', title: 'FormData'},
+            {power: '0000', path: '158vshowbug', title: 'v-show 有bug'},
+            {power: '0000', path: '159fontawesome', title: 'font awesome'},
+            {power: '0000', path: '160wordCss', title: '仿word的Css'}
+        ]
+    }),
+    makeTwoLevelRoute({
+        path: 'exp9', title: '经验集.卷玖', icon: 'md-game-controller-b',
+        children: [
+            {power: '0000', path: '200newBee', title: '收录200知识点'}
         ]
     }),
     makeTwoLevelRoute({

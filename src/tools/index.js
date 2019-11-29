@@ -172,6 +172,19 @@ export const LoadingBarRun = (flag) => { // 顶部进度条执行
         LoadingBar.finish()
     }
 }
+export const companyTableSumColumns = (columns, sumData) => { // 表格总计一列的计算方法总结
+    const sums = {};
+    columns.forEach((column, index) => {
+        const key = column.key;
+        if (index === 0) {
+            sums[key] = { key, value: '汇总' }
+        } else {
+            sums[key] = { key, value: sumData[key] || '' }
+        }
+    })
+    return sums;
+}
+
 Vue.prototype.$tool = {
     goto,
     alert,

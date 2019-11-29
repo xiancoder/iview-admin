@@ -23,11 +23,48 @@
                     <FormItem label="输入框" prop="input5">
                         <Input type="text" v-model="frm.input5" placeholder="广义范围手机号" style="width: 450px"/>
                     </FormItem>
+                    <FormItem label="密码" prop="pwd1">
+                        <Input type="password" v-model="frm.pwd1" placeholder="请输入XXXX" style="width: 450px"/>
+                    </FormItem>
+                    <FormItem label="重复密码" prop="pwd2">
+                        <Input type="password" v-model="frm.pwd2" placeholder="请输入XXXX" style="width: 450px"/>
+                    </FormItem>
+                    <FormItem style="margin-top: 50px">
+                        <Button type="default" @click="lishijiaoyan">局部两控件的校验</Button>
+                    </FormItem>
                     <FormItem style="margin-top: 50px">
                         <Button type="default" @click="handleCancel">返回</Button>
                         <Button type="primary" :loading="loading" style="margin: 0 15px" @click="handleSubmit('form5596')">发布</Button>
                     </FormItem>
                 </Form>
+                <script type="text/js">
+                    lishijiaoyan () {
+                        // https://www.iviewui.com/components/form
+                        // 对部分表单字段进行校验的方法，参数1为需校验的 prop，参数2为检验完回调，返回错误信息
+                        this.$refs['form5596'].validateField('input3', errorMsg => {
+                            if (errorMsg) {
+                                return false
+                            }
+                            this.$refs['form5596'].validateField('input4', errorMsg => {
+                                if (errorMsg) {
+                                    return false
+                                }
+                                console.log('提交ajax')
+                            })
+                        })
+                    },
+                    handleSubmit () {
+                        this.$refs['form5596'].validate((valid) => {
+                            if (!valid) {
+                                    return false
+                            }
+                            console.log('提交ajax')
+                            this.loading = true
+                            setTimeout(() => { this.loading = false },2e3)
+                        })
+                    },
+                </script>
+                <p class="text-danger">this.$refs['瞎写'].validateField('pwd2') 注意 如果refs的id写错了 他不会报错 会不限期卡住无法提交 (等校验结果)</p>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>
@@ -41,6 +78,16 @@
 import regexp from '@/utils/regexp'
 export default {
     data () {
+        const validatePw1 = (rule, value, callback) => {
+            if (value === '') { return callback(new Error('请输入密码')) }
+            if (this.frm.pwd1 !== '') { this.$refs['form5596'].validateField('pwd2') }
+            callback();
+        }
+        const validatePw2 = (rule, value, callback) => {
+            if (value === '') { return callback(new Error('请再次输入密码')) }
+            if (value !== this.frm.pwd1) { return callback(new Error('两次输入不一致!')) }
+            callback()
+        }
         return {
             loading: false,
             frm: {
@@ -48,7 +95,9 @@ export default {
                 input2: '',
                 input3: '',
                 input4: '',
-                input5: ''
+                input5: '',
+                pwd1: '', // 密码测试
+                pwd2: '' // 密码测试
             },
             frmValidate: {
                 input1: [
@@ -66,35 +115,54 @@ export default {
                     { pattern: regexp.a03, message: '匹配整数限6位，小数限2位（包含0）' }
                 ],
                 input4: [
-                    { required: true, message: '输入框不能为空' },
+                    // { required: true, message: '输入框不能为空' },
                     { type: 'string', max: 18, message: '最多输入18个字符' },
                     { pattern: regexp.a04, message: '15或18位 身份证号' }
                 ],
                 input5: [
-                    { required: true, message: '输入框不能为空' },
+                    // { required: true, message: '输入框不能为空' },
                     { type: 'string', max: 11, message: '最多输入11个字符' },
                     { pattern: regexp.a05, message: '广义范围手机号' }
+                ],
+                pwd1: [
+                    { validator: validatePw1 }
+                ],
+                pwd2: [
+                    { validator: validatePw2 }
                 ]
             }
         }
     },
     methods: {
-        handleSubmit (name) {
-            this.$refs[name].validate((valid) => {
-                if (valid) {
-                    alert('提交')
+        lishijiaoyan () {
+            // https://www.iviewui.com/components/form
+            // 对部分表单字段进行校验的方法，参数1为需校验的 prop，参数2为检验完回调，返回错误信息
+            this.$refs['form5596'].validateField('input3', errorMsg => {
+                if (errorMsg) {
+                    console.log(errorMsg)
+                    return false
                 }
-            });
+                console.log('提交ajax')
+            })
+        },
+        handleSubmit () {
+            this.$refs['form5596'].validate((valid) => {
+                if (!valid) {
+                    console.log('不合法')
+                    return false
+                }
+                console.log('提交ajax')
+                this.loading = true
+                setTimeout(() => { this.loading = false },2e3)
+            })
         },
         handleCancel () {
             this.$Modal.confirm({
                 title: '提示',
                 content: '<p>信息还未保存，确定要离开当前页面么？</p>',
-                onOk: () => {
-                    alert('离开')
-                },
+                onOk: () => { alert('离开') },
                 onCancel: () => {}
-            });
+            })
         }
     },
     mounted () {
