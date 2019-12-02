@@ -7,10 +7,10 @@ const { Message, Modal, LoadingBar, Notice } = iView
 /// ////////////////////////////////////////////////////
 // 常用的操作封装
 /// ////////////////////////////////////////////////////
-export const goto = (config) => { // 弹框提示
+export const goto = (config, replace) => { // 弹框提示
     const current = router.history.current
     if (type(config) === 'string') config = { name: config }
-    if (config.name === current.name || config.path === current.path) {
+    if (config.name === current.name || config.path === current.path || replace) {
         return router.replace(config).catch(err => {
             if (err.name === 'NavigationDuplicated') return console.log('仙', '路由重复打开小问题')
         })
@@ -149,17 +149,17 @@ export const h = { // 通用渲染格式 for 表格 (即将废弃)
     defaultH: (a, b) => {
         b = b || '-'
         return (h, params) => {
-            const row = params.row;
-            return h('div', row[a] || b);
+            const row = params.row
+            return h('div', row[a] || b)
         }
     },
-    // 读取数字显示对应 没有队形默认显示 -
+    // 读取数字显示对应 没有对应默认显示 -
     // 值, 对应数组, 默认符
     readArr: (a, b, c) => {
         c = c || '-'
         return (h, params) => {
-            const row = params.row;
-            const text = b[row[a]];
+            const row = params.row
+            const text = b[row[a].toString()]
             return h('div', text || c);
         }
     },
@@ -199,5 +199,6 @@ Vue.prototype.$tool = {
     saveParamState,
     getParamState,
     h,
-    LoadingBarRun
+    LoadingBarRun,
+    companyTableSumColumns
 }

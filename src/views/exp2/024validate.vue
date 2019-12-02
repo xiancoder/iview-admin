@@ -69,8 +69,14 @@
                     </FormItem>
                     <FormItem label="日期范围" prop="date2">
                         <DatePicker :value="frm.date2" type="daterange" placeholder="选择开始日期结束日期" style="width: 300px"
-                            @on-change="frm.date2=$event" @on-clear="frm.date2=[]"
-                            split-panels :options="options2" ></DatePicker>
+                            @on-change="frm.date2=$event" @on-clear="frm.date2=[]" split-panels>
+                        </DatePicker>
+                        <div class="ivu-form-item-notice-tip">必填 【不完美】【写三遍字段】【提交时候得拆分字段】</div>
+                    </FormItem>
+                    <FormItem label="日期范围 (自定义时间段)" prop="date2">
+                        <DatePicker :value="frm.date2" type="daterange" placeholder="选择开始日期结束日期" style="width: 300px"
+                            @on-change="frm.date2=$event" @on-clear="frm.date2=[]" split-panels :options="options2" >
+                        </DatePicker>
                         <div class="ivu-form-item-notice-tip">必填 【不完美】【写三遍字段】【提交时候得拆分字段】</div>
                     </FormItem>
                     <Divider orientation="left">滑轨</Divider>

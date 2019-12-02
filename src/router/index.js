@@ -112,13 +112,13 @@ router.beforeEach((to, from, next) => {
         return next({ replace: true, name: 'login' })
     }
 
+    Store.dispatch('system/setBreadCrumbList', to.name) // 面包屑
+    Store.dispatch('system/routeSpin', true) // 路由视图loading
+
     if (specialPowerList.includes(to.name)) {
         console.info('仙', '准备跳转', '特殊页面 不走鉴权')
         return next()
     }
-
-    Store.dispatch('system/setBreadCrumbList', to.name) // 左侧树数据源
-    Store.dispatch('system/routeSpin', true) // 路由视图loading
 
     if (specialPowerList.includes(to.name)) {
         console.info('仙', '准备跳转', '默认页面 不走鉴权')
@@ -166,8 +166,8 @@ router.afterEach((to, from) => {
 
     LoadingBarRun(false) // 顶部进度条
 
-    Store.dispatch('system/setTitle', to.name) // 左侧树数据源
-    Store.dispatch('system/addTagNav', to) // 增加页面缓存标签
+    Store.dispatch('system/setTitle', to.name) // 设置标题
+    // Store.dispatch('system/addTagNav', to) // 增加页面缓存标签
     Store.dispatch('system/routeSpin', false) // 路由视图loading
 
     console.info('仙', '跳转完成', to)

@@ -220,7 +220,7 @@ export const routerList = [
             {power: '0000', path: '147goodModal', title: '很好的弹框方式'},
             {power: '0000', path: '148customFrom', title: '组件内外表单校验'},
             {power: '0000', path: '149dynamicClick', title: '动态绑定事件'},
-            {power: '0000', path: '150jscando', title: 'js权限能做到什么'},
+            {power: '0000', path: '150jscando', title: 'Js 权限能做到什么'},
             {power: '0000', path: '151iframe', title: 'iframe 父子页面'},
             {power: '0000', path: '152websocket', title: 'WebSocket 协议'},
             {power: '0000', path: '153Ipop', title: 'IviewTooltip 提示'},
@@ -228,14 +228,15 @@ export const routerList = [
             {power: '0000', path: '155border', title: 'border 边框样式列举'},
             {power: '0000', path: '156img404', title: '图片404补偿(无效)'},
             {power: '0000', path: '157formData', title: 'FormData'},
-            {power: '0000', path: '158vshowbug', title: 'v-show 有bug'},
+            {power: '0000', path: '158vshowbug', title: 'v-show 有 bug'},
             {power: '0000', path: '159fontawesome', title: 'font awesome'},
-            {power: '0000', path: '160wordCss', title: '仿word的Css'}
+            {power: '0000', path: '160wordCss', title: '仿 Word 的 Css'}
         ]
     }),
     makeTwoLevelRoute({
         path: 'exp9', title: '经验集.卷玖', icon: 'md-game-controller-b',
         children: [
+            {power: '0000', path: '161creditSvgCss', title: 'SVG 信用卡样式'},
             {power: '0000', path: '200newBee', title: '收录200知识点'}
         ]
     }),
@@ -261,6 +262,35 @@ export const routerList = [
             {power: '0000', path: 'strformat', title: '文本格式化'}
         ]
     }),
+
+    makeTwoLevelRoute({
+        path: 'dsphome', title: 'DSP首页', icon: 'md-globe',
+        children: [
+            {power: '0000', path: 'index', title: 'DSP首页'}
+        ]
+    }),
+    makeTwoLevelRoute({
+        path: 'dspfinance', title: 'DSP财务账单', icon: 'md-contacts',
+        children: [
+            { power: '0000', path: 'list', title: 'DSP财务账单' },
+            { power: '0000', path: 'list@recharge', title: 'DSP充值记录', hideMenu: true },
+            { power: '0000', path: 'list@cost', title: 'DSP消耗记录', hideMenu: true },
+            { power: '0000', path: 'list@account', title: 'DSP账户余额查询', hideMenu: true }
+        ]
+    }),
+    makeTwoLevelRoute({
+        path: 'dspcharge', title: 'DSP收款账户', icon: 'md-contacts',
+        children: [
+            { power: '0000', path: 'chargeInfo', title: 'DSP收款账户' }
+        ]
+    }),
+    makeTwoLevelRoute({
+        path: 'dspcost', title: 'DSP消耗管理', icon: 'md-contacts',
+        children: [
+            { power: '0000', path: 'costList', title: 'DSP消耗管理' }
+        ]
+    }),
+
     makeTwoLevelRoute({
         path: 'employee', title: '人事管理', icon: 'md-contacts',
         children: [

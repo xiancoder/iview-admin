@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="tableLayout">
-            <Tabs value="approval" @on-click="changeTab">
+            <Tabs :value="tabVaule" @on-click="changeTab">
                 <TabPane label="审批人配置" name="approval"></TabPane>
                 <TabPane label="抄送人配置" name="cc"></TabPane>
             </Tabs>
@@ -36,6 +36,7 @@ import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工
 export default {
     data () {
         return {
+            tabVaule: 'approval',
             dataSet: {
                 'taskPriorityList': [],
                 'taskStatuList': []

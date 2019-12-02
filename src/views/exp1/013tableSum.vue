@@ -80,6 +80,8 @@ export default {
             'serrchParam': null, // 实际搜索项
             'serrchBack': null, // 搜索项备份
             'tableData': [], // 表格内容
+            'tableSumData': null, // 表格总计内容
+
             end1: 1 // 防呆设计
         }
     },

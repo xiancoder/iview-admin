@@ -42,15 +42,31 @@ new Vue({ // 实例化
     // import App from '@/App.vue' // 页面主体
     // render: h => h(App), // 因为app没有有效内容 所以放弃app.vue文件
     render: h => h('router-view'),
+    // directive: { // 组件
+    // },
+    // di: { // 指令
+    // },
+    // filters: { // 过滤器
+    // },
+    // computed: { // 计算属性
+    // },
+    // watch: { // 监听
+    // },
     beforeCreate() {
-        // 在实例初始化之后，数据观测(data observer
-        // 开始监控Data对象数据变化)和初始化事件(init event，Vue内部初始化事件)之前被调用
+        // 在实例初始化之后，数据观测(data observer开始监控Data对象数据变化)
+        // 和初始化事件(init event，Vue内部初始化事件)之前被调用
         const isLogined = Store.getters['system/access']
         if (isLogined) { // 未登录的话由路由负责判断并进入登录页
             console.info('仙', '用户已经登陆')
             Store.dispatch('system/getUserInfo') // 获取用户信息
             Store.dispatch('system/getNewMessageNum') // 获取未读最新消息
-            Store.dispatch('system/getPowerList') // 读取权限 更新权限视图
+            Store.dispatch('system/getPowerList').then(() => { // 读取权限 更新权限视图
+                const currentName = window.currentName
+                if (currentName) {
+                    console.log(currentName)
+                    Store.dispatch('system/setBreadCrumbList', currentName) // 面包屑
+                }
+            })
         }
     },
     created: function() {

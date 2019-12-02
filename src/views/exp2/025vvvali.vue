@@ -153,7 +153,7 @@ export default {
                 }
                 console.log('提交ajax')
                 this.loading = true
-                setTimeout(() => { this.loading = false },2e3)
+                setTimeout(() => { this.loading = false }, 2e3)
             })
         },
         handleCancel () {
@@ -165,7 +165,7 @@ export default {
             })
         }
     },
-    mounted () {
+    computed: {
     }
 }
 </script>
