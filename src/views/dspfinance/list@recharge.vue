@@ -1,6 +1,5 @@
 <template>
     <div class="tableLayout">
-        <div v-if="roleId==1">1231231231231231</div>
         <tab></tab>
         <div class="tableTool">
             <DatePicker type="date" v-model="search.date1" placeholder="选择日期" v-if="roleId==1"
@@ -9,16 +8,16 @@
             <DatePicker :value="search.start2end" type="daterange" placeholder="选择开始日期结束日期" v-if="roleId==2||roleId==3"
                 @on-change="search.start2end=$event" @on-clear="search.start2end=[]" split-panels style="width: 180px">
             </DatePicker>
-            <Select v-model="search.userId" placeholder='请选择广告主'  style="width: 180px" v-if="roleId==2">
-                <Option v-for="option in dataSet.userIdList" :value="option.id" :key="option.id" :label="option.name" >
+            <Select v-model="search.aderId" placeholder='请选择广告主'  style="width: 180px" v-if="roleId==2">
+                <Option v-for="option in dataSet.aderIdList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
             <Select v-model="search.state" placeholder='请选择状态' style="width: 180px" v-if="roleId==2||roleId==3">
-                <Option v-for="option in dataSet.stateList" :value="option.id" :key="option.id" :label="option.name" >
+                <Option v-for="option in dataSet.resultList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
             <Select v-model="search.type" placeholder='请选择充值方式' style="width: 180px" v-if="roleId==2||roleId==3">
-                <Option v-for="option in dataSet.typeList" :value="option.id" :key="option.id" :label="option.name" >
+                <Option v-for="option in dataSet.rechargeTypeList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
             <Input type="text" v-model="search.searchName" placeholder="收款人、付款人、广告主" v-if="roleId==3"
@@ -52,16 +51,18 @@ import { h, saveParamState, getParamState, companyTableSumColumns } from '@/tool
 export default {
     components: { tab },
     data () {
+        const resultArr = this.$api.dspfinance.resultList('table')
+        const rechargeTypeArr = this.$api.dspfinance.rechargeTypeList('table')
         return {
             dataSet: {
-                'userIdList': [],
-                'stateList': [],
-                'typeList': []
+                'aderIdList': [],
+                'resultList': [],
+                'rechargeTypeList': []
             },
             search: {
                 date: '', // 日期 yyyy-mm
                 start2end: '', // 日期范围 yyyy-mm-dd
-                userId: '', // 广告主ID
+                aderId: '', // 广告主ID
                 searchName: '', // 收款人付款人广告主
                 state: 0, // 状态 0失败1成功
                 type: 1 // 充值方式 1银行转账2在线充值
@@ -72,32 +73,32 @@ export default {
             columns1: [
                 {title: '充值编号', key: 'code'},
                 {title: '到账日期', key: 'arrival_date'},
-                {title: '充值方式', key: 'recharge_type', render: h.readArr('recharge_type', ['', '银行转账', '在线充值'])},
+                {title: '充值方式', key: 'recharge_type', render: h.readArr('recharge_type', rechargeTypeArr)},
                 {title: '付款账号', key: 'recharge_account'},
                 {title: '付款人', key: 'recharge_name'},
                 {title: '充值金额', key: 'recharge_money'},
-                {title: '状态', key: 'state', render: h.readArr('state', ['失败', '成功'])}
+                {title: '状态', key: 'state', render: h.readArr('state', resultArr)}
             ],
             columns2: [
                 {title: '充值编号', key: 'code'},
-                {title: '广告主', key: 'user_name'},
+                {title: '广告主', key: 'ader_name'},
                 {title: '到账日期', key: 'arrival_date'},
-                {title: '充值方式', key: 'recharge_type', render: h.readArr('recharge_type', ['', '银行转账', '在线充值'])},
+                {title: '充值方式', key: 'recharge_type', render: h.readArr('recharge_type', rechargeTypeArr)},
                 {title: '到账金额', key: 'arrival_money'},
-                {title: '状态', key: 'state', render: h.readArr('state', ['失败', '成功'])}
+                {title: '状态', key: 'state', render: h.readArr('state', resultArr)}
             ],
             columns3: [
                 {title: '充值编号', key: 'code'},
-                {title: '广告主', key: 'user_name'},
+                {title: '广告主', key: 'ader_name'},
                 {title: '到账日期', key: 'arrival_date'},
-                {title: '充值方式', key: 'recharge_type', render: h.readArr('recharge_type', ['', '银行转账', '在线充值'])},
+                {title: '充值方式', key: 'recharge_type', render: h.readArr('recharge_type', rechargeTypeArr)},
                 {title: '付款账号', key: 'recharge_account'},
                 {title: '付款人', key: 'recharge_name'},
                 {title: '收款账号', key: 'arrival_account'},
                 {title: '收款人', key: 'arrival_name'},
                 {title: '到账金额', key: 'arrival_money'},
                 {title: '摘要或用途', key: 'remark'},
-                {title: '状态', key: 'state', render: h.readArr('state', ['失败', '成功'])}
+                {title: '状态', key: 'state', render: h.readArr('state', resultArr)}
             ],
             'serrchParam': null, // 实际搜索项
             'serrchBack': null, // 搜索项备份
@@ -108,15 +109,14 @@ export default {
         }
     },
     computed: { // 计算属性
-        roleId () { return this.$store.state.system.role || 2 } // 用户角色权限
+        roleId () { return this.$store.state.system.role } // 用户角色权限
     },
     methods: {
         getDataSet () { // 初始化数据源
-            this.$api.dspadvertiser.pull().then(list => { this.dataSet.userIdList = list })
-            this.$api.dspfinance.state().then(list => { this.dataSet.stateList = list })
-            this.$api.dspfinance.type().then(list => { this.dataSet.typeList = list })
+            if (this.roleId === 2) this.$api.dspadvertiser.pull().then(list => { this.dataSet.aderIdList = list })
+            if (this.roleId === 2 || this.roleId === 3) this.$api.dspfinance.resultList().then(list => { this.dataSet.resultList = list })
+            if (this.roleId === 2 || this.roleId === 3) this.$api.dspfinance.rechargeTypeList().then(list => { this.dataSet.rechargeTypeList = list })
         },
-        changeTab (name) { this.$tool.jumpto(name) },
         init () { // 初始化
             if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
             if (!this.serrchBack) {this.serrchBack = extend({}, this.search)} // 备份
@@ -149,7 +149,7 @@ export default {
             return companyTableSumColumns(columns, this.tableSumData)
         },
         hendleExport: debounce(function () { // 操作
-            this.$api.dspfinance.rechargelist(this.serrchParam, this.roleId, 'export')
+            this.$api.dspfinance.rechargeList(this.serrchParam, this.roleId, 'export')
         }),
         ajax: debounce(function () { // 业务ajax
             extend(this.serrchParam, this.search) // 设置实际搜索项
@@ -157,7 +157,7 @@ export default {
             extend(this.serrchParam, this.order) // 设置排序
             saveParamState(this.serrchParam) // 存url
             this.loading = true // 加载中
-            this.$api.dspfinance.rechargelist(this.serrchParam, this.roleId).then((info) => { // ajax
+            this.$api.dspfinance.rechargeList(this.serrchParam, this.roleId).then((info) => { // ajax
                 this.loading = false; // 加载完成
                 this.tableData = info.list
                 this.page.rowCount = info.rowcount

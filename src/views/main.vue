@@ -28,9 +28,9 @@
                     </Row>
                     <Row type="flex" justify="end" class="main-header-right">
                         <a class="main-header-right-linkIcon"
-                            :href="`https://${row}/`" target="_blank"
+                            :href="row.link" target="_blank"
                             v-for="(row, key) in weblink" :name="key" :key="`link-${key}`">
-                            <img :src="`./${row}.png`">
+                            <img :src="`./${row.img}`" :title="row.title">
                         </a>
                         <div>
                             <Button type="text" style="padding: 0;">
@@ -172,7 +172,12 @@ export default {
             // minLogo, // 最小图标
             maxLogo, // 最大图标
             transitionName: '', // 动画方式
-            weblink: [ 'www.zdao.com', 'www.qichacha.com', 'www.tianyancha.com', 'maimai.cn' ] // 外链链接
+            weblink: [ // 外链链接
+                { img: 'js0.jpg', title: 'vue推荐移动端UI', link: 'https://youzan.github.io/vant/?source=vuejsorg#/zh-CN/intro' },
+                { img: 'js1.jpg', title: '项目在用的iview3', link: 'http://v3.iviewui.com' },
+                { img: 'js2.jpg', title: 'vue官方API', link: 'https://cn.vuejs.org' },
+                { img: 'js3.jpg', title: '资料库使用的iview4', link: 'https://www.iviewui.com' }
+            ]
         }
     },
     computed: {

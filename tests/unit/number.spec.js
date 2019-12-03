@@ -2,6 +2,7 @@
 * 功能：单元测试页面
 * 作者：liuyp
 * 时间：2019年9月18日16:44:53
+* 更新：2019年12月3日15:08:07
 * 语句: npm run test:unit tests/unit/number.spec.js
 */
 
@@ -146,6 +147,10 @@ describe('[数字]常用方法', function () {
         expect(numberJs.thousand(22.22)).equal('22.22')
         expect(numberJs.thousand(2.222)).equal('2.222')
         expect(numberJs.thousand(1234567.890)).equal('1,234,567.89')
+        expect(numberJs.thousand('1234567.890')).equal('1,234,567.890')
+        expect(numberJs.thousand('9999.99')).equal('9,999.99')
+        expect(numberJs.thousand(9999.00)).equal('9,999')
+        expect(numberJs.thousand('9999.00')).equal('9,999.00')
     })
     it('数字估算/estimate', function () {
         expect(numberJs.estimate(12.33)).equal('12')

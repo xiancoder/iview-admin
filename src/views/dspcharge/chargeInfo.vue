@@ -2,7 +2,7 @@
     <div style="padding:50px 0 0 20px">
         <Form ref="form5596" :model="frm" :label-width="150">
             <FormItem label="相关公司" prop="input1">
-                <Select v-model="frm.company" filterable clearable placeholder="请选择相关公司" style="width: 350px">
+                <Select v-model="frm.companyId" filterable clearable placeholder="请选择相关公司" style="width: 350px">
                     <Option v-for="option in dataSet.companyList" :value="option.id" :key="option.id" :label="option.name">
                     </Option>
                 </Select>
@@ -30,7 +30,7 @@ export default {
                 companyList: []
             },
             frm: {
-                company: '2'
+                companyId: '2'
             },
             list: [
                 {

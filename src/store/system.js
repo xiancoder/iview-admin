@@ -63,6 +63,7 @@ export default {
         USERROLEID (state, v) { state.userRoleId = v },
         USERROLENAME (state, v) { state.userRoleName = v },
         USERPOSTID (state, v) { state.userPostId = v },
+        ROLE (state, v) { state.role = v },
 
         TOKEN (state, token) { localStorage.clear(); state.token = token },
         LOCKING (state, b) { state.locking = b },
@@ -117,7 +118,7 @@ export default {
                         return
                     }
                     num--
-                    if (state.powerList.length === 0) {return}
+                    if (state.powerList === null || state.powerList.length === 0) {return}
                     clearInterval(i)
                     logic()
                 }
@@ -175,6 +176,12 @@ export default {
                 }).catch(err => {
                     reject(err)
                 })
+            })
+        },
+        setRole ({ state, commit }, role) { // 获取管理员相关信息
+            return new Promise((resolve, reject) => {
+                commit('ROLE', role)
+                resolve()
             })
         },
 

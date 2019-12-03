@@ -63,8 +63,8 @@ new Vue({ // 实例化
             Store.dispatch('system/getPowerList').then(() => { // 读取权限 更新权限视图
                 const currentName = window.currentName
                 if (currentName) {
-                    console.log(currentName)
                     Store.dispatch('system/setBreadCrumbList', currentName) // 面包屑
+                    Store.dispatch('system/setTitle', currentName) // 设置标题
                 }
             })
         }

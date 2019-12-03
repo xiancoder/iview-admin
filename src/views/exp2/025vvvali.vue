@@ -56,7 +56,7 @@
                     handleSubmit () {
                         this.$refs['form5596'].validate((valid) => {
                             if (!valid) {
-                                    return false
+                                return false
                             }
                             console.log('提交ajax')
                             this.loading = true

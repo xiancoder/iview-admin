@@ -1,6 +1,6 @@
 import axios from 'axios' // http请求库
 import { error } from '@/tools' // 自定义常用工具
-import cacher from './cache'
+import cacher from '../cache'
 
 export default {
     listCache () { // 获得部门列表树(这个不经常改 可以缓存)

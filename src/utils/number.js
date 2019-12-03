@@ -349,8 +349,9 @@ export const eq = function (a, b) { var r = compare(a, b); return r === '=' }
     if (n){return s.slice(0,n)+s.slice(n).replace(/(\d{3})/g,',$1')}
     return s.replace(/(\d{3})/g,',$1').slice(1)
 } */
+// 更新：2019年12月3日15:08:07
 export const thousand = function (num) {
-    return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
+    return (num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
 }
 // 四位分隔银行账号
 export const bankCartNum = function (S) {

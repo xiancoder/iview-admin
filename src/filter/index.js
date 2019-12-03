@@ -2,19 +2,24 @@
 // 负责::所有的过滤器在这里初始化
 import Vue from 'vue' // 核心
 // =====================================================================
-import * as dateJs from '@/utils/date.js'
-import * as stringJs from '@/utils/string.js'
-import * as numberJs from '@/utils/number.js'
+import * as dateJs from '@/utils/date'
+import * as stringJs from '@/utils/string'
+import * as numberJs from '@/utils/number'
 
 // 日期格式
 Vue.filter('dateformat', (val) => {
     return dateJs.dateFormater(val, 'YYYY-MM-DD')
 })
+// 数字千分符 (可带小数)
+// 10000 => "10,000"
+Vue.filter('numberformat', numberJs.thousand)
+// 金钱千分符 (强制2位小数)
+// 10000 => "10,000.00"
+Vue.filter('moneyformat', (val) => {
+    return numberJs.thousand(numberJs.toDecimalForce(parseFloat(val || 0)))
+})
 // 首字母大写
 Vue.filter('capitalize', stringJs.capitalize)
-// 千分符
-// 10000 => "10,000"
-Vue.filter('toThousand', numberJs.thousand)
 // 解码字符串
 Vue.filter('decode', (val) => {
     return val ? decodeURIComponent(val) : '-'

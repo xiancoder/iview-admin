@@ -167,7 +167,7 @@ router.afterEach((to, from) => {
     LoadingBarRun(false) // 顶部进度条
 
     Store.dispatch('system/setTitle', to.name) // 设置标题
-    // Store.dispatch('system/addTagNav', to) // 增加页面缓存标签
+    Store.dispatch('system/addTagNav', to) // 增加页面缓存标签
     Store.dispatch('system/routeSpin', false) // 路由视图loading
 
     console.info('仙', '跳转完成', to)

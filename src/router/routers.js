@@ -237,6 +237,8 @@ export const routerList = [
         path: 'exp9', title: '经验集.卷玖', icon: 'md-game-controller-b',
         children: [
             {power: '0000', path: '161creditSvgCss', title: 'SVG 信用卡样式'},
+            {power: '0000', path: '162autoSave', title: '表单自动保存 (未弄)'},
+            {power: '0000', path: '163svg', title: 'SVG symbol模版'},
             {power: '0000', path: '200newBee', title: '收录200知识点'}
         ]
     }),
@@ -284,15 +286,9 @@ export const routerList = [
             { power: '0000', path: 'chargeInfo', title: 'DSP收款账户' }
         ]
     }),
-    makeTwoLevelRoute({
-        path: 'dspcost', title: 'DSP消耗管理', icon: 'md-contacts',
-        children: [
-            { power: '0000', path: 'costList', title: 'DSP消耗管理' }
-        ]
-    }),
 
     makeTwoLevelRoute({
-        path: 'employee', title: '人事管理', icon: 'md-contacts',
+        path: 'employee', title: 'OA人事管理', icon: 'md-contacts',
         children: [
             { power: '0000', path: 'branchStaff', title: '部门与人员' },
             { power: '0000', path: 'branchStaff@positions', title: '职位管理', hideMenu: true },
@@ -318,7 +314,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'task', title: '任务管理', icon: 'logo-buffer',
+        path: 'task', title: 'OA任务管理', icon: 'logo-buffer',
         children: [
             { power: '0401', path: 'mine', title: '我的任务' },
             { power: '0402', path: 'mine@publish', title: '我发布的任务', hideMenu: true },
@@ -332,7 +328,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'order', title: '工单管理', icon: 'md-mail',
+        path: 'order', title: 'OA工单管理', icon: 'md-mail',
         children: [
             { power: '0401', path: 'mine', title: '我的工单' },
             { power: '0402', path: 'mine@sendList', title: '已发工单', hideMenu: true },
@@ -348,7 +344,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'components', title: '组件', icon: 'logo-buffer',
+        path: 'components', title: '组件(未测试)', icon: 'logo-buffer',
         children: [
             {power: '0000', path: 'cropper', icon: 'md-crop', title: '图片裁剪'},
             {power: '0000', path: 'splitpane', icon: 'md-pause', title: '分割窗口'},
@@ -365,17 +361,17 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'update', title: '数据上传', icon: 'md-cloud-upload',
+        path: 'update', title: '数据上传(未测试)', icon: 'md-cloud-upload',
         children: [
             {power: '0000', path: 'updatetable', icon: 'md-arrow-dropdown-circle', title: '上传Csv'},
             {power: '0000', path: 'updatepaste', icon: 'md-trending-up', title: '粘贴表格数据'}
         ]
     }),
     makeTwoLevelRoute({
-        path: 'excel', title: 'EXCEL导入导出', icon: 'ios-stats',
+        path: 'excel', title: 'EXCEL相关(未测试)', icon: 'ios-stats',
         children: [
-            {power: '0000', path: 'treeselect', icon: 'md-add', title: '导入EXCEL'},
-            {power: '0000', path: 'countto', icon: 'md-download', title: '导出EXCEL'}
+            {power: '0000', path: 'uploadexcel', icon: 'md-add', title: '导入EXCEL'},
+            {power: '0000', path: 'exportexcel', icon: 'md-download', title: '导出EXCEL'}
         ]
     }),
     {

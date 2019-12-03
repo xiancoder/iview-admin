@@ -2,6 +2,18 @@
     <div>
         <div class="blogCss">
             <div class="blog">
+                <div class="blogTitle">所有的表格工具栏中的输入框都需要剔除前后空格</div>
+                <div class="blogContent" v-highlight>
+                    <p>2019年12月3日13:46:55 运营反应不小心输入的空格总会影响搜索结果 </p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 必须留意输入框剔除前后空格 </p>
+                </div>
+                <div class="blogFooter">
+                    <Tag color="green">收集</Tag>
+                    <Tag color="cyan">学习</Tag>
+                    <Tag color="blue">增长</Tag>
+                </div>
+            </div>
+            <div class="blog">
                 <div class="blogTitle">表格页 搜索/排序/分页/操作 的交叉影响</div>
                 <div class="blogContent" v-highlight>
                     <p><Icon type="md-checkmark" style="color:green"/> 流程已完善 </p>
@@ -14,6 +26,19 @@
                     <p>5 用户点击分页时候 <font color="red">实际搜索项拷贝给表面搜索项</font> 刷新页面 </p>
                     <p>6 本来想直接在data声明一个大对象来处理所有表格相关的内容和方法 似乎作用域不支持这样做 this在对象声明时候就绑定了</p>
                     <p>6 即 ()=>{} 可以是this绑定在外 但是如果{}对象中使用 其对象就是this</p>
+                    <hr />
+                    <p>1 初始化的时候 给表面搜索项深拷贝两份 <font color="red">一个是实际搜索项 一个是备份 </font></p>
+                    <p>2 用户点击搜索按钮时候 <font color="red">表面搜索项拷贝给实际搜索项</font> 排序内容不变 分页置为1 刷新页面 </p>
+                    <p>3 用户点击排序按钮时候 <font color="red">表面搜索项拷贝给实际搜索项</font> 分页置为1 刷新页面 </p>
+                    <p>4 用户点击操作按钮例如导出时候 <font color="red">表面搜索项拷贝给实际搜索项</font> 排序内容不变 不关分页 刷新页面 </p>
+                    <p>5 用户点击分页时候 <font color="red">实际搜索项拷贝给表面搜索项</font> 刷新页面 </p>
+                    <p>6 本来想直接在data声明一个大对象来处理所有表格相关的内容和方法 似乎作用域不支持这样做 this在对象声明时候就绑定了</p>
+                    <p>6 即 ()=>{} 可以是this绑定在外 但是如果{}对象中使用 其对象就是this</p>
+                    <p>1 能用箭头函数的/杜绝使用<b>var me = this</b></p>
+                    <p>2 写HTML时候属性超过3个的话/建议换行/每行3个属性/其中if for 指令提前</p>
+                    <p>3 精简所有用到的组件 为模板化配凑做准备</p>
+                    <p>4 公共部分拆分 mixin注入式继承</p>
+                    <p>5 尝试使用页面生成</p>
                 </div>
                 <div class="blogFooter">
                     <Tag color="green">收集</Tag>
@@ -34,28 +59,6 @@
                     <p>5 表格页作为最常用的第一层页面 其alert/comfime 请用js调用 其model请封装插件引入调用方便修改</p>
                     <p>6 为自动化做好坚实基础准备 目前难点是大力推广的话 自身太累 小莉推广的话 大家偷懒 how???</p>
                     <p></p>
-                </div>
-                <div class="blogFooter">
-                    <Tag color="green">收集</Tag>
-                    <Tag color="cyan">学习</Tag>
-                    <Tag color="blue">增长</Tag>
-                </div>
-            </div>
-            <div class="blog">
-                <div class="blogTitle">表格页 搜索/排序/分页/操作 的交叉影响</div>
-                <div class="blogContent" v-highlight>
-                    <p>1 初始化的时候 给表面搜索项深拷贝两份 <font color="red">一个是实际搜索项 一个是备份 </font></p>
-                    <p>2 用户点击搜索按钮时候 <font color="red">表面搜索项拷贝给实际搜索项</font> 排序内容不变 分页置为1 刷新页面 </p>
-                    <p>3 用户点击排序按钮时候 <font color="red">表面搜索项拷贝给实际搜索项</font> 分页置为1 刷新页面 </p>
-                    <p>4 用户点击操作按钮例如导出时候 <font color="red">表面搜索项拷贝给实际搜索项</font> 排序内容不变 不关分页 刷新页面 </p>
-                    <p>5 用户点击分页时候 <font color="red">实际搜索项拷贝给表面搜索项</font> 刷新页面 </p>
-                    <p>6 本来想直接在data声明一个大对象来处理所有表格相关的内容和方法 似乎作用域不支持这样做 this在对象声明时候就绑定了</p>
-                    <p>6 即 ()=>{} 可以是this绑定在外 但是如果{}对象中使用 其对象就是this</p>
-                    <p>1 能用箭头函数的/杜绝使用<b>var me = this</b></p>
-                    <p>2 写HTML时候属性超过3个的话/建议换行/每行3个属性/其中if for 指令提前</p>
-                    <p>3 精简所有用到的组件 为模板化配凑做准备</p>
-                    <p>4 公共部分拆分 mixin注入式继承</p>
-                    <p>5 尝试使用页面生成</p>
                 </div>
                 <div class="blogFooter">
                     <Tag color="green">收集</Tag>

@@ -79,7 +79,7 @@
     </div>
 </template>
 <script>
-import { JobList } from '@/api/staff'
+import { JobList } from '@/api/unit'
 import { debounce } from '@/utils/function'
 export default {
     data () {

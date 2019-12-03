@@ -1,5 +1,9 @@
 import axios from 'axios' // http请求库
 import { success, error } from '@/tools' // 自定义常用工具
+// 员工管理 获取职位列表
+export function JobList () {
+    return Promise.resolve({ data: 'value2' })
+}
 export default {
     getDetail ({ id }) { // 拉取一些假数据
         return new Promise((resolve, reject) => {
@@ -47,9 +51,9 @@ export default {
             fd.append('id', id || null)
             fd.append('name', name || '')
 
-            if(files && files[0]) fd.append('file1', files[0])
-            if(files && files[1]) fd.append('file2', files[1])
-            if(files && files[2]) fd.append('file3', files[2])
+            if (files && files[0]) fd.append('file1', files[0])
+            if (files && files[1]) fd.append('file2', files[1])
+            if (files && files[2]) fd.append('file3', files[2])
 
             axios.request({
                 method: 'post',

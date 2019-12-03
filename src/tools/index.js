@@ -3,6 +3,7 @@ import { router } from '@/router' // 自定义路由定义
 import iView from '@/plugins/iview'
 import { Store } from '@/store' // 自定义状态管理 // 状态管理 -挂载$stroe
 import { type } from '@/utils/object'
+import { thousand, toDecimalForce } from '@/utils/number'
 const { Message, Modal, LoadingBar, Notice } = iView
 /// ////////////////////////////////////////////////////
 // 常用的操作封装
@@ -153,13 +154,23 @@ export const h = { // 通用渲染格式 for 表格 (即将废弃)
             return h('div', row[a] || b)
         }
     },
-    // 读取数字显示对应 没有对应默认显示 -
+    // 枚举数组 读取数字显示对应 没有对应默认显示 -
     // 值, 对应数组, 默认符
     readArr: (a, b, c) => {
         c = c || '-'
         return (h, params) => {
             const row = params.row
             const text = b[row[a].toString()]
+            return h('div', text || c);
+        }
+    },
+    // 对金钱进行 强制保留2位并前千分格式化
+    // 值
+    moneyFormat: (a, c) => {
+        c = c || '-'
+        return (h, params) => {
+            const row = params.row
+            const text = thousand(toDecimalForce(parseFloat(row[a] || 0)))
             return h('div', text || c);
         }
     },
