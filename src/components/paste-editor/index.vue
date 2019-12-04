@@ -11,14 +11,8 @@ export default {
     name: 'PasteEditor',
     props: {
         value: Array,
-        pasteData: {
-            type: String,
-            default: ''
-        },
-        placeholder: {
-            type: String,
-            default: '从网页或其他应用软件复制表格数据，粘贴到这里 。默认第一行是表头，使用回车键添加新行，使用Tab键区分列。'
-        }
+        pasteData: { type: String, default: '' },
+        placeholder: { type: String, default: '从网页或其他应用软件复制表格数据，粘贴到这里 。默认第一行是表头，使用回车键添加新行，使用Tab键区分列。' }
     },
     data () {
         return {

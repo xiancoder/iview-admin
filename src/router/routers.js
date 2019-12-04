@@ -217,7 +217,7 @@ export const routerList = [
             {power: '0000', path: '144searchInput', title: 'IviewAutoComplete'},
             {power: '0000', path: '145fromparam', title: '表单传参方式'},
             {power: '0000', path: '146copyTxt', title: '复制粘贴文本'},
-            {power: '0000', path: '147goodModal', title: '很好的弹框方式'},
+            {power: '0000', path: '147goodModal', title: 'IviewModal 弹框'},
             {power: '0000', path: '148customFrom', title: '组件内外表单校验'},
             {power: '0000', path: '149dynamicClick', title: '动态绑定事件'},
             {power: '0000', path: '150jscando', title: 'Js 权限能做到什么'},
@@ -239,6 +239,13 @@ export const routerList = [
             {power: '0000', path: '161creditSvgCss', title: 'SVG 信用卡样式'},
             {power: '0000', path: '162autoSave', title: '表单自动保存 (未弄)'},
             {power: '0000', path: '163svg', title: 'SVG symbol模版'},
+            {power: '0000', path: '164socket', title: 'Socket 研究记录'},
+            {power: '0000', path: '165cnzz', title: 'Cnzz 研究记录'},
+            {power: '0000', path: '166loadrule', title: 'Vue 加载顺序'},
+            {power: '0000', path: '167version', title: '版本发布规则'},
+            {power: '0000', path: '168component', title: '组件编写'},
+            {power: '0000', path: '169directive', title: '指令编写'},
+            {power: '0000', path: '170icard', title: 'IviewCard'},
             {power: '0000', path: '200newBee', title: '收录200知识点'}
         ]
     }),

@@ -281,3 +281,12 @@ export const lineUnique = function (ary) {
     }
     return ret
 }
+// 字符串随机生成
+export const ramdomString = function (len) {
+    len = len || 32;
+    const chars = 'QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890'
+    const maxPos = chars.length
+    let s = ''
+    for (let i = 0; i < len; i++) { s += chars.charAt(Math.floor(Math.random() * maxPos)) }
+    return s
+}

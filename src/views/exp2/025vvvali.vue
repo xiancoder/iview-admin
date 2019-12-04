@@ -15,7 +15,16 @@
                         <Input type="text" v-model="frm.input2" placeholder="匹配整数限6位，小数限2位（不含0）" style="width: 450px"/>
                     </FormItem>
                     <FormItem label="输入框" prop="input3">
-                        <Input type="text" v-model="frm.input3" placeholder="匹配整数限6位，小数限2位（包含0）" style="width: 450px"/>
+                        <Input type="text" v-model="frm.input3" placeholder="匹配整数限6位，小数限2位（包含0）" style="width: 286px"/>
+                        <Button type="default" @click="lishijiaoyan" style="margin-left:20px">局部两控件的校验</Button>
+                    </FormItem>
+                    <FormItem label="短信验证码">
+                        <Input type="text" v-model="frm.input3" placeholder="短信验证码" style="width: 310px"/>
+                        <Button type="default" style="margin-left:20px;width:120px;">发送短信</Button>
+                    </FormItem>
+                    <FormItem label="短信验证码">
+                        <Input type="text" v-model="frm.input3" placeholder="短信验证码" style="width: 310px"/>
+                        <Button type="default" style="margin-left:20px;width:120px;" disabled>10秒后重试</Button>
                     </FormItem>
                     <FormItem label="输入框" prop="input4">
                         <Input type="text" v-model="frm.input4" placeholder="15或18位 身份证号" style="width: 450px"/>
@@ -28,9 +37,6 @@
                     </FormItem>
                     <FormItem label="重复密码" prop="pwd2">
                         <Input type="password" v-model="frm.pwd2" placeholder="请输入XXXX" style="width: 450px"/>
-                    </FormItem>
-                    <FormItem style="margin-top: 50px">
-                        <Button type="default" @click="lishijiaoyan">局部两控件的校验</Button>
                     </FormItem>
                     <FormItem style="margin-top: 50px">
                         <Button type="default" @click="handleCancel">返回</Button>

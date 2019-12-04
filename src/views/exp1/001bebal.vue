@@ -18,6 +18,7 @@
                     "babel-preset-es2015": "^6.24.1", // es6语法转为es5语法的对应转换方法
                     "babel-preset-stage-3": "^6.24.1", // 针对处于标准提案阶段的功能所编写的预设
                     "babel-runtime": "^6.11.6", // 运行时环境
+                    // -------------------------------
                     babel-parser：babel-parser（Babylon）是Babel中使用的JavaScript解析器
                     babel-core：包含变换api中所有内容的核心模块（用于集成）
                     babel-generator：从AST打印一个字符串

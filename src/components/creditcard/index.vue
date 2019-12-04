@@ -20,7 +20,7 @@
                         </g>
                         <path class="darkcolor cyandark" d="M750,431V193.2c-217.6-57.5-556.4-13.5-750,24.9V431c0,22.1,17.9,40,40,40h670C732.1,471,750,453.1,750,431z"></path>
                     </g>
-                    <text transform="matrix(1 0 0 1 60.106 295.0121)" id="svgnumber" class="st2 st3 st4">{{kahao}}</text>
+                    <text transform="matrix(1 0 0 1 60.106 295.0121)" id="svgnumber" class="st2 st3 st4">{{kahaoc}}</text>
                     <text transform="matrix(1 0 0 1 54.1064 428.1723)" id="svgname" class="st2 st5 st6">{{gongsi}}</text>
                     <text transform="matrix(1 0 0 1 54.1074 389.8793)" class="st7 st5 st8">持卡人</text>
                     <text transform="matrix(1 0 0 1 550 388.8793)" class="st7 st5 st8">有效期</text>
@@ -71,14 +71,20 @@
     </div>
 </template>
 <script>
+import { bankCartNum } from '@/utils/number'
 export default {
     name: 'CreditCard',
     props: {
-        kahao: { type: String, default: '---- ---- ---- ---- ---' },
+        kahao: { type: String, default: '' },
         gongsi: { type: String, default: '-------------------' },
         yinhang: { type: String, default: '-------------------' },
         beizhu: { type: String, default: '信用卡' },
         code: { type: String, default: '9527' }
+    },
+    computed: { // 计算属性
+        kahaoc () {
+            return this.kahao ? bankCartNum(this.kahao) : '---- ---- ---- ---- ---'
+        }
     },
     data () {
         return {

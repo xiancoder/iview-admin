@@ -1,7 +1,7 @@
 <template>
     <Button type="text" @click.native="handleMe" style="padding: 0;">
-        <Tooltip content="editplus打开本页面" placement="bottom" theme="light" class="hand">
-            <Icon :size="23" type="ios-folder-open"/>
+        <Tooltip content="editplus打开路由" placement="bottom" theme="light" class="hand">
+            <Icon :size="23" type="ios-book"/>
         </Tooltip>
     </Button>
 </template>
@@ -19,12 +19,11 @@ export default {
             // $route.matched 数组，包含当前匹配的路径中所包含的所有片段所对应的配置参数对象。
             // $route.name 当前路径名字
             console.info('即EP将打开文件', this.$route.path)
-            let url = this.$route.path.replace(/\//g, '\\')
             axios.get(
                 'http://localhost:4010/epopen', {
                     params: {
                         project: 'R20.iview-admin',
-                        path: 'views' + url + '.vue'
+                        path: 'router/routers.js'
                     }
                 }
             ).then(function (response) {

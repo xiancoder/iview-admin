@@ -1,7 +1,7 @@
 <template>
-  <div class="markdown-wrapper">
-    <textarea ref="editor"></textarea>
-  </div>
+    <div class="markdown-wrapper">
+        <textarea ref="editor"></textarea>
+    </div>
 </template>
 
 <script>
@@ -10,20 +10,9 @@ import 'simplemde/dist/simplemde.min.css'
 export default {
     name: 'MarkdownEditor',
     props: {
-        value: {
-            type: String,
-            default: ''
-        },
-        options: {
-            type: Object,
-            default: () => {
-                return {}
-            }
-        },
-        localCache: {
-            type: Boolean,
-            default: true
-        }
+        value: { type: String, default: '' },
+        options: { type: Object, default: () => { return {} } },
+        localCache: { type: Boolean, default: true }
     },
     data () {
         return {
@@ -51,26 +40,19 @@ export default {
             element: this.$refs.editor
         }))
         /**
-     * 事件列表为Codemirror编辑器的事件，更多事件类型，请参考：
-     * https://codemirror.net/doc/manual.html#events
-     */
+        * 事件列表为Codemirror编辑器的事件，更多事件类型，请参考：
+        * https://codemirror.net/doc/manual.html#events
+        */
         this.addEvents()
         let content = localStorage.markdownContent
         if (content) this.editor.value(content)
     }
 }
 </script>
-
 <style lang="less">
-.markdown-wrapper{
-  .editor-toolbar.fullscreen{
-    z-index: 9999;
-  }
-  .CodeMirror-fullscreen{
-    z-index: 9999;
-  }
-  .CodeMirror-fullscreen ~ .editor-preview-side{
-    z-index: 9999;
-  }
-}
+    .markdown-wrapper{
+        .editor-toolbar.fullscreen{ z-index: 9999; }
+        .CodeMirror-fullscreen{ z-index: 9999; }
+        .CodeMirror-fullscreen ~ .editor-preview-side{ z-index: 9999; }
+    }
 </style>

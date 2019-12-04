@@ -19,6 +19,7 @@ import '@/utils' // 自定义常用方法 -挂载$util
 /* eslint-disable */
 if (process.env.NODE_ENV !== 'production') require('@/mock') // 实际打包时应该不引入mock
 
+console.log("%c ", "padding:112px 150px;background:url('http://returnc.com/frontend/images/console.gif') no-repeat;");
 console.info('仙', '目前环境', process.env.NODE_ENV)
 
 // 当开关开启同时为研发环境 执行vue报错记录功能

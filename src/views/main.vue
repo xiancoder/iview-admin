@@ -41,6 +41,7 @@
                         </div>
                         <div><qr-code/></div>
                         <div><epopen/></div>
+                        <div><epopen-route/></div>
                         <div><lock-screen/></div>
                         <div><full-screen/></div>
                         <div><error-store v-if="$config.errorLogStore"/></div>
@@ -141,6 +142,7 @@ import ErrorStore from '@C/error-store'
 import CustomBreadCrumb from '@C/custom-bread-crumb' // 组件::面包屑
 import qrCode from '@C/qrcode' // 组件::二维码
 import epopen from '@C/epopen' // 组件::EP编辑
+import epopenRoute from '@C/epopen/route' // 组件::EP编辑
 // import minLogo from '@/assets/images/logo-min.jpg'
 import maxLogo from '@/assets/images/logo.gif'
 import '@S/main.less'
@@ -152,7 +154,7 @@ export default {
     name: 'Main', // 注册为组件时候name可以用来递归自己
     components: {
         SideMenu, TagsNav, FullScreen, ErrorStore, ABackTop,
-        CustomBreadCrumb, qrCode, epopen, LockScreen, modifyPwd
+        CustomBreadCrumb, qrCode, epopen, epopenRoute, LockScreen, modifyPwd
     },
     data () {
         return {

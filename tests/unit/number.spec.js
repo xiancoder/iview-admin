@@ -152,6 +152,12 @@ describe('[数字]常用方法', function () {
         expect(numberJs.thousand(9999.00)).equal('9,999')
         expect(numberJs.thousand('9999.00')).equal('9,999.00')
     })
+    it('银行卡号/bankCartNum', function () {
+        expect(numberJs.bankCartNum('6839202023030939201')).equal('6839 2020 2303 0939 201')
+        expect(numberJs.bankCartNum('6839202023030939201', '  ', 4)).equal('6839  2020  2303  0939  201')
+        expect(numberJs.bankCartNum('6839202023030939201', '-', 4)).equal('6839-2020-2303-0939-201')
+        expect(numberJs.bankCartNum('6839202023030939201', ' ', 2)).equal('68 39 20 20 23 03 09 39 20 1')
+    })
     it('数字估算/estimate', function () {
         expect(numberJs.estimate(12.33)).equal('12')
         expect(numberJs.estimate(123456)).equal('12万')

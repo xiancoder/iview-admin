@@ -353,13 +353,27 @@ export const eq = function (a, b) { var r = compare(a, b); return r === '=' }
 export const thousand = function (num) {
     return (num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
 }
-// 四位分隔银行账号
-export const bankCartNum = function (S) {
-    let len = S.length
+// 四位分隔银行账号 有问题 这个是反向每四个符号一分割的
+/* export const bankCartNum = function (str, tag, count) {
+    tag = tag || ' '
+    count = count || 4
+    let len = str.length
     let s2 = ''
-    let max = Math.floor(len / 4)
-    for (let i = 0; i < max; i++) { let s = S.slice(len - 4, len); S = S.substr(0, len - 4); s2 = (' ' + s) + s2; len = S.length }
-    return S + s2
+    let max = Math.floor(len / count)
+    for (let i = 0; i < max; i++) {
+        let s = str.slice(len - count, len)
+        str = str.substr(0, len - count)
+        s2 = (tag + s) + s2
+        len = str.length
+    }
+    return str + s2
+} */
+// 更新：2019年12月4日17:05:05 分隔各种数字格式 (文本格式,间隔符号,分割数量)
+export const bankCartNum = function (str, tag, count) {
+    tag = tag || ' '
+    count = count || 4
+    const reg = new RegExp('(.{' + count + '})', 'g')
+    return str.replace(reg, '$1' + tag)
 }
 // IP地址的校验
 export const validateIP = function (e) {

@@ -63,7 +63,5 @@ export default {
 }
 </script>
 <style scoped>
-    .hand{
-        cursor: pointer
-    }
+    .hand{ cursor: pointer }
 </style>

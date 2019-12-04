@@ -27,6 +27,10 @@
                         <Input type="text" v-model="frm.input123" placeholder="请输入XXXX" style="width: 450px"/>
                         <div class="ivu-form-item-notice-tip">必填+最长50+邮箱校验 【完美】</div>
                     </FormItem>
+                    <FormItem label="验证码" prop="input123">
+                        <Input type="text" v-model="frm.input123" placeholder="请输入XXXX" style="width: 330px"/>
+                        <span @click="flashccore()" style="margin-left: 20px;"> <ccode :content="ccore"></ccode> </span>
+                    </FormItem>
                     <FormItem label="输入框" prop="input14">
                         <Input type="text" v-model="frm.input14" placeholder="请输入XXXX" style="width: 450px"/>
                         <div class="ivu-form-item-notice-tip">必填+电话格式</div>
@@ -181,7 +185,13 @@
 </template>
 <script>
 import '@/plugins/vueEditor'
+import Ccode from '@C/ccode'
+import { ramdomString } from '@/utils/string'
+
 export default {
+    components: {
+        Ccode
+    },
     data () {
         const validatePw1 = (rule, value, callback) => {
             if (value === '') { return callback(new Error('请输入密码')) }
@@ -306,7 +316,8 @@ export default {
             content: '',
             correlation: [],
             reviewList: [],
-            loading: ''
+            loading: '',
+            ccore: '0000'
         };
     },
     methods: {
@@ -356,6 +367,7 @@ export default {
             } */
         },
         handleSubmit (name) {
+            this.$refs[name].resetFields()
             this.$refs[name].validate((valid) => {
                 if (valid) {
                     this.postForm();
@@ -373,14 +385,18 @@ export default {
             });
         },
         contentChange (value) {
-            this.formItem.taskContent = value;
+            this.formItem.taskContent = value
+        },
+        flashccore () {
+            this.ccore = ramdomString(4)
         }
     },
     mounted () {
         window.addEventListener('setItem', () => {
-            this.loading = sessionStorage.getItem('watchStorage');
+            this.loading = sessionStorage.getItem('watchStorage')
         });
-        this.init();
+        this.init()
+        this.flashccore()
     }
 }
 </script>

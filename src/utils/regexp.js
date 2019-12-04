@@ -2,8 +2,20 @@
 *  |说明|_Regexp_正则 测试 TEST
 *  |说明|源头
 \*================================================================================ */
+// 制作正则表达式
+function createRegexp (op) {
+    let args = Array.prototype.slice.call(arguments, 0)
+    op = op || ''
+    let regText = args.join('')
+    return {
+        g: new RegExp(regText, 'g'),
+        gi: new RegExp(regText, 'gi'),
+        i: new RegExp(regText, 'i'),
+        no: new RegExp(regText, '')
+    }
+}
 export default {
-    n01: /^[\u4E00-\u9FA5]+$/g, // 纯中文
+    n01: createRegexp('^[\u4E00-\u9FA5]+$', 'g'), // 纯中文
     n02: /^[\u4E00-\u9FA5\uF900-\uFA2D]+$/g, // 纯中文
     n03: /^[\u4e00-\u9fa5]{1}[A-Z]{1}[A-Z_0-9]{5}$/g, // 车牌号
     n04: /^[a-zA-Z]+$/g, // 大小写字母
