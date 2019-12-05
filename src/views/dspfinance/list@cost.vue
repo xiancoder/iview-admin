@@ -2,7 +2,7 @@
     <div class="tableLayout">
         <tab></tab>
         <div class="tableTool">
-            <DatePicker type="date" v-model="search.date1" placeholder="选择日期" v-if="roleId==1"
+            <DatePicker type="month" v-model="search.date1" placeholder="选择日期" format="yyyy-MM" v-if="roleId==1"
                 @on-change="search.date=$event" style="width: 180px">
             </DatePicker>
             <DatePicker :value="search.start2end" type="daterange" placeholder="选择开始日期结束日期" v-if="roleId==2||roleId==3"
@@ -13,6 +13,7 @@
                 </Option>
             </Select>
             <Select v-model="search.state" placeholder='请选择状态' style="width: 180px" v-if="roleId==2||roleId==3">
+                <Option value="" label="全部状态"></Option>
                 <Option v-for="option in dataSet.stateList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
@@ -30,8 +31,9 @@
             show-summary :summary-method="handleSum" v-if="roleId==3">
         </Table>
         <div class="tableFooter">
-            <Page ref="pager" :page-size="page.size" :current="page.index" :total="page.rowCount"
-                class="fr" show-total show-elevator @on-change="hendleGopage" />
+            <span>当前显示 {{page.pageSize}} 条/ {{page.rowCount}} 条数据</span>
+            <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount" class="fr" show-sizer
+                show-total show-elevator @on-change="hendleGopage" />
             </Page>
         </div>
     </div>
@@ -55,7 +57,7 @@ export default {
                 start2end: '', // 日期范围 yyyy-mm-dd
                 aderId: '', // 广告主ID
                 searchName: '', // 收款人付款人广告主
-                state: 0 // 状态 0失败1成功
+                state: '' // 状态 0失败1成功
             },
             loading: false,
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样

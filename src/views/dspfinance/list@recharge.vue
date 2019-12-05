@@ -2,21 +2,24 @@
     <div class="tableLayout">
         <tab></tab>
         <div class="tableTool">
-            <DatePicker type="date" v-model="search.date1" placeholder="选择日期" v-if="roleId==1"
-                @on-change="search.date=$event" style="width: 180px">
+            <DatePicker type="month" v-model="search.date1" placeholder="选择日期" format="yyyy-MM" v-if="roleId==1"
+                @on-change="search.date=$event" style="width: 220px">
             </DatePicker>
             <DatePicker :value="search.start2end" type="daterange" placeholder="选择开始日期结束日期" v-if="roleId==2||roleId==3"
                 @on-change="search.start2end=$event" @on-clear="search.start2end=[]" split-panels style="width: 180px">
             </DatePicker>
             <Select v-model="search.aderId" placeholder='请选择广告主'  style="width: 180px" v-if="roleId==2">
+                <Option value="" label="全部广告主"></Option>
                 <Option v-for="option in dataSet.aderIdList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
             <Select v-model="search.state" placeholder='请选择状态' style="width: 180px" v-if="roleId==2||roleId==3">
+                <Option value="" label="全部状态"></Option>
                 <Option v-for="option in dataSet.resultList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
             <Select v-model="search.type" placeholder='请选择充值方式' style="width: 180px" v-if="roleId==2||roleId==3">
+                <Option value="" label="全部充值方式"></Option>
                 <Option v-for="option in dataSet.rechargeTypeList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
@@ -25,8 +28,11 @@
             <Button type="primary" @click="hendleSearch">搜索</Button>
             <Button type="default" @click="hendleReset">重置</Button>
             <Button type="primary" class="fr" @click="hendleExport" v-if="roleId==2||roleId==3">导出</Button>
-            <Button type="primary" class="fr" @click="hendleExport" v-if="roleId==3">批量导入</Button>
+            <Button type="primary" class="fr" @click="model.importBatch=!model.importBatch" v-if="roleId==3">批量导入</Button>
         </div>
+        <Modal v-model="model.importBatch" closable width="640" :mask-closable="false" footer-hide>
+            <import-batch :flag="model.importBatch" :from="{}" @on-submit="importBatchSubmit"/>
+        </Modal>
         <Table border :loading="loading" :columns="columns1" :data="tableData" @on-sort-change="hendleSort"
             v-if="roleId==1">
         </Table>
@@ -37,8 +43,9 @@
             show-summary :summary-method="handleSum" v-if="roleId==3">
         </Table>
         <div class="tableFooter">
-            <Page ref="pager" :page-size="page.size" :current="page.index" :total="page.rowCount"
-                class="fr" show-total show-elevator @on-change="hendleGopage" />
+            <span>当前显示 {{page.pageSize}} 条/ {{page.rowCount}} 条数据</span>
+            <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount" class="fr" show-sizer
+                show-total show-elevator @on-change="hendleGopage" />
             </Page>
         </div>
     </div>
@@ -48,8 +55,10 @@ import tab from './list'
 import { extend, extendF } from '@/utils/object'
 import { debounce, nothing } from '@/utils/function'
 import { h, saveParamState, getParamState, companyTableSumColumns } from '@/tools' // 自定义常用工具
+import ImportBatch from './importBatchModel' // 修改
+
 export default {
-    components: { tab },
+    components: { tab, ImportBatch },
     data () {
         const resultArr = this.$api.dspfinance.resultList('table')
         const rechargeTypeArr = this.$api.dspfinance.rechargeTypeList('table')
@@ -64,8 +73,11 @@ export default {
                 start2end: '', // 日期范围 yyyy-mm-dd
                 aderId: '', // 广告主ID
                 searchName: '', // 收款人付款人广告主
-                state: 0, // 状态 0失败1成功
-                type: 1 // 充值方式 1银行转账2在线充值
+                state: '', // 状态 0全部1成功2失败
+                type: '' // 充值方式 1银行转账2在线充值
+            },
+            model: {
+                importBatch: false
             },
             loading: false,
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
@@ -164,6 +176,9 @@ export default {
                 this.tableSumData = info.sum
             })
         }),
+        importBatchSubmit (flag) {// 批量导入
+            this.model.importBatch = false
+        },
         end2: nothing // 防呆设计
     },
     mounted: function () {

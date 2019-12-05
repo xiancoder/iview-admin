@@ -59,12 +59,13 @@ export default {
         USERNAME (state, v) { state.userName = v },
         USERID (state, v) { state.userId = v },
         USEREMAIL (state, v) { state.userEmail = v },
-        USERDEPTID (state, v) { state.userDeptId = v },
-        USERROLEID (state, v) { state.userRoleId = v },
+        USERDEPTID (state, v) { state.userDeptId = parseInt(v) },
+        USERROLEID (state, v) { state.userRoleId = parseInt(v) },
         USERROLENAME (state, v) { state.userRoleName = v },
-        USERPOSTID (state, v) { state.userPostId = v },
+        USERPOSTID (state, v) { state.userPostId = parseInt(v) },
         ROLE (state, v) { state.role = v },
-
+        PLATFORMID (state, v) { state.platformId = v },
+	
         TOKEN (state, token) { localStorage.clear(); state.token = token },
         LOCKING (state, b) { state.locking = b },
         DONOTDRAWROUTER (state, flag) { state.doNotDrawRouter = flag },
@@ -87,7 +88,18 @@ export default {
             commit('THEME', theme)
             commit('SHRINK', !!shrink)
         },
-
+        getPlatformId ({ commit }) { // 获取公司id
+            // let host = window.location.host
+            let host = 'www.jinjingzhiyuan.com'
+            const company = Api.dspsystem.companyList(true)
+            for (var i = 0, vlen = company.length; i < vlen; i++) {
+                if (company[i] === host) {
+                    commit('PLATFORMID', i)
+                    console.info('平台id为:' + i)
+                    return i;
+                }
+            }
+        },
         setBreadCrumbList ({ commit, state }, routeName) { // 根据当前路由计算面包屑
             window.currentName = routeName
             const bca = power2BreadCrumb(state.routeList, routeName)
@@ -195,17 +207,15 @@ export default {
                 })
             })
         },
-        gologin ({ commit }) { // 去登录页
-            commit('TOKEN', '')
-            router.push('login')
-        },
+
         logout ({ commit }) { // 登出
             return new Promise((resolve, reject) => {
                 console.info('仙', '登出清场')
+                commit('TOKEN', '')
+                router.push({name: 'login'})
+                router.push('login')
                 Api.system.logout().then(() => {
                     console.info('登出成功')
-                    commit('TOKEN', '')
-                    router.push('login')
                     resolve()
                 }, errorMsg => {
                     console.error('登出失败')
@@ -213,6 +223,7 @@ export default {
                 })
             })
         },
+
         setLocking ({ commit }, b) { commit('LOCKING', !!b) }, // 锁屏状态
 
         routeSpin ({ commit }, b) { // 启动关闭路由视图loading

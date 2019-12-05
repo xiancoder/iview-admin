@@ -3,10 +3,12 @@
         <tab></tab>
         <div class="tableTool">
             <Select v-model="search.aderId" placeholder='请选择广告主' style="width: 180px">
+                <Option value="" label="全部广告主"></Option>
                 <Option v-for="option in dataSet.aderIdList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
-            <Select v-model="frm.companyId" placeholder="请选择相关公司" style="width: 180px" v-if="roleId==3">
+            <Select v-model="search.companyId" placeholder="请选择相关公司" style="width: 180px" v-if="roleId==3">
+                <Option value="" label="全部公司"></Option>
                 <Option v-for="option in dataSet.companyList" :value="option.id" :key="option.id" :label="option.name">
                 </Option>
             </Select>
@@ -18,8 +20,9 @@
             show-summary :summary-method="handleSum">
         </Table>
         <div class="tableFooter">
-            <Page ref="pager" :page-size="page.size" :current="page.index" :total="page.rowCount"
-                class="fr" show-total show-elevator @on-change="hendleGopage" />
+            <span>当前显示 {{page.pageSize}} 条/ {{page.rowCount}} 条数据</span>
+            <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount" class="fr" show-sizer
+                show-total show-elevator @on-change="hendleGopage" />
             </Page>
         </div>
     </div>
@@ -45,7 +48,7 @@ export default {
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
             order: { orderKey: '', order: '' }, // 排序 变量名最好原样
             columns1: [
-                {title: '广告主', key: 'ader_name'},
+                {title: '广告主', key: 'ader_name', render: h.defaultH('balance')},
                 {title: '用户名', key: 'user_name'},
                 {title: '账户余额', key: 'balance', render: h.moneyFormat('balance')}
             ],

@@ -1,5 +1,5 @@
 import axios from 'axios' // http请求库
-import { error } from '@/tools' // 自定义常用工具
+import { success, error } from '@/tools' // 自定义常用工具
 import { obj2url } from '@/utils/string' // 自定义常用工具
 
 export default {
@@ -26,8 +26,8 @@ export default {
                 'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
                 'user_id': userId || '', // 广告主ID
-                'state': state || '', // 状态 0失败1成功
-                'recharge_type': type || '', // 充值方式 1银行转账2在线充值
+                'state': state || '0', // 状态 1成功2失败
+                'recharge_type': type || '0', // 充值方式 1银行转账2在线充值
                 'page': pageIndex || '', // 分页
                 'page_count': pageSize || '' // 分页条数
             }
@@ -38,8 +38,8 @@ export default {
                 'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
                 'key_name': searchName || '', // 收款人付款人广告主
-                'state': state || '', // 状态 0失败1成功
-                'recharge_type': type || '', // 充值方式 1银行转账2在线充值
+                'state': state || '0', // 状态 1成功2失败
+                'recharge_type': type || '0', // 充值方式 1银行转账2在线充值
                 'page': pageIndex || '', // 分页
                 'page_count': pageSize || '' // 分页条数
             }
@@ -92,7 +92,7 @@ export default {
                 'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
                 'user_id': userId || '', // 广告主ID
-                'state': state || '', // 状态 0失败1成功
+                'state': state || '0', // 状态 1成功2失败
                 'page': pageIndex || '', // 分页
                 'page_count': pageSize || '' // 分页条数
             }
@@ -102,7 +102,7 @@ export default {
                 'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
                 'key_name': searchName || '', // 收款人付款人广告主
-                'state': state || '', // 状态 0失败1成功
+                'state': state || '0', // 状态 1成功2失败
                 'page': pageIndex || '', // 分页
                 'page_count': pageSize || '' // 分页条数
             }
@@ -185,6 +185,34 @@ export default {
             })
         })
     },
+    rechargelistImport ({ // 批量导入 充值记录 for 财务
+        companyId, // 人员们
+        file // 改成的状态
+    }) {
+        let fd = new FormData()
+        fd.append('company_id', companyId || 1)
+        fd.append('file', file);
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'POST',
+                url: '/api/hr/changeuserStatus',
+                data: fd,
+                headers: { 'Content-Type': 'multipart/form-data' },
+                timeout: 300000
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.res) {
+                    success(res.msg || '导出成功') // 报错并继续reject
+                    resolve()
+                } else {
+                    error(res.msg) // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
+            })
+        })
+    },
     rechargeTypeList (forTableShow) { // 任务级别枚举 forTableShow指表格枚举
         if (forTableShow) {
             return ['', '银行转账', '在线充值']
@@ -196,11 +224,11 @@ export default {
     },
     resultList (forTableShow) { // 处理结果枚举 forTableShow指表格枚举
         if (forTableShow) {
-            return ['失败', '成功']
+            return ['', '失败', '成功']
         }
         return Promise.resolve([
             { id: '1', name: '成功' },
-            { id: '0', name: '失败' }
+            { id: '2', name: '失败' }
         ])
     },
     stateList (forTableShow) { // 状态枚举 forTableShow指表格枚举

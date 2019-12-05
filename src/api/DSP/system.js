@@ -12,8 +12,8 @@ export default {
             return ['', 'www.jinjingzhiyuan.com', 'www.pingfuxinxi.com', 'www.yunxiwangluo.com', 'www.yunxizhihui.com']
         }
         return Promise.resolve([
-            { id: '1', name: '宁静致远科技服务河北有限公司' },
-            { id: '2', name: '平复信息技术河北有限公司' },
+            { id: '1', name: '平复信息技术河北有限公司' },
+            { id: '2', name: '宁静致远科技服务河北有限公司' },
             { id: '3', name: '云袭网络技术河北有限公司' },
             { id: '4', name: '云袭智慧在线科技发展（北京）有限公司' }
         ])

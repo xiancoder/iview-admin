@@ -50,12 +50,14 @@
                     <Divider orientation="left">下拉框校验</Divider>
                     <FormItem label="下拉框" prop="select1">
                         <Select v-model="frm.select1" style="width: 300px" placeholder="请搜索/选择XXX" >
+                            <Option value="" label="全部"></Option>
                             <Option :value="0">一般</Option> <Option :value="1">重要</Option> <Option :value="2">紧急</Option>
                         </Select>
                         <div class="ivu-form-item-notice-tip">必填 【静态数据源也不建议使用】</div>
                     </FormItem>
                     <FormItem label="下拉框" prop="select12">
                         <Select v-model="frm.select12" filterable clearable placeholder="请搜索/选择XXX" style="width: 300px">
+                            <Option value="" label="全部"></Option>
                             <Option v-for="option in list" :value="option.id" :key="option.id" :label="option.name">
                             </Option>
                         </Select>
@@ -67,6 +69,12 @@
                     <Divider orientation="left">日期校验</Divider>
                     <FormItem label="日期框" prop="date1">
                         <DatePicker type="date" v-model="frm.date1" placeholder="选择日期"
+                            @on-change="frm.date1=$event" style="width: 300px">
+                        </DatePicker>
+                        <div class="ivu-form-item-notice-tip">必填 【不大完美】【写两遍字段】</div>
+                    </FormItem>
+                    <FormItem label="日期框" prop="date1">
+                        <DatePicker type="month" v-model="frm.date1" placeholder="选择日期" format="yyyy-MM"
                             @on-change="frm.date1=$event" style="width: 300px">
                         </DatePicker>
                         <div class="ivu-form-item-notice-tip">必填 【不大完美】【写两遍字段】</div>
@@ -98,7 +106,7 @@
                         <div class="ivu-form-item-notice-tip">额....</div>
                     </FormItem>
                     <Divider orientation="left">附件上传</Divider>
-                    <FormItem label="附件框" prop="file1">
+                    <FormItem label="多附件框" prop="file1">
                         <Upload :before-upload="handleUpload" multiple action="">
                              <Button icon="ios-cloud-upload-outline">添加附件</Button>
                         </Upload>
@@ -107,7 +115,7 @@
                         </div>
                         <div class="ivu-form-item-notice-tip">必填【不大完美】【需要辅助方法】</div>
                     </FormItem>
-                    <FormItem label="附件框" prop="file1">
+                    <FormItem label="多附件框" prop="file2">
                         <div class="xian-review-list" v-for="(item, index) in reviewList" :key="index">
                             <img :src="item">
                             <div class="xian-review-list-cover">
@@ -119,6 +127,13 @@
                                 <Icon type="ios-camera" size="20"></Icon>
                             </div>
                         </Upload>
+                        <div class="ivu-form-item-notice-tip">必填【不大完美】【需要辅助方法】</div>
+                    </FormItem>
+                    <FormItem label="单附件框" prop="file3">
+                        <Upload :before-upload="handleUpload2" action="" style="display: inline-block; margin-right: 20px;">
+                             <Button icon="ios-cloud-upload-outline">添加附件</Button>
+                        </Upload>
+                        <span>{{frm.file3.name}}</span>
                         <div class="ivu-form-item-notice-tip">必填【不大完美】【需要辅助方法】</div>
                     </FormItem>
                     <Divider orientation="left">单复选校验</Divider>
@@ -187,6 +202,7 @@
 import '@/plugins/vueEditor'
 import Ccode from '@C/ccode'
 import { ramdomString } from '@/utils/string'
+import { error } from '@/tools' // 自定义常用工具
 
 export default {
     components: {
@@ -234,6 +250,7 @@ export default {
                 slider2: [0, 100], // slider测试
                 rate1: 0, // 打分器测试
                 file1: [], // 文件上传
+                file3: {}, // 文件上传
                 pwd1: '', // 密码测试
                 pwd2: '', // 密码测试
                 rich1: '' // 富文本测试
@@ -295,6 +312,13 @@ export default {
                 file1: [
                     { validator: validateFileList }
                 ],
+                file3: [
+                    { required: true, message: '不能为空' },
+                    { validator: (rule, value, callback) => {
+                        if (!this.frm.file.name) { return callback(new Error('请上传文件!')) }
+                        callback()
+                    } }
+                ],
                 pwd1: [
                     { validator: validatePw1 }
                 ],
@@ -327,8 +351,8 @@ export default {
             }, 2e3)
         },
         handleUpload (file) {
-            if (file.size > 52420000) {
-                this.$Message.info({ content: '文件过大' })
+            if (file.size > 2 * 1024 * 1024) {
+                error('文件过大')
             } else {
                 if (window.FileReader) {
                     const fr = new FileReader()
@@ -338,6 +362,14 @@ export default {
                     }
                     fr.readAsDataURL(file)
                 }
+            }
+            return false
+        },
+        handleUpload2 (file) {
+            if (file.size > 20 * 1024 * 1024) {
+                error('文件过大')
+            } else {
+                this.frm.file3 = file
             }
             return false
         },
