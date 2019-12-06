@@ -7,12 +7,9 @@
                     <h1>表单名称</h1>
                     <Divider/>
                 </div>
-                <Form ref="formValidateId" :model="frm" :rules="frmValidate" :label-width="150">
+                <Form ref="from0982" :model="frm" :rules="frmValidate" :label-width="150">
                     <FormItem label="正常文本" prop="text1">
                         <p>{{ frm.text1 }}</p>
-                    </FormItem>
-                    <FormItem label="测试">
-                        <Button type="primary" @click="handleSubmit('formValidateId')">测试</Button>
                     </FormItem>
                     <Divider orientation="left">输入框校验</Divider>
                     <FormItem label="输入框" prop="input1">
@@ -42,10 +39,16 @@
                     <FormItem label="文本域" prop="textarea1">
                         <Input v-model="frm.textarea1" type="textarea" :autosize="{minRows: 3,maxRows: 5}" placeholder="请输入XXXX" />
                     </FormItem>
+                    <FormItem label="测试">
+                        <Button type="primary" @click="handleSubmit()">测试</Button>
+                    </FormItem>
                     <Divider orientation="left">数字框校验</Divider>
                     <FormItem label="数字框" prop="num1">
                         <InputNumber :max="100" :min="1" v-model="frm.num1" placeholder="请输入XXXX" style="width: 450px" :precision="0"></InputNumber>
                         <div class="ivu-form-item-notice-tip">必填+1-100+只能输入数字整数</div>
+                    </FormItem>
+                    <FormItem label="测试">
+                        <Button type="primary" @click="handleSubmit()">测试</Button>
                     </FormItem>
                     <Divider orientation="left">下拉框校验</Divider>
                     <FormItem label="下拉框" prop="select1">
@@ -65,6 +68,9 @@
                     </FormItem>
                     <FormItem label="下拉框">
                         <div>当用户配置项和请求来的数据源不匹配时候怎么弄</div>
+                    </FormItem>
+                    <FormItem label="测试">
+                        <Button type="primary" @click="handleSubmit()">测试</Button>
                     </FormItem>
                     <Divider orientation="left">日期校验</Divider>
                     <FormItem label="日期框" prop="date1">
@@ -91,6 +97,9 @@
                         </DatePicker>
                         <div class="ivu-form-item-notice-tip">必填 【不完美】【写三遍字段】【提交时候得拆分字段】</div>
                     </FormItem>
+                    <FormItem label="测试">
+                        <Button type="primary" @click="handleSubmit()">测试</Button>
+                    </FormItem>
                     <Divider orientation="left">滑轨</Divider>
                     <FormItem label="Slider" prop="slider1">
                         <Slider v-model="frm.slider1" :step="10" show-stops style="width: 450px"/></Slider>
@@ -100,10 +109,16 @@
                         <Slider v-model="frm.slider2" :step="10" show-stops range style="width: 450px"/></Slider>
                         <div class="ivu-form-item-notice-tip">额....</div>
                     </FormItem>
+                    <FormItem label="测试">
+                        <Button type="primary" @click="handleSubmit()">测试</Button>
+                    </FormItem>
                     <Divider orientation="left">打分器</Divider>
                     <FormItem label="Slider" prop="rate1">
                         <Rate show-text v-model="frm.rate1" />
                         <div class="ivu-form-item-notice-tip">额....</div>
+                    </FormItem>
+                    <FormItem label="测试">
+                        <Button type="primary" @click="handleSubmit()">测试</Button>
                     </FormItem>
                     <Divider orientation="left">附件上传</Divider>
                     <FormItem label="多附件框" prop="file1">
@@ -113,7 +128,7 @@
                         <div v-for="(item, index) in reviewList" :key="index">
                             <img :src="item"><a @click="reviewList.splice(index, 1),frm.file1.splice(index, 1)">删除</a>
                         </div>
-                        <div class="ivu-form-item-notice-tip">必填【不大完美】【需要辅助方法】</div>
+                        <div class="ivu-form-item-notice-tip">必填【不大完美】【需要辅助方法】【选中文件后需要手动触发一下本框的验证】</div>
                     </FormItem>
                     <FormItem label="多附件框" prop="file2">
                         <div class="xian-review-list" v-for="(item, index) in reviewList" :key="index">
@@ -122,7 +137,7 @@
                                 <Icon type="ios-trash-outline" @click.native="reviewList.splice(index, 1),frm.file1.splice(index, 1)"></Icon>
                             </div>
                         </div>
-                        <Upload :before-upload="handleUpload" multiple action="" type="drag" style="display: inline-block;width:58px;">
+                        <Upload :before-upload="handleUpload2" multiple action="" type="drag" style="display: inline-block;width:58px;">
                              <div style="width: 58px;height:58px;line-height: 58px;">
                                 <Icon type="ios-camera" size="20"></Icon>
                             </div>
@@ -130,11 +145,14 @@
                         <div class="ivu-form-item-notice-tip">必填【不大完美】【需要辅助方法】</div>
                     </FormItem>
                     <FormItem label="单附件框" prop="file3">
-                        <Upload :before-upload="handleUpload2" action="" style="display: inline-block; margin-right: 20px;">
+                        <Upload :before-upload="handleUpload3" action="" style="display: inline-block; margin-right: 20px;">
                              <Button icon="ios-cloud-upload-outline">添加附件</Button>
                         </Upload>
                         <span>{{frm.file3.name}}</span>
-                        <div class="ivu-form-item-notice-tip">必填【不大完美】【需要辅助方法】</div>
+                        <div class="ivu-form-item-notice-tip">必填【不大完美】【需要辅助方法】【选中文件后需要手动触发一下本框的验证】</div>
+                    </FormItem>
+                    <FormItem label="测试">
+                        <Button type="primary" @click="handleSubmit()">测试</Button>
                     </FormItem>
                     <Divider orientation="left">单复选校验</Divider>
                     <FormItem label="单选框" prop="radio1">
@@ -162,6 +180,9 @@
                         </CheckboxGroup>
                         <div class="ivu-form-item-notice-tip">必填+最多两个 【完美】</div>
                     </FormItem>
+                    <FormItem label="测试">
+                        <Button type="primary" @click="handleSubmit()">测试</Button>
+                    </FormItem>
                     <Divider orientation="left">密码</Divider>
                     <FormItem label="密码" prop="pwd1">
                         <input type="text" style="width: 0px; height: 0px; position: absolute;"/>
@@ -171,6 +192,9 @@
                     <FormItem label="重复密码" prop="pwd2">
                         <Input type="password" v-model="frm.pwd2" placeholder="请输入XXXX" style="width: 450px"/>
                         <div class="ivu-form-item-notice-tip">必填+与前面的相同 【完美】【自定义校验方法全局化】</div>
+                    </FormItem>
+                    <FormItem label="测试">
+                        <Button type="primary" @click="handleSubmit()">测试</Button>
                     </FormItem>
                     <Divider orientation="left">富文本校验</Divider>
                     <FormItem label="任务内容" prop="rich1">
@@ -182,7 +206,7 @@
                     <Divider orientation="left">提交</Divider>
                     <FormItem style="margin-top: 50px">
                         <Button type="default" @click="cancel">返回</Button>
-                        <Button type="primary" :loading="loading === '1'" style="margin: 0 15px" @click="handleSubmit('formValidateId')">发布</Button>
+                        <Button type="primary" :loading="loading === '1'" style="margin: 0 15px" @click="handleSubmit()">发布</Button>
                     </FormItem>
                 </Form>
                 <p class="text-danger">我想屏蔽掉浏览器的默认填写密码功能</p>
@@ -205,13 +229,11 @@ import { ramdomString } from '@/utils/string'
 import { error } from '@/tools' // 自定义常用工具
 
 export default {
-    components: {
-        Ccode
-    },
+    components: { Ccode },
     data () {
         const validatePw1 = (rule, value, callback) => {
             if (value === '') { return callback(new Error('请输入密码')) }
-            if (this.frm.pwd1 !== '') { this.$refs.formValidateId.validateField('pwd2') }
+            if (this.frm.pwd1 !== '') { this.$refs['from0982'].validateField('pwd2') }
             callback();
         }
         const validatePw2 = (rule, value, callback) => {
@@ -250,6 +272,7 @@ export default {
                 slider2: [0, 100], // slider测试
                 rate1: 0, // 打分器测试
                 file1: [], // 文件上传
+                file2: [], // 文件上传
                 file3: {}, // 文件上传
                 pwd1: '', // 密码测试
                 pwd2: '', // 密码测试
@@ -312,10 +335,18 @@ export default {
                 file1: [
                     { validator: validateFileList }
                 ],
+                file2: [
+                    { validator: (rule, value, callback) => {
+                        const filelist = this.frm.file2
+                        if (!filelist || filelist.length === 0) { return callback(new Error('请上传文件!')) }
+                        callback()
+                    } }
+                ],
                 file3: [
                     { required: true, message: '不能为空' },
                     { validator: (rule, value, callback) => {
-                        if (!this.frm.file.name) { return callback(new Error('请上传文件!')) }
+                        const file = this.frm.file3
+                        if (!file.name) { return callback(new Error('请上传文件!')) }
                         callback()
                     } }
                 ],
@@ -362,14 +393,32 @@ export default {
                     }
                     fr.readAsDataURL(file)
                 }
+                this.$refs['from0982'].validateField('file1') // 需要手动触发一下本必填上传框的验证
             }
             return false
         },
         handleUpload2 (file) {
+            if (file.size > 2 * 1024 * 1024) {
+                error('文件过大')
+            } else {
+                if (window.FileReader) {
+                    const fr = new FileReader()
+                    fr.onloadend = (e) => {
+                        this.reviewList.push(e.target.result)
+                        this.frm.file2.push(file)
+                    }
+                    fr.readAsDataURL(file)
+                }
+                this.$refs['from0982'].validateField('file2') // 需要手动触发一下本必填上传框的验证
+            }
+            return false
+        },
+        handleUpload3 (file) {
             if (file.size > 20 * 1024 * 1024) {
                 error('文件过大')
             } else {
                 this.frm.file3 = file
+                this.$refs['from0982'].validateField('file3') // 需要手动触发一下本必填上传框的验证
             }
             return false
         },
@@ -398,9 +447,8 @@ export default {
                 timeout: 300000
             } */
         },
-        handleSubmit (name) {
-            this.$refs[name].resetFields()
-            this.$refs[name].validate((valid) => {
+        handleSubmit () {
+            this.$refs['from0982'].validate((valid) => {
                 if (valid) {
                     this.postForm();
                 }

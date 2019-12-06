@@ -65,7 +65,7 @@ export default {
         USERPOSTID (state, v) { state.userPostId = parseInt(v) },
         ROLE (state, v) { state.role = v },
         PLATFORMID (state, v) { state.platformId = v },
-	
+
         TOKEN (state, token) { localStorage.clear(); state.token = token },
         LOCKING (state, b) { state.locking = b },
         DONOTDRAWROUTER (state, flag) { state.doNotDrawRouter = flag },

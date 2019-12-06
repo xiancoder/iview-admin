@@ -44,7 +44,7 @@ export default {
         let v2 = beginAndEnd[1]
         if (v1 === 'Invalid date') { v1 = '' }
         if (v2 === 'Invalid date') { v2 = '' }
-        const switchValue = (val) => { return (val === -1) ? null : parseInt(val) }
+        const switchValue = (val) => { return (val === -1) ? '' : val }
         return new Promise((resolve, reject) => {
             axios({
                 method: 'GET',

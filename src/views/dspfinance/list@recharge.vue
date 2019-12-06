@@ -8,17 +8,17 @@
             <DatePicker :value="search.start2end" type="daterange" placeholder="选择开始日期结束日期" v-if="roleId==2||roleId==3"
                 @on-change="search.start2end=$event" @on-clear="search.start2end=[]" split-panels style="width: 180px">
             </DatePicker>
-            <Select v-model="search.aderId" placeholder='请选择广告主'  style="width: 180px" v-if="roleId==2">
+            <Select v-model="search.aderId" placeholder="请选择广告主"  style="width: 180px" v-if="roleId==2">
                 <Option value="" label="全部广告主"></Option>
                 <Option v-for="option in dataSet.aderIdList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
-            <Select v-model="search.state" placeholder='请选择状态' style="width: 180px" v-if="roleId==2||roleId==3">
+            <Select v-model="search.state" placeholder="请选择状态" style="width: 180px" v-if="roleId==2||roleId==3">
                 <Option value="" label="全部状态"></Option>
                 <Option v-for="option in dataSet.resultList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
-            <Select v-model="search.type" placeholder='请选择充值方式' style="width: 180px" v-if="roleId==2||roleId==3">
+            <Select v-model="search.type" placeholder="请选择充值方式" style="width: 180px" v-if="roleId==2||roleId==3">
                 <Option value="" label="全部充值方式"></Option>
                 <Option v-for="option in dataSet.rechargeTypeList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
@@ -43,10 +43,13 @@
             show-summary :summary-method="handleSum" v-if="roleId==3">
         </Table>
         <div class="tableFooter">
-            <span>当前显示 {{page.pageSize}} 条/ {{page.rowCount}} 条数据</span>
-            <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount" class="fr" show-sizer
-                show-total show-elevator @on-change="hendleGopage" />
+            <span> {{showPageCount(page.rowCount,page.index,page.pageSize)}}</span>
+            <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount"
+                show-sizer show-elevator class="fr"
+                @on-change="v=>{page.index=v;hendleGopage()}"
+                @on-page-size-change="v=>{page.pageSize=v;hendleGopage()}"/>
             </Page>
+            <span class="fr"> {{showPageRow(page.rowCount,page.index,page.pageSize)}}</span>
         </div>
     </div>
 </template>

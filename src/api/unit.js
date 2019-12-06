@@ -75,5 +75,24 @@ export default {
             })
         })
     },
+    table ({ // 表格
+        index, size
+    }) {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: '/api/unit/table',
+                data: {
+                    'page_index': index,
+                    'page_size': size
+                }
+            }).then(res => {
+                resolve(res.data.data)
+            }).catch(err => {
+                console.error('接口回调异常')
+                reject(err)
+            })
+        })
+    },
     end () {} // 错误占位符
 }

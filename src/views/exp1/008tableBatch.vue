@@ -1,5 +1,7 @@
 <template>
     <div>
+        <p><Icon type="md-checkmark" style="color:green"/> 本模板经历实战可以使用 </p>
+        <p><Icon type="md-checkmark" style="color:green"/> 批量选中数据 分页以后 table不保存旧选中 返回上一页 不会选中已有内容 </p>
         <div class="tableLayout">
             <Tabs value="approval" @on-click="changeTab">
                 <TabPane label="审批人配置" name="approval"></TabPane>
@@ -17,17 +19,21 @@
                 <Button type="primary" @click="hendleSearch">搜索</Button>
                 <Button type="default" @click="hendleReset">重置</Button>
                 <Button type="default" @click="download">下载</Button>
-                <Button type="default" @click="selectedShow">查看所有选中</Button>
+                <Button type="default">{{tableSelection}}</Button>
+                <Button type="default" class="fr" @click="handleSelectAll(false)">取消全选</Button>
+                <Button type="default" class="fr" @click="handleSelectAll(true)">设置全选</Button>
             </div>
-            <Table :loading="loading" :columns="columns" :data="tableData" ref="selection" max-height="auto"
+            <Table border :loading="loading" :columns="columns" :data="tableData" ref="selection" max-height="auto"
                 @on-sort-change="hendleSort" @on-selection-change="selectedChange">
             </Table>
             <div class="tableFooter">
-                <Button @click="handleSelectAll(true)">设置全选</Button>
-                <Button @click="handleSelectAll(false)">取消全选</Button>
-                <Page ref="pager" :page-size="page.size" :current="page.index" :total="page.rowCount" show-sizer
-                    class="fr" show-total show-elevator @on-change="hendleGopage"
-                />
+                <span> {{showPageCount(page.rowCount,page.index,page.pageSize)}}</span>
+                <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount"
+                    show-sizer show-elevator class="fr"
+                    @on-change="v=>{page.index=v;hendleGopage()}"
+                    @on-page-size-change="v=>{page.pageSize=v;hendleGopage()}"/>
+                </Page>
+                <span class="fr"> {{showPageRow(page.rowCount,page.index,page.pageSize)}}</span>
             </div>
         </div>
     </div>
@@ -48,7 +54,7 @@ export default {
                 'taskStatus': '' // 状态 任务状态, 0:待接受；1:执行中；2:待验收;3.验收通过；4.已废弃；5.已暂停
             },
             loading: false,
-            page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
+            page: { pageIndex: 1, pageSize: 10, rowCount: 999 }, // 分页 变量名最好原样
             order: { orderKey: '', order: '' }, // 排序 变量名最好原样
             columns: [
                 { type: 'selection', width: 60, align: 'center' },
@@ -63,8 +69,8 @@ export default {
             'serrchParam': null, // 实际搜索项
             'serrchBack': null, // 搜索项备份
             'tableData': [], // 表格内容
+            'tableSelection': [], // 表格选中项
 
-            selection: [],
             end1: 1 // 防呆设计
         }
     },
@@ -113,10 +119,7 @@ export default {
             const ids = []
             selection = selection || []
             selection.forEach(row => { ids.push(row.id) })
-            this.selection = ids
-        },
-        selectedShow () {
-            console.log(this.selection)
+            this.tableSelection = ids
         },
         ajax: debounce(function () { // 业务ajax
             extend(this.serrchParam, this.search) // 设置实际搜索项
@@ -124,10 +127,11 @@ export default {
             extend(this.serrchParam, this.order) // 设置排序
             saveParamState(this.serrchParam) // 存url
             this.loading = true // 加载中
-            this.$api.task.listMine(this.serrchParam).then((info) => { // ajax
+            this.$api.unit.table(this.serrchParam).then((info) => { // ajax
                 this.loading = false; // 加载完成
                 this.tableData = info.list
-                this.page.rowCount = info.rowCount
+                this.page.rowCount = info.row_count
+                this.tableSelection = [] // 清空选中列表
             })
         }),
         end2: nothing // 防呆设计

@@ -1,5 +1,7 @@
 <template>
     <div>
+        <p><Icon type="md-checkmark" style="color:green"/> 本模板经历实战可以使用 </p>
+        <p><Icon type="md-checkmark" style="color:green"/> 2019年12月6日17:32:15 完美优化page组件 </p>
         <div class="tableLayout">
             <Tabs :value="tabVaule" @on-click="changeTab">
                 <TabPane label="审批人配置" name="approval"></TabPane>
@@ -16,15 +18,19 @@
                 </Select>
                 <Button type="primary" @click="hendleSearch">搜索</Button>
                 <Button type="default" @click="hendleReset">重置</Button>
-                <Button type="default" @click="download">下载</Button>
+                <Button type="default" class="fr" @click="download">下载</Button>
             </div>
             <Table border :loading="loading" :columns="columns" :data="tableData"
                 @on-sort-change="hendleSort">
             </Table>
             <div class="tableFooter">
-                <Page ref="pager" :page-size="page.size" :current="page.index" :total="page.rowCount"
-                    class="fr" show-total show-elevator @on-change="hendleGopage"
-                />
+                <span> {{showPageCount(page.rowCount,page.index,page.pageSize)}}</span>
+                <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount"
+                    show-sizer show-elevator class="fr"
+                    @on-change="v=>{page.index=v;hendleGopage()}"
+                    @on-page-size-change="v=>{page.pageSize=v;hendleGopage()}"/>
+                </Page>
+                <span class="fr"> {{showPageRow(page.rowCount,page.index,page.pageSize)}}</span>
             </div>
         </div>
     </div>

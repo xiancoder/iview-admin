@@ -2,7 +2,7 @@
     <div class="tableLayout">
         <tab></tab>
         <div class="tableTool">
-            <Select v-model="search.aderId" placeholder='请选择广告主' style="width: 180px">
+            <Select v-model="search.aderId" placeholder="请选择广告主" style="width: 180px">
                 <Option value="" label="全部广告主"></Option>
                 <Option v-for="option in dataSet.aderIdList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
@@ -20,10 +20,13 @@
             show-summary :summary-method="handleSum">
         </Table>
         <div class="tableFooter">
-            <span>当前显示 {{page.pageSize}} 条/ {{page.rowCount}} 条数据</span>
-            <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount" class="fr" show-sizer
-                show-total show-elevator @on-change="hendleGopage" />
+            <span> {{showPageCount(page.rowCount,page.index,page.pageSize)}}</span>
+            <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount"
+                show-sizer show-elevator class="fr"
+                @on-change="v=>{page.index=v;hendleGopage()}"
+                @on-page-size-change="v=>{page.pageSize=v;hendleGopage()}"/>
             </Page>
+            <span class="fr"> {{showPageRow(page.rowCount,page.index,page.pageSize)}}</span>
         </div>
     </div>
 </template>

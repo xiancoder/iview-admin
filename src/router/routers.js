@@ -246,6 +246,7 @@ export const routerList = [
             {power: '0000', path: '168component', title: '组件编写'},
             {power: '0000', path: '169directive', title: '指令编写'},
             {power: '0000', path: '170icard', title: 'IviewCard'},
+            {power: '0000', path: '171contact', title: '联系人卡片 Css'},
             {power: '0000', path: '200newBee', title: '收录200知识点'}
         ]
     }),
