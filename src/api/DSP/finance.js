@@ -6,7 +6,7 @@ export default {
     rechargeList ({ // 充值记录 / 可以导出 for 3种角色
         date, // 日期 yyyy-mm
         start2end, // 日期范围 yyyy-mm-dd
-        userId, // 广告主ID
+        aderId, // 广告主ID
         searchName, // 收款人付款人广告主
         state, // 状态 0失败1成功
         type, // 充值方式 1银行转账2在线充值
@@ -16,6 +16,9 @@ export default {
         // 需要根据权限区分一下 下发参数
         let data = null
         let power = ''
+        if (aderId === 'all') aderId = ''
+        if (state === 'all') state = ''
+        if (type === 'all') type = ''
         if (role === 1) {
             data = {
                 'date': date || '' // 日期 yyyy-mm
@@ -25,11 +28,11 @@ export default {
             data = {
                 'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
-                'user_id': userId || '', // 广告主ID
+                'ader_id': aderId || '', // 广告主ID
                 'state': state || '0', // 状态 1成功2失败
                 'recharge_type': type || '0', // 充值方式 1银行转账2在线充值
-                'page': pageIndex || '', // 分页
-                'page_count': pageSize || '' // 分页条数
+                'page': pageIndex || '1', // 分页
+                'page_count': pageSize || '30' // 分页条数
             }
             power = 'oper'
         } else if (role === 3) {
@@ -40,14 +43,14 @@ export default {
                 'key_name': searchName || '', // 收款人付款人广告主
                 'state': state || '0', // 状态 1成功2失败
                 'recharge_type': type || '0', // 充值方式 1银行转账2在线充值
-                'page': pageIndex || '', // 分页
-                'page_count': pageSize || '' // 分页条数
+                'page': pageIndex || '1', // 分页
+                'page_count': pageSize || '30' // 分页条数
             }
             power = 'fina'
         }
         if (isExport) {
             return new Promise((resolve, reject) => {
-                const url = '/api/finance/rechargelist_export_for_user' + power + '?' + obj2url(data)
+                const url = '/api/finance/rechargelist_export_for_' + power + '?' + obj2url(data)
                 window.open(url, '_blank')
                 resolve()
             })
@@ -62,7 +65,7 @@ export default {
                 if (res && res.data) {
                     resolve(res.data)
                 } else {
-                    error(res.msg) // 报错并继续reject
+                    error(res.data.res) // 报错并继续reject
                     reject()
                 }
             }).catch(e => {
@@ -73,8 +76,8 @@ export default {
     costList ({ // 消耗记录 / 可以导出 for 3种角色
         date, // 日期 yyyy-mm
         start2end, // 日期范围 yyyy-mm-dd
-        userId, // 广告主ID
-        searchName, // 收款人付款人广告主
+        aderId, // 广告主ID
+        businessId, // 业务ID
         state, // 状态 0失败1成功
         pageIndex,
         pageSize
@@ -82,6 +85,9 @@ export default {
         // 需要根据权限区分一下 下发参数
         let data = null
         let power = ''
+        if (aderId === 'all') aderId = ''
+        if (businessId === 'all') businessId = ''
+        if (state === 'all') state = ''
         if (role === 1) {
             data = {
                 'date': date || '' // 日期 yyyy-mm
@@ -91,7 +97,7 @@ export default {
             data = {
                 'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
-                'user_id': userId || '', // 广告主ID
+                'ader_id': aderId || '', // 广告主ID
                 'state': state || '0', // 状态 1成功2失败
                 'page': pageIndex || '', // 分页
                 'page_count': pageSize || '' // 分页条数
@@ -101,7 +107,8 @@ export default {
             data = {
                 'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
-                'key_name': searchName || '', // 收款人付款人广告主
+                'ader_id': aderId || '', // 广告主ID
+                'buis_id': businessId || '', // 业务ID
                 'state': state || '0', // 状态 1成功2失败
                 'page': pageIndex || '', // 分页
                 'page_count': pageSize || '' // 分页条数
@@ -110,7 +117,7 @@ export default {
         }
         if (isExport) {
             return new Promise((resolve, reject) => {
-                const url = '/api/finance/costlist_export_for_user' + power + '?' + obj2url(data)
+                const url = '/api/finance/costlist_export_for_' + power + '?' + obj2url(data)
                 window.open(url, '_blank')
                 resolve()
             })
@@ -125,7 +132,7 @@ export default {
                 if (res && res.data) {
                     resolve(res.data)
                 } else {
-                    error(res.msg) // 报错并继续reject
+                    error(res.data.res) // 报错并继续reject
                     reject()
                 }
             }).catch(e => {
@@ -142,27 +149,29 @@ export default {
         // 需要根据权限区分一下 下发参数
         let data = null
         let power = ''
+        if (aderId === 'all') aderId = ''
+        if (companyId === 'all') companyId = ''
         if (role === 1) {
             power = 'user'
         } else if (role === 2) {
             data = {
                 'ader_id': aderId || '', // 广告主ID
-                'page': pageIndex, // 分页
-                'page_count': pageSize // 分页条数
+                'page': pageIndex || 1, // 分页
+                'page_count': pageSize || 30 // 分页条数
             }
             power = 'oper'
         } else if (role === 3) {
             data = {
                 'ader_id': aderId || '', // 广告主ID
                 'company_id': companyId || '', // 公司ID
-                'page': pageIndex, // 分页
-                'page_count': pageSize // 分页条数
+                'page': pageIndex || 1, // 分页
+                'page_count': pageSize || 30 // 分页条数
             }
             power = 'fina'
         }
         if (isExport) {
             return new Promise((resolve, reject) => {
-                const url = '/api/finance/accountlist_export_for_user' + power + '?' + obj2url(data)
+                const url = '/api/finance/accountlist_export_for_' + power + '?' + obj2url(data)
                 window.open(url, '_blank')
                 resolve()
             })
@@ -177,7 +186,7 @@ export default {
                 if (res && res.data) {
                     resolve(res.data)
                 } else {
-                    error(res.msg) // 报错并继续reject
+                    error(res.data.res) // 报错并继续reject
                     reject()
                 }
             }).catch(e => {
@@ -186,7 +195,7 @@ export default {
         })
     },
     rechargelistImport ({ // 批量导入 充值记录 for 财务
-        companyId, // 人员们
+        companyId, // 公司ID
         file // 改成的状态
     }) {
         let fd = new FormData()
@@ -201,12 +210,12 @@ export default {
                 timeout: 300000
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
-                if (res && res.data && res.data.res) {
-                    success(res.msg || '导出成功') // 报错并继续reject
+                if (res && res.data && res.data.res_code) {
+                    success(res.data.res || '导入成功') // 报错并继续reject
                     resolve()
                 } else {
-                    error(res.msg) // 报错并继续reject
-                    reject()
+                    error(res.data.res) // 报错并继续reject
+                    reject(res.data.res)
                 }
             }).catch(e => {
                 error(e.message) // ajax异常后 报错并中止操作

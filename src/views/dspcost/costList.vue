@@ -1,37 +1,43 @@
 <template>
     <div class="tableLayout">
-        <tab></tab>
+        <Tabs>
+            <TabPane label="消耗管理"></TabPane>
+        </Tabs>
         <div class="tableTool">
-            <DatePicker type="month" v-model="search.date1" placeholder="选择日期" format="yyyy-MM" v-if="roleId==1"
-                @on-change="search.date=$event" style="width: 150px">
+            <DatePicker :value="search.start2end" type="daterange" placeholder="选择开始日期结束日期"
+                @on-change="search.start2end=$event" @on-clear="search.start2end=[]" split-panels style="width: 220px">
             </DatePicker>
-            <DatePicker :value="search.start2end" type="daterange" placeholder="选择开始日期结束日期" v-if="roleId==2||roleId==3"
-                @on-change="search.start2end=$event" @on-clear="search.start2end=[]" split-panels style="width: 180px">
-            </DatePicker>
-            <Select v-model="search.aderId" filterable placeholder="请选择广告主" style="width: 150px" v-if="roleId==2">
+            <Select v-model="search.aderId" placeholder="请选择广告主" style="width: 150px" v-if="roleId==2">
                 <Option value="all" label="全部广告主"></Option>
                 <Option v-for="option in dataSet.aderIdList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
-            <Select v-model="search.businessId" filterable placeholder="请选择业务" style="width: 150px" v-if="roleId==3">
-                <Option value="all" label="全部业务"></Option>
-                <Option v-for="option in dataSet.businessIdList" :value="option.id" :key="option.id" :label="option.name" >
-                </Option>
-            </Select>
-            <Select v-model="search.state" placeholder="请选择状态" style="width: 150px" v-if="roleId==2||roleId==3">
+            <Input type="text" v-model="search.businessName" placeholder="请输入业务" style="width: 180px"/>
+            <Select v-model="search.state" placeholder="请选择状态" style="width: 150px">
                 <Option value="all" label="全部状态"></Option>
                 <Option v-for="option in dataSet.stateList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
+            <Button type="warning" @click="model.importRealCost=!model.importRealCost" class="fr">上传封账数据</Button>
+            <Button type="warning" @click="model.importRealPre=!model.importRealPre" class="fr">上传预估消耗</Button>
+            <br>
             <Button type="primary" @click="hendleSearch">搜索</Button>
-            <Button type="default" @click="hendleReset">重置</Button>
-            <Button type="primary" class="fr" @click="hendleExport" v-if="roleId==2||roleId==3">导出</Button>
+            <Button type="primary" @click="hendleClose">封账</Button>
+            <Button type="primary" @click="model.closeBatch=!model.closeBatch">批量封账</Button>
+            <Button type="primary" class="fr" @click="hendleExport">导出</Button>
         </div>
+        <Modal v-model="model.importRealPre" closable width="640" :mask-closable="false" footer-hide>
+            <import-real-pre :flag="model.importRealPre" :from="{}" @on-submit="importRealPreSubmit"/>
+        </Modal>
+        <Modal v-model="model.importRealCost" closable width="640" :mask-closable="false" footer-hide>
+            <import-real-cost :flag="model.importRealCost" :from="{}" @on-submit="importRealCostSubmit"/>
+        </Modal>
+        <Modal v-model="model.closeBatch" closable width="640" :mask-closable="false" footer-hide>
+            <close-batch :flag="model.closeBatch" :from="{}" @on-submit="closeBatchSubmit"/>
+        </Modal>
         <Table border :loading="loading" :columns="columns1" :data="tableData" @on-sort-change="hendleSort"
-            v-if="roleId==1||roleId==2">
-        </Table>
-        <Table border :loading="loading" :columns="columns3" :data="tableData" @on-sort-change="hendleSort"
-            show-summary :summary-method="handleSum" v-if="roleId==3">
+            @on-selection-change="selectedChange"
+            show-summary :summary-method="handleSum" >
         </Table>
         <div class="tableFooter">
             <span> {{showPageCount(page.rowCount,page.index,page.pageSize)}}</span>
@@ -45,61 +51,64 @@
     </div>
 </template>
 <script>
-import tab from './list'
 import { extend, extendF } from '@/utils/object'
 import { debounce, nothing } from '@/utils/function'
+import { sevenRange } from '@/utils/date'
 import { h, saveParamState, getParamState, companyTableSumColumns } from '@/tools' // 自定义常用工具
+import ImportRealPre from './importRealPreModal' // 上传预估消耗
+import ImportRealCost from './importRealCostModal' // 上传封账数据
+import CloseBatch from './closeBatchModal' // 批量封账
+
 export default {
-    components: { tab },
+    components: { ImportRealCost, ImportRealPre, CloseBatch },
     data () {
-        const stateArr = this.$api.dspfinance.stateList('table')
+        const stateArr = this.$api.finance.stateList('table')
+        const start2end = sevenRange()
         return {
             dataSet: {
                 'aderIdList': [],
-                'businessIdList': [],
                 'stateList': []
             },
             search: {
                 date: '', // 日期 yyyy-mm
-                start2end: '', // 日期范围 yyyy-mm-dd
+                start2end, // 日期范围 yyyy-mm-dd
                 aderId: 'all', // 广告主ID
-                businessId: 'all', // 业务ID
+                businessName: '', // 业务名称
                 state: 'all' // 状态 0失败1成功
+            },
+            model: {
+                importRealPre: false,
+                importRealCost: false,
+                closeBatch: false
             },
             loading: false,
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
             order: { orderKey: '', order: '' }, // 排序 变量名最好原样
             columns1: [
                 {title: '消耗日期', key: 'date'},
-                {title: '预估消耗金额', key: 'cost_pre'},
-                {title: '实际消耗金额', key: 'cost_real'},
-                {title: '状态', key: 'state', render: h.readArr('state', stateArr)}
-            ],
-            columns3: [
-                {title: '消耗日期', key: 'date'},
                 {title: '广告主', key: 'ader_name'},
                 {title: '用户名', key: 'user_name'},
                 {title: '业务名称', key: 'buis_name'},
-                {title: '预估消耗金额', key: 'cost_pre'},
-                {title: '实际消耗金额', key: 'cost_real'},
+                {title: '预估消耗金额', key: 'cost_pre', render: h.moneyFormat('cost_pre')},
+                {title: '实际消耗金额', key: 'cost_real', render: h.moneyFormat('cost_real')},
                 {title: '状态', key: 'state', render: h.readArr('state', stateArr)}
             ],
             'serrchParam': null, // 实际搜索项
             'serrchBack': null, // 搜索项备份
             'tableData': [], // 表格内容
             'tableSumData': null, // 表格总计内容
+            'tableSelection': [], // 表格选中项
 
             end1: 1 // 防呆设计
         }
     },
     computed: { // 计算属性
-        roleId () { return this.$store.state.system.role } // 用户角色权限
+        roleId () { return this.$store.state.system.userRoleId } // 用户角色权限
     },
     methods: {
         getDataSet () { // 初始化数据源
-            if (this.roleId === 2) this.$api.dspadvertiser.pull().then(list => { this.dataSet.aderIdList = list })
-            if (this.roleId === 3) this.$api.dspbusiness.pull().then(list => { this.dataSet.businessIdList = list })
-            if (this.roleId === 2 || this.roleId === 3) this.$api.dspfinance.stateList().then(list => { this.dataSet.stateList = list })
+            if (this.roleId === 2) this.$api.advertiser.pull().then(list => { this.dataSet.aderIdList = list })
+            if (this.roleId === 2 || this.roleId === 3) this.$api.finance.stateList().then(list => { this.dataSet.stateList = list })
         },
         init () { // 初始化
             if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
@@ -133,21 +142,39 @@ export default {
             return companyTableSumColumns(columns, this.tableSumData)
         },
         hendleExport: debounce(function () { // 操作
-            this.$api.dspfinance.costList(this.serrchParam, this.roleId, 'export')
+            this.$api.dspcost.costList(this.serrchParam, 'export')
         }),
+        selectedChange (selection) {
+            const ids = []
+            selection = selection || []
+            selection.forEach(row => { ids.push(row.id) })
+            this.tableSelection = ids
+        },
+        hendleClose () {
+        },
         ajax: debounce(function () { // 业务ajax
             extend(this.serrchParam, this.search) // 设置实际搜索项
             extend(this.serrchParam, this.page) // 设置分页
             extend(this.serrchParam, this.order) // 设置排序
             saveParamState(this.serrchParam) // 存url
             this.loading = true // 加载中
-            this.$api.dspfinance.costList(this.serrchParam, this.roleId).then((info) => { // ajax
+            this.$api.dspcost.costList(this.serrchParam).then((info) => { // ajax
                 this.loading = false; // 加载完成
                 this.tableData = info.list
-                this.page.rowCount = info.rowcount
+                this.page.rowCount = info.row_count
                 this.tableSumData = info.sum
+                this.tableSelection = [] // 清空之前的选中
             })
         }),
+        closeBatchSubmit (flag) {
+            this.model.closeBatch = false
+        },
+        importRealCostSubmit (flag) {
+            this.model.importRealCost = false
+        },
+        importRealPreSubmit (flag) {
+            this.model.importRealPre = false
+        },
         end2: nothing // 防呆设计
     },
     mounted: function () {

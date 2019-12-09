@@ -2,13 +2,13 @@
     <div class="tableLayout">
         <tab></tab>
         <div class="tableTool">
-            <Select v-model="search.aderId" placeholder="请选择广告主" style="width: 180px">
-                <Option value="" label="全部广告主"></Option>
+            <Select v-model="search.aderId" filterable placeholder="请选择广告主" style="width: 150px">
+                <Option value="all" label="全部广告主"></Option>
                 <Option v-for="option in dataSet.aderIdList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
             <Select v-model="search.companyId" placeholder="请选择相关公司" style="width: 180px" v-if="roleId==3">
-                <Option value="" label="全部公司"></Option>
+                <Option value="all" label="全部公司"></Option>
                 <Option v-for="option in dataSet.companyList" :value="option.id" :key="option.id" :label="option.name">
                 </Option>
             </Select>
@@ -44,14 +44,14 @@ export default {
                 'companyList': []
             },
             search: {
-                aderId: '', // 广告主ID
-                companyId: '' // 公司账户
+                aderId: 'all', // 广告主ID
+                companyId: 'all' // 公司账户
             },
             loading: false,
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
             order: { orderKey: '', order: '' }, // 排序 变量名最好原样
             columns1: [
-                {title: '广告主', key: 'ader_name', render: h.defaultH('balance')},
+                {title: '广告主', key: 'ader_name', render: h.defaultH('ader_name')},
                 {title: '用户名', key: 'user_name'},
                 {title: '账户余额', key: 'balance', render: h.moneyFormat('balance')}
             ],

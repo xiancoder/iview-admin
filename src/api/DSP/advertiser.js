@@ -13,7 +13,7 @@ export default {
                 if (res && res.data && res.data.list) {
                     resolve(res.data.list)
                 } else {
-                    error(res.msg) // 报错并继续reject
+                    error(res.data.res) // 报错并继续reject
                     reject()
                 }
             }).catch(e => {

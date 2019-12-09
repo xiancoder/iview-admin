@@ -8,18 +8,18 @@
             <DatePicker :value="search.start2end" type="daterange" placeholder="选择开始日期结束日期" v-if="roleId==2||roleId==3"
                 @on-change="search.start2end=$event" @on-clear="search.start2end=[]" split-panels style="width: 180px">
             </DatePicker>
-            <Select v-model="search.aderId" placeholder="请选择广告主"  style="width: 180px" v-if="roleId==2">
-                <Option value="" label="全部广告主"></Option>
+            <Select v-model="search.aderId" filterable placeholder="请选择广告主"  style="width: 150px" v-if="roleId==2">
+                <Option value="all" label="全部广告主"></Option>
                 <Option v-for="option in dataSet.aderIdList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
-            <Select v-model="search.state" placeholder="请选择状态" style="width: 180px" v-if="roleId==2||roleId==3">
-                <Option value="" label="全部状态"></Option>
+            <Select v-model="search.state" placeholder="请选择状态" style="width: 150px" v-if="roleId==2||roleId==3">
+                <Option value="all" label="全部状态"></Option>
                 <Option v-for="option in dataSet.resultList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
-            <Select v-model="search.type" placeholder="请选择充值方式" style="width: 180px" v-if="roleId==2||roleId==3">
-                <Option value="" label="全部充值方式"></Option>
+            <Select v-model="search.type" placeholder="请选择充值方式" style="width: 150px" v-if="roleId==2||roleId==3">
+                <Option value="all" label="全部充值方式"></Option>
                 <Option v-for="option in dataSet.rechargeTypeList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
@@ -58,7 +58,7 @@ import tab from './list'
 import { extend, extendF } from '@/utils/object'
 import { debounce, nothing } from '@/utils/function'
 import { h, saveParamState, getParamState, companyTableSumColumns } from '@/tools' // 自定义常用工具
-import ImportBatch from './importBatchModel' // 修改
+import ImportBatch from './importBatchModal' // 修改
 
 export default {
     components: { tab, ImportBatch },
@@ -74,10 +74,10 @@ export default {
             search: {
                 date: '', // 日期 yyyy-mm
                 start2end: '', // 日期范围 yyyy-mm-dd
-                aderId: '', // 广告主ID
+                aderId: 'all', // 广告主ID
                 searchName: '', // 收款人付款人广告主
-                state: '', // 状态 0全部1成功2失败
-                type: '' // 充值方式 1银行转账2在线充值
+                state: 'all', // 状态 0全部1成功2失败
+                type: 'all' // 充值方式 1银行转账2在线充值
             },
             model: {
                 importBatch: false

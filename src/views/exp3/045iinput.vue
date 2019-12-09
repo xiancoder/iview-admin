@@ -3,6 +3,24 @@
         <div class="blog">
             <div class="blogTitle">iview input 应用场景总结</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 经历实战 表现很好</p>
+                <div>
+                    <Input v-model="value15" prefix="ios-clock-outline" placeholder="Enter number" style="width: 120px" />
+                    &nbsp;
+                    <Poptip trigger="focus">
+                        <Input v-model="value15" prefix="logo-usd" placeholder="Enter number" style="width: 120px" />
+                        <div slot="content">{{ formatNumber }}</div>
+                    </Poptip>
+                </div>
+                <script type="text/html">
+                    <Input v-model="value15" prefix="ios-clock-outline" placeholder="Enter number" style="width: 120px" />
+                    <Poptip trigger="focus">
+                        <Input v-model="value15" prefix="logo-usd" placeholder="Enter number" style="width: 120px" />
+                        <div slot="content">{{ formatNumber }}</div>
+                    </Poptip>
+                </script>
+                <p><Icon type="md-checkmark" style="color:green"/> 以下代码请参考</p>
+
                 <div>
                     <Input v-model="value" placeholder="Enter something..." style="width: 200px" />
                 </div>
@@ -60,18 +78,6 @@
                         <span slot="prepend">http://</span>
                         <span slot="append">.com</span>
                     </Input>
-                </script>
-                <div>
-                    <Poptip trigger="focus">
-                        <Input v-model="value15" prefix="logo-usd" placeholder="Enter number" style="width: 120px" />
-                        <div slot="content">{{ formatNumber }}</div>
-                    </Poptip>
-                </div>
-                <script type="text/html">
-                    <Poptip trigger="focus">
-                        <Input v-model="value15" prefix="logo-usd" placeholder="Enter number" style="width: 120px" />
-                        <div slot="content">{{ formatNumber }}</div>
-                    </Poptip>
                 </script>
             </div>
             <div class="blogFooter">

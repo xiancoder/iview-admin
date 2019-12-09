@@ -66,6 +66,15 @@
                         </Select>
                         <div class="ivu-form-item-notice-tip">必填+远程请求  【完美】【所有数据源都搞成异步:远程或者api中】</div>
                     </FormItem>
+                    <FormItem label="下拉框" prop="select13">
+                        <Select v-model="frm.select13" filterable clearable placeholder="请搜索/选择XXX" style="width: 300px">
+                            <Option value="" label="全部"></Option>
+                            <Option :value="0">0000</Option>
+                            <Option :value="1">1111</Option>
+                            <Option :value="2">2222</Option>
+                        </Select>
+                        <div class="ivu-form-item-notice-tip">可搜索</div>
+                    </FormItem>
                     <FormItem label="下拉框">
                         <div>当用户配置项和请求来的数据源不匹配时候怎么弄</div>
                     </FormItem>
@@ -263,6 +272,7 @@ export default {
                 num1: 0, // 数字框测试
                 select1: '', // 下拉框测试
                 select12: '', // 下拉框测试
+                select13: '', // 下拉框测试
                 date1: '', // 日期测试
                 date2: [], // 日期范围测试
                 radio1: '', // 单选测试
@@ -314,6 +324,9 @@ export default {
                     { required: true, message: '下拉框必选其一' }
                 ],
                 select12: [
+                    { required: true, message: '下拉框必选其一' }
+                ],
+                select13: [
                     { required: true, message: '下拉框必选其一' }
                 ],
                 date1: [

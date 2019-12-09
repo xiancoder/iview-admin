@@ -84,16 +84,6 @@
 import regexp from '@/utils/regexp'
 export default {
     data () {
-        const validatePw1 = (rule, value, callback) => {
-            if (value === '') { return callback(new Error('请输入密码')) }
-            if (this.frm.pwd1 !== '') { this.$refs['form5596'].validateField('pwd2') }
-            callback();
-        }
-        const validatePw2 = (rule, value, callback) => {
-            if (value === '') { return callback(new Error('请再次输入密码')) }
-            if (value !== this.frm.pwd1) { return callback(new Error('两次输入不一致!')) }
-            callback()
-        }
         return {
             loading: false,
             frm: {
@@ -131,10 +121,29 @@ export default {
                     { pattern: regexp.a05, message: '广义范围手机号' }
                 ],
                 pwd1: [
-                    { validator: validatePw1 }
+                    { required: true, message: '密码不能为空' },
+                    { type: 'string', min: 6, message: '密码最少6位' },
+                    { type: 'string', max: 20, message: '密码至多20位' },
+                    { validator: (rule, value, callback) => {
+                        let v1 = 0
+                        if (regexp.b01.test(value)) v1++
+                        if (regexp.b02.test(value)) v1++
+                        if (regexp.b03.test(value)) v1++
+                        if (v1 < 2) {return callback(new Error('密码需同时包含数字、字母、标点符号其中两种!'))}
+                        if (!regexp.b04.test(value)) {return callback(new Error('只能包含数字、字母、标点符号!'))}
+                        this.$refs['form3333'].validateField('newPwd2')
+                        callback();
+                    } }
                 ],
                 pwd2: [
-                    { validator: validatePw2 }
+                    { required: true, message: '密码不能为空' },
+                    { type: 'string', min: 6, message: '密码最少6位' },
+                    { type: 'string', max: 20, message: '密码至多20位' },
+                    { validator: (rule, value, callback) => {
+                        this.$refs['form5596'].validateField('pwd1')
+                        if (value !== this.frm.pwd1) { return callback(new Error('两次输入不一致!')) }
+                        callback()
+                    } }
                 ]
             }
         }
