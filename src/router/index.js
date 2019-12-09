@@ -54,6 +54,45 @@ export const power2routes = (powerList) => { // 根据权限更新视图
     return { list, listOneLevel }
 }
 
+// 辅助状态管理 解析路由结构
+// 由路由信息列表 整理成 左边树数据源 一维路由列表
+// 本算法多层目录结构
+export const power2routesII = (powerList) => { // 根据权限更新视图
+    console.info('仙', '根据权限更新视图II', {powerList})
+    const listOneLevel = {}
+    const readRouterList = function (routeList) {
+        const list = []
+        for (var i = 0, l = routeList.length; i<l; i++) {
+            const item = routeList[i]
+            const one = {
+                icon: item.icon || 'md-globe',
+                name: item.name,
+                title: item.title,
+                path: item.path
+            }
+            if (item.children && item.children.length) {
+                const childrenArr = readRouterList(item.children)
+                // 如果组中没有内容 放弃
+                if (childrenArr && childrenArr.length !== 0) {
+                    one.children = childrenArr
+                    one.path = childrenArr[0].path
+                }
+                list.push(one)
+                listOneLevel[one.name] = { title: one.title, path: one.path, power: true }
+            } else { // 根据权限过滤页面
+                let power = item.power && powerList.indexOf(item.power) > -1
+                if (power) {
+                    list.push(one)
+                }
+                listOneLevel[item.name] = { title: item.title, path: item.path, power: power }
+            }
+        }
+        return list
+    }
+    const list = readRouterList(routes)
+    return { list, listOneLevel }
+}
+
 // 辅助状态管理 解析单路由结构
 // 根据路由名称解析前因后果
 // 本算法只支持 同名称结果和 @符号子类

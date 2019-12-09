@@ -75,7 +75,7 @@
                     formdata.set("name","laoliu");
                     console.log(formdata.get("name"));//laoliu
                     // 获取key为age的第一个值
-                    formdata.get("age"); 
+                    formdata.get("age");
                      // 获取key为age的所有值，返回值为数组类型
                     formdata.getAll("age");
                     //通过FormData构造函数创建一个空对象
