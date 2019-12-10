@@ -17,9 +17,9 @@ export default {
         let data = {
             'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
             'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
-            'ader_id': aderId || '', // 广告主ID
-            'buis_name': businessName || '', // 业务ID
-            'state': state || '0', // 状态 1成功2失败
+            'ader_id': aderId || '0', // 广告主ID
+            'buis_name': businessName || '', // 业务名称
+            'state': state || '0', // 状态 0全部1成功2失败
             'page': pageIndex || '1', // 分页
             'page_count': pageSize || '30' // 分页条数
         }

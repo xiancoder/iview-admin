@@ -43,7 +43,7 @@
 </template>
 <style>
     .box1{
-        background: url(../../assets/images/login-bg.jpg); background-position: center; background-attachment: fixed;
+        background: url(../../../assets/images/login-bg.jpg); background-position: center; background-attachment: fixed;
         position: relative; height: 400px; width: 100%;
     }
     .box1 > *{ z-index: 10; color: #fff; position: relative; }

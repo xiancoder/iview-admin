@@ -29,6 +29,12 @@
                 <transition-group name="taglist-moving-animation">
                     <Tag
                         type="dot"
+                        key="tag-nav-main"
+                        :color="isCurrentTag({name:homePage}) ? 'primary' : 'default'"
+                        @click.native="handleClick({name:homePage})"
+                    >首页</Tag>
+                    <Tag
+                        type="dot"
                         v-for="(item, index) in list"
                         ref="tagsPageOpened"
                         :key="`tag-nav-${index}`"
@@ -100,10 +106,11 @@ export default {
         },
         handleTagsOption (type) { // 关闭其他 关闭所有
             if (type.includes('all')) { // 关闭所有
-                let res = this.list.filter(item => item.name === homePage)
-                this.handleCloseTag(res, {name: this.currentRouteName})
+                console.log(111)
+                this.handleCloseTag([], {name: this.currentRouteName})
             } else if (type.includes('others')) { // 关闭除当前页和home页的其他页
-                let res = this.list.filter(item => item.name === this.currentRouteName || item.name === homePage)
+                let res = this.list.filter(item => item.name === this.currentRouteName)
+                console.log(222)
                 this.handleCloseTag(res, {})
                 setTimeout(() => {
                     this.getTagElementByRoute(this.currentRouteName)
@@ -117,6 +124,7 @@ export default {
                 })
             } else {
                 let res = this.list.filter(item => route.name !== item.name)
+                console.log(333)
                 this.handleCloseTag(res, route)
             }
         },

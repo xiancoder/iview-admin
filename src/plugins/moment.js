@@ -17,9 +17,13 @@ if (window.Notification && Notification.permission !== 'denied') {
                 moment(new Date()).format('YYYY-MM-DD HH:mm:ss') +
                 '\n' +
                 '距离下班还有' +
-                (18.5 - new Date().getHours() - Math.round(new Date().getMinutes() / 6) / 10) +
-                '小时 (点击关闭实时提示)'
+                (18.5 - new Date().getHours() - Math.round(new Date().getMinutes() / 6) / 10) + '小时' +
+                '\n' +
+                '(点击关闭实时提示)'
             const note = new Notification('通知', {
+                dir: 'auto',
+                tag: 'testTag',
+                icon: 'http://returnc.com/frontend/images/console.gif',
                 body: msg
             })
             note.onclick = () => { // 在这里实现用户点击后的逻辑

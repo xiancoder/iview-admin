@@ -28,7 +28,7 @@ export default {
             data = {
                 'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
-                'ader_id': aderId || '', // 广告主ID
+                'ader_id': aderId || '0', // 广告主ID
                 'state': state || '0', // 状态 1成功2失败
                 'recharge_type': type || '0', // 充值方式 1银行转账2在线充值
                 'page': pageIndex || '1', // 分页
@@ -97,7 +97,7 @@ export default {
             data = {
                 'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
-                'ader_id': aderId || '', // 广告主ID
+                'ader_id': aderId || '0', // 广告主ID
                 'state': state || '0', // 状态 1成功2失败
                 'page': pageIndex || '', // 分页
                 'page_count': pageSize || '' // 分页条数
@@ -107,7 +107,7 @@ export default {
             data = {
                 'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
-                'ader_id': aderId || '', // 广告主ID
+                'ader_id': aderId || '0', // 广告主ID
                 'buis_id': businessId || '', // 业务ID
                 'state': state || '0', // 状态 1成功2失败
                 'page': pageIndex || '', // 分页
@@ -155,14 +155,14 @@ export default {
             power = 'user'
         } else if (role === 2) {
             data = {
-                'ader_id': aderId || '', // 广告主ID
+                'ader_id': aderId || '0', // 广告主ID
                 'page': pageIndex || 1, // 分页
                 'page_count': pageSize || 30 // 分页条数
             }
             power = 'oper'
         } else if (role === 3) {
             data = {
-                'ader_id': aderId || '', // 广告主ID
+                'ader_id': aderId || '0', // 广告主ID
                 'company_id': companyId || '', // 公司ID
                 'page': pageIndex || 1, // 分页
                 'page_count': pageSize || 30 // 分页条数

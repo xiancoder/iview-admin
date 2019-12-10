@@ -28,7 +28,7 @@
         <div class="menu-collapsed" v-show="collapsed" :list="menuList">
             <template v-for="item in menuList">
                 <collapsed-menu v-if="item.children && item.children.length > 1"
-                     @on-click="handleSelect" hide-title
+                    @on-click="handleSelect" hide-title
                     :root-icon-size="rootIconSize" :icon-size="iconSize" :theme="theme"
                     :parent-item="item" :key="`drop-menu-${item.name}`">
                 </collapsed-menu>
@@ -37,7 +37,8 @@
                     placement="right" :key="`drop-menu-${item.name}`">
                     <a @click="handleSelect(getNameOrHref(item, true))" class="drop-menu-a" :style="{textAlign: 'center'}">
                         <common-icon :size="rootIconSize" :color="textColor"
-                            :type="item.icon||(item.children && item.children[0].icon)||'ios-document' "/>
+                            :type="item.icon||(item.children && item.children[0].icon)||'ios-document' "
+                        />
                     </a>
                 </Tooltip>
             </template>

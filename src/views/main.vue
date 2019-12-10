@@ -99,11 +99,10 @@
                         <div class="main-xiangzhaosha">
                             <input class="xiangzhaosha-input" type="text" v-model="xiangzhaosha" placeholder="大声地说出我的名砸..你要找啥">
                             <div class="xiangzhaosha-content">
-                                <div v-for="(item) in menuList">
-                                    {{item.title}} &nbsp; | &nbsp;
-                                    <template v-for="(item2) in item.children.filter(row=>{return row.title.toLowerCase().includes(xiangzhaosha.toLowerCase())})">
-                                        <a :href="'#'+item2.path">{{item2.title}}</a>&nbsp;|&nbsp;
-                                    </template>
+                                <div>
+                                    <span v-for="item in routeList.filter(row=>{return row.title.toLowerCase().includes(xiangzhaosha.toLowerCase())})">
+                                        <a :href="'#'+item.path">{{item.title}}</a> &nbsp;|&nbsp;
+                                    </span>
                                 </div>
                                 <!-- template 里面放Button会导致页面滚动时候卡顿 -->
                             </div>
@@ -148,7 +147,7 @@ import maxLogo from '@/assets/images/logo.gif'
 import '@S/main.less'
 import '@S/util.less'
 
-import modifyPwd from '@V/exp8/147goodModalFrom' // 修改密码框
+import modifyPwd from '@V/exp/exp8/147goodModalFrom' // 修改密码框
 
 export default {
     name: 'Main', // 注册为组件时候name可以用来递归自己
@@ -188,7 +187,13 @@ export default {
         breadCrumbList () { return this.$store.state.system.breadCrumbList }, // 面包屑
         spinShow () { return this.$store.state.system.spinLoading || false }, // 新消息数量 0隐藏 null表红点 数字代表数量
         local () { return this.$store.state.app.local },
-        menuList () { return this.$store.state.system.menuList }, // 左边树 数据源
+        menuList () { return this.$store.state.system.menuList || [] }, // 左边树 数据源
+        routeList () {
+            const obj = this.$store.state.system.routeList
+            const arr = []
+            for (var k in obj) {arr.push(obj[k])}
+            return arr
+        }, // 路由 一维化数组
         collapsed () { return this.$store.state.system.shrink }, // 折叠状态
         cacheList () { return this.$store.state.system.cacheList }, // 被缓存的页面
         userAvatar () { return this.$store.state.system.userAvatorPath }, // 用户头像

@@ -16,7 +16,7 @@
                 </Select>
             </div>
             <Table :loading="loading" :columns="columns" :data="tableData" ref="selection" max-height="auto"
-                @on-sort-change="hendleSort" @on-selection-change="selectedChange">
+                @on-sort-change="hendleSort">
             </Table>
             <div class="tableFooter">
                 <Page ref="pager" :page-size="page.size" :current="page.index" :total="page.rowCount" show-sizer

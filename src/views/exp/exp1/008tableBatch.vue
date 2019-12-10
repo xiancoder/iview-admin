@@ -2,6 +2,8 @@
     <div>
         <p><Icon type="md-checkmark" style="color:green"/> 本模板经历实战可以使用 </p>
         <p><Icon type="md-checkmark" style="color:green"/> 批量选中数据 分页以后 table不保存旧选中 返回上一页 不会选中已有内容 </p>
+        <p>给 data 项设置特殊 key _checked: true 可以默认选中当前项。</p>
+        <p>给 data 项设置特殊 key _disabled: true 可以禁止选择当前项。</p>
         <div class="tableLayout">
             <Tabs value="approval" @on-click="changeTab">
                 <TabPane label="审批人配置" name="approval"></TabPane>
@@ -129,7 +131,11 @@ export default {
             this.loading = true // 加载中
             this.$api.unit.table(this.serrchParam).then((info) => { // ajax
                 this.loading = false; // 加载完成
-                this.tableData = info.list
+                const infolist = (info.list || []).map(row => { // 根据条件禁止选中
+                    row._disabled = row.taskNumber > 5500
+                    return row
+                })
+                this.tableData = infolist
                 this.page.rowCount = info.row_count
                 this.tableSelection = [] // 清空选中列表
             })

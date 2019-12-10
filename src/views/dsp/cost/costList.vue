@@ -7,7 +7,7 @@
             <DatePicker :value="search.start2end" type="daterange" placeholder="选择开始日期结束日期"
                 @on-change="search.start2end=$event" @on-clear="search.start2end=[]" split-panels style="width: 220px">
             </DatePicker>
-            <Select v-model="search.aderId" placeholder="请选择广告主" style="width: 150px" v-if="roleId==2">
+            <Select v-model="search.aderId" filterable placeholder="请选择广告主" style="width: 150px" v-if="roleId==2">
                 <Option value="all" label="全部广告主"></Option>
                 <Option v-for="option in dataSet.aderIdList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
@@ -43,8 +43,8 @@
             <span> {{showPageCount(page.rowCount,page.index,page.pageSize)}}</span>
             <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount"
                 show-sizer show-elevator class="fr"
-                @on-change="v=>{page.index=v;hendleGopage()}"
-                @on-page-size-change="v=>{page.pageSize=v;hendleGopage()}"/>
+                @on-change="v=>{hendleGopage(v)}"
+                @on-page-size-change="v=>{page.pageSize=v;hendleGopage(1)}"/>
             </Page>
             <span class="fr"> {{showPageRow(page.rowCount,page.index,page.pageSize)}}</span>
         </div>
@@ -85,6 +85,7 @@ export default {
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
             order: { orderKey: '', order: '' }, // 排序 变量名最好原样
             columns1: [
+                {type: 'selection', width: 70, align: 'center'},
                 {title: '消耗日期', key: 'date'},
                 {title: '广告主', key: 'ader_name'},
                 {title: '用户名', key: 'user_name'},
@@ -160,7 +161,11 @@ export default {
             this.loading = true // 加载中
             this.$api.dspcost.costList(this.serrchParam).then((info) => { // ajax
                 this.loading = false; // 加载完成
-                this.tableData = info.list
+                const infolist = (info.list || []).map(row => { // 根据条件禁止选中
+                    row._disabled = row.state === 2
+                    return row
+                })
+                this.tableData = infolist
                 this.page.rowCount = info.row_count
                 this.tableSumData = info.sum
                 this.tableSelection = [] // 清空之前的选中
@@ -171,9 +176,11 @@ export default {
         },
         importRealCostSubmit (flag) {
             this.model.importRealCost = false
+            this.hendleGopage(1)
         },
         importRealPreSubmit (flag) {
             this.model.importRealPre = false
+            this.hendleGopage(1)
         },
         end2: nothing // 防呆设计
     },

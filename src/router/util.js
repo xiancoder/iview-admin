@@ -1,5 +1,7 @@
 import Main from '@V/main'
+import Main2level from '@V/main2level'
 import { objEqual } from '@/utils/object'
+
 // 处理两层路由
 export const makeTwoLevelRoute = (config) => {
     config.name = config.path
@@ -19,6 +21,7 @@ export const makeTwoLevelRouteItem = (config, parentName) => {
     config.meta = { keepAlive: config.keepAlive || false }
     return config
 }
+
 // 处理一层路由
 export const makeOneLevelRoute = (config) => {
     const path = config.path
@@ -27,6 +30,31 @@ export const makeOneLevelRoute = (config) => {
     config.path = '/' + config.path
     return config
 }
+
+// 处理多层路由
+export const makeMultiLevelRoute = (config, parentName, parentPath) => {
+    const name = config.path
+    if (parentName) {parentName = parentName + '_'} else {parentName = ''}
+    config.name = parentName + name
+    if (parentPath) {parentPath = parentPath + '/'} else {parentPath = ''}
+    config.path = parentPath + name
+    if (config.children && config.children.length) {
+        if (parentPath) {
+            config.component = config.component || Main2level
+        } else {
+            config.component = config.component || Main
+        }
+        for (let i = 0, l = config.children.length; i < l; i++) {
+            config.children[i] = makeMultiLevelRoute(config.children[i], config.name, parentPath + name)
+        }
+    } else {
+        config.component = () => import('@V/' + parentPath + name + '.vue')
+        config.meta = { keepAlive: config.keepAlive || false }
+    }
+    config.path = '/' + config.path
+    return config
+}
+
 /**
  * @description 根据name/params/query判断两个路由对象是否相等
  * @param {*} route1 路由对象

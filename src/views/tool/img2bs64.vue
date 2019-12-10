@@ -16,7 +16,7 @@
                         <div ref="insideDomRef" style="min-height: 150px; width: 400px; display: block; background: #FFC107;">
                         </div>
                     </FormItem>
-                    <FormItem label="转码" prop="text1" v-for="item in files" :key="item.filename">
+                    <FormItem label="转码" prop="text1" v-for="(item,index) in files" :key="'xx'+index">
                         <p><img :src="item.dataURL" style='max-width: 100px;'></p>
                         <p>图片名称：{{item.filename}} , 大小：{{item.filesize}} KB</p>
                         <p><textarea cols='100' rows='10' style='width: 80%;' v-model="item.dataURL"></textarea></p>

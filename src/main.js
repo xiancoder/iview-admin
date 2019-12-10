@@ -28,7 +28,8 @@ console.info('仙', '目前环境', process.env.NODE_ENV)
 if (config.errorLogStore || process.env.NODE_ENV === 'development') {
     Vue.config.errorHandler = (error, vm, mes) => {
         let info = { type: 'script', code: 0, mes: '[' + mes + ']' + error.message, url: window.location.href }
-        console.error(error, vm, mes)
+        // console.error(error, vm, mes) // 废弃 看不出有用信息
+        throw error // 抛出错误
         Vue.nextTick(() => {
             Store.dispatch('system/pushError', info)
         })

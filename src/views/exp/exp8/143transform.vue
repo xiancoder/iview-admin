@@ -8,7 +8,7 @@
                     <div style="
                         perspective: 100px; -webkit-perspective: 91px; width: 176px; height: 105px;
                         position: absolute; top: 105px; left: 79px; ">
-                        <img src="../../assets/images/login-bg.jpg" style="
+                        <img src="../../../assets/images/login-bg.jpg" style="
                             width: 100%;height: 100%;position: relative;
                             transform: rotateX(3deg) rotateY(-1deg) rotateZ(0deg);
                             display: block;opacity: 0.8;border-radius: 6px;box-sizing: border-box;">

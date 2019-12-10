@@ -16,7 +16,7 @@ export default {
     mixins: [{methods: {goto}}],
     data () {
         return {
-            name: 'dspfinance_list',
+            name: 'dsp_finance_list',
             currentName: '',
             balance: '-'
         }
@@ -25,11 +25,11 @@ export default {
         roleId () { return this.$store.state.system.role}, // 用户角色权限
         tabList () {
             const list = [
-                { name: 'dspfinance_list@recharge', title: '充值记录' },
-                { name: 'dspfinance_list@cost', title: '消耗记录' }
+                { name: 'dsp_finance_list@recharge', title: '充值记录' },
+                { name: 'dsp_finance_list@cost', title: '消耗记录' }
             ]
             if (this.roleId !== 1) {
-                list.push({ name: 'dspfinance_list@account', title: '财务余额查询' })
+                list.push({ name: 'dsp_finance_list@account', title: '财务余额查询' })
             }
             return list
         }

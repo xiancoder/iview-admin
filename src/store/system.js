@@ -1,7 +1,7 @@
 import config from '@/config' // 自定义配置
 import { Api } from '@/api'
-import { router, power2routes, power2BreadCrumb } from '@/router' // 自定义路由定义
-import { specialPowerList } from '@/router/routers'
+import { router, power2routesII, power2BreadCrumb } from '@/router' // 自定义路由定义
+import { specialPowerList, loginPowerList } from '@/router/routers'
 
 export default {
     namespaced: true, // 作用域,配置上以后才能够dispach system/xxx 建议必须 不同的状态里有相同字段值
@@ -21,13 +21,15 @@ export default {
         userId: '', // 管理员ID
         userEmail: '', // 管理员EMAIL
         userDeptId: '', // 管理员部门ID
-        userRoleId: '', // 管理员角色ID
+        userRoleId: '', // 角色区分权限 1 广告主 2 运营 3 财务
+        usercertificatId: '', // 广告主类型1-个人2-公司
+
         userRoleName: '', // 管理员角色NAME
         userPostId: '', // 管理员职位ID
-        role: 2, // 管理员角色
-
+        platformId: '', // 平台ID
         token: '', // 服务器token 用于存在header中与服务器交换数据使用
         locking: false, // 锁屏状态
+        isAuth: true, // 是否认证
 
         spinLoading: false, // 路由视图加载中 main.vue组件的loadiing效果
         cacheList: [], // keepalive的缓存页面 缓存方式是 组件页面设置name 加入此数组即可
@@ -38,7 +40,7 @@ export default {
         errorList: [], // 错误列表 todo 收集系统所有的错误 伺机发送
         paramList: {}, // 页面请求参数记录 根据url中的时间戳对应读取
 
-        end: 1 // 结尾容错
+        end: 1 // 防呆设计
     },
     getters: {
         errorCount: state => state.errorList.length,
@@ -61,9 +63,11 @@ export default {
         USEREMAIL (state, v) { state.userEmail = v },
         USERDEPTID (state, v) { state.userDeptId = parseInt(v) },
         USERROLEID (state, v) { state.userRoleId = parseInt(v) },
+        USERCERTIFICATID (state, v) { state.usercertificatId = parseInt(v) },
+
+        ISAUTH (state, v) { state.isAuth = parseInt(v) === 1 },
         USERROLENAME (state, v) { state.userRoleName = v },
-        USERPOSTID (state, v) { state.userPostId = parseInt(v) },
-        ROLE (state, v) { state.role = v },
+        USERPOSTID (state, v) { state.userPostId = v },
         PLATFORMID (state, v) { state.platformId = v },
 
         TOKEN (state, token) { localStorage.clear(); state.token = token },
@@ -79,7 +83,7 @@ export default {
         CLEARERRORLIST (state, error) { state.errorList = [] },
         // PARAMLIST 不需要触发渲染
 
-        END: function () {} // 结尾容错
+        END: function () {} // 防呆设计
     },
     actions: {
         setTheme ({ commit }, v) { commit('THEME', v) }, // 修改主题
@@ -108,7 +112,7 @@ export default {
         getPowerList ({ commit }) { // 触发读取权限接口
             return new Promise((resolve, reject) => {
                 Api.system.getPowerList().then(powerList => { // 读取权限
-                    const { list, listOneLevel } = power2routes(powerList) // 传递给路由模块计算解析
+                    const { list, listOneLevel } = power2routesII(powerList) // 传递给路由模块计算解析
                     commit('POWERLIST', powerList)
                     commit('MENULIST', list)
                     commit('ROUTELIST', listOneLevel)
@@ -138,10 +142,11 @@ export default {
                 loop()
             })
         },
-        setTagNavList ({ commit }, a) { commit('TAGNAVLIST', a) }, // 历史记录列表
+        setTagNavList ({ commit }, a) { console.log(a); commit('TAGNAVLIST', a) }, // 历史记录列表
         addTagNav ({ state, commit }, route) { // 添加历史记录标签
             const name = route.name
             if (specialPowerList.includes(name)) return false
+            if (loginPowerList.includes(name)) return false
             const routeInfo = state.routeList[name]
             if (!routeInfo) return false
             const list = Object.assign(state.tagNavList)
@@ -213,7 +218,6 @@ export default {
                 console.info('仙', '登出清场')
                 commit('TOKEN', '')
                 router.push({name: 'login'})
-                router.push('login')
                 Api.system.logout().then(() => {
                     console.info('登出成功')
                     resolve()
@@ -239,18 +243,18 @@ export default {
                     if (toname === row) { ins = true }
                 })
                 if (ins) {
-                    console.info('仙', '路由keepAlive*')
+                    console.info('仙', '路由跳转', 'keepAlive拒绝')
                     return false
                 }
                 if (includes) {
-                    const x = Object.assign(state.cacheList)
-                    x.push(toname)
-                    commit('CACHELIST', x)
-                    console.info('仙', '路由keepAlive+', x)
+                    const list = Object.assign(state.cacheList)
+                    list.push(toname)
+                    commit('CACHELIST', list)
+                    console.info('仙', '路由跳转', 'keepAlive', list)
                     return false
                 }
             }
-            console.info('仙', '路由keepAlive-', toname)
+            console.info('仙', '路由跳转', 'keepAlive拒绝')
             commit('CACHELIST', [toname])
         },
         noRender ({ commit }, b) { commit('DONOTDRAWROUTER', b) }, // 是否渲染

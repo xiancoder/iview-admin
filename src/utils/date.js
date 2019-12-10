@@ -228,6 +228,12 @@ export function sevenRange (D) {
     const last7 = dateFormat(dateSub(date, 6, 'd'))
     return [last7, today];
 }
+// 获取今天年月 YYYY-MM
+export function todayMouth (D) {
+    const date = D || new Date()
+    return dateFormat(date, 'YYYY-MM')
+}
+
 // 时间戳转换日期
 // 防止ios出现日期bug 统一后台来的时间戳
 // @param timestamp {int} 时间戳为10位/13位均可

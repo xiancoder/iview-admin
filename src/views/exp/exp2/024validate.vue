@@ -82,17 +82,24 @@
                         <Button type="primary" @click="handleSubmit()">测试</Button>
                     </FormItem>
                     <Divider orientation="left">日期校验</Divider>
-                    <FormItem label="日期框" prop="date1">
-                        <DatePicker type="date" v-model="frm.date1" placeholder="选择日期"
-                            @on-change="frm.date1=$event" style="width: 300px">
+                    <FormItem label="日期框" prop="date11">
+                        <DatePicker type="date" :value="search.date11" placeholder="选择日期" format="yyyy-MM-dd"
+                            @on-change="(date)=>{search.date11=date}" style="width: 300px">
+                        </DatePicker>
+                        <div class="ivu-form-item-notice-tip">必填 【不大完美】【】</div>
+                    </FormItem>
+                    <FormItem label="日期框(年月)" prop="date12">
+                        <DatePicker type="month" :value="search.date12" placeholder="选择日期" format="yyyy-MM"
+                            @on-change="(date)=>{search.date12=date}" style="width: 300px">
                         </DatePicker>
                         <div class="ivu-form-item-notice-tip">必填 【不大完美】【写两遍字段】</div>
                     </FormItem>
-                    <FormItem label="日期框" prop="date1">
-                        <DatePicker type="month" v-model="frm.date1" placeholder="选择日期" format="yyyy-MM"
-                            @on-change="frm.date1=$event" style="width: 300px">
+                    <FormItem label="日期框(禁用)" prop="date13">
+                        <DatePicker type="date" :value="search.date13" placeholder="选择日期" format="yyyy-MM-dd"
+                            :options="{ disabledDate:(date)=>{return date&&date.valueOf()<Date.now()-86400000}}"
+                            @on-change="(date)=>{search.date13=date}" style="width: 300px">
                         </DatePicker>
-                        <div class="ivu-form-item-notice-tip">必填 【不大完美】【写两遍字段】</div>
+                        <div class="ivu-form-item-notice-tip">必填 【不大完美】【】</div>
                     </FormItem>
                     <FormItem label="日期范围" prop="date2">
                         <DatePicker :value="frm.date2" type="daterange" placeholder="选择开始日期结束日期" style="width: 300px"
@@ -273,7 +280,9 @@ export default {
                 select1: '', // 下拉框测试
                 select12: '', // 下拉框测试
                 select13: '', // 下拉框测试
-                date1: '', // 日期测试
+                date11: '', // 日期测试
+                date12: '', // 日期测试
+                date13: '', // 日期测试
                 date2: [], // 日期范围测试
                 radio1: '', // 单选测试
                 checkbox1: [], // 复选测试
@@ -329,7 +338,13 @@ export default {
                 select13: [
                     { required: true, message: '下拉框必选其一' }
                 ],
-                date1: [
+                date11: [
+                    { required: true, message: '请选择日期' }
+                ],
+                date12: [
+                    { required: true, message: '请选择日期' }
+                ],
+                date13: [
                     { required: true, message: '请选择日期' }
                 ],
                 date2: [

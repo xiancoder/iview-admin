@@ -53,7 +53,7 @@
         <div v-if="replyData">
             <div class="replyDiv" v-for="(row,index) in replyData" :key="row.id">
                 <div class="icon_reply">
-                    <img src="../../assets/images/icon-reply.png" alt="">
+                    <img src="../../../assets/images/icon-reply.png" alt="">
                     <span>回复</span>
                 </div>
                 <div style="height:10px; "></div>
@@ -67,7 +67,7 @@
                 <div v-if="row.isBack === 0" class="reply_content">{{row.workContent}}</div>
                 <div v-else class="recall_content">该内容已撤回</div>
                 <div class="file_reply" v-if="row.workEnCopy.length > 0 && row.isBack === 0" >
-                    <img src="../../assets/images/uploadFile.png" alt="">
+                    <img src="../../../assets/images/uploadFile.png" alt="">
                     <strong>
                         <a v-for="row2 in row.workEnCopy" :key="row2.url" :href="row2.url" download="">{{row2.name}}</a>
                     </strong>

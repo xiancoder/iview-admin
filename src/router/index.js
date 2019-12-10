@@ -5,6 +5,15 @@ import { LoadingBarRun } from '@/tools' // 自定义常用工具
 import { routerList as routes, specialPowerList, loginPowerList, lockPowerList } from './routers'
 import Config from '@/config' // 自定义配置
 
+// 重写路由的push方法
+// 解决vue项目路由出现message: "Navigating to current location (XXX) is not allowed"的问题
+// 原因：在路由中添加了相同的路由
+// 先注掉 明显没有必须使用的必要
+// const routerPush = Router.prototype.push
+// Router.prototype.push = (location) => {
+//     return routerPush.call(this, location).catch(error => error)
+// }
+
 Vue.use(Router)
 
 // 路由实例 需要挂载到vue
@@ -23,7 +32,7 @@ export const router = new Router({
 // 辅助状态管理 解析路由结构
 // 由路由信息列表 整理成 树数据源 一维路由列表
 // 本算法只支持二层目录结构
-export const power2routes = (powerList) => { // 根据权限更新视图
+/* export const power2routes = (powerList) => { // 根据权限更新视图
     console.info('仙', '根据权限更新视图', {powerList})
     // 目的是整理左边树数据源
     // 目的是整理一维视图
@@ -53,6 +62,7 @@ export const power2routes = (powerList) => { // 根据权限更新视图
     })
     return { list, listOneLevel }
 }
+*/
 
 // 辅助状态管理 解析路由结构
 // 由路由信息列表 整理成 左边树数据源 一维路由列表
@@ -60,9 +70,9 @@ export const power2routes = (powerList) => { // 根据权限更新视图
 export const power2routesII = (powerList) => { // 根据权限更新视图
     console.info('仙', '根据权限更新视图II', {powerList})
     const listOneLevel = {}
-    const readRouterList = function (routeList) {
+    const readRouterList = function (routeList, listOneLevel) {
         const list = []
-        for (var i = 0, l = routeList.length; i<l; i++) {
+        for (var i = 0, l = routeList.length; i < l; i++) {
             const item = routeList[i]
             const one = {
                 icon: item.icon || 'md-globe',
@@ -71,25 +81,31 @@ export const power2routesII = (powerList) => { // 根据权限更新视图
                 path: item.path
             }
             if (item.children && item.children.length) {
-                const childrenArr = readRouterList(item.children)
+                const childrenArr = readRouterList(item.children, listOneLevel)
                 // 如果组中没有内容 放弃
                 if (childrenArr && childrenArr.length !== 0) {
                     one.children = childrenArr
                     one.path = childrenArr[0].path
+                } else {
+                    one.children = []
                 }
                 list.push(one)
-                listOneLevel[one.name] = { title: one.title, path: one.path, power: true }
+                if (one.name) {
+                    listOneLevel[one.name] = { title: one.title, path: one.path, power: true }
+                }
             } else { // 根据权限过滤页面
                 let power = item.power && powerList.indexOf(item.power) > -1
-                if (power) {
+                if (power && !item.hideMenu) {
                     list.push(one)
                 }
-                listOneLevel[item.name] = { title: item.title, path: item.path, power: power }
+                if (one.name) {
+                    listOneLevel[item.name] = { title: item.title, path: item.path, power: power }
+                }
             }
         }
         return list
     }
-    const list = readRouterList(routes)
+    const list = readRouterList(routes, listOneLevel)
     return { list, listOneLevel }
 }
 

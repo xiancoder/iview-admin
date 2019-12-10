@@ -14,7 +14,8 @@
                 </menu-item>
             </template>
             <template v-else>
-                <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item"></side-menu-item>
+                <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item">
+                </side-menu-item>
                 <menu-item v-else :name="getNameOrHref(item)" :key="`menu-${item.name}`">
                     <common-icon :type="item.icon||'ios-document'"/><span>
                     {{ item.title }}</span>
