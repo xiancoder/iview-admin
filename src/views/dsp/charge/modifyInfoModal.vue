@@ -6,13 +6,13 @@
                 <h3>修改企业收款账户</h3>
             </FormItem>
             <FormItem label="公司名称" prop="name">
-                <Input type="text" v-model="frm.name" placeholder="请输入公司名称" style="width: 300px"/>
+                <Input type="text" v-model="frm.name" placeholder="请输入公司名称" style="width: 300px" :disabled="disabled"/>
             </FormItem>
             <FormItem label="银行账号" prop="account">
-                <Input type="text" v-model="frm.account" placeholder="请输入银行账号" style="width: 300px"/>
+                <Input type="text" v-model="frm.account" placeholder="请输入银行账号" style="width: 300px" :disabled="disabled"/>
             </FormItem>
             <FormItem label="开户行" prop="bank">
-                <Input type="text" v-model="frm.bank" placeholder="请输入开户行" style="width: 300px"/>
+                <Input type="text" v-model="frm.bank" placeholder="请输入开户行" style="width: 300px" :disabled="disabled"/>
             </FormItem>
             <FormItem label="图形验证码" prop="ccode">
                 <Input type="text" v-model="frm.ccode" placeholder="请输入图形验证码" style="width: 180px"/>
@@ -22,8 +22,8 @@
                 <p>系统将向公司手机号：185******134 发送短信验证码</p>
             </FormItem>
             <FormItem label="短信验证码" prop="smscode">
-                <Input type="text" v-model="frm.smscode" placeholder="请输入短信验证码" style="width: 170px"/>
-                <Button type="default" style="margin-left:20px;width:110px;">发送短信</Button>
+                <Input type="text" v-model="frm.smscode" placeholder="请输入短信验证码" style="width: 190px"/>
+                <sms-btn :isDisabled="false" @on-send="sendSms()"></sms-btn>
             </FormItem>
             <FormItem class="ivu-form-submit">
                 <Button type="default" @click="cancel">取消</Button>
@@ -38,12 +38,16 @@
 import Ccode from '@C/ccode'
 import { extend } from '@/utils/object'
 import { ramdomString } from '@/utils/string'
+import SmsBtn from '@C/sms-btn'
 
 export default {
-    components: { Ccode },
+    components: {
+        SmsBtn, Ccode
+    },
     data () {
         return {
             loading1: false,
+            disabled: false,
             loading2: false,
             frm: {
                 towho: 1,
@@ -80,6 +84,7 @@ export default {
     watch: { // 监听
         flag (n, o) { // 离开时候清空输入框 归来时候初始化值
             if (n === true) {
+                this.from.bank = this.from.bank_name
                 extend(this.frm, this.from)
             } else {
                 this.$refs['form1212'].resetFields()
@@ -100,6 +105,15 @@ export default {
                     this.$emit('on-submit', 1)
                 }
             });
+        },
+        sendSms () {
+            const x = {
+                'tel': '13831111449', // this.tel
+                'smstype': 2
+            }
+            this.$api.system.smsCode(x).then(res => {
+                console.log('dsp', '修改账户', '验证码已发送!')
+            })
         },
         cancel () {
             this.$emit('on-submit', 0)

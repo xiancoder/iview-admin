@@ -72,7 +72,7 @@ export default {
             })
         })
     },
-    ccode () { // 图片验证码
+    imgCode () { // 图片验证码
         return new Promise((resolve, reject) => {
             axios({
                 method: 'GET',
@@ -91,14 +91,17 @@ export default {
             })
         })
     },
-    smscode ({ tel, imgcode }) { // 手机验证码
+    smsCode ({ tel, smstype }) { // 手机验证码
         return new Promise((resolve, reject) => {
+            success('验证码已发送请注意查收') // 提示并继续resolve
+            return false
             axios({
                 method: 'GET',
                 url: 'api/system/validate_code',
                 data: {
-                    'tel': tel
+                    'tel': tel,
                     // 'imgcode': imgcode
+                    'smstype': smstype || ''
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data

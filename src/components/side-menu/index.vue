@@ -53,6 +53,21 @@ import { goto } from '@/tools' // 自定义常用工具
 import mixin from './mixin'
 import { homePage } from '@/router/routers'
 
+const computeOpenName = (name) => {
+    if (name) return ''
+    const arr = name.split('_')
+    if (arr && arr.length <= 1) return name
+    const result = []
+    for (let i = 0, l = arr.length - 1; i < l; i++) {
+        if (i === 0) {
+            result.push(arr[i])
+        } else {
+            result.push(arr[i - 1] + '_' + arr[i])
+        }
+    }
+    return result
+}
+
 export default {
     name: 'SideMenu',
     mixins: [ mixin ],
@@ -72,7 +87,7 @@ export default {
         menuList () { return this.$store.state.system.menuList }, // 左边树 数据源
         theme () { return this.$store.state.system.theme }, // 主题
         activeName () { return (this.$route.name || '').replace(/\@.+/g, '') }, // 左边树 选中
-        openNames () { return [(this.$route.name || '').replace(/\_.+/g, '')] }, // 左边树的展开状态
+        openNames () { return computeOpenName(this.$route.name) }, // 左边树的展开状态
         textColor () { return this.theme === 'dark' ? '#fff' : '#495060' } // 主题颜色
     },
     methods: {

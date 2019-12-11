@@ -5,35 +5,33 @@
             <div class="blogContent" v-highlight>
                 <p><Icon type="md-checkmark" style="color:green"/> 根据数据遍历匹配来确定每个单元格的合并 此方式可行</p>
                 <p><Icon type="md-close" style="color:red"/> 这种写法不提倡 只是为了尝试一下合并单元格</p>
-                <div id="aptable">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>序号</th>
-                                <th>用户名</th>
-                                <th>年龄</th>
-                                <th>毕业学校</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for ="(user,index) in users" v-bind:key="index">
-                                <td>{{index+1}}</td>
-                                <td v-if="user.level!=0" :rowspan="user.level">{{user.name}} / {{user.level}}</td>
-                                <td v-if="user.level!=0" :rowspan="user.level">{{user.age}}</td>
-                                <td>{{user.school}}</td>
-                                <td><button v-on:click="remove(index)">remove</button></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><input type="text"  id="name" v-model="user.name"/></td>
-                                <td><input type="text" id="age" v-model="user.age"/></td>
-                                <td><input type="text" id="school" v-model="user.school"/></td>
-                                <td><button @click="insert">insert</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <table border="1" class="api">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>用户名</th>
+                            <th>年龄</th>
+                            <th>毕业学校</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for ="(user,index) in users" v-bind:key="index">
+                            <td>{{index+1}}</td>
+                            <td v-if="user.level!=0" :rowspan="user.level">{{user.name}} / {{user.level}}</td>
+                            <td v-if="user.level!=0" :rowspan="user.level">{{user.age}}</td>
+                            <td>{{user.school}}</td>
+                            <td><button v-on:click="remove(index)">remove</button></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="text"  id="name" v-model="user.name"/></td>
+                            <td><input type="text" id="age" v-model="user.age"/></td>
+                            <td><input type="text" id="school" v-model="user.school"/></td>
+                            <td><button @click="insert">insert</button></td>
+                        </tr>
+                    </tbody>
+                </table>
                 <script type="text/js">
                     computeJoinTable (arr, iseq) {
                         let session = null
@@ -124,6 +122,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-    #aptable table{ width: 100%; max-width: 100%; border-bottom: 1px solid #ddd; position: relative; margin-bottom: 0; }
-</style>

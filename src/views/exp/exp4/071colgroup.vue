@@ -9,7 +9,7 @@
                 <p>注释：只能在 table 元素之内，在任何一个 caption 元素之后，在任何一个 thead、tbody、tfoot、tr 元素之前使用 colgroup 标签。</p>
                 <p class="text-danger">color:#fff; 也不行么</p>
                 <p class="text-info">瑶瑶说 不支持px只支持百分百宽度 试了下 果然</p>
-                <table class="table">
+                <table class="api">
                     <colgroup>
                         <col span="2" style="color:#fff;background-color:#2196F3;width:10%">
                         <col style="background-color:#8BC34A;width:80%">
@@ -19,7 +19,7 @@
                     <tr> <td>5869207</td> <td>My first CSS</td> <td>$49</td> </tr>
                 </table>
                 <script type="text/html">
-                    <table class="table">
+                    <table class="api">
                         <colgroup>
                             <col span="2" style="color:#fff;background-color:#2196F3;width:10%">
                             <col style="background-color:#8BC34A;width:80%">
