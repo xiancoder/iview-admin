@@ -1,7 +1,37 @@
 <template>
     <div>
-        <p><Icon type="md-checkmark" style="color:green"/> 本模板经历实战可以使用 </p>
-        <p><Icon type="md-checkmark" style="color:green"/> 2019年12月6日17:32:15 完美优化page组件 </p>
+        <div class="blogCss">
+            <div class="blog">
+                <div class="blogTitle">表格标准规范写法 V1 添加最大高度 可方便查看汇总</div>
+                <Divider orientation="right">可以直接投入项目使用的标准或规范</Divider>
+                <div class="blogContent" v-highlight>
+                    <p><Icon type="md-checkmark" style="color:green"/> 本模板经历实战(OAPC)可以使用 </p>
+                    <p></p>
+                    <script type="text/html" v-pre>
+                        <Table border :loading="loading" :columns="columns" :data="tableData"
+                            :maxHeight="maxheight"
+                            @on-sort-change="hendleSort">
+                        </Table>
+                    </script>
+                    <script type="text/js">
+                        export default {
+                            data () {
+                                const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+                                const maxheight = height - 144 - 150
+                                return {
+                                    maxheight, // 表格高度自适应
+                                }
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="blogFooter">
+                    <Tag color="green">收集</Tag>
+                    <Tag color="cyan">学习</Tag>
+                    <Tag color="blue">增长</Tag>
+                </div>
+            </div>
+        </div>
         <div class="tableLayout">
             <Tabs :value="tabVaule" @on-click="changeTab">
                 <TabPane label="审批人配置" name="approval"></TabPane>
@@ -21,6 +51,7 @@
                 <Button type="default" class="fr" @click="download">下载</Button>
             </div>
             <Table border :loading="loading" :columns="columns" :data="tableData"
+                :maxHeight="maxheight"
                 @on-sort-change="hendleSort">
             </Table>
             <div class="tableFooter">
@@ -41,8 +72,11 @@ import { debounce, nothing } from '@/utils/function'
 import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工具
 export default {
     data () {
+        const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+        const maxheight = height - 144 - 150
         return {
             tabVaule: 'approval',
+            maxheight, // 表格高度自适应
             dataSet: {
                 'taskPriorityList': [],
                 'taskStatuList': []
@@ -75,7 +109,6 @@ export default {
             this.$api.task.status().then(list => { this.dataSet.taskStatuList = list })
         },
         download: debounce(function () { // 操作 任何操作将重置搜索项
-            console.log(this.serrchParam)
             this.hendleSearch()
         }),
         changeTab (name) { this.$tool.jumpto(name) },

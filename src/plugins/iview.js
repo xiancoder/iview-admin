@@ -13,10 +13,10 @@ iView.DatePicker.mixins[0].props.separator.default = ' 至 '
 iView.DatePicker.mixins[0].props.format.default = 'yyyy-MM-dd'
 // =====================================================================
 // 表格控件 指定 最大高度 方便左右滚动时候直观看到横向滚动条
-iView.Table.props.maxHeight.default = function () {
-    const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
-    return height - 144 - 150
-}
+// iView.Table.props.maxHeight.default = function () {
+//     const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+//     return height - 144 - 150
+// }
 // =====================================================================
 // 分页控件 指定 如果显示的话默认内容 [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, '全部']
 iView.Page.props.pageSizeOpts.default = function () {

@@ -7,12 +7,12 @@
                 <p>跳转到我的 添加/编辑 页面并携带参数 本页面路由 {{ routeName }}</p>
                 <p>要注意，以/开头的嵌套路径会被当作根路径。这让你充分的使用嵌套组件而无须设置嵌套的路径。</p>
                 <p>router.push() 这种方法会向history栈中添加记录 </p>
-                <Button to="/exp2/021route@add">to=/exp2/021route@add</Button>
+                <Button to="/exp/exp2/021route@add">to=/exp2/021route@add</Button>
                 &nbsp;
                 <Button @click="go1()">go1</Button>
                 &nbsp;
                 <Button @click="go2()">go2</Button>
-                <script type="text/html">
+                <script type="text/js">
                     go1 () { // 传递的 params: { value: 'test1' } 刷新一下就没了 这是个bug
                         this.$router.push({ name: 'exp2_021route@add', params: { value: 'test1' } })
                     },
@@ -226,26 +226,6 @@ export default {
         go2 () {
             this.$router.push({ path: '/exp2/021route@add', query: { value: 'test1' } })
         }
-    },
-    beforeRouteEnter: (to, from, next) => {
-        // vue 路由指定钩子事件
-        console.log('在渲染该组件的对应路由被 confirm 前调用')
-        // 不！能！获取组件实例 `this` 因为当钩子执行前，组件实例还没被创建
-        next()
-    },
-    beforeRouteUpdate (to, from, next) {
-        // vue 路由指定钩子事件
-        console.log('在当前路由改变，但是改组件被复用时调用')
-        // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
-        // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
-        // 可以访问组件实例 `this`
-        next()
-    },
-    beforeRouteLeave (to, from, next) {
-        // vue 路由指定钩子事件
-        console.log('导航离开该组件的对应路由时调用')
-        // 可以访问组件实例 `this`
-        next()
     }
 }
 </script>

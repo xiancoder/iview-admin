@@ -43,8 +43,6 @@ export const routerList = [
                     {power: '0000', path: '003eslintignore', title: 'Eslint 指定校验目录'},
                     {power: '0000', path: '005oldTable', title: '原生表格 lodash尝试'},
                     {power: '0000', path: '006editITable', title: '编辑表格'},
-                    {power: '0000', path: '007tableRules', title: '表格-规范说明'},
-                    {power: '0000', path: '008tableV1', title: '表格-模版v1'},
                     {power: '0000', path: '008tableBatch', title: '表格-批量操作'},
                     {power: '0000', path: '008tableNoData', title: '表格-无数据'},
                     {power: '0000', path: '008tableObj', title: '表格-超集中(废弃)'},
@@ -251,15 +249,56 @@ export const routerList = [
         ]
     }),
 
-    makeTwoLevelRoute({
-        path: 'produce1', title: '工作集.卷壹', icon: 'md-heart',
+    makeMultiLevelRoute({
+        path: 'expV2', title: '经验集', icon: 'md-menu',
         children: [
-            {power: '0000', path: '201daterange', title: '日期范围两个对象'},
-            {power: '0000', path: '202api', title: 'api接口承上启下'},
-            {power: '0000', path: '203fromdifto', title: '来源提交格式不同'},
-            {power: '0000', path: '204trytransfer', title: '尝试多搜索+穿梭框'}
+            {
+                path: 'exp01', title: '卷壹', icon: 'md-camera',
+                children: [
+                    {power: '0000', path: '001bebal', title: 'Bebal 相关配置'},
+                    {power: '0000', path: '002eslint', title: 'EsLint 校验规则'}
+                ]
+            }, {
+                path: 'exp02', title: '卷贰', icon: 'md-cart',
+                children: [
+                    {power: '0000', path: '200newBee', title: '收录200知识点'}
+                ]
+            }
         ]
     }),
+
+    makeMultiLevelRoute({
+        path: 'workV2', title: '工作集', icon: 'md-menu',
+        children: [
+            {
+                path: 'work01', title: '卷壹', icon: 'md-heart',
+                children: [
+                    {power: '0000', path: '201daterange', title: '日期范围优化'},
+                    {power: '0000', path: '202api', title: 'api接口承上启下'},
+                    {power: '0000', path: '203fromdifto', title: '来源提交格式不同'},
+                    {power: '0000', path: '204trytransfer', title: '尝试多搜索+穿梭框'},
+                    {power: '0000', path: '205tableV1', title: '表格规范v1模版'},
+                    {power: '0000', path: '205tableMaxHeight', title: '表格v1高度限定'},
+                    {power: '0000', path: '207validateInput', title: '表单v1输入框'},
+                    {power: '0000', path: '207validateNumber', title: '表单v1数字框'},
+                    {power: '0000', path: '207validateFile', title: '表单v1校验上传框'},
+                    {power: '0000', path: '207validateOther', title: '表单v1其他框'},
+                    {power: '0000', path: '207validatePwd', title: '表单v1密码框'},
+                    {power: '0000', path: '207validateRadio', title: '表单v1单选复选框'},
+                    {power: '0000', path: '207validateRich', title: '表单v1富文本框'},
+                    {power: '0000', path: '207validateSelect', title: '表单v1下拉框'},
+                    {power: '0000', path: '207validateDate', title: '表单v1日期框'}
+                ]
+            },
+            {
+                path: 'work02', title: '卷贰', icon: 'md-heart',
+                children: [
+                    {power: '0000', path: '300brove', title: '收集300个'}
+                ]
+            }
+        ]
+    }),
+
     makeTwoLevelRoute({
         path: 'tool', title: '趁手工具第三代', icon: 'md-images',
         children: [

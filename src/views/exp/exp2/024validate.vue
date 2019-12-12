@@ -14,7 +14,7 @@
                     <Divider orientation="left">输入框校验</Divider>
                     <FormItem label="输入框" prop="input1">
                         <Input type="text" v-model="frm.input1" placeholder="请输入XXXX" style="width: 450px"/>
-                        <div class="ivu-form-item-notice-tip">必填 【完美】</div>
+                        <div class="ivu-form-item-notice-tip">【完美】</div>
                     </FormItem>
                     <FormItem label="输入框" prop="input12">
                         <Input type="text" v-model="frm.input12" placeholder="请输入XXXX" style="width: 450px"/>
@@ -56,7 +56,7 @@
                             <Option value="" label="全部"></Option>
                             <Option :value="0">一般</Option> <Option :value="1">重要</Option> <Option :value="2">紧急</Option>
                         </Select>
-                        <div class="ivu-form-item-notice-tip">必填 【静态数据源也不建议使用】</div>
+                        <div class="ivu-form-item-notice-tip">【静态数据源也不建议使用】</div>
                     </FormItem>
                     <FormItem label="下拉框" prop="select12">
                         <Select v-model="frm.select12" filterable clearable placeholder="请搜索/选择XXX" style="width: 300px">
@@ -83,35 +83,35 @@
                     </FormItem>
                     <Divider orientation="left">日期校验</Divider>
                     <FormItem label="日期框" prop="date11">
-                        <DatePicker type="date" :value="search.date11" placeholder="选择日期" format="yyyy-MM-dd"
-                            @on-change="(date)=>{search.date11=date}" style="width: 300px">
+                        <DatePicker type="date" :value="frm.date11" placeholder="选择日期" format="yyyy-MM-dd"
+                            @on-change="(date)=>{frm.date11=date}" style="width: 300px">
                         </DatePicker>
-                        <div class="ivu-form-item-notice-tip">必填 【不大完美】【】</div>
+                        <div class="ivu-form-item-notice-tip">【不大完美】【】</div>
                     </FormItem>
                     <FormItem label="日期框(年月)" prop="date12">
-                        <DatePicker type="month" :value="search.date12" placeholder="选择日期" format="yyyy-MM"
-                            @on-change="(date)=>{search.date12=date}" style="width: 300px">
+                        <DatePicker type="month" :value="frm.date12" placeholder="选择日期" format="yyyy-MM"
+                            @on-change="(date)=>{frm.date12=date}" style="width: 300px">
                         </DatePicker>
-                        <div class="ivu-form-item-notice-tip">必填 【不大完美】【写两遍字段】</div>
+                        <div class="ivu-form-item-notice-tip">【不大完美】【写两遍字段】</div>
                     </FormItem>
                     <FormItem label="日期框(禁用)" prop="date13">
-                        <DatePicker type="date" :value="search.date13" placeholder="选择日期" format="yyyy-MM-dd"
+                        <DatePicker type="date" :value="frm.date13" placeholder="选择日期" format="yyyy-MM-dd"
                             :options="{ disabledDate:(date)=>{return date&&date.valueOf()<Date.now()-86400000}}"
-                            @on-change="(date)=>{search.date13=date}" style="width: 300px">
+                            @on-change="(date)=>{frm.date13=date}" style="width: 300px">
                         </DatePicker>
-                        <div class="ivu-form-item-notice-tip">必填 【不大完美】【】</div>
+                        <div class="ivu-form-item-notice-tip">【不大完美】【】</div>
                     </FormItem>
                     <FormItem label="日期范围" prop="date2">
                         <DatePicker :value="frm.date2" type="daterange" placeholder="选择开始日期结束日期" style="width: 300px"
                             @on-change="frm.date2=$event" @on-clear="frm.date2=[]" split-panels>
                         </DatePicker>
-                        <div class="ivu-form-item-notice-tip">必填 【不完美】【写三遍字段】【提交时候得拆分字段】</div>
+                        <div class="ivu-form-item-notice-tip">【不完美】【写三遍字段】【提交时候得拆分字段】</div>
                     </FormItem>
                     <FormItem label="日期范围 (自定义时间段)" prop="date2">
                         <DatePicker :value="frm.date2" type="daterange" placeholder="选择开始日期结束日期" style="width: 300px"
                             @on-change="frm.date2=$event" @on-clear="frm.date2=[]" split-panels :options="options2" >
                         </DatePicker>
-                        <div class="ivu-form-item-notice-tip">必填 【不完美】【写三遍字段】【提交时候得拆分字段】</div>
+                        <div class="ivu-form-item-notice-tip">【不完美】【写三遍字段】【提交时候得拆分字段】</div>
                     </FormItem>
                     <FormItem label="测试">
                         <Button type="primary" @click="handleSubmit()">测试</Button>
@@ -176,7 +176,7 @@
                             <Radio label="male">Male</Radio>
                             <Radio label="female">Female</Radio>
                         </RadioGroup>
-                        <div class="ivu-form-item-notice-tip">必填 【完美】【数据源统一放置】</div>
+                        <div class="ivu-form-item-notice-tip">【完美】【数据源统一放置】</div>
                     </FormItem>
                     <FormItem label="复选框" prop="checkbox1">
                         <CheckboxGroup v-model="frm.checkbox1">
@@ -185,7 +185,7 @@
                             <Checkbox label="Run"></Checkbox>
                             <Checkbox label="Movie"></Checkbox>
                         </CheckboxGroup>
-                        <div class="ivu-form-item-notice-tip">必填 【完美】【数据源统一放置】</div>
+                        <div class="ivu-form-item-notice-tip">【完美】【数据源统一放置】</div>
                     </FormItem>
                     <FormItem label="复选框" prop="checkbox12">
                         <CheckboxGroup v-model="frm.checkbox12">

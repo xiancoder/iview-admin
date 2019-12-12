@@ -8,7 +8,7 @@
                 <script type="text/html">
                 </script>
                 <p></p>
-                <script type="text/html">
+                <script type="text/js">
                 </script>
             </div>
             <div class="blogFooter">
