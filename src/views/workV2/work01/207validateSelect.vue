@@ -6,31 +6,83 @@
             <div class="blogContent" v-highlight>
                 <p></p>
                 <Form ref="from0982" :model="frm" :rules="frmValidate" :label-width="150">
-                    <Divider orientation="left">下拉框校验</Divider>
-                    <FormItem label="下拉框" prop="select1">
+                    <FormItem label="测试">
+                        <Button type="primary" @click="handleSubmit()">测试</Button>
+                    </FormItem>
+
+                    <Divider orientation="left">下拉框 静态数据源也不建议使用 </Divider>
+                    <FormItem label="标题" prop="select1">
                         <Select v-model="frm.select1" style="width: 300px" placeholder="请搜索/选择XXX" >
-                            <Option value="" label="全部"></Option>
-                            <Option :value="0">一般</Option> <Option :value="1">重要</Option> <Option :value="2">紧急</Option>
+                            <Option value="0" label="全部"></Option>
+                            <Option :value="1">一般</Option>
+                            <Option :value="2">重要</Option>
+                            <Option :value="3">紧急</Option>
                         </Select>
                         <div class="ivu-form-item-notice-tip">【静态数据源也不建议使用】</div>
                     </FormItem>
-                    <FormItem label="下拉框" prop="select12">
-                        <Select v-model="frm.select12" filterable clearable placeholder="请搜索/选择XXX" style="width: 300px">
-                            <Option value="" label="全部"></Option>
+                    <FormItem>
+                        <script type="text/html" v-pre>
+                            <FormItem label="标题" prop="select1">
+                                <Select v-model="frm.select1" style="width: 300px" placeholder="请搜索/选择XXX" >
+                                    <Option value="0" label="全部"></Option>
+                                    <Option :value="1">一般</Option>
+                                    <Option :value="2">重要</Option>
+                                    <Option :value="3">紧急</Option>
+                                </Select>
+                            </FormItem>
+                        </script>
+                        <script type="text/js">
+                            { required: true, message: '下拉框必选其一' }
+                        </script>
+                    </FormItem>
+
+                    <Divider orientation="left">下拉框 所有数据源都从接口模块读取 且数据中不能包含0 (0代表全部) </Divider>
+                    <FormItem label="标题" prop="select12">
+                        <Select v-model="frm.select12" placeholder="请搜索/选择XXX" style="width: 300px">
+                            <Option value="0" label="全部"></Option>
                             <Option v-for="option in list" :value="option.id" :key="option.id" :label="option.name">
                             </Option>
                         </Select>
-                        <div class="ivu-form-item-notice-tip">必填+远程请求  【完美】【所有数据源都搞成异步:远程或者api中】</div>
+                        <div class="ivu-form-item-notice-tip">下拉框 所有数据源都从接口模块读取 且数据中不能包含0 (0代表全部)</div>
                     </FormItem>
-                    <FormItem label="下拉框" prop="select13">
-                        <Select v-model="frm.select13" filterable clearable placeholder="请搜索/选择XXX" style="width: 300px">
-                            <Option value="" label="全部"></Option>
-                            <Option :value="0">0000</Option>
-                            <Option :value="1">1111</Option>
-                            <Option :value="2">2222</Option>
+                    <FormItem>
+                        <script type="text/html" v-pre>
+                            <FormItem label="标题" prop="select12">
+                                <Select v-model="frm.select12" placeholder="请搜索/选择XXX" style="width: 300px">
+                                    <Option value="0" label="全部"></Option>
+                                    <Option v-for="option in list" :value="option.id" :key="option.id" :label="option.name">
+                                    </Option>
+                                </Select>
+                            </FormItem>
+                        </script>
+                        <script type="text/js">
+                            getDataSet () {
+                                setTimeout(() => { this.list = [{id: 1, name: '一般'}, {id: 2, name: '重要'}, {id: 3, name: '紧急'}] }, 2e3)
+                            },
+                        </script>
+                        <script type="text/js">
+                            mounted () {
+                                this.getDataSet()
+                            }
+                        </script>
+                    </FormItem>
+
+                    <Divider orientation="left">下拉框 可搜索 可清除</Divider>
+                    <FormItem label="标题" prop="select13">
+                        <Select v-model="frm.select13"  placeholder="请搜索/选择XXX" style="width: 300px"
+                            filterable clearable>
+                            <Option value="0" label="全部"></Option>
+                            <Option v-for="option in list" :value="option.id" :key="option.id" :label="option.name">
                         </Select>
-                        <div class="ivu-form-item-notice-tip">可搜索</div>
                     </FormItem>
+                    <FormItem>
+                        <script type="text/html" v-pre>
+                            <Select v-model="frm.select13"  placeholder="请搜索/选择XXX" style="width: 300px"
+                                filterable clearable>
+                            </Select>
+                        </script>
+                    </FormItem>
+
                     <Divider orientation="left">提交</Divider>
                     <FormItem style="margin-top: 50px">
                         <Button type="default" @click="cancel">返回</Button>
@@ -38,11 +90,7 @@
                         <Button type="primary" :loading="loading" @click="handleSubmit()">保存</Button>
                     </FormItem>
                 </Form>
-                <script type="text/html">
-                </script>
                 <p></p>
-                <script type="text/js">
-                </script>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>
@@ -77,7 +125,7 @@ export default {
     },
     methods: {
         getDataSet () {
-            setTimeout(() => { this.list = [{id: 0, name: '一般'}, {id: 1, name: '重要'}, {id: 2, name: '紧急'}] }, 2e3)
+            setTimeout(() => { this.list = [{id: 1, name: '一般'}, {id: 2, name: '重要'}, {id: 3, name: '紧急'}] }, 2e3)
         },
         handleSubmit () {
             this.$refs['from0982'].validate((valid) => {

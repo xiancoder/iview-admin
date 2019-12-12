@@ -147,7 +147,7 @@ import maxLogo from '@/assets/images/logo.gif'
 import '@S/main.less'
 import '@S/util.less'
 
-import modifyPwd from '@V/exp/exp8/147goodModalFrom' // 修改密码框
+import modifyPwd from '@V/exp/exp8/211goodModalFrom' // 修改密码框
 
 export default {
     name: 'Main', // 注册为组件时候name可以用来递归自己

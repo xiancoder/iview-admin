@@ -39,7 +39,7 @@
     </div>
 </template>
 <script>
-import from1 from './147goodModalFrom'
+import from1 from './211goodModalFrom'
 
 export default {
     components: {

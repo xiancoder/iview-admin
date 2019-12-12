@@ -49,7 +49,6 @@ export const routerList = [
                     {power: '0000', path: '009tableMixin', title: '表格-mixin(废弃)'},
                     {power: '0000', path: '010mockData', title: '假数据mock专家'},
                     {power: '0000', path: '011tableTools', title: '表格-搜索项规范'},
-                    {power: '0000', path: '012showMsg', title: '提示信息框规范'},
                     {power: '0000', path: '013tableSum', title: '表格-总计框规范'},
                     {power: '0000', path: '014tableFrom', title: '表格-依附表单弹框'},
                     {power: '0000', path: '014from1', title: '表单', hideMenu: true}
@@ -186,7 +185,6 @@ export const routerList = [
                     {power: '0000', path: '122mimang', title: '略迷茫'},
                     {power: '0000', path: '123gujia', title: '占位符骨架屏'},
                     {power: '0000', path: '124mulLevelTable', title: '尝试多层表格'},
-                    {power: '0000', path: '125vuehtml5editor', title: '富文本 html5editor'},
                     {power: '0000', path: '126vviewer', title: '小图大图预览插件'},
                     {power: '0000', path: '127enterLeave', title: '路由进入退出钩子'},
                     {power: '0000', path: '128ipage', title: 'IviewPage'},
@@ -212,7 +210,6 @@ export const routerList = [
                     {power: '0000', path: '144searchInput', title: 'IviewAutoComplete'},
                     {power: '0000', path: '145fromparam', title: '表单传参方式'},
                     {power: '0000', path: '146copyTxt', title: '复制粘贴文本'},
-                    {power: '0000', path: '147goodModal', title: 'IviewModal 弹框'},
                     {power: '0000', path: '148customFrom', title: '组件内外表单校验'},
                     {power: '0000', path: '149dynamicClick', title: '动态绑定事件'},
                     {power: '0000', path: '150jscando', title: 'Js 权限能做到什么'},
@@ -230,7 +227,6 @@ export const routerList = [
             }, {
                 path: 'exp9', title: '卷玖', icon: 'md-game-controller-b',
                 children: [
-                    {power: '0000', path: '161creditSvgCss', title: 'SVG 信用卡样式'},
                     {power: '0000', path: '162autoSave', title: '表单自动保存 (未弄)'},
                     {power: '0000', path: '163svg', title: 'SVG symbol模版'},
                     {power: '0000', path: '164socket', title: 'Socket 研究记录'},
@@ -287,7 +283,11 @@ export const routerList = [
                     {power: '0000', path: '207validateRadio', title: '表单v1单选复选框'},
                     {power: '0000', path: '207validateRich', title: '表单v1富文本框'},
                     {power: '0000', path: '207validateSelect', title: '表单v1下拉框'},
-                    {power: '0000', path: '207validateDate', title: '表单v1日期框'}
+                    {power: '0000', path: '207validateDate', title: '表单v1日期框'},
+                    {power: '0000', path: '208creditSvgCss', title: 'Svg 信用卡样式'},
+                    {power: '0000', path: '209vuehtml5editor', title: '富文本 Html5Editor'},
+                    {power: '0000', path: '210showMsg', title: '提示信息框规范'},
+                    {power: '0000', path: '211goodModal', title: 'IviewModal 弹框'}
                 ]
             },
             {

@@ -6,11 +6,27 @@
             <div class="blogContent" v-highlight>
                 <p></p>
                 <Form ref="from0982" :model="frm" :rules="frmValidate" :label-width="150">
-                    <Divider orientation="left">数字框校验</Divider>
+                    <FormItem label="测试">
+                        <Button type="primary" @click="handleSubmit()">测试</Button>
+                    </FormItem>
+
+                    <Divider orientation="left">数字框校验 必填+1-100+只能输入数字整数</Divider>
                     <FormItem label="数字框" prop="num1">
-                        <InputNumber :max="100" :min="1" v-model="frm.num1" placeholder="请输入XXXX" style="width: 450px" :precision="0"></InputNumber>
+                        <InputNumber :max="100" :min="1" v-model="frm.num1" placeholder="请输入XXXX"
+                            style="width: 450px" :precision="0">
+                        </InputNumber>
                         <div class="ivu-form-item-notice-tip">必填+1-100+只能输入数字整数</div>
                     </FormItem>
+                    <FormItem>
+                        <script type="text/html" v-pre>
+                            <FormItem label="数字框" prop="num1">
+                                <InputNumber :max="100" :min="1" v-model="frm.num1" placeholder="请输入XXXX"
+                                    style="width: 450px" :precision="0">
+                                </InputNumber>
+                            </FormItem>
+                        </script>
+                    </FormItem>
+
                     <Divider orientation="left">提交</Divider>
                     <FormItem style="margin-top: 50px">
                         <Button type="default" @click="cancel">返回</Button>
@@ -18,11 +34,7 @@
                         <Button type="primary" :loading="loading" @click="handleSubmit()">保存</Button>
                     </FormItem>
                 </Form>
-                <script type="text/html">
-                </script>
                 <p></p>
-                <script type="text/js">
-                </script>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

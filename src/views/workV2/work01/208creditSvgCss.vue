@@ -1,11 +1,20 @@
 <template>
-    <div style="padding:20px;">
-        <h2>使用css3 + svg + 创意 做的银行卡效果 (带翻面)</h2>
-        <credit-card v-for="(row,index) in list" :key="index"
-            :kahao="row.kahao" :gongsi="row.gongsi" :yinhang="row.yinhang" :beizhu="row.beizhu" :code="row.code">
-        </credit-card>
-        <p>资料是瞎写的</p>
-        <Button @click="flipped=!flipped">翻面</Button>
+    <div class="blogCss">
+        <div class="blog">
+            <div class="blogTitle">使用css3 + svg + 创意 做的银行卡效果 (带翻面)</div>
+            <Divider orientation="right">项目使用的标准或规范</Divider>
+            <div class="blogContent" v-highlight>
+                <Button @click="flipped=!flipped">翻面</Button>
+                <credit-card v-for="(row,index) in list" :key="index"
+                    :kahao="row.kahao" :gongsi="row.gongsi" :yinhang="row.yinhang" :beizhu="row.beizhu" :code="row.code">
+                </credit-card>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
+            </div>
+        </div>
     </div>
 </template>
 <script>

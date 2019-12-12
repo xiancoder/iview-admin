@@ -32,6 +32,7 @@ export const confirm = (msg) => { // 二次确认框
         Modal.confirm({
             title: '请确认',
             content: '<p>' + msg + '</p>',
+            loading: true,
             onOk: resolve,
             onCancel: reject
         })
