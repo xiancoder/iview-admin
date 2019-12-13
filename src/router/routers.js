@@ -47,7 +47,6 @@ export const routerList = [
                     {power: '0000', path: '008tableNoData', title: '表格-无数据'},
                     {power: '0000', path: '008tableObj', title: '表格-超集中(废弃)'},
                     {power: '0000', path: '009tableMixin', title: '表格-mixin(废弃)'},
-                    {power: '0000', path: '010mockData', title: '假数据mock专家'},
                     {power: '0000', path: '011tableTools', title: '表格-搜索项规范'},
                     {power: '0000', path: '013tableSum', title: '表格-总计框规范'},
                     {power: '0000', path: '014tableFrom', title: '表格-依附表单弹框'},
@@ -208,9 +207,7 @@ export const routerList = [
                     {power: '0000', path: '142vhtml', title: 'v-html 危险'},
                     {power: '0000', path: '143transform', title: 'transform 形变'},
                     {power: '0000', path: '144searchInput', title: 'IviewAutoComplete'},
-                    {power: '0000', path: '145fromparam', title: '表单传参方式'},
                     {power: '0000', path: '146copyTxt', title: '复制粘贴文本'},
-                    {power: '0000', path: '148customFrom', title: '组件内外表单校验'},
                     {power: '0000', path: '149dynamicClick', title: '动态绑定事件'},
                     {power: '0000', path: '150jscando', title: 'Js 权限能做到什么'},
                     {power: '0000', path: '151iframe', title: 'iframe 父子页面'},
@@ -227,7 +224,6 @@ export const routerList = [
             }, {
                 path: 'exp9', title: '卷玖', icon: 'md-game-controller-b',
                 children: [
-                    {power: '0000', path: '162autoSave', title: '表单自动保存 (未弄)'},
                     {power: '0000', path: '163svg', title: 'SVG symbol模版'},
                     {power: '0000', path: '164socket', title: 'Socket 研究记录'},
                     {power: '0000', path: '165cnzz', title: 'Cnzz 研究记录'},
@@ -237,7 +233,31 @@ export const routerList = [
                     {power: '0000', path: '169directive', title: '指令编写'},
                     {power: '0000', path: '170icard', title: 'IviewCard'},
                     {power: '0000', path: '171contact', title: '联系人卡片 Css'},
-                    {power: '0000', path: '172rewriteRoutePush', title: '复写路由 Route'},
+                    {power: '0000', path: '172rewriteRoutePush', title: '复写路由 Route'}
+                ]
+            }
+        ]
+    }),
+
+    makeMultiLevelRoute({
+        path: 'expV2', title: '经验集V2', icon: 'md-menu',
+        children: [
+            {
+                path: 'exp01', title: '卷壹', icon: 'md-camera',
+                children: [
+                    {power: '0000', path: '002eslint', title: 'EsLint 校验规则'},
+                    {power: '0000', path: '010mockData', title: '假数据mock专家'}
+                ]
+            }, {
+                path: 'exp08', title: '卷捌', icon: 'md-game-controller-b',
+                children: [
+                    {power: '0000', path: '145fromparam', title: '表单传参方式'},
+                    {power: '0000', path: '148customFrom', title: '组件内外表单校验'}
+                ]
+            }, {
+                path: 'exp09', title: '卷玖', icon: 'md-game-controller-b',
+                children: [
+                    {power: '0000', path: '162autoSave', title: '表单自动保存'},
                     {power: '0000', path: '173notification', title: '桌面通知简单API'},
                     {power: '0000', path: '200newBee', title: '收录200知识点'}
                 ]
@@ -246,25 +266,7 @@ export const routerList = [
     }),
 
     makeMultiLevelRoute({
-        path: 'expV2', title: '经验集', icon: 'md-menu',
-        children: [
-            {
-                path: 'exp01', title: '卷壹', icon: 'md-camera',
-                children: [
-                    {power: '0000', path: '001bebal', title: 'Bebal 相关配置'},
-                    {power: '0000', path: '002eslint', title: 'EsLint 校验规则'}
-                ]
-            }, {
-                path: 'exp02', title: '卷贰', icon: 'md-cart',
-                children: [
-                    {power: '0000', path: '200newBee', title: '收录200知识点'}
-                ]
-            }
-        ]
-    }),
-
-    makeMultiLevelRoute({
-        path: 'workV2', title: '工作集', icon: 'md-menu',
+        path: 'workV2', title: '工作集V2', icon: 'md-menu',
         children: [
             {
                 path: 'work01', title: '卷壹', icon: 'md-heart',
@@ -277,7 +279,7 @@ export const routerList = [
                     {power: '0000', path: '205tableMaxHeight', title: '表格v1高度限定'},
                     {power: '0000', path: '207validateInput', title: '表单v1输入框'},
                     {power: '0000', path: '207validateNumber', title: '表单v1数字框'},
-                    {power: '0000', path: '207validateFile', title: '表单v1校验上传框'},
+                    {power: '0000', path: '207validateFile', title: '表单v1文件上传框'},
                     {power: '0000', path: '207validateOther', title: '表单v1其他框'},
                     {power: '0000', path: '207validatePwd', title: '表单v1密码框'},
                     {power: '0000', path: '207validateRadio', title: '表单v1单选复选框'},

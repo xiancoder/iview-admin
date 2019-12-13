@@ -34,7 +34,7 @@
                     hendleSuccess () { this.$Modal.success({ title: '确认考核', content: '请假时长已超剩余假期时长' }) },
                     hendleWarning () { this.$Modal.warning({ title: '确认考核', content: '请假时长已超剩余假期时长' }) },
                     hendleError () { this.$Modal.error({ title: '确认考核', content: '请假时长已超剩余假期时长' }) },
-                    hendleConfirm () { this.$Modal.confirm({ title: '核对考勤', content: '确认考勤无误吗？', loading: true, onOk: () => { alert('ok') this.$Modal.remove() } }) }
+                    hendleConfirm () { this.$Modal.confirm({ title: '核对考勤', content: '确认考勤无误吗？', loading: true, onOk: () => { alert('ok'); this.$Modal.remove() } }) }
                 </script>
             </div>
             <div class="blogFooter">
@@ -90,7 +90,7 @@ export default {
         hendleSuccess () { this.$Modal.success({ title: '确认考核', content: '请假时长已超剩余假期时长' }) },
         hendleWarning () { this.$Modal.warning({ title: '确认考核', content: '请假时长已超剩余假期时长' }) },
         hendleError () { this.$Modal.error({ title: '确认考核', content: '请假时长已超剩余假期时长' }) },
-        hendleConfirm () { this.$Modal.confirm({ title: '核对考勤', content: '确认考勤无误吗？', loading: true, onOk: () => { alert('ok') this.$Modal.remove() } }) }
+        hendleConfirm () { this.$Modal.confirm({ title: '核对考勤', content: '确认考勤无误吗？', loading: true, onOk: () => { alert('ok'); this.$Modal.remove() } }) }
     },
     mounted: function () {
     }

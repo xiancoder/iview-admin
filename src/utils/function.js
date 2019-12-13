@@ -1,41 +1,37 @@
-// 防抖 每次执行延时禁用
-// 有专门的包
+// 防抖
+// 每次执行延时禁用 第一次生效以后等x秒才能第二次生效
+// 面向 提交表单防止重复提交
+// 2019年12月13日17:55:24 经历实战
 // =====================
-export const debounce = (fn, delay) => {
-    delay = delay || 200
-    var timer
+export const debounce = (fn, delay = 2e3) => {
+    let last = null
     return function () {
-        var th = this
         var args = arguments
-        if (timer) {
-            clearTimeout(timer)
+        const now = +new Date()
+        if (last && now - last < delay) {
+            return false
         }
-        timer = setTimeout(function () {
-            timer = null
-            fn.apply(th, args)
-        }, delay)
+        last = now
+        fn.apply(this, args)
     }
 }
-// 节流 每次请求稍候等待
-// 有专门的包
-export const throttle = (fn, interval) => {
-    var last
-    var timer
-    interval = interval || 200
+// 节流
+// 每次请求 稍候等待x秒 再请求 停止计时重新等待x秒
+// 面向 自动保存 实时搜索
+// 2019年12月13日17:55:24 经历实战
+export const throttle = (fn, interval = 2e3) => {
+    let last = null
+    let timer = 0
     return function () {
-        var th = this
-        var args = arguments
-        var now = +new Date()
+        const args = arguments
+        const now = +new Date()
+        last = now
         if (last && now - last < interval) {
             clearTimeout(timer)
-            timer = setTimeout(function () {
-                last = now
-                fn.apply(th, args)
-            }, interval)
-        } else {
-            last = now
-            fn.apply(th, args)
         }
+        timer = setTimeout(() => {
+            fn.apply(this, args)
+        }, interval)
     }
 }
 // 回调函数需要执行的次数

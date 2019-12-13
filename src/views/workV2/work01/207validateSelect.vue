@@ -11,8 +11,8 @@
                     </FormItem>
 
                     <Divider orientation="left">下拉框 静态数据源也不建议使用 </Divider>
-                    <FormItem label="标题" prop="select1">
-                        <Select v-model="frm.select1" style="width: 300px" placeholder="请搜索/选择XXX" >
+                    <FormItem label="标题" prop="p01">
+                        <Select v-model="frm.p01" style="width: 300px" placeholder="请搜索/选择XXX" >
                             <Option value="0" label="全部"></Option>
                             <Option :value="1">一般</Option>
                             <Option :value="2">重要</Option>
@@ -21,9 +21,10 @@
                         <div class="ivu-form-item-notice-tip">【静态数据源也不建议使用】</div>
                     </FormItem>
                     <FormItem>
+                        <p>结果: {{frm.p01}}</p>
                         <script type="text/html" v-pre>
-                            <FormItem label="标题" prop="select1">
-                                <Select v-model="frm.select1" style="width: 300px" placeholder="请搜索/选择XXX" >
+                            <FormItem label="标题" prop="p01">
+                                <Select v-model="frm.p01" style="width: 300px" placeholder="请搜索/选择XXX" >
                                     <Option value="0" label="全部"></Option>
                                     <Option :value="1">一般</Option>
                                     <Option :value="2">重要</Option>
@@ -37,8 +38,8 @@
                     </FormItem>
 
                     <Divider orientation="left">下拉框 所有数据源都从接口模块读取 且数据中不能包含0 (0代表全部) </Divider>
-                    <FormItem label="标题" prop="select12">
-                        <Select v-model="frm.select12" placeholder="请搜索/选择XXX" style="width: 300px">
+                    <FormItem label="标题" prop="p02">
+                        <Select v-model="frm.p02" placeholder="请搜索/选择XXX" style="width: 300px">
                             <Option value="0" label="全部"></Option>
                             <Option v-for="option in list" :value="option.id" :key="option.id" :label="option.name">
                             </Option>
@@ -46,9 +47,10 @@
                         <div class="ivu-form-item-notice-tip">下拉框 所有数据源都从接口模块读取 且数据中不能包含0 (0代表全部)</div>
                     </FormItem>
                     <FormItem>
+                        <p>结果: {{frm.p02}}</p>
                         <script type="text/html" v-pre>
-                            <FormItem label="标题" prop="select12">
-                                <Select v-model="frm.select12" placeholder="请搜索/选择XXX" style="width: 300px">
+                            <FormItem label="标题" prop="p02">
+                                <Select v-model="frm.p02" placeholder="请搜索/选择XXX" style="width: 300px">
                                     <Option value="0" label="全部"></Option>
                                     <Option v-for="option in list" :value="option.id" :key="option.id" :label="option.name">
                                     </Option>
@@ -68,16 +70,18 @@
                     </FormItem>
 
                     <Divider orientation="left">下拉框 可搜索 可清除</Divider>
-                    <FormItem label="标题" prop="select13">
-                        <Select v-model="frm.select13"  placeholder="请搜索/选择XXX" style="width: 300px"
+                    <FormItem label="标题" prop="p03">
+                        <Select v-model="frm.p03"  placeholder="请搜索/选择XXX" style="width: 300px"
                             filterable clearable>
                             <Option value="0" label="全部"></Option>
                             <Option v-for="option in list" :value="option.id" :key="option.id" :label="option.name">
+                            </Option>
                         </Select>
                     </FormItem>
                     <FormItem>
+                        <p>结果: {{frm.p01}}</p>
                         <script type="text/html" v-pre>
-                            <Select v-model="frm.select13"  placeholder="请搜索/选择XXX" style="width: 300px"
+                            <Select v-model="frm.p03"  placeholder="请搜索/选择XXX" style="width: 300px"
                                 filterable clearable>
                             </Select>
                         </script>
@@ -105,19 +109,20 @@ export default {
     data () {
         return {
             loading: false,
+            list: [], // 动态数据源
             frm: {
-                select1: '', // 下拉框测试
-                select12: '', // 下拉框测试
-                select13: '' // 下拉框测试
+                p01: '', // 下拉框测试
+                p02: '', // 下拉框测试
+                p03: '' // 下拉框测试
             },
             frmValidate: {
-                select1: [
+                p01: [
                     { required: true, message: '下拉框必选其一' }
                 ],
-                select12: [
+                p02: [
                     { required: true, message: '下拉框必选其一' }
                 ],
-                select13: [
+                p03: [
                     { required: true, message: '下拉框必选其一' }
                 ]
             }

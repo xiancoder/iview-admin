@@ -8,6 +8,12 @@
                 <Tag v-if="show" closable @on-close="handleClose">标签三</Tag>
                 <script type="text/html">
                     <Tag>标签一</Tag>
+                    <Tag v-if="show" closable @on-close="handleClose">标签三</Tag>
+                </script>
+                <script type="text/js">
+                    handleClose () {
+                        this.show = false
+                    }
                 </script>
                 <Tag type="dot">标签一</Tag>
                 <Tag type="dot" closable>标签二</Tag>

@@ -16,6 +16,7 @@
                         <div class="ivu-form-item-notice-tip">我是一条提示文本 当输入框错误时候我就会消失</div>
                     </FormItem>
                     <FormItem>
+                        <p>结果: {{frm.p01}}</p>
                         <script type="text/html" v-pre>
                             <FormItem label="标题" prop="p01">
                                 <Input type="text" v-model="frm.p01" placeholder="请输入XXXX" style="width: 450px"/>
@@ -27,12 +28,13 @@
                         </script>
                     </FormItem>
 
-                    <Divider orientation="left">输入框 必填校验 + 最大长度</Divider>
+                    <Divider orientation="left">输入框 必填校验 + 最大最小长度</Divider>
                     <FormItem label="标题" prop="p02">
                         <Input type="text" v-model="frm.p02" placeholder="请输入XXXX" style="width: 450px"/>
                         <div class="ivu-form-item-notice-tip">输入框 必填校验 + 最大长度</div>
                     </FormItem>
                     <FormItem>
+                        <p>结果: {{frm.p02}}</p>
                         <script type="text/js">
                             { type: 'string', min: 6, message: '最少输入6个字符' },
                             { type: 'string', max: 50, message: '最多输入50个字符' }
@@ -45,6 +47,7 @@
                         <div class="ivu-form-item-notice-tip">输入框 必填 + 最长50字符 + 邮箱校验 </div>
                     </FormItem>
                     <FormItem>
+                        <p>结果: {{frm.p03}}</p>
                         <script type="text/js">
                             { type: 'email', message: '邮箱格式不正确' }
                         </script>
@@ -57,6 +60,7 @@
                         <span @click="flashccore()" style="margin-left: 20px;"> <ccode :content="ccore"></ccode> </span>
                     </FormItem>
                     <FormItem>
+                        <p>结果: {{frm.p04}}</p>
                         <script type="text/html" v-pre>
                             <FormItem label="验证码" prop="p04">
                                 <Input type="text" v-model="frm.p04" placeholder="请输入验证码" maxlength="4"
@@ -76,6 +80,7 @@
                         <div class="ivu-form-item-notice-tip">输入框 验证码 + 必须11位字符 + 电话格式</div>
                     </FormItem>
                     <FormItem>
+                        <p>结果: {{frm.p05}}</p>
                         <script type="text/js">
                             import regExp from '@/utils/regexp'
                             { pattern: regExp.a05, message: '电话格式错误' }
@@ -88,6 +93,7 @@
                         <div class="ivu-form-item-notice-tip">输入框 验证码 + 价格 整数6位，小数点2位</div>
                     </FormItem>
                     <FormItem>
+                        <p>结果: {{frm.p06}}</p>
                         <script type="text/js">
                             { pattern: regExp.a01, message: '整数6位，小数点2位' }
                         </script>

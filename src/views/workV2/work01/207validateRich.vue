@@ -6,17 +6,51 @@
             <div class="blogContent" v-highlight>
                 <p></p>
                 <Form ref="from0982" :model="frm" :rules="frmValidate" :label-width="150">
-                    <Divider orientation="left">文本域</Divider>
-                    <FormItem label="文本域" prop="textarea1">
-                        <Input v-model="frm.textarea1" type="textarea" :autosize="{minRows: 3,maxRows: 5}" placeholder="请输入XXXX" />
+                    <FormItem label="测试">
+                        <Button type="primary" @click="handleSubmit()">测试</Button>
                     </FormItem>
-                    <Divider orientation="left">富文本校验</Divider>
-                    <FormItem label="任务内容" prop="rich1">
-                        <vue-html5-editor :content="frm.rich1"
-                            @change="val=>frm.rich1=val" :height="140" style="width: 600px;">
+
+                    <Divider orientation="left">文本域 必填 自动加高3-5</Divider>
+                    <FormItem label="标题" prop="p01">
+                        <Input v-model="frm.p01" type="textarea" :autosize="{minRows: 3,maxRows: 5}"
+                            placeholder="请输入XXXX" />
+                    </FormItem>
+                    <FormItem>
+                        <p>结果: {{frm.p01}}</p>
+                        <pre v-html="frm.p01"></pre>
+                        <script type="text/html" v-pre>
+                            <FormItem label="标题" prop="p01">
+                                <Input v-model="frm.p01" type="textarea" :autosize="{minRows: 3,maxRows: 5}"
+                                    placeholder="请输入XXXX" />
+                            </FormItem>
+                        </script>
+                        <script type="text/js">
+                            { required: true, message: '文本域不能为空' }
+                        </script>
+                    </FormItem>
+
+                    <Divider orientation="left">富文本校验 必填</Divider>
+                    <FormItem label="标题" prop="p02">
+                        <vue-html5-editor @change="val=>frm.p02=val" :height="140" style="width: 600px;"
+                            :content="frm.p02">
                         </vue-html5-editor>
-                        <div class="ivu-form-item-notice-tip">必填【不完美】【字段写两遍】{{frm.rich1}}</div>
+                        <div class="ivu-form-item-notice-tip">富文本校验 必填 不完美</div>
                     </FormItem>
+                    <FormItem>
+                        <p>结果: {{frm.p02}}</p>
+                        <p v-html="frm.p02"></p>
+                        <script type="text/html" v-pre>
+                            <FormItem label="标题" prop="p02">
+                                <vue-html5-editor @change="val=>frm.p02=val" :height="140" style="width: 600px;"
+                                    :content="frm.p02">
+                                </vue-html5-editor>
+                            </FormItem>
+                        </script>
+                        <script type="text/js">
+                            { required: true, message: '富文本不能为空' }
+                        </script>
+                    </FormItem>
+
                     <Divider orientation="left">提交</Divider>
                     <FormItem style="margin-top: 50px">
                         <Button type="default" @click="cancel">返回</Button>
@@ -46,15 +80,15 @@ export default {
         return {
             loading: false,
             frm: {
-                textarea1: '', // 文本域测试
-                rich1: '' // 富文本测试
+                p01: 'here comes a wei !!\nin game LOL', // 文本域测试
+                p02: '<h2><font color="#ffcc00" face="Comic Sans MS">here comes a wei !!</font></h2><div><font face="Comic Sans MS" color="#ffcc00">in game LOL</font></div>' // 富文本测试
             },
             frmValidate: {
-                textarea1: [
+                p01: [
                     { required: true, message: '文本域不能为空' }
                 ],
-                rich1: [
-                    { required: true, message: '富文本必填' }
+                p02: [
+                    { required: true, message: '富文本不能为空' }
                 ]
             }
         }

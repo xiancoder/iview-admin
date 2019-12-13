@@ -3,6 +3,13 @@
         <Input type="text" v-model="lishibianliang" placeholder="请输入XXX" style="width: 450px"/>
         <Button type="default" @click="add" class="addButton">添加</Button>
         <br />
+        <div>
+            <Tag type="dot" color="primary" v-for="(item, index) in items" :key="'hehe'+index"
+                 @on-close="handleClose(index)" closable>
+                {{item}}
+            </Tag>
+        </div>
+        <br />
         <div class="xianUtil">
             <ul class="liComma">
                 <li v-for="(item, index) in items" :key="'hehe'+index"> {{ item }}</li>
@@ -26,6 +33,9 @@ export default {
                 this.items.push(this.lishibianliang)
                 this.lishibianliang = ''
             }
+        },
+        handleClose (index) {
+            this.items.splice(index)
         }
     },
     mounted () {

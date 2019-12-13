@@ -11,30 +11,31 @@
                     </FormItem>
 
                     <Divider orientation="left">图片上传 多选 必填 选中文件后需要手动触发一下本框的验证 </Divider>
-                    <FormItem label="标题" prop="file1">
+                    <FormItem label="标题" prop="p01">
                         <Upload :before-upload="handleUpload1" multiple action="">
                              <Button icon="ios-cloud-upload-outline">添加附件</Button>
                         </Upload>
-                        <div v-for="(item, index) in reviewList1" :key="index" style="max-height:100px;max-width:200px;">
-                            <img :src="item"><a @click="reviewList1.splice(index, 1),frm.file1.splice(index, 1)">删除</a>
+                        <div v-for="(item, index) in reviewList1" :key="index">
+                            <img :src="item" style="max-height:100px;max-width:200px;">
+                            <a @click="reviewList1.splice(index, 1),frm.p01.splice(index, 1)">删除</a>
                         </div>
                         <div class="ivu-form-item-notice-tip">多选 必填 选中文件后需要手动触发一下本框的验证 </div>
                     </FormItem>
                     <FormItem>
                         <script type="text/html" v-pre>
-                            <FormItem label="多附件框" prop="file1">
+                            <FormItem label="多附件框" prop="p01">
                                 <Upload :before-upload="handleUpload1" multiple action="">
                                      <Button icon="ios-cloud-upload-outline">添加附件</Button>
                                 </Upload>
                                 <div v-for="(item, index) in reviewList1" :key="index" style="max-height:100px;max-width:200px;">
-                                    <img :src="item"><a @click="reviewList1.splice(index, 1),frm.file1.splice(index, 1)">删除</a>
+                                    <img :src="item"><a @click="reviewList1.splice(index, 1),frm.p01.splice(index, 1)">删除</a>
                                 </div>
                             </FormItem>
                         </script>
                         <script type="text/js">
                             { required: true, message: '不能为空' },
                             { validator: (rule, value, callback) => {
-                                const filelist = this.frm.file1
+                                const filelist = this.frm.p01
                                 if (!filelist || filelist.length === 0) { return callback(new Error('请上传文件!')) }
                                 callback()
                             } }
@@ -42,30 +43,30 @@
                         <script type="text/js">
                             handleUpload1 (file) {
                                 if (file.size > 2 * 1024 * 1024) { error('文件过大'); return false }
-                                if (/\.jpg$|\.jpeg$|\.png$|\.bmp$|\.svg$|\.gif$|/.test(file.name)) { error('请选择图片文件'); return false }
+                                if (!/\.jpg$|\.jpeg$|\.png$|\.bmp$|\.svg$|\.gif$|/.test(file.name)) { error('请选择图片文件'); return false }
                                 if (window.FileReader) {
                                     const fr = new FileReader()
                                     fr.onloadend = (e) => {
                                         this.reviewList1.push(e.target.result)
-                                        this.frm.file1.push(file)
+                                        this.frm.p01.push(file)
                                     }
                                     fr.readAsDataURL(file)
                                 }
-                                this.$refs['from0982'].validateField('file1') // 需要手动触发一下本必填上传框的验证
+                                this.$refs['from0982'].validateField('p01') // 需要手动触发一下本必填上传框的验证
                                 return false
                             },
                         </script>
                     </FormItem>
 
                     <Divider orientation="left">图片上传 多选 必填 另一种表现形式 </Divider>
-                    <FormItem label="标题" prop="file1">
-                        <div class="xian-review-list" v-for="(item, index) in reviewList1" :key="index">
+                    <FormItem label="标题" prop="p02">
+                        <div class="xian-review-list" v-for="(item, index) in reviewList2" :key="index">
                             <img :src="item">
                             <div class="xian-review-list-cover">
-                                <Icon type="ios-trash-outline" @click.native="reviewList1.splice(index, 1),frm.file1.splice(index, 1)"></Icon>
+                                <Icon type="ios-trash-outline" @click.native="reviewList2.splice(index, 1),frm.p02.splice(index, 1)"></Icon>
                             </div>
                         </div>
-                        <Upload :before-upload="handleUpload1" multiple action="" type="drag" style="display: inline-block;width:58px;">
+                        <Upload :before-upload="handleUpload2" multiple action="" type="drag" style="display: inline-block;width:58px;">
                              <div style="width: 58px;height:58px;line-height: 58px;">
                                 <Icon type="ios-camera" size="20"></Icon>
                             </div>
@@ -74,14 +75,14 @@
                     </FormItem>
                     <FormItem>
                         <script type="text/html" v-pre>
-                            <FormItem label="标题" prop="file1">
-                                <div class="xian-review-list" v-for="(item, index) in reviewList1" :key="index">
+                            <FormItem label="标题" prop="p02">
+                                <div class="xian-review-list" v-for="(item, index) in reviewList2" :key="index">
                                     <img :src="item">
                                     <div class="xian-review-list-cover">
-                                        <Icon type="ios-trash-outline" @click.native="reviewList1.splice(index, 1),frm.file1.splice(index, 1)"></Icon>
+                                        <Icon type="ios-trash-outline" @click.native="reviewList2.splice(index, 1),frm.p02.splice(index, 1)"></Icon>
                                     </div>
                                 </div>
-                                <Upload :before-upload="handleUpload1" multiple action="" type="drag" style="display: inline-block;width:58px;">
+                                <Upload :before-upload="handleUpload2" multiple action="" type="drag" style="display: inline-block;width:58px;">
                                      <div style="width: 58px;height:58px;line-height: 58px;">
                                         <Icon type="ios-camera" size="20"></Icon>
                                     </div>
@@ -91,35 +92,35 @@
                     </FormItem>
 
                     <Divider orientation="left">文件上传 单选 必填 选中文件后需要手动触发一下本框的验证 </Divider>
-                    <FormItem label="标题" prop="file2">
-                        <Upload :before-upload="handleUpload2" action="" style="display: inline-block; margin-right: 20px;">
+                    <FormItem label="标题" prop="p03">
+                        <Upload :before-upload="handleUpload3" action="" style="display: inline-block; margin-right: 20px;">
                              <Button icon="ios-cloud-upload-outline">添加附件</Button>
                         </Upload>
-                        <span>{{frm.file2.name}}</span>
+                        <span>{{frm.p03.name}}</span>
                         <div class="ivu-form-item-notice-tip">文件上传 单选 必填 选中文件后需要手动触发一下本框的验证</div>
                     </FormItem>
                     <FormItem>
                         <script type="text/html" v-pre>
-                            <FormItem label="标题" prop="file2">
-                                <Upload :before-upload="handleUpload2" action="" style="display: inline-block; margin-right: 20px;">
+                            <FormItem label="标题" prop="p03">
+                                <Upload :before-upload="handleUpload3" action="" style="display: inline-block; margin-right: 20px;">
                                      <Button icon="ios-cloud-upload-outline">添加附件</Button>
                                 </Upload>
-                                <span>{{frm.file2.name}}</span>
+                                <span>{{frm.p03.name}}</span>
                             </FormItem>
                         </script>
                         <script type="text/js">
                             { validator: (rule, value, callback) => {
-                                const file = this.frm.file2
+                                const file = this.frm.p03
                                 if (!file.name) { return callback(new Error('请上传文件!')) }
-                                if (/\.xls$|\.xlsx$|/.test(file.name)) { return callback(new Error('请上传Excel!')) }
+                                if (!/\.xls$|\.xlsx$|/.test(file.name)) { return callback(new Error('请上传Excel!')) }
                                 callback()
                             } }
                         </script>
                         <script type="text/js">
                             handleUpload2 (file) {
                                 if (file.size > 2 * 1024 * 1024) { error('文件过大'); return false }
-                                this.frm.file2 = file
-                                this.$refs['from0982'].validateField('file2') // 需要手动触发一下本必填上传框的验证
+                                this.frm.p03 = file
+                                this.$refs['from0982'].validateField('p03') // 需要手动触发一下本必填上传框的验证
                                 return false
                             },
                         </script>
@@ -150,25 +151,35 @@ export default {
         return {
             loading: false,
             frm: {
-                file1: [], // 图片文件上传
-                file2: {} // 文件上传
+                p01: [], // 图片文件上传
+                p02: [], // 图片文件上传
+                p03: {} // 文件上传
             },
             reviewList1: [], // 图片文件预览列表
+            reviewList2: [], // 图片文件预览列表
             frmValidate: {
-                file1: [
+                p01: [
                     { required: true, message: '不能为空' },
                     { validator: (rule, value, callback) => {
-                        const filelist = this.frm.file1
+                        const filelist = this.frm.p01
                         if (!filelist || filelist.length === 0) { return callback(new Error('请上传文件!')) }
                         callback()
                     } }
                 ],
-                file2: [
+                p02: [
                     { required: true, message: '不能为空' },
                     { validator: (rule, value, callback) => {
-                        const file = this.frm.file2
+                        const filelist = this.frm.p02
+                        if (!filelist || filelist.length === 0) { return callback(new Error('请上传文件!')) }
+                        callback()
+                    } }
+                ],
+                p03: [
+                    { required: true, message: '不能为空' },
+                    { validator: (rule, value, callback) => {
+                        const file = this.frm.p03
                         if (!file.name) { return callback(new Error('请上传文件!')) }
-                        if (/\.xls$|\.xlsx$|/.test(file.name)) { return callback(new Error('请上传Excel!')) }
+                        if (!/\.xls$|\.xlsx$|/.test(file.name)) { return callback(new Error('请上传Excel!')) }
                         callback()
                     } }
                 ]
@@ -178,22 +189,36 @@ export default {
     methods: {
         handleUpload1 (file) {
             if (file.size > 2 * 1024 * 1024) { error('文件过大'); return false }
-            if (/\.jpg$|\.jpeg$|\.png$|\.bmp$|\.svg$|\.gif$|/.test(file.name)) { error('请选择图片文件'); return false }
+            if (!/\.jpg$|\.jpeg$|\.png$|\.bmp$|\.svg$|\.gif$|/.test(file.name)) { error('请选择图片文件'); return false }
             if (window.FileReader) {
                 const fr = new FileReader()
                 fr.onloadend = (e) => {
                     this.reviewList1.push(e.target.result)
-                    this.frm.file1.push(file)
+                    this.frm.p01.push(file)
+                    this.$refs['from0982'].validateField('p01') // 需要手动触发一下本必填上传框的验证
                 }
                 fr.readAsDataURL(file)
             }
-            this.$refs['from0982'].validateField('file1') // 需要手动触发一下本必填上传框的验证
             return false
         },
         handleUpload2 (file) {
             if (file.size > 2 * 1024 * 1024) { error('文件过大'); return false }
-            this.frm.file2 = file
-            this.$refs['from0982'].validateField('file2') // 需要手动触发一下本必填上传框的验证
+            if (!/\.jpg$|\.jpeg$|\.png$|\.bmp$|\.svg$|\.gif$|/.test(file.name)) { error('请选择图片文件'); return false }
+            if (window.FileReader) {
+                const fr = new FileReader()
+                fr.onloadend = (e) => {
+                    this.reviewList2.push(e.target.result)
+                    this.frm.p02.push(file)
+                    this.$refs['from0982'].validateField('p02') // 需要手动触发一下本必填上传框的验证
+                }
+                fr.readAsDataURL(file)
+            }
+            return false
+        },
+        handleUpload3 (file) {
+            if (file.size > 2 * 1024 * 1024) { error('文件过大'); return false }
+            this.frm.p03 = file
+            this.$refs['from0982'].validateField('p03') // 需要手动触发一下本必填上传框的验证
             return false
         },
         handleSubmit () {
