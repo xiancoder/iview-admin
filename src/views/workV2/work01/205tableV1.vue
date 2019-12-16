@@ -36,8 +36,8 @@
                                 <span> {{showPageCount(page.rowCount,page.index,page.pageSize)}}</span>
                                 <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount"
                                     show-sizer show-elevator class="fr"
-                                    @on-change="v=>{page.index=v;hendleGopage()}"
-                                    @on-page-size-change="v=>{page.pageSize=v;hendleGopage()}"/>
+                                    @on-change="v=>{hendleGopage(v)}"
+                                    @on-page-size-change="v=>{page.pageSize=v;hendleGopage(1)}"/>
                                 </Page>
                                 <span class="fr"> {{showPageRow(page.rowCount,page.index,page.pageSize)}}</span>
                             </div>
@@ -240,8 +240,8 @@
                 <span> {{showPageCount(page.rowCount,page.index,page.pageSize)}}</span>
                 <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount"
                     show-sizer show-elevator class="fr"
-                    @on-change="v=>{page.index=v;hendleGopage()}"
-                    @on-page-size-change="v=>{page.pageSize=v;hendleGopage()}"/>
+                    @on-change="v=>{hendleGopage(v)}"
+                    @on-page-size-change="v=>{page.pageSize=v;hendleGopage(1)}"/>
                 </Page>
                 <span class="fr"> {{showPageRow(page.rowCount,page.index,page.pageSize)}}</span>
             </div>

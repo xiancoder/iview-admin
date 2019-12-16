@@ -1,23 +1,22 @@
 <template>
     <div>
-        <Form ref="formItem" :model="frm" :rules="frmRule"
-            :label-width="80" style="width: 70%;margin: 0 auto">
+        <Form ref="formItem" :model="frm" :rules="frmRule" :label-width="150">
             <FormItem label="">
-                <h1>测试用表单</h1>
-                <p>可以的话使用这个作为页面 可以弹框出的那种</p>
+                <h3>测试用表单</h3>
             </FormItem>
             <FormItem label="下线日期" prop="date">
-                <DatePicker class="wid200" v-model="frm.date"
+                <DatePicker v-model="frm.date" style="width:350px"
                     :clearable="false" :editable="false" format="yyyy-MM-dd" type="date"
                     placement="bottom-start" placeholder="请选择日期" >
                 </DatePicker>
             </FormItem>
             <FormItem label="下线说明" prop="explain">
-                <Input class="font12" type="textarea" :autosize="{minRows: 4}"
+                <Input class="font12" type="textarea" :autosize="{minRows: 4}" style="width:350px"
                     v-model="frm.explain" placeholder="请输入下线说明"/>
             </FormItem>
             <FormItem label="下线通知" prop="correlation">
-                <Select v-model="frm.correlation" multiple filterable placeholder="请搜索 / 选择通知人">
+                <Select v-model="frm.correlation" multiple filterable style="width:350px"
+                    placeholder="请搜索 / 选择通知人">
                     <Option v-for="raw in dataSet.userData" :value="raw.userId"
                         :key="raw.userId" :label="raw.userName" >
                     </Option>

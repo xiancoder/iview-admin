@@ -7,7 +7,7 @@
                 <p>跳转到我的 添加/编辑 页面并携带参数 本页面路由 {{ routeName }}</p>
                 <p>要注意，以/开头的嵌套路径会被当作根路径。这让你充分的使用嵌套组件而无须设置嵌套的路径。</p>
                 <p>router.push() 这种方法会向history栈中添加记录 </p>
-                <Button to="/exp/exp2/021route@add">to=/exp2/021route@add</Button>
+                <Button to="/expV2/exp02/021route@add">to=/expV2/exp02/021route@add</Button>
                 &nbsp;
                 <Button @click="go1()">go1</Button>
                 &nbsp;
@@ -36,7 +36,7 @@
         <div class="blog">
             <div class="blogTitle">快捷的路由跳转按钮</div>
             <div class="blogContent" v-highlight>
-                <script type="text/html">
+                <script type="text/html" v-pre>
                     <!-- 使用 router-link 组件来导航. -->
                     <!-- 通过传入 `to` 属性指定链接. -->
                     <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
@@ -221,10 +221,10 @@ export default {
     },
     methods: {
         go1 () {
-            this.$router.push({ name: 'exp2_021route@add', params: { value: 'test1' } })
+            this.$router.push({ name: 'expV2_exp02_021route@add', params: { value: 'test1' } })
         },
         go2 () {
-            this.$router.push({ path: '/exp2/021route@add', query: { value: 'test1' } })
+            this.$router.push({ path: '/expV2/exp02/021route@add', query: { value: 'test1' } })
         }
     }
 }

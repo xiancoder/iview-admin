@@ -16,11 +16,11 @@ import { router } from '@/router' // 自定义路由定义 -挂载$router
 import '@/tools' // 自定义常用工具 -挂载$tool
 import '@/utils' // 自定义常用方法 -挂载$util
 
-/* eslint-disable */
-if (process.env.NODE_ENV !== 'production') require('@/mock') // 实际打包时应该不引入mock
-
-console.log("%c ", "padding:112px 150px;background:url('http://returnc.com/frontend/images/console.gif') no-repeat;");
+console.log('%c ', 'padding:112px 150px;background:url(http://returnc.com/frontend/images/console.gif) no-repeat;');
 console.info('仙', '目前环境', process.env.NODE_ENV)
+
+/* eslint-disable */
+if (process.env.NODE_ENV === 'development') require('@/mock') // 实际打包时应该不引入mock
 
 // 当开关开启同时为研发环境 执行vue报错记录功能
 // 处理错误信息, 进行错误上报
@@ -29,10 +29,10 @@ if (config.errorLogStore || process.env.NODE_ENV === 'development') {
     Vue.config.errorHandler = (error, vm, mes) => {
         let info = { type: 'script', code: 0, mes: '[' + mes + ']' + error.message, url: window.location.href }
         // console.error(error, vm, mes) // 废弃 看不出有用信息
-        throw error // 抛出错误
         Vue.nextTick(() => {
             Store.dispatch('system/pushError', info)
         })
+        throw error // 抛出错误
     }
 }
 
@@ -54,7 +54,7 @@ new Vue({ // 实例化
     // },
     // watch: { // 监听
     // },
-    beforeCreate() {
+    beforeCreate () {
         // 在实例初始化之后，数据观测(data observer开始监控Data对象数据变化)
         // 和初始化事件(init event，Vue内部初始化事件)之前被调用
         const isLogined = Store.getters['system/access']
@@ -71,15 +71,15 @@ new Vue({ // 实例化
             })
         }
     },
-    created: function() {
+    created: function () {
         // 在实例已经创建完成之后被调用。
         // 实例已完成以下的配置：数据观测(data observer)，属性和方法的运算，event事件回调。
         // 挂载阶段尚未开始，$el 属性不可见
     },
-    beforeMount: function() {
+    beforeMount: function () {
         // 在挂载开始之前被调用。相关的render函数首次被调用。实例已完成以下的配置：编译模板，把data里面的数据和模板生成html。注意此时还没有挂载html到页面上
     },
-    mounted: function() {
+    mounted: function () {
         // 在el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用。
         // 实例已完成以下的配置：用上面编译好的html内容替换el属性指向的DOM对象。
         // 此时模板中的html渲染到了html页面中，此时一般可以做一些Ajax操作。
@@ -92,20 +92,20 @@ new Vue({ // 实例化
         // 监听tab离开焦点事件
         Store.dispatch('system/setTabHiddenWatching')
     },
-    beforeUpdate: function() {
+    beforeUpdate: function () {
         // 在数据更新之前调用，发生在虚拟DOM重新渲染和打补丁之前。
         // 可以在该钩子中进一步地更改状态，不会触发附加的重渲染过程
     },
-    updated: function() {
+    updated: function () {
         // 在由于数据更改导致的虚拟DOM重新渲染和打补丁之后调用。
         // 调用时，组件DOM已经更新，所以可以执行依赖于DOM的操作。
         // 然而在大多数情况下，应该避免在此期间更改状态，因为这可能会导致更新无限循环。
         // 该钩子在服务器端渲染期间不被调用
     },
-    beforeDestroy: function() {
+    beforeDestroy: function () {
         // 在实例销毁之前调用。实例仍然完全可用
     },
-    destroyed: function() {
+    destroyed: function () {
         // 在实例销毁之后调用。
         // 调用后，所有的事件监听器会被移除，所有的子实例也会被销毁。
         // 该钩子在服务器端渲染期间不被调用

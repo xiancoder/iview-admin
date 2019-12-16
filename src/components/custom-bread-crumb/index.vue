@@ -6,10 +6,16 @@
     </Breadcrumb>
 </template>
 <script>
+import { homePage } from '@/router/routers'
+
 export default {
     name: 'customBreadCrumb',
     computed: {
-        list () { return this.$store.state.system.breadCrumbList || [] }
+        list () {
+            const currentList = this.$store.state.system.breadCrumbList
+            const r0 = { title: '首页', path: '/' + homePage.replace(/_/g, '/') }
+            return [r0, ...currentList]
+        }
     }
 }
 </script>

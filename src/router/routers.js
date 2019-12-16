@@ -38,44 +38,33 @@ export const routerList = [
                 path: 'exp1', title: '卷壹', icon: 'md-camera',
                 children: [
                     {power: '0000', path: '001bebal', title: 'Bebal 相关配置'},
-                    {power: '0000', path: '002eslint', title: 'EsLint 校验规则'},
                     {power: '0000', path: '004cname', title: '组件 name 属性'},
                     {power: '0000', path: '003eslintignore', title: 'Eslint 指定校验目录'},
                     {power: '0000', path: '005oldTable', title: '原生表格 lodash尝试'},
-                    {power: '0000', path: '006editITable', title: '编辑表格'},
-                    {power: '0000', path: '008tableBatch', title: '表格-批量操作'},
                     {power: '0000', path: '008tableNoData', title: '表格-无数据'},
                     {power: '0000', path: '008tableObj', title: '表格-超集中(废弃)'},
                     {power: '0000', path: '009tableMixin', title: '表格-mixin(废弃)'},
                     {power: '0000', path: '011tableTools', title: '表格-搜索项规范'},
-                    {power: '0000', path: '013tableSum', title: '表格-总计框规范'},
-                    {power: '0000', path: '014tableFrom', title: '表格-依附表单弹框'},
-                    {power: '0000', path: '014from1', title: '表单', hideMenu: true}
+                    {power: '0000', path: '013tableSum', title: '表格-总计框规范'}
                 ]
             }, {
                 path: 'exp2', title: '卷贰', icon: 'md-cart',
                 children: [
-                    {power: '0000', path: '021route', title: '路由跳转各种尝试'},
-                    {power: '0000', path: '021route@add', title: '路由跳转添加', hideMenu: true},
-                    {power: '0000', path: '022extends', title: 'VUE组件间的继承'},
                     {power: '0000', path: '023from', title: '表单基本样式'},
                     {power: '0000', path: '024validate', title: '表单所有校验方式'},
                     {power: '0000', path: '025vvvali', title: '表单复杂校验方式'},
                     {power: '0000', path: '026iviewDefault', title: 'Iview 控件默认配置'},
-                    {power: '0000', path: '027filter', title: '过滤器收集整理'},
                     {power: '0000', path: '028pluginLike', title: '插件比喻'},
                     {power: '0000', path: '029iospic', title: 'iOS图片旋转bug'},
                     {power: '0000', path: '030vueVision', title: 'VUE竟然好几个版本'},
                     {power: '0000', path: '031mail', title: 'JS发邮件权限'},
                     {power: '0000', path: '032api', title: '$api模块说明 v1'},
                     {power: '0000', path: '033exports', title: 'exports 简单说明'},
-                    {power: '0000', path: '034tools', title: '超公共 $tool 模块'},
                     {power: '0000', path: '035unitTest', title: '单元测试入门'},
                     {power: '0000', path: '036unitTest', title: '单元测试路由'},
                     {power: '0000', path: '037unitTest', title: '单元测试 Axios'},
                     {power: '0000', path: '038unitTest', title: '表单单元流程'},
-                    {power: '0000', path: '039unitTest', title: 'Jest和方法this坑'},
-                    {power: '0000', path: '040meta', title: 'Meta 标签详解'}
+                    {power: '0000', path: '039unitTest', title: 'Jest和方法this坑'}
                 ]
             }, {
                 path: 'exp3', title: '卷叁', icon: 'md-chatbubbles',
@@ -159,21 +148,14 @@ export const routerList = [
                 path: 'exp6', title: '卷陆', icon: 'md-easel',
                 children: [
                     {power: '0000', path: '101looknodown', title: '评审看不下去代码'},
-                    {power: '0000', path: '102watchls', title: 'ls的监听和事件广播'},
-                    {power: '0000', path: '103tabblur', title: '浏览器标签 blur'},
                     {power: '0000', path: '104echart', title: 'echart'},
-                    {power: '0000', path: '105loadingcss', title: 'loading CSS'},
                     {power: '0000', path: '106yiyongxing', title: '易用性描述'},
                     {power: '0000', path: '107kaifakunjing', title: '需求开发|困境'},
                     {power: '0000', path: '108axios', title: 'Axios详解'},
                     {power: '0000', path: '111name', title: '命名法'},
                     {power: '0000', path: '112serverUpload', title: 'node 文件上传'},
                     {power: '0000', path: '113serverimg', title: 'node 静态资源'},
-                    {power: '0000', path: '114fileDown', title: '文件下载进度条'},
-                    {power: '0000', path: '115ajaxcache', title: '异步请求缓存'},
-                    {power: '0000', path: '116mount', title: '钩子函数流程'},
                     {power: '0000', path: '117rule', title: '规范想法'},
-                    {power: '0000', path: '118state', title: '状态的触发/监听'},
                     {power: '0000', path: '119cmd', title: 'Node 执行 CMD'},
                     {power: '0000', path: '120pginfo', title: 'Node 批量更新版本'}
                 ]
@@ -246,7 +228,30 @@ export const routerList = [
                 path: 'exp01', title: '卷壹', icon: 'md-camera',
                 children: [
                     {power: '0000', path: '002eslint', title: 'EsLint 校验规则'},
-                    {power: '0000', path: '010mockData', title: '假数据mock专家'}
+                    {power: '0000', path: '006jsx', title: 'Jsx 写法尝试'},
+                    {power: '0000', path: '010mockData', title: '假数据mock专家'},
+                    {power: '0000', path: '014tableFrom', title: '表格-依附表单弹框'},
+                    {power: '0000', path: '014tableFrom@from', title: '表单', hideMenu: true}
+                ]
+            }, {
+                path: 'exp02', title: '卷贰', icon: 'md-game-controller-b',
+                children: [
+                    {power: '0000', path: '021route', title: '路由跳转各种尝试'},
+                    {power: '0000', path: '021route@add', title: '路由跳转添加', hideMenu: true},
+                    {power: '0000', path: '022extends', title: 'VUE组件间的继承'},
+                    {power: '0000', path: '027filter', title: '过滤器收集整理'},
+                    {power: '0000', path: '040meta', title: 'Meta 标签详解'}
+                ]
+            }, {
+                path: 'exp06', title: '卷陆', icon: 'md-game-controller-b',
+                children: [
+                    {power: '0000', path: '102watchls', title: 'ls的监听和事件广播'},
+                    {power: '0000', path: '103tabblur', title: '浏览器标签 blur'},
+                    {power: '0000', path: '105loadingcss', title: 'loading CSS'},
+                    {power: '0000', path: '114fileDown', title: '文件下载进度条'},
+                    {power: '0000', path: '115ajaxcache', title: '异步请求缓存'},
+                    {power: '0000', path: '116mount', title: '钩子函数流程'},
+                    {power: '0000', path: '118state', title: '状态的触发/监听'}
                 ]
             }, {
                 path: 'exp08', title: '卷捌', icon: 'md-game-controller-b',
@@ -277,6 +282,7 @@ export const routerList = [
                     {power: '0000', path: '204trytransfer', title: '尝试多搜索+穿梭框'},
                     {power: '0000', path: '205tableV1', title: '表格规范v1模版'},
                     {power: '0000', path: '205tableMaxHeight', title: '表格v1高度限定'},
+                    {power: '0000', path: '205tableBatch', title: '表格v1批量操作'},
                     {power: '0000', path: '207validateInput', title: '表单v1输入框'},
                     {power: '0000', path: '207validateNumber', title: '表单v1数字框'},
                     {power: '0000', path: '207validateFile', title: '表单v1文件上传框'},
@@ -289,7 +295,8 @@ export const routerList = [
                     {power: '0000', path: '208creditSvgCss', title: 'Svg 信用卡样式'},
                     {power: '0000', path: '209vuehtml5editor', title: '富文本 Html5Editor'},
                     {power: '0000', path: '210showMsg', title: '提示信息框规范'},
-                    {power: '0000', path: '211goodModal', title: 'IviewModal 弹框'}
+                    {power: '0000', path: '211goodModal', title: 'IviewModal 弹框'},
+                    {power: '0000', path: '212tools', title: '超公共 $tool 模块'}
                 ]
             },
             {
@@ -466,8 +473,8 @@ export const routerList = [
             {path: 'i18n_', name: 'i18n_', icon: 'md-planet', title: 'i18n - {{ i18n_page }}', component: () => import('@V/i18n/i18n-page.vue')}
         ]
     },
-    {path: '/*', redirect: '/error404'}, // 默认404视图
     makeOneLevelRoute({ path: 'error404', title: '页面不存在' }),
     makeOneLevelRoute({ path: 'error403', title: '权限不足' }),
-    makeOneLevelRoute({ path: 'error500', title: '服务端错误' })
+    makeOneLevelRoute({ path: 'error500', title: '服务端错误' }),
+    {path: '/*', redirect: '/error404'} // 默认404视图
 ]

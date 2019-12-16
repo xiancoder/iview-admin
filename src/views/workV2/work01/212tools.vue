@@ -9,7 +9,9 @@
                     <Divider type="vertical" />
                     <Button type="dashed" @click="tryalert('处理进行中')">this.$tool.alert('处理进行中')</Button>
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="tryalert2('处理进行中')">this.$tool.alert('处理进行中')</Button>
+                    <Button type="dashed" @click="tryalert2('处理进行中')">this.$tool.alertMsg('处理进行中')</Button>
+                    <Divider type="vertical" />
+                    <Button type="dashed" @click="tryalert3('处理进行中')">this.$tool.alertMsg('处理进行中', 0, () => { alert('同意'); })</Button>
                 </p>
                 <p>
                     ajax成功统一使用
@@ -41,7 +43,7 @@
                 <p>
                     用户选择确认
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="confirm()">this.$tool.confirm('这样操作可以么').then(() => { alert('同意') }).catch(() => { alert('不同意') })</Button>
+                    <Button type="dashed" @click="tryconfirm()">this.$tool.confirm('这样操作可以么').then(() => { alert('同意') }).catch(() => { alert('不同意') })</Button>
                 </p>
                 <p>
                     页面跳转统一使用
@@ -75,6 +77,7 @@
     </div>
 </template>
 <script>
+import { homePage } from '@/router/routers'
 export default {
     data () {
         return {
@@ -84,17 +87,17 @@ export default {
     methods: {
         tryalert (msg) { this.$tool.alert(msg) },
         tryalert2 (msg) { this.$tool.alertMsg(msg) },
+        tryalert3 (msg) { this.$tool.alertMsg(msg, 0, () => { alert('同意'); }) },
         trysuccess (msg) { this.$tool.success(msg) },
         trysuccess2 (msg) { this.$tool.successMsg(msg) },
         tryerror (msg) { this.$tool.error(msg) },
         tryerror2 (msg) { this.$tool.errorMsg(msg) },
-        tryconfirm () { this.$tool.confirm('这样操作可以么').then(() => { alert('同意') }).catch(() => { alert('不同意') }) },
-        jumpto () { this.$tool.jumpto() },
+        tryconfirm () { this.$tool.confirm('这样操作可以么').then(() => { alert('同意'); this.$tool.closeMsg() }).catch(() => { alert('不同意') }) },
+        jumpto () { this.$tool.jumpto(homePage) },
         warningMsg (msg) { this.$tool.warningMsg(msg) },
         saveParamState () { this.$tool.saveParamState({x: (+new Date())}) },
         getParamState () { this.paramState = this.$tool.getParamState() },
         LoadingBarRun (b) { this.$tool.LoadingBarRun(b) }
-
     }
 }
 </script>

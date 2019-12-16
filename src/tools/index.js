@@ -27,6 +27,7 @@ export const success = (msg) => { // 成功提示
 export const error = (msg) => { // 错误提示
     Message.error({ content: msg || '保存失败', duration: 10, closable: true })
 }
+export const closeMsg = Modal.remove // 关闭信息框们
 export const confirm = (msg) => { // 二次确认框
     return new Promise((resolve, reject) => {
         Modal.confirm({
@@ -38,11 +39,13 @@ export const confirm = (msg) => { // 二次确认框
         })
     })
 }
-export const alertMsg = (msg, title) => { // 弹框提示
-    Modal.info({
+export const alertMsg = (msg, title, onOk) => { // 弹框提示
+    const config = {
         title: title || '提示信息',
         content: msg || '-'
-    })
+    }
+    if (onOk) {config.onOk = onOk}
+    Modal.info(config)
 }
 export const errorMsg = (msg, title) => { // 弹框失败提示
     Modal.error({
@@ -196,7 +199,6 @@ export const companyTableSumColumns = (columns, sumData) => { // 表格总计一
     })
     return sums;
 }
-
 Vue.prototype.$tool = {
     goto,
     alert,
@@ -206,6 +208,7 @@ Vue.prototype.$tool = {
     successMsg,
     errorMsg,
     warningMsg,
+    closeMsg,
     confirm,
     jumpto,
     saveParamState,

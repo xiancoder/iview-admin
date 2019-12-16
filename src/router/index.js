@@ -2,8 +2,7 @@ import Vue from 'vue' // 核心
 import Router from 'vue-router'
 import { Store } from '@/store' // 自定义状态管理
 import { LoadingBarRun } from '@/tools' // 自定义常用工具
-import { routerList as routes, specialPowerList, loginPowerList, lockPowerList } from './routers'
-import Config from '@/config' // 自定义配置
+import { homePage, routerList as routes, specialPowerList, loginPowerList, lockPowerList } from './routers'
 
 // 重写路由的push方法
 // 解决vue项目路由出现message: "Navigating to current location (XXX) is not allowed"的问题
@@ -114,13 +113,12 @@ export const power2routesII = (powerList) => { // 根据权限更新视图
 // 本算法只支持 同名称结果和 @符号子类
 export const power2BreadCrumb = (routeList, routeName) => {
     const bca = []
-    let r0 = { title: '首页', path: '/home/index' }
-    bca.push(r0)
     if (
+        routeName &&
+        routeName !== homePage &&
         routeList &&
         routeName &&
-        routeName.indexOf('_') > -1 &&
-        routeName !== 'home_index'
+        routeName.indexOf('_') > -1
     ) {
         let l1 = routeName.replace(/_.*$/g, '')
         let r1 = routeList[l1]
@@ -190,7 +188,7 @@ router.beforeEach((to, from, next) => {
 
         if (isLogined && goLogin) {
             console.info('仙', '准备跳转', '登录状态不允许去注册登录页')
-            return next({ replace: true, name: Config.homeName })
+            return next({ replace: true, name: homePage })
         }
 
         // 滚动条位置

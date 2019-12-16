@@ -1,6 +1,6 @@
 import Vue from 'vue' // 核心
 const config = {
-    title: 'OA 资料库',
+    title: 'VUE资料库',
     cookieExpires: 1, // token在Cookie中存储的天数，默认1天
     console: true, // 是否开启console调试
     useI18n: true, // 是否使用国际化，默认为false
@@ -12,8 +12,9 @@ const config = {
     errorLogStore: true // 错误日志配置记录 (顶部标记,错误上报)
 }
 Vue.prototype.$config = config
-if (!config.console) {
+if (config.console !== true || process.env.NODE_ENV !== 'development') {
     window.console = {
+        log: function () {},
         info: function () {},
         success: function () {},
         error: function () {},

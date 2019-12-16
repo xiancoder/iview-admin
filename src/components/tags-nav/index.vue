@@ -106,11 +106,9 @@ export default {
         },
         handleTagsOption (type) { // 关闭其他 关闭所有
             if (type.includes('all')) { // 关闭所有
-                console.log(111)
                 this.handleCloseTag([], {name: this.currentRouteName})
             } else if (type.includes('others')) { // 关闭除当前页和home页的其他页
                 let res = this.list.filter(item => item.name === this.currentRouteName)
-                console.log(222)
                 this.handleCloseTag(res, {})
                 setTimeout(() => {
                     this.getTagElementByRoute(this.currentRouteName)
@@ -124,7 +122,6 @@ export default {
                 })
             } else {
                 let res = this.list.filter(item => route.name !== item.name)
-                console.log(333)
                 this.handleCloseTag(res, route)
             }
         },

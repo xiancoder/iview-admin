@@ -18,6 +18,40 @@
                     <span>{{ callback1 }}</span>
                 </p>
                 <hr />
+                <script type="text/js">
+                    listCache () { // 获得部门列表树(这个不经常改 可以缓存)
+                        return cacher({
+                            method: 'GET',
+                            url: '/api/hr/getdepartmentCache',
+                            data: {}
+                        })
+                    },
+                </script>
+                <script type="text/js">
+                    // 缓存,建议只给get加缓存
+                    export default (config) => {
+                        const { url, method, params, data } = config
+                        let index // 建立索引
+                        if (method === 'get') { index = buildUrl(url, params) } else { index = buildUrl(url, data) }
+                        let responsePromise = cache.get(index)
+                        if (responsePromise) {
+                            return Promise.resolve(JSON.parse(JSON.stringify(responsePromise))) // 对象是引用，为了防止污染数据源
+                        } else {
+                            responsePromise = (async () => {
+                                try {
+                                    const response = await axios.defaults.adapter(config)
+                                    cache.set(index, response)
+                                    return Promise.resolve(JSON.parse(JSON.stringify(response))) // 同时发送多次一样的请求，没办法防止污染数据源，只有业务中去实现
+                                } catch (reason) {
+                                    cache.clear(index)
+                                    return Promise.reject(reason)
+                                }
+                            })()
+                            cache.set(index, responsePromise) // put the promise for the non-transformed response into cache as a placeholder
+                        }
+                        return responsePromise
+                    }
+                </script>
                 <p>axios 配置 拦截器 后为什么会多一次返回 204 的请求</p>
                 <p>跟 axios 没关系，那个返回 204 的是 options 请求，跟 CORS 的跨域支持请求有关。</p>
             </div>
