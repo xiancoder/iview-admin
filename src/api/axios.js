@@ -36,7 +36,7 @@ axios.interceptors.request.use( // 开始设置请求 发起的拦截处理
 )
 axios.interceptors.response.use( // 请求到结果的拦截处理
     response => { // 返回请求正确的结果
-        console.info('仙', '请求接口', response.config.url, response.data)
+        console.info('%c仙 请求接口', 'color:#05ff0f;background:#000;padding:0 5px;', response.config.url, response.data)
         return response
     },
     error => { // 错误的请求结果处理，这里的代码根据后台的状态码来决定错误的输出信息

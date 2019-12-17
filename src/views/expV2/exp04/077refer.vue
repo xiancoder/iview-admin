@@ -14,6 +14,30 @@
                 <p>点击测试一下 <a href="https://www.baidu.com" target="_new" class="btn-link">https://www.baidu.com</a> 使用控制台 document.referrer 看效果 <span class="text-success">测试有效</span></p>
                 <hr />
                 <p>2 可以伪造 ??? </p>
+                <p>HTTP_REFERER是可以伪造的，那么在php中，如何伪造HTTP_REFERER呢？</p>
+                <script type="text/js">
+                    <?php
+                        $HTTP_REFERER = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+                        exit(json_encode(
+                            array(
+                                'status' => 'ok',
+                                'refer' => $HTTP_REFERER
+                            )
+                        ));
+                        function curl_post($url){
+                             $ch = curl_init();
+                             curl_setopt($ch, CURLOPT_URL, $url);
+                             curl_setopt($ch, CURLOPT_REFERER, 'http://www.google.com');
+                             $output = curl_exec($ch);
+                             curl_close($ch);
+                             return $output;
+                        }
+                        var_dump(curl_post("http://www.c.com/api.php"));
+                    ————————————————
+                    版权声明：本文为CSDN博主「dongxie548」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+                    原文链接：https://blog.csdn.net/u011250882/article/details/49679535/
+                </script>
+                <p class="text-danger">当然我们的浏览器语言js无法做到了</p>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

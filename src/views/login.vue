@@ -21,7 +21,7 @@ export default {
         handleSubmit (param) {
             this.$store.dispatch('system/login', param).then(res => {
                 this.$store.dispatch('system/getPowerList').then(res => { // 读取权限 更新权限视图
-                    console.info('仙', '管理员登录喽')
+                    console.info('%c仙 管理员登录喽', 'color:#05ff0f;background:#000;padding:0 5px;')
                     this.$router.push({ path: '/' })
                 })
                 this.$store.dispatch('system/getUserInfo') // 获取用户信息

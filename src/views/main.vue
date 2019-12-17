@@ -100,8 +100,12 @@
                             <input class="xiangzhaosha-input" type="text" v-model="xiangzhaosha" placeholder="大声地说出我的名砸..你要找啥">
                             <div class="xiangzhaosha-content">
                                 <div>
-                                    <span v-for="item in routeList.filter(row=>{return row.title.toLowerCase().includes(xiangzhaosha.toLowerCase())})">
-                                        <a :href="'#'+item.path">{{item.title}}</a> &nbsp;|&nbsp;
+                                    <span v-for="item in routeList.filter(row=>{
+                                        var v = xiangzhaosha.toLowerCase()
+                                        return row.title.toLowerCase().includes(v) || row.path.toLowerCase().includes(v)
+
+                                    })">
+                                        <a :href="'#'+item.path" :title="item.path">{{item.title}}</a> &nbsp;|&nbsp;
                                     </span>
                                 </div>
                                 <!-- template 里面放Button会导致页面滚动时候卡顿 -->

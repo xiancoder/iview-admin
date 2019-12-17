@@ -6,7 +6,7 @@
                 <script type="text/js">
                     var a1 = `string text`; // "string text"
                     var a2 = `string text line 1
-                               string text line 2`;// "string text line 1 换行 string text line 2"
+                             string text line 2`;// "string text line 1 换行 string text line 2"
                     var a3 = `string text ${a1} string text`; // "string text string text string text"
                     var a4 = function( x ){ return x+"?" };
                     var a5 = a4`string text ${a1} string text`; // "string text , string text?"
@@ -28,8 +28,8 @@
                         console.log(strings[0]); // "Hello "
                         console.log(strings[1]); // " world "
                         console.log(strings[2]); // ""
-                        console.log(values[0]);  // 15
-                        console.log(values[1]);  // 20
+                        console.log(values[0]); // 15
+                        console.log(values[1]); // 20
                         return "Bazinga!";
                     }
                     tag`Hello ${ b1 + b2 } world ${ b1 * b2 }`; // "Bazinga!"
@@ -38,7 +38,7 @@
                         var cc='11';
                         return `${cc} ${true?"22":""}`;
                     }
-                    console.log(fn1());  //11 22
+                    console.log(fn1()); //11 22
                     //方式2：函数命令方式
                     function fn2() {
                         var cc='11';
@@ -62,9 +62,9 @@
                         });
                     }
                     var t1Closure = template`${0}${1}${0}!`;
-                    t1Closure('Y', 'A');  // "YAY!"
+                    t1Closure('Y', 'A'); // "YAY!"
                     var t2Closure = template`${0} ${'foo'}!`;
-                    t2Closure('Hello', {foo: 'World'});  // "Hello World!"
+                    t2Closure('Hello', {foo: 'World'}); // "Hello World!"
                 </script>
             </div>
             <div class="blogFooter">

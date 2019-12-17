@@ -22,14 +22,16 @@ export default {
         userEmail: '', // 管理员EMAIL
         userDeptId: '', // 管理员部门ID
         userRoleId: '', // 角色区分权限 1 广告主 2 运营 3 财务
+        firstAuth: '' || 1, // 区分浏览器是否第一次提示认证
         usercertificatId: '', // 广告主类型1-个人2-公司
 
         userRoleName: '', // 管理员角色NAME
         userPostId: '', // 管理员职位ID
-        platformId: '', // 平台ID
+        platformId: '' || 1, // 平台ID
         token: '', // 服务器token 用于存在header中与服务器交换数据使用
         locking: false, // 锁屏状态
         isAuth: true, // 是否认证
+        smsCode: 0, // 短信验证码等待时间
 
         spinLoading: false, // 路由视图加载中 main.vue组件的loadiing效果
         cacheList: [], // keepalive的缓存页面 缓存方式是 组件页面设置name 加入此数组即可
@@ -63,12 +65,14 @@ export default {
         USEREMAIL (state, v) { state.userEmail = v },
         USERDEPTID (state, v) { state.userDeptId = parseInt(v) },
         USERROLEID (state, v) { state.userRoleId = parseInt(v) },
+        FIRSTAUTH (state, v) { state.firstAuth = parseInt(v) },
         USERCERTIFICATID (state, v) { state.usercertificatId = parseInt(v) },
 
         ISAUTH (state, v) { state.isAuth = parseInt(v) === 1 },
         USERROLENAME (state, v) { state.userRoleName = v },
         USERPOSTID (state, v) { state.userPostId = v },
         PLATFORMID (state, v) { state.platformId = v },
+        SMSCODE (state, v) { state.smsCode = v },
 
         TOKEN (state, token) { localStorage.clear(); state.token = token },
         LOCKING (state, b) { state.locking = b },
@@ -93,9 +97,9 @@ export default {
             commit('SHRINK', !!shrink)
         },
         getPlatformId ({ commit }) { // 获取公司id
-            // let host = window.location.host
-            let host = 'www.jinjingzhiyuan.com'
-            const company = Api.dspsystem.companyList(true)
+            let host = window.location.host
+            // let host = 'dsp-pfs.yunxi.cn'
+            const company = Api.system.companyList(true)
             for (var i = 0, vlen = company.length; i < vlen; i++) {
                 if (company[i] === host) {
                     commit('PLATFORMID', i)
@@ -121,28 +125,26 @@ export default {
             })
         },
         hasPower ({ state }, name) { // 判断是否有权限 得多考虑权限没有返回的情况
-            return new Promise((resolve, reject) => {
-                const logic = () => {
+            const loopObj = () => {
+                return new Promise((resolve, reject) => {
+                    if (!state.token) {
+                        console.info('%c仙 无token', 'color:#05ff0f;background:#000;padding:0 5px;')
+                        return false
+                    }
+                    if (state.menuList.length === 0) {
+                        setTimeout(() => {
+                            console.info('%c仙 等待鉴权', 'color:#05ff0f;background:#000;padding:0 5px;')
+                            loopObj().then(resolve).catch(reject)
+                        }, 1e3)
+                        return false
+                    }
                     const routeInfo = state.routeList[name] || {}
                     resolve(routeInfo.power)
-                }
-                let num = 10
-                const loop = () => {
-                    if (num < 0) {
-                        clearInterval(i);
-                        alert('网络请求失败, 请刷新页面再试');
-                        return
-                    }
-                    num--
-                    if (state.powerList === null || state.powerList.length === 0) {return}
-                    clearInterval(i)
-                    logic()
-                }
-                const i = setInterval(loop, 1e3)
-                loop()
-            })
+                })
+            }
+            return loopObj()
         },
-        setTagNavList ({ commit }, a) { console.log(a); commit('TAGNAVLIST', a) }, // 历史记录列表
+        setTagNavList ({ commit }, a) { commit('TAGNAVLIST', a) }, // 历史记录列表
         addTagNav ({ state, commit }, route) { // 添加历史记录标签
             const name = route.name
             if (specialPowerList.includes(name)) return false
@@ -215,7 +217,7 @@ export default {
 
         logout ({ commit }) { // 登出
             return new Promise((resolve, reject) => {
-                console.info('仙', '登出清场')
+                console.info('%c仙 登出清场', 'color:#05ff0f;background:#000;padding:0 5px;')
                 commit('TOKEN', '')
                 router.push({name: 'login'})
                 Api.system.logout().then(() => {
@@ -243,18 +245,18 @@ export default {
                     if (toname === row) { ins = true }
                 })
                 if (ins) {
-                    console.info('仙', '路由跳转', 'keepAlive拒绝')
+                    console.info('%c仙 准备跳转 KeepAlive 拒绝', 'color:#05ff0f;background:#000;padding:0 5px;')
                     return false
                 }
                 if (includes) {
                     const list = Object.assign(state.cacheList)
                     list.push(toname)
                     commit('CACHELIST', list)
-                    console.info('仙', '路由跳转', 'keepAlive', list)
+                    console.info('%c仙 准备跳转 KeepAlive', 'color:#05ff0f;background:#000;padding:0 5px;', list)
                     return false
                 }
             }
-            console.info('仙', '路由跳转', 'keepAlive拒绝')
+            console.info('%c仙 准备跳转 KeepAlive 拒绝', 'color:#05ff0f;background:#000;padding:0 5px;')
             commit('CACHELIST', [toname])
         },
         noRender ({ commit }, b) { commit('DONOTDRAWROUTER', b) }, // 是否渲染

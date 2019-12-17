@@ -92,17 +92,17 @@ export default {
     },
     methods: {
         handleSelect (select) { // 直接跳转
-            console.info('仙', '二级菜单直接跳转', select)
+            console.info('%c仙 二级菜单 直接跳转', 'color:#05ff0f;background:#000;padding:0 5px;', select)
             const name = select
             goto({ name })
         },
         handleSelectBox (selectArr) { // 一级页面跳第一个子页面
             const select = selectArr[0]
             if (!select) return false
-            console.info('仙', '一级页面不跳 觉得烦了')
+            console.info('%c仙 一级页面 不跳觉得烦了', 'color:#05ff0f;background:#000;padding:0 5px;')
             return false // 觉得烦了 先不跳
             const path = this.$store.state.system.routeList[select].path
-            console.info('仙', '一级页面', select, '跳第一个子页面', path)
+            console.info('%c仙 一级页面 跳第一个子页面', 'color:#05ff0f;background:#000;padding:0 5px;', path)
             goto({ path })
         },
         getOpenedNamesByActiveName (name) {

@@ -99,24 +99,11 @@ export const routerList = [
                 path: 'exp4', title: '卷肆', icon: 'md-construct',
                 children: [
                     {power: '0000', path: '061whilePromise', title: 'Promise 挂起'},
-                    {power: '0000', path: '062fanyinhao', title: '反引号推广'},
-                    {power: '0000', path: '063flexbox', title: 'Flex 布局基础'},
-                    {power: '0000', path: '064flexlayout', title: 'Flex 深层应用'},
-                    {power: '0000', path: '065gridbox', title: 'Grid 布局基础'},
                     {power: '0000', path: '066redux', title: 'Redux 基础'},
                     {power: '0000', path: '067promiseEs6', title: 'Promise 基础'},
-                    {power: '0000', path: '068kengopacity', title: 'opacity 的坑'},
-                    {power: '0000', path: '069kengfloat', title: 'float 的坑'},
-                    {power: '0000', path: '070csszindex', title: 'z-index 的坑'},
-                    {power: '0000', path: '071colgroup', title: '表格列属性'},
                     {power: '0000', path: '072uglifyjs', title: 'uglifyjs 拯救旧项目'},
-                    {power: '0000', path: '073typeError', title: '弱类型之坑'},
                     {power: '0000', path: '074webpack', title: 'webpack 检查主机'},
-                    {power: '0000', path: '075devtool', title: '开发者工具'},
                     {power: '0000', path: '076single', title: '单点登录概述'},
-                    {power: '0000', path: '077refer', title: '历史 referer 操作'},
-                    {power: '0000', path: '078void0bug', title: 'void(0) 跳转bug'},
-                    {power: '0000', path: '079microsoftyahei', title: '微软雅黑版权'},
                     {power: '0000', path: '080yin', title: '名词缩写发音'}
                 ]
             }, {
@@ -243,6 +230,23 @@ export const routerList = [
                     {power: '0000', path: '040meta', title: 'Meta 标签详解'}
                 ]
             }, {
+                path: 'exp04', title: '卷肆', icon: 'md-construct',
+                children: [
+                    {power: '0000', path: '062fanyinhao', title: '反引号推广'},
+                    {power: '0000', path: '063flexbox', title: 'Flex 布局基础'},
+                    {power: '0000', path: '064flexlayout', title: 'Flex 深层应用'},
+                    {power: '0000', path: '065gridbox', title: 'Grid 布局基础'},
+                    {power: '0000', path: '068kengopacity', title: 'opacity 的坑'},
+                    {power: '0000', path: '069kengfloat', title: 'float 的坑'},
+                    {power: '0000', path: '070csszindex', title: 'z-index 的坑'},
+                    {power: '0000', path: '071colgroup', title: '表格列属性'},
+                    {power: '0000', path: '073typeError', title: '弱类型之坑'},
+                    {power: '0000', path: '075devtool', title: '开发者工具介绍'},
+                    {power: '0000', path: '077refer', title: '历史 referer 操作'},
+                    {power: '0000', path: '078void0bug', title: '空白void(0)跳转bug'},
+                    {power: '0000', path: '079microsoftyahei', title: '微软雅黑字体版权'}
+                ]
+            }, {
                 path: 'exp06', title: '卷陆', icon: 'md-game-controller-b',
                 children: [
                     {power: '0000', path: '102watchls', title: 'ls的监听和事件广播'},
@@ -264,6 +268,9 @@ export const routerList = [
                 children: [
                     {power: '0000', path: '162autoSave', title: '表单自动保存'},
                     {power: '0000', path: '173notification', title: '桌面通知简单API'},
+                    {power: '0000', path: '174console', title: 'Console 详解'},
+                    {power: '0000', path: '175crossEnv', title: 'Node 环境变量'},
+                    {power: '0000', path: '176arguments', title: 'argu 参数转换'},
                     {power: '0000', path: '200newBee', title: '收录200知识点'}
                 ]
             }

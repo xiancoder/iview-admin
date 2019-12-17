@@ -24,8 +24,16 @@ export const alert = (msg) => { // 弹框提示
 export const success = (msg) => { // 成功提示
     Message.success({ content: msg || '保存成功' })
 }
+let lastStatus401 = false
 export const error = (msg) => { // 错误提示
-    Message.error({ content: msg || '保存失败', duration: 10, closable: true })
+    // 特殊处理 如果遇到401错误
+    // 不会连着提示两次
+    if (msg === '未授权，请重新登录') {
+        if (lastStatus401) { return false }
+        lastStatus401 = true
+    }
+    setTimeout(() => {lastStatus401 = false}, 2e3)
+    Message.error({ content: msg || '保存失败', duration: 3, closable: true })
 }
 export const closeMsg = Modal.remove // 关闭信息框们
 export const confirm = (msg) => { // 二次确认框

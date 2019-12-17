@@ -9,7 +9,9 @@
                 <p>注释：元素可拥有<b>负</b>的 z-index 属性值。</p>
                 <p>注释：Z-index <b>仅能在定位元素</b>上奏效（(position属性值为 relative 或 absolute 或 fixed的对象)）！</p>
                 <p>这个属性<b>不会作用于窗口控件</b>，如 select 对象。</p>
-                <h2>z-index最大值是<b>2147483647</b>,超出后不会报错 但是 max+1 效果等同 max+100</h2>
+                <p class="text-danger">z-index最大值是<b>2147483647</b>,超出后不会报错 但是 max+1 效果等同 max+100</p>
+                <p>注意: 同为max层级的同级div的覆盖方式是 后来者居上</p>
+                <p>注意: 同为max层级的不同级div的覆盖方式是 拼爹</p>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

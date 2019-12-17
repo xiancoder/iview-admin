@@ -204,6 +204,7 @@ export default {
         handleUpload2 (file) {
             if (file.size > 2 * 1024 * 1024) { error('文件过大'); return false }
             if (!/\.jpg$|\.jpeg$|\.png$|\.bmp$|\.svg$|\.gif$|/.test(file.name)) { error('请选择图片文件'); return false }
+            if (!/image/.test(file.type)) { error('请选择图片文件'); return false }
             if (window.FileReader) {
                 const fr = new FileReader()
                 fr.onloadend = (e) => {

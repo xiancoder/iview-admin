@@ -17,7 +17,7 @@ import '@/tools' // 自定义常用工具 -挂载$tool
 import '@/utils' // 自定义常用方法 -挂载$util
 
 console.log('%c ', 'padding:112px 150px;background:url(http://returnc.com/frontend/images/console.gif) no-repeat;');
-console.info('仙', '目前环境', process.env.NODE_ENV)
+console.info('%c仙 目前环境', 'color:#05ff0f;background:#000;padding:0 5px;', process.env.NODE_ENV)
 
 /* eslint-disable */
 if (process.env.NODE_ENV === 'development') require('@/mock') // 实际打包时应该不引入mock
@@ -59,7 +59,7 @@ new Vue({ // 实例化
         // 和初始化事件(init event，Vue内部初始化事件)之前被调用
         const isLogined = Store.getters['system/access']
         if (isLogined) { // 未登录的话由路由负责判断并进入登录页
-            console.info('仙', '用户已经登陆')
+            console.info('%c仙 用户已经登陆', 'color:#05ff0f;background:#000;padding:0 5px;')
             Store.dispatch('system/getUserInfo') // 获取用户信息
             Store.dispatch('system/getNewMessageNum') // 获取未读最新消息
             Store.dispatch('system/getPowerList').then(() => { // 读取权限 更新权限视图

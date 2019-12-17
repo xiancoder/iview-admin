@@ -32,7 +32,7 @@ export const router = new Router({
 // 由路由信息列表 整理成 树数据源 一维路由列表
 // 本算法只支持二层目录结构
 /* export const power2routes = (powerList) => { // 根据权限更新视图
-    console.info('仙', '根据权限更新视图', {powerList})
+    console.info('%c仙 根据权限更新视图', 'color:#05ff0f;background:#000;padding:0 5px;')
     // 目的是整理左边树数据源
     // 目的是整理一维视图
     const list = []
@@ -67,7 +67,7 @@ export const router = new Router({
 // 由路由信息列表 整理成 左边树数据源 一维路由列表
 // 本算法多层目录结构
 export const power2routesII = (powerList) => { // 根据权限更新视图
-    console.info('仙', '根据权限更新视图II', {powerList})
+    console.info('%c仙 根据权限更新视图II', 'color:#05ff0f;background:#000;padding:0 5px;')
     const listOneLevel = {}
     const readRouterList = function (routeList, listOneLevel) {
         const list = []
@@ -136,45 +136,48 @@ export const power2BreadCrumb = (routeList, routeName) => {
 
 router.beforeEach((to, from, next) => {
     if (to && from && to.name === from.name) { // 本页面跳转 不做各种表示
-        console.info('仙', '参数变更')
+        console.info('%c仙 参数变更', 'color:#05ff0f;background:#000;padding:0 5px;')
         return next()
     }
 
     if (Store.state.system.doNotDrawRouter) { // 回退再前进 之间的页面不做渲染
-        console.info('仙', '准备跳转', '历史记录管理')
+        console.info('%c仙 准备跳转 历史记录管理', 'color:#05ff0f;background:#000;padding:0 5px;')
         return
     }
 
-    console.info('仙', '准备跳转', to)
-
-    LoadingBarRun(true) // 顶部进度条
+    console.info('%c仙 准备跳转', 'color:#05ff0f;background:#000;padding:0 5px;', to)
 
     const isLocked = Store.state.system.locking
     const goLocking = lockPowerList.includes(to.name)
     if (isLocked) {
-        if (goLocking) { return next() }
-        console.info('仙', '准备跳转', '锁定状态不允许去其他页面')
+        if (goLocking) {
+            console.info('%c仙 准备跳转 锁定状态去锁定页面', 'color:#05ff0f;background:#000;padding:0 5px;')
+            return next()
+        }
+        console.info('%c仙 准备跳转 锁定状态不允许去其他页面', 'color:#05ff0f;background:#000;padding:0 5px;')
         return next({ replace: true, name: 'locking' })
     }
 
     const isLogined = Store.getters['system/access']
     const goLogin = loginPowerList.includes(to.name)
     if (!isLogined) {
-        if (goLogin) { return next() }
-        console.info('仙', '准备跳转', '未登录状态不允许去其他页面')
+        if (goLogin) {
+            console.info('%c仙 准备跳转 未登录状态去登录页面', 'color:#05ff0f;background:#000;padding:0 5px;')
+            return next()
+        }
+        console.info('%c仙 准备跳转 未登录状态不允许去其他页面', 'color:#05ff0f;background:#000;padding:0 5px;')
         return next({ replace: true, name: 'login' })
     }
 
     Store.dispatch('system/setBreadCrumbList', to.name) // 面包屑
-    Store.dispatch('system/routeSpin', true) // 路由视图loading
 
     if (specialPowerList.includes(to.name)) {
-        console.info('仙', '准备跳转', '特殊页面 不走鉴权')
+        console.info('%c仙 准备跳转 特殊不走鉴权', 'color:#05ff0f;background:#000;padding:0 5px;')
         return next()
     }
 
     if (specialPowerList.includes(to.name)) {
-        console.info('仙', '准备跳转', '默认页面 不走鉴权')
+        console.info('%c仙 准备跳转 默认不走鉴权', 'color:#05ff0f;background:#000;padding:0 5px;')
         return next()
     }
 
@@ -182,14 +185,17 @@ router.beforeEach((to, from, next) => {
         Store.dispatch('system/keepalive', to.name) // 路由keepAlive管理 当前页缓存
 
         if (!isLocked && goLocking) {
-            console.info('仙', '准备跳转', '非锁定状态不允许去锁定页面')
+            console.info('%c仙 准备跳转 非锁定状态不允许去锁定页面', 'color:#05ff0f;background:#000;padding:0 5px;')
             return next(false) // 中止一切 复原url
         }
 
         if (isLogined && goLogin) {
-            console.info('仙', '准备跳转', '登录状态不允许去注册登录页')
+            console.info('%c仙 准备跳转 登录状态不允许去注册登录页', 'color:#05ff0f;background:#000;padding:0 5px;')
             return next({ replace: true, name: homePage })
         }
+
+        LoadingBarRun(true) // 顶部进度条
+        Store.dispatch('system/routeSpin', true) // 路由视图loading
 
         // 滚动条位置
         // 放弃 有更好的方法 路由提供了 scrollBehavior 钩子
@@ -201,27 +207,27 @@ router.beforeEach((to, from, next) => {
             console.error('IE不支持scrollTo')
         }
 
-        console.info('仙', '准备跳转', '跳转成功')
+        console.info('%c仙 准备跳转 跳转成功', 'color:#05ff0f;background:#000;padding:0 5px;')
         next() // 进入页面
     }
 
     Store.dispatch('system/hasPower', to.name).then((bool) => { // 鉴权
-        console.info('仙', '准备跳转', '鉴权页面', bool ? '有权限' : '无权限')
+        console.info('%c仙 准备跳转 鉴权', 'color:#05ff0f;background:#000;padding:0 5px;', bool ? '有权限' : '无权限')
         if (!bool) { return next({name: 'error403'}) }
         goPowerPage()
     })
 })
 
 router.afterEach((to, from) => {
+    LoadingBarRun(false) // 顶部进度条
+    Store.dispatch('system/routeSpin', false) // 路由视图loading
+
     if (to && from && to.name === from.name) { // 本页面跳转 不做各种表示
         return false
     }
 
-    LoadingBarRun(false) // 顶部进度条
-
     Store.dispatch('system/setTitle', to.name) // 设置标题
     Store.dispatch('system/addTagNav', to) // 增加页面缓存标签
-    Store.dispatch('system/routeSpin', false) // 路由视图loading
 
-    console.info('仙', '跳转完成', to)
+    console.info('%c仙 跳转完成', 'color:#05ff0f;background:#000;padding:0 5px;', to)
 })
