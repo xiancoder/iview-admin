@@ -16,19 +16,13 @@ export default {
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
-                if (res && res.res_code) {
-                    success(res.res || '登录成功') // 提示并继续resolve
-                    resolve('YX')
-                } else {
-                    error(res.res) // 报错并继续reject
-                    reject()
-                }
+                resolve(res)
             }).catch(e => {
                 error(e.message) // ajax异常后 报错并中止操作
             })
         })
     },
-    StafLogin ({ userName, password }) { // 运营财务登录
+    staffLogin ({ userName, password }) { // 运营财务登录
         userName = userName.trim() // 参数格式处理
         password = password.trim() // 参数格式处理
         return new Promise((resolve, reject) => {
@@ -41,9 +35,25 @@ export default {
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
+                resolve(res)
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
+            })
+        })
+    },
+    registered (param) { // 注册
+        return new Promise((resolve, reject) => {
+            axios.request({
+                method: 'POST',
+                url: 'api/system/registered',
+                data: param
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
                 if (res && res.res_code) {
-                    resolve(res.token)
+                    success(res.res || '注册成功') // 提示并继续resolve
+                    resolve(res)
                 } else {
+                    resolve(res)
                     error(res.res) // 报错并继续reject
                     reject()
                 }
@@ -52,18 +62,60 @@ export default {
             })
         })
     },
-    regist (param) { // 注册
+    verificationmail (param) { // 邮箱验证
+        return new Promise((resolve, reject) => {
+            axios.request({
+                method: 'GET',
+                url: 'api/system/verificationmail',
+                data: param
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data.data
+                if (res && res.res_code) {
+                    success(res.res || '验证成功') // 提示并继续resolve
+                    resolve(res)
+                } else {
+                    resolve(res)
+                    error(res.res) // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
+            })
+        })
+    },
+    certification (param) { // 认证
+        let fd = new FormData()
+        if (param.type === 1) {
+            fd.append('type', param.type)
+            fd.append('name', param.name)
+            fd.append('code', param.code);
+            fd.append('positive', param.positive);
+            fd.append('reverse', param.reverse);
+            fd.append('handheld', param.handheld);
+        } else {
+            fd.append('type', param.type)
+            fd.append('license', param.license)
+            fd.append('company_name', param.company_name);
+            fd.append('license_code', param.license_code);
+            fd.append('legal_person', param.legal_person);
+            fd.append('legal_positive', param.legal_positive);
+            fd.append('legal_reverse', param.legal_reverse);
+            fd.append('legal_code', param.legal_code);
+        }
         return new Promise((resolve, reject) => {
             axios.request({
                 method: 'POST',
-                url: 'api/system/regist',
-                data: param
+                url: 'api/user/certification',
+                headers: { 'Content-Type': 'multipart/form-data' },
+                data: fd,
+                timeout: 300000
             }).then(response => { // 请注意这个返回值是整个结果对象
-                const res = response.data
+                const res = response.data.data
                 if (res && res.res_code) {
-                    success(res.res || '注册成功') // 提示并继续resolve
-                    resolve()
+                    success(res.res || '认证成功') // 提示并继续resolve
+                    resolve(res)
                 } else {
+                    resolve(res)
                     error(res.res) // 报错并继续reject
                     reject()
                 }
@@ -93,15 +145,13 @@ export default {
     },
     smsCode ({ tel, smstype }) { // 手机验证码
         return new Promise((resolve, reject) => {
-            success('验证码已发送请注意查收') // 提示并继续resolve
-            return false
             axios({
                 method: 'GET',
                 url: 'api/system/validate_code',
                 data: {
                     'tel': tel,
                     // 'imgcode': imgcode
-                    'smstype': smstype || ''
+                    'smstype': smstype || '1'
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
@@ -117,7 +167,7 @@ export default {
             })
         })
     },
-    google ({ code, token }) { // 二次验证
+    Google ({ code, token }) { // 二次验证
         return new Promise((resolve, reject) => {
             axios.request({
                 method: 'POST',
@@ -129,13 +179,14 @@ export default {
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
-                if (res && res.res_code) {
-                    success(res.res || '登录成功') // 提示并继续resolve
-                    resolve(res)
-                } else {
-                    error(res.res) // 报错并继续reject
-                    reject()
-                }
+                resolve(res)
+                // if (res && res.res_code) {
+                //     success(res.res || '登录成功') // 提示并继续resolve
+                //     resolve(res)
+                // } else {
+                //     error(res.res) // 报错并继续reject
+                //     reject()
+                // }
             }).catch(e => {
                 error(e.message) // ajax异常后 报错并中止操作
             })
@@ -164,7 +215,7 @@ export default {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'GET',
-                url: 'api/system/agreed',
+                url: 'api/user/agreed',
                 data: {}
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
@@ -181,7 +232,6 @@ export default {
     },
     getUserInfo () { // 用户所有信息
         return new Promise((resolve, reject) => {
-            console.log(123)
             axios({
                 method: 'GET',
                 url: 'api/system/getUserInfo',
@@ -240,14 +290,13 @@ export default {
     logout () { // 退出登录
         return new Promise((resolve, reject) => {
             axios({
-                method: 'GET',
+                method: 'POST',
                 url: 'api/system/logout',
                 data: {}
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data // 0隐藏 null表红点 数字代表数量
-                if (res && res.data && res.data.res) {
-                    success(res.res || '退出成功')
-                    resolve(res.data.res)
+                if (res && res.res_code === 1) {
+                    resolve(res.res)
                 } else {
                     error(res.res) // 报错并继续reject
                     reject()
@@ -289,22 +338,6 @@ export default {
             })
         })
     },
-    unitTest1 ({ userName, password }) { // 单元测试尝试
-        userName = userName.trim() // 参数格式处理
-        password = password.trim() // 参数格式处理
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve('ok')
-            }, 1e3)
-        })
-    },
-    unitTest2 () { // 单元测试尝试
-        return axios({
-            method: 'GET',
-            url: 'api/system/getUserInfo',
-            data: {}
-        })
-    },
     roleList () { // 角色区分权限
         return Promise.resolve([
             { id: '1', name: '广告主' },
@@ -314,7 +347,7 @@ export default {
     },
     companyList (forTableShow) { // 四个公司区分 forTableShow指表格枚举
         if (forTableShow) {
-            return ['', 'www.jinjingzhiyuan.com', 'www.pingfuxinxi.com', 'www.yunxiwangluo.com', 'www.yunxizhihui.com']
+            return ['', 'dsp-pfs.yunxi.cn:10086', 'dsp-njs.yunxi.cn:10086', 'dsp-wls.yunxi.cn:10086', 'dsp-zhs.yunxi.cn:10086']
         }
         return Promise.resolve([
             { id: '1', name: '平复信息技术河北有限公司' },
@@ -337,7 +370,7 @@ export default {
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
-                if (res && res.data && res.data.res) {
+                if (res && res.data && res.data.res_code) {
                     success(res.data.res || '修改密码成功,请重新登录') // 报错并继续reject
                     resolve()
                 } else {

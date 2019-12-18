@@ -83,19 +83,19 @@ export default {
     },
     methods: {
         jump1 () {
-            this.$router.push({'name': 'exp3_057history@1'})
+            this.$router.push({'name': 'expV2_exp03_057history@1'})
         },
         jump1jump2 () {
-            this.$router.push({'name': 'exp3_057history@1'}, () => {
-                this.$router.push({'name': 'exp3_057history@2'})
+            this.$router.push({'name': 'expV2_exp03_057history@1'}, () => {
+                this.$router.push({'name': 'expV2_exp03_057history@2'})
             })
         },
         jumpjump2 () {
             this.$store.dispatch('system/noRender', true).then(() => {
-                this.$router.push({'name': 'exp3_057history@1'})
+                this.$router.push({'name': 'expV2_exp03_057history@1'})
                 setTimeout(() => {
                     this.$store.dispatch('system/noRender', false).then(() => {
-                        this.$router.push({'name': 'exp3_057history@2'})
+                        this.$router.push({'name': 'expV2_exp03_057history@2'})
                     })
                 }, 500)
             })

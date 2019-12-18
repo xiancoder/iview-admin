@@ -197,12 +197,16 @@ export const LoadingBarRun = (flag) => { // 顶部进度条执行
 }
 export const companyTableSumColumns = (columns, sumData) => { // 表格总计一列的计算方法总结
     const sums = {};
+    columns = columns || []
+    sumData = sumData || {}
     columns.forEach((column, index) => {
         const key = column.key;
         if (index === 0) {
             sums[key] = { key, value: '汇总' }
         } else {
-            sums[key] = { key, value: sumData[key] || '' }
+            const x = sumData[key]
+            let y = (x === null || x === undefined) ? '' : thousand(toDecimalForce(parseFloat(x || 0)))
+            sums[key] = { key, value: y }
         }
     })
     return sums;

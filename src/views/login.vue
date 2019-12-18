@@ -14,9 +14,7 @@
 import LoginForm from '@C/login-form' // 登录表单
 import '@S/login.less';
 export default {
-    components: {
-        LoginForm
-    },
+    components: { LoginForm },
     methods: {
         handleSubmit (param) {
             this.$store.dispatch('system/login', param).then(res => {

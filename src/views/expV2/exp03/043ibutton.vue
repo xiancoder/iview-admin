@@ -3,7 +3,7 @@
         <div class="blog">
             <div class="blogTitle">iview 中的 button</div>
             <div class="blogContent" v-highlight>
-                <div>
+                <div style="line-height: 45px;">
                     <Button>Default</Button><Divider type="vertical" />
                     <Button type="primary">Primary</Button><Divider type="vertical" />
                     <Button type="dashed">Dashed</Button><Divider type="vertical" />
@@ -24,7 +24,7 @@
                     <Button type="error">Error</Button>
                 </script>
                 <hr />
-                <div style=" background: #333; ">
+                <div style=" background: #333;line-height: 45px;">
                     <Button type="default" ghost>Default</Button><Divider type="vertical" />
                     <Button type="primary" ghost>Primary</Button><Divider type="vertical" />
                     <Button type="dashed" ghost>Dashed</Button><Divider type="vertical" />
@@ -38,7 +38,7 @@
                     <Button type="default" ghost>Default</Button>
                 </script>
                 <hr />
-                <div>
+                <div style="line-height: 45px;">
                     <Button type="primary" shape="circle" icon="ios-search"></Button><Divider type="vertical" />
                     <Button type="primary" icon="ios-search">Search</Button><Divider type="vertical" />
                     <Button type="primary" shape="circle" icon="ios-search">Search</Button><Divider type="vertical" />
@@ -58,13 +58,12 @@
                     <Button shape="circle" icon="ios-search">Search</Button>
                     <Button shape="circle">Circle</Button>
                 </script>
-                <div>
+                <div style="line-height: 45px;">
                     <RadioGroup v-model="size" type="button">
                         <Radio label="large">Large</Radio>
                         <Radio label="default">Default</Radio>
                         <Radio label="small">small</Radio>
                     </RadioGroup>
-                    <br />
                     <br />
                     <Button :size="size" type="primary">Primary</Button><Divider type="vertical" />
                     <Button :size="size" type="default">Default</Button><Divider type="vertical" />
@@ -80,13 +79,12 @@
                     <Button :size="buttonSize" type="primary">Primary</Button>
                 </script>
                 <hr />
-                <div>
+                <div style="line-height: 45px;">
                     <RadioGroup v-model="buttonSize" type="button">
                         <Radio label="1">正常</Radio>
                         <Radio label="2">禁用</Radio>
                         <Radio label="3">等待</Radio>
                     </RadioGroup>
-                    <br />
                     <br />
                     <Button :disabled="buttonSize==2">Default</Button><Divider type="vertical" />
                     <Button :disabled="buttonSize==2" type="primary">Primary</Button><Divider type="vertical" />
@@ -107,7 +105,7 @@
                     </Button>
                 </script>
                 <hr />
-                <div>
+                <div style="line-height: 45px;">
                     <ButtonGroup>
                         <Button>Cancel</Button>
                         <Button type="primary">Confirm</Button>
@@ -133,8 +131,7 @@
                             <Icon type="ios-arrow-forward"></Icon>
                         </Button>
                     </ButtonGroup>
-                </div>
-                <div>
+                    <br />
                     <ButtonGroup>
                         <Button type="primary" icon="ios-skip-backward"></Button>
                         <Button type="primary" icon="ios-skip-forward"></Button>

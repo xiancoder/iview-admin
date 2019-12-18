@@ -2,6 +2,7 @@ import Vue from 'vue' // 核心
 import './axios' // axios配置
 import system from './system'
 import unit from './unit'
+import stands from './stands'
 import blog from './blog'
 
 import oaApi from './OAPC'
@@ -11,6 +12,8 @@ export const Api = {
     system,
     unit,
     blog,
+    stands,
+
     ...oaApi,
     ...dspApi
 } // 接口列表

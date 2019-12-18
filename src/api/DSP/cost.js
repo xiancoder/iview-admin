@@ -104,5 +104,58 @@ export default {
             })
         })
     },
+    sealAccount ( // 封账
+        ids // 列表ID
+    ) {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'POST',
+                url: 'api/cost/close',
+                data: {
+                    ids
+                }
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.res_code) {
+                    success(res.data.res || '封账成功')
+                    resolve()
+                } else {
+                    error(res.data.res) // 报错并继续reject
+                    reject(res.data.res)
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
+            })
+        })
+    },
+    sealAccountBatch ({ // 批量封账
+        start2end, // 日期范围 yyyy-mm-dd
+        businessId, // 业务 ID或者Name
+        aderId // 广告主ID
+    }) {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'POST',
+                url: 'api/cost/close_batch',
+                data: {
+                    'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
+                    'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
+                    'ader_id': aderId || '0', // 广告主ID
+                    'buis_name': businessId || '' // 业务名称
+                }
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.res_code) {
+                    success(res.data.res || '封账成功')
+                    resolve()
+                } else {
+                    error(res.data.res) // 报错并继续reject
+                    reject(res.data.res)
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
+            })
+        })
+    },
     end () {} // 错误占位符
 }

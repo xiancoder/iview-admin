@@ -13,20 +13,22 @@
                 </Option>
             </Select>
             <Button type="primary" @click="hendleSearch">搜索</Button>
-            <Button type="default" @click="hendleReset">重置</Button>
             <Button type="primary" class="fr" @click="hendleExport">导出</Button>
         </div>
-        <Table border :loading="loading" :columns="columns1" :data="tableData" @on-sort-change="hendleSort"
-            show-summary :summary-method="handleSum">
+        <Table border :loading="loading" :columns="columns2" :data="tableData" @on-sort-change="hendleSort"
+            show-summary :summary-method="handleSum" v-if="roleId==2">
+        </Table>
+        <Table border :loading="loading" :columns="columns3" :data="tableData" @on-sort-change="hendleSort"
+            show-summary :summary-method="handleSum" v-if="roleId==3">
         </Table>
         <div class="tableFooter">
-            <span> {{showPageCount(page.rowCount,page.index,page.pageSize)}}</span>
-            <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount"
+            <span> {{showPageCount(page.rowCount,page.pageIndex,page.pageSize)}}</span>
+            <Page ref="pager" :page-size="page.pageSize" :current="page.pageIndex" :total="page.rowCount"
                 show-sizer show-elevator class="fr"
                 @on-change="v=>{hendleGopage(v)}"
                 @on-page-size-change="v=>{page.pageSize=v;hendleGopage(1)}"/>
             </Page>
-            <span class="fr"> {{showPageRow(page.rowCount,page.index,page.pageSize)}}</span>
+            <span class="fr"> {{showPageRow(page.rowCount,page.pageIndex,page.pageSize)}}</span>
         </div>
     </div>
 </template>
@@ -50,10 +52,16 @@ export default {
             loading: false,
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
             order: { orderKey: '', order: '' }, // 排序 变量名最好原样
-            columns1: [
-                {title: '广告主', key: 'ader_name', render: h.defaultH('ader_name')},
+            columns2: [
+                {title: '广告主', width: 300, key: 'ader_name', render: h.defaultH('ader_name')},
                 {title: '用户名', key: 'user_name'},
                 {title: '账户余额', key: 'balance', render: h.moneyFormat('balance')}
+            ],
+            columns3: [
+                {title: '广告主', width: 300, key: 'ader_name', render: h.defaultH('ader_name')},
+                {title: '用户名', key: 'user_name'},
+                {title: '账户余额', key: 'balance', render: h.moneyFormat('balance')},
+                {title: '结算余额', key: 'settlement', render: h.moneyFormat('settlement')}
             ],
             'serrchParam': null, // 实际搜索项
             'serrchBack': null, // 搜索项备份
@@ -68,8 +76,8 @@ export default {
     },
     methods: {
         getDataSet () { // 初始化数据源
-            this.$api.dspadvertiser.pull().then(list => { this.dataSet.aderIdList = list })
-            if (this.roleId === 3) this.$api.dspsystem.companyList().then(list => { this.dataSet.companyList = list })
+            this.$api.advertiser.pull().then(list => { this.dataSet.aderIdList = list })
+            if (this.roleId === 3) this.$api.system.companyList().then(list => { this.dataSet.companyList = list })
         },
         init () { // 初始化
             if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
@@ -103,21 +111,21 @@ export default {
             return companyTableSumColumns(columns, this.tableSumData)
         },
         hendleExport: debounce(function () { // 操作
-            this.$api.dspfinance.accountList(this.serrchParam, this.roleId, 'export')
+            this.$api.finance.accountList(this.serrchParam, this.roleId, 'export')
         }),
-        ajax: debounce(function () { // 业务ajax
+        ajax: function () { // 业务ajax
             extend(this.serrchParam, this.search) // 设置实际搜索项
             extend(this.serrchParam, this.page) // 设置分页
             extend(this.serrchParam, this.order) // 设置排序
             saveParamState(this.serrchParam) // 存url
             this.loading = true // 加载中
-            this.$api.dspfinance.accountList(this.serrchParam, this.roleId).then((info) => { // ajax
+            this.$api.finance.accountList(this.serrchParam, this.roleId).then((info) => { // ajax
                 this.loading = false; // 加载完成
                 this.tableData = info.list
-                this.page.rowCount = info.rowcount
+                this.page.rowCount = info.row_count
                 this.tableSumData = info.sum
             })
-        }),
+        },
         end2: nothing // 防呆设计
     },
     mounted: function () {

@@ -85,9 +85,9 @@ export default {
         // 需要根据权限区分一下 下发参数
         let data = null
         let power = ''
-        if (aderId === 'all') aderId = ''
-        if (businessId === 'all') businessId = ''
-        if (state === 'all') state = ''
+        if (aderId === 'all') aderId = '0'
+        // if (businessId === 'all') businessId = '0'
+        if (state === 'all') state = '0'
         if (role === 1) {
             data = {
                 'date': date || '' // 日期 yyyy-mm
@@ -108,7 +108,7 @@ export default {
                 'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
                 'ader_id': aderId || '0', // 广告主ID
-                'buis_id': businessId || '', // 业务ID
+                'buis_name': businessId || '', // 业务 ID/Name 都用字符串
                 'state': state || '0', // 状态 1成功2失败
                 'page': pageIndex || '', // 分页
                 'page_count': pageSize || '' // 分页条数
@@ -150,7 +150,7 @@ export default {
         let data = null
         let power = ''
         if (aderId === 'all') aderId = ''
-        if (companyId === 'all') companyId = ''
+        if (companyId === 'all') companyId = '0'
         if (role === 1) {
             power = 'user'
         } else if (role === 2) {
@@ -163,7 +163,7 @@ export default {
         } else if (role === 3) {
             data = {
                 'ader_id': aderId || '0', // 广告主ID
-                'company_id': companyId || '', // 公司ID
+                'company_id': companyId || '0', // 公司ID
                 'page': pageIndex || 1, // 分页
                 'page_count': pageSize || 30 // 分页条数
             }

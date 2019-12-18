@@ -43,9 +43,7 @@ export const routerList = [
                     {power: '0000', path: '005oldTable', title: '原生表格 lodash尝试'},
                     {power: '0000', path: '008tableNoData', title: '表格-无数据'},
                     {power: '0000', path: '008tableObj', title: '表格-超集中(废弃)'},
-                    {power: '0000', path: '009tableMixin', title: '表格-mixin(废弃)'},
-                    {power: '0000', path: '011tableTools', title: '表格-搜索项规范'},
-                    {power: '0000', path: '013tableSum', title: '表格-总计框规范'}
+                    {power: '0000', path: '009tableMixin', title: '表格-mixin(废弃)'}
                 ]
             }, {
                 path: 'exp2', title: '卷贰', icon: 'md-cart',
@@ -71,29 +69,8 @@ export const routerList = [
                 children: [
                     {power: '0000', path: '041zhihu3layout', title: '三大框架简比'},
                     {power: '0000', path: '042jsx', title: 'JSX 语法详解'},
-                    {power: '0000', path: '043ibutton', title: 'IviewButton'},
-                    {power: '0000', path: '044iselect', title: 'IviewSelect'},
-                    {power: '0000', path: '045iinput', title: 'IviewInput'},
-                    {power: '0000', path: '046idatepk', title: 'IviewDatepacker'},
-                    {power: '0000', path: '047iradio', title: 'IviewRadio'},
-                    {power: '0000', path: '047icheckbox', title: 'IviewCheckbox'},
-                    {power: '0000', path: '047iswitch', title: 'IviewSwitch'},
-                    {power: '0000', path: '048itag', title: 'IviewTag'},
-                    {power: '0000', path: '049imodal', title: 'IviewModal'},
-                    {power: '0000', path: '050iicon', title: 'IviewIcon'},
-                    {power: '0000', path: '051iavatar', title: 'IviewAvatar'},
-                    {power: '0000', path: '052idivider', title: 'IviewDivider'},
-                    {power: '0000', path: '053icell', title: 'IviewCell'},
-                    {power: '0000', path: '054ialert', title: 'IviewAlert'},
-                    {power: '0000', path: '055inotice', title: 'IviewNotice'},
-                    {power: '0000', path: '056igrid', title: 'iviewGrid 和所有'},
-                    {power: '0000', path: '057history', title: '路由历史记录'},
-                    {power: '0000', path: '057history@1', title: '路由历史记录1', hideMenu: true},
-                    {power: '0000', path: '057history@2', title: '路由历史记录2', hideMenu: true},
-                    {power: '0000', path: '057history@3', title: '路由历史记录3', hideMenu: true},
                     {power: '0000', path: '058routerpic', title: '路由浏览图片'},
-                    {power: '0000', path: '059debounce', title: '防抖节流测试'},
-                    {power: '0000', path: '060newtabopen', title: '新页面打开'}
+                    {power: '0000', path: '059debounce', title: '防抖节流测试'}
                 ]
             }, {
                 path: 'exp4', title: '卷肆', icon: 'md-construct',
@@ -110,26 +87,10 @@ export const routerList = [
                 path: 'exp5', title: '卷伍', icon: 'md-color-fill',
                 children: [
                     {power: '0000', path: '081templete', title: '标签 templete'},
-                    {power: '0000', path: '082download', title: 'JS  控制下载文档'},
                     {power: '0000', path: '083innerDB', title: 'innerDB 数据库'},
-                    {power: '0000', path: '084public', title: '请求 public 内容'},
-                    {power: '0000', path: '085$set', title: 'vue $set 的用法'},
-                    {power: '0000', path: '086von', title: 'vue v-on 深挖'},
-                    {power: '0000', path: '087watch', title: 'vue watch 深挖'},
-                    {power: '0000', path: '088computed', title: 'vue computed 深挖'},
-                    {power: '0000', path: '089vfor', title: 'vue v-for 循环'},
-                    {power: '0000', path: '090keepalive', title: 'keep-alive', keepAlive: true},
-                    {power: '0000', path: '090keepalive@add', title: 'keep-alive 缓存页', hideMenu: true},
-                    {power: '0000', path: '091textcss', title: '文本样式'},
-                    {power: '0000', path: '092waining', title: '警告内容样式'},
                     {power: '0000', path: '093ddd', title: '换行/省略号'},
                     {power: '0000', path: '094mouse', title: '鼠标样式'},
-                    {power: '0000', path: '095qqimg', title: 'qq头像排列'},
-                    {power: '0000', path: '096xiewen', title: '斜纹样式'},
-                    {power: '0000', path: '097shadow', title: '阴影样式'},
-                    {power: '0000', path: '098sidai', title: '丝带样式'},
-                    {power: '0000', path: '099css3xingzhuang', title: 'css3 绘制各种形状'},
-                    {power: '0000', path: '100autofontsize', title: '自动字体大小'}
+                    {power: '0000', path: '096xiewen', title: '斜纹样式'}
                 ]
             }, {
                 path: 'exp6', title: '卷陆', icon: 'md-easel',
@@ -230,6 +191,31 @@ export const routerList = [
                     {power: '0000', path: '040meta', title: 'Meta 标签详解'}
                 ]
             }, {
+                path: 'exp03', title: '卷叁', icon: 'md-chatbubbles',
+                children: [
+                    {power: '0000', path: '043ibutton', title: 'IviewButton'},
+                    {power: '0000', path: '044iselect', title: 'IviewSelect'},
+                    {power: '0000', path: '045iinput', title: 'IviewInput'},
+                    {power: '0000', path: '046idatepk', title: 'IviewDatepacker'},
+                    {power: '0000', path: '047iradio', title: 'IviewRadio'},
+                    {power: '0000', path: '047icheckbox', title: 'IviewCheckbox'},
+                    {power: '0000', path: '047iswitch', title: 'IviewSwitch'},
+                    {power: '0000', path: '048itag', title: 'IviewTag'},
+                    {power: '0000', path: '049imodal', title: 'IviewModal'},
+                    {power: '0000', path: '050iicon', title: 'IviewIcon'},
+                    {power: '0000', path: '051iavatar', title: 'IviewAvatar'},
+                    {power: '0000', path: '052idivider', title: 'IviewDivider'},
+                    {power: '0000', path: '053icell', title: 'IviewCell'},
+                    {power: '0000', path: '054ialert', title: 'IviewAlert'},
+                    {power: '0000', path: '055inotice', title: 'IviewNotice'},
+                    {power: '0000', path: '056igrid', title: 'iviewGrid 和所有'},
+                    {power: '0000', path: '057history', title: '路由历史记录'},
+                    {power: '0000', path: '057history@1', title: '路由历史记录1', hideMenu: true},
+                    {power: '0000', path: '057history@2', title: '路由历史记录2', hideMenu: true},
+                    {power: '0000', path: '057history@3', title: '路由历史记录3', hideMenu: true},
+                    {power: '0000', path: '060newtabopen', title: '新页面打开'}
+                ]
+            }, {
                 path: 'exp04', title: '卷肆', icon: 'md-construct',
                 children: [
                     {power: '0000', path: '062fanyinhao', title: '反引号推广'},
@@ -245,6 +231,26 @@ export const routerList = [
                     {power: '0000', path: '077refer', title: '历史 referer 操作'},
                     {power: '0000', path: '078void0bug', title: '空白void(0)跳转bug'},
                     {power: '0000', path: '079microsoftyahei', title: '微软雅黑字体版权'}
+                ]
+            }, {
+                path: 'exp05', title: '卷伍', icon: 'md-color-fill',
+                children: [
+                    {power: '0000', path: '082download', title: 'JS  控制下载文档'},
+                    {power: '0000', path: '084public', title: '请求 public 内容'},
+                    {power: '0000', path: '085$set', title: 'vue $set 的用法'},
+                    {power: '0000', path: '086von', title: 'vue v-on 深挖'},
+                    {power: '0000', path: '087watch', title: 'vue watch 深挖'},
+                    {power: '0000', path: '088computed', title: 'vue computed 深挖'},
+                    {power: '0000', path: '089vfor', title: 'vue v-for 循环'},
+                    {power: '0000', path: '090keepalive', title: 'keep-alive'},
+                    {power: '0000', path: '090keepalive@add', title: 'keep-alive 缓存页', hideMenu: true},
+                    {power: '0000', path: '091textcss', title: '文本样式'},
+                    {power: '0000', path: '092waining', title: '警告内容样式'},
+                    {power: '0000', path: '095qqimg', title: 'qq头像排列'},
+                    {power: '0000', path: '097shadow', title: '阴影样式'},
+                    {power: '0000', path: '098sidai', title: '丝带样式'},
+                    {power: '0000', path: '099css3xingzhuang', title: 'css3 绘制各种形状'},
+                    {power: '0000', path: '100autofontsize', title: '自动字体大小'}
                 ]
             }, {
                 path: 'exp06', title: '卷陆', icon: 'md-game-controller-b',
@@ -281,15 +287,19 @@ export const routerList = [
         path: 'workV2', title: '工作集V2', icon: 'md-menu',
         children: [
             {
-                path: 'work01', title: '卷壹', icon: 'md-heart',
+                path: 'work00', title: '卷零', icon: 'md-heart',
                 children: [
                     {power: '0000', path: '201daterange', title: '日期范围优化'},
                     {power: '0000', path: '202api', title: 'api接口承上启下'},
                     {power: '0000', path: '203fromdifto', title: '来源提交格式不同'},
                     {power: '0000', path: '204trytransfer', title: '尝试多搜索+穿梭框'},
                     {power: '0000', path: '205tableV1', title: '表格规范v1模版'},
+                    {power: '0000', path: '205tableV1@bro', title: '表格v1兄弟页面', hideMenu: true},
+                    {power: '0000', path: '205tab', title: '表格v1菜单Tab'},
                     {power: '0000', path: '205tableMaxHeight', title: '表格v1高度限定'},
                     {power: '0000', path: '205tableBatch', title: '表格v1批量操作'},
+                    {power: '0000', path: '205tableTools', title: '表格v1搜索项'},
+                    {power: '0000', path: '205tableSum', title: '表格v1总计框'},
                     {power: '0000', path: '207validateInput', title: '表单v1输入框'},
                     {power: '0000', path: '207validateNumber', title: '表单v1数字框'},
                     {power: '0000', path: '207validateFile', title: '表单v1文件上传框'},
@@ -299,16 +309,18 @@ export const routerList = [
                     {power: '0000', path: '207validateRich', title: '表单v1富文本框'},
                     {power: '0000', path: '207validateSelect', title: '表单v1下拉框'},
                     {power: '0000', path: '207validateDate', title: '表单v1日期框'},
+                    {power: '0000', path: '207validateSubmit', title: '表单v1提交逻辑'},
                     {power: '0000', path: '208creditSvgCss', title: 'Svg 信用卡样式'},
-                    {power: '0000', path: '209vuehtml5editor', title: '富文本 Html5Editor'},
-                    {power: '0000', path: '210showMsg', title: '提示信息框规范'},
-                    {power: '0000', path: '211goodModal', title: 'IviewModal 弹框'},
-                    {power: '0000', path: '212tools', title: '超公共 $tool 模块'}
+                    {power: '0000', path: '209vuehtml5editor', title: '富文本 Html5Editor'}
                 ]
             },
             {
-                path: 'work02', title: '卷贰', icon: 'md-heart',
+                path: 'work01', title: '卷壹', icon: 'md-heart',
                 children: [
+                    {power: '0000', path: '210showMsg', title: '提示信息框规范'},
+                    {power: '0000', path: '211goodModal', title: 'IviewModal 弹框'},
+                    {power: '0000', path: '212tools', title: '超公共 $tool 模块'},
+                    {power: '0000', path: '213smsBtn', title: '短信验证码按钮'},
                     {power: '0000', path: '300brove', title: '收集300个'}
                 ]
             }

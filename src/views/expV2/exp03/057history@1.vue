@@ -1,15 +1,10 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle"></div>
-            <Divider orientation="right">项目使用的标准或规范</Divider>
+            <div class="blogTitle">vue-router 怎么操作页面的历史记录？</div>
             <div class="blogContent" v-highlight>
-                <p></p>
-                <script type="text/html">
-                </script>
-                <p></p>
-                <script type="text/js">
-                </script>
+                <p>1111111111111111111111111111</p>
+                <p><Button @click="jump2()">我是页面1我要跳页面2</Button></p>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>
@@ -25,8 +20,12 @@ export default {
         return {}
     },
     methods: {
+        jump2 () {
+            this.$router.push({'name': 'expV2_exp03_057history@2'})
+        }
     },
     mounted () {
+        console.log('我是页面1')
     }
 }
 </script>

@@ -1,9 +1,5 @@
 <template>
     <div>
-        <div class="moneyBox" v-if="roleId==1">
-            <div class="moneyBoxTitle">账户余额</div>
-            <div class="moneyBoxNum">{{balance|moneyformat}} 元</div>
-        </div>
         <Tabs :value="currentName" @on-click="goto">
             <TabPane v-for="(row, index) in tabList" :key="index" :label="row.title" :name="row.name">
             </TabPane>
@@ -16,32 +12,27 @@ export default {
     mixins: [{methods: {goto}}],
     data () {
         return {
-            name: 'dsp_finance_list',
+            name: 'workV2_work01_205tab',
             currentName: '',
             balance: '-'
         }
     },
     computed: { // 计算属性
-        roleId () { return this.$store.state.system.userRoleId}, // 用户角色权限
         tabList () {
             const list = [
-                { name: 'dsp_finance_list@recharge', title: '充值记录' },
-                { name: 'dsp_finance_list@cost', title: '消耗记录' }
+                {name: 'workV2_work01_205tableV1', title: '表格规范v1模版'},
+                {name: 'workV2_work01_205tableV1@bro', title: '表格v1兄弟页面'},
+                {name: 'workV2_work01_205tableMaxHeight', title: '表格v1高度限定'},
+                {name: 'workV2_work01_205tableBatch', title: '表格v1批量操作'},
+                {name: 'workV2_work01_205tableTools', title: '表格v1搜索项'},
+                {name: 'workV2_work01_205tableSum', title: '表格v1总计框'}
             ]
-            if (this.roleId !== 1) {
-                list.push({ name: 'dsp_finance_list@account', title: '财务余额查询' })
-            }
             return list
         }
     },
     mounted: function () {
         this.currentName = this.$route.name
         if (this.currentName === this.name) { return goto(this.tabList[0].name, 'r') }
-        if (this.roleId === 1) {
-            this.$api.finance.accountList({}, this.roleId).then((info) => { // ajax
-                this.balance = info.balance
-            })
-        }
     }
 }
 </script>

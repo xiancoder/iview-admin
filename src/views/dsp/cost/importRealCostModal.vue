@@ -36,7 +36,7 @@ export default {
     data () {
         return {
             loading: false,
-            serverError: '',
+            serverError: '', // 服务器返回的错误
             frm: {
                 companyId: '',
                 file: {}
@@ -67,6 +67,8 @@ export default {
         flag (n, o) { // 离开时候清空输入框 归来时候初始化值
             if (n !== true) {
                 this.$refs['form3333'].resetFields()
+                this.loading = false
+                this.serverError = ''
             }
         }
     },
@@ -84,7 +86,7 @@ export default {
             this.$refs['form3333'].validate(valid => {
                 if (!valid) {return false}
                 this.loading = true
-                this.$api.dspcost.realCostImport(this.frm).then((res) => { // ajax
+                this.$api.cost.realCostImport(this.frm).then((res) => { // ajax
                     this.$emit('on-submit', 1)
                 }).catch((msg) => {
                     this.serverError = msg

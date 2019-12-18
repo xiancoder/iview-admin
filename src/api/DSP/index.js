@@ -1,16 +1,17 @@
-import dspfinance from './finance'
-import dspcharge from './charge'
-import dspcost from './cost'
-import dspadvertiser from './advertiser'
-import dspsystem from './system'
-import dspbusiness from './business'
+import system from './system'
+import finance from './finance'
+import charge from './charge'
+import cost from './cost'
+import advertiser from './advertiser'
+import business from './business'
+import main from './main'
 
 export default { // 接口列表
-    dspsystem,
-
-    dspfinance,
-    dspadvertiser,
-    dspcharge,
-    dspbusiness,
-    dspcost
-}
+    system,
+    finance,
+    advertiser,
+    charge,
+    cost,
+    business,
+    main
+} // 接口列表

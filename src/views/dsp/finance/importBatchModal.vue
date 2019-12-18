@@ -65,7 +65,7 @@ export default {
     },
     methods: {
         getDataSet () { // 初始化数据源
-            this.$api.dspsystem.companyList().then(list => { this.dataSet.companyList = list })
+            this.$api.system.companyList().then(list => { this.dataSet.companyList = list })
         },
         handleUpload (file) {
             if (file.size > 20 * 1024 * 1024) {
@@ -78,7 +78,7 @@ export default {
         ok () {
             this.$refs['form3333'].validate(valid => {
                 if (valid) {
-                    this.$api.dspfinance.rechargelistImport(this.frm).then((res) => { // ajax
+                    this.$api.finance.rechargelistImport(this.frm).then((res) => { // ajax
                         if (res) {
                             this.$emit('on-submit', 1)
                         }

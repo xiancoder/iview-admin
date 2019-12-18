@@ -13,8 +13,8 @@
                     <script type="text/html" v-pre>
                         <div class="tableLayout">
                             <Tabs :value="tabVaule" @on-click="changeTab">
-                                <TabPane label="审批人配置" name="approval"></TabPane>
-                                <TabPane label="抄送人配置" name="cc"></TabPane>
+                                <TabPane label="表格规范" name="approval"></TabPane>
+                                <TabPane label="兄弟节点写法" name="cc"></TabPane>
                             </Tabs>
                             <div class="tableTool">
                                 <Select v-model="search.taskPriority" placeholder='请选择任务级别'>
@@ -33,13 +33,13 @@
                                 @on-sort-change="hendleSort">
                             </Table>
                             <div class="tableFooter">
-                                <span> {{showPageCount(page.rowCount,page.index,page.pageSize)}}</span>
-                                <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount"
+                                <span> {{showPageCount(page.rowCount,page.pageIndex,page.pageSize)}}</span>
+                                <Page ref="pager" :page-size="page.pageSize" :current="page.pageIndex" :total="page.rowCount"
                                     show-sizer show-elevator class="fr"
                                     @on-change="v=>{hendleGopage(v)}"
                                     @on-page-size-change="v=>{page.pageSize=v;hendleGopage(1)}"/>
                                 </Page>
-                                <span class="fr"> {{showPageRow(page.rowCount,page.index,page.pageSize)}}</span>
+                                <span class="fr"> {{showPageRow(page.rowCount,page.pageIndex,page.pageSize)}}</span>
                             </div>
                         </div>
                     </script>
@@ -114,7 +114,7 @@
                                     this.order.order = param.order
                                     this.ajax()
                                 },
-                                ajax: debounce(function () { // 业务ajax
+                                ajax: function () { // 业务ajax
                                     extend(this.serrchParam, this.search) // 设置实际搜索项
                                     extend(this.serrchParam, this.page) // 设置分页
                                     extend(this.serrchParam, this.order) // 设置排序
@@ -125,7 +125,7 @@
                                         this.tableData = info.list
                                         this.page.rowCount = info.rowCount
                                     })
-                                }),
+                                },
                                 end2: nothing // 防呆设计
                             },
                             mounted: function () {
@@ -216,10 +216,7 @@
             </div>
         </div>
         <div class="tableLayout">
-            <Tabs :value="tabVaule" @on-click="changeTab">
-                <TabPane label="审批人配置" name="approval"></TabPane>
-                <TabPane label="抄送人配置" name="cc"></TabPane>
-            </Tabs>
+            <tab></tab>
             <div class="tableTool">
                 <Select v-model="search.taskPriority" placeholder='请选择任务级别'>
                     <Option v-for="option in dataSet.taskPriorityList" :value="option.id" :key="option.id" :label="option.name" >
@@ -237,13 +234,13 @@
                 @on-sort-change="hendleSort">
             </Table>
             <div class="tableFooter">
-                <span> {{showPageCount(page.rowCount,page.index,page.pageSize)}}</span>
-                <Page ref="pager" :page-size="page.pageSize" :current="page.index" :total="page.rowCount"
+                <span> {{showPageCount(page.rowCount,page.pageIndex,page.pageSize)}}</span>
+                <Page ref="pager" :page-size="page.pageSize" :current="page.pageIndex" :total="page.rowCount"
                     show-sizer show-elevator class="fr"
                     @on-change="v=>{hendleGopage(v)}"
                     @on-page-size-change="v=>{page.pageSize=v;hendleGopage(1)}"/>
                 </Page>
-                <span class="fr"> {{showPageRow(page.rowCount,page.index,page.pageSize)}}</span>
+                <span class="fr"> {{showPageRow(page.rowCount,page.pageIndex,page.pageSize)}}</span>
             </div>
         </div>
     </div>
@@ -252,10 +249,12 @@
 import { extend, extendF } from '@/utils/object'
 import { debounce, nothing } from '@/utils/function'
 import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+import tab from './205tab'
+
 export default {
+    components: { tab },
     data () {
         return {
-            tabVaule: 'approval',
             dataSet: {
                 'taskPriorityList': [],
                 'taskStatuList': []
@@ -290,7 +289,6 @@ export default {
         download: debounce(function () { // 操作 任何操作将重置搜索项
             this.hendleSearch()
         }),
-        changeTab (name) { this.$tool.jumpto(name) },
         init () { // 初始化
             if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
             if (!this.serrchBack) {this.serrchBack = extend({}, this.search)} // 备份
@@ -319,7 +317,7 @@ export default {
             this.order.order = param.order
             this.ajax()
         },
-        ajax: debounce(function () { // 业务ajax
+        ajax: function () { // 业务ajax
             extend(this.serrchParam, this.search) // 设置实际搜索项
             extend(this.serrchParam, this.page) // 设置分页
             extend(this.serrchParam, this.order) // 设置排序
@@ -330,7 +328,7 @@ export default {
                 this.tableData = info.list
                 this.page.rowCount = info.rowCount
             })
-        }),
+        },
         end2: nothing // 防呆设计
     },
     mounted: function () {

@@ -39,7 +39,7 @@
                 <p>使用效果</p>
                 <p>(1) 在Page1页面输入框输入“asd”，然后手动跳转到Hello页面；</p>
                 <p>(2) 回到Page1页面发现之前输入的"asd"依然保留，说明页面信息成功保存在内存中；</p>
-                <p>也可以通过动态设置route.meta的keepAlive属性来实现其他需求，</p>
+                <p class="text-danger">这种方式要求每个页面必须写name 同时路由必须指明声明keepAlive 不建议这么用</p>
                 <p>借鉴一下 <a href="http://www.jianshu.com/p/0b0222954483">vue-router 之 keep-alive，作者：RoamIn</a>这篇博客中的例子：</p>
                 <ul>
                     <li>首页是A页面</li>
@@ -50,10 +50,6 @@
                 <script type="text/js">
                     { path: '/', name: 'A', component: A, meta: { keepAlive: true // 需要被缓存 } }
                     export default {
-                        data() {
-                            return {};
-                        },
-                        methods: {},
                         beforeRouteLeave(to, from, next) {
                              // 设置下一个路由的 meta
                             to.meta.keepAlive = true;  // B 跳转到 A 时，让 A 缓存，即不刷新
@@ -61,10 +57,6 @@
                         }
                     };
                     export default {
-                        data() {
-                            return {};
-                        },
-                        methods: {},
                         beforeRouteLeave(to, from, next) {
                             // 设置下一个路由的 meta
                             to.meta.keepAlive = false; // C 跳转到 A 时让 A 不缓存，即刷新
@@ -80,7 +72,7 @@
                         to.meta.keepAlive = false // C 跳转到 A 时让 A 不缓存，即刷新
                     }
                 </script>
-                <p>想法很好 但是页面的初始值要为true才能实现这么一系列操作 如果页面C转到无关页面D再转回来 C默认就false</p>
+                <p class="text-danger">这种想法很好 但是页面的初始值要为true才能实现这么一系列操作 如果页面C转到无关页面D再转回来 C默认就false</p>
                 <p><strong>prop:</strong></p>
                 <ul>
                     <li>include: 字符串或正则表达式。只有匹配的组件会被缓存。</li>
@@ -125,7 +117,12 @@
                     <Input type="text" v-model="xxx" placeholder="请输入任务名称" style="width: 450px"/>
                     <Button type="default" @click="godetail">前往详情来测试</Button>
                 </p>
-                <p>亲测有效哦 ~ https://www.cnblogs.com/sysuhanyf/p/7454530.html</p>
+                <script type="text/js">
+                    router.beforeEach((to, from, next) => {
+                        Store.dispatch('system/keepalive', to.name) // 路由keepAlive管理 当前页缓存
+                    }
+                </script>
+                <p class="text-info">亲测有效</p>
                 <p></p>
             </div>
             <div class="blogFooter">

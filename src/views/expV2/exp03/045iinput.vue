@@ -51,6 +51,8 @@
                 <div>
                     普通输入框最后渲染的是 行内元素DIV 但是携带先后装饰的没有此类效果
                     <Input search enter-button placeholder="Enter something..." style="width: 200px" />
+                </div>
+                <div>
                     <Input search enter-button="Search" placeholder="Enter something..." style="width: 200px" />
                 </div>
                 <div>

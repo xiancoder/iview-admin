@@ -1,10 +1,9 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">vue-router 怎么操作页面的历史记录？</div>
+            <div class="blogTitle">V1 的兄弟页面 隐藏于menu 选中我 会连带高亮menu 中的 V1</div>
+            <Divider orientation="right">项目使用的标准或规范</Divider>
             <div class="blogContent" v-highlight>
-                <p>1111111111111111111111111111</p>
-                <p><Button @click="jump2()">我是页面1我要跳页面2</Button></p>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>
@@ -20,12 +19,8 @@ export default {
         return {}
     },
     methods: {
-        jump2 () {
-            this.$router.push({'name': 'exp3_057history@2'})
-        }
     },
     mounted () {
-        console.log('我是页面1')
     }
 }
 </script>

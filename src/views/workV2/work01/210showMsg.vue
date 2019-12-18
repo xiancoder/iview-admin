@@ -1,49 +1,52 @@
 <template>
     <div>
-        <div class="blog">
-            <div class="blogTitle">各种功能弹框 in @/tools</div>
-            <Divider orientation="right">项目使用的标准或规范</Divider>
-            <div class="blogContent" v-highlight>
-                <p></p>
-                <Button type="default" @click="confirm">confirm</Button>
-                <Button type="default" @click="alertMsg">alertMsg</Button>
-                <Button type="default" @click="errorMsg">errorMsg</Button>
-                <Button type="default" @click="successMsg">successMsg</Button>
-                <Button type="default" @click="warningMsg">warningMsg</Button>
-                <script type="text/js">
-                    import { confirm, alertMsg, errorMsg, successMsg, warningMsg } from '@/tools'
-                </script>
-            </div>
-            <div class="blogFooter">
-                <Tag color="green">收集</Tag>
-                <Tag color="cyan">学习</Tag>
-                <Tag color="blue">增长</Tag>
-            </div>
-        </div>
-        <div class="blog">
-            <div class="blogTitle">各种功能弹框</div>
-            <div class="blogContent" v-highlight>
-                <p></p>
-                <Button type="default" @click="hendleInfo">hendleInfo</Button>
-                <Button type="default" @click="hendleSuccess">hendleSuccess</Button>
-                <Button type="default" @click="hendleWarning">hendleWarning</Button>
-                <Button type="default" @click="hendleError">hendleError</Button>
-                <Button type="default" @click="hendleConfirm">hendleConfirm</Button>
-                <script type="text/js">
-                    hendleInfo () { this.$Modal.info({ title: '确认考核', content: '请假时长已超剩余假期时长' }) },
-                    hendleSuccess () { this.$Modal.success({ title: '确认考核', content: '请假时长已超剩余假期时长' }) },
-                    hendleWarning () { this.$Modal.warning({ title: '确认考核', content: '请假时长已超剩余假期时长' }) },
-                    hendleError () { this.$Modal.error({ title: '确认考核', content: '请假时长已超剩余假期时长' }) },
-                    hendleConfirm () { this.$Modal.confirm({ title: '核对考勤', content: '确认考勤无误吗？', loading: true, onOk: () => { alert('ok'); this.$Modal.remove() } }) }
-                </script>
-            </div>
-            <div class="blogFooter">
-                <Tag color="green">收集</Tag>
-                <Tag color="cyan">学习</Tag>
-                <Tag color="blue">增长</Tag>
-            </div>
-        </div>
         <div class="blogCss">
+            <div class="blog">
+                <div class="blogTitle">各种功能弹框 in @/tools</div>
+                <Divider orientation="right">项目使用的标准或规范</Divider>
+                <div class="blogContent" v-highlight>
+                    <p></p>
+                    <Button type="default" @click="confirm">confirm</Button>
+                    <Button type="default" @click="alertMsg">alertMsg</Button>
+                    <Button type="default" @click="errorMsg">errorMsg</Button>
+                    <Button type="default" @click="successMsg">successMsg</Button>
+                    <Button type="default" @click="warningMsg">warningMsg</Button>
+                    <script type="text/js">
+                        import { confirm, alertMsg, errorMsg, successMsg, warningMsg } from '@/tools'
+                        export default {
+                            mixins: [{methods: {confirm, alertMsg, errorMsg, successMsg, warningMsg}}],
+                        }
+                    </script>
+                </div>
+                <div class="blogFooter">
+                    <Tag color="green">收集</Tag>
+                    <Tag color="cyan">学习</Tag>
+                    <Tag color="blue">增长</Tag>
+                </div>
+            </div>
+            <div class="blog">
+                <div class="blogTitle">各种功能弹框</div>
+                <div class="blogContent" v-highlight>
+                    <p></p>
+                    <Button type="default" @click="hendleInfo">hendleInfo</Button>
+                    <Button type="default" @click="hendleSuccess">hendleSuccess</Button>
+                    <Button type="default" @click="hendleWarning">hendleWarning</Button>
+                    <Button type="default" @click="hendleError">hendleError</Button>
+                    <Button type="default" @click="hendleConfirm">hendleConfirm</Button>
+                    <script type="text/js">
+                        hendleInfo () { this.$Modal.info({ title: '确认考核', content: '请假时长已超剩余假期时长' }) },
+                        hendleSuccess () { this.$Modal.success({ title: '确认考核', content: '请假时长已超剩余假期时长' }) },
+                        hendleWarning () { this.$Modal.warning({ title: '确认考核', content: '请假时长已超剩余假期时长' }) },
+                        hendleError () { this.$Modal.error({ title: '确认考核', content: '请假时长已超剩余假期时长' }) },
+                        hendleConfirm () { this.$Modal.confirm({ title: '核对考勤', content: '确认考勤无误吗？', loading: true, onOk: () => { alert('ok'); this.$Modal.remove() } }) }
+                    </script>
+                </div>
+                <div class="blogFooter">
+                    <Tag color="green">收集</Tag>
+                    <Tag color="cyan">学习</Tag>
+                    <Tag color="blue">增长</Tag>
+                </div>
+            </div>
             <div class="blog">
                 <div class="blogTitle">信息弹框 最最最好不要在想 需要时候new一个 方式</div>
                 <div class="blogContent" v-highlight>
@@ -81,7 +84,7 @@
 import { confirm, alertMsg, errorMsg, successMsg, warningMsg } from '@/tools'
 
 export default {
-    mixin: [{methods: {confirm, alertMsg, errorMsg, successMsg, warningMsg}}],
+    mixins: [{methods: {confirm, alertMsg, errorMsg, successMsg, warningMsg}}],
     data () {
         return {}
     },

@@ -1,8 +1,9 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">QQ头像排列</div>
+            <div class="blogTitle">QQ头像排列样式</div>
             <div class="blogContent" v-highlight>
+                <p>QQ头像地址 可以直接获取</p>
                 <img src="http://q1.qlogo.cn/g?b=qq&nk=2546066152&s=100" style=" width:95px;border:1px solid #fff;">
                 <img src="http://q1.qlogo.cn/g?b=qq&nk=2187392909&s=100" style=" width:95px;border:1px solid #fff;">
                 <img src="http://q1.qlogo.cn/g?b=qq&nk=123131897&s=100" style=" width:95px;border:1px solid #fff;">
@@ -14,6 +15,14 @@
                 <hr />
                 <script type="text/html">
                     <img src="http://q1.qlogo.cn/g?b=qq&nk=[QQ]&s=100" style=" width:95px;border:1px solid #fff;">
+                </script>
+                <p>微信头像地址 无法直接获取</p>
+                <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/E7XLbDS0gRJibYGpzxcEwXibyTwQAAHX9Koia7oln1821c8Djkibtpf6O20J3nacpnb0pg1UmtpdfDznHYBZvL78kw/132" style=" width:95px;border:1px solid #fff;">
+                <img src="http://wx.qlogo.cn/mmopen/UAqwJ95HSLycmQktIqAYuexoytJ3kJzknQ4icJkNpfUvxfqoNRDY2esKQj3YvxXuQacsu9fYKDQ1VUSVBxspic4MwNDTF4Z4zu/0">
+                <img src="https://wx.qlogo.cn/mmopen/vi_32/weu0icFyZWHxUJkHFBMYlib8ykKOm32oDNfwlRn87k8k1ufqNuAvF8ERPsXYjzDXVxWGlu5kKjKY8YYyjP2kzrog/132">
+                <hr />
+                <script type="text/html">
+                    <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/E7XLbDS0gRJibYGpzxcEwXibyTwQAAHX9Koia7oln1821c8Djkibtpf6O20J3nacpnb0pg1UmtpdfDznHYBZvL78kw/132" style=" width:95px;border:1px solid #fff;">
                 </script>
                 <div class="avatar-group">
                     <figure class="avatar"> <img src="http://q1.qlogo.cn/g?b=qq&nk=2546066152&s=100" alt=""> </figure>

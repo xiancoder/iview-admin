@@ -33,7 +33,7 @@ export default {
                 this.$router.go(-2)
                 setTimeout(() => {
                     this.$store.dispatch('system/noRender', false).then(() => {
-                        this.$router.push({'name': 'exp3_057history@3'})
+                        this.$router.push({'name': 'expV2_exp03_057history@3'})
                     })
                 }, 500)
             })

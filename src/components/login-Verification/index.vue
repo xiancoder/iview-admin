@@ -4,7 +4,7 @@
             <Input v-model="form.code" prefix="ios-key" placeholder="二次验证动态码" maxlength=6 />
         </FormItem>
         <FormItem>
-            <Button @click="handleSubmit" type="primary" long>登录</Button>
+            <Button @click.stop.prevent="handleSubmit" type="primary" long>登录</Button>
         </FormItem>
     </Form>
 </template>

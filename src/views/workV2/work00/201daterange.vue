@@ -178,6 +178,33 @@
                 <Tag color="blue">增长</Tag>
             </div>
         </div>
+        <div class="blog">
+            <div class="blogTitle">日期范围 两个参数使用 收芝麻丢西瓜 废弃此写法 </div>
+            <Divider orientation="right">liuyp 2019年12月12日11:37:45 废弃</Divider>
+            <div class="blogContent" v-highlight>
+                <DatePicker :value="[search.begin,search.end]" format="yyyy-MM-dd" type="daterange"
+                    @on-change="search.begin=$event[0];search.end=$event[1];" style="width: 180px;" placeholder="请选择时间区间">
+                </DatePicker>
+                <script type="text/js">
+                    let today = new Date() // 常用的是前七天
+                    search: {
+                        'end': dateFormater(today, 'yyyy-MM-dd'),
+                        'begin': dateFormater(dateSub(today, 6, 'd'), 'yyyy-MM-dd'),
+                    },
+                </script>
+                <script type="text/html">
+                    <DatePicker :value="[search.begin,search.end]" format="yyyy-MM-dd" type="daterange"
+                        @on-change="search.begin=$event[0];search.end=$event[1];" style="width: 180px;"
+                        placeholder="请选择时间区间">
+                    </DatePicker>
+                </script>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -196,6 +223,10 @@ export default {
             },
             frm3: {
                 date2: [] // 日期范围测试
+            },
+            search: {
+                'end': dateFormat(today),
+                'begin': dateFormat(dateSub(today, 6, 'd'))
             },
             frmValidate: {
                 date2: [

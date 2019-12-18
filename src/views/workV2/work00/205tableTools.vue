@@ -2,50 +2,79 @@
     <div>
         <div class="blogCss">
             <div class="blog">
-                <div class="blogTitle">表格 总计信息列</div>
+                <div class="blogTitle">表格 搜索项 用法规范</div>
+                <Divider orientation="right">可以直接投入项目使用的标准或规范</Divider>
                 <div class="blogContent" v-highlight>
-                    <p><Icon type="md-close" style="color:red"/> 4.0.0出的新功能 需求格式长的丑</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 满足需求 需要额外方法来整理数据</p>
                     <script type="text/html" v-pre>
-                        <Table border :loading="loading" :columns="columns" :data="tableData"
-                            @on-sort-change="handleSort" show-summary :summary-method="handleSum">
-                        </Table>
+                        <DatePicker type="month" :value="search.date" placeholder="选择日期" format="yyyy-MM"
+                            @on-change="(date)=>{search.date=date}" style="width: 150px">
+                        </DatePicker>
+                        <DatePicker :value="search.start2end" type="daterange" placeholder="选择开始日期结束日期"
+                            @on-change="search.start2end=$event" @on-clear="search.start2end=[]" split-panels style="width: 220px">
+                        </DatePicker>
+                        <Select v-model="search.taskId" filterable placeholder="请选择任务级别" style="width: 150px"
+                            <Option value="all" label="全部任务级别"></Option>
+                            <Option v-for="option in dataSet.taskPriorityList" :value="option.id" :key="option.id" :label="option.name" >
+                            </Option>
+                        </Select>
+                        <Input type="text" v-model="search.businessId" placeholder="请输入业务" style="width: 180px"/>
                     </script>
                     <script type="text/js">
-                        handleSum ({ columns }) {
-                            return companyTableSumColumns(columns, this.tableSumData)
+                        import { sevenRange, todayMouth } from '@/utils/date'
+                        data () {
+                            const start2end = sevenRange()
+                            const date = todayMouth()
+                            return {
+                                dataSet: {
+                                    'taskPriorityList': []
+                                },
+                                search: {
+                                    date, // 日期 yyyy-mm
+                                    start2end, // 日期范围 yyyy-mm-dd
+                                    taskId: 'all', // 广告主ID
+                                    businessId: '', // 业务ID
+                                    'taskPriority': '' // 级别 0:一般 1：重要 2：紧急
+                                }
+                            }
                         },
-                        this.tableSumData = { // 假装是读来的
-                            'foundTime': 10000
+                        methods: {
+                            getDataSet () { // 初始化数据源
+                                this.$api.task.priority().then(list => { this.dataSet.taskPriorityList = list })
+                            }
+                        },
+                        mounted: function () {
+                            this.init(this)
+                            this.getDataSet()
                         }
                     </script>
                 </div>
                 <div class="blogFooter">
-                    <Tag color="green">收集</Tag>
-                    <Tag color="cyan">学习</Tag>
-                    <Tag color="blue">增长</Tag>
+                    <Tag color="green">收集</Tag> <Tag color="cyan">学习</Tag> <Tag color="blue">增长</Tag>
                 </div>
             </div>
         </div>
         <div class="tableLayout">
+            <tab></tab>
             <div class="tableTool">
-                <Select v-model="search.taskPriority" placeholder='请选择任务级别'>
+                <DatePicker type="month" :value="search.date" placeholder="选择日期" format="yyyy-MM"
+                    @on-change="(date)=>{search.date=date}" style="width: 150px">
+                </DatePicker>
+                <DatePicker :value="search.start2end" type="daterange" placeholder="选择开始日期结束日期"
+                    @on-change="search.start2end=$event" @on-clear="search.start2end=[]" split-panels style="width: 220px">
+                </DatePicker>
+                <Select v-model="search.aderId" filterable placeholder="请选择任务级别" style="width: 150px"
+                    <Option value="all" label="全部任务级别"></Option>
                     <Option v-for="option in dataSet.taskPriorityList" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
+                <Input type="text" v-model="search.businessId" placeholder="请输入业务" style="width: 180px"/>
                 <Select v-model="search.taskStatus" placeholder='请选择任务状态'>
                     <Option v-for="option in dataSet.taskStatuList" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
-            </div>
-            <Table :loading="loading" :columns="columns" :data="tableData"
-                @on-sort-change="hendleSort" show-summary :summary-method="handleSum">
-            </Table>
-            <div class="tableFooter">
-                <Page ref="pager" :page-size="page.size" :current="page.index"
-                    :total="page.rowCount"
-                    class="fr" show-total show-elevator @on-change="handleGoPage"
-                />
+                <Button type="primary" @click="hendleSearch">搜索</Button>
+                <Button type="default" @click="hendleReset">重置</Button>
+                <Button type="default" class="fr" @click="download">下载</Button>
             </div>
         </div>
     </div>
@@ -53,15 +82,26 @@
 <script>
 import { extend, extendF } from '@/utils/object'
 import { debounce, nothing } from '@/utils/function'
-import { h, saveParamState, getParamState, companyTableSumColumns } from '@/tools' // 自定义常用工具
+import { sevenRange, todayMouth } from '@/utils/date'
+import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+import tab from './205tab'
+
 export default {
+    components: { tab },
     data () {
+        const start2end = sevenRange()
+        const date = todayMouth()
         return {
             dataSet: {
                 'taskPriorityList': [],
                 'taskStatuList': []
             },
             search: {
+                date, // 日期 yyyy-mm
+                start2end, // 日期范围 yyyy-mm-dd
+                aderId: 'all', // 广告主ID
+                businessId: '', // 业务ID
+                state: 'all', // 状态 0失败1成功
                 'taskPriority': '', // 级别 0:一般 1：重要 2：紧急
                 'taskStatus': '' // 状态 任务状态, 0:待接受；1:执行中；2:待验收;3.验收通过；4.已废弃；5.已暂停
             },
@@ -80,8 +120,6 @@ export default {
             'serrchParam': null, // 实际搜索项
             'serrchBack': null, // 搜索项备份
             'tableData': [], // 表格内容
-            'tableSumData': null, // 表格总计内容
-
             end1: 1 // 防呆设计
         }
     },
@@ -91,7 +129,6 @@ export default {
             this.$api.task.status().then(list => { this.dataSet.taskStatuList = list })
         },
         download: debounce(function () { // 操作 任何操作将重置搜索项
-            console.log(this.serrchParam)
             this.hendleSearch()
         }),
         init () { // 初始化
@@ -105,11 +142,16 @@ export default {
         },
         hendleSearch () { // 搜索
             extend(this.serrchParam, this.search) // 设置实际搜索项成表现搜索项
-            this.handleGoPage(1)
+            this.hendleGopage(1)
         },
         hendleReset () { // 重置
             extend(this.search, this.serrchBack) // 重置表现搜索项成备份搜索项
             this.hendleSearch()
+        },
+        hendleGopage (page) { // 跳转页
+            extendF(this.search, this.serrchParam) // 恢复表现搜索项成实际搜索项
+            this.page.pageIndex = page
+            this.ajax()
         },
         hendleSort (param) { // 排序功能
             // column/* 当前列数据 */, key/* 排序依据的指标 */, order/* 排序的顺序 值为 asc 或 desc */
@@ -117,15 +159,7 @@ export default {
             this.order.order = param.order
             this.ajax()
         },
-        handleGoPage (page) { // 跳转页
-            extendF(this.search, this.serrchParam) // 恢复表现搜索项成实际搜索项
-            this.page.pageIndex = page
-            this.ajax()
-        },
-        handleSum ({ columns }) {
-            return companyTableSumColumns(columns, this.tableSumData)
-        },
-        ajax: debounce(function () { // 业务ajax
+        ajax: function () { // 业务ajax
             extend(this.serrchParam, this.search) // 设置实际搜索项
             extend(this.serrchParam, this.page) // 设置分页
             extend(this.serrchParam, this.order) // 设置排序
@@ -134,12 +168,9 @@ export default {
             this.$api.task.listMine(this.serrchParam).then((info) => { // ajax
                 this.loading = false; // 加载完成
                 this.tableData = info.list
-                this.tableSumData = { // 假装是读来的
-                    'foundTime': 10000
-                }
                 this.page.rowCount = info.rowCount
             })
-        }),
+        },
         end2: nothing // 防呆设计
     },
     mounted: function () {

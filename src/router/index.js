@@ -182,8 +182,6 @@ router.beforeEach((to, from, next) => {
     }
 
     const goPowerPage = () => { // 权限页面的判断
-        Store.dispatch('system/keepalive', to.name) // 路由keepAlive管理 当前页缓存
-
         if (!isLocked && goLocking) {
             console.info('%c仙 准备跳转 非锁定状态不允许去锁定页面', 'color:#05ff0f;background:#000;padding:0 5px;')
             return next(false) // 中止一切 复原url
@@ -195,6 +193,7 @@ router.beforeEach((to, from, next) => {
         }
 
         LoadingBarRun(true) // 顶部进度条
+        Store.dispatch('system/keepalive', to.name) // 路由keepAlive管理 当前页缓存
         Store.dispatch('system/routeSpin', true) // 路由视图loading
 
         // 滚动条位置

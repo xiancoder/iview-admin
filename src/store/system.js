@@ -21,7 +21,7 @@ export default {
         userId: '', // 管理员ID
         userEmail: '', // 管理员EMAIL
         userDeptId: '', // 管理员部门ID
-        userRoleId: '', // 角色区分权限 1 广告主 2 运营 3 财务
+        userRoleId: 3, // 角色区分权限 1 广告主 2 运营 3 财务
         firstAuth: '' || 1, // 区分浏览器是否第一次提示认证
         usercertificatId: '', // 广告主类型1-个人2-公司
 
@@ -179,6 +179,16 @@ export default {
             }
             commit('TAGNAVLIST', list)
         },
+        smscode ({ commit }, param) { // 开启短信发送倒计时
+            let time = 60
+            const i = setInterval(() => {
+                time--
+                commit('SMSCODE', time) // 修改发送验证码等待时间
+                if (time === 0) {
+                    clearInterval(i)
+                }
+            }, 1e3)
+        },
 
         getUserInfo ({ state, commit }) { // 获取管理员相关信息
             return new Promise((resolve, reject) => {
@@ -188,7 +198,7 @@ export default {
                     commit('USERID', data.id) // 设置管理员ID
                     commit('USEREMAIL', data.email) // 设置管理员EMAIL
                     commit('USERDEPTID', data.deptId) // 设置管理员部门ID
-                    commit('USERROLEID', data.roleId) // 设置管理员角色ID
+                    commit('USERROLEID', 3) // 设置管理员角色ID
                     commit('USERROLENAME', data.roleName) // 设置管理员角色NAME
                     commit('USERPOSTID', data.postId) // 设置管理员职位ID
                     resolve()
