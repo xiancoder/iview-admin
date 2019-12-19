@@ -28,7 +28,7 @@
             </FormItem>
             <FormItem class="ivu-form-submit">
                 <Button type="text" @click="cancel">取消</Button>
-                <Button type="primary" @click="ok" :loading="loading">保存</Button>
+                <Button type="primary" @click="ok" :loading="loading">确认封账</Button>
             </FormItem>
         </Form>
     </div>
@@ -87,12 +87,14 @@ export default {
             this.$refs['from1598'].validate(valid => {
                 if (!valid) {return false}
                 this.serverError = ''
-                this.$api.cost.sealAccountBatch(this.frm).then((res) => { // ajax
-                    this.$emit('on-submit', 1)
-                }).catch((msg) => {
-                    this.serverError = msg
-                }).finally(() => {
-                    this.loading = false
+                this.$tool.confirm('封账后数据不可修改, 确认将所选数据进行封账吗?', '封账确认').then(() => {
+                    this.$api.cost.sealAccountBatch(this.frm).then((res) => { // ajax
+                        this.$emit('on-submit', 1)
+                    }).catch((msg) => {
+                        this.serverError = msg
+                    }).finally(() => {
+                        this.loading = false
+                    })
                 })
             });
         },

@@ -68,6 +68,13 @@
                         </div>
                     </Col>
                 </Row>
+                <hr />
+                <Row>
+                    <Col span="4"><div class="lanse"><Icon type="ios-people"/></div><h3>企业广告主</h3></Col>
+                    <Col span="4"><div class="lanse"><Icon type="md-person"/></div><h3>个人广告主</h3></Col>
+                </Row>
+                 
+
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>
@@ -104,5 +111,9 @@ export default {
     .lvse {
         width: 60px; background: linear-gradient(to bottom,#49e4df ,#3ae4be); height: 60px; font-size: 29px; border-radius: 50%;
         text-align: center; line-height: 60px; color: #fff; box-shadow: 2px 6px 8px rgba(73, 228, 223, 0.55); opacity: 0.8;
+    }
+    .lanse {
+        width: 60px; background: rgb(29, 120, 244); height: 60px; font-size: 42px; border-radius: 50%;
+        text-align: center; line-height: 60px; color: #fff; opacity: 0.8;
     }
 </style>

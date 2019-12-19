@@ -92,7 +92,7 @@ export default {
         trysuccess2 (msg) { this.$tool.successMsg(msg) },
         tryerror (msg) { this.$tool.error(msg) },
         tryerror2 (msg) { this.$tool.errorMsg(msg) },
-        tryconfirm () { this.$tool.confirm('这样操作可以么').then(() => { alert('同意'); this.$tool.closeMsg() }).catch(() => { alert('不同意') }) },
+        tryconfirm () { this.$tool.confirm('这样操作可以么').then(() => { alert('同意'); }).catch(() => { alert('不同意') }) },
         jumpto () { this.$tool.jumpto(homePage) },
         warningMsg (msg) { this.$tool.warningMsg(msg) },
         saveParamState () { this.$tool.saveParamState({x: (+new Date())}) },

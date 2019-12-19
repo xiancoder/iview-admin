@@ -6,7 +6,7 @@
                 <h3>修改{{['','企业','个人'][frm.towho]}}收款账户</h3>
             </FormItem>
             <FormItem :label="['','公司名称','姓名'][frm.towho]" prop="name">
-                <Input type="text" v-model="frm.name" placeholder="请输入公司名称" style="width: 300px" :disabled="step==2"/>
+                <Input type="text" v-model="frm.name" placeholder="名称" style="width: 300px" :disabled="step==2 || frm.towho==1"/>
             </FormItem>
             <FormItem label="银行账号" prop="account">
                 <Input type="text" v-model="frm.account" placeholder="请输入银行账号" style="width: 300px" :disabled="step==2"/>

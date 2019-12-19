@@ -32,7 +32,7 @@ export const routerList = [
     }),
 
     makeMultiLevelRoute({
-        path: 'exp', title: '经验集', icon: 'md-menu',
+        path: 'exp', title: '经验集(旧)', icon: 'md-menu',
         children: [
             {
                 path: 'exp1', title: '卷壹', icon: 'md-camera',
@@ -112,43 +112,22 @@ export const routerList = [
                 children: [
                     {power: '0000', path: '121youku', title: '优酷视频'},
                     {power: '0000', path: '122mimang', title: '略迷茫'},
-                    {power: '0000', path: '123gujia', title: '占位符骨架屏'},
                     {power: '0000', path: '124mulLevelTable', title: '尝试多层表格'},
-                    {power: '0000', path: '126vviewer', title: '小图大图预览插件'},
-                    {power: '0000', path: '127enterLeave', title: '路由进入退出钩子'},
-                    {power: '0000', path: '128ipage', title: 'IviewPage'},
-                    {power: '0000', path: '129pasteImg', title: '粘贴图片'},
                     {power: '0000', path: '130jslist', title: '好多技术栈'},
                     {power: '0000', path: '131package', title: '自定义脚本命令'},
                     {power: '0000', path: '132ref', title: '$ref讲解'},
                     {power: '0000', path: '133codetip', title: '编码建议'},
-                    {power: '0000', path: '134somefont', title: '不可见,url,AscII字符'},
-                    {power: '0000', path: '135doutu', title: '斗图神奇神器'},
                     {power: '0000', path: '136vuex', title: 'vuex 讲解'},
                     {power: '0000', path: '137vue', title: 'vue 公共方法'},
-                    {power: '0000', path: '138globalclick', title: '全局相应点击'},
-                    {power: '0000', path: '139git', title: '公司GIT管理流程'},
-                    {power: '0000', path: '140tabs', title: '兄弟页面统一tabs'}
+                    {power: '0000', path: '139git', title: '公司GIT管理流程'}
                 ]
             }, {
                 path: 'exp8', title: '卷捌', icon: 'md-game-controller-b',
                 children: [
                     {power: '0000', path: '141dspwhat', title: 'DSP 项目产品思路'},
-                    {power: '0000', path: '142vhtml', title: 'v-html 危险'},
-                    {power: '0000', path: '143transform', title: 'transform 形变'},
-                    {power: '0000', path: '144searchInput', title: 'IviewAutoComplete'},
-                    {power: '0000', path: '146copyTxt', title: '复制粘贴文本'},
-                    {power: '0000', path: '149dynamicClick', title: '动态绑定事件'},
-                    {power: '0000', path: '150jscando', title: 'Js 权限能做到什么'},
                     {power: '0000', path: '151iframe', title: 'iframe 父子页面'},
                     {power: '0000', path: '152websocket', title: 'WebSocket 协议'},
-                    {power: '0000', path: '153Ipop', title: 'IviewTooltip 提示'},
-                    {power: '0000', path: '154deeplink', title: '深链接的深入研究'},
-                    {power: '0000', path: '155border', title: 'border 边框样式列举'},
                     {power: '0000', path: '156img404', title: '图片404补偿(无效)'},
-                    {power: '0000', path: '157formData', title: 'FormData'},
-                    {power: '0000', path: '158vshowbug', title: 'v-show 有 bug'},
-                    {power: '0000', path: '159fontawesome', title: 'font awesome'},
                     {power: '0000', path: '160wordCss', title: '仿 Word 的 Css'}
                 ]
             }, {
@@ -170,7 +149,7 @@ export const routerList = [
     }),
 
     makeMultiLevelRoute({
-        path: 'expV2', title: '经验集V2', icon: 'md-menu',
+        path: 'expV2', title: '经验集 V2', icon: 'md-menu',
         children: [
             {
                 path: 'exp01', title: '卷壹', icon: 'md-camera',
@@ -194,21 +173,24 @@ export const routerList = [
                 path: 'exp03', title: '卷叁', icon: 'md-chatbubbles',
                 children: [
                     {power: '0000', path: '043ibutton', title: 'IviewButton'},
-                    {power: '0000', path: '044iselect', title: 'IviewSelect'},
-                    {power: '0000', path: '045iinput', title: 'IviewInput'},
-                    {power: '0000', path: '046idatepk', title: 'IviewDatepacker'},
-                    {power: '0000', path: '047iradio', title: 'IviewRadio'},
-                    {power: '0000', path: '047icheckbox', title: 'IviewCheckbox'},
-                    {power: '0000', path: '047iswitch', title: 'IviewSwitch'},
-                    {power: '0000', path: '048itag', title: 'IviewTag'},
-                    {power: '0000', path: '049imodal', title: 'IviewModal'},
-                    {power: '0000', path: '050iicon', title: 'IviewIcon'},
-                    {power: '0000', path: '051iavatar', title: 'IviewAvatar'},
-                    {power: '0000', path: '052idivider', title: 'IviewDivider'},
-                    {power: '0000', path: '053icell', title: 'IviewCell'},
-                    {power: '0000', path: '054ialert', title: 'IviewAlert'},
-                    {power: '0000', path: '055inotice', title: 'IviewNotice'},
-                    {power: '0000', path: '056igrid', title: 'iviewGrid 和所有'},
+                    {power: '0000', path: '043iselect', title: 'IviewSelect'},
+                    {power: '0000', path: '043iinput', title: 'IviewInput'},
+                    {power: '0000', path: '043idatepacker', title: 'IviewDatepacker'},
+                    {power: '0000', path: '043iradio', title: 'IviewRadio'},
+                    {power: '0000', path: '043icheckbox', title: 'IviewCheckbox'},
+                    {power: '0000', path: '043iswitch', title: 'IviewSwitch'},
+                    {power: '0000', path: '043itag', title: 'IviewTag'},
+                    {power: '0000', path: '043imodal', title: 'IviewModal'},
+                    {power: '0000', path: '043iicon', title: 'IviewIcon'},
+                    {power: '0000', path: '043iavatar', title: 'IviewAvatar'},
+                    {power: '0000', path: '043idivider', title: 'IviewDivider'},
+                    {power: '0000', path: '043icell', title: 'IviewCell'},
+                    {power: '0000', path: '043ialert', title: 'IviewAlert'},
+                    {power: '0000', path: '043inotice', title: 'IviewNotice'},
+                    {power: '0000', path: '043igrid', title: 'IviewGrid 和所有'},
+                    {power: '0000', path: '043isearchInput', title: 'IviewAutoComplete'},
+                    {power: '0000', path: '043ipop', title: 'IviewTooltip 提示'},
+                    {power: '0000', path: '043ipage', title: 'IviewPage'},
                     {power: '0000', path: '057history', title: '路由历史记录'},
                     {power: '0000', path: '057history@1', title: '路由历史记录1', hideMenu: true},
                     {power: '0000', path: '057history@2', title: '路由历史记录2', hideMenu: true},
@@ -264,10 +246,28 @@ export const routerList = [
                     {power: '0000', path: '118state', title: '状态的触发/监听'}
                 ]
             }, {
+                path: 'exp07', title: '卷柒', icon: 'md-flame',
+                children: [
+                    {power: '0000', path: '123gujia', title: '占位符骨架屏'},
+                    {power: '0000', path: '127enterLeave', title: '路由进入退出钩子'},
+                    {power: '0000', path: '129pasteImg', title: '粘贴图片'},
+                    {power: '0000', path: '134somefont', title: '不可见,url,AscII字符'},
+                    {power: '0000', path: '135doutu', title: '斗图神奇神器'},
+                    {power: '0000', path: '138globalclick', title: '全局相应点击'}
+                ]
+            }, {
                 path: 'exp08', title: '卷捌', icon: 'md-game-controller-b',
                 children: [
+                    {power: '0000', path: '142vhtml', title: 'v-html 测危险代码'},
+                    {power: '0000', path: '143transform', title: 'transform 形变'},
                     {power: '0000', path: '145fromparam', title: '表单传参方式'},
-                    {power: '0000', path: '148customFrom', title: '组件内外表单校验'}
+                    {power: '0000', path: '146copyTxt', title: '复制粘贴文本'},
+                    {power: '0000', path: '148customFrom', title: '组件内外表单校验'},
+                    {power: '0000', path: '149dynamicClick', title: '动态绑定事件'},
+                    {power: '0000', path: '150jscando', title: 'Js 权限能做到什么'},
+                    {power: '0000', path: '154deeplink', title: '深链接的深入研究'},
+                    {power: '0000', path: '155border', title: 'border 边框样式列举'},
+                    {power: '0000', path: '158vshowbug', title: 'v-show 有 bug'}
                 ]
             }, {
                 path: 'exp09', title: '卷玖', icon: 'md-game-controller-b',
@@ -277,6 +277,7 @@ export const routerList = [
                     {power: '0000', path: '174console', title: 'Console 详解'},
                     {power: '0000', path: '175crossEnv', title: 'Node 环境变量'},
                     {power: '0000', path: '176arguments', title: 'argu 参数转换'},
+                    {power: '0000', path: '177wenhao', title: '登录两次bug'},
                     {power: '0000', path: '200newBee', title: '收录200知识点'}
                 ]
             }
@@ -284,7 +285,7 @@ export const routerList = [
     }),
 
     makeMultiLevelRoute({
-        path: 'workV2', title: '工作集V2', icon: 'md-menu',
+        path: 'workV2', title: '工作集 V2', icon: 'md-menu',
         children: [
             {
                 path: 'work00', title: '卷零', icon: 'md-heart',
@@ -321,6 +322,11 @@ export const routerList = [
                     {power: '0000', path: '211goodModal', title: 'IviewModal 弹框'},
                     {power: '0000', path: '212tools', title: '超公共 $tool 模块'},
                     {power: '0000', path: '213smsBtn', title: '短信验证码按钮'},
+                    {power: '0000', path: '214formData', title: '提交用 FormData'},
+                    {power: '0000', path: '215fontawesome', title: 'font 绘制 logo'},
+                    {power: '0000', path: '216vviewer', title: '小图大图预览插件'},
+                    {power: '0000', path: '217tabs', title: '兄弟页面统一tabs'},
+                    {power: '0000', path: '218tableV1test', title: '表格规范v1单元测试'},
                     {power: '0000', path: '300brove', title: '收集300个'}
                 ]
             }

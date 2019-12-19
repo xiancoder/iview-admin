@@ -36,12 +36,12 @@ export const error = (msg) => { // 错误提示
     Message.error({ content: msg || '保存失败', duration: 3, closable: true })
 }
 export const closeMsg = Modal.remove // 关闭信息框们
-export const confirm = (msg) => { // 二次确认框
+export const confirm = (msg, title) => { // 二次确认框
     return new Promise((resolve, reject) => {
         Modal.confirm({
-            title: '请确认',
+            title: title || '请确认',
             content: '<p>' + msg + '</p>',
-            loading: true,
+            // loading: true, // loading 点击确定按钮时，确定按钮是否显示 loading 状态，开启则需手动设置value来关闭对话框
             onOk: resolve,
             onCancel: reject
         })

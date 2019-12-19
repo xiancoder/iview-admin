@@ -85,9 +85,9 @@ export default {
         // 需要根据权限区分一下 下发参数
         let data = null
         let power = ''
-        if (aderId === 'all') aderId = '0'
-        // if (businessId === 'all') businessId = '0'
-        if (state === 'all') state = '0'
+        if (aderId === 'all') aderId = ''
+        if (businessId === 'all') businessId = ''
+        if (state === 'all') state = ''
         if (role === 1) {
             data = {
                 'date': date || '' // 日期 yyyy-mm
@@ -108,7 +108,7 @@ export default {
                 'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
                 'ader_id': aderId || '0', // 广告主ID
-                'buis_name': businessId || '', // 业务 ID/Name 都用字符串
+                'buis_name': businessId || '0', // 业务 Name 都用字符串
                 'state': state || '0', // 状态 1成功2失败
                 'page': pageIndex || '', // 分页
                 'page_count': pageSize || '' // 分页条数
@@ -233,7 +233,7 @@ export default {
     },
     resultList (forTableShow) { // 处理结果枚举 forTableShow指表格枚举
         if (forTableShow) {
-            return ['', '失败', '成功']
+            return ['', '成功', '失败']
         }
         return Promise.resolve([
             { id: '1', name: '成功' },

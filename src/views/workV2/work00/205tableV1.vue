@@ -12,10 +12,7 @@
                     <p></p>
                     <script type="text/html" v-pre>
                         <div class="tableLayout">
-                            <Tabs :value="tabVaule" @on-click="changeTab">
-                                <TabPane label="表格规范" name="approval"></TabPane>
-                                <TabPane label="兄弟节点写法" name="cc"></TabPane>
-                            </Tabs>
+                            <tab></tab>
                             <div class="tableTool">
                                 <Select v-model="search.taskPriority" placeholder='请选择任务级别'>
                                     <Option v-for="option in dataSet.taskPriorityList" :value="option.id" :key="option.id" :label="option.name" >
@@ -47,10 +44,12 @@
                         import { extend, extendF } from '@/utils/object'
                         import { debounce, nothing } from '@/utils/function'
                         import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+                        import tab from './205tab'
+
                         export default {
+                            components: { tab },
                             data () {
                                 return {
-                                    tabVaule: 'approval',
                                     dataSet: {
                                         'taskPriorityList': [],
                                         'taskStatuList': []
@@ -85,7 +84,6 @@
                                 download: debounce(function () { // 操作 任何操作将重置搜索项
                                     this.hendleSearch()
                                 }),
-                                changeTab (name) { this.$tool.jumpto(name) },
                                 init () { // 初始化
                                     if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
                                     if (!this.serrchBack) {this.serrchBack = extend({}, this.search)} // 备份
@@ -120,11 +118,12 @@
                                     extend(this.serrchParam, this.order) // 设置排序
                                     saveParamState(this.serrchParam) // 存url
                                     this.loading = true // 加载中
-                                    this.$api.task.listMine(this.serrchParam).then((info) => { // ajax
-                                        this.loading = false; // 加载完成
-                                        this.tableData = info.list
-                                        this.page.rowCount = info.rowCount
-                                    })
+                                    this.$api.task.listMine(this.serrchParam) // 发送ajax
+                                        .then((info) => {
+                                            this.loading = false; // 加载完成
+                                            this.tableData = info.list
+                                            this.page.rowCount = info.rowCount
+                                        })
                                 },
                                 end2: nothing // 防呆设计
                             },
@@ -323,11 +322,12 @@ export default {
             extend(this.serrchParam, this.order) // 设置排序
             saveParamState(this.serrchParam) // 存url
             this.loading = true // 加载中
-            this.$api.task.listMine(this.serrchParam).then((info) => { // ajax
-                this.loading = false; // 加载完成
-                this.tableData = info.list
-                this.page.rowCount = info.rowCount
-            })
+            this.$api.task.listMine(this.serrchParam) // 发送ajax
+                .then((info) => {
+                    this.loading = false; // 加载完成
+                    this.tableData = info.list
+                    this.page.rowCount = info.rowCount
+                })
         },
         end2: nothing // 防呆设计
     },

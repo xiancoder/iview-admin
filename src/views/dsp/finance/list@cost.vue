@@ -14,13 +14,13 @@
                 </Option>
             </Select>
             <!--
-            <Select v-model="search.businessId" filterable placeholder="请选择业务" style="width: 150px" v-if="roleId==3">
+            <Input type="text" v-model="search.businessId" placeholder="请输入业务" style="width: 180px" v-if="roleId==2"/>
+            -->
+            <Select v-model="search.businessId" filterable placeholder="请选择业务" style="width: 180px" v-if="roleId==3">
                 <Option value="all" label="全部业务"></Option>
                 <Option v-for="option in dataSet.businessIdList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
-            -->
-            <Input type="text" v-model="search.businessId" placeholder="请输入业务" style="width: 180px" v-if="roleId==3"/>
             <Select v-model="search.state" placeholder="请选择状态" style="width: 150px" v-if="roleId==2||roleId==3">
                 <Option value="all" label="全部状态"></Option>
                 <Option v-for="option in dataSet.stateList" :value="option.id" :key="option.id" :label="option.name" >
@@ -71,7 +71,7 @@ export default {
                 date, // 日期 yyyy-mm
                 start2end, // 日期范围 yyyy-mm-dd
                 aderId: 'all', // 广告主ID
-                businessId: '', // 业务ID
+                businessId: 'all', // 业务ID
                 state: 'all' // 状态 0失败1成功
             },
             loading: false,
@@ -113,7 +113,7 @@ export default {
     methods: {
         getDataSet () { // 初始化数据源
             if (this.roleId === 2 || this.roleId === 3) this.$api.advertiser.pull().then(list => { this.dataSet.aderIdList = list })
-            // if (this.roleId === 3) this.$api.business.pull().then(list => { this.dataSet.businessIdList = list })
+            if (this.roleId === 3) this.$api.business.pull().then(list => { this.dataSet.businessIdList = list })
             if (this.roleId === 2 || this.roleId === 3) this.$api.finance.stateList().then(list => { this.dataSet.stateList = list })
         },
         init () { // 初始化

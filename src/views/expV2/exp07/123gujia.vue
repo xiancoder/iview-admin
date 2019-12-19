@@ -5,7 +5,7 @@
             <div class="blogContent" v-highlight>
                 <p>loading的更亲民的表达方式</p>
                 <p><Icon type="md-checkmark" style="color:red"/>赶脚很好 但是使用场景???</p>
-                <Row gutter="20">
+                <Row :gutter="20">
                     <Col span="12">
                         <h2 class="h4">Generic placeholder</h2>
                         <div class="ph-item">

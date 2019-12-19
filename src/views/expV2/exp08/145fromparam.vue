@@ -1,9 +1,8 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">表单传参形式列举</div>
+            <div class="blogTitle">主要是为了测试一下历史记录标签控件</div>
             <div class="blogContent" v-highlight>
-                <p>主要是为了测试一下历史记录标签控件</p>
                 <Form ref="form5596" :model="frm" :rules="frmValidate" :label-width="150">
                     <FormItem label="测试">
                         <Button type="primary" @click="handleSubmit()">测试</Button>

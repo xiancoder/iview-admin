@@ -153,14 +153,10 @@ export default {
         },
         hendleClose () {
             if (this.tableSelection.length) {
-                this.$Modal.confirm({
-                    title: '封账',
-                    content: '确认封账?',
-                    onOk: () => {
-                        this.$api.cost.sealAccount(this.tableSelection).then((info) => { // ajax
-                            this.init(this)
-                        })
-                    }
+                this.$tool.confirm('封账后数据不可修改, 确认将所选数据进行封账吗?', '封账确认').then(() => {
+                    this.$api.cost.sealAccount(this.tableSelection).then((info) => { // ajax
+                        this.init(this)
+                    })
                 })
             } else {
                 error('请选择封账数据')
@@ -186,6 +182,7 @@ export default {
         },
         closeBatchSubmit (flag) {
             this.model.closeBatch = false
+            if (flag === 1) this.init(this)
         },
         importRealCostSubmit (flag) {
             this.model.importRealCost = false
