@@ -1,7 +1,7 @@
 <template>
     <div class="tableLayout">
         <tab></tab>
-        <div class="tableTool">
+        <div class="tableTool" @keyup.enter.stop="hendleSearch">
             <DatePicker type="month" :value="search.date" placeholder="选择日期" format="yyyy-MM" v-if="roleId==1"
                 @on-change="(date)=>{search.date=date}" style="width: 150px">
             </DatePicker>
@@ -23,11 +23,16 @@
                 <Option v-for="option in dataSet.rechargeTypeList" :value="option.id" :key="option.id" :label="option.name" >
                 </Option>
             </Select>
-            <Input type="text" v-model="search.searchName" placeholder="收款人、付款人、广告主" v-if="roleId==3"
-                style="width: 180px"/>
+            <Select v-model="search.companyId" placeholder="请选择相关公司" style="width: 180px" v-if="roleId==2||roleId==3">
+                <Option value="all" label="全部公司"></Option>
+                <Option v-for="option in dataSet.companyList" :value="option.id" :key="option.id" :label="option.name">
+                </Option>
+            </Select>
+            <Input type="text" v-model="search.searchName" placeholder="收款人、付款人、广告主、用户名" v-if="roleId==3"
+                style="width: 220px"/>
             <Button type="primary" @click="hendleSearch">搜索</Button>
-            <!--
             <Button type="primary" class="fr" @click="hendleExport" v-if="roleId==2||roleId==3">导出</Button>
+            <!--
             <Button type="primary" class="fr" @click="model.importBatch=!model.importBatch" v-if="roleId==3">批量导入</Button>
             -->
         </div>
@@ -57,7 +62,7 @@
 <script>
 import tab from './list'
 import { extend, extendF } from '@/utils/object'
-import { nothing } from '@/utils/function'
+import { debounce, nothing } from '@/utils/function'
 import { sevenRange, todayMouth } from '@/utils/date'
 import { h, saveParamState, getParamState, companyTableSumColumns } from '@/tools' // 自定义常用工具
 import ImportBatch from './importBatchModal' // 修改
@@ -73,7 +78,8 @@ export default {
             dataSet: {
                 'aderIdList': [],
                 'resultList': [],
-                'rechargeTypeList': []
+                'rechargeTypeList': [],
+                'companyList': []
             },
             search: {
                 date, // 日期 yyyy-mm
@@ -81,7 +87,8 @@ export default {
                 aderId: 'all', // 广告主ID
                 searchName: '', // 收款人付款人广告主
                 state: 'all', // 状态 0全部1成功2失败
-                type: 'all' // 充值方式 1银行转账2在线充值
+                type: 'all', // 充值方式 1在线充值2银行转账
+                companyId: 'all' // 公司账户
             },
             model: {
                 importBatch: false
@@ -93,14 +100,13 @@ export default {
                 {title: '充值编号', key: 'code'},
                 {title: '到账日期', key: 'arrival_date'},
                 {title: '充值方式', key: 'recharge_type', render: h.readArr('recharge_type', rechargeTypeArr)},
-                {title: '付款账号', key: 'recharge_account'},
-                {title: '付款人', key: 'recharge_name'},
+                {title: '付款账号/付款人', width: 240, key: 'recharge_account', render: h.multiline('', ['recharge_account', 'recharge_name'])},
                 {title: '充值金额', key: 'arrival_money'},
                 {title: '状态', key: 'state', render: h.readArr('state', resultArr)}
             ],
             columns2: [
                 {title: '充值编号', key: 'code'},
-                {title: '广告主', width: 300, key: 'ader_name'},
+                {title: '广告主', width: 200, key: 'ader_name', render: h.defaultH('ader_name')},
                 {title: '到账日期', key: 'arrival_date'},
                 {title: '充值方式', key: 'recharge_type', render: h.readArr('recharge_type', rechargeTypeArr)},
                 {title: '到账金额', key: 'arrival_money'},
@@ -108,16 +114,14 @@ export default {
             ],
             columns3: [
                 {title: '充值编号', key: 'code'},
-                {title: '广告主', width: 300, key: 'ader_name'},
+                {title: '广告主', width: 200, key: 'ader_name', render: h.defaultH('ader_name')},
+                {title: '用户名', width: 200, key: 'user_name', render: h.defaultH('user_name')},
                 {title: '到账日期', key: 'arrival_date'},
                 {title: '充值方式', key: 'recharge_type', render: h.readArr('recharge_type', rechargeTypeArr)},
-                {title: '付款账号', key: 'recharge_account'},
-                {title: '付款人', key: 'recharge_name'},
-                {title: '收款账号', key: 'arrival_account'},
-                {title: '收款人', key: 'arrival_name'},
+                {title: '付款账号/付款人', width: 240, key: 'recharge_account', render: h.multiline('', ['recharge_account', 'recharge_name'])},
+                {title: '收款账号/收款人', width: 240, key: 'arrival_account', render: h.multiline('', ['arrival_account', 'arrival_name'])},
                 {title: '到账金额', key: 'arrival_money'},
-                {title: '摘要或用途', key: 'remark'},
-                {title: '状态', key: 'state', render: h.readArr('state', resultArr)}
+                {title: '状态', width: 120, key: 'state', render: h.readArr('state', resultArr)}
             ],
             'serrchParam': null, // 实际搜索项
             'serrchBack': null, // 搜索项备份
@@ -135,6 +139,7 @@ export default {
             if (this.roleId === 2) this.$api.advertiser.pull().then(list => { this.dataSet.aderIdList = list })
             if (this.roleId === 2 || this.roleId === 3) this.$api.finance.resultList().then(list => { this.dataSet.resultList = list })
             if (this.roleId === 2 || this.roleId === 3) this.$api.finance.rechargeTypeList().then(list => { this.dataSet.rechargeTypeList = list })
+            if (this.roleId === 2 || this.roleId === 3) this.$api.system.companyList().then(list => { this.dataSet.companyList = list })
         },
         init () { // 初始化
             if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
@@ -167,9 +172,9 @@ export default {
         handleSum ({ columns }) {
             return companyTableSumColumns(columns, this.tableSumData)
         },
-        /* hendleExport: debounce(function () { // 操作
+        hendleExport: debounce(function () { // 操作
             this.$api.finance.rechargeList(this.serrchParam, this.roleId, 'export')
-        }), */
+        }),
         ajax: function () { // 业务ajax
             extend(this.serrchParam, this.search) // 设置实际搜索项
             extend(this.serrchParam, this.page) // 设置分页

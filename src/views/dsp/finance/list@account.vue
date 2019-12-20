@@ -1,7 +1,7 @@
 <template>
     <div class="tableLayout">
         <tab></tab>
-        <div class="tableTool">
+        <div class="tableTool" @keyup.enter.stop="hendleSearch">
             <Select v-model="search.aderId" filterable placeholder="请选择广告主" style="width: 150px">
                 <Option value="all" label="全部广告主"></Option>
                 <Option v-for="option in dataSet.aderIdList" :value="option.id" :key="option.id" :label="option.name" >

@@ -6,7 +6,7 @@
             </Tree>
          </div>
         <div class="layoutRight">
-            <div class="tableTool">
+            <div class="tableTool" @keyup.enter.stop="hendleSearch">
                 <Select v-model="search.status" style="width:180px;">
                     <Option v-for="option in dataSet.stateList" :value="option.id" :key="option.id" :label="option.name" ></Option>
                 </Select>

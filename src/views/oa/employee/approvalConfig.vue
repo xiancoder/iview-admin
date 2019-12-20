@@ -4,7 +4,7 @@
             <TabPane label="审批人配置" name="approval"></TabPane>
             <TabPane label="抄送人配置" name="cc"></TabPane>
         </Tabs>
-        <div class="tableTool">
+        <div class="tableTool" @keyup.enter.stop="hendleSearch">
             <Input style="width: 180px;margin-right: 10px" type="text" placeholder="请出入流程名称" v-model="keyword" @on-enter="handleSearch(1)"/>
             <Select v-model="typeId" style="width: 180px">
                 <Option :value='-1'>全部流程类型</Option>

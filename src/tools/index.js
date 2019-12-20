@@ -186,6 +186,20 @@ export const h = { // 通用渲染格式 for 表格 (即将废弃)
             return h('div', text || c);
         }
     },
+    // 多条属性分行展示
+    // 值,属性数组
+    multiline: (a, c) => {
+        c = c || []
+        return (h, params) => {
+            const row = params.row
+            const arr = []
+            c.forEach(item => {
+                const text = row[item] || '-'
+                arr.push(h('div', text))
+            })
+            return h('div', arr)
+        }
+    },
     end: null // 错误占位符
 }
 export const LoadingBarRun = (flag) => { // 顶部进度条执行
@@ -210,6 +224,25 @@ export const companyTableSumColumns = (columns, sumData) => { // 表格总计一
         }
     })
     return sums;
+}
+
+Vue.prototype.showPageCount = function (totalCount, page, pageCount) { // 显示 '第 1 页/ 共 1 页'
+    totalCount = totalCount || 0
+    page = page || 1
+    pageCount = pageCount || 10
+    if (totalCount === 0) { return '当前第0 - 0条，共0条' }
+    var startPage = (page - 1) * pageCount + 1
+    var endPage = (page * pageCount < totalCount) ? page * pageCount : totalCount
+    return '当前第  ' + startPage + ' - ' + endPage + '条，共 ' + totalCount + ' 条'
+}
+
+Vue.prototype.showPageRow = function (totalCount, page, pageCount) { // 显示 '当前显示 0 - 0 条/ 0 条数据'
+    totalCount = totalCount || 0
+    page = page || 1
+    pageCount = pageCount || 10
+    if (totalCount === 0) { return '第 1 页/ 共 1 页' }
+    const totalPage = Math.floor((totalCount + pageCount - 1) / pageCount)
+    return '第 ' + page + ' 页 / 共 ' + totalPage + ' 页'
 }
 Vue.prototype.$tool = {
     goto,

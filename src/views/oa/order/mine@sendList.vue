@@ -1,7 +1,7 @@
 <template>
     <div class="tableLayout">
         <tab-my :select="1"></tab-my>
-            <div class="tableTool">
+            <div class="tableTool" @keyup.enter.stop="hendleSearch">
             <DatePicker style="width: 180px;margin-right: 10px" v-model="request.dates" :editable="false" :clearable="false" format="yyyy-MM-dd" type="daterange" placement="bottom-start" placeholder="请选择日期" ></DatePicker>
             <Select style="width: 180px;margin-right: 10px" v-model="request.workType">
                 <Option value="0">全部</Option>

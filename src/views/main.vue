@@ -146,8 +146,9 @@ import CustomBreadCrumb from '@C/custom-bread-crumb' // 组件::面包屑
 import qrCode from '@C/qrcode' // 组件::二维码
 import epopen from '@C/epopen' // 组件::EP编辑
 import epopenRoute from '@C/epopen/route' // 组件::EP编辑
-// import minLogo from '@/assets/images/logo-min.jpg'
+import minLogo from '@/assets/images/logo-min.jpg'
 import maxLogo from '@/assets/images/logo.gif'
+// import maxLogo from '@/assets/images/logo.jpg'
 import '@S/main.less'
 import '@S/util.less'
 
@@ -174,8 +175,6 @@ export default {
                 Drawer: false
             },
             xiangzhaosha: '', // 想找啥
-            // minLogo, // 最小图标
-            maxLogo, // 最大图标
             transitionName: '', // 动画方式
             weblink: [ // 外链链接
                 { img: 'js0.jpg', title: 'vue推荐移动端UI', link: 'https://youzan.github.io/vant/?source=vuejsorg#/zh-CN/intro' },
@@ -186,7 +185,7 @@ export default {
         }
     },
     computed: {
-        logoPath () { return maxLogo /* this.collapsed ? minLogo : maxLogo */ }, // 根据折叠状态切换图片
+        logoPath () { return this.collapsed ? minLogo : maxLogo }, // 根据折叠状态切换图片
         newMessageNum () { return this.$store.state.system.newMessageNum || 0 }, // 新消息数量 0隐藏 null表红点 数字代表数量
         breadCrumbList () { return this.$store.state.system.breadCrumbList }, // 面包屑
         spinShow () { return this.$store.state.system.spinLoading || false }, // 新消息数量 0隐藏 null表红点 数字代表数量

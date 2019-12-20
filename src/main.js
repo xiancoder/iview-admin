@@ -14,7 +14,6 @@ import '@/plugins' // 三方插件
 import { Store } from '@/store' // 自定义状态管理 -挂载$stroe
 import { router } from '@/router' // 自定义路由定义 -挂载$router
 import '@/tools' // 自定义常用工具 -挂载$tool
-import '@/utils' // 自定义常用方法 -挂载$util
 
 console.log('%c ', 'padding:112px 150px;background:url(http://returnc.com/frontend/images/console.gif) no-repeat;');
 console.info('%c仙 目前环境', 'color:#05ff0f;background:#000;padding:0 5px;', process.env.NODE_ENV)

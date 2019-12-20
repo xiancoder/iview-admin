@@ -1,7 +1,7 @@
 <template>
     <div class="tableLayout">
         <tab-my :select="3"></tab-my>
-            <div class="tableTool">
+            <div class="tableTool" @keyup.enter.stop="hendleSearch">
             <Select style="width: 180px;margin-right: 10px" v-model="request.workType">
                 <Option value="0">全部</Option>
                 <Option value="1">工作</Option>

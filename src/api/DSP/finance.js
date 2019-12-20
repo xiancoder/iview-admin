@@ -9,7 +9,8 @@ export default {
         aderId, // 广告主ID
         searchName, // 收款人付款人广告主
         state, // 状态 0失败1成功
-        type, // 充值方式 1银行转账2在线充值
+        type, // 充值方式 1在线充值2银行转账
+        companyId, // 公司ID
         pageIndex,
         pageSize
     }, role, isExport) {
@@ -19,6 +20,7 @@ export default {
         if (aderId === 'all') aderId = ''
         if (state === 'all') state = ''
         if (type === 'all') type = ''
+        if (companyId === 'all') companyId = '0'
         if (role === 1) {
             data = {
                 'date': date || '' // 日期 yyyy-mm
@@ -30,7 +32,8 @@ export default {
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
                 'ader_id': aderId || '0', // 广告主ID
                 'state': state || '0', // 状态 1成功2失败
-                'recharge_type': type || '0', // 充值方式 1银行转账2在线充值
+                'company_id': companyId || '0', // 公司ID
+                'recharge_type': type || '0', // 充值方式 1在线充值2银行转账
                 'page': pageIndex || '1', // 分页
                 'page_count': pageSize || '30' // 分页条数
             }
@@ -42,7 +45,8 @@ export default {
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
                 'key_name': searchName || '', // 收款人付款人广告主
                 'state': state || '0', // 状态 1成功2失败
-                'recharge_type': type || '0', // 充值方式 1银行转账2在线充值
+                'company_id': companyId || '0', // 公司ID
+                'recharge_type': type || '0', // 充值方式 1在线充值2银行转账
                 'page': pageIndex || '1', // 分页
                 'page_count': pageSize || '30' // 分页条数
             }
@@ -224,11 +228,11 @@ export default {
     },
     rechargeTypeList (forTableShow) { // 任务级别枚举 forTableShow指表格枚举
         if (forTableShow) {
-            return ['', '银行转账', '在线充值']
+            return ['', '在线充值', '银行转账']
         }
         return Promise.resolve([
-            { id: '1', name: '银行转账' },
-            { id: '2', name: '在线充值' }
+            { id: '1', name: '在线充值' },
+            { id: '2', name: '银行转账' }
         ])
     },
     resultList (forTableShow) { // 处理结果枚举 forTableShow指表格枚举

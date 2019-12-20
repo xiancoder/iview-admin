@@ -3,11 +3,32 @@
         <div class="blog">
             <div class="blogTitle">分支管理流程 各种情况的处理预案</div>
             <div class="blogContent" v-highlight>
-                <p></p>
-                <p>master分支 负责线上最新代码/不在担任备份功能</p>
-                <p>release分支 负责备份上次发布的代码</p>
-                <p>dev.x分支 负责开发新代码</p>
+                <p><b>master分支</b> 负责线上最新代码/不再担任备份功能</p>
+                <p><b>release分支</b> 负责备份上次发布的代码</p>
+                <p><b>dev.x分支</b> 负责开发新代码</p>
                 <hr />
+                <p>1 初始代码创建流程</p>
+                <p><b>默认master分支,创建release分支</b> ➜ <b>master开发完成</b> ➜ <b>发布上线</b> ➜ <b>线上回测通过</b> ➜ <b>master合并入release</b></p>
+                <hr />
+                <p>2 开发新需求</p>
+                <p><b>创建dev.1分支</b> ➜ <b>dev.1开发完成</b> ➜ <b>dev.1合并入master</b> ➜ <b>发布上线</b> ➜ <b>线上回测通过</b> ➜ <b>master合并入release</b></p>
+                <hr />
+                <p>3 线上急改</p>
+                <p><b>修改master</b> ➜ <b>发布上线</b> ➜ <b>线上回测通过</b> ➜ <b>master合并入release</b></p>
+                <hr />
+                <p>4 发布上线</p>
+                <p><b>旧版不打包的话 使master,release两分支做对比 只发不同</b></p>
+                <hr />
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
+            </div>
+        </div>
+        <div class="blog">
+            <div class="blogTitle">分支管理流程 各种情况的处理预案</div>
+            <div class="blogContent" v-highlight>
                 <p>1 master分支(空) release分支(空) 创建dev.aaa分支</p>
                 <p>2 dev.aaa开发新代码</p>
                 <p>3 dev.aaa开发完成</p>

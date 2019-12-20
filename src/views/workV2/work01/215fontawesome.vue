@@ -73,8 +73,6 @@
                     <Col span="4"><div class="lanse"><Icon type="ios-people"/></div><h3>企业广告主</h3></Col>
                     <Col span="4"><div class="lanse"><Icon type="md-person"/></div><h3>个人广告主</h3></Col>
                 </Row>
-                 
-
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

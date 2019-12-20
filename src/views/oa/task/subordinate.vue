@@ -1,6 +1,6 @@
 <template>
     <div class="tableLayout">
-        <div class="tableTool">
+        <div class="tableTool" @keyup.enter.stop="hendleSearch">
             <Select v-model="obj.taskPriority">
                 <Option :value="-1">全部级别</Option>
                 <Option :value="2">紧急</Option>

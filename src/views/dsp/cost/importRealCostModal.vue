@@ -18,7 +18,7 @@
                 <span>{{frm.file.name}}</span>
             </FormItem>
             <FormItem>
-                <span><a :href="'./实际消耗模板.xlsx'">下载实际消耗Excel模板文件</a></span>
+                <span><a :href="'./real_cost.xlsx'" download="实际消耗模板.xlsx">下载实际消耗Excel模板文件</a></span>
                 <div class="ivu-form-item-notice-tip text-danger">{{serverError}}</div>
             </FormItem>
             <FormItem class="ivu-form-submit">

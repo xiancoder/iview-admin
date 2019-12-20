@@ -1,7 +1,7 @@
 <template>
     <div class="tableLayout">
         <tab></tab>
-        <div class="tableTool">
+        <div class="tableTool" @keyup.enter.stop="hendleSearch">
             <DatePicker type="month" :value="search.date" placeholder="选择日期" format="yyyy-MM" v-if="roleId==1"
                 @on-change="(date)=>{search.date=date}" style="width: 150px">
             </DatePicker>

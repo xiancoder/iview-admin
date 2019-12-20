@@ -5,7 +5,7 @@
                 <TabPane label="审批人配置" name="approval"></TabPane>
                 <TabPane label="抄送人配置" name="cc"></TabPane>
             </Tabs>
-            <div class="tableTool">
+            <div class="tableTool" @keyup.enter.stop="hendleSearch">
                 <Select v-model="search.taskPriority" placeholder='请选择任务级别'>
                     <Option v-for="option in dataSet.taskPriorityList" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>

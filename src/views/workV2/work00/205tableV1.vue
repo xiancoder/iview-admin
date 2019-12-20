@@ -13,7 +13,7 @@
                     <script type="text/html" v-pre>
                         <div class="tableLayout">
                             <tab></tab>
-                            <div class="tableTool">
+                            <div class="tableTool" @keyup.enter.stop="hendleSearch">
                                 <Select v-model="search.taskPriority" placeholder='请选择任务级别'>
                                     <Option v-for="option in dataSet.taskPriorityList" :value="option.id" :key="option.id" :label="option.name" >
                                     </Option>
@@ -216,7 +216,7 @@
         </div>
         <div class="tableLayout">
             <tab></tab>
-            <div class="tableTool">
+            <div class="tableTool" @keyup.enter.stop="hendleSearch">
                 <Select v-model="search.taskPriority" placeholder='请选择任务级别'>
                     <Option v-for="option in dataSet.taskPriorityList" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>

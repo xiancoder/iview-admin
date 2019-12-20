@@ -25,7 +25,8 @@ export default {
                 {name: 'workV2_work01_205tableMaxHeight', title: '表格v1高度限定'},
                 {name: 'workV2_work01_205tableBatch', title: '表格v1批量操作'},
                 {name: 'workV2_work01_205tableTools', title: '表格v1搜索项'},
-                {name: 'workV2_work01_205tableSum', title: '表格v1总计框'}
+                {name: 'workV2_work01_205tableSum', title: '表格v1总计框'},
+                {name: 'workV2_work01_205tableSort', title: '表格v1排序功能'}
             ]
             return list
         }

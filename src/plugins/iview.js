@@ -4,7 +4,7 @@ import '@S/iview.less'
 // Vue原型链中 Message 是 iview 提供的
 // =====================================================================
 // 提示控件 指定 显示位置
-iView.Message.config({ top: 300, duration: 3 })
+iView.Message.config({ top: 100, duration: 3 })
 // =====================================================================
 // 日期控件 指定 placeholder / 间隔字符 / 日期格式
 iView.DatePicker.mixins[0].props.placeholder.default = '请选择日期'

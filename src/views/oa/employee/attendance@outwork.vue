@@ -1,7 +1,7 @@
 <template>
         <div class="tableLayout">
             <tab></tab>
-            <div class="tableTool">
+            <div class="tableTool" @keyup.enter.stop="hendleSearch">
             <DatePicker style="width: 180px;margin-right: 10px" v-model="obj.dates" :editable="false" :clearable="false" format="yyyy-MM-dd" type="daterange" placement="bottom-start" placeholder="请选择日期" ></DatePicker>
             <Input style="width: 180px;margin-right: 10px" type="text" v-model="obj.keyword" placeholder="员工姓名、工号" @on-enter="handleSearch(1)"/>
             <treeDrop v-model="obj.deptId" placeholder="请选择部门" :name="department_name" :data="departData1" @nameSel="(val)=>{ department_name=val}"></treeDrop>

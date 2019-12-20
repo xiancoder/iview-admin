@@ -66,6 +66,13 @@
         <div style="padding:20px 30px;" v-if="roleId!=1">
             <h1>欢迎使用DSP广告主管理平台</h1>
         </div>
+        <div style="padding:50px;">
+            <Select v-model="select1" style="width: 300px">
+                <Option :value="1">广告主</Option> <Option :value="2">运营</Option> <Option :value="3">财务</Option>
+            </Select>
+            <hr>
+            当前角色ID = {{roleId}}
+        </div>
     </div>
 </template>
 <script>
@@ -75,6 +82,7 @@ import { goto } from '@/tools'
 export default {
     data () {
         return {
+            select1: 1,
             frm: {
                 'user_name': '', // 用户名
                 'real_name': '', // 真实姓名
@@ -101,9 +109,15 @@ export default {
                 }
             })
         }
+        this.select1 = this.$store.state.system.userRoleId
     },
     computed: { // 计算属性
         roleId () { return this.$store.state.system.userRoleId } // 用户角色权限
+    },
+    watch: { // 监听
+        'select1': function (n, o) {
+            this.$store.dispatch('system/setRole', n) // 获取用户信息
+        }
     },
     methods: {
         goto,

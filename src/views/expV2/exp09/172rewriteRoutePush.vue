@@ -1,7 +1,7 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">message: "Navigating to current location (XXX) is not allowed"</div>
+            <div class="blogTitle">复写路由 push 方法</div>
             <div class="blogContent" v-highlight>
                 <p><Icon type="md-checkmark" style="color:green"/> 测试有效 代码写法可以借鉴</p>
                 <p>解决vue项目路由出现 message: "Navigating to current location (XXX) is not allowed" 的问题</p>

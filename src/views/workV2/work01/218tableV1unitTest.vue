@@ -2,59 +2,16 @@
     <div>
         <div class="blogCss">
             <div class="blog">
-                <div class="blogTitle">表格标准规范写法 V1 批量选中数据</div>
-                <Divider orientation="right">可以直接投入项目使用的标准或规范</Divider>
-                <div class="blogContent" v-highlight>
-                    <p><Icon type="md-checkmark" style="color:green"/> 本模板经历实战可以使用 </p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 批量选中数据 分页以后 table不保存旧选中 返回上一页 不会选中已有内容 </p>
-                    <p>给 data 项设置特殊 key _checked: true 可以默认选中当前项。</p>
-                    <p>给 data 项设置特殊 key _disabled: true 可以禁止选择当前项。</p>
-                    <p></p>
-                    <script type="text/html" v-pre>
-                        <Table border :loading="loading" :columns="columns" :data="tableData"
-                            @on-sort-change="hendleSort" @on-selection-change="selectedChange">
-                        </Table>
-                    </script>
-                    <script type="text/js">
-                        columns: [
-                            { type: 'selection', width: 60, align: 'center' },
-                            {title: '任务编号', key: 'taskNumber', sortable: true},
-                            {title: '发布人', key: 'founder', sortable: true},
-                            {title: '发布日期', key: 'foundTime', sortable: true},
-                            {title: '负责人', key: 'personLiable'},
-                            {title: '计划完成日期', key: 'completeTime', render: h.defaultH('completeTime')},
-                            {title: '优先级', key: 'taskPriority'},
-                            {title: '状态', key: 'taskStatus'}
-                        ],
-                        'tableSelection': [], // 表格选中项
-                    </script>
-                    <script type="text/js">
-                        selectedChange (selection) {
-                            const ids = []
-                            selection = selection || []
-                            selection.forEach(row => { ids.push(row.id) })
-                            this.tableSelection = ids
-                        },
-                    </script>
-                    <script type="text/js">
-                        this.$api.task.listMine(this.serrchParam).then((info) => { // ajax
-                            this.loading = false; // 加载完成
-                            const infolist = (info.list || []).map(row => { // 根据条件禁止选中
-                                row._disabled = row.taskNumber > 5500
-                                return row
-                            })
-                            this.tableData = infolist
-                            this.page.rowCount = info.rowCount
-                        })
-                    </script>
+                <div class="blogTitle">表格标准规范写法 V1 单元测试</div>
+                <div class="blogContent">
+                    <p>✔✘ 测试流程 - 1 </p>
                 </div>
                 <div class="blogFooter">
-                    <Tag color="green">收集</Tag> <Tag color="cyan">学习</Tag> <Tag color="blue">增长</Tag>
+                    <div>收集, 学习, 增长</div>
                 </div>
             </div>
         </div>
         <div class="tableLayout">
-            <tab></tab>
             <div class="tableTool" @keyup.enter.stop="hendleSearch">
                 <Select v-model="search.taskPriority" placeholder='请选择任务级别'>
                     <Option v-for="option in dataSet.taskPriorityList" :value="option.id" :key="option.id" :label="option.name" >
@@ -66,14 +23,13 @@
                 </Select>
                 <Button type="primary" @click="hendleSearch">搜索</Button>
                 <Button type="default" @click="hendleReset">重置</Button>
-                <Button type="default" class="fr" @click="handleSelectAll(false)">取消全选</Button>
-                <Button type="default" class="fr" @click="handleSelectAll(true)">设置全选</Button>
+                <Button type="default" class="fr" @click="download">下载</Button>
             </div>
             <Table border :loading="loading" :columns="columns" :data="tableData"
-                @on-sort-change="hendleSort" @on-selection-change="selectedChange">
+                @on-sort-change="hendleSort">
             </Table>
             <div class="tableFooter">
-                <span> {{tableSelection}} </span>
+                <span> {{showPageCount(page.rowCount,page.pageIndex,page.pageSize)}}</span>
                 <Page ref="pager" :page-size="page.pageSize" :current="page.pageIndex" :total="page.rowCount"
                     show-sizer show-elevator class="fr"
                     @on-change="v=>{hendleGopage(v)}"
@@ -88,10 +44,8 @@
 import { extend, extendF } from '@/utils/object'
 import { debounce, nothing } from '@/utils/function'
 import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工具
-import tab from './205tab'
 
 export default {
-    components: { tab },
     data () {
         return {
             dataSet: {
@@ -106,7 +60,6 @@ export default {
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
             order: { orderKey: '', order: '' }, // 排序 变量名最好原样
             columns: [
-                { type: 'selection', width: 60, align: 'center' },
                 {title: '任务编号', key: 'taskNumber', sortable: true},
                 {title: '发布人', key: 'founder', sortable: true},
                 {title: '发布日期', key: 'foundTime', sortable: true},
@@ -118,7 +71,6 @@ export default {
             'serrchParam': null, // 实际搜索项
             'serrchBack': null, // 搜索项备份
             'tableData': [], // 表格内容
-            'tableSelection': [], // 表格选中项
             end1: 1 // 防呆设计
         }
     },
@@ -131,6 +83,7 @@ export default {
             this.hendleSearch()
         }),
         init () { // 初始化
+            this.end1 = 2
             if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
             if (!this.serrchBack) {this.serrchBack = extend({}, this.search)} // 备份
             const query = getParamState()
@@ -158,30 +111,18 @@ export default {
             this.order.order = param.order
             this.ajax()
         },
-        handleSelectAll (status) {
-            this.$refs.selection.selectAll(status);
-        },
-        selectedChange (selection) {
-            const ids = []
-            selection = selection || []
-            selection.forEach(row => { ids.push(row.id) })
-            this.tableSelection = ids
-        },
         ajax: function () { // 业务ajax
             extend(this.serrchParam, this.search) // 设置实际搜索项
             extend(this.serrchParam, this.page) // 设置分页
             extend(this.serrchParam, this.order) // 设置排序
             saveParamState(this.serrchParam) // 存url
             this.loading = true // 加载中
-            this.$api.task.listMine(this.serrchParam).then((info) => { // ajax
-                this.loading = false; // 加载完成
-                const infolist = (info.list || []).map(row => { // 根据条件禁止选中
-                    row._disabled = row.taskNumber > 5500
-                    return row
+            this.$api.task.listMine(this.serrchParam) // 发送ajax
+                .then((info) => {
+                    this.loading = false; // 加载完成
+                    this.tableData = info.list
+                    this.page.rowCount = info.rowCount
                 })
-                this.tableData = infolist
-                this.page.rowCount = info.rowCount
-            })
         },
         end2: nothing // 防呆设计
     },

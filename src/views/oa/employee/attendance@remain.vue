@@ -1,7 +1,7 @@
 <template>
     <div class="tableLayout">
         <tab></tab>
-        <div class="tableTool">
+        <div class="tableTool" @keyup.enter.stop="hendleSearch">
             <DatePicker v-model="obj.month" :options="option.month" type="month"
                 placeholder="请选择月份" style="width: 180px;margin-right: 10px;">
             </DatePicker>

@@ -12,7 +12,7 @@
 <template>
     <div class="tableLayout">
         <tab></tab>
-        <div class="tableTool">
+        <div class="tableTool" @keyup.enter.stop="hendleSearch">
             <DatePicker style="width: 180px" type="daterange" :clearable="false"
                 :editable="false" :value="date" @on-change="dateGet" format="yyyy-MM-dd">
             </DatePicker>

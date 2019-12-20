@@ -2,17 +2,32 @@
     <div>
         <div class="blogCss">
             <div class="blog">
-                <div class="blogTitle">表格标准规范写法 V1 单元测试</div>
-                <div class="blogContent">
-                    <p>✔✘ 测试流程 - 1 </p>
+                <div class="blogTitle">表格标准规范写法 V1 排序功能</div>
+                <Divider orientation="right">可以直接投入项目使用的标准或规范</Divider>
+                <div class="blogContent" v-highlight>
+                    <p><Icon type="md-checkmark" style="color:green"/> 本模板经历实战可以使用 </p>
+                    <script type="text/js">
+                        columns: [
+                            {title: '任务编号', key: 'taskNumber', sortable: true},
+                            {title: '发布人', key: 'founder', sortable: true},
+                            {title: '发布日期', key: 'foundTime', sortable: true},
+                            {title: '负责人', key: 'personLiable'},
+                            {title: '计划完成日期', key: 'completeTime', render: h.defaultH('completeTime')},
+                            {title: '优先级', key: 'taskPriority'},
+                            {title: '状态', key: 'taskStatus'}
+                        ],
+                    </script>
                 </div>
                 <div class="blogFooter">
-                    <div>收集, 学习, 增长</div>
+                    <Tag color="green">收集</Tag>
+                    <Tag color="cyan">学习</Tag>
+                    <Tag color="blue">增长</Tag>
                 </div>
             </div>
         </div>
         <div class="tableLayout">
-            <div class="tableTool">
+            <tab></tab>
+            <div class="tableTool" @keyup.enter.stop="hendleSearch">
                 <Select v-model="search.taskPriority" placeholder='请选择任务级别'>
                     <Option v-for="option in dataSet.taskPriorityList" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
@@ -44,8 +59,10 @@
 import { extend, extendF } from '@/utils/object'
 import { debounce, nothing } from '@/utils/function'
 import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+import tab from './205tab'
 
 export default {
+    components: { tab },
     data () {
         return {
             dataSet: {

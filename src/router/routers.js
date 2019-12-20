@@ -48,12 +48,9 @@ export const routerList = [
             }, {
                 path: 'exp2', title: '卷贰', icon: 'md-cart',
                 children: [
-                    {power: '0000', path: '023from', title: '表单基本样式'},
                     {power: '0000', path: '024validate', title: '表单所有校验方式'},
                     {power: '0000', path: '025vvvali', title: '表单复杂校验方式'},
-                    {power: '0000', path: '026iviewDefault', title: 'Iview 控件默认配置'},
                     {power: '0000', path: '028pluginLike', title: '插件比喻'},
-                    {power: '0000', path: '029iospic', title: 'iOS图片旋转bug'},
                     {power: '0000', path: '030vueVision', title: 'VUE竟然好几个版本'},
                     {power: '0000', path: '031mail', title: 'JS发邮件权限'},
                     {power: '0000', path: '032api', title: '$api模块说明 v1'},
@@ -61,8 +58,7 @@ export const routerList = [
                     {power: '0000', path: '035unitTest', title: '单元测试入门'},
                     {power: '0000', path: '036unitTest', title: '单元测试路由'},
                     {power: '0000', path: '037unitTest', title: '单元测试 Axios'},
-                    {power: '0000', path: '038unitTest', title: '表单单元流程'},
-                    {power: '0000', path: '039unitTest', title: 'Jest和方法this坑'}
+                    {power: '0000', path: '038unitTest', title: '表单单元流程'}
                 ]
             }, {
                 path: 'exp3', title: '卷叁', icon: 'md-chatbubbles',
@@ -87,10 +83,7 @@ export const routerList = [
                 path: 'exp5', title: '卷伍', icon: 'md-color-fill',
                 children: [
                     {power: '0000', path: '081templete', title: '标签 templete'},
-                    {power: '0000', path: '083innerDB', title: 'innerDB 数据库'},
-                    {power: '0000', path: '093ddd', title: '换行/省略号'},
-                    {power: '0000', path: '094mouse', title: '鼠标样式'},
-                    {power: '0000', path: '096xiewen', title: '斜纹样式'}
+                    {power: '0000', path: '083innerDB', title: 'innerDB 数据库'}
                 ]
             }, {
                 path: 'exp6', title: '卷陆', icon: 'md-easel',
@@ -115,11 +108,9 @@ export const routerList = [
                     {power: '0000', path: '124mulLevelTable', title: '尝试多层表格'},
                     {power: '0000', path: '130jslist', title: '好多技术栈'},
                     {power: '0000', path: '131package', title: '自定义脚本命令'},
-                    {power: '0000', path: '132ref', title: '$ref讲解'},
                     {power: '0000', path: '133codetip', title: '编码建议'},
                     {power: '0000', path: '136vuex', title: 'vuex 讲解'},
-                    {power: '0000', path: '137vue', title: 'vue 公共方法'},
-                    {power: '0000', path: '139git', title: '公司GIT管理流程'}
+                    {power: '0000', path: '137vue', title: 'vue 公共方法'}
                 ]
             }, {
                 path: 'exp8', title: '卷捌', icon: 'md-game-controller-b',
@@ -141,8 +132,7 @@ export const routerList = [
                     {power: '0000', path: '168component', title: '组件编写'},
                     {power: '0000', path: '169directive', title: '指令编写'},
                     {power: '0000', path: '170icard', title: 'IviewCard'},
-                    {power: '0000', path: '171contact', title: '联系人卡片 Css'},
-                    {power: '0000', path: '172rewriteRoutePush', title: '复写路由 Route'}
+                    {power: '0000', path: '171contact', title: '联系人卡片 Css'}
                 ]
             }
         ]
@@ -166,7 +156,10 @@ export const routerList = [
                     {power: '0000', path: '021route', title: '路由跳转各种尝试'},
                     {power: '0000', path: '021route@add', title: '路由跳转添加', hideMenu: true},
                     {power: '0000', path: '022extends', title: 'VUE组件间的继承'},
+                    {power: '0000', path: '023from', title: '表单基本样式'},
+                    {power: '0000', path: '026iviewDefault', title: 'Iview 控件默认配置'},
                     {power: '0000', path: '027filter', title: '过滤器收集整理'},
+                    {power: '0000', path: '039caothis', title: '箭头函数方法this坑'},
                     {power: '0000', path: '040meta', title: 'Meta 标签详解'}
                 ]
             }, {
@@ -228,7 +221,10 @@ export const routerList = [
                     {power: '0000', path: '090keepalive@add', title: 'keep-alive 缓存页', hideMenu: true},
                     {power: '0000', path: '091textcss', title: '文本样式'},
                     {power: '0000', path: '092waining', title: '警告内容样式'},
+                    {power: '0000', path: '093ddd', title: '换行/省略号'},
+                    {power: '0000', path: '094mouse', title: '鼠标样式'},
                     {power: '0000', path: '095qqimg', title: 'qq头像排列'},
+                    {power: '0000', path: '096xiewen', title: '斜纹样式'},
                     {power: '0000', path: '097shadow', title: '阴影样式'},
                     {power: '0000', path: '098sidai', title: '丝带样式'},
                     {power: '0000', path: '099css3xingzhuang', title: 'css3 绘制各种形状'},
@@ -251,6 +247,7 @@ export const routerList = [
                     {power: '0000', path: '123gujia', title: '占位符骨架屏'},
                     {power: '0000', path: '127enterLeave', title: '路由进入退出钩子'},
                     {power: '0000', path: '129pasteImg', title: '粘贴图片'},
+                    {power: '0000', path: '132ref', title: '$ref讲解'},
                     {power: '0000', path: '134somefont', title: '不可见,url,AscII字符'},
                     {power: '0000', path: '135doutu', title: '斗图神奇神器'},
                     {power: '0000', path: '138globalclick', title: '全局相应点击'}
@@ -273,6 +270,7 @@ export const routerList = [
                 path: 'exp09', title: '卷玖', icon: 'md-game-controller-b',
                 children: [
                     {power: '0000', path: '162autoSave', title: '表单自动保存'},
+                    {power: '0000', path: '172rewriteRoutePush', title: '复写路由 push 方法'},
                     {power: '0000', path: '173notification', title: '桌面通知简单API'},
                     {power: '0000', path: '174console', title: 'Console 详解'},
                     {power: '0000', path: '175crossEnv', title: 'Node 环境变量'},
@@ -294,12 +292,13 @@ export const routerList = [
                     {power: '0000', path: '202api', title: 'api接口承上启下'},
                     {power: '0000', path: '203fromdifto', title: '来源提交格式不同'},
                     {power: '0000', path: '204trytransfer', title: '尝试多搜索+穿梭框'},
-                    {power: '0000', path: '205tableV1', title: '表格规范v1模版'},
+                    {power: '0000', path: '205tableV1', title: '表格v1模版规范'},
                     {power: '0000', path: '205tableV1@bro', title: '表格v1兄弟页面', hideMenu: true},
                     {power: '0000', path: '205tab', title: '表格v1菜单Tab'},
                     {power: '0000', path: '205tableMaxHeight', title: '表格v1高度限定'},
                     {power: '0000', path: '205tableBatch', title: '表格v1批量操作'},
                     {power: '0000', path: '205tableTools', title: '表格v1搜索项'},
+                    {power: '0000', path: '205tableSort', title: '表格v1排序功能'},
                     {power: '0000', path: '205tableSum', title: '表格v1总计框'},
                     {power: '0000', path: '207validateInput', title: '表单v1输入框'},
                     {power: '0000', path: '207validateNumber', title: '表单v1数字框'},
@@ -326,7 +325,15 @@ export const routerList = [
                     {power: '0000', path: '215fontawesome', title: 'font 绘制 logo'},
                     {power: '0000', path: '216vviewer', title: '小图大图预览插件'},
                     {power: '0000', path: '217tabs', title: '兄弟页面统一tabs'},
-                    {power: '0000', path: '218tableV1test', title: '表格规范v1单元测试'},
+                    {power: '0000', path: '218tableV1unitTest', title: '表格v1单元测试'},
+                    {power: '0000', path: '219iospic', title: 'iOS图片旋转bug'}
+                ]
+            },
+            {
+                path: 'work02', title: '卷贰', icon: 'md-heart',
+                children: [
+                    {power: '0000', path: '220git', title: '公司GIT管理流程'},
+                    {power: '0000', path: '221keyup', title: '按键监听事件写法'},
                     {power: '0000', path: '300brove', title: '收集300个'}
                 ]
             }
@@ -351,22 +358,22 @@ export const routerList = [
         path: 'dsp', title: 'DSP开发', icon: 'md-menu',
         children: [
             {
-                path: 'home', title: 'DSP首页', icon: 'md-globe',
+                path: 'home', title: '首页', icon: 'md-globe',
                 children: [
-                    {power: '0000', path: 'index', title: 'DSP首页'}
+                    {power: '0000', path: 'index', title: '首页'}
                 ]
             }, {
-                path: 'finance', title: 'DSP财务账单', icon: 'md-contacts',
+                path: 'finance', title: '财务账单', icon: 'md-contacts',
                 children: [
-                    { power: '0000', path: 'list', title: 'DSP财务账单' },
-                    { power: '0000', path: 'list@recharge', title: 'DSP充值记录', hideMenu: true },
-                    { power: '0000', path: 'list@cost', title: 'DSP消耗记录', hideMenu: true },
-                    { power: '0000', path: 'list@account', title: 'DSP账户余额查询', hideMenu: true }
+                    { power: '0000', path: 'list', title: '财务账单' },
+                    { power: '0000', path: 'list@recharge', title: '充值记录', hideMenu: true },
+                    { power: '0000', path: 'list@cost', title: '消耗记录', hideMenu: true },
+                    { power: '0000', path: 'list@account', title: '账户余额查询', hideMenu: true }
                 ]
             }, {
-                path: 'charge', title: 'DSP收款账户', icon: 'md-contacts',
+                path: 'charge', title: '收款账户', icon: 'md-contacts',
                 children: [
-                    { power: '0000', path: 'chargeInfo', title: 'DSP收款账户' }
+                    { power: '0000', path: 'chargeInfo', title: '收款账户' }
                 ]
             }, {
                 path: 'cost', title: '消耗管理', icon: 'md-contacts',

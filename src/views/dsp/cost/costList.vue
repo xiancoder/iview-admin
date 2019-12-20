@@ -3,7 +3,7 @@
         <Tabs>
             <TabPane label="消耗管理"></TabPane>
         </Tabs>
-        <div class="tableTool">
+        <div class="tableTool" @keyup.enter.stop="hendleSearch">
             <DatePicker :value="search.start2end" type="daterange" placeholder="选择开始日期结束日期"
                 @on-change="search.start2end=$event" @on-clear="search.start2end=[]" split-panels style="width: 220px">
             </DatePicker>
@@ -55,7 +55,7 @@ import { extend, extendF } from '@/utils/object'
 import { debounce, nothing } from '@/utils/function'
 import { sevenRange } from '@/utils/date'
 import { h, saveParamState, getParamState, companyTableSumColumns, error } from '@/tools' // 自定义常用工具
-import ImportRealPre from './importRealPreModal' // 上传预估消耗
+import ImportRealPre from './importPreCostModal' // 上传预估消耗
 import ImportRealCost from './importRealCostModal' // 上传封账数据
 import CloseBatch from './closeBatchModal' // 批量封账
 
