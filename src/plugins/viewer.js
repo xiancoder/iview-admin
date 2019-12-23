@@ -6,32 +6,32 @@ import './viewer.min.css' // 从_viewerjs@1.4.0@viewerjs拷贝而来
 Vue.use(Viewer)
 Viewer.setDefaults({
     /**
-     * Enable a modal backdrop, specify `static` for a backdrop
+     * 启用 a modal backdrop, specify `static` for a backdrop
      * which doesn't close the modal on click.
      * @type {boolean}
      */
     backdrop: true,
 
     /**
-     * Show the button on the top-right of the viewer.
+     * 显示右上角关闭按钮
      * @type {boolean}
      */
     button: true,
 
     /**
-     * Show the navbar.
+     * 显示缩略图导航
      * @type {boolean | number}
      */
     navbar: true,
 
     /**
-     * Specify the visibility and the content of the title.
+     * 当前图片标题
      * @type {boolean | number | Function | Array}
      */
     title: true,
 
     /**
-     * Show the toolbar.
+     * 显示工具栏
      * @type {boolean | number | Object}
      */
     toolbar: true,
@@ -55,7 +55,7 @@ Viewer.setDefaults({
     filter: null,
 
     /**
-     * Enable to request fullscreen when play.
+     * 启用 to request fullscreen when play.
      * @type {boolean}
      */
     fullscreen: true,
@@ -67,7 +67,7 @@ Viewer.setDefaults({
     initialViewIndex: 0,
 
     /**
-     * Enable inline mode.
+     * 启用 inline 模式.
      * @type {boolean}
      */
     inline: false,
@@ -79,7 +79,7 @@ Viewer.setDefaults({
     interval: 5000,
 
     /**
-     * Enable keyboard support.
+     * 启用键盘控制.
      * @type {boolean}
      */
     keyboard: true,
@@ -91,55 +91,55 @@ Viewer.setDefaults({
     loading: true,
 
     /**
-     * Indicate if enable loop viewing or not.
+     * 启用循环.
      * @type {boolean}
      */
     loop: true,
 
     /**
-     * Min width of the viewer in inline mode.
+     * Min width of the viewer in inline 模式.
      * @type {number}
      */
     minWidth: 200,
 
     /**
-     * Min height of the viewer in inline mode.
+     * Min height of the viewer in inline 模式.
      * @type {number}
      */
     minHeight: 100,
 
     /**
-     * Enable to move the image.
+     * 是否可以移动图片.
      * @type {boolean}
      */
     movable: true,
 
     /**
-     * Enable to rotate the image.
+     * 可以旋转图片.
      * @type {boolean}
      */
-    rotatable: true,
+    rotatable: false,
 
     /**
-     * Enable to scale the image.
+     * 启用翻转图片.
      * @type {boolean}
      */
     scalable: true,
 
     /**
-     * Enable to zoom the image.
+     * 启用放缩图片.
      * @type {boolean}
      */
     zoomable: true,
 
     /**
-     * Enable to zoom the image by dragging touch.
+     * 启用 to zoom the image by dragging touch.
      * @type {boolean}
      */
     zoomOnTouch: true,
 
     /**
-     * Enable to zoom the image by wheeling mouse.
+     * 启用 to zoom the image by wheeling mouse.
      * @type {boolean}
      */
     zoomOnWheel: true,
@@ -152,25 +152,25 @@ Viewer.setDefaults({
     toggleOnDblclick: true,
 
     /**
-     * Show the tooltip with image ratio (percentage) when zoom in or zoom out.
+     * 操作中启用展示缩放百分比
      * @type {boolean}
      */
     tooltip: true,
 
     /**
-     * Enable CSS3 Transition for some special elements.
+     * 启用 CSS3 Transition for some special elements.
      * @type {boolean}
      */
     transition: true,
 
     /**
-     * Define the CSS `z-index` value of viewer in modal mode.
+     * Define the CSS `z-index` value of viewer in modal 模式.
      * @type {number}
      */
     zIndex: 2015,
 
     /**
-     * Define the CSS `z-index` value of viewer in inline mode.
+     * Define the CSS `z-index` value of viewer in inline 模式.
      * @type {number}
      */
     zIndexInline: 0,

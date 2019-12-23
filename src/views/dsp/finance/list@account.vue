@@ -53,12 +53,12 @@ export default {
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
             order: { orderKey: '', order: '' }, // 排序 变量名最好原样
             columns2: [
-                {title: '广告主', width: 300, key: 'ader_name', render: h.defaultH('ader_name')},
+                {title: '广告主', key: 'ader_name', render: h.defaultH('ader_name')},
                 {title: '用户名', key: 'user_name'},
                 {title: '账户余额', key: 'balance', render: h.moneyFormat('balance')}
             ],
             columns3: [
-                {title: '广告主', width: 300, key: 'ader_name', render: h.defaultH('ader_name')},
+                {title: '广告主', key: 'ader_name', render: h.defaultH('ader_name')},
                 {title: '用户名', key: 'user_name'},
                 {title: '账户余额', key: 'balance', render: h.moneyFormat('balance')},
                 {title: '结算余额', key: 'settlement', render: h.moneyFormat('settlement')}

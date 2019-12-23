@@ -1,6 +1,6 @@
 <template>
-    <div style="padding:50px 0 0 20px">
-        <Form ref="form5596" :model="frm" :label-width="150">
+    <div class="creditFrom">
+        <Form ref="form5596" :model="frm" :label-width="0">
             <FormItem label="" prop="companyId" v-if="roleId==3">
                 <Select v-model="frm.companyId" placeholder="请选择相关公司" style="width: 350px">
                     <Option v-for="option in dataSet.companyList" :value="option.id" :key="option.id" :label="option.name">
@@ -83,4 +83,5 @@ export default {
 <style scope>
     .creditbox{ position:relative; display: inline-block; margin-right: 20px;}
     .creditbox .editbtn{ position: absolute; bottom: 58px; right: 23px;}
+    .creditFrom {padding: 50px 0px 0px 20px; width: 100%; max-width: 1240px; text-align: center;}
 </style>

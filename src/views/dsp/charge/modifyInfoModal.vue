@@ -60,10 +60,12 @@ export default {
                 ],
                 account: [
                     { required: true, message: '不能为空' },
+                    { type: 'string', max: 6, message: '银行账号至少6位' },
                     { type: 'string', max: 30, message: '银行账号至多30位' }
                 ],
                 bank: [
                     { required: true, message: '不能为空' },
+                    { type: 'string', max: 2, message: '开户行至少2位' },
                     { type: 'string', max: 50, message: '开户行至多50位' }
                 ],
                 smscode: [

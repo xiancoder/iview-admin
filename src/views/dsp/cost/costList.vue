@@ -86,8 +86,8 @@ export default {
             order: { orderKey: '', order: '' }, // 排序 变量名最好原样
             columns1: [
                 {type: 'selection', width: 70, align: 'center'},
-                {title: '消耗日期', key: 'date'},
-                {title: '广告主', width: 300, key: 'ader_name'},
+                {title: '消耗日期', width: 95, key: 'date'},
+                {title: '广告主', key: 'ader_name'},
                 {title: '用户名', key: 'user_name'},
                 {title: '业务名称', key: 'buis_name'},
                 {title: '预估消耗金额', key: 'cost_pre', render: h.moneyFormat('cost_pre')},

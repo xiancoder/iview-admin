@@ -7,16 +7,16 @@ export const homePage = 'home_index' // 首页
 
 export const specialPowerList = [homePage, 'error403', 'error404', 'error500'] // 必须登录的不走鉴权的核心页面
 
-export const loginPowerList = ['login', 'regiest', 'ccode', 'phone'] // 未登录时候可以访问的页面
+export const loginPowerList = ['login', 'slogin', 'register', 'phone'] // 未登录时候可以访问的页面
 
 export const lockPowerList = ['locking'] // 锁屏时候可以访问的页面
 
 // 路由视图文件名必须和路由名字路径一致 方便查找定位
 export const routerList = [
     {path: '/', redirect: '/home/index'}, // 默认路由视图
-    makeOneLevelRoute({ path: 'login', title: '登录' }),
-    makeOneLevelRoute({ path: 'regiest', title: '注册' }),
-    makeOneLevelRoute({ path: 'ccode', title: '二次验证' }),
+    makeOneLevelRoute({ path: 'login', title: '用户登录' }),
+    makeOneLevelRoute({ path: 'slogin', title: '员工登录' }),
+    makeOneLevelRoute({ path: 'register', title: '注册' }),
     makeOneLevelRoute({ path: 'phone', title: '移动端' }),
     makeOneLevelRoute({ path: 'locking', title: '锁屏' }),
     makeTwoLevelRoute({

@@ -6,6 +6,10 @@
             <div class="blogContent" v-highlight>
                 <p></p>
                 <Form ref="from0982" :model="frm" :rules="frmValidate" :label-width="150">
+                    <Divider orientation="left"> <span class="text-danger">很重要的一项 format="yyyy-MM-dd" 已经写入默认配置</span> </Divider>
+                    <Divider orientation="left"> <span class="text-danger">很重要的一项 :editable="false" 已经写入默认配置</span> </Divider>
+                    <Divider orientation="left"> <span class="text-danger">很重要的一项 placeholder = '请选择日期' 已经写入默认配置</span> </Divider>
+                    <Divider orientation="left"> <span class="text-danger">很重要的一项 separator = ' 至 ' 已经写入默认配置</span> </Divider>
                     <FormItem label="测试">
                         <Button type="primary" @click="handleSubmit()">测试</Button>
                     </FormItem>
@@ -13,16 +17,16 @@
                     <Divider orientation="left">日期框 必填 + 普通使用不必在意赋值格式 </Divider>
                     <FormItem label="标题" prop="p01">
                         <DatePicker type="date" :value="frm.p01" placeholder="选择日期" style="width: 300px"
-                            @on-change="(date)=>{frm.p01=date}" format="yyyy-MM-dd">
+                            @on-change="(date)=>{frm.p01=date}">
                         </DatePicker>
-                        <div class="ivu-form-item-notice-tip">日期框 必填 + 普通使用不必在意赋值格式</div>
+                        <div class="ivu-form-item-notice-tip">日期框 必填 + 默认赋值格式(format="yyyy-MM-dd")</div>
                     </FormItem>
                     <FormItem>
                         <p>结果: {{frm.p01}}</p>
                         <script type="text/html" v-pre>
                             <FormItem label="标题" prop="p01">
                                 <DatePicker type="date" :value="frm.p01" placeholder="选择日期" style="width: 300px"
-                                    @on-change="(date)=>{frm.p01=date}" format="yyyy-MM-dd">
+                                    @on-change="(date)=>{frm.p01=date}">
                                 </DatePicker>
                             </FormItem>
                         </script>
@@ -51,7 +55,7 @@
 
                     <Divider orientation="left">日期框 必填 + 从今天开始向前数几天来禁用 </Divider>
                     <FormItem label="标题" prop="p03">
-                        <DatePicker type="date" :value="frm.p03" placeholder="选择日期" format="yyyy-MM-dd"
+                        <DatePicker type="date" :value="frm.p03" placeholder="选择日期"
                             :options="{ disabledDate:(date)=>{return date&&date.valueOf()<Date.now()-86400000}}"
                             @on-change="(date)=>{frm.p03=date}" style="width: 300px">
                         </DatePicker>
@@ -61,7 +65,7 @@
                         <p>结果: {{frm.p03}}</p>
                         <script type="text/html" v-pre>
                             <FormItem label="标题" prop="p03">
-                                <DatePicker type="date" :value="frm.p03" placeholder="选择日期" format="yyyy-MM-dd"
+                                <DatePicker type="date" :value="frm.p03" placeholder="选择日期"
                                     :options="{ disabledDate:(date)=>{return date&&date.valueOf()<Date.now()-86400000}}"
                                     @on-change="(date)=>{frm.p03=date}" style="width: 300px">
                                 </DatePicker>

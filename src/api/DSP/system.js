@@ -8,7 +8,7 @@ export default {
         return new Promise((resolve, reject) => {
             axios.request({
                 method: 'POST',
-                url: 'api/system/ads_login',
+                url: 'api/system/login',
                 data: {
                     'user_name': userName, // 改装字段名
                     'user_pwd': password,
@@ -16,7 +16,12 @@ export default {
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
-                resolve(res)
+                if (res && res.data && res.data.res_code) {
+                    resolve(res)
+                } else {
+                    error(res.data.res) // 报错并继续reject
+                    reject(res.data.res)
+                }
             }).catch(e => {
                 error(e.message) // ajax异常后 报错并中止操作
             })
@@ -28,6 +33,7 @@ export default {
         return new Promise((resolve, reject) => {
             axios.request({
                 method: 'POST',
+                // url: 'api/system/slogin',
                 url: 'api/system/login',
                 data: {
                     'user_name': userName, // 改装字段名
@@ -35,17 +41,22 @@ export default {
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
-                resolve(res)
+                if (res && res.data && res.data.res_code) {
+                    resolve(res)
+                } else {
+                    error(res.data.res) // 报错并继续reject
+                    reject(res.data.res)
+                }
             }).catch(e => {
                 error(e.message) // ajax异常后 报错并中止操作
             })
         })
     },
-    registered (param) { // 注册
+    register (param) { // 注册
         return new Promise((resolve, reject) => {
             axios.request({
                 method: 'POST',
-                url: 'api/system/registered',
+                url: 'api/system/register',
                 data: param
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
@@ -53,7 +64,6 @@ export default {
                     success(res.res || '注册成功') // 提示并继续resolve
                     resolve(res)
                 } else {
-                    resolve(res)
                     error(res.res) // 报错并继续reject
                     reject()
                 }
@@ -167,11 +177,11 @@ export default {
             })
         })
     },
-    Google ({ code, token }) { // 二次验证
+    google ({ code, token }) { // 二次验证
         return new Promise((resolve, reject) => {
             axios.request({
                 method: 'POST',
-                url: 'api/system/Google_authenticator',
+                url: 'api/system/google_auth',
                 data: {
                     'c': code, // 改装字段名
                     'token': token,
@@ -179,14 +189,12 @@ export default {
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
-                resolve(res)
-                // if (res && res.res_code) {
-                //     success(res.res || '登录成功') // 提示并继续resolve
-                //     resolve(res)
-                // } else {
-                //     error(res.res) // 报错并继续reject
-                //     reject()
-                // }
+                if (res && res.data && res.data.res_code) {
+                    resolve(res)
+                } else {
+                    error(res.data.res) // 报错并继续reject
+                    reject(res.data.res)
+                }
             }).catch(e => {
                 error(e.message) // ajax异常后 报错并中止操作
             })
@@ -347,7 +355,16 @@ export default {
     },
     companyList (forTableShow) { // 四个公司区分 forTableShow指表格枚举
         if (forTableShow) {
-            return ['', 'dsp-pfs.yunxi.cn:10086', 'dsp-njs.yunxi.cn:10086', 'dsp-wls.yunxi.cn:10086', 'dsp-zhs.yunxi.cn:10086']
+            return [
+                { id: '1', name: 'dsp-pfs.yunxi.cn:10086' },
+                { id: '2', name: 'dsp-njs.yunxi.cn:10086' },
+                { id: '3', name: 'dsp-wls.yunxi.cn:10086' },
+                { id: '4', name: 'dsp-zhs.yunxi.cn:10086' },
+                { id: '1', name: '37tw.com' },
+                { id: '2', name: 'sjzwn.com' },
+                { id: '3', name: 'bj6.cc' },
+                { id: '4', name: 'yunxizhihui.cn' }
+            ]
         }
         return Promise.resolve([
             { id: '1', name: '平复信息技术河北有限公司' },

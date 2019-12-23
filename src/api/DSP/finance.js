@@ -112,7 +112,7 @@ export default {
                 'start_date': start2end[0] || '', // 开始日期 yyyy-mm-dd
                 'end_date': start2end[1] || '', // 结束日期 yyyy-mm-dd
                 'ader_id': aderId || '0', // 广告主ID
-                'buis_name': businessId || '0', // 业务 Name 都用字符串
+                'buis_name': businessId || '', // 业务 Name 因为后台是字符串 本来应该是0 现在传空
                 'state': state || '0', // 状态 1成功2失败
                 'page': pageIndex || '', // 分页
                 'page_count': pageSize || '' // 分页条数

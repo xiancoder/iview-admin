@@ -17,11 +17,11 @@ export default {
         tagNavList: [], // 历史记录tab列表
 
         userAvatorPath: '', // 管理员头像
-        userName: '', // 管理员名
-        userId: '', // 管理员ID
+        userName: 'User', // 管理员名
+        userId: '999', // 管理员ID
         userEmail: '', // 管理员EMAIL
         userDeptId: '', // 管理员部门ID
-        userRoleId: 3, // 角色区分权限 1 广告主 2 运营 3 财务
+        userRoleId: '', // 角色区分权限 1 广告主 2 运营 3 财务
         firstAuth: '' || 1, // 区分浏览器是否第一次提示认证
         usercertificatId: '', // 广告主类型1-个人2-公司
 
@@ -74,7 +74,7 @@ export default {
         PLATFORMID (state, v) { state.platformId = v },
         SMSCODE (state, v) { state.smsCode = v },
 
-        TOKEN (state, token) { localStorage.clear(); state.token = token },
+        TOKEN (state, token) { window.localStorage.clear(); state.token = token },
         LOCKING (state, b) { state.locking = b },
         DONOTDRAWROUTER (state, flag) { state.doNotDrawRouter = flag },
 
@@ -98,12 +98,11 @@ export default {
         },
         getPlatformId ({ commit }) { // 获取公司id
             let host = window.location.host
-            // let host = 'dsp-pfs.yunxi.cn'
-            const company = Api.system.companyList(true)
+            const company = Api.system.companyList('host')
             for (var i = 0, vlen = company.length; i < vlen; i++) {
-                if (company[i] === host) {
-                    commit('PLATFORMID', i)
-                    console.info('平台id为:' + i)
+                if (company[i].name === host) {
+                    commit('PLATFORMID', company[i].id)
+                    console.info('dsp', '平台ID', company[i].id)
                     return i;
                 }
             }
@@ -144,7 +143,9 @@ export default {
             }
             return loopObj()
         },
-        setTagNavList ({ commit }, a) { commit('TAGNAVLIST', a) }, // 历史记录列表
+        setTagNavList ({ commit }, a) { // 历史记录列表
+            commit('TAGNAVLIST', a)
+        },
         addTagNav ({ state, commit }, route) { // 添加历史记录标签
             const name = route.name
             if (specialPowerList.includes(name)) return false
@@ -179,17 +180,6 @@ export default {
             }
             commit('TAGNAVLIST', list)
         },
-        smscode ({ commit }, param) { // 开启短信发送倒计时
-            let time = 60
-            const i = setInterval(() => {
-                time--
-                commit('SMSCODE', time) // 修改发送验证码等待时间
-                if (time === 0) {
-                    clearInterval(i)
-                }
-            }, 1e3)
-        },
-
         getUserInfo ({ state, commit }) { // 获取管理员相关信息
             return new Promise((resolve, reject) => {
                 Api.system.getUserInfo(state.token).then(data => {
@@ -207,34 +197,91 @@ export default {
                 })
             })
         },
-        setRole ({ state, commit }, role) { // 获取管理员相关信息
+        setRole ({ commit }, role) { // 设置管理员角色
             return new Promise((resolve, reject) => {
-                commit('ROLE', role)
+                commit('USERROLEID', role)
                 resolve()
             })
         },
 
-        login ({ commit }, param) { // 管理员登录
+        login ({ commit }, param) { // 广告主登陆
             return new Promise((resolve, reject) => {
-                Api.system.login(param).then(token => {
-                    commit('TOKEN', token)
-                    resolve()
+                Api.system.login(param).then(res => {
+                    commit('TOKEN', 'YX')
+                    commit('USERROLEID', 1)
+                    resolve(res)
                 }).catch(err => {
                     reject(err)
                 })
             })
         },
-
-        logout ({ commit }) { // 登出
+        staffLogin ({ commit }, param) { // 员工登录
             return new Promise((resolve, reject) => {
-                console.info('%c仙 登出清场', 'color:#05ff0f;background:#000;padding:0 5px;')
-                commit('TOKEN', '')
-                router.push({name: 'login'})
+                Api.system.staffLogin(param).then(res => {
+                    resolve(res)
+                }).catch(err => {
+                    reject(err)
+                })
+            })
+        },
+        register ({ commit }, param) { // 注册
+            return new Promise((resolve, reject) => {
+                Api.system.register(param).then(res => {
+                    resolve(res)
+                }).catch(err => {
+                    reject(err)
+                })
+            })
+        },
+        smscode ({ commit }, param) { // 开启短信发送倒计时
+            let time = 60
+            const i = setInterval(() => {
+                time--
+                commit('SMSCODE', time) // 修改发送验证码等待时间
+                if (time === 0) {
+                    clearInterval(i)
+                }
+            }, 1e3)
+        },
+        certification ({ commit }, param) { // 认证
+            return new Promise((resolve, reject) => {
+                Api.system.certification(param).then(res => {
+                    resolve(res)
+                }).catch(err => {
+                    reject(err)
+                })
+            })
+        },
+        google ({ state, commit }, param) { // 二次验证码
+            return new Promise((resolve, reject) => {
+                Api.system.google(param).then(res => {
+                    commit('TOKEN', 'YX')
+                    state.token = 'YX'
+                    resolve(res)
+                }).catch(err => {
+                    reject(err)
+                })
+            })
+        },
+        logout ({ state, commit }) { // 登出
+            return new Promise((resolve, reject) => {
+                if (state.token) {
+                    state.token = ''
+                    commit('TOKEN', '')
+                    console.info('%c仙 登出清场', 'color:#05ff0f;background:#000;padding:0 5px;')
+                } else {
+                    return false
+                }
+                if (state.userRoleId === 1) {
+                    router.push({name: 'login'})
+                } else {
+                    router.push({name: 'slogin'})
+                }
                 Api.system.logout().then(() => {
-                    console.info('登出成功')
+                    console.info('%c仙 登出成功', 'color:#05ff0f;background:#000;padding:0 5px;')
                     resolve()
                 }, errorMsg => {
-                    console.error('登出失败')
+                    console.info('%c仙 登出失败', 'color:#05ff0f;background:#000;padding:0 5px;')
                     resolve()
                 })
             })
