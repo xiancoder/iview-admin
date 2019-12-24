@@ -5,6 +5,7 @@
                 <div class="blogTitle">MockJs 假数据生产专家</div>
                 <div class="blogContent" v-highlight>
                     <p><Icon type="md-close" style="color:red"/> 2019年11月27日17:46:54 实际引用不上 </p>
+                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                     <p>详细文档 : <a href="http://mockjs.com/examples.html#Random\.id\(\)">http://mockjs.com/examples.html#Random\.id\(\)</a></p>
                     <script type="text/html">
                         Mock.mock({

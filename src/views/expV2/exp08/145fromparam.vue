@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">主要是为了测试一下历史记录标签控件</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Form ref="form5596" :model="frm" :rules="frmValidate" :label-width="150">
                     <FormItem label="测试">
                         <Button type="primary" @click="handleSubmit()">测试</Button>

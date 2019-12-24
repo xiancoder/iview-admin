@@ -3,7 +3,8 @@
         <div class="blog">
             <div class="blogTitle">vue $refs的基本用法</div>
             <div class="blogContent" v-highlight>
-                <h2>===============================================================================</h2>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <script type="text/html">
                     <div id="app">
                         <input type="text" ref="input1"/>

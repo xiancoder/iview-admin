@@ -4,7 +4,8 @@
             <div class="blogTitle">关于Vue中的各种input的校验</div>
             <Divider orientation="right">项目使用的标准或规范</Divider>
             <div class="blogContent" v-highlight>
-                <p></p>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Form ref="from0982" :model="frm" :rules="frmValidate" :label-width="150">
                     <FormItem label="测试">
                         <Button type="primary" @click="handleSubmit()">测试</Button>
@@ -87,6 +88,30 @@
                         </script>
                     </FormItem>
 
+                    <Divider orientation="left">输入框 短信验证码 + 必须6位字符</Divider>
+                    <Divider orientation="left">发现一个不够长的问题 修改样式解决</Divider>
+                    <FormItem label="短信验证码" prop="p07">
+                        <Input type="text" v-model="frm.p07" placeholder="短信验证码" style="width: 310px"/>
+                        <Button type="primary" style="margin-left:20px;width:120px;">发送短信</Button>
+                    </FormItem>
+                    <FormItem label="短信验证码" prop="p07">
+                        <Input type="text" v-model="frm.p07" placeholder="短信验证码" style="width: 310px"/>
+                        <Button type="default" style="margin-left:20px;width:120px;" disabled>10秒后重试</Button>
+                    </FormItem>
+                    <FormItem label="短信验证码" prop="p07">
+                        <Input type="text" v-model="frm.p07" placeholder="请输入短信验证码" style="width: 310px" maxlength="6"/>
+                        <sms-btn :isDisabled="false" @on-send="sendSms()" style="margin-left:20px;width:120px;"></sms-btn>
+                    </FormItem>
+                    <FormItem>
+                        <p>结果: {{frm.p07}}</p>
+                        <script type="text/html" v-pre>
+                            <FormItem label="短信验证码" prop="p07">
+                                <Input type="text" v-model="frm.p07" placeholder="请输入短信验证码" style="width: 190px" maxlength="6"/>
+                                <sms-btn :isDisabled="false" @on-send="sendSms()"></sms-btn>
+                            </FormItem>
+                        </script>
+                    </FormItem>
+
                     <Divider orientation="left">输入框 验证码 + 价格 整数6位，小数点2位</Divider>
                     <FormItem label="标题" prop="p06">
                         <Input type="text" v-model="frm.p06" placeholder="请输入XXXX" style="width: 450px"/>
@@ -129,9 +154,10 @@
 import Ccode from '@C/ccode'
 import { ramdomString } from '@/utils/string'
 import regExp from '@/utils/regexp'
+import SmsBtn from '@C/sms-btn'
 
 export default {
-    components: { Ccode },
+    components: { SmsBtn, Ccode },
     data () {
         return {
             loading: false,
@@ -172,6 +198,10 @@ export default {
                 p06: [
                     { required: true, message: '输入框不能为空' },
                     { pattern: regExp.a01, message: '整数6位，小数点2位' }
+                ],
+                p07: [
+                    { required: true, message: '输入框不能为空' },
+                    { type: 'string', min: 6, message: '最少输入4个字符' }
                 ]
             }
         }
@@ -190,6 +220,9 @@ export default {
                     }, 2e3)
                 }
             });
+        },
+        sendSms () {
+            alert('假装发了短信')
         },
         cancel () {
             alert('离开')

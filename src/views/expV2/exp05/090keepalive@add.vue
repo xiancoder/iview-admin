@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">Vue keep-alive 编辑项 </div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>keep-alive是Vue.js的一个内置组件。</p>
                 <Form ref="formItem" :model="frm" :rules="frmValidate" :label-width="150">
                     <FormItem label="任务名称" prop="taskName">

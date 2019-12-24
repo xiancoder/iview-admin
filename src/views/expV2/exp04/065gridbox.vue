@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">grid栅格布局demo</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>Grid布局方式借鉴了平面装帧设计中的格线系统，将格线运用在屏幕上，而不再是单一的静态页面，可以称之为真正的栅格。</p>
                 <p>总的来说 Web 布局经历了以下四个阶段：</p>
                 <p>table表格布局 - float浮动及position定位布局 - flex弹性盒模型布局 - grid栅格布局</p>

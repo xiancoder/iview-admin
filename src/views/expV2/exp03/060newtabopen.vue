@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">打开新页面</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p> 业务需要 我要在新页面打开网页 / 而且是要打开多个</p>
                 <p> 之前收录的代码普遍使用的都是<b>a  href="<a href="http://www.baidu.com" target="_new">http://www.baidu.com</a>" target="_new"</b> </p>
                 <p> 效果呵呵 <span class="text-info">第一次打开完美</span> || <span class="text-danger">第N次打开 会无限覆盖第一个</span> || <span class="text-warning">放弃吧</span> </p>

@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">反引号的推荐使用</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <script type="text/js">
                     var a1 = `string text`; // "string text"
                     var a2 = `string text line 1

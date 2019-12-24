@@ -4,6 +4,8 @@
             <div class="blogTitle">API异步请求模块的使用麻烦的不行???那是你没看到优点和好处</div>
             <Divider orientation="right">未应用于项目使用的标准或规范</Divider>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>1 代码集中 相同逻辑的处理办法唾手可得</p>
                 <p>2 方便接口的增查改删流程单元测试 (没错接口的测试独立于页面逻辑之外)</p>
                 <p>3 接口wiki都可以写在这里 方便查收备份 (接口归前端写)</p>

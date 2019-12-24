@@ -4,7 +4,8 @@
             <div class="blogTitle">日期范围框优化写法 使之更易用</div>
             <Divider orientation="right">可以直接投入项目使用的标准或规范</Divider>
             <div class="blogContent" v-highlight>
-                <p>将所有内容都写在标签上可以极大的方便复制粘贴党的使用</p>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效 可以极大的方便复制粘贴党的使用</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p class="text-danger">新发现 这个控件可以使用model指令 其绑定的值为date类型</p>
                 <p class="text-danger">经研究 默认值的格式无所谓 采用#api中的format也无差别转格式</p>
                 <p class="text-danger">墙裂建议以下写法</p>

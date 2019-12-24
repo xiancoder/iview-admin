@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">iview 中的 button</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <div style="line-height: 45px;">
                     <Button>Default</Button><Divider type="vertical" />
                     <Button type="primary">Primary</Button><Divider type="vertical" />

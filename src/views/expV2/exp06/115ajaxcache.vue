@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">多次请求同一接口的缓存方法</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>找资料解决一下 人事管理中部门下拉框 内容多 快速切换页面造成多次读取的现象</p>
                 <p>ajax搞一个30秒缓存 相同的请求(url+参数) 第二次不再请求接口</p>
                 <p>使用axios的前后守卫 失败了 不知道怎么拦截已经返回参数</p>

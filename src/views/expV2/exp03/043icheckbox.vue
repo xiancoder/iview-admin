@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">Checkbox 复选框</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <div>
                     <Checkbox v-model="b1">Checkbox</Checkbox>
                     <Checkbox v-model="b1" disabled>Checkbox</Checkbox>

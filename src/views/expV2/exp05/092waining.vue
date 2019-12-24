@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">警告内容样式</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <div class="infomsg">
                     当启用能量功能后，会员可通过相关操作获取相对应的能量；
                     <br>

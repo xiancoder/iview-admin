@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">大发现啊大发现啊大发现啊</div>
             <div class="blogContent">
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>点击测试异步行为 <button id="ggg" @click="getJobList1">getJobList1</button> / <button id="ggg2" @click="getJobList2">getJobList2</button> / jList1 = {{jList1}} / jList2 = {{jList2}}</p>
                 <h2>我擦擦擦 xxx () { 是this指向有效的声明方式 () => {} 就不是了么</h2>
                 <h1>大发现啊大发现啊大发现啊<font color="red"> 大发现啊 </font>大发现啊大发现啊大发现啊</h1>

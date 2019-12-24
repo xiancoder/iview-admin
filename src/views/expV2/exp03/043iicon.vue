@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">iview 中的 Icon 全部列举</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <script type="text/html">
                     <Icon type="ios-loading"/> ios-loading // 点击以下icon可以自动复制到完整html
                 </script>

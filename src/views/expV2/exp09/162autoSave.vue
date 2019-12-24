@@ -6,6 +6,7 @@
                 <p><Icon type="md-checkmark" style="color:green"/> 监听表单对象frm </p>
                 <p><Icon type="md-checkmark" style="color:green"/> 自动提交使用节流方式 </p>
                 <p><Icon type="md-checkmark" style="color:green"/> 提交前判断是否最新结果已经被提交 </p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <hr />
                 <Form ref="form6671" :model="frm" :rules="frmValidate" :label-width="150">
                     <FormItem label="测试">

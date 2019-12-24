@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">联系人卡片 css contactCard</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 挺好的css 看着哪里可以用上</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <div class="contactCard">
                     <main>
                         <section>
@@ -81,7 +83,7 @@ export default {
     .contactCard main section { border-radius: 5px; float: left; width: 100%; background-color: #eb524a; }
     .contactCard main section .content { float: left; width: 100%; padding: 20px 30px 50px 30px; position: relative; text-align: center; }
     .contactCard main section .content img { display: inline-block; width: 80px; border-radius: 50%; }
-    .contactCard main section .content aside { float: left; width: 100%; color: #ffffff; margin-top: 10px; }
+    .contactCard main section .content aside { float: right; width: 70%; color: #ffffff; }
     .contactCard main section .content aside h1 { font-weight: 100; font-size: 22px; margin-bottom: 10px; }
     .contactCard main section .content aside p { font-size: 14px; letter-spacing: .5px; line-height: 160%; }
     .contactCard main .title { float: left; width: 100%; background-color: #c63535; /*max-height: 0px;*/ border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; overflow: hidden; -webkit-transition: all 0.55s; -moz-transition: all 0.55s; -o-transition: all 0.55s; transition: all 0.55s; }

@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">QQ头像排列样式</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>QQ头像地址 可以直接获取</p>
                 <img src="http://q1.qlogo.cn/g?b=qq&nk=2546066152&s=100" style=" width:95px;border:1px solid #fff;">
                 <img src="http://q1.qlogo.cn/g?b=qq&nk=2187392909&s=100" style=" width:95px;border:1px solid #fff;">

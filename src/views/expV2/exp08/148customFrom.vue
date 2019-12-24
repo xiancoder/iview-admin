@@ -6,6 +6,7 @@
                 <p><Icon type="md-checkmark" style="color:green"/> 可以影响到自定义组件 校验行为是发生在Form控件内的 相当于watch行为</p>
                 <p><Icon type="md-checkmark" style="color:green"/> 我采用frm.p02来连结来父子组件 相当于一个缺失版的双向绑定</p>
                 <p><Icon type="md-checkmark" style="color:red"/> 如果是一层结构则需要emit广播事件 待尝试</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <hr />
                 <div class="xian-title-tabs">
                     <h1>表单名称</h1>

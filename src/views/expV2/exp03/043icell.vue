@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">cell 单元格 窄缝中的配置表单</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Card title="Options" icon="ios-options" :padding="0" shadow style="width: 300px;">
                     <CellGroup>
                         <Cell title="Only show titles" />

@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle"></div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p></p>
                 <script type="text/html">
                 </script>

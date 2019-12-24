@@ -34,107 +34,67 @@ export const routerList = [
     makeMultiLevelRoute({
         path: 'exp', title: '经验集(旧)', icon: 'md-menu',
         children: [
-            {
-                path: 'exp1', title: '卷壹', icon: 'md-camera',
-                children: [
-                    {power: '0000', path: '001bebal', title: 'Bebal 相关配置'},
-                    {power: '0000', path: '004cname', title: '组件 name 属性'},
-                    {power: '0000', path: '003eslintignore', title: 'Eslint 指定校验目录'},
-                    {power: '0000', path: '005oldTable', title: '原生表格 lodash尝试'},
-                    {power: '0000', path: '008tableNoData', title: '表格-无数据'},
-                    {power: '0000', path: '008tableObj', title: '表格-超集中(废弃)'},
-                    {power: '0000', path: '009tableMixin', title: '表格-mixin(废弃)'}
-                ]
-            }, {
-                path: 'exp2', title: '卷贰', icon: 'md-cart',
-                children: [
-                    {power: '0000', path: '024validate', title: '表单所有校验方式'},
-                    {power: '0000', path: '025vvvali', title: '表单复杂校验方式'},
-                    {power: '0000', path: '028pluginLike', title: '插件比喻'},
-                    {power: '0000', path: '030vueVision', title: 'VUE竟然好几个版本'},
-                    {power: '0000', path: '031mail', title: 'JS发邮件权限'},
-                    {power: '0000', path: '032api', title: '$api模块说明 v1'},
-                    {power: '0000', path: '033exports', title: 'exports 简单说明'},
-                    {power: '0000', path: '035unitTest', title: '单元测试入门'},
-                    {power: '0000', path: '036unitTest', title: '单元测试路由'},
-                    {power: '0000', path: '037unitTest', title: '单元测试 Axios'},
-                    {power: '0000', path: '038unitTest', title: '表单单元流程'}
-                ]
-            }, {
-                path: 'exp3', title: '卷叁', icon: 'md-chatbubbles',
-                children: [
-                    {power: '0000', path: '041zhihu3layout', title: '三大框架简比'},
-                    {power: '0000', path: '042jsx', title: 'JSX 语法详解'},
-                    {power: '0000', path: '058routerpic', title: '路由浏览图片'},
-                    {power: '0000', path: '059debounce', title: '防抖节流测试'}
-                ]
-            }, {
-                path: 'exp4', title: '卷肆', icon: 'md-construct',
-                children: [
-                    {power: '0000', path: '061whilePromise', title: 'Promise 挂起'},
-                    {power: '0000', path: '066redux', title: 'Redux 基础'},
-                    {power: '0000', path: '067promiseEs6', title: 'Promise 基础'},
-                    {power: '0000', path: '072uglifyjs', title: 'uglifyjs 拯救旧项目'},
-                    {power: '0000', path: '074webpack', title: 'webpack 检查主机'},
-                    {power: '0000', path: '076single', title: '单点登录概述'},
-                    {power: '0000', path: '080yin', title: '名词缩写发音'}
-                ]
-            }, {
-                path: 'exp5', title: '卷伍', icon: 'md-color-fill',
-                children: [
-                    {power: '0000', path: '081templete', title: '标签 templete'},
-                    {power: '0000', path: '083innerDB', title: 'innerDB 数据库'}
-                ]
-            }, {
-                path: 'exp6', title: '卷陆', icon: 'md-easel',
-                children: [
-                    {power: '0000', path: '101looknodown', title: '评审看不下去代码'},
-                    {power: '0000', path: '104echart', title: 'echart'},
-                    {power: '0000', path: '106yiyongxing', title: '易用性描述'},
-                    {power: '0000', path: '107kaifakunjing', title: '需求开发|困境'},
-                    {power: '0000', path: '108axios', title: 'Axios详解'},
-                    {power: '0000', path: '111name', title: '命名法'},
-                    {power: '0000', path: '112serverUpload', title: 'node 文件上传'},
-                    {power: '0000', path: '113serverimg', title: 'node 静态资源'},
-                    {power: '0000', path: '117rule', title: '规范想法'},
-                    {power: '0000', path: '119cmd', title: 'Node 执行 CMD'},
-                    {power: '0000', path: '120pginfo', title: 'Node 批量更新版本'}
-                ]
-            }, {
-                path: 'exp7', title: '卷柒', icon: 'md-flame',
-                children: [
-                    {power: '0000', path: '121youku', title: '优酷视频'},
-                    {power: '0000', path: '122mimang', title: '略迷茫'},
-                    {power: '0000', path: '124mulLevelTable', title: '尝试多层表格'},
-                    {power: '0000', path: '130jslist', title: '好多技术栈'},
-                    {power: '0000', path: '131package', title: '自定义脚本命令'},
-                    {power: '0000', path: '133codetip', title: '编码建议'},
-                    {power: '0000', path: '136vuex', title: 'vuex 讲解'},
-                    {power: '0000', path: '137vue', title: 'vue 公共方法'}
-                ]
-            }, {
-                path: 'exp8', title: '卷捌', icon: 'md-game-controller-b',
-                children: [
-                    {power: '0000', path: '141dspwhat', title: 'DSP 项目产品思路'},
-                    {power: '0000', path: '151iframe', title: 'iframe 父子页面'},
-                    {power: '0000', path: '152websocket', title: 'WebSocket 协议'},
-                    {power: '0000', path: '156img404', title: '图片404补偿(无效)'},
-                    {power: '0000', path: '160wordCss', title: '仿 Word 的 Css'}
-                ]
-            }, {
-                path: 'exp9', title: '卷玖', icon: 'md-game-controller-b',
-                children: [
-                    {power: '0000', path: '163svg', title: 'SVG symbol模版'},
-                    {power: '0000', path: '164socket', title: 'Socket 研究记录'},
-                    {power: '0000', path: '165cnzz', title: 'Cnzz 研究记录'},
-                    {power: '0000', path: '166loadrule', title: 'Vue 加载顺序'},
-                    {power: '0000', path: '167version', title: '版本发布规则'},
-                    {power: '0000', path: '168component', title: '组件编写'},
-                    {power: '0000', path: '169directive', title: '指令编写'},
-                    {power: '0000', path: '170icard', title: 'IviewCard'},
-                    {power: '0000', path: '171contact', title: '联系人卡片 Css'}
-                ]
-            }
+            {power: '0000', path: '001bebal', title: 'Bebal 相关配置'},
+            {power: '0000', path: '004cname', title: '组件 name 属性'},
+            {power: '0000', path: '003eslintignore', title: 'Eslint 指定校验目录'},
+            {power: '0000', path: '005oldTable', title: '原生表格 lodash尝试'},
+            {power: '0000', path: '008tableNoData', title: '表格-无数据'},
+            {power: '0000', path: '008tableObj', title: '表格-超集中(废弃)'},
+            {power: '0000', path: '009tableMixin', title: '表格-mixin(废弃)'},
+            {power: '0000', path: '024validate', title: '表单所有校验方式'},
+            {power: '0000', path: '025vvvali', title: '表单复杂校验方式'},
+            {power: '0000', path: '028pluginLike', title: '插件比喻'},
+            {power: '0000', path: '030vueVision', title: 'VUE竟然好几个版本'},
+            {power: '0000', path: '031mail', title: 'JS发邮件权限'},
+            {power: '0000', path: '032api', title: '$api模块说明 v1'},
+            {power: '0000', path: '033exports', title: 'exports 简单说明'},
+            {power: '0000', path: '035unitTest', title: '单元测试入门'},
+            {power: '0000', path: '036unitTest', title: '单元测试路由'},
+            {power: '0000', path: '037unitTest', title: '单元测试 Axios'},
+            {power: '0000', path: '038unitTest', title: '表单单元流程'},
+            {power: '0000', path: '041zhihu3layout', title: '三大框架简比'},
+            {power: '0000', path: '042jsx', title: 'JSX 语法详解'},
+            {power: '0000', path: '058routerpic', title: '路由浏览图片'},
+            {power: '0000', path: '059debounce', title: '防抖节流测试'},
+            {power: '0000', path: '061whilePromise', title: 'Promise 挂起'},
+            {power: '0000', path: '066redux', title: 'Redux 基础'},
+            {power: '0000', path: '067promiseEs6', title: 'Promise 基础'},
+            {power: '0000', path: '072uglifyjs', title: 'uglifyjs 拯救旧项目'},
+            {power: '0000', path: '074webpack', title: 'webpack 检查主机'},
+            {power: '0000', path: '076single', title: '单点登录概述'},
+            {power: '0000', path: '080yin', title: '名词缩写发音'},
+            {power: '0000', path: '081templete', title: '标签 templete'},
+            {power: '0000', path: '083innerDB', title: 'innerDB 数据库'},
+            {power: '0000', path: '101looknodown', title: '评审看不下去代码'},
+            {power: '0000', path: '104echart', title: 'echart'},
+            {power: '0000', path: '106yiyongxing', title: '易用性描述'},
+            {power: '0000', path: '107kaifakunjing', title: '需求开发|困境'},
+            {power: '0000', path: '108axios', title: 'Axios详解'},
+            {power: '0000', path: '111name', title: '命名法'},
+            {power: '0000', path: '112serverUpload', title: 'node 文件上传'},
+            {power: '0000', path: '113serverimg', title: 'node 静态资源'},
+            {power: '0000', path: '117rule', title: '规范想法'},
+            {power: '0000', path: '119cmd', title: 'Node 执行 CMD'},
+            {power: '0000', path: '120pginfo', title: 'Node 批量更新版本'},
+            {power: '0000', path: '121youku', title: '优酷视频'},
+            {power: '0000', path: '122mimang', title: '略迷茫'},
+            {power: '0000', path: '124mulLevelTable', title: '尝试多层表格'},
+            {power: '0000', path: '130jslist', title: '好多技术栈'},
+            {power: '0000', path: '131package', title: '自定义脚本命令'},
+            {power: '0000', path: '133codetip', title: '编码建议'},
+            {power: '0000', path: '136vuex', title: 'vuex 讲解'},
+            {power: '0000', path: '137vue', title: 'vue 公共方法'},
+            {power: '0000', path: '141dspwhat', title: 'DSP 项目产品思路'},
+            {power: '0000', path: '151iframe', title: 'iframe 父子页面'},
+            {power: '0000', path: '152websocket', title: 'WebSocket 协议'},
+            {power: '0000', path: '156img404', title: '图片404补偿(无效)'},
+            {power: '0000', path: '160wordCss', title: '仿 Word 的 Css'},
+            {power: '0000', path: '163svg', title: 'SVG symbol模版'},
+            {power: '0000', path: '164socket', title: 'Socket 研究记录'},
+            {power: '0000', path: '165cnzz', title: 'Cnzz 研究记录'},
+            {power: '0000', path: '166loadrule', title: 'Vue 加载顺序'},
+            {power: '0000', path: '167version', title: '版本发布规则'},
+            {power: '0000', path: '170icard', title: 'IviewCard'}
         ]
     }),
 
@@ -270,6 +230,8 @@ export const routerList = [
                 path: 'exp09', title: '卷玖', icon: 'md-game-controller-b',
                 children: [
                     {power: '0000', path: '162autoSave', title: '表单自动保存'},
+                    {power: '0000', path: '168component', title: '组件编写'},
+                    {power: '0000', path: '169directive', title: '指令编写'},
                     {power: '0000', path: '172rewriteRoutePush', title: '复写路由 push 方法'},
                     {power: '0000', path: '173notification', title: '桌面通知简单API'},
                     {power: '0000', path: '174console', title: 'Console 详解'},
@@ -334,6 +296,8 @@ export const routerList = [
                 children: [
                     {power: '0000', path: '220git', title: '公司GIT管理流程'},
                     {power: '0000', path: '221keyup', title: '按键监听事件写法'},
+                    {power: '0000', path: '222contact', title: '联系人卡片 Css'},
+                    {power: '0000', path: '223chromeCopyTab', title: '谷歌复制网页bug'},
                     {power: '0000', path: '300brove', title: '收集300个'}
                 ]
             }
@@ -469,7 +433,7 @@ export const routerList = [
         ]
     }),
     makeTwoLevelRoute({
-        path: 'excel', title: 'EXCEL相关(未测试)', icon: 'ios-stats',
+        path: 'excel', title: 'EXCEL相关', icon: 'ios-stats',
         children: [
             {power: '0000', path: 'uploadexcel', icon: 'md-add', title: '导入EXCEL'},
             {power: '0000', path: 'exportexcel', icon: 'md-download', title: '导出EXCEL'}

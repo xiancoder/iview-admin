@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">float需要注意浮动元素的高度不一样导致塌陷的问题</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>float: left 预想完美的效果</p>
                 <Row :gutter="20">
                     <Col span="18">

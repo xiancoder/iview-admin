@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">Iview AutoComplete</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>大声的说要找啥</p>
                 <AutoComplete v-model="searchMenuVale" @on-search="handleSearch" placeholder="大声的说要找啥"
                     style="width:162px;display:block;">

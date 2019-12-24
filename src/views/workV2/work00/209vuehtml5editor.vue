@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">关于 Vue 插件富文本框 vue-html5-editor</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <div class="xian-title-tabs">
                     <h1>表单名称</h1>
                     <Divider/>

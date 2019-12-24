@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">iview 中的 Notice</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>常用于以下场景：</p>
                 <p>通知内容带有描述信息</p>
                 <p>系统主动推送</p>

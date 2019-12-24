@@ -4,6 +4,7 @@
             <div class="blogTitle">复写路由 push 方法</div>
             <div class="blogContent" v-highlight>
                 <p><Icon type="md-checkmark" style="color:green"/> 测试有效 代码写法可以借鉴</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>解决vue项目路由出现 message: "Navigating to current location (XXX) is not allowed" 的问题</p>
                 <p>原因：在路由中添加了相同的路由。 解决： 重写路由的push方法</p>
                 <p>在src/router/index.js 里面import Router from 'vue-router'下面写入下面方法即可</p>

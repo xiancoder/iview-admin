@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">Flex布局</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>布局的传统解决方案，基于盒状模型，依赖 display属性 + position属性 + float属性。</p>
                 <p>2009年，W3C提出了一种新的方案—-Flex布局，目前，它已经得到了所有浏览器的支持</p>
                 <p>

@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">Flex布局的高级应用</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>流式布局: 好处 大大减少了css的兼容问题和代码量</p>
                 <p>流式布局: 坏处 必须手动指定空白单位数量</p>
                 <script type="text/css">

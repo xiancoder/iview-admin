@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">meta标签</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>meta标签共有两个属性，分别是http-equiv属性和name属性</p></p>
                 <p>name属性主要用于描述网页，比如网页的关键词，叙述等。</p>
                 <p>与之对应的属性值为content，content中的内容是对name填入类型的具体描述，便于搜索引擎抓取。</p>

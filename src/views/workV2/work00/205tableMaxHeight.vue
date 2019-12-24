@@ -6,7 +6,7 @@
                 <Divider orientation="right">可以直接投入项目使用的标准或规范</Divider>
                 <div class="blogContent" v-highlight>
                     <p><Icon type="md-checkmark" style="color:green"/> 本模板经历实战(OAPC)可以使用 </p>
-                    <p></p>
+                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                     <script type="text/html" v-pre>
                         <Table border :loading="loading" :columns="columns" :data="tableData"
                             :maxHeight="maxheight"

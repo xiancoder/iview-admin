@@ -5,6 +5,8 @@
                 <div class="blogTitle">表格 搜索项 用法规范</div>
                 <Divider orientation="right">可以直接投入项目使用的标准或规范</Divider>
                 <div class="blogContent" v-highlight>
+                    <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                     <script type="text/html" v-pre>
                         <DatePicker type="month" :value="search.date" placeholder="选择日期" format="yyyy-MM"
                             @on-change="(date)=>{search.date=date}" style="width: 150px">

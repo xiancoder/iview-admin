@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">除了默认设置的核心指令( v-model 和 v-show ), Vue 也允许注册自定义指令</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p><input v-focus>;</p>
                 <script type="text/js">
                     /* 注册一个全局自定义指令 v-focus*/

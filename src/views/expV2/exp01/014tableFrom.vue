@@ -6,6 +6,7 @@
                 <div class="blogContent" v-highlight>
                     <p><Icon type="md-checkmark" style="color:red"/> 请将弹窗表单中的表单作为组件引入 而非直接在本页面中编写 (杜绝又臭又长)</p>
                     <p><Icon type="md-checkmark" style="color:green"/> 2019年11月27日18:07:07 更新 如果逻辑复杂超过两三个输入框 最好独立出来</p>
+                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                     <Button type="default" @click="model.show1=true">点击弹出表单</Button>
                     <Modal v-model="model.show1" closable :mask-closable="false" footer-hide width="600">
                         <from1 :startDate="startDate" @on-submit="handleSubmit1"/>

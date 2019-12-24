@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">Vue keep-alive实践总结 </div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>keep-alive是Vue.js的一个内置组件。</p>
                 <p>它能够将不活动的组件实例保存在内存中，而不是直接将其销毁，它是一个抽象组件，不会被渲染到真实DOM中，也不会出现在父组件链中。</p>
                 <script type="text/html">

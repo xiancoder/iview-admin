@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">边框样式列举</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <div id="repeat">图片将会循环平铺到整个边框区域。</div>
                 <div id="stretch">图片将会拉伸平铺到整个边框区域。</div>
                 <div id="round">图片将会循环平铺到整个边框区域。</div>

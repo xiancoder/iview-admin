@@ -9,6 +9,8 @@
         <div class="blog">
             <div class="blogTitle">iview 布局</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Row :gutter="16">
                     <Col :md="12" :lg="12" :xl="12" :xxl="12">
                         <p> xs ≥576px 响应式栅格，可为栅格数或一个包含其他属性的对象  Number | Object  -</p>

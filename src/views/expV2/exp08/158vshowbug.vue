@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">VUE V-SHOW 用起来感觉有问题</div>
             <div class="blogContent">
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>v-if/v-show 输入框显示隐藏 测试</p>
                 <hr />
                 <span>input1 = {{input1}}</span>

@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">文件下载进度条</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Button type="primary" :loading="loading" @click="getFileDownload()">{{ !loading?'下载':'下载中......' }}</Button>
                 <Button type="primary" @click="loading = !loading">恢复</Button>
                 <Progress :percent="percent" status="active" style="width:400px"/>

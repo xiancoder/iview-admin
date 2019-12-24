@@ -6,6 +6,7 @@
                 <div class="blogContent" v-highlight>
                     <p><Icon type="md-close" style="color:red"/> 4.0.0出的新功能 需求格式长的丑</p>
                     <p><Icon type="md-checkmark" style="color:green"/> 满足需求 需要额外方法来整理数据</p>
+                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                     <script type="text/html" v-pre>
                         <Table border :loading="loading" :columns="columns" :data="tableData" @on-sort-change="hendleSort"
                             show-summary :summary-method="handleSum">

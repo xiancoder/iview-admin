@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">同一项目不同浏览器tab之间的ls事件通知</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>我们在开发应用时候，常常会遇到多个多TabTab状态不同步的问题。</p>
                 <p class="text-info">2019年11月25日15:16:19 举例你打开两个淘宝 在第一个选中了一双鞋 然后直接切换到第二个网页去看购物车</p>
                 <p class="text-info">2019年11月25日15:16:19 如果此刻你看不到那双鞋 那么你就会怀疑人生 然后刷新网页 ...</p>

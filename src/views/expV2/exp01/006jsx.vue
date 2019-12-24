@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">JSX写法 实现 可编辑表格</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>如果我要在表格的最后放两个按钮 得用scope方式来</p>
                 <p>从 3.2.0 版本开始支持 slot-scope 写法。</p>
                 <p>在 columns 的某列声明 slot 后，就可以在 Table 的 slot 中使用 slot-scope。</p>

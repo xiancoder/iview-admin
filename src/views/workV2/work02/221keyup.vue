@@ -4,6 +4,8 @@
             <div class="blogTitle">事件处理 事件参数 键盘事件 相应方式</div>
             <Divider orientation="right">项目使用的标准或规范</Divider>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>可以用 v-on 指令监听 DOM 事件，并在触发时运行一些 JavaScript 代码。</p>
                 <script type="text/html" v-pre>
                     <button v-on:click="counter += 1">Add 1</button>

@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">vue-router 怎么获取页面的历史记录？</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p> 即，怎么获取用户访问过的页面的全部历史记录</p>
                 <p>先让我们来看看this.$router里面有啥内容</p>
                 <script type="text/html">

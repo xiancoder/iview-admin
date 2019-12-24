@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">JS究竟能在浏览器中做些什么事情</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <h2>App/浏览器中 保存快捷方式</h2>
                 <p>能否使用JS或者其他附属前端技术实现 pc端/移动端 保存当前页面到桌面快捷方式???</p>
                 <p>- 首先确认 旧版IE曾经有这样的功能</p>

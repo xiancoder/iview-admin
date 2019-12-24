@@ -4,7 +4,8 @@
             <div class="blogTitle">关于Vue中的单选复选的校验</div>
             <Divider orientation="right">项目使用的标准或规范</Divider>
             <div class="blogContent" v-highlight>
-                <p></p>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Form ref="from0982" :model="frm" :rules="frmValidate" :label-width="150">
                     <FormItem label="测试">
                         <Button type="primary" @click="handleSubmit()">测试</Button>

@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">iview input 应用场景总结</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p><Icon type="md-checkmark" style="color:green"/> 经历实战 表现很好</p>
                 <div>
                     <Input v-model="value15" prefix="ios-clock-outline" placeholder="Enter number" style="width: 120px" />

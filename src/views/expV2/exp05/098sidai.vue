@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">丝带样式</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <section>
                     <div class="ribbon"><span class="ribbon1"><span>丝带效果1</span></span></div>
                     <div class="ribbon"><span class="ribbon2">丝<br>带<br>效<br>果<br>2</span></div>

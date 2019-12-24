@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">换行 溢出文本 省略号 样式</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>如果我们要表格中的文字强制换行(尤其是在一长串英文文本，并且中间无空格分隔的情况下)，以达到使过长的文字不撑破表格的目的，就需要在样式中添加以下两行代码：</p>
                 <script type="text/css">
                     word-wrap: break-word;

@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">使用select选择器来进行表单填写</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>基本用法。可以使用 v-model 双向绑定数据。</p>
                 <p>单选时，value 只接受字符串和数字类型，多选时，只接受数组类型，组件会自动根据Option的value来返回选中的数据。</p>
                 <p>可以给Select添加 style 样式，比如宽度。</p>

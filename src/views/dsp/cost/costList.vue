@@ -85,14 +85,14 @@ export default {
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
             order: { orderKey: '', order: '' }, // 排序 变量名最好原样
             columns1: [
-                {type: 'selection', width: 70, align: 'center'},
-                {title: '消耗日期', width: 95, key: 'date'},
-                {title: '广告主', key: 'ader_name'},
-                {title: '用户名', key: 'user_name'},
-                {title: '业务名称', key: 'buis_name'},
-                {title: '预估消耗金额', key: 'cost_pre', render: h.moneyFormat('cost_pre')},
-                {title: '实际消耗金额', key: 'cost_real', render: h.moneyFormat('cost_real')},
-                {title: '状态', key: 'state', render: h.readArr('state', stateArr)}
+                {type: 'selection', width: 50, align: 'left'},
+                {title: '消耗日期', minWidth: 100, key: 'date'},
+                {title: '广告主', minWidth: 200, key: 'ader_name'},
+                {title: '用户名', minWidth: 200, key: 'user_name'},
+                {title: '业务名称', minWidth: 100, key: 'buis_name'},
+                {title: '预估消耗金额', minWidth: 100, key: 'cost_pre', render: h.moneyFormat('cost_pre')},
+                {title: '实际消耗金额', minWidth: 100, key: 'cost_real', render: h.moneyFormat('cost_real')},
+                {title: '状态', minWidth: 100, key: 'state', render: h.readArr('state', stateArr)}
             ],
             'serrchParam': null, // 实际搜索项
             'serrchBack': null, // 搜索项备份

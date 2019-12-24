@@ -9,7 +9,7 @@
                     <p><Icon type="md-checkmark" style="color:green"/> 2019年11月27日17:33:16 通过了检验 本套流程可以投入生产 </p>
                     <p><Icon type="md-checkmark" style="color:green"/> 2019年12月6日17:32:15 完美优化page组件 </p>
                     <p><Icon type="md-checkmark" style="color:green"/> 2019年12月12日16:55:23 maxHeight默认配置降级去除 </p>
-                    <p></p>
+                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                     <script type="text/html" v-pre>
                         <div class="tableLayout">
                             <tab></tab>

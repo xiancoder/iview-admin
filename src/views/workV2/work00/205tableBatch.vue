@@ -7,6 +7,7 @@
                 <div class="blogContent" v-highlight>
                     <p><Icon type="md-checkmark" style="color:green"/> 本模板经历实战可以使用 </p>
                     <p><Icon type="md-checkmark" style="color:green"/> 批量选中数据 分页以后 table不保存旧选中 返回上一页 不会选中已有内容 </p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                     <p>给 data 项设置特殊 key _checked: true 可以默认选中当前项。</p>
                     <p>给 data 项设置特殊 key _disabled: true 可以禁止选择当前项。</p>
                     <p></p>

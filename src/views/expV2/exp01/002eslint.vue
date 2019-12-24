@@ -4,6 +4,7 @@
             <div class="blogTitle">ESLint 我的习惯</div>
             <div class="blogContent" v-highlight>
                 <p><Icon type="md-checkmark" style="color:green"/> 非常有效 各项目基本都是随插随用</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>配置文件在项目根目录里，文件名以 .eslintrc.* 为名。</p>
                 <p>如果想保留eslint的语法检测，那就把不符合自己习惯的规则去掉吧。</p>
                 <ul>

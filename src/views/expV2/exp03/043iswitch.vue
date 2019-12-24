@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">i-switch 开关标记</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Alert type="warning" show-icon>注意：没有使用 iview-loader 时，必须使用 i-switch 标签。</Alert>
                 <div>
                     <i-switch v-model="switch1" @on-change="change" /><Divider type="vertical" />

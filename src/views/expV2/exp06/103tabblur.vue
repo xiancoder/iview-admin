@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">js判断当前页面是否失去焦点(切换标签页)</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>页面上有些比较消耗资源的操作，比如动画，最好在标签页切换的时候暂停，再切换回来后恢复, </p>
                 <p>如下代码实现了这个操作，利用document.hidden属性判断当前页面的可见性，同时也利用了visibilitychange事件</p>
                 <script type="text/js">

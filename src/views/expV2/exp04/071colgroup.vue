@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">表格中的列属性colgroup</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>所有主流浏览器都支持 colgroup 标签。</p>
                 <p>colgroup 标签用于对表格中的列进行组合，以便对其进行格式化。</p>
                 <p>通过使用 colgroup 标签，可以向整个列应用样式，而不需要重复为每个单元格或每一行设置样式。</p>

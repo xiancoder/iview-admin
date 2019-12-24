@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">状态管理 触发/监听</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>状态值变化 {{ teststate1 }}</p>
                 <p>当前状态值为 {{ teststate2 }}</p>
                 <p><Button @click="changeState()">changeState</Button></p>

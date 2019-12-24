@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">自动根据div的宽度来计算文本字体大小</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Row>
                     <Col span="12">
                         <div id="try111" style="width:200px;height:60px;background:Red;color: #fff;">

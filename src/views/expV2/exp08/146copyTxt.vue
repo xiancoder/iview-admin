@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">我想一键复制一些东西</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>{{code}}</p>
                 <Button @click="copyActiveCode($event, code)">一键复制"我是要当海贼王的男人"</Button>
                 <script type="text/html" v-pre>

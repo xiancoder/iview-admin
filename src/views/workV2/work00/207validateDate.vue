@@ -4,7 +4,8 @@
             <div class="blogTitle">关于Vue中的日期框的校验</div>
             <Divider orientation="right">项目使用的标准或规范</Divider>
             <div class="blogContent" v-highlight>
-                <p></p>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Form ref="from0982" :model="frm" :rules="frmValidate" :label-width="150">
                     <Divider orientation="left"> <span class="text-danger">很重要的一项 format="yyyy-MM-dd" 已经写入默认配置</span> </Divider>
                     <Divider orientation="left"> <span class="text-danger">很重要的一项 :editable="false" 已经写入默认配置</span> </Divider>

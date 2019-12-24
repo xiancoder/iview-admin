@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">Vue点击登录的时候自动加了问号?</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>最近在用Vue来做登录页面, 当输入账号和密码之后, 点击登录刷新了一下, 莫名的在我路径后面多加了一个问号, 我在代码里打印没有打印出来, 但是当我第二次点击的时候才打印出来, 在打印后面给了路由跳转, 最后到路由跳转却执行不了?, 其次用debugger来做调试的, 我当前的判断竟然没有进去, 很奇怪, 判断可以打印, 用debugger调试没有执行</p>
                 <p>第一点击登录, 刷新了一下, 路径后面多加一个问号</p>
                 <p>第二次点击登录, 才打印出来</p>

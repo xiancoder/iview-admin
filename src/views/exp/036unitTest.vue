@@ -4,7 +4,7 @@
         <br /> <hr /> <br />
         <p><Icon type="md-checkmark" style="color:green"/> 有效 可行 代码见test文件夹中</p>
         <br /> <hr /> <br />
-        <app-button size="lg" @click="goVIPs">跳转 this.$router.push({ name: 'exp2_035unitTest' }) </app-button>
+        <app-button size="lg" @click="goVIPs">跳转 this.$router.push({ name: 'exp_035unitTest' }) </app-button>
         <br /> <br /> <hr /> <br />
         <input type="text" value="3333">
     </div>
@@ -18,7 +18,7 @@ export default {
     },
     methods: {
         goVIPs () {
-            this.$router.push({ name: 'exp2_035unitTest' })
+            this.$router.push({ name: 'exp_035unitTest' })
         }
     },
     mounted () {

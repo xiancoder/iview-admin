@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">组件（Component）是 Vue.js 最强大的功能之一。学习一下怎么编写组件</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>资料 <a href="http://doc.vue-js.com/v2/guide/components.html#什么是组件？"></a></p>
                 <p>要注册一个全局组件，你可以使用 Vue.component(tagName, options)。</p>
                 <script type="text/js">

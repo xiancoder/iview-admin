@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">JS之实际参数转换成数组</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>有时侯需要将某个函数传递给其它函数执行，并且这些函数的参数个数是不确定的，可以先将 arguments 转为数组，再 apply 一下即可：</p>
                 <script type="text/js">
                     function callme(a, b, c, d) {

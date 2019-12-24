@@ -57,7 +57,9 @@
                     <Col span="24" v-if="frm.is_auth!=0">
                         <p style="margin-top:20px">资质证件 :</p>
                         <p style="margin-top:20px">
-                            <img class="certificate" v-for="(item, index) in frm.certificates" :key="'xx'+index" :src="item" alt="" />
+                            <viewer :images="frm.certificates">
+                                <img class="certificate" v-for="(item, index) in frm.certificates" :src="item" :key="'xx'+index" height="100">
+                            </viewer>
                         </p>
                     </Col>
                 </Row>
@@ -76,6 +78,7 @@
     </div>
 </template>
 <script>
+import '@/plugins/viewer' // 三方插件
 import { extend } from '@/utils/object'
 import { goto } from '@/tools'
 

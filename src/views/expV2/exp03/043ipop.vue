@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">Tooltip文字提示/气泡提示</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Tooltip content="Here is the prompt text">
                     A balloon appears when the mouse passes over this text
                 </Tooltip>

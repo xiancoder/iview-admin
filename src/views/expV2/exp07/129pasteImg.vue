@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">直接从剪贴板获得截图数据 并上传 走展示流程</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <h3>实际工作中如果用的好的话，这就是技术储备</h3>
                 <p>我要尝试一下从网站上，截图或者资料，然后通过拷贝复制粘贴的方式来，在浏览器上实时转换成bc64格式</p>
                 <div ref="insideDomRef" style="min-height: 150px; width: 400px; display: block; background: #FFC107;">

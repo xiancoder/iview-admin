@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">阴影样式</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Row>
                     <Col span="8">
                         <div class="box standard jsw jsw-standard"> <p>风萧萧兮易水寒，壮士一去兮不复还。<br>探虎穴兮入蛟宫，仰天呼气兮成白虹。</p> </div>

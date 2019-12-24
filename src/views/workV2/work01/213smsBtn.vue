@@ -4,6 +4,8 @@
             <div class="blogTitle">工作需要 搞一个全局计时的短信验证码按钮</div>
             <Divider orientation="right">项目使用的标准或规范</Divider>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效 随插随用</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p></p>
                 <Form ref="from0982" :model="frm" :rules="frmValidate" :label-width="150">
                     <FormItem label="测试">

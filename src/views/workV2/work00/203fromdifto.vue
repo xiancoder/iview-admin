@@ -4,6 +4,8 @@
             <div class="blogTitle">本文档指的是 读取数据库读来A格式但是提交时候却是B格式</div>
             <Divider orientation="right">项目使用的标准或规范</Divider>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>1 完整格式用于渲染展示 / id数组用于提交</p>
                 <script type="text/js">
                     /* 读取接口 ajax */

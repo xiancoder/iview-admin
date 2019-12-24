@@ -5,6 +5,8 @@
                 <div class="blogTitle">各种功能弹框 in @/tools</div>
                 <Divider orientation="right">项目使用的标准或规范</Divider>
                 <div class="blogContent" v-highlight>
+                    <p><Icon type="md-checkmark" style="color:green"/> 有效 随插随用</p>
+                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                     <p></p>
                     <Button type="default" @click="confirm">confirm</Button>
                     <Button type="default" @click="alertMsg">alertMsg</Button>

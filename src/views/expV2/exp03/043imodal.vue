@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">iview 中的 Modal</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Button type="primary" @click="modal6 = true">Display dialog box</Button>
                 <Modal v-model="modal6" title="Title" :loading="loading" @on-ok="asyncOK">
                     <p>After you click ok, the dialog box will close in 2 seconds.</p>

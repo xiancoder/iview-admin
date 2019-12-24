@@ -4,6 +4,7 @@
             <div class="blogTitle">过滤器收集</div>
             <div class="blogContent" v-highlight>
                 <p><Icon type="md-checkmark" style="color:green"/> 过滤器 使用率不高但是不能没有</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <table class="api">
                     <thead><tr><th>写法</th> <th>原值</th> <th>过滤</th> <th>说明</th></tr></thead>
                     <tbody>

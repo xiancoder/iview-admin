@@ -4,6 +4,8 @@
             <div class="blogTitle">大批量内容的输入+穿梭框 的尝试</div>
             <Divider orientation="right">尝试一下这种控件组合的易用性和可接受性</Divider>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <div class="xian-title-tabs">
                     <h1>表单名称</h1>
                     <Divider/>

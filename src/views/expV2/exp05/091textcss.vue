@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">文本样式</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <span class="text-muted">&lt;span class="text-muted"&gt;文本颜色&lt;span&gt;</span>
                 <span class="text-success">&lt;span class="text-success"&gt;文本颜色&lt;span&gt;</span>
                 <span class="text-info">&lt;span class="text-info"&gt;文本颜色&lt;,span&gt;</span>

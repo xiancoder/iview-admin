@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">优化弹窗的方式</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效 随插随用</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Button @click="model.show1=!model.show1">修改密码::弹框</Button>
                 <hr />
                 <script type="text/html" v-pre>

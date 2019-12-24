@@ -6,6 +6,7 @@
                 <p>公司项目对这个没有明确统一使用那个好</p>
                 <p><Icon type="md-checkmark" style="color:green"/> 经过我的简单对比 决定使用Tabs 统一项目</p>
                 <p><Icon type="md-checkmark" style="color:green"/> 使用方式 A节点下有 ABC兄弟页面 给A.vue写Tabs组件 A'BC三个页面为子页面 同时考虑继承</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <hr />
                 <ButtonGroup style="margin-bottom: 10px" >
                     <Button v-for="(row, index) in tabList" :key="index"

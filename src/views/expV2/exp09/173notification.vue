@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">浏览器桌面通知</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>在查阅相关资料的时候发现了浏览器桌面通知这个功能，也就是Desktop Notification这个啦，基本的回调方式是这样的</p>
                 <script type="text/js">
                     Notification.requestPermission(callback);

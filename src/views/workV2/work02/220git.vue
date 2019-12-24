@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">分支管理流程 各种情况的处理预案</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p><b>master分支</b> 负责线上最新代码/不再担任备份功能</p>
                 <p><b>release分支</b> 负责备份上次发布的代码</p>
                 <p><b>dev.x分支</b> 负责开发新代码</p>

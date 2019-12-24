@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">[Iview] DatePicker日期选择器 TimePicker时间选择器</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>设置属性 type 为 date 或 daterange 分别显示选择单日和选择范围类型。</p>
                 <p>设置属性 placement 可以更改选择器出现的方向，与 Poptip 和 Tooltip 配置一致，支持 12 个方向，详见 API。</p>
                 <div>

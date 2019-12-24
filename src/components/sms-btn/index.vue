@@ -39,5 +39,5 @@ export default {
 }
 </script>
 <style scoped>
-    .telcode{ width:100px; margin-left:10px; }
+    .telcode{ margin-left:10px; }
 </style>

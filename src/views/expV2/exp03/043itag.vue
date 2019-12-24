@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">[Iview] Tag标签</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Tag>标签一</Tag>
                 <Tag>标签二</Tag>
                 <Tag v-if="show" closable @on-close="handleClose">标签三</Tag>

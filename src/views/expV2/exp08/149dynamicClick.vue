@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">未知html代码加入项目 + 动态添加事件</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>我们最常用的是vfor结构动态加入html内容同时绑定事件</p>
                 <p>
                     <span v-for="(i,n) in lists" :key="n" @click="change(i.url)">{{i.url}}-</span>

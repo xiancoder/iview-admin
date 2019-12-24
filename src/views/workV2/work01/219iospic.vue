@@ -4,6 +4,7 @@
             <div class="blogTitle">解决iOS等设备照片旋转90度的bug</div>
             <div class="blogContent" v-highlight>
                 <p><Icon type="md-checkmark" style="color:green"/> 基本有效 可采用</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>1 FileReader接口提供了一个异步API，使用该API可以在浏览器主线程中异步访问文件系统，读取文件中的数据。</p>
                 <p style="color:red">2 三星note5的手机中，需求一会出现照片预览逆时针旋转90度的bug</p>
                 <p style="color:red">3 在iOS上大几率出现上传图片 实际歪斜 在ios上预览却正常的bug</p>

@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">v-html 对 危险代码处理测试</div>
             <div class="blogContent">
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>双大括号会将数据解释为普通文本，而非 HTML 代码。</p>
                 <p v-html="v1"></p>
                 <p class="text-danger">普通文本输出</p>

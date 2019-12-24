@@ -97,31 +97,31 @@ export default {
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
             order: { orderKey: '', order: '' }, // 排序 变量名最好原样
             columns1: [
-                {title: '充值编号', key: 'code'},
-                {title: '到账日期', width: 95, key: 'arrival_date'},
-                {title: '充值方式', key: 'recharge_type', render: h.readArr('recharge_type', rechargeTypeArr)},
-                {title: '付款账号/付款人', width: 200, key: 'recharge_account', render: h.multiline('', ['recharge_account', 'recharge_name'])},
-                {title: '充值金额', key: 'arrival_money'},
-                {title: '状态', key: 'state', render: h.readArr('state', resultArr)}
+                {title: '充值编号', minWidth: 80, key: 'code'},
+                {title: '到账日期', minWidth: 120, key: 'arrival_date'},
+                {title: '充值方式', minWidth: 200, key: 'recharge_type', render: h.readArr('recharge_type', rechargeTypeArr)},
+                {title: '付款账号/付款人', minWidth: 200, key: 'recharge_account', render: h.multiline('', ['recharge_account', 'recharge_name'])},
+                {title: '充值金额', minWidth: 200, key: 'arrival_money'},
+                {title: '状态', minWidth: 200, key: 'state', render: h.readArr('state', resultArr)}
             ],
             columns2: [
-                {title: '充值编号', key: 'code'},
-                {title: '广告主', key: 'ader_name', render: h.defaultH('ader_name')},
-                {title: '到账日期', width: 95, key: 'arrival_date'},
-                {title: '充值方式', key: 'recharge_type', render: h.readArr('recharge_type', rechargeTypeArr)},
-                {title: '到账金额', key: 'arrival_money'},
-                {title: '状态', key: 'state', render: h.readArr('state', resultArr)}
+                {title: '充值编号', minWidth: 80, key: 'code'},
+                {title: '广告主', minWidth: 200, key: 'ader_name', render: h.defaultH('ader_name')},
+                {title: '到账日期', minWidth: 100, key: 'arrival_date'},
+                {title: '充值方式', minWidth: 200, key: 'recharge_type', render: h.readArr('recharge_type', rechargeTypeArr)},
+                {title: '到账金额', minWidth: 200, key: 'arrival_money'},
+                {title: '状态', minWidth: 200, key: 'state', render: h.readArr('state', resultArr)}
             ],
             columns3: [
-                {title: '充值编号', key: 'code'},
-                {title: '广告主', key: 'ader_name', render: h.defaultH('ader_name')},
-                {title: '用户名', key: 'user_name', render: h.defaultH('user_name')},
-                {title: '到账日期', width: 95, key: 'arrival_date'},
-                {title: '充值方式', key: 'recharge_type', render: h.readArr('recharge_type', rechargeTypeArr)},
-                {title: '付款账号/付款人', width: 200, key: 'recharge_account', render: h.multiline('', ['recharge_account', 'recharge_name'])},
-                {title: '收款账号/收款人', width: 200, key: 'arrival_account', render: h.multiline('', ['arrival_account', 'arrival_name'])},
-                {title: '到账金额', key: 'arrival_money'},
-                {title: '状态', key: 'state', render: h.readArr('state', resultArr)}
+                {title: '充值编号', minWidth: 80, key: 'code'},
+                {title: '广告主', minWidth: 100, key: 'ader_name', render: h.defaultH('ader_name')},
+                {title: '用户名', minWidth: 100, key: 'user_name', render: h.defaultH('user_name')},
+                {title: '到账日期', minWidth: 95, key: 'arrival_date'},
+                {title: '充值方式', minWidth: 80, key: 'recharge_type', render: h.readArr('recharge_type', rechargeTypeArr)},
+                {title: '付款账号/付款人', minWidth: 200, key: 'recharge_account', render: h.multiline('', ['recharge_account', 'recharge_name'])},
+                {title: '收款账号/收款人', minWidth: 200, key: 'arrival_account', render: h.multiline('', ['arrival_account', 'arrival_name'])},
+                {title: '到账金额', minWidth: 80, key: 'arrival_money'},
+                {title: '状态', minWidth: 80, key: 'state', render: h.readArr('state', resultArr)}
             ],
             'serrchParam': null, // 实际搜索项
             'serrchBack': null, // 搜索项备份

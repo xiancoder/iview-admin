@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">iview 提供的 头像</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <div class="demo-avatar">
                     <Avatar icon="ios-person" size="large" />
                     <Avatar icon="ios-person" />

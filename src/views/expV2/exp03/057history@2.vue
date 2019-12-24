@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">vue-router 怎么操作页面的历史记录？</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>2222222222222222222222222222222</p>
                 <p><Button @click="jump1()">我是页面2我要回退页面1</Button></p>
                 <p><Button @click="jump0()">我是页面2我要回退页面0</Button></p>

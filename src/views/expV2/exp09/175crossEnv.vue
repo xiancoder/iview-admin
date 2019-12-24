@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">cross-env能跨平台地设置及使用环境变量</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>当您使用NODE_ENV =production, 来设置环境变量时，<b>大多数Windows命令提示将会阻塞(报错)</b>。</p>
                 <p>（异常是Windows上的Bash，它使用本机Bash。）同样，Windows和POSIX命令如何使用环境变量也有区别。</p>
                 <p>使用POSIX，您可以使用：$ ENV_VAR和使用％ENV_VAR％的Windows。</p>

@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">斜纹样式</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <div class="demo">
                     <div class="horizontal stripes"></div>
                     <div class="vertical stripes"></div>

@@ -4,6 +4,7 @@
             <div class="blogTitle">路由跳转 方法测试</div>
             <div class="blogContent" v-highlight>
                 <p><Icon type="md-checkmark" style="color:green"/> 墙裂建议使用name 并且穿参用 query: { value: 'test1' }</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>跳转到我的 添加/编辑 页面并携带参数 本页面路由 {{ routeName }}</p>
                 <p>要注意，以/开头的嵌套路径会被当作根路径。这让你充分的使用嵌套组件而无须设置嵌套的路径。</p>
                 <p>router.push() 这种方法会向history栈中添加记录 </p>

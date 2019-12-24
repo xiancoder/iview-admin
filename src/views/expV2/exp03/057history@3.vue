@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">vue-router 怎么操作页面的历史记录？</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>33333333333333333333333333333</p>
             </div>
             <div class="blogFooter">

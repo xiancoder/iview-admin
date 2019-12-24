@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">分割线 或者叫 隔断 或者叫占位符 随便吧</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <Row>
                     <Col span="12">
                         <p>默认为水平分割线，可在中间加入文字。</p>

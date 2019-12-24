@@ -3,6 +3,8 @@
         <div class="blog">
             <div class="blogTitle">loading CSS3</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
+                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p>spinkit使用CSS3的特性实现多种动画效果，元素移动、放大缩小、翻转、进度条加载效果等等，使用了很多CSS3新的特性。 </p>
                 <p>隐藏动画可以设置<b>opacity: 0</b>或<b>visibility: hidden</b>，此时动画仍在继续， </p>
                 <p>建议将其从DOM中删除，设置<b>display: none</b>或者<b>animation-play-state: paused</b>。</p>
