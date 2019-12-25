@@ -45,7 +45,7 @@
                                 return row
                             })
                             this.tableData = infolist
-                            this.page.rowCount = info.rowCount
+                            this.page.rowCount = info.rowcount
                         })
                     </script>
                 </div>
@@ -181,7 +181,7 @@ export default {
                     return row
                 })
                 this.tableData = infolist
-                this.page.rowCount = info.rowCount
+                this.page.rowCount = info.rowcount
             })
         },
         end2: nothing // 防呆设计

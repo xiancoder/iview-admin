@@ -59,14 +59,14 @@ export default {
             loading: false,
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
             order: { orderKey: '', order: '' }, // 排序 变量名最好原样
-            columns: [
-                {title: '任务编号', key: 'taskNumber', sortable: true},
-                {title: '发布人', key: 'founder', sortable: true},
-                {title: '发布日期', key: 'foundTime', sortable: true},
-                {title: '负责人', key: 'personLiable'},
-                {title: '计划完成日期', key: 'completeTime', render: h.defaultH('completeTime')},
-                {title: '优先级', key: 'taskPriority'},
-                {title: '状态', key: 'taskStatus'}
+            columns: [ // 必须指定最小宽度
+                {title: '任务编号', minWidth: 100, key: 'taskNumber', sortable: true},
+                {title: '发布人', minWidth: 100, key: 'founder', sortable: true},
+                {title: '发布日期', minWidth: 100, key: 'foundTime', sortable: true},
+                {title: '负责人', minWidth: 100, key: 'personLiable'},
+                {title: '计划完成日期', minWidth: 100, key: 'completeTime', render: h.defaultH('completeTime')},
+                {title: '优先级', minWidth: 100, key: 'taskPriority'},
+                {title: '状态', minWidth: 100, key: 'taskStatus'}
             ],
             'serrchParam': null, // 实际搜索项
             'serrchBack': null, // 搜索项备份
@@ -83,7 +83,6 @@ export default {
             this.hendleSearch()
         }),
         init () { // 初始化
-            this.end1 = 2
             if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
             if (!this.serrchBack) {this.serrchBack = extend({}, this.search)} // 备份
             const query = getParamState()
@@ -121,7 +120,8 @@ export default {
                 .then((info) => {
                     this.loading = false; // 加载完成
                     this.tableData = info.list
-                    this.page.rowCount = info.rowCount
+                    this.page.rowCount = info.rowcount
+                    this.end1 = 2
                 })
         },
         end2: nothing // 防呆设计

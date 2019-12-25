@@ -30,7 +30,7 @@
                             this.$api.task.listMine(this.serrchParam).then((info) => { // ajax
                                 this.loading = false; // 加载完成
                                 this.tableData = info.list
-                                this.page.rowCount = info.rowCount
+                                this.page.rowCount = info.rowcount
                                 this.tableSumData = info.sum // 汇总
                             })
                         },
@@ -159,7 +159,7 @@ export default {
             this.$api.task.listMine(this.serrchParam).then((info) => { // ajax
                 this.loading = false; // 加载完成
                 this.tableData = info.list
-                this.page.rowCount = info.rowCount
+                this.page.rowCount = info.rowcount
                 this.tableSumData = info.sum
             })
         },

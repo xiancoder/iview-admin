@@ -59,7 +59,6 @@ export const routerList = [
             {power: '0000', path: '061whilePromise', title: 'Promise 挂起'},
             {power: '0000', path: '066redux', title: 'Redux 基础'},
             {power: '0000', path: '067promiseEs6', title: 'Promise 基础'},
-            {power: '0000', path: '072uglifyjs', title: 'uglifyjs 拯救旧项目'},
             {power: '0000', path: '074webpack', title: 'webpack 检查主机'},
             {power: '0000', path: '076single', title: '单点登录概述'},
             {power: '0000', path: '080yin', title: '名词缩写发音'},
@@ -161,6 +160,7 @@ export const routerList = [
                     {power: '0000', path: '069kengfloat', title: 'float 的坑'},
                     {power: '0000', path: '070csszindex', title: 'z-index 的坑'},
                     {power: '0000', path: '071colgroup', title: '表格列属性'},
+                    {power: '0000', path: '072uglifyjs', title: 'uglifyjs 压缩混淆'},
                     {power: '0000', path: '073typeError', title: '弱类型之坑'},
                     {power: '0000', path: '075devtool', title: '开发者工具介绍'},
                     {power: '0000', path: '077refer', title: '历史 referer 操作'},
@@ -272,7 +272,7 @@ export const routerList = [
                     {power: '0000', path: '207validateSelect', title: '表单v1下拉框'},
                     {power: '0000', path: '207validateDate', title: '表单v1日期框'},
                     {power: '0000', path: '207validateSubmit', title: '表单v1提交逻辑'},
-                    {power: '0000', path: '208creditSvgCss', title: 'Svg 信用卡样式'},
+                    {power: '0000', path: '208creditSvgCss', title: 'Svg 银行卡信用卡'},
                     {power: '0000', path: '209vuehtml5editor', title: '富文本 Html5Editor'}
                 ]
             },
@@ -298,6 +298,7 @@ export const routerList = [
                     {power: '0000', path: '221keyup', title: '按键监听事件写法'},
                     {power: '0000', path: '222contact', title: '联系人卡片 Css'},
                     {power: '0000', path: '223chromeCopyTab', title: '谷歌复制网页bug'},
+                    {power: '0000', path: '224psSize', title: 'PS常用尺寸'},
                     {power: '0000', path: '300brove', title: '收集300个'}
                 ]
             }

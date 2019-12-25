@@ -1,5 +1,5 @@
 <template>
-    <Layout style="height:100%" :class="[
+    <Layout style="height:100%;min-width:1080px;" :class="[
             'main',
             themeMiddle?'mianMiddle':'',
             themeLogoFlex?'logoconflex':''

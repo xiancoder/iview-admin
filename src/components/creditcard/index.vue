@@ -20,11 +20,11 @@
                         </g>
                         <path class="darkcolor cyandark" d="M750,431V193.2c-217.6-57.5-556.4-13.5-750,24.9V431c0,22.1,17.9,40,40,40h670C732.1,471,750,453.1,750,431z"></path>
                     </g>
-                    <text transform="matrix(1 0 0 1 60.106 295.0121)" id="svgnumber" class="st2 st3 st4">{{kahaoc}}</text>
+                    <text transform="matrix(1 0 0 1 59 295.0121)" id="svgnumber" class="st2 st3 st4">{{kahaoc}}</text>
                     <text transform="matrix(1 0 0 1 54.1064 428.1723)" id="svgname" class="st2 st5 st6">{{gongsi}}</text>
                     <text transform="matrix(1 0 0 1 54.1074 389.8793)" class="st7 st5 st8">持卡人</text>
                     <text transform="matrix(1 0 0 1 550 388.8793)" class="st7 st5 st8">有效期</text>
-                    <text transform="matrix(1 0 0 1 65.1054 241.5)" class="st7 st5 st8">{{yinhang}}</text>
+                    <text transform="matrix(1 0 0 1 59 241.5)" class="st7 st5 st8">{{yinhang}}</text>
                     <g>
                         <text transform="matrix(1 0 0 1 600 433.8095)" id="svgexpire" class="st2 st5 st9">12/31</text>
                         <text transform="matrix(1 0 0 1 550 417.0097)" class="st2 st10 st11">VALID</text>
@@ -122,14 +122,14 @@ export default {
     #svgname { text-transform: uppercase;}
     #cardfront .st2 { fill: #FFFFFF;}
     #cardfront .st3 { font-family: 'Source Code Pro', monospace; font-weight: 600;}
-    #cardfront .st4 { font-size: 54.7817px;}
+    #cardfront .st4 { font-size: 52px;}
     #cardfront .st5 { font-family: 'Source Code Pro', monospace; font-weight: 400;}
-    #cardfront .st6 { font-size: 33.1112px;}
+    #cardfront .st6 { font-size: 33px;}
     #cardfront .st7 { opacity: 0.6; fill: #FFFFFF;}
     #cardfront .st8 { font-size: 24px;}
-    #cardfront .st9 { font-size: 36.5498px;}
+    #cardfront .st9 { font-size: 36px;}
     #cardfront .st10 { font-family: 'Source Code Pro', monospace; font-weight: 300;}
-    #cardfront .st11 { font-size: 16.1716px;}
+    #cardfront .st11 { font-size: 16px;}
     #cardfront .st12 { fill: #4C4C4C;}
     /* BACK OF CARD */
     #cardback .st0 { fill: none; stroke: #0F0F0F; stroke-miterlimit: 10;}
@@ -144,7 +144,7 @@ export default {
     #cardback .st10 { font-size: 24px;}
     #cardback .st11 { fill: #EAEAEA;}
     #cardback .st12 { font-family: 'Rock Salt', cursive;}
-    #cardback .st13 { font-size: 37.769px;}
+    #cardback .st13 { font-size: 37px;}
     /* FLIP ANIMATION */
     .creditcard {height: 265px;width: 420px;max-width: 400px;-webkit-transform-style: preserve-3d;transform-style: preserve-3d;transition: -webkit-transform 0.6s;-webkit-transition: -webkit-transform 0.6s;transition: transform 0.6s;transition: transform 0.6s, -webkit-transform 0.6s;cursor: pointer;}
     .creditcard .front,

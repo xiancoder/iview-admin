@@ -170,7 +170,7 @@ export default {
             this.$api.task.listMine(this.serrchParam).then((info) => { // ajax
                 this.loading = false; // 加载完成
                 this.tableData = info.list
-                this.page.rowCount = info.rowCount
+                this.page.rowCount = info.rowcount
             })
         },
         end2: nothing // 防呆设计

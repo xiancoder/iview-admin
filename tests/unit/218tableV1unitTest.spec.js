@@ -15,12 +15,19 @@ describe('单元测试 表格规范 V1 初始化', () => {
     it('基本初始参数应当为初始值', () => {
         const wrapper = mount(Page)
         const wm = wrapper.vm
-        expect(wm.search).not.to.equal(undefined)
-        // expect(wm.loading).to.equal(false)
-        expect(wm.page).not.to.equal(undefined)
-        expect(wm.end1).to.equal(1)
+        wm.$nextTick(() => { // 异步监听
+            expect(wm.end1).to.equal(1)
+            expect(wrapper.find('.tableFooter span:first-child').text()).to.equal('当前第0 - 0条，共0条')
+        })
     })
     /*
+    it('ajax执行结果', () => {
+        const wrapper = mount(Page,{
+            sync: true
+        })
+        const wm = wrapper.vm
+        expect(wm.end1).to.equal(2)
+    })
     it('可以根据ID定位元素模拟点击 点击增加1', () => {
         const wrapper = mount(Hello)
         wrapper.find('#inc').trigger('click')
