@@ -4,9 +4,9 @@
             <div class="blogTitle">访问 public 文件夹资源 访问assets文件夹资源 的 方法</div>
             <div class="blogContent" v-highlight>
                 <p>正常页面访问public中的图片 (:src才能引发资源引入)</p>
-                <p><img :src="'./www.qichacha.com.png'" alt=""/></p>
+                <p><img :src="'/www.qichacha.com.png'" alt=""/></p>
                 <script type="text/html">
-                    <img :src="'./www.qichacha.com.png'" alt=""/>
+                    <img :src="'/www.qichacha.com.png'" alt=""/>
                     <img src="./www.qichacha.com.png" alt="" /> // 编译不成功 因为找不到
                 </script>
                 <p>import 引入图片并使用</p>

@@ -30,7 +30,7 @@
                         <a class="main-header-right-linkIcon"
                             :href="row.link" target="_blank"
                             v-for="(row, key) in weblink" :name="key" :key="`link-${key}`">
-                            <img :src="`./${row.img}`" :title="row.title">
+                            <img :src="`/${row.img}`" :title="row.title">
                         </a>
                         <div>
                             <Button type="text" style="padding: 0;">
@@ -111,7 +111,7 @@
                                 <!-- template 里面放Button会导致页面滚动时候卡顿 -->
                             </div>
                         </div>
-                        <img :src="'./logo.xian.png'" class="xianjscode">
+                        <img :src="'/logo.xian.png'" class="xianjscode">
                     </div>
                 </Content>
             </Layout>

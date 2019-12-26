@@ -1,7 +1,7 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">表单一变化就立马保存 节流提交</div>
+            <div class="blogTitle">表单一变化就立马保存 节流</div>
             <div class="blogContent" v-highlight>
                 <p><Icon type="md-checkmark" style="color:green"/> 监听表单对象frm </p>
                 <p><Icon type="md-checkmark" style="color:green"/> 自动提交使用节流方式 </p>
@@ -9,16 +9,6 @@
                 <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <hr />
                 <Form ref="form6671" :model="frm" :rules="frmValidate" :label-width="150">
-                    <FormItem label="测试">
-                        <Button type="primary" @click="handleSubmit()">测试</Button>
-                        <Divider type="vertical" />
-                        <Button type="primary" @click="handleSubmit2()">防抖效果很好</Button>
-                        <Divider type="vertical" />
-                        <Button type="primary" :disabled="!!time2">防抖禁用</Button>
-                    </FormItem>
-                    <FormItem>
-                        <p>防抖倒计时结果: {{time2}} 秒</p>
-                    </FormItem>
 
                     <Divider orientation="left">测试自动提交的节流效果</Divider>
                     <FormItem label="输入框" prop="input1">
@@ -43,13 +33,24 @@
                             },
                         </script>
                         <script type="text/js">
-                            autoSave: throttle(function () {
+                            autoSave: debounce(function () {
                                 // 节流 提交 自动保存方法
                                 console.log('自动提交', this.frm)
                                 this.autoVersion = this.currentVersion
                                 this.save()
                             }, 5e3),
                         </script>
+                    </FormItem>
+
+                    <FormItem label="测试">
+                        <Button type="primary" @click="handleSubmit()">测试</Button>
+                        <Divider type="vertical" />
+                        <Button type="primary" @click="handleSubmit2()">防抖效果很好</Button>
+                        <Divider type="vertical" />
+                        <Button type="primary" :disabled="!!time2">防抖禁用</Button>
+                    </FormItem>
+                    <FormItem>
+                        <p>防抖倒计时结果: {{time2}} 秒</p>
                     </FormItem>
 
                     <FormItem style="margin-top: 50px">
@@ -69,7 +70,7 @@
 </template>
 <script>
 import regexp from '@/utils/regexp'
-import { throttle, debounce } from '@/utils/function'
+import { debounce, throttle } from '@/utils/function'
 
 export default {
     data () {
@@ -116,12 +117,12 @@ export default {
         }
     },
     methods: {
-        autoSave: throttle(function () {
+        autoSave: debounce(function () {
             // 节流 提交 自动保存方法
             console.log('自动提交')
             this.save(1)
         }, 5e3),
-        handleSubmit: debounce(function () {
+        handleSubmit: throttle(function () {
             console.log('手动提交')
             this.save(2)
         }, 5e3),

@@ -24,7 +24,9 @@ axios.interceptors.request.use( // 开始设置请求 发起的拦截处理
     config => { // config 代表发起请求的参数的实体
         const token = Store.state.user.token
         config.headers['token'] = token || ''
-        config.url = config.url.replace(/^[\/\\]/, '')
+        let url = config.url
+        if (!/^http|^\//.test(url)) url = '/' + url // 当请求为index.html时 斜杠可以保证请求的是根目录
+        config.url = url.replace(/[\/\\]/g, '/')
         if (config.method.toLowerCase() === 'get') {
             config.params = config.params || config.data
         } else { // 适用于这些请求方法 'PUT', 'POST', 和 'PATCH'

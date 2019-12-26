@@ -93,9 +93,9 @@
                 </Collapse>
                 <p>批处理 前提是请安装好 uglifyjs 将需要压缩的文件目录放置在批处理同一级目录下</p>
                 <p>
-                    <a :href="'./uglifyJsBat.bat'" download="压缩所有js文件.bat">下载 "压缩所有js文件.bat" 文件</a>
+                    <a :href="'/uglifyJsBat.bat'" download="压缩所有js文件.bat">下载 "压缩所有js文件.bat" 文件</a>
                     <Divider type="vertical" />
-                    <a :href="'./openCmd.bat'" download="本目录打开CMD.bat">下载 "本目录打开CMD.bat" 文件</a>
+                    <a :href="'/openCmd.bat'" download="本目录打开CMD.bat">下载 "本目录打开CMD.bat" 文件</a>
                 </p>
                 <script type="text/js">
                     @echo off
@@ -106,11 +106,12 @@
                     chdir /d %JSFOLDER%
                     for /r . %%a in (*.js) do (
                         @echo doRar file %%~a ...
-                        uglifyjs %%~fa -m -o %%~fa :: 请注意这里 ng旧代码需要去掉 -m
+                        uglifyjs %%~fa -o %%~fa
                     )
                     echo done!
                     pause & exit
                 </script>
+                <p class="text-danger">请注意这里 旧代码不要使用混淆功能 -m</p>
                 <p class="text-info">那啥 批处理如果直接执行会自动关闭 可以cmd打开一个窗口 在窗口执行<b>call ./xxx.bat</b></p>
                 <p>第一步 下载 '压缩所有js文件.bat'</p>
                 <p>第二步 下载 '本目录打开CMD.bat'</p>

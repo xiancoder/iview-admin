@@ -6,7 +6,7 @@ echo 'find Js file ing...'
 chdir /d %JSFOLDER%
 for /r . %%a in (*.js) do (
     @echo doRar file %%~a ...
-    uglifyjs %%~fa -m -o %%~fa
+    uglifyjs %%~fa -o %%~fa
 )
 echo done!
 pause & exit

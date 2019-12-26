@@ -1,4 +1,3 @@
-import parentView from '@/views/parentView'
 import Main from '@V/main'
 import MarkDown from '@V/markDown'
 import { makeMultiLevelRoute, makeTwoLevelRoute, makeOneLevelRoute } from './util'
@@ -55,7 +54,6 @@ export const routerList = [
             {power: '0000', path: '041zhihu3layout', title: '三大框架简比'},
             {power: '0000', path: '042jsx', title: 'JSX 语法详解'},
             {power: '0000', path: '058routerpic', title: '路由浏览图片'},
-            {power: '0000', path: '059debounce', title: '防抖节流测试'},
             {power: '0000', path: '061whilePromise', title: 'Promise 挂起'},
             {power: '0000', path: '066redux', title: 'Redux 基础'},
             {power: '0000', path: '067promiseEs6', title: 'Promise 基础'},
@@ -70,11 +68,7 @@ export const routerList = [
             {power: '0000', path: '107kaifakunjing', title: '需求开发|困境'},
             {power: '0000', path: '108axios', title: 'Axios详解'},
             {power: '0000', path: '111name', title: '命名法'},
-            {power: '0000', path: '112serverUpload', title: 'node 文件上传'},
-            {power: '0000', path: '113serverimg', title: 'node 静态资源'},
             {power: '0000', path: '117rule', title: '规范想法'},
-            {power: '0000', path: '119cmd', title: 'Node 执行 CMD'},
-            {power: '0000', path: '120pginfo', title: 'Node 批量更新版本'},
             {power: '0000', path: '121youku', title: '优酷视频'},
             {power: '0000', path: '122mimang', title: '略迷茫'},
             {power: '0000', path: '124mulLevelTable', title: '尝试多层表格'},
@@ -229,15 +223,16 @@ export const routerList = [
             }, {
                 path: 'exp09', title: '卷玖', icon: 'md-game-controller-b',
                 children: [
-                    {power: '0000', path: '162autoSave', title: '表单自动保存'},
+                    {power: '0000', path: '162debounce', title: '防抖节流测试'},
+                    {power: '0000', path: '162autoSave', title: '表单自动保存(节流)'},
                     {power: '0000', path: '168component', title: '组件编写'},
                     {power: '0000', path: '169directive', title: '指令编写'},
                     {power: '0000', path: '172rewriteRoutePush', title: '复写路由 push 方法'},
                     {power: '0000', path: '173notification', title: '桌面通知简单API'},
                     {power: '0000', path: '174console', title: 'Console 详解'},
-                    {power: '0000', path: '175crossEnv', title: 'Node 环境变量'},
                     {power: '0000', path: '176arguments', title: 'argu 参数转换'},
                     {power: '0000', path: '177wenhao', title: '登录两次bug'},
+                    {power: '0000', path: '178editTable', title: '表格可编辑可折叠'},
                     {power: '0000', path: '200newBee', title: '收录200知识点'}
                 ]
             }
@@ -299,6 +294,12 @@ export const routerList = [
                     {power: '0000', path: '222contact', title: '联系人卡片 Css'},
                     {power: '0000', path: '223chromeCopyTab', title: '谷歌复制网页bug'},
                     {power: '0000', path: '224psSize', title: 'PS常用尺寸'},
+                    {power: '0000', path: '225nodeHttpServer', title: 'Node 代理服务器'},
+                    {power: '0000', path: '225nodeServerUpload', title: 'Node 文件上传'},
+                    {power: '0000', path: '225nodeServerimg', title: 'Node 静态资源'},
+                    {power: '0000', path: '225nodeCmd', title: 'Node 执行 CMD'},
+                    {power: '0000', path: '225nodePginfo', title: 'Node 批量更新版本'},
+                    {power: '0000', path: '225nodeCrossEnv', title: 'Node 环境变量'},
                     {power: '0000', path: '300brove', title: '收集300个'}
                 ]
             }
@@ -410,6 +411,22 @@ export const routerList = [
     }),
 
     makeTwoLevelRoute({
+        path: 'excel', title: 'EXCEL相关', icon: 'ios-stats',
+        children: [
+            {power: '0000', path: 'uploadexcel', icon: 'md-add', title: '导入EXCEL'},
+            {power: '0000', path: 'exportexcel', icon: 'md-download', title: '导出EXCEL'}
+        ]
+    }),
+
+    makeTwoLevelRoute({
+        path: 'draw', title: '绘制相关', icon: 'ios-stats',
+        children: [
+            {power: '0000', path: 'canvas', icon: 'md-add', title: 'Canvas绘制'},
+            {power: '0000', path: 'svg', icon: 'md-download', title: 'Svg绘制'}
+        ]
+    }),
+
+    makeTwoLevelRoute({
         path: 'components', title: '组件(未测试)', icon: 'logo-buffer',
         children: [
             {power: '0000', path: 'cropper', icon: 'md-crop', title: '图片裁剪'},
@@ -426,6 +443,7 @@ export const routerList = [
             {power: '0000', path: 'icons', icon: 'bear', title: '自定义图标'}
         ]
     }),
+
     makeTwoLevelRoute({
         path: 'update', title: '数据上传(未测试)', icon: 'md-cloud-upload',
         children: [
@@ -433,27 +451,7 @@ export const routerList = [
             {power: '0000', path: 'updatepaste', icon: 'md-trending-up', title: '粘贴表格数据'}
         ]
     }),
-    makeTwoLevelRoute({
-        path: 'excel', title: 'EXCEL相关', icon: 'ios-stats',
-        children: [
-            {power: '0000', path: 'uploadexcel', icon: 'md-add', title: '导入EXCEL'},
-            {power: '0000', path: 'exportexcel', icon: 'md-download', title: '导出EXCEL'}
-        ]
-    }),
-    {
-        path: '/multilevel', name: 'multilevel', icon: 'mdmenu', title: '多级菜单', component: Main,
-        children: [
-            {power: '0000', path: 'level1', name: 'level1', icon: 'mdfunnel', title: '二级1', component: () => import('@V/multilevel/level1.vue')},
-            {power: '0000', path: 'level2', name: 'level2', access: ['superadmin'], icon: 'mdfunnel', showAlways: true, title: '二级2',
-                component: parentView,
-                children: [
-                    {power: '0000', path: 'level21', name: 'level21', icon: 'mdfunnel', title: '三级', component: () => import('@V/multilevel/level2/level21.vue')},
-                    {power: '0000', path: 'level22', name: 'level22', icon: 'mdfunnel', title: '三级', component: () => import('@V/multilevel/level2/level22.vue')}
-                ]
-            },
-            {path: 'level23', name: 'level3', icon: 'mdfunnel', title: '二级3', component: () => import('@V/multilevel/level3.vue')}
-        ]
-    },
+
     {
         path: '/wiki', name: 'wiki', icon: 'md-infinite', title: '其他模式', component: MarkDown,
         children: [
@@ -464,12 +462,14 @@ export const routerList = [
             {power: '0000', path: 'blog', name: 'blog', icon: 'md-funnel', title: '博客', component: () => import('@V/other/blog.vue')}
         ]
     },
+
     {
         path: '/i18n', name: 'i18n', title: 'i18n', component: Main,
         children: [
             {path: 'i18n_', name: 'i18n_', icon: 'md-planet', title: 'i18n - {{ i18n_page }}', component: () => import('@V/i18n/i18n-page.vue')}
         ]
     },
+
     makeOneLevelRoute({ path: 'error404', title: '页面不存在' }),
     makeOneLevelRoute({ path: 'error403', title: '权限不足' }),
     makeOneLevelRoute({ path: 'error500', title: '服务端错误' }),

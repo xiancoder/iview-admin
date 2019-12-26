@@ -43,7 +43,7 @@
                     <script type="text/js">
                         import { extend, extendF } from '@/utils/object'
                         import { debounce, nothing } from '@/utils/function'
-                        import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+                        import { h, saveParamState, getParamState } from '@/tools' /* 自定义常用工具 */
                         import tab from './205tab'
 
                         export default {
@@ -55,11 +55,11 @@
                                         'taskStatuList': []
                                     },
                                     search: {
-                                        'taskPriority': '', // 级别 0:一般 1：重要 2：紧急
-                                        'taskStatus': '' // 状态 任务状态, 0:待接受；1:执行中；2:待验收;3.验收通过；4.已废弃；5.已暂停
+                                        'taskPriority': '', /* 级别 0:一般 1：重要 2：紧急 */
+                                        'taskStatus': '' /* 状态 任务状态, 0:待接受；1:执行中；2:待验收;3.验收通过；4.已废弃；5.已暂停 */
                                     },
                                     loading: false,
-                                    page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
+                                    page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样 */
                                     order: { orderKey: '', order: '' }, // 排序 变量名最好原样
                                     columns: [ // 必须指定最小宽度
                                         {title: '任务编号', minWidth: 100, key: 'taskNumber', sortable: true},
@@ -70,10 +70,10 @@
                                         {title: '优先级', minWidth: 100, key: 'taskPriority'},
                                         {title: '状态', minWidth: 100, key: 'taskStatus'}
                                     ],
-                                    'serrchParam': null, // 实际搜索项
-                                    'serrchBack': null, // 搜索项备份
-                                    'tableData': [], // 表格内容
-                                    end1: 1 // 防呆设计
+                                    'serrchParam': null, /* 实际搜索项 */
+                                    'serrchBack': null, /* 搜索项备份 */
+                                    'tableData': [], /* 表格内容 */
+                                    end1: 1 /* 防呆设计 */
                                 }
                             },
                             methods: {
@@ -116,16 +116,16 @@
                                     extend(this.serrchParam, this.search) // 设置实际搜索项
                                     extend(this.serrchParam, this.page) // 设置分页
                                     extend(this.serrchParam, this.order) // 设置排序
-                                    saveParamState(this.serrchParam) // 存url
+                                    saveParamState(this.serrchParam) // 存url */
                                     this.loading = true // 加载中
-                                    this.$api.task.listMine(this.serrchParam) // 发送ajax
+                                    this.$api.task.listMine(this.serrchParam) // 发送ajax */
                                         .then((info) => {
-                                            this.loading = false; // 加载完成
+                                            this.loading = false; // 加载完成 */
                                             this.tableData = info.list
                                             this.page.rowCount = info.rowcount
                                         })
                                 },
-                                end2: nothing // 防呆设计
+                                end2: nothing /* 防呆设计 */
                             },
                             mounted: function () {
                                 this.init(this)
