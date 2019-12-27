@@ -300,6 +300,8 @@ export const routerList = [
                     {power: '0000', path: '225nodeCmd', title: 'Node 执行 CMD'},
                     {power: '0000', path: '225nodePginfo', title: 'Node 批量更新版本'},
                     {power: '0000', path: '225nodeCrossEnv', title: 'Node 环境变量'},
+                    {power: '0000', path: '226vueConfigJs', title: 'vue.config.js'},
+                    {power: '0000', path: '226webpackPluginFilemanager', title: 'filemanager-w-p'},
                     {power: '0000', path: '300brove', title: '收集300个'}
                 ]
             }
