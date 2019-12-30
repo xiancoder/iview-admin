@@ -483,7 +483,7 @@ export default {
             this.$refs[name].validate((valid) => {
                 if (valid) {
                     this.loading = true
-                    this.$store.dispatch('system/certification', param).then(res => { // 认证
+                    this.$store.dispatch('admin/certification', param).then(res => { // 认证
                         this.loading = false
                         if (res.res_code) {
                             this.$router.push({ name: homePage })
@@ -494,7 +494,7 @@ export default {
         }
     },
     mounted () {
-        this.frm.type = this.$store.state.system.usercertificatId
+        this.frm.type = this.$store.state.admin.usercertificatId
         console.info('当前用户属性为' + this.frm.type)
     }
 }

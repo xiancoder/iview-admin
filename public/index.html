@@ -6,7 +6,7 @@
 <body>
 <script type="text/javascript">
     function cg(n){ var r=new RegExp("(^| )"+n+"=([^;]*)(;|$)"), r=document.cookie.match(r); if(null!=r){return unescape(r[2])} return null }
-    function go(){ location.href="/main.html"; }
+    function go(){ location.href="main.html"; }
     function b() {
         var ua = navigator.userAgent.toLowerCase();
         return !!(ua.indexOf("trident")>-1 && ua.indexOf("rv")>-1||ua.indexOf("chrome")>-1)

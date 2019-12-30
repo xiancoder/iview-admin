@@ -1,14 +1,21 @@
 // 项目::状态管理模块
 // 负责::所有的状态在这里初始化
-// 注意::用户相关系统相关的接口由状态来负责
-// 注意::页面增删改查逻辑相关接口由接口负责
-// 注意::状态管理不负责逻辑校验 不负责接口字段对应 等一系列适配行为 单纯负责存值取值调用
+// 注意::状态管理不负责逻辑校验/接口字段对应等一系列适配行为 单纯负责存值取值调用
+// 注意::用户相关系统相关全局响应由状态来负责
+// 注意::页面增删改查逻辑相关接口应该由接口负责
+// 2019年12月30日16:23:32 更新
 
 import Vue from 'vue' // 核心
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate' // 状态持久化
-import system from './system' // 系统相关
-import user from './user' // 登录管理员相关
+
+import system from './systemV1' // 系统相关
+import route from './route' // 路由/权限相关
+import message from './message' // sms相关
+import sms from './sms' // sms相关
+import admin from './admin' // 管理员/用户相关
+import test from './test' // 测试相关
+
 import data from './data' // 数据
 
 Vue.use(Vuex)
@@ -29,16 +36,24 @@ const plugins = [
     createPersistedState({ // 状态持久化
         storage: window.localStorage,
         reducer: (store) => {
-            const {theme, shrink, lang, tagNavList, token, locking, spinLoading, paramList} = store.system
+            const {theme, shrink, lang, locking, paramList} = store.system
+            const {tagNavList} = store.route
+            const {token} = store.admin
             return { // 只储存指定的状态
-                system: {theme, shrink, lang, tagNavList, token, locking, spinLoading, paramList}
+                system: {theme, shrink, lang, locking, paramList},
+                route: {tagNavList},
+                admin: {token}
             }
         }
     })
 ]
 const modules = {
     system,
-    user,
+    route,
+    sms,
+    message,
+    admin,
+
     data
 }
 // 输出::状态实例

@@ -1,10 +1,7 @@
 const FileManagerPlugin = require('filemanager-webpack-plugin')
 const path = require('path')
 
-const resolve = dir => {
-    return path.join(__dirname, dir)
-}
-
+const resolve = dir => { return path.join(__dirname, dir) }
 const isDev = !!(process.env.NODE_ENV === 'development')
 
 module.exports = {
@@ -37,7 +34,7 @@ module.exports = {
     productionSourceMap: false,
     // 静态资源文件的目录
     // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
-    // assetsDir: 'static',
+    assetsDir: 'static',
     // 在 multi-page 模式下构建应用。每个“page”应该有一个对应的 JavaScript 入口文件。
     pages: {
         main: {
@@ -51,7 +48,7 @@ module.exports = {
             // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
             title: 'Xian-Index-Page-2019',
             // 在这个页面中包含的块，默认情况下会包含 提取出来的通用 chunk 和 vendor chunk。
-            chunks: ['chunk-vendors', 'chunk-common', 'index']
+            chunks: ['chunk-vendors', 'chunk-common', 'main']
         }
     },
     // 调整 webpack 配置最简单的方式
@@ -61,7 +58,7 @@ module.exports = {
                 new FileManagerPlugin({
                     onEnd: [{
                         copy: [
-                            { source: resolve('dist/index.html'), destination: resolve('dist/staff.html') }
+                            { source: resolve('dist/main.html'), destination: resolve('dist/staff.html') }
                         ]
                     }]
                 })

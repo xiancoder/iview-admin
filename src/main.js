@@ -29,7 +29,7 @@ if (config.errorLogStore || process.env.NODE_ENV === 'development') {
         let info = { type: 'script', code: 0, mes: '[' + mes + ']' + error.message, url: window.location.href }
         // console.error(error, vm, mes) // 废弃 看不出有用信息
         Vue.nextTick(() => {
-            Store.dispatch('system/pushError', info)
+            Store.dispatch('systemV1/pushError', info)
         })
         throw error // 抛出错误
     }
@@ -56,16 +56,16 @@ new Vue({ // 实例化
     beforeCreate () {
         // 在实例初始化之后，数据观测(data observer开始监控Data对象数据变化)
         // 和初始化事件(init event，Vue内部初始化事件)之前被调用
-        const isLogined = Store.getters['system/access']
+        const isLogined = Store.getters['admin/access']
         if (isLogined) { // 未登录的话由路由负责判断并进入登录页
             console.info('%c仙 用户已经登陆', 'color:#05ff0f;background:#000;padding:0 5px;')
-            Store.dispatch('system/getUserInfo') // 获取用户信息
-            Store.dispatch('system/getNewMessageNum') // 获取未读最新消息
-            Store.dispatch('system/getPowerList').then(() => { // 读取权限 更新权限视图
+            Store.dispatch('admin/getUserInfo') // 获取用户信息
+            Store.dispatch('message/getNewMessageNum') // 获取未读最新消息
+            Store.dispatch('route/getPowerList').then(() => { // 读取权限 更新权限视图
                 const currentName = window.currentName
                 if (currentName) {
-                    Store.dispatch('system/setBreadCrumbList', currentName) // 面包屑
-                    Store.dispatch('system/setTitle', currentName) // 设置标题
+                    Store.dispatch('route/setBreadCrumbList', currentName) // 面包屑
+                    Store.dispatch('route/setTitle', currentName) // 设置标题
                 }
             })
         }

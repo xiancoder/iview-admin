@@ -42,7 +42,7 @@ export default {
     },
     methods: {
         handleSearch (value) {
-            const list = this.$store.state.system.routeList // 一维化路由
+            const list = this.$store.state.route.routeList // 一维化路由
             this.throttleFunction(list, value, this)
         },
         throttleFunction: throttle((list, value, vm) => { // 修改全屏状态

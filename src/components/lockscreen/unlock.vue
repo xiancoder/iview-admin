@@ -44,8 +44,8 @@ export default {
         }
     },
     computed: {
-        userAvatorPath () { return this.$store.state.system.userAvatorPath }, // 管理员头像
-        userName () { return this.$store.state.system.userName } // 管理员名字
+        userAvatorPath () { return this.$store.state.admin.userAvatorPath }, // 管理员头像
+        userName () { return this.$store.state.admin.userName } // 管理员名字
     },
     methods: {
         validator () {

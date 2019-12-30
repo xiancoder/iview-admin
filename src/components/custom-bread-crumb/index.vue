@@ -12,7 +12,7 @@ export default {
     name: 'customBreadCrumb',
     computed: {
         list () {
-            const currentList = this.$store.state.system.breadCrumbList
+            const currentList = this.$store.state.route.breadCrumbList
             const r0 = { title: '首页', path: '/' + homePage.replace(/_/g, '/') }
             return [r0, ...currentList]
         }

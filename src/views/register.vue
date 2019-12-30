@@ -283,7 +283,7 @@ export default {
                 if (valid) {
                     this.loading = true
                     let param = {
-                        'platform_id': this.$store.state.system.platformId,
+                        'platform_id': this.$store.state.admin.platformId,
                         'user_name': this.frm.user_name, // 用户名
                         'user_pwd': this.frm.user_pwd, // 微信
                         'invite_code': this.frm.invite_code, // 微信 邀请码
@@ -306,6 +306,7 @@ export default {
                         param.company_name = this.frm.company_name
                         param.contact_name = this.frm.contact_name
                     }
+                    alert('12345')
                     this.$store.dispatch('system/register', param).then(res => { // 注册
                         this.loading = false
                         if (res.res_code) {

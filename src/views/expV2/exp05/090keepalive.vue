@@ -121,7 +121,7 @@
                 </p>
                 <script type="text/js">
                     router.beforeEach((to, from, next) => {
-                        Store.dispatch('system/keepalive', to.name) // 路由keepAlive管理 当前页缓存
+                        Store.dispatch('route/keepalive', to.name) // 路由keepAlive管理 当前页缓存
                     }
                 </script>
                 <p class="text-info">亲测有效</p>

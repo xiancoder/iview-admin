@@ -93,9 +93,9 @@
                 </Collapse>
                 <p>批处理 前提是请安装好 uglifyjs 将需要压缩的文件目录放置在批处理同一级目录下</p>
                 <p>
-                    <a :href="'/uglifyJsBat.bat'" download="压缩所有js文件.bat">下载 "压缩所有js文件.bat" 文件</a>
+                    <a :href="'/download/uglifyJsBat.bat'" download="压缩所有js文件.bat">下载 "压缩所有js文件.bat" 文件</a>
                     <Divider type="vertical" />
-                    <a :href="'/openCmd.bat'" download="本目录打开CMD.bat">下载 "本目录打开CMD.bat" 文件</a>
+                    <a :href="'/download/openCmd.bat'" download="本目录打开CMD.bat">下载 "本目录打开CMD.bat" 文件</a>
                 </p>
                 <script type="text/js">
                     @echo off

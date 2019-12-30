@@ -57,6 +57,27 @@
                     <li>-r或--robots提供/robots.txt（其内容默认为'User-agent：* \ nDisisis：/'）</li>
                     <li>-h或--help打印此列表并退出。</li>
                 </ul>
+                <table class="api">
+                    <thead> <tr> <th align="left">参数</th> <th align="left">作用</th> </tr> </thead>
+                    <tbody>
+                        <tr> <td align="left">-p 或者 --port</td> <td align="left">端口设置，默认是 <b>8080</b></td> </tr>
+                        <tr> <td align="left">-a</td> <td align="left">监听地址设置默认是 <b>0.0.0.0</b></td> </tr>
+                        <tr> <td align="left">-d</td> <td align="left">是否显示文件列表 默认<b>true</b></td> </tr>
+                        <tr> <td align="left">-i</td> <td align="left">显示自动索引 默认<b>true</b></td> </tr>
+                        <tr> <td align="left">-g 或者 --gzip</td> <td align="left">默认<b>false</b>，当文件的<b>gzip</b>版本存在且请求接受<b>gzip</b>编码时，它将服务于<b>./public/some-file.js.gz</b>，而不是<b>./public/some-file.js</b></td> </tr>
+                        <tr> <td align="left">-e 或者 --ext</td> <td align="left">如果没有提供默认文件扩展名(默认为<b>html</b>)</td> </tr>
+                        <tr> <td align="left">-s 或者 --silent</td> <td align="left">禁止控制台日志信息输出</td> </tr>
+                        <tr> <td align="left">–cors</td> <td align="left">允许跨域资源共享</td> </tr>
+                        <tr> <td align="left">-o</td> <td align="left">启动服务后打开默认浏览器</td> </tr>
+                        <tr> <td align="left">-c</td> <td align="left">设置缓存<b>cache-control max-age heade</b>存留时间（以秒为单位），示例：<b>-c10</b>是<b>10</b>秒，默认是<b>3600</b>秒，如果要禁用缓存就使用<b>-c-1</b></td> </tr>
+                        <tr> <td align="left">-U 或者 --utc</td> <td align="left">使用 <b>UTC</b>格式，在控制台输出时间信息</td> </tr>
+                        <tr> <td align="left">-P 或者 --proxy</td> <td align="left">通过一个 <b>url</b>地址，代理不能通过本地解析的资源</td> </tr>
+                        <tr> <td align="left">-S 或者 --ssl</td> <td align="left">使用<b>https</b>协议</td> </tr>
+                        <tr> <td align="left">-C 或者 --cert</td> <td align="left"><b>ssl</b>证书文件的路径，默认是<b>cert.pem</b></td> </tr>
+                        <tr> <td align="left">-K 或者 --key</td> <td align="left"><b>ssl</b>密匙文件路径</td> </tr>
+                        <tr> <td align="left">-h 或者 --help</td> <td align="left">显示帮助</td> </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

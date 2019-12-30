@@ -30,7 +30,7 @@
                         <a class="main-header-right-linkIcon"
                             :href="row.link" target="_blank"
                             v-for="(row, key) in weblink" :name="key" :key="`link-${key}`">
-                            <img :src="`/${row.img}`" :title="row.title">
+                            <img :src="`/public/img.site/${row.img}`" :title="row.title">
                         </a>
                         <div>
                             <Button type="text" style="padding: 0;">
@@ -111,7 +111,7 @@
                                 <!-- template 里面放Button会导致页面滚动时候卡顿 -->
                             </div>
                         </div>
-                        <img :src="'/logo.xian.png'" class="xianjscode">
+                        <img :src="'/public/img.xian/logo.xian.png'" class="xianjscode">
                     </div>
                 </Content>
             </Layout>
@@ -177,31 +177,34 @@ export default {
             xiangzhaosha: '', // 想找啥
             transitionName: '', // 动画方式
             weblink: [ // 外链链接
-                { img: 'js0.jpg', title: 'vue推荐移动端UI', link: 'https://youzan.github.io/vant/?source=vuejsorg#/zh-CN/intro' },
-                { img: 'js1.jpg', title: '项目在用的iview3', link: 'http://v3.iviewui.com' },
-                { img: 'js2.jpg', title: 'vue官方API', link: 'https://cn.vuejs.org' },
-                { img: 'js3.jpg', title: '资料库使用的iview4', link: 'https://www.iviewui.com' }
+                // { img: 'maimai.jpg', title: '脉脉', link: 'http://maimai.cn' },
+                // { img: 'qichacha.jpg', title: '脉脉', link: 'http://www.qichacha.com' },
+                // { img: 'tianyancha.jpg', title: '脉脉', link: 'http://www.tianyancha.com' },
+                // { img: 'zdao.jpg', title: '脉脉', link: 'http://www.zdao.com' },
+                { img: 'vant.jpg', title: 'vue推荐移动端UI', link: 'https://youzan.github.io/vant/?source=vuejsorg#/zh-CN/intro' },
+                { img: 'iview3.jpg', title: '项目在用的iview3', link: 'http://v3.iviewui.com' },
+                { img: 'vue.jpg', title: 'vue官方API', link: 'https://cn.vuejs.org' },
+                { img: 'iview4.jpg', title: '资料库使用的iview4', link: 'https://www.iviewui.com' }
             ]
         }
     },
     computed: {
         logoPath () { return this.collapsed ? minLogo : maxLogo }, // 根据折叠状态切换图片
-        newMessageNum () { return this.$store.state.system.newMessageNum || 0 }, // 新消息数量 0隐藏 null表红点 数字代表数量
-        breadCrumbList () { return this.$store.state.system.breadCrumbList }, // 面包屑
-        spinShow () { return this.$store.state.system.spinLoading || false }, // 新消息数量 0隐藏 null表红点 数字代表数量
-        local () { return this.$store.state.app.local },
-        menuList () { return this.$store.state.system.menuList || [] }, // 左边树 数据源
+        newMessageNum () { return this.$store.state.message.newMessageNum || 0 }, // 新消息数量 0隐藏 null表红点 数字代表数量
+        breadCrumbList () { return this.$store.state.route.breadCrumbList }, // 面包屑
+        spinShow () { return this.$store.state.route.spinLoading || false }, // 路由切换等待效果
+        menuList () { return this.$store.state.route.menuList || [] }, // 左边树 数据源
         routeList () {
-            const obj = this.$store.state.system.routeList
+            const obj = this.$store.state.route.routeList
             const arr = []
             for (var k in obj) {arr.push(obj[k])}
             return arr
         }, // 路由 一维化数组
         collapsed () { return this.$store.state.system.shrink }, // 折叠状态
-        cacheList () { return this.$store.state.system.cacheList }, // 被缓存的页面
-        userAvatar () { return this.$store.state.system.userAvatorPath }, // 用户头像
-        userName () { return this.$store.state.system.userName }, // 用户名
-        unreadCount () { return this.$store.state.system.newMessageNum }
+        cacheList () { return this.$store.state.route.cacheList }, // 被缓存的页面
+        userAvatar () { return this.$store.state.admin.userAvatorPath }, // 用户头像
+        userName () { return this.$store.state.admin.userName }, // 用户名
+        unreadCount () { return this.$store.state.message.newMessageNum }
     },
     methods: {
         handleMenuClick (name) {
@@ -219,7 +222,7 @@ export default {
                     this.theme.Drawer = !this.theme.Drawer
                     break
                 case 'logout':
-                    this.$store.dispatch('system/logout')
+                    this.$store.dispatch('admin/logout')
                     break
             }
         },

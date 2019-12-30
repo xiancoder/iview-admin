@@ -106,20 +106,20 @@ export default {
             this.$api.main.info().then((info) => { // ajax
                 info.certificates = info.certificates || []
                 extend(this.frm, info)
-                let firstAuth = this.$store.state.system.firstAuth
+                let firstAuth = this.$store.state.admin.firstAuth
                 if (info.is_auth === 0 && firstAuth === 1) {
                     this.confirm()
                 }
             })
         }
-        this.select1 = this.$store.state.system.userRoleId
+        this.select1 = this.$store.state.admin.userRoleId
     },
     computed: { // 计算属性
-        roleId () { return this.$store.state.system.userRoleId } // 用户角色权限
+        roleId () { return this.$store.state.admin.userRoleId } // 用户角色权限
     },
     watch: { // 监听
         'select1': function (n, o) {
-            this.$store.dispatch('system/setRole', n) // 获取用户信息
+            this.$store.dispatch('admin/setRole', n) // 获取用户信息
         }
     },
     methods: {
@@ -132,11 +132,11 @@ export default {
                 cancelText: '取消',
                 okText: '去认证',
                 onOk: () => {
-                    this.$store.dispatch('system/firstAuth')
+                    this.$store.dispatch('admin/firstAuth')
                     this.$router.push({ name: 'home_certification' })
                 },
                 onCancel: () => {
-                    this.$store.dispatch('system/firstAuth')
+                    this.$store.dispatch('admin/firstAuth')
                 }
             });
         }

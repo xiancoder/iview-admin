@@ -41,7 +41,7 @@
                 </div>
                 <script type="text/html">
                     .box2{
-                        background: url(/bg.gif);
+                        background: url(/public/img.gif/bg.gif);
                     }
                 </script>
                 <div class="box2">
@@ -71,7 +71,7 @@
         background: #2b252b; opacity: .8;
     }
     .box2{
-        background: url(/bg.gif);
+        background: url(/public/img.gif/bg.gif);
     }
 </style>
 <script>

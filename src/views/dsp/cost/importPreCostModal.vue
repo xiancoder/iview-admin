@@ -18,7 +18,7 @@
                 <span>{{frm.file.name}}</span>
             </FormItem>
             <FormItem>
-                <span><a :href="'/pre_cost.xlsx'" download="预估消耗模板.xlsx">下载预估消耗Excel模板文件</a></span>
+                <span><a :href="'/download/pre_cost.xlsx'" download="预估消耗模板.xlsx">下载预估消耗Excel模板文件</a></span>
                 <div class="ivu-form-item-notice-tip text-danger">{{serverError}}</div>
             </FormItem>
             <FormItem class="ivu-form-submit">

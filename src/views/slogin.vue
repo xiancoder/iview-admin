@@ -36,7 +36,7 @@ export default {
     methods: {
         handleSubmit (param) {
             this.error = ''
-            this.$store.dispatch('system/staffLogin', param).then(res => {
+            this.$store.dispatch('admin/staffLogin', param).then(res => {
                 this.token = res.token
                 this.step = 2
             }).catch(res => {
@@ -45,19 +45,19 @@ export default {
         },
         googleSubmit (param) {
             param.token = this.token
-            this.$store.dispatch('system/google', param).then(res => {
-                this.$store.dispatch('system/getPowerList').then(res => { // 读取权限 更新权限视图
+            this.$store.dispatch('admin/google', param).then(res => {
+                this.$store.dispatch('route/getPowerList').then(res => { // 读取权限 更新权限视图
                     console.info('%c仙 管理员登录喽', 'color:#05ff0f;background:#000;padding:0 5px;')
                     this.$router.push({ name: homePage })
                 })
-                this.$store.dispatch('system/getUserInfo') // 获取用户信息
+                this.$store.dispatch('admin/getUserInfo') // 获取用户信息
             }).catch(res => {
                 this.error = res
             })
         }
     },
     mounted: function () {
-        this.$store.dispatch('system/setRole', 2) // 设置角色
+        this.$store.dispatch('admin/setRole', 2) // 设置角色
         this.step = 1
     }
 }

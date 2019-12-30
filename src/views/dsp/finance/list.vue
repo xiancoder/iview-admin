@@ -22,7 +22,7 @@ export default {
         }
     },
     computed: { // 计算属性
-        roleId () { return this.$store.state.system.userRoleId}, // 用户角色权限
+        roleId () { return this.$store.state.admin.userRoleId}, // 用户角色权限
         tabList () {
             const list = [
                 { name: 'dsp_finance_list@recharge', title: '充值记录' },

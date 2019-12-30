@@ -31,10 +31,10 @@ export default {
             this.$router.go(-2)
         },
         jump0jump3 () {
-            this.$store.dispatch('system/noRender', true).then(() => {
+            this.$store.dispatch('route/noRender', true).then(() => {
                 this.$router.go(-2)
                 setTimeout(() => {
-                    this.$store.dispatch('system/noRender', false).then(() => {
+                    this.$store.dispatch('route/noRender', false).then(() => {
                         this.$router.push({'name': 'expV2_exp03_057history@3'})
                     })
                 }, 500)

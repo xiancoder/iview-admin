@@ -16,17 +16,17 @@
                     },
                     computed: {
                         teststate2 () {
-                            return this.$store.state.user.testState || 'undefined'
+                            return this.$store.state.test.testState || 'undefined'
                         }
                     },
                     watch: {
-                        '$store.state.user.testState' (n, o) {
+                        '$store.state.test.testState' (n, o) {
                             this.teststate1 = n + ' / ' + o
                         }
                     },
                     methods: {
                         changeState () {
-                            this.$store.dispatch('user/handleTestState', this.$store.state.user.testState + 10)
+                            this.$store.dispatch('user/handleTestState', this.$store.state.test.testState + 10)
                         }
                     }
                 </script>
@@ -87,17 +87,17 @@ export default {
     },
     computed: {
         teststate2 () {
-            return this.$store.state.user.testState || 'undefined'
+            return this.$store.state.test.testState || 'undefined'
         }
     },
     watch: {
-        '$store.state.user.testState' (n, o) {
+        '$store.state.test.testState' (n, o) {
             this.teststate1 = n + ' / ' + o
         }
     },
     methods: {
         changeState () {
-            this.$store.dispatch('user/handleTestState', this.$store.state.user.testState + 10)
+            this.$store.dispatch('user/handleTestState', this.$store.state.test.testState + 10)
         }
     }
 }

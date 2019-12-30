@@ -75,7 +75,7 @@ export default {
         }
     },
     computed: {
-        list () { return this.$store.state.system.tagNavList || [] }, // 历史记录tab
+        list () { return this.$store.state.route.tagNavList || [] }, // 历史记录tab
         currentRouteName () { return this.$route.name } // 当前路由
     },
     methods: {
@@ -130,7 +130,7 @@ export default {
                 const name = homePage
                 this.$router.push({name})
             }
-            this.$store.dispatch('system/setTagNavList', res)
+            this.$store.dispatch('route/setTagNavList', res)
         },
         isCurrentTag (item) { // 是否当前标签
             return this.currentRouteName === item.name

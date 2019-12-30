@@ -98,8 +98,8 @@
                 <Divider v-show="index !== 0" style="margin: 10px 0"/>
                 <div style="margin-bottom: 10px;font-size: 14px;position: relative">
                     {{log.userName}}<span>{{log.opAt}}</span>
-                    <img :src="'/write.png'" v-show="log.type==1">
-                    <img :src="'/log.png'" v-show="log.type==0">
+                    <img :src="'/public/img.logo/write.png'" v-show="log.type==1">
+                    <img :src="'/public/img.logo/log.png'" v-show="log.type==0">
                 </div>
                 <div style="white-space: pre">{{log.content}}</div>
             </div>

@@ -298,15 +298,16 @@ export default {
     logout () { // 退出登录
         return new Promise((resolve, reject) => {
             axios({
-                method: 'POST',
+                method: 'GET',
                 url: 'api/system/logout',
                 data: {}
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data // 0隐藏 null表红点 数字代表数量
-                if (res && res.res_code === 1) {
-                    resolve(res.res)
+                if (res && res.data && res.data.res_code === 1) {
+                    success(res.msg || '退出成功')
+                    resolve(res.data.res)
                 } else {
-                    error(res.res) // 报错并继续reject
+                    error(res.data.res) // 报错并继续reject
                     reject()
                 }
             }).catch(e => {

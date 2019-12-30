@@ -84,7 +84,7 @@ export default {
         collapsed: { type: Boolean }
     },
     computed: {
-        menuList () { return this.$store.state.system.menuList }, // 左边树 数据源
+        menuList () { return this.$store.state.route.menuList }, // 左边树 数据源
         theme () { return this.$store.state.system.theme }, // 主题
         activeName () { return (this.$route.name || '').replace(/\@.+/g, '') }, // 左边树 选中
         openNames () { return computeOpenName(this.$route.name) }, // 左边树的展开状态
@@ -101,7 +101,7 @@ export default {
             if (!select) return false
             console.info('%c仙 一级页面 不跳觉得烦了', 'color:#05ff0f;background:#000;padding:0 5px;')
             return false // 觉得烦了 先不跳
-            const path = this.$store.state.system.routeList[select].path
+            const path = this.$store.state.route.routeList[select].path
             console.info('%c仙 一级页面 跳第一个子页面', 'color:#05ff0f;background:#000;padding:0 5px;', path)
             goto({ path })
         },

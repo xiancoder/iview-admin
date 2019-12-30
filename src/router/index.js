@@ -140,7 +140,7 @@ router.beforeEach((to, from, next) => {
         return next()
     }
 
-    if (Store.state.system.doNotDrawRouter) { // 回退再前进 之间的页面不做渲染
+    if (Store.state.route.doNotDrawRouter) { // 回退再前进 之间的页面不做渲染
         console.info('%c仙 准备跳转 历史记录管理', 'color:#05ff0f;background:#000;padding:0 5px;')
         return
     }
@@ -158,7 +158,7 @@ router.beforeEach((to, from, next) => {
         return next({ replace: true, name: 'locking' })
     }
 
-    const isLogined = Store.getters['system/access']
+    const isLogined = Store.getters['admin/access']
     const goLogin = loginPowerList.includes(to.name)
     if (!isLogined) {
         if (goLogin) {
@@ -169,7 +169,7 @@ router.beforeEach((to, from, next) => {
         return next({ replace: true, name: 'login' })
     }
 
-    Store.dispatch('system/setBreadCrumbList', to.name) // 面包屑
+    Store.dispatch('route/setBreadCrumbList', to.name) // 面包屑
 
     if (specialPowerList.includes(to.name)) {
         console.info('%c仙 准备跳转 特殊不走鉴权', 'color:#05ff0f;background:#000;padding:0 5px;')
@@ -193,8 +193,8 @@ router.beforeEach((to, from, next) => {
         }
 
         LoadingBarRun(true) // 顶部进度条
-        Store.dispatch('system/keepalive', to.name) // 路由keepAlive管理 当前页缓存
-        Store.dispatch('system/routeSpin', true) // 路由视图loading
+        Store.dispatch('route/keepalive', to.name) // 路由keepAlive管理 当前页缓存
+        Store.dispatch('route/routeSpin', true) // 路由视图loading
 
         // 滚动条位置
         // 放弃 有更好的方法 路由提供了 scrollBehavior 钩子
@@ -210,7 +210,7 @@ router.beforeEach((to, from, next) => {
         next() // 进入页面
     }
 
-    Store.dispatch('system/hasPower', to.name).then((bool) => { // 鉴权
+    Store.dispatch('route/hasPower', to.name).then((bool) => { // 鉴权
         console.info('%c仙 准备跳转 鉴权', 'color:#05ff0f;background:#000;padding:0 5px;', bool ? '有权限' : '无权限')
         if (!bool) { return next({name: 'error403'}) }
         goPowerPage()
@@ -219,14 +219,14 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from) => {
     LoadingBarRun(false) // 顶部进度条
-    Store.dispatch('system/routeSpin', false) // 路由视图loading
+    Store.dispatch('route/routeSpin', false) // 路由视图loading
 
     if (to && from && to.name === from.name) { // 本页面跳转 不做各种表示
         return false
     }
 
-    Store.dispatch('system/setTitle', to.name) // 设置标题
-    Store.dispatch('system/addTagNav', to) // 增加页面缓存标签
+    Store.dispatch('route/setTitle', to.name) // 设置标题
+    Store.dispatch('route/addTagNav', to) // 增加页面缓存标签
 
     console.info('%c仙 跳转完成', 'color:#05ff0f;background:#000;padding:0 5px;', to)
 })

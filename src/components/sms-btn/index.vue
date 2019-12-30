@@ -16,7 +16,7 @@ export default {
     },
     computed: { // 计算属性
         telCodeMsg () { // 发送短信倒计时
-            const smsCode = this.$store.state.system.smsCode
+            const smsCode = this.$store.state.sms.smsCode
             if (!smsCode) {
                 return '获取验证码'
             } else {
@@ -24,12 +24,12 @@ export default {
             }
         },
         isSented () { // 发送中禁用
-            return !!this.$store.state.system.smsCode
+            return !!this.$store.state.sms.smsCode
         }
     },
     methods: {
         GetCode: debounce(function () {
-            this.$store.dispatch('system/smscode') // 开启倒计时
+            this.$store.dispatch('sms/smscode') // 开启倒计时
             this.$emit('on-send')
         })
     },

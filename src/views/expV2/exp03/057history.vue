@@ -60,10 +60,10 @@
                 <p>3 改状态 跳转/回退 改状态 延时500ms跳转新路由页面</p>
                 <script type="text/js">
                     // 建议封装一个方法
-                    this.$store.dispatch('system/noRender', true).then(() => {
+                    this.$store.dispatch('route/noRender', true).then(() => {
                         this.$router.go(-2)
                         setTimeout(() => {
-                            this.$store.dispatch('system/noRender', false).then(() => {
+                            this.$store.dispatch('route/noRender', false).then(() => {
                                 this.$router.push({'name': 'exp3_057history@3'})
                             })
                         },500)
@@ -93,10 +93,10 @@ export default {
             })
         },
         jumpjump2 () {
-            this.$store.dispatch('system/noRender', true).then(() => {
+            this.$store.dispatch('route/noRender', true).then(() => {
                 this.$router.push({'name': 'expV2_exp03_057history@1'})
                 setTimeout(() => {
-                    this.$store.dispatch('system/noRender', false).then(() => {
+                    this.$store.dispatch('route/noRender', false).then(() => {
                         this.$router.push({'name': 'expV2_exp03_057history@2'})
                     })
                 }, 500)

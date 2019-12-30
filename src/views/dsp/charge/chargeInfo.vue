@@ -52,7 +52,7 @@ export default {
     methods: {
         getDataSet () { // 初始化数据源
             if (this.roleId === 3) this.$api.system.companyList().then(list => { this.dataSet.companyList = list })
-            if (this.roleId === 1) this.frm.companyIdII = parseInt(this.$store.state.system.platformId)
+            if (this.roleId === 1) this.frm.companyIdII = parseInt(this.$store.state.admin.platformId)
         },
         edit (row) {
             this.frm2 = row
@@ -71,8 +71,8 @@ export default {
         }
     },
     computed: { // 计算属性
-        roleId () { return this.$store.state.system.userRoleId }, // 用户角色权限
-        platformId () { return this.$store.state.system.platformId } // 平台id
+        roleId () { return this.$store.state.admin.userRoleId }, // 用户角色权限
+        platformId () { return this.$store.state.admin.platformId } // 平台id
     },
     mounted: function () {
         this.getDataSet()

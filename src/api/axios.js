@@ -22,7 +22,7 @@ axios.defaults.headers = { 'X-Requested-With': 'XMLHttpRequest' } // 设置默�
 axios.defaults.timeout = 20000 // 请求超时的时间限制
 axios.interceptors.request.use( // 开始设置请求 发起的拦截处理
     config => { // config 代表发起请求的参数的实体
-        const token = Store.state.user.token
+        const token = Store.state.admin.token
         config.headers['token'] = token || ''
         let url = config.url
         if (!/^http|^\//.test(url)) url = '/' + url // 当请求为index.html时 斜杠可以保证请求的是根目录
@@ -58,7 +58,7 @@ axios.interceptors.response.use( // 请求到结果的拦截处理
             case 400: error.message = '错误请求'; break
             case 401:
                 error.message = '未授权，请重新登录';
-                Store.dispatch('system/logout') // 登出
+                Store.dispatch('admin/logout') // 登出
                 break
             case 403: error.message = '没有权限'; break
             case 404: error.message = '网络请求不存在'; break

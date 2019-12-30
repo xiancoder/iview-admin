@@ -72,7 +72,7 @@ export default {
         }
     },
     computed: { // 计算属性
-        roleId () { return this.$store.state.system.userRoleId } // 用户角色权限
+        roleId () { return this.$store.state.admin.userRoleId } // 用户角色权限
     },
     methods: {
         getDataSet () { // 初始化数据源

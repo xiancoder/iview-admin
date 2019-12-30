@@ -29,12 +29,12 @@ export default {
     methods: {
         handleSubmit (param) {
             this.error = ''
-            this.$store.dispatch('system/login', param).then(res => {
-                this.$store.dispatch('system/getPowerList').then(res => { // 读取权限 更新权限视图
+            this.$store.dispatch('admin/login', param).then(res => {
+                this.$store.dispatch('route/getPowerList').then(res => { // 读取权限 更新权限视图
                     console.info('%c仙 管理员登录喽', 'color:#05ff0f;background:#000;padding:0 5px;')
                     this.$router.push({ name: homePage })
                 })
-                this.$store.dispatch('system/getUserInfo') // 获取用户信息
+                this.$store.dispatch('admin/getUserInfo') // 获取用户信息
             }).catch(res => {
                 this.error = res
             })
@@ -44,7 +44,7 @@ export default {
         }
     },
     mounted: function () {
-        this.$store.dispatch('system/setRole', 1) // 设置角色
+        this.$store.dispatch('admin/setRole', 1) // 设置角色
     }
 }
 </script>
