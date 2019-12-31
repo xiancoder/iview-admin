@@ -9,14 +9,14 @@ import Vue from 'vue' // 核心
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate' // 状态持久化
 
-import system from './systemV1' // 系统相关
-import route from './route' // 路由/权限相关
-import message from './message' // sms相关
-import sms from './sms' // sms相关
-import admin from './admin' // 管理员/用户相关
-import test from './test' // 测试相关
+import system from './store.systemV1' // 系统相关
+import route from './store.route' // 路由/权限相关
+import message from './store.message' // sms相关
+import sms from './store.sms' // sms相关
+import admin from './store.admin' // 管理员/用户相关
+import test from './store.test' // 测试相关
 
-import data from './data' // 数据
+import data from './store.data' // 数据
 
 Vue.use(Vuex)
 
@@ -53,6 +53,7 @@ const modules = {
     sms,
     message,
     admin,
+    test,
 
     data
 }

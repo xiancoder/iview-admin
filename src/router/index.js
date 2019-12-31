@@ -1,3 +1,7 @@
+// 项目::路由模块
+// 负责::所有的路由逻辑都集中在这里
+// 2019年12月31日15:15:49 更新
+
 import Vue from 'vue' // 核心
 import Router from 'vue-router'
 import { Store } from '@/store' // 自定义状态管理

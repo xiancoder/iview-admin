@@ -30,8 +30,8 @@
     </div>
 </template>
 <script>
-import pageLoadNoSave from '@/router/pageLoadNoSave'
-import pageConfirmToGo from '@/router/pageConfirmToGo'
+import pageLoadNoSave from '@/router/router.unsavedData'
+import pageConfirmToGo from '@/router/router.leavePrompt'
 import regexp from '@/utils/regexp'
 export default {
     mixins: [

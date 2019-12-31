@@ -12,7 +12,6 @@
 
 ```
 ├── api // 接口管理
-    ├── axios.js // axios配置
     ├── cache.js // 缓存包装的axios实例
     ├── department.js // 部门接口集合
     ├── employee.js // 职员接口集合
@@ -22,7 +21,7 @@
     ├── staff.js // 参考用
     ├── unit.js // 测试用
     ├── system.js // 系统有关的接口集合
-    └── index.js //出口
+    └── index.js //axios配置/出口
 ```
 
 - 想法:: 第一 开发者开发阶段单独准备接口
