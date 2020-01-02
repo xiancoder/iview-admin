@@ -15,10 +15,10 @@
                 <Button @click="go2()">go2</Button>
                 <script type="text/js">
                     go1 () { // 传递的 params: { value: 'test1' } 刷新一下就没了 这是个bug
-                        this.$router.push({ name: 'exp2_021route@add', params: { value: 'test1' } })
+                        this.$router.push({ name: 'vxpV2_exp02_021route@add', params: { value: 'test1' } })
                     },
                     go2 () { // 墙裂建议用 query: { value: 'test1' } 啊 保证传参的存在
-                        this.$router.push({ path: '/exp2/021route@add', query: { value: 'test1' } })
+                        this.$router.push({ path: '/vxpV2/exp02/021route@add', query: { value: 'test1' } })
                     }
                     router.push('home')
                     router.push({ path: 'home' })

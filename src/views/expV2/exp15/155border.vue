@@ -58,25 +58,25 @@ export default {
     #repeat {
         border: 15px solid transparent;
         padding: 10px 20px;
-        -moz-border-image:url("/public/img.border/border.png") 30 30 round; /* Old Firefox */
-        -webkit-border-image:url("/public/img.border/border.png") 30 30 round; /* Safari */
-        -o-border-image:url("/public/img.border/border.png") 30 30 round; /* Opera */
-        border-image:url("/public/img.border/border.png") 30 30 round;
+        -moz-border-image:url("/static/img.border/border.png") 30 30 round; /* Old Firefox */
+        -webkit-border-image:url("/static/img.border/border.png") 30 30 round; /* Safari */
+        -o-border-image:url("/static/img.border/border.png") 30 30 round; /* Opera */
+        border-image:url("/static/img.border/border.png") 30 30 round;
     }
     #stretch {
         border: 15px solid transparent;
         padding: 10px 20px;
-        -moz-border-image:url("/public/img.border/border.png") 30 30 stretch; /* Old Firefox */
-        -webkit-border-image:url("/public/img.border/border.png") 30 30 stretch; /* Safari */
-        -o-border-image:url("/public/img.border/border.png") 30 30 stretch; /* Opera */
-        border-image:url("/public/img.border/border.png") 30 30 stretch;
+        -moz-border-image:url("/static/img.border/border.png") 30 30 stretch; /* Old Firefox */
+        -webkit-border-image:url("/static/img.border/border.png") 30 30 stretch; /* Safari */
+        -o-border-image:url("/static/img.border/border.png") 30 30 stretch; /* Opera */
+        border-image:url("/static/img.border/border.png") 30 30 stretch;
     }
     #round {
         border: 45px solid transparent;
         padding: 10px 20px;
-        -moz-border-image:url("/public/img.border/bg-pawprints-all.jpg") 45 45 round; /* Old Firefox */
-        -webkit-border-image:url("/public/img.border/bg-pawprints-all.jpg") 45 45 round; /* Safari */
-        -o-border-image:url("/public/img.border/bg-pawprints-all.jpg") 45 45 round; /* Opera */
-        border-image:url("/public/img.border/bg-pawprints-all.jpg") 45 45 round;
+        -moz-border-image:url("/static/img.border/bg-pawprints-all.jpg") 45 45 round; /* Old Firefox */
+        -webkit-border-image:url("/static/img.border/bg-pawprints-all.jpg") 45 45 round; /* Safari */
+        -o-border-image:url("/static/img.border/bg-pawprints-all.jpg") 45 45 round; /* Opera */
+        border-image:url("/static/img.border/bg-pawprints-all.jpg") 45 45 round;
     }
 </style>

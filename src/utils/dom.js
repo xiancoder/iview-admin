@@ -1,6 +1,6 @@
-/**
-* @returns {String} 当前浏览器名称
-*/
+'use strict';
+// 当前浏览器名称
+// =====================
 export const getExplorer = () => {
     const ua = window.navigator.userAgent
     const isExplorer = (exp) => {
@@ -12,9 +12,8 @@ export const getExplorer = () => {
     else if (isExplorer('Opera')) return 'Opera'
     else if (isExplorer('Safari')) return 'Safari'
 }
-/**
-* @description 绑定事件 on(element, event, handler)
-*/
+// 绑定事件 on(element, event, handler)
+// =====================
 export const on = (function () {
     if (document.addEventListener) {
         return function (element, event, handler) {
@@ -30,9 +29,8 @@ export const on = (function () {
         }
     }
 })()
-/**
-* @description 解绑事件 off(element, event, handler)
-*/
+// 解绑事件 off(element, event, handler)
+// =====================
 export const off = (function () {
     if (document.removeEventListener) {
         return function (element, event, handler) {
@@ -66,6 +64,15 @@ export const eventTarget = (ev) => {
     ev = ev || window.event;
     /* IE和Chrome下是srcElement FF下是target */
     return ev.target || ev.srcElement;
+}
+// 获取地址栏参数
+// =====================
+// liuyp 2020年1月2日10:02:53
+export const getUrLParam = (name) => {
+    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i')
+    var r = window.location.search.substr(1).match(reg)
+    if (r !== null) return unescape(r[2])
+    return null
 }
 
 // scrollTop animation
@@ -117,79 +124,77 @@ export const findNodeUpperByClasses = (ele, classes) => {
 }
 
 /* ================================================================================ *\
-*  |说明|makeDom_原生API
-*  |说明|属性 / 方法 描述
-*  element.accessKey //设置或返回元素的快捷键。
-*  element.appendChild() //向元素添加新的子节点，作为最后一个子节点。
-*  element.attributes //返回元素属性的 NamedNodeMap。
-*  element.childNodes //返回元素子节点的 NodeList。
-*  element.children
-*  element.style.cssText
-*  element.className //设置或返回元素的 class 属性。
-*  element.clientHeight //返回元素的可见高度。
-*  element.clientWidth //返回元素的可见宽度。
-*  element.cloneNode() //克隆元素。
-*  element.compareDocumentPosition() //比较两个元素的文档位置。
-*  element.contentEditable //设置或返回元素的文本方向。
-*  element.dir //设置或返回元素的文本方向。
-*  element.firstChild //返回元素的首个子。
-*  element.getAttribute() //返回元素节点的指定属性值。
-*  element.getAttributeNode() //返回指定的属性节点。
-*  element.getElementsByTagName() //返回拥有指定标签名的所有子元素的集合。
-*  element.getFeature() //返回实现了指定特性的 API 的某个对象。
-*  element.getUserData() //返回关联元素上键的对象。
-*  element.hasAttribute() //如果元素拥有指定属性，则返回true，否则返回 false。
-*  element.hasAttributes() //如果元素拥有属性，则返回 true，否则返回 false。
-*  element.hasChildNodes() //如果元素拥有子节点，则返回 true，否则 false。
-*  element.id //设置或返回元素的 id。
-*  element.innerHTML //设置或返回元素的内容。
-*  element.insertBefore() //在指定的已有的子节点之前插入新节点。
-*  element.isContentEditable //设置或返回元素的内容。
-*  element.isDefaultNamespace() //如果指定的 namespaceURI 是默认的，则返回 true，否则返回 false。
-*  element.isEqualNode() //检查两个元素是否相等。
-*  element.isSameNode() //检查两个元素是否是相同的节点。
-*  element.isSupported() //如果元素支持指定特性，则返回 true。
-*  element.lang //设置或返回元素的语言代码。
-*  element.lastChild //返回元素的最后一个子元素。
-*  element.namespaceURI //返回元素的 namespace URI。
-*  element.nextSibling //返回位于相同节点树层级的下一个节点。
-*  element.nodeName //返回元素的名称。
-*  element.nodeType //返回元素的节点类型。
-*  element.nodeValue //设置或返回元素值。
-*  element.normalize() //合并元素中相邻的文本节点，并移除空的文本节点。
-*  element.offsetHeight //返回元素的高度。
-*  element.offsetWidth //返回元素的宽度。
-*  element.offsetLeft //返回元素的水平偏移位置。
-*  element.offsetParent //返回元素的偏移容器。
-*  element.offsetTop //返回元素的垂直偏移位置。
-*  element.ownerDocument //返回元素的根元素（文档对象）。
-*  element.parentNode //返回元素的父节点。
-*  element.previousSibling //返回位于相同节点树层级的前一个元素。
-*  element.removeAttribute() //从元素中移除指定属性。
-*  element.removeAttributeNode() //移除指定的属性节点，并返回被移除的节点。
-*  element.removeChild() //从元素中移除子节点。
-*  element.replaceChild() //替换元素中的子节点。
-*  element.scrollHeight //返回元素的整体高度。
-*  element.scrollLeft //返回元素左边缘与视图之间的距离。
-*  element.scrollTop //返回元素上边缘与视图之间的距离。
-*  element.scrollWidth //返回元素的整体宽度。
-*  element.setAttribute() //把指定属性设置或更改为指定值。
-*  element.setAttributeNode() //设置或更改指定属性节点。
-*  element.setIdAttribute()
-*  element.setIdAttributeNode()
-*  element.setUserData() //把对象关联到元素上的键。
-*  element.style //设置或返回元素的 style 属性。
-*  element.tabIndex //设置或返回元素的 tab 键控制次序。
-*  element.tagName //返回元素的标签名。
-*  element.textContent //设置或返回节点及其后代的文本内容。
-*  element.title //设置或返回元素的 title 属性。
-*  element.toString() //把元素转换为字符串。
-    nodelist.item() //返回 NodeList 中位于指定下标的节点。
-    nodelist.length //返回 NodeList 中的节点数。
+// makeDom_原生API
+// 属性 / 方法 描述
+* element.accessKey //设置或返回元素的快捷键。
+* element.appendChild() //向元素添加新的子节点，作为最后一个子节点。
+* element.attributes //返回元素属性的 NamedNodeMap。
+* element.childNodes //返回元素子节点的 NodeList。
+* element.children
+* element.style.cssText
+* element.className //设置或返回元素的 class 属性。
+* element.clientHeight //返回元素的可见高度。
+* element.clientWidth //返回元素的可见宽度。
+* element.cloneNode() //克隆元素。
+* element.compareDocumentPosition() //比较两个元素的文档位置。
+* element.contentEditable //设置或返回元素的文本方向。
+* element.dir //设置或返回元素的文本方向。
+* element.firstChild //返回元素的首个子。
+* element.getAttribute() //返回元素节点的指定属性值。
+* element.getAttributeNode() //返回指定的属性节点。
+* element.getElementsByTagName() //返回拥有指定标签名的所有子元素的集合。
+* element.getFeature() //返回实现了指定特性的 API 的某个对象。
+* element.getUserData() //返回关联元素上键的对象。
+* element.hasAttribute() //如果元素拥有指定属性，则返回true，否则返回 false。
+* element.hasAttributes() //如果元素拥有属性，则返回 true，否则返回 false。
+* element.hasChildNodes() //如果元素拥有子节点，则返回 true，否则 false。
+* element.id //设置或返回元素的 id。
+* element.innerHTML //设置或返回元素的内容。
+* element.insertBefore() //在指定的已有的子节点之前插入新节点。
+* element.isContentEditable //设置或返回元素的内容。
+* element.isDefaultNamespace() //如果指定的 namespaceURI 是默认的，则返回 true，否则返回 false。
+* element.isEqualNode() //检查两个元素是否相等。
+* element.isSameNode() //检查两个元素是否是相同的节点。
+* element.isSupported() //如果元素支持指定特性，则返回 true。
+* element.lang //设置或返回元素的语言代码。
+* element.lastChild //返回元素的最后一个子元素。
+* element.namespaceURI //返回元素的 namespace URI。
+* element.nextSibling //返回位于相同节点树层级的下一个节点。
+* element.nodeName //返回元素的名称。
+* element.nodeType //返回元素的节点类型。
+* element.nodeValue //设置或返回元素值。
+* element.normalize() //合并元素中相邻的文本节点，并移除空的文本节点。
+* element.offsetHeight //返回元素的高度。
+* element.offsetWidth //返回元素的宽度。
+* element.offsetLeft //返回元素的水平偏移位置。
+* element.offsetParent //返回元素的偏移容器。
+* element.offsetTop //返回元素的垂直偏移位置。
+* element.ownerDocument //返回元素的根元素（文档对象）。
+* element.parentNode //返回元素的父节点。
+* element.previousSibling //返回位于相同节点树层级的前一个元素。
+* element.removeAttribute() //从元素中移除指定属性。
+* element.removeAttributeNode() //移除指定的属性节点，并返回被移除的节点。
+* element.removeChild() //从元素中移除子节点。
+* element.replaceChild() //替换元素中的子节点。
+* element.scrollHeight //返回元素的整体高度。
+* element.scrollLeft //返回元素左边缘与视图之间的距离。
+* element.scrollTop //返回元素上边缘与视图之间的距离。
+* element.scrollWidth //返回元素的整体宽度。
+* element.setAttribute() //把指定属性设置或更改为指定值。
+* element.setAttributeNode() //设置或更改指定属性节点。
+* element.setIdAttribute()
+* element.setIdAttributeNode()
+* element.setUserData() //把对象关联到元素上的键。
+* element.style //设置或返回元素的 style 属性。
+* element.tabIndex //设置或返回元素的 tab 键控制次序。
+* element.tagName //返回元素的标签名。
+* element.textContent //设置或返回节点及其后代的文本内容。
+* element.title //设置或返回元素的 title 属性。
+* element.toString() //把元素转换为字符串。
+* nodelist.item() //返回 NodeList 中位于指定下标的节点。
+* nodelist.length //返回 NodeList 中的节点数。
 \* ================================================================================ */
-/* ================================================================================ *\
-*  |说明|makeDom_创_创建节点
-\* ================================================================================ */
+// makeDom_创_创建节点
 /* 动态加入文字DIV */
 export function appendDiv (text, elem) {
     var dNode = document.createTextNode(text)
@@ -197,39 +202,10 @@ export function appendDiv (text, elem) {
     dElem.appendChild(dNode)
     document.body.appendChild(dElem)
 }
-/* ================================================================================ *\
-*  |说明|makeDom_创_创建节点统一方法
-\* ================================================================================ */
-export function makeDom (elem, o) {
-    var dElem = document.createElement(elem)
-    if (o.style) { dElem.style.cssText = o.style; }
-    delete o.style;
-    if (o.addto) { o.addto.appendChild(dElem); }
-    delete o.addto;
-    if (o.innerHTML) { dElem.innerHTML = o.innerHTML; }
-    delete o.innerHTML;
-    if (o.html) { dElem.innerHTML = o.html; } delete o.html;
-    var _ex = function (s, f) {
-        for (var P in f) { s[P] = f[P] }
-        return s
-    }
-    return _ex(dElem, o);
-}
-export function text2css (s) {
-    s = s.replace(/;$/g, '');
-    for (var cssObj = {}, xa = s.split(';'), i = 0, l = xa.length; i < l; i++) {
-        var xaa = xa[i].split(':')
-        var f = function (v) { return v.replace('-', '').toUpperCase() };
-        cssObj[xaa[0].replace(/\-[a-z]/g, f)] = xaa[1];
-    } return cssObj;
-}
-// text2css('box-sizing:content-box;display:block;width:310px;height:285px;background:none;').background 结果 none
-/* ================================================================================ *\
-*  |说明|makeDom_增_动态插入节点
-*  |说明|有insertBefore的应该也有insertAfter吧？
-*  |说明|有appendChild的应该也有prependChild吧？
-*  |说明|document.body.insertBefore(xx, document.body.children.item(0));
-\* ================================================================================ */
+// makeDom_增_动态插入节点
+// 有insertBefore的应该也有insertAfter吧？
+// 有appendChild的应该也有prependChild吧？
+// document.body.insertBefore(xx, document.body.children.item(0));
 export function insertAfter (newEl, targetEl) {
     var parentEl = targetEl.parentNode;
     if (parentEl.lastChild === targetEl) {
@@ -249,23 +225,17 @@ export function prependChild (newEl, parentEl) {
 export function appendChild (newEl, parentEl) {
     return parentEl.appendChild(newEl);
 }
-/* ================================================================================ *\
-*  |说明|makeDom_增_测试手动插入脚本
-\* ================================================================================ */
-export function doadtest1234 () {
+// makeDom_增_测试手动插入脚本
+export function appendScript () {
     var script = document.createElement('script');
     script.src = '';
     document.body.appendChild(script);
 }
-/* ================================================================================ *\
-*  |说明|makeDom_删_动态移除DOM
-\* ================================================================================ */
+// makeDom_删_动态移除DOM
 export function remove (elem) {
     elem.parentNode && elem.parentNode.removeChild(elem);
 }
-/* ================================================================================ *\
-*  |说明|makeDom_改_动态处理属性
-\* ================================================================================ */
+// makeDom_改_动态处理属性
 export function Attr (elem, attr, value) {
     if (value === undefined) {
         return elem.getAttribute(attr)
@@ -274,9 +244,7 @@ export function Attr (elem, attr, value) {
     }
     return elem.setAttribute(attr, value)
 }
-/* ================================================================================ *\
-*  |说明|makeDom_改_动态处理样式
-\* ================================================================================ */
+// makeDom_改_动态处理样式
 export function hasClass (el, k) {
     if (!el || !k) { return; }
     return (' ' + el.className + ' ').indexOf(' ' + k + ' ') > -1;
@@ -295,32 +263,28 @@ export function toggleClass (el, k) {
     if (!el || !k) { return; }
     return (hasClass(el, k)) ? removeClass(el, k) : addClass(el, k);
 }
-/* ================================================================================ *\
-*  |说明|makeDom_查_原生选择器
-*  |说明|document.querySelector('div a')
-*  |说明|document.querySelectorAll('div a').length
-*  |说明|document.querySelectorAll('div a')[0]
-*  |说明|document.querySelector('#test')
-*  |说明|document.querySelector('input:disabled')
-*  |说明|document.querySelector('span:not(label)').innerHTML
-*  |说明|document.querySelectorAll('input[id^=test]')[1].value
-*  |说明|document.querySelectorAll('input[id$=t2]').length
-*  |说明|document.querySelectorAll('input[id*=est]').length
-*  |说明|document.querySelector('.testSpan').innerHTML
-*  |说明|document.querySelector('ul li:nth-child(2)').innerHTML
-*  |说明|document.querySelectorAll('ul li:nth-child(3n)')[0].innerHTML
-*  |说明|document.querySelectorAll('ul li:nth-child(odd)')[1].innerHTML
-*  |说明|document.querySelector('ul li:first-child').innerHTML
-*  |说明|document.querySelector('ul li:last-child').innerHTML
-*  |说明|document.querySelectorAll('li[class]')[0].innerHTML
-*  |说明|document.querySelectorAll('div label')[0].innerHTML
-*  |说明|document.querySelectorAll('div > label')[0].innerHTML
-*  |说明|document.querySelectorAll('div + label')[0].innerHTML
-*  |说明|document.querySelectorAll('div ~ label')[1].innerHTML
-\* ================================================================================ */
-/* ================================================================================ *\
-*  |说明|makeDom_查_元素间关系
-\* ================================================================================ */
+// makeDom_查_原生选择器
+// document.querySelector('div a')
+// document.querySelectorAll('div a').length
+// document.querySelectorAll('div a')[0]
+// document.querySelector('#test')
+// document.querySelector('input:disabled')
+// document.querySelector('span:not(label)').innerHTML
+// document.querySelectorAll('input[id^=test]')[1].value
+// document.querySelectorAll('input[id$=t2]').length
+// document.querySelectorAll('input[id*=est]').length
+// document.querySelector('.testSpan').innerHTML
+// document.querySelector('ul li:nth-child(2)').innerHTML
+// document.querySelectorAll('ul li:nth-child(3n)')[0].innerHTML
+// document.querySelectorAll('ul li:nth-child(odd)')[1].innerHTML
+// document.querySelector('ul li:first-child').innerHTML
+// document.querySelector('ul li:last-child').innerHTML
+// document.querySelectorAll('li[class]')[0].innerHTML
+// document.querySelectorAll('div label')[0].innerHTML
+// document.querySelectorAll('div > label')[0].innerHTML
+// document.querySelectorAll('div + label')[0].innerHTML
+// document.querySelectorAll('div ~ label')[1].innerHTML
+// makeDom_查_元素间关系
 // 父节点
 export function parentNode (node) {
     return node.parentNode;
@@ -348,17 +312,13 @@ export function prevSiblingNode (node) {
     }
     return (tempObj.nodeType === 1) ? tempObj : null;
 }
-/* ================================================================================ *\
-*  |说明|makeDom_断_元素属性
-\* ================================================================================ */
+// makeDom_断_元素属性
 // 判断siblingNode和dom是否为同一个父元素下的同一级的元素，返回bool值
 export function isSiblingNode (element, siblingNode) {
     if (!siblingNode || !element) return false;
     return element.parentNode === siblingNode.parentNode;
 }
-/* ================================================================================ *\
-*  |说明|makeDom_动态计算应该显示的基准
-\* ================================================================================ */
+// makeDom_动态计算应该显示的基准
 export function asdfasdfsaf () {
     (function (win, doc) {
         function change () {

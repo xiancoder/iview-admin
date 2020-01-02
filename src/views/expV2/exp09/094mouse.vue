@@ -5,7 +5,7 @@
             <div class="blogContent" v-highlight>
                 <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
                 <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
-                <Row gutter="20">
+                <Row :gutter="20">
                      <Col span="8">
                         <div style="cursor : auto"> <h6></h6> cursor :  auto : 默认值。浏览器根据当前情况自动确定鼠标光标类型。</div>
                         <div style="cursor : all-scroll"> <h6></h6> cursor :  all-scroll : IE6.0 有上下左右四个箭头，中间有一个圆点的光标。用于标示页面可以向上下左右任何方向滚动。</div>

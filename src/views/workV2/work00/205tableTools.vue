@@ -64,12 +64,12 @@
                 <DatePicker :value="search.start2end" type="daterange" placeholder="选择开始日期结束日期"
                     @on-change="search.start2end=$event" @on-clear="search.start2end=[]" split-panels style="width: 220px">
                 </DatePicker>
-                <Select v-model="search.aderId" filterable placeholder="请选择任务级别" style="width: 150px"
+                <Select v-model="search.aderId" filterable placeholder="请选择任务级别" style="width: 150px">
                     <Option value="all" label="全部任务级别"></Option>
                     <Option v-for="option in dataSet.taskPriorityList" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
-                <Input type="text" v-model="search.businessId" placeholder="请输入业务" style="width: 180px"/>
+                <Input type="text" v-model.trim="search.businessId" placeholder="请输入业务" style="width: 180px"/>
                 <Select v-model="search.taskStatus" placeholder='请选择任务状态'>
                     <Option v-for="option in dataSet.taskStatuList" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>

@@ -145,7 +145,7 @@ export default {
     },
     methods: {
         godetail () {
-            this.$router.push({name: 'exp5_090keepalive@add'})
+            this.$router.push({name: 'vxpV2_exp09_090keepalive@add'})
         }
     },
     mounted () {

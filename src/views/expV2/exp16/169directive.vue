@@ -73,6 +73,12 @@
 </template>
 <script>
 export default {
+    directives: { // 注册局部指令，组件中也接受一个 directives 的选项：
+        focus: {
+            // 指令的定义
+            inserted: function (el) { el.focus() }
+        }
+    },
     data () {
         return {}
     },

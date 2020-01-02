@@ -64,7 +64,7 @@
                         this.$router.go(-2)
                         setTimeout(() => {
                             this.$store.dispatch('route/noRender', false).then(() => {
-                                this.$router.push({'name': 'exp3_057history@3'})
+                                this.$router.push({'name': 'vxpV2_exp05_057history@3'})
                             })
                         },500)
                     })
@@ -85,19 +85,19 @@ export default {
     },
     methods: {
         jump1 () {
-            this.$router.push({'name': 'expV2_exp03_057history@1'})
+            this.$router.push({'name': 'expV2_exp05_057history@1'})
         },
         jump1jump2 () {
-            this.$router.push({'name': 'expV2_exp03_057history@1'}, () => {
-                this.$router.push({'name': 'expV2_exp03_057history@2'})
+            this.$router.push({'name': 'expV2_exp05_057history@1'}, () => {
+                this.$router.push({'name': 'expV2_exp05_057history@2'})
             })
         },
         jumpjump2 () {
             this.$store.dispatch('route/noRender', true).then(() => {
-                this.$router.push({'name': 'expV2_exp03_057history@1'})
+                this.$router.push({'name': 'expV2_exp05_057history@1'})
                 setTimeout(() => {
                     this.$store.dispatch('route/noRender', false).then(() => {
-                        this.$router.push({'name': 'expV2_exp03_057history@2'})
+                        this.$router.push({'name': 'expV2_exp05_057history@2'})
                     })
                 }, 500)
             })

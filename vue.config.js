@@ -28,7 +28,8 @@ module.exports = {
     // 请始终使用 outputDir 而不要修改 webpack 的 output.path。
     outputDir: 'dist',
     // 是否使用包含运行时编译器的 Vue 构建版本。设置为 true 后你就可以在 Vue 组件中使用 template 选项了，但是这会让你的应用额外增加 10kb 左右。
-    runtimeCompiler: false,
+    // 富文本编辑器 需要此配置 2020年1月2日10:57:47
+    runtimeCompiler: true,
     // 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
     // 设为false打包时不生成.map文件
     productionSourceMap: false,
@@ -112,7 +113,7 @@ module.exports = {
                 // ws: true,
                 // 使用的是http协议则设置为false https协议则设置为true
                 // secure:false,
-                pathRewrite: {'^/api': '/web'},
+                pathRewrite: {'^/api': '/api'},
                 changeOrigin: true // 开启代理：在本地会创建一个虚拟服务端
             },
             '/epopen': { target: 'http://localhost:4010/', pathRewrite: {'^/epopen': '/epopen'}, changeOrigin: true }

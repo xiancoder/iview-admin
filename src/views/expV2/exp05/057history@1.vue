@@ -23,7 +23,7 @@ export default {
     },
     methods: {
         jump2 () {
-            this.$router.push({'name': 'expV2_exp03_057history@2'})
+            this.$router.push({'name': 'expV2_exp05_057history@2'})
         }
     },
     mounted () {

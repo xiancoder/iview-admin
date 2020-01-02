@@ -6,6 +6,7 @@ import { makeOneLevelRoute } from './util'
 import home from './routers.home'
 import exp from './routers.exp'
 import expV2 from './routers.expV2'
+import workV2 from './routers.workV2'
 import tool from './routers.tool'
 import dsp from './routers.dsp'
 import oa from './routers.oa'
@@ -30,6 +31,7 @@ export const routerList = [
     home,
     exp,
     expV2,
+    workV2,
     tool,
     dsp,
     oa,

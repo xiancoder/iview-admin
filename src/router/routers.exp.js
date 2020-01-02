@@ -16,7 +16,6 @@ export default makeMultiLevelRoute({
         {power: '0000', path: '024validate', title: '表单所有校验方式'},
         {power: '0000', path: '025vvvali', title: '表单复杂校验方式'},
         {power: '0000', path: '028pluginLike', title: '插件比喻'},
-        {power: '0000', path: '030vueVision', title: 'VUE竟然好几个版本'},
         {power: '0000', path: '031mail', title: 'JS发邮件权限'},
         {power: '0000', path: '032api', title: '$api模块说明 v1'},
         {power: '0000', path: '033exports', title: 'exports 简单说明'},

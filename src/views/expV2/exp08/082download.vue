@@ -3,14 +3,14 @@
         <div class="blog">
             <div class="blogTitle">JS控制文件的下载</div>
             <div class="blogContent" v-highlight>
-                <a :href="'/www.qichacha.com.png'" download>下载,成功</a>
+                <a :href="'/static/img.site/qichacha.png'" download>下载,成功</a>
                 <script type="text/js">
-                    <a :href="'/www.qichacha.com.png'" download>下载,成功</a>
+                    <a :href="'/static/img.site/qichacha.png'" download>下载,成功</a>
                 </script>
                 <p>下载的是这个</p>
-                <img :src="'/www.qichacha.com.png'" alt="" id="img" />
+                <img :src="'/static/img.site/qichacha.png'" alt="" id="img" />
                 <hr />
-                <Row gutter="20">
+                <Row :gutter="20">
                     <Col span="12">
                         <a href="javascript:;" onclick="dothis1()">dothis1() 下载, 失败了</a>
                         <script type="text/js">

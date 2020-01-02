@@ -6,13 +6,13 @@
                 <Form ref="formValidateId" :model="frm" :label-width="150" label-colon>
                     <FormItem label="输入" prop="input1">
                         <Input type="textarea" v-model="frm.textarea1" show-word-limit
-                            placeholder="请输入XXXX" maxlength="1000" rows="8"
+                            placeholder="请输入XXXX" maxlength="1000" :rows="8"
                             style="width: 450px"/>
                         <div class="ivu-form-item-notice-tip">必填 【完美】</div>
                     </FormItem>
                     <FormItem label="转码" prop="text1">
                         <Input type="textarea" v-model="frm.textarea2" show-word-limit
-                            placeholder="请输入XXXX" maxlength="1000" rows="8"
+                            placeholder="请输入XXXX" maxlength="1000" :rows="8"
                             style="width: 450px"/>
                         <div class="ivu-form-item-notice-tip">大发生发</div>
                     </FormItem>

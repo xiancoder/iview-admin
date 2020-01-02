@@ -57,12 +57,9 @@ export default {
             barData: { Mon: 13253, Tue: 34235, Wed: 26321, Thu: 12340, Fri: 24643, Sat: 1322, Sun: 1324 }
         }
     },
-    mounted () {
-    }
+    mounted () { }
 }
 </script>
 <style lang="less">
-.count-style{
-  font-size: 50px;
-}
+.count-style{ font-size: 50px; }
 </style>

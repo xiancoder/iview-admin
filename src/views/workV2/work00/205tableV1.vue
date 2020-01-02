@@ -22,6 +22,7 @@
                                     <Option v-for="option in dataSet.taskStatuList" :value="option.id" :key="option.id" :label="option.name" >
                                     </Option>
                                 </Select>
+                                <Input type="text" v-model.trim="search.businessName" placeholder="请输入业务" style="width: 180px"/>
                                 <Button type="primary" @click="hendleSearch">搜索</Button>
                                 <Button type="default" @click="hendleReset">重置</Button>
                                 <Button type="default" class="fr" @click="download">下载</Button>
@@ -56,12 +57,13 @@
                                     },
                                     search: {
                                         'taskPriority': '', /* 级别 0:一般 1：重要 2：紧急 */
+                                        'businessName': '', /* 想搜索的业务名称 */
                                         'taskStatus': '' /* 状态 任务状态, 0:待接受；1:执行中；2:待验收;3.验收通过；4.已废弃；5.已暂停 */
                                     },
                                     loading: false,
-                                    page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样 */
-                                    order: { orderKey: '', order: '' }, // 排序 变量名最好原样
-                                    columns: [ // 必须指定最小宽度
+                                    page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, /* 分页 变量名最好原样 */
+                                    order: { orderKey: '', order: '' }, /* 排序 变量名最好原样 */
+                                    columns: [ /* 必须指定最小宽度 */
                                         {title: '任务编号', minWidth: 100, key: 'taskNumber', sortable: true},
                                         {title: '发布人', minWidth: 100, key: 'founder', sortable: true},
                                         {title: '发布日期', minWidth: 100, key: 'foundTime', sortable: true},
@@ -77,50 +79,52 @@
                                 }
                             },
                             methods: {
-                                getDataSet () { // 初始化数据源
+                                getDataSet () { /* 初始化数据源 */
                                     this.$api.task.priority().then(list => { this.dataSet.taskPriorityList = list })
                                     this.$api.task.status().then(list => { this.dataSet.taskStatuList = list })
                                 },
-                                download: debounce(function () { // 操作 任何操作将重置搜索项
+                                download: debounce(function () { /* 操作 任何操作将重置搜索项 */
                                     this.hendleSearch()
                                 }),
-                                init () { // 初始化
-                                    if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
-                                    if (!this.serrchBack) {this.serrchBack = extend({}, this.search)} // 备份
+                                init () { /* 初始化 */
+                                    if (!this.serrchParam) {this.serrchParam = {}} /* 下发参数 */
+                                    if (!this.serrchBack) {this.serrchBack = extend({}, this.search)} /* 备份 */
                                     const query = getParamState()
-                                    extend(this.search, query) // 设置表现搜索项成url缓存
+                                    extend(this.search, query) /* 设置表现搜索项成url缓存 */
                                     extendF(this.page, query)
                                     extendF(this.order, query)
                                     this.ajax()
                                 },
-                                hendleSearch () { // 搜索
-                                    extend(this.serrchParam, this.search) // 设置实际搜索项成表现搜索项
+                                hendleSearch () { /* 搜索
+                                    extend(this.serrchParam, this.search) /* 设置实际搜索项成表现搜索项 */
                                     this.hendleGopage(1)
                                 },
-                                hendleReset () { // 重置
-                                    extend(this.search, this.serrchBack) // 重置表现搜索项成备份搜索项
+                                hendleReset () { /* 重置 */
+                                    extend(this.search, this.serrchBack) /* 重置表现搜索项成备份搜索项 */
                                     this.hendleSearch()
                                 },
-                                hendleGopage (page) { // 跳转页
-                                    extendF(this.search, this.serrchParam) // 恢复表现搜索项成实际搜索项
+                                hendleGopage (page) { /* 跳转页 */
+                                    extendF(this.search, this.serrchParam) /* 恢复表现搜索项成实际搜索项 */
                                     this.page.pageIndex = page
                                     this.ajax()
                                 },
-                                hendleSort (param) { // 排序功能
-                                    // column/* 当前列数据 */, key/* 排序依据的指标 */, order/* 排序的顺序 值为 asc 或 desc */
+                                hendleSort (param) { /* 排序功能 */
+                                    /* column 当前列数据 */
+                                    /* key 排序依据的指标 */
+                                    /* order 排序的顺序 值为 asc 或 desc */
                                     this.order.orderKey = param.key
                                     this.order.order = param.order
                                     this.ajax()
                                 },
-                                ajax: function () { // 业务ajax
-                                    extend(this.serrchParam, this.search) // 设置实际搜索项
-                                    extend(this.serrchParam, this.page) // 设置分页
-                                    extend(this.serrchParam, this.order) // 设置排序
-                                    saveParamState(this.serrchParam) // 存url */
-                                    this.loading = true // 加载中
-                                    this.$api.task.listMine(this.serrchParam) // 发送ajax */
+                                ajax: function () { /* 业务ajax */
+                                    extend(this.serrchParam, this.search) /* 设置实际搜索项 */
+                                    extend(this.serrchParam, this.page) /* 设置分页
+                                    extend(this.serrchParam, this.order) /* 设置排序
+                                    saveParamState(this.serrchParam) /* 存url */
+                                    this.loading = true /* 加载中 */
+                                    this.$api.task.listMine(this.serrchParam) /* 发送ajax */
                                         .then((info) => {
-                                            this.loading = false; // 加载完成 */
+                                            this.loading = false; /* 加载完成 */
                                             this.tableData = info.list
                                             this.page.rowCount = info.rowcount
                                         })
@@ -141,8 +145,12 @@
             <div class="blog">
                 <div class="blogTitle">用户反映注意的点</div>
                 <div class="blogContent" v-highlight>
+                    <p>2018年6月12日08:30:00 测试提出bug "搜索后的内容应该回归第一页" </p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 解决方案 列明交叉影响 </p>
+                    <p>2019年3月5日12:59:53 产品提出需求 "去掉某些功能项连带的逻辑(为保密)" </p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 解决方案 各种功能项的作用必须能从名字看出来 </p>
                     <p>2019年12月3日13:46:55 运营反应 "不小心输入的空格总会影响搜索结果" </p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 必须留意输入框剔除前后空格 </p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 解决方案 v-model.trim </p>
                 </div>
                 <div class="blogFooter">
                     <Tag color="green">收集</Tag> <Tag color="cyan">学习</Tag> <Tag color="blue">增长</Tag>
@@ -225,6 +233,7 @@
                     <Option v-for="option in dataSet.taskStatuList" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
+                <Input type="text" v-model.trim="search.businessName" placeholder="请输入业务" style="width: 180px"/>
                 <Button type="primary" @click="hendleSearch">搜索</Button>
                 <Button type="default" @click="hendleReset">重置</Button>
                 <Button type="default" class="fr" @click="download">下载</Button>
@@ -260,6 +269,7 @@ export default {
             },
             search: {
                 'taskPriority': '', // 级别 0:一般 1：重要 2：紧急
+                'businessName': '', /* 想搜索的业务名称 */
                 'taskStatus': '' // 状态 任务状态, 0:待接受；1:执行中；2:待验收;3.验收通过；4.已废弃；5.已暂停
             },
             loading: false,

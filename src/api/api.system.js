@@ -263,8 +263,8 @@ export default {
                 data: {}
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data // 0隐藏 null表红点 数字代表数量
-                if (res && res.data && res.data.res) {
-                    resolve(res.data.res)
+                if (res && res.data && res.data.num) {
+                    resolve(res.data.num)
                 } else {
                     error(res.res) // 报错并继续reject
                     reject()

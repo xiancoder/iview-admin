@@ -103,7 +103,7 @@ export default {
                         correlation: '1'
                     }).then((res) => {
                         success('操作成功后返回')
-                        this.$router.push({name: 'exp5_090keepalive'})
+                        this.$router.push({name: 'vxpV2_exp09_090keepalive'})
                     }, (res) => {
                         this.loading = false
                     })
@@ -116,7 +116,7 @@ export default {
                 content: '<p>信息还未保存，确定要离开当前页面么？</p>',
                 onOk: () => {
                     error('操作放弃后返回')
-                    this.$router.push({name: 'exp5_090keepalive'})
+                    this.$router.push({name: 'vxpV2_exp05_090keepalive'})
                 },
                 onCancel: () => {}
             });

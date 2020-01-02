@@ -12,7 +12,6 @@ export default makeTwoLevelRoute({
         {power: '0000', path: 'md5', title: 'md5转码'},
         {power: '0000', path: 'url', title: 'url转码'},
         {power: '0000', path: 'repeat', title: '字符重复'},
-        {power: '0000', path: 'norepeat', title: '去重'},
-        {power: '0000', path: 'strformat', title: '文本格式化'}
+        {power: '0000', path: 'norepeat', title: '去重'}
     ]
 })

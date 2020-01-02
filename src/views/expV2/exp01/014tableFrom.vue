@@ -48,6 +48,7 @@ export default {
             model: {
                 show1: false
             },
+            startDate: new Date(),
             end1: 1 // 防呆设计
         }
     },

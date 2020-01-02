@@ -1,4 +1,5 @@
 import Vue from 'vue' // 核心
+import { getUrLParam } from '@U/dom'
 
 const config = {
     title: 'VUE资料库',
@@ -40,7 +41,9 @@ Vue.prototype.$config = config
     }
 */
 
-if (config.console !== true || process.env.NODE_ENV !== 'development') {
+// 使用此生产环境请求参数可以开启console.log 调试
+// /main.html?env=monitor
+if (getUrLParam('env') !== 'monitor' && (config.console !== true || process.env.NODE_ENV !== 'development')) {
     window.console = {
         log: function () {},
         info: function () {},

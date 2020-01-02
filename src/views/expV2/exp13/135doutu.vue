@@ -9,7 +9,7 @@
         </div>
         <Input v-model="input2" placeholder="请输入内容"> </Input>
         <div ref="iwantdrawzx" style="width:10px;height:10px;background:red"></div>
-        <div ref="iwantdrawbox" style="position: relative;background:url(/public/img.doutu/doutu.jpg) no-repeat;width:100%;min-height:1229px;">
+        <div ref="iwantdrawbox" style="position: relative;background:url(/static/img.doutu/doutu.jpg) no-repeat;width:100%;min-height:1229px;">
             <div style=" font-size: 14px; font-weight: bold; position: absolute;width:108px;height:13px;top:103px;left:18px;text-align: center;">{{ input2 }}</div>
             <div style=" font-size: 14px; font-weight: bold; position: absolute;width:106px;height:15px;top:105px;left:133px;text-align: center;">{{ input2 }}</div>
             <div style=" font-size: 14px; font-weight: bold; position: absolute;width:58px;height:17px;top:62px;left:252px;text-align: center;">{{ input2 }}</div>

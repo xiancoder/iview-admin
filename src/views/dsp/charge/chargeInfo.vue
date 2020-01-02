@@ -82,6 +82,6 @@ export default {
 </script>
 <style scope>
     .creditbox{ position:relative; display: inline-block; margin-right: 20px;}
-    .creditbox .editbtn{ position: absolute; bottom: 58px; right: 23px;}
+    .creditbox .editbtn{ position: absolute; bottom: 35px; right: 41px; opacity: 0.8;}
     .creditFrom {padding: 50px 0px 0px 20px; width: 100%; max-width: 1240px; text-align: center;}
 </style>

@@ -65,7 +65,9 @@ export default makeMultiLevelRoute({
                 {power: '0000', path: '225nodePginfo', title: 'Node 批量更新版本'},
                 {power: '0000', path: '225nodeCrossEnv', title: 'Node 环境变量'},
                 {power: '0000', path: '226vueConfigJs', title: 'vue.config.js'},
+                {power: '0000', path: '226vueVision', title: 'Node 运行时编译'},
                 {power: '0000', path: '226webpackPluginFilemanager', title: 'filemanager-w-p'},
+                {power: '0000', path: '227vueInputTrimSpace', title: '输入框小心写空格'},
                 {power: '0000', path: '300brove', title: '收集300个'}
             ]
         }

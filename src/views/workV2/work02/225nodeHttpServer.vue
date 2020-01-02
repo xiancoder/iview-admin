@@ -43,7 +43,7 @@
                 <ul>
                     <li>-d 显示目录列表（默认为'True'）</li>
                     <li>-i 显示autoIndex（默认为'True'）</li>
-                    <li>-g或者--gzip当启用时（默认为'False'），它将./public/some-file.js.gz代替./public/some-file.js</li>
+                    <li>-g或者--gzip当启用时（默认为'False'），它将./static/some-file.js.gz代替./static/some-file.js</li>
                     <li>当文件的gzip压缩版本存在且请求接受gzip编码时。</li>
                     <li>-e或者--ext如果没有提供默认文件扩展名（默认为'html'）</li>
                     <li>-s或者--silent从输出中抑制日志消息</li>
@@ -64,7 +64,7 @@
                         <tr> <td align="left">-a</td> <td align="left">监听地址设置默认是 <b>0.0.0.0</b></td> </tr>
                         <tr> <td align="left">-d</td> <td align="left">是否显示文件列表 默认<b>true</b></td> </tr>
                         <tr> <td align="left">-i</td> <td align="left">显示自动索引 默认<b>true</b></td> </tr>
-                        <tr> <td align="left">-g 或者 --gzip</td> <td align="left">默认<b>false</b>，当文件的<b>gzip</b>版本存在且请求接受<b>gzip</b>编码时，它将服务于<b>./public/some-file.js.gz</b>，而不是<b>./public/some-file.js</b></td> </tr>
+                        <tr> <td align="left">-g 或者 --gzip</td> <td align="left">默认<b>false</b>，当文件的<b>gzip</b>版本存在且请求接受<b>gzip</b>编码时，它将服务于<b>./static/some-file.js.gz</b>，而不是<b>./static/some-file.js</b></td> </tr>
                         <tr> <td align="left">-e 或者 --ext</td> <td align="left">如果没有提供默认文件扩展名(默认为<b>html</b>)</td> </tr>
                         <tr> <td align="left">-s 或者 --silent</td> <td align="left">禁止控制台日志信息输出</td> </tr>
                         <tr> <td align="left">–cors</td> <td align="left">允许跨域资源共享</td> </tr>

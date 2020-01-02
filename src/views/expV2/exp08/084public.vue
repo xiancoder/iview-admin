@@ -4,10 +4,10 @@
             <div class="blogTitle">访问 public 文件夹资源 访问assets文件夹资源 的 方法</div>
             <div class="blogContent" v-highlight>
                 <p>正常页面访问public中的图片 (:src才能引发资源引入)</p>
-                <p><img :src="'/www.qichacha.com.png'" alt=""/></p>
+                <p><img :src="'/static/img.site/qichacha.png'" alt=""/></p>
                 <script type="text/html">
-                    <img :src="'/www.qichacha.com.png'" alt=""/>
-                    <img src="./www.qichacha.com.png" alt="" /> // 编译不成功 因为找不到
+                    <img :src="'/static/img.site/qichacha.png'" alt=""/>
+                    <img src="./static/img.site/qichacha.png" alt="" /> // 编译不成功 因为找不到
                 </script>
                 <p>import 引入图片并使用</p>
                 <p><img :src="maxLogo" key="max-logo" /></p>
@@ -24,7 +24,7 @@
                 </script>
                 <p>静态index模版使用</p>
                 <script type="text/html">
-                    <img src="<%= BASE_URL %>www.qichacha.com.png"/>
+                    <img src="<%= BASE_URL %>public/img.site/qichacha.png"/>
                 </script>
                 <p>页面样式引用</p>
                 <script type="text/html">
@@ -41,7 +41,7 @@
                 </div>
                 <script type="text/html">
                     .box2{
-                        background: url(/public/img.gif/bg.gif);
+                        background: url(/static/img.gif/bg.gif);
                     }
                 </script>
                 <div class="box2">
@@ -71,7 +71,7 @@
         background: #2b252b; opacity: .8;
     }
     .box2{
-        background: url(/public/img.gif/bg.gif);
+        background: url(/static/img.gif/bg.gif);
     }
 </style>
 <script>
