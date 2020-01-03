@@ -37,12 +37,12 @@ export default {
         xxx () { console.log(123) },
         yyy () {
             var t = document.getElementById('aabb')
-            if( document.all ) {
-                t.fireEvent( "change" )
+            if (document.all) {
+                t.fireEvent('change')
             } else {
                 var evt = document.createEvent('HTMLEvents')
-                evt.initEvent('change',true,true)
-                t.dispatchEvent( evt )
+                evt.initEvent('change', true, true)
+                t.dispatchEvent(evt)
             }
         }
     },

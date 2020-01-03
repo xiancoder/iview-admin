@@ -79,9 +79,8 @@ export default {
         }
     },
     mounted () {
-        window.addEventListener('storage', (e)=> {
-            console.log(e.key, e.oldValue, e.newValue);
-            console.error('三体入侵了')
+        window.addEventListener('storage', (e) => {
+            console.error('三体入侵了', e.key, e.oldValue, e.newValue)
         });
     }
 }

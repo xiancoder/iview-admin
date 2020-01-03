@@ -22,7 +22,7 @@ export default {
     methods: {
     },
     mounted () {
-        window.addEventListener('hibeauty', ()=> {
+        window.addEventListener('hibeauty', () => {
             console.error('三体入侵了')
         });
     }
