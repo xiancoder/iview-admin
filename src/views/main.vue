@@ -88,12 +88,12 @@
                             <tags-nav></tags-nav>
                         </div>
                         <div class="content-wrapper">
-                            <!-- 动态换场指令 transition vuerouter 提供 没生效 -->
-                            <!-- <transition :name="transitionName"> </transition> -->
                             <!-- 页面缓存功能 vue提供 keep-alive -->
-                            <keep-alive :include="cacheList">
-                                <router-view></router-view>
-                            </keep-alive>
+                            <transition :name="'fade'" mode="out-in">
+                                <keep-alive :include="cacheList">
+                                    <router-view></router-view>
+                                </keep-alive>
+                            </transition>
                             <ABackTop :height="100" :bottom="10" :right="42" container="#mainScrollFlag"></ABackTop>
                         </div>
                         <div class="main-xiangzhaosha">

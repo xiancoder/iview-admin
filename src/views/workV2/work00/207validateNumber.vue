@@ -35,7 +35,6 @@
                         <Button type="primary" :loading="loading" @click="handleSubmit()">保存</Button>
                     </FormItem>
                 </Form>
-                <p></p>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

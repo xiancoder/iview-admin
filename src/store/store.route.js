@@ -51,6 +51,15 @@ export default {
                 })
             })
         },
+        onlineResetPowerList ({ commit }, powerList) { // 临时 在线编辑权限接口
+            return new Promise((resolve, reject) => {
+                const { list, listOneLevel } = power2routesII(powerList) // 传递给路由模块计算解析
+                commit('POWERLIST', powerList)
+                commit('MENULIST', list)
+                commit('ROUTELIST', listOneLevel)
+                resolve()
+            })
+        },
         hasPower ({ state }, name) { // 判断是否有权限 得多考虑权限没有返回的情况
             const loopObj = () => {
                 return new Promise((resolve, reject) => {
@@ -104,7 +113,7 @@ export default {
             }
             commit('TAGNAVLIST', list)
         },
-        routeSpin ({ commit }, b) { // 启动关闭路由视图loading
+        routeSpin ({ commit }, b) { // 启动关闭路由视图loading // 路由 transition 搞通了 这个不需要了
             if (b) commit('SPINLOADING', true)
             else setTimeout(function () { commit('SPINLOADING', false) }, 500)
         },

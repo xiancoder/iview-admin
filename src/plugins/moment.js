@@ -13,11 +13,11 @@ moment.locale('en', {
 if (window.Notification && Notification.permission !== 'denied') {
     Notification.requestPermission(function (status) {
         const joke = () => {
+            const time = 18.5 - new Date().getHours() - Math.round(new Date().getMinutes() / 6) / 10
             const msg = '当前时间' +
                 moment(new Date()).format('YYYY-MM-DD HH:mm:ss') +
                 '\n' +
-                '距离下班还有' +
-                (18.5 - new Date().getHours() - Math.round(new Date().getMinutes() / 6) / 10) + '小时' +
+                (time > 0 ? ('距离18:30还有' + time + '小时') : '已经下班') +
                 '\n' +
                 '(点击关闭实时提示)'
             const note = new Notification('通知', {

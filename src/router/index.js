@@ -89,15 +89,20 @@ export const power2routesII = (powerList) => { // 根据权限更新视图
                 if (childrenArr && childrenArr.length !== 0) {
                     one.children = childrenArr
                     one.path = childrenArr[0].path
+                    list.push(one)
                 } else {
                     one.children = []
                 }
-                list.push(one)
                 if (one.name) {
                     listOneLevel[one.name] = { title: one.title, path: one.path, power: true }
                 }
             } else { // 根据权限过滤页面
-                let power = item.power && powerList.indexOf(item.power) > -1
+                let power = false
+                if (item.power) {
+                    if (item.power === '0000' || powerList.indexOf(item.power) > -1) {
+                        power = item.power
+                    }
+                }
                 if (power && !item.hideMenu) {
                     list.push(one)
                 }
@@ -198,7 +203,7 @@ router.beforeEach((to, from, next) => {
 
         LoadingBarRun(true) // 顶部进度条
         Store.dispatch('route/keepalive', to.name) // 路由keepAlive管理 当前页缓存
-        Store.dispatch('route/routeSpin', true) // 路由视图loading
+        // Store.dispatch('route/routeSpin', true) // 路由视图loading // 路由 transition 搞通了 这个不需要了
 
         // 滚动条位置
         // 放弃 有更好的方法 路由提供了 scrollBehavior 钩子
@@ -223,7 +228,7 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from) => {
     LoadingBarRun(false) // 顶部进度条
-    Store.dispatch('route/routeSpin', false) // 路由视图loading
+    // Store.dispatch('route/routeSpin', false) // 路由视图loading // 路由 transition 搞通了 这个不需要了
 
     if (to && from && to.name === from.name) { // 本页面跳转 不做各种表示
         return false

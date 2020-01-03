@@ -5,18 +5,10 @@ import { makeTwoLevelRoute } from './util'
 
 export default [
     makeTwoLevelRoute({
-        path: 'excel', title: 'EXCEL相关', icon: 'ios-stats',
-        children: [
-            {power: '0000', path: 'uploadexcel', icon: 'md-add', title: '导入EXCEL'},
-            {power: '0000', path: 'exportexcel', icon: 'md-download', title: '导出EXCEL'}
-        ]
-    }),
-
-    makeTwoLevelRoute({
         path: 'draw', title: '绘制相关', icon: 'ios-stats',
         children: [
-            {power: '0000', path: 'canvas', icon: 'md-add', title: 'Canvas绘制'},
-            {power: '0000', path: 'svg', icon: 'md-download', title: 'Svg绘制'}
+            {power: 'canvas', path: 'canvas', icon: 'md-add', title: 'Canvas绘制'},
+            {power: 'canvas', path: 'svg', icon: 'md-download', title: 'Svg绘制'}
         ]
     }),
 

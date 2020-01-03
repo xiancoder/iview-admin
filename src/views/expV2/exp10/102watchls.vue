@@ -1,7 +1,7 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">同一项目不同浏览器tab之间的ls事件通知</div>
+            <div class="blogTitle">同一项目不同浏览器tab之间的ls/tab事件通知</div>
             <div class="blogContent" v-highlight>
                 <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
                 <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
@@ -17,7 +17,23 @@
                     <li>当storage变化时候，事件会被派发到所有同域下的其他页面。</li>
                     <li>触发变化的当前页面，没有事件派发。</li>
                 </ul>
-                <p>以下代码取自oa-wap 测试有效</p>
+                <p>更新 2020年1月3日17:06:37 事件的跨tab传递跟ls有直接关系</p>
+                <script type="text/js">
+                    // 通过操作 向其他tab发送事件推送
+                    var newStorageEvent = document.createEvent('StorageEvent');
+                    newStorageEvent.initStorageEvent('hibeauty', false, false, null, null, null, null, null);
+                    window.dispatchEvent(newStorageEvent)
+                    // -------------------
+                    // 使用时候的调用 建议放全局store
+                    window.addEventListener('hibeauty', ()=> {
+                        console.error('三体入侵了')
+                    });
+                </script>
+                <Button type="primary" icon="ios-power" @click="earth2three">
+                    <span>点我提交</span>
+                </Button>
+                <hr />
+                <p>以下代码取自oa-wap 测试有效 但是没有啥意义</p>
                 <script type="text/js">
                     // 通过操作ls 向其他tab发送事件推送
                     // 注意本推送不包括向自己tab发射
@@ -55,8 +71,18 @@ export default {
         return {}
     },
     methods: {
+        earth2three () {
+            /* var newStorageEvent = document.createEvent('StorageEvent');
+            newStorageEvent.initStorageEvent('hibeauty', false, false, 'testStorageEvent', 11, 22, null, null);
+            window.dispatchEvent(newStorageEvent) */
+            localStorage.setItem('testStorageEvent', new Date().getTime());
+        }
     },
     mounted () {
+        window.addEventListener('storage', (e)=> {
+            console.log(e.key, e.oldValue, e.newValue);
+            console.error('三体入侵了')
+        });
     }
 }
 </script>
