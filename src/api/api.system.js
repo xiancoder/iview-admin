@@ -355,10 +355,10 @@ export default {
     companyList (forTableShow) { // 四个公司区分 forTableShow指表格枚举
         if (forTableShow) {
             return [
-                { id: '1', name: 'localhost:8080' },
-                { id: '2', name: 'localhost:4011' },
-                { id: '3', name: 'localhost:4012' },
-                { id: '4', name: 'localhost:4013' }
+                { id: '1', name: 'localhost:4011' },
+                { id: '2', name: 'localhost:4012' },
+                { id: '3', name: 'localhost:4013' },
+                { id: '4', name: 'localhost:4014' }
             ]
         }
         return Promise.resolve([

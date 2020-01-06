@@ -69,6 +69,14 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '226webpackPluginFilemanager', title: 'filemanager-w-p'},
                 {power: 'workv2-2', path: '227vueInputTrimSpace', title: '输入框小心写空格'},
                 {power: 'workv2-2', path: '228fireEvent', title: '尝试触发事件'},
+                {power: 'workv2-2', path: '229twoLogin', title: '两个角色登录入口'}
+            ]
+        },
+        {
+            path: 'work03', title: '卷叁', icon: 'md-heart',
+            children: [
+                {power: 'workv2-2', path: '230bat', title: '批处理集合'},
+                {power: 'workv2-2', path: '231indent', title: '多行文本缩进样式'},
                 {power: 'workv2-2', path: '300brove', title: '收集300个'}
             ]
         }

@@ -12,6 +12,7 @@ export default makeTwoLevelRoute({
         {power: 'tool', path: 'md5', title: 'md5转码'},
         {power: 'tool', path: 'url', title: 'url转码'},
         {power: 'tool', path: 'repeat', title: '字符重复'},
-        {power: 'tool', path: 'norepeat', title: '去重'}
+        {power: 'tool', path: 'norepeat', title: '去重'},
+        {power: 'tool', path: 'compare', title: '权限对比逻辑'}
     ]
 })

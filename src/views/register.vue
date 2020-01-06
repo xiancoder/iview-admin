@@ -218,7 +218,7 @@ export default {
                     { required: true, message: '输入框不能为空' },
                     { type: 'string', min: 6, message: '微信最少6位' },
                     { type: 'string', max: 20, message: '微信至多20位' },
-                    { pattern: regexp.n22, message: '请勿输入非法字符' }
+                    { pattern: regexp.b06, message: '请勿输入非法字符' }
                 ],
                 qq: [
                     { required: true, message: '输入框不能为空' },

@@ -127,11 +127,10 @@ export default {
                 } else {
                     return false
                 }
-                if (state.userRoleId === 1) {
-                    router.push({name: 'login'})
-                } else {
-                    router.push({name: 'slogin'})
-                }
+                // 现在login 负责用户登录和员工登录
+                // if (state.userRoleId === 1) { router.push({name: 'login'}) }
+                // else { router.push({name: 'slogin'}) }
+                router.push({name: 'login'})
                 Api.system.logout().then(() => {
                     console.info('%c仙 登出成功', 'color:#05ff0f;background:#000;padding:0 5px;')
                     resolve()
