@@ -13,6 +13,7 @@ export default makeTwoLevelRoute({
         {power: 'tool', path: 'url', title: 'url转码'},
         {power: 'tool', path: 'repeat', title: '字符重复'},
         {power: 'tool', path: 'norepeat', title: '去重'},
-        {power: 'tool', path: 'compare', title: '权限对比逻辑'}
+        {power: 'tool', path: 'compare', title: '权限对比逻辑'},
+        {power: 'tool', path: 'stringLength', title: '简单计算文本长度'}
     ]
 })

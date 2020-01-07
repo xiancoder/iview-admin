@@ -136,15 +136,17 @@ export default {
             }
         },
         saveParamState (obj) {
-            const time = new Date().getTime()
-            const name = this.$router.history.current.name
-            window.localStorage.setItem(name + time, JSON.stringify(obj));
-            const query = { 'search': time }
+            // const time = new Date().getTime()
+            // const name = this.$router.history.current.name
+            // window.localStorage.setItem(name + time, JSON.stringify(obj));
+            // const query = { 'search': time }
             // this.$router.replace({ name, query }) // 不能回退
-            this.$router.push({ name, query })
+            console.log('存', obj)
+            // this.$router.push({ name, obj })
+            this.$router.replace({ name, query: obj })
         },
         getParamState () {
-            const time = this.$route.query.search
+            /* const time = this.$route.query.search
             const name = this.$router.history.current.name
             if (time) {
                 try {
@@ -156,8 +158,9 @@ export default {
             }
             if (window.history.length <= 1) {
                 window.localStorage.clear()
-            }
-            return {}
+            } */
+            console.log('取', this.$route.query)
+            return this.$route.query
         },
         alert (msg) {
             this.$Message.info({

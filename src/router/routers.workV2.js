@@ -77,6 +77,8 @@ export default makeMultiLevelRoute({
             children: [
                 {power: 'workv2-2', path: '230bat', title: '批处理集合'},
                 {power: 'workv2-2', path: '231indent', title: '多行文本缩进样式'},
+                {power: 'workv2-2', path: '232clicknative', title: '原生点击native'},
+                {power: 'workv2-2', path: '233qqlink', title: '深链接:客服QQ'},
                 {power: 'workv2-2', path: '300brove', title: '收集300个'}
             ]
         }

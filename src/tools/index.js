@@ -1,10 +1,13 @@
 import Vue from 'vue' // 核心
 import { router } from '@/router' // 自定义路由定义
 import iView from '@/plugins/iview'
-import { Store } from '@/store' // 自定义状态管理 // 状态管理 -挂载$stroe
+// import { Store } from '@/store' // 自定义状态管理 // 状态管理 -挂载$stroe
 import { type } from '@/utils/object'
 import { thousand, toDecimalForce } from '@/utils/number'
+import { encodeBase64, decodeBase64 } from '@/utils/string'
+
 const { Message, Modal, LoadingBar, Notice } = iView
+
 /// ////////////////////////////////////////////////////
 // 常用的操作封装
 /// ////////////////////////////////////////////////////
@@ -94,14 +97,33 @@ export const jumpto = (name, obj) => { // 跳转
     if (obj) { router.push({ name, obj }) } else if (name) { router.push({ name }) } else { window.location.reload() }
 }
 export const saveParamState = (obj) => { // 保存当前参数
+    // 保存到ls里面 通过保存search来指定获取哪部分已存参数
+    // 不好 商务要求url拷贝时候需要携带信息
+    /*
     const time = new Date().getTime()
     const name = router.history.current.name
     const paramList = Store.state.system.paramList
     paramList[name + time] = obj
     const query = { 'search': time }
     router.replace({ name, query })
+    */
+    // 直接存
+    /*
+    router.replace({ name, query: obj })
+    */
+    // 对象整成json存
+    /*
+    const json = JSON.stringify(obj)
+    router.replace({ name, query: {json} })
+    */
+    // 对象整成json并bs64转码
+    const json = encodeBase64(JSON.stringify(obj))
+    router.replace({ name, query: {json} })
 }
 export const getParamState = () => { // 获取当前参数
+    // 保存到ls里面 通过保存search来指定获取哪部分已存参数
+    // 不好 商务要求url拷贝时候需要携带信息
+    /*
     const time = router.history.current.query.search
     if (time) {
         const name = router.history.current.name
@@ -110,7 +132,23 @@ export const getParamState = () => { // 获取当前参数
         return obj
     }
     return {}
+    */
+    // 直接存
+    /*
+    return router.history.current
+    */
+    // 对象整成json存
+    /*
+    const json = router.history.current.json
+    if (json) { return JSON.parse(json) }
+    return {}
+    */
+    // 对象整成json并bs64转码
+    const json = router.history.current.json
+    if (json) { return JSON.parse(decodeBase64(json)) }
+    return {}
 }
+
 export const h = { // 通用渲染格式 for 表格 (即将废弃)
     // vue 2.5.14 以上就不再支持h.rander 直接返回字符串了
     // 渲染头像 用户名 电话

@@ -5,12 +5,12 @@
 export default {
     namespaced: true, // 作用域,配置上以后才能够dispach system/xxx 建议必须 不同的状态里有相同字段值
     state: { // 缓存字段以及默认值
-        theme: 'dark', // 主题 todo 计划做白色和黑色主题
+        theme: 'dark', // 主题 ----------- 未开发 计划做白色和黑色主题
         shrink: false, // 界面树形菜单折叠状态
-        lang: '', // 系统表现语言 资源国际化没有完成 todo
+        lang: '', // 系统表现语言 ----------- 未开发 资源国际化未配置
         locking: false, // 锁屏状态
-        errorList: [], // 错误列表 todo 收集系统所有的错误 伺机发送
-        paramList: {}, // 页面请求参数记录 根据url中的时间戳对应读取
+        errorList: [], // 错误列表 收集系统所有的错误 伺机发送
+        paramList: {}, // 页面请求参数记录 根据url中的时间戳对应读取 ----------- 考虑废弃
 
         end: 1 // 防呆设计
     },

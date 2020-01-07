@@ -143,7 +143,8 @@ export default makeMultiLevelRoute({
             path: 'exp13', title: '卷拾叁', icon: 'md-game-controller-b',
             children: [
                 {power: 'expv2-22345', path: '132ref', title: '$ref讲解'},
-                {power: 'expv2-22345', path: '134somefont', title: '不可见,url,AscII字符'},
+                {power: 'expv2-22345', path: '134font', title: '不可见,url,AscII字符'},
+                {power: 'expv2-27890', path: '134fontAwesome', title: 'Font Awesome'},
                 {power: 'expv2-22345', path: '135doutu', title: '斗图神奇神器'},
                 {power: 'expv2-22345', path: '138globalclick', title: '全局相应点击'}
             ]
@@ -152,7 +153,7 @@ export default makeMultiLevelRoute({
             children: [
                 {power: 'expv2-22345', path: '142vhtml', title: 'v-html 测危险代码'},
                 {power: 'expv2-22345', path: '143transform', title: 'transform 形变'},
-                {power: 'expv2-22345', path: '145fromparam', title: '表单传参方式'},
+                {power: 'expv2-22345', path: '145urlParam', title: '页面传参详解'},
                 {power: 'expv2-22345', path: '146copyTxt', title: '复制粘贴文本'},
                 {power: 'expv2-22345', path: '148customFrom', title: '组件内外表单校验'},
                 {power: 'expv2-22345', path: '149dynamicClick', title: '动态绑定事件'}

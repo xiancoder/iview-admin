@@ -49,7 +49,9 @@
                             <div class="user-avatar-dropdown">
                                 <Dropdown @on-click="handleMenuClick">
                                     <Badge :dot="!!unreadCount">
-                                        <Avatar :src="userAvatar">{{ userName.substr(0,1) }}</Avatar>
+                                        <Avatar style="color: #f56a00;background-color: #fde3cf" :src="userAvatar"
+                                            @on-error="userAvatar=''"
+                                            :icon="userName?'':'ios-person'">{{userName[0]}}</Avatar>
                                     </Badge>
                                     {{ userName }}
                                     <Icon :size="18" type="md-arrow-dropdown"></Icon>
