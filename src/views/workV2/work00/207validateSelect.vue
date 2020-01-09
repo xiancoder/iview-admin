@@ -88,6 +88,28 @@
                         </script>
                     </FormItem>
 
+                    <Divider orientation="left">下拉框 大数据量测试</Divider>
+                    <FormItem label="标题" prop="p04">
+                        <Select v-model="frm.p04"  placeholder="请搜索/选择XXX" style="width: 300px"
+                            filterable clearable>
+                            <Option value="0" label="全部"></Option>
+                            <Option v-for="option in bigList" :value="option.id" :key="option.id" :label="option.name">
+                            </Option>
+                        </Select>
+                    </FormItem>
+                    <FormItem>
+                        <Button type="primary" @click="bigList=[]">清空</Button>
+                        <Divider type="vertical" />
+                        <Button type="primary" @click="showBigList1000()">尝试1000条信息</Button>
+                        <Divider type="vertical" />
+                        <Button type="primary" @click="showBigList2000()">尝试2000条信息</Button>
+                        <Divider type="vertical" />
+                        <Button type="primary" @click="showBigList3000()">尝试3000条信息</Button>
+                    </FormItem>
+                    <FormItem>
+                        <p class="text-danger">经过尝试 的确会卡一会</p>
+                    </FormItem>
+
                     <Divider orientation="left">提交</Divider>
                     <FormItem style="margin-top: 50px">
                         <Button type="default" @click="cancel">返回</Button>
@@ -106,6 +128,8 @@
     </div>
 </template>
 <script>
+import axios from 'axios' // http请求库 axios配置
+
 export default {
     data () {
         return {
@@ -114,7 +138,8 @@ export default {
             frm: {
                 p01: '', // 下拉框测试
                 p02: '', // 下拉框测试
-                p03: '' // 下拉框测试
+                p03: '', // 下拉框测试
+                p04: '1' // 下拉框测试
             },
             frmValidate: {
                 p01: [
@@ -126,7 +151,8 @@ export default {
                 p03: [
                     { required: true, message: '下拉框必选其一' }
                 ]
-            }
+            },
+            bigList: []
         }
     },
     methods: {
@@ -144,12 +170,31 @@ export default {
                 }
             });
         },
+        showBigList1000 () {
+            axios.get('/api/unit/bigData1000').then(res => {
+                const data = res.data
+                this.bigList = data.data.list
+            })
+        },
+        showBigList2000 () {
+            axios.get('/api/unit/bigData2000').then(res => {
+                const data = res.data
+                this.bigList = data.data.list
+            })
+        },
+        showBigList3000 () {
+            axios.get('/api/unit/bigData3000').then(res => {
+                const data = res.data
+                this.bigList = data.data.list
+            })
+        },
         cancel () {
             alert('离开')
         }
     },
     mounted () {
         this.getDataSet()
+        this.showBigList3000()
     }
 }
 </script>

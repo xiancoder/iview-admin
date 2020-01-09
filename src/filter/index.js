@@ -44,3 +44,45 @@ Vue.filter('change', {
         return newVal
     }
 })
+
+// 将传入的值转为字符串 出错为null
+// 默认将Null和空字符串区分对待 可以传递第二个参数为true 使空字符串转默认
+Vue.filter('toStr', (val, allowEmpty) => {
+    const defaultValue = null
+    return (val === null || val === undefined || (allowEmpty && val === '')) ? defaultValue : (val + '')
+})
+// 将传入的值转为数字 出错为null
+Vue.filter('toNum', (val) => {
+    return (val === null || val === undefined || isNaN(val)) ? null : parseFloat(val)
+})
+// 将传入的值判断为空替换'-'
+Vue.filter('default', (val, defaultValue) => {
+    defaultValue = defaultValue || '-'
+    return (val === null) ? defaultValue : val
+})
+// 保留小数
+Vue.filter('fixed', (val, defaultValue) => {
+    if (val === null) return null
+    defaultValue = defaultValue || 0
+    return parseFloat(val).toFixed(defaultValue)
+})
+Vue.filter('fixed1', (val, defaultValue) => {
+    if (val === null) return null
+    defaultValue = defaultValue || 1
+    return parseFloat(val).toFixed(defaultValue)
+})
+Vue.filter('fixed2', (val, defaultValue) => {
+    if (val === null) return null
+    defaultValue = defaultValue || 2
+    return parseFloat(val).toFixed(defaultValue)
+})
+// 百分比
+Vue.filter('percent', (val, defaultValue) => {
+    if (val === null) return null
+    defaultValue = defaultValue || 0
+    return (parseFloat(val) * 100).toFixed(defaultValue) + '%'
+})
+Vue.filter('percent2', (val, defaultValue) => {
+    if (val === null) return null
+    return (parseFloat(val) * 100).toFixed(2) + '%'
+})

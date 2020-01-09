@@ -21,6 +21,8 @@
                 <p>第三种情况，这种方式相当于把“微软雅黑”<b>字体文件上传到网站服务器</b>，它会在需要的时候下载到客户端电脑，即便是WinXP客户端观看网页，或者没有“微软雅黑”字体的英文操作系统，网页依然会显示“微软雅黑”字体样式，<b>这种方式会涉及版权问题</b>。</p>
                 <p>在版权面前我还是选择低头，毕竟谁也不想面对那么高的侵权费，所以大家在使用字体的时候还是多加注意，<b>记住这些免费的字体</b>。</p>
                 <p>比如：<b>宋体、仿宋、黑体、楷体、隶书、大篆、小篆、简书、章草、行书、今草、魏碑、狂草、行草和幼圆</b>。</p>
+                <p class="text-danger">宋体：SimSun, 新宋体：NSimSun, 仿宋：FangSong, 仿宋_GB2312：FangSong_GB2312, 标楷体：DFKai-SB, 楷体_GB2312：KaiTi_GB2312, 楷体_GB2312：KaiTi_GB2312黑体：SimHei, 楷体：KaiTi, 隶书：LiSu</p>
+                <p>新细明体：PMingLiU 微软正黑体：Microsoft JhengHei 微软雅黑体：Microsoft YaHei 幼圆：YouYuan 华文细黑：STXihei 华文行楷：STXingkai 华文新魏：STXinwei 细明体：MingLiU 微软正黑体：Microsoft JhengHei 微软雅黑体：Microsoft YaHei</p>
                 <hr />
                 <p></p>
                 <p>https://www.yestone.com/fonts/charge 买字体</p>

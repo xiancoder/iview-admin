@@ -32,7 +32,8 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-0', path: '207validateDate', title: '表单v1日期框'},
                 {power: 'workv2-0', path: '207validateSubmit', title: '表单v1提交逻辑'},
                 {power: 'workv2-0', path: '208creditSvgCss', title: 'Svg 银行卡信用卡'},
-                {power: 'workv2-0', path: '209vuehtml5editor', title: '富文本 Html5Editor'}
+                {power: 'workv2-0', path: '209vuehtml5editor', title: '富文本 Html5Editor'},
+                {power: 'workv2-0', path: '209vuehtml5editorApply', title: '富文本 H5E 应用'}
             ]
         },
         {
@@ -79,6 +80,8 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '231indent', title: '多行文本缩进样式'},
                 {power: 'workv2-2', path: '232clicknative', title: '原生点击native'},
                 {power: 'workv2-2', path: '233qqlink', title: '深链接:客服QQ'},
+                {power: 'workv2-2', path: '234ticketCss', title: '栅格布局 票据样式'},
+                {power: 'workv2-2', path: '235showMore', title: '查看更多css实现'},
                 {power: 'workv2-2', path: '300brove', title: '收集300个'}
             ]
         }
