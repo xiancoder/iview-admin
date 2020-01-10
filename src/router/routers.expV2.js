@@ -86,8 +86,7 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-67890', path: '073typeError', title: '弱类型之坑'},
                 {power: 'expv2-67890', path: '075devtool', title: '开发者工具介绍'},
                 {power: 'expv2-67890', path: '077refer', title: '历史 referer 操作'},
-                {power: 'expv2-67890', path: '078void0bug', title: '空白void(0)跳转bug'},
-                {power: 'expv2-67890', path: '079microsoftyahei', title: '微软雅黑字体版权'}
+                {power: 'expv2-67890', path: '078void0bug', title: '空白void(0)跳转bug'}
             ]
         }, {
             path: 'exp08', title: '卷零捌', icon: 'md-game-controller-b',
@@ -144,7 +143,9 @@ export default makeMultiLevelRoute({
             children: [
                 {power: 'expv2-22345', path: '132ref', title: '$ref讲解'},
                 {power: 'expv2-22345', path: '134font', title: '不可见,url,AscII字符'},
-                {power: 'expv2-27890', path: '134fontAwesome', title: 'Font Awesome'},
+                {power: 'expv2-22345', path: '134fontAwesome', title: 'Font Awesome'},
+                {power: 'expv2-22345', path: '134microsoftyahei', title: '微软雅黑字体版权'},
+                {power: 'expv2-22345', path: '134freefont', title: '各种字体展示'},
                 {power: 'expv2-22345', path: '135doutu', title: '斗图神奇神器'},
                 {power: 'expv2-22345', path: '138globalclick', title: '全局相应点击'}
             ]

@@ -18,12 +18,13 @@ export default {
             // $route.router 所属路由器以及所属组件信息
             // $route.matched 数组，包含当前匹配的路径中所包含的所有片段所对应的配置参数对象。
             // $route.name 当前路径名字
-            console.info('即EP将打开文件', this.$route.path)
+            const path = 'router\\routers.' + this.$route.path.replace(/^\//, '').replace(/\/.*/, '') + '.js'
+            console.info('即EP将打开文件', path)
             axios.get(
                 'http://localhost:4010/epopen', {
                     params: {
                         project: 'R20.iview-admin',
-                        path: 'router/routers.js'
+                        path
                     }
                 }
             ).then(function (response) {

@@ -52,7 +52,7 @@ export default makeMultiLevelRoute({
         {power: 'expv1', path: '141dspwhat', title: 'DSP 项目产品思路'},
         {power: 'expv1', path: '151iframe', title: 'iframe 父子页面'},
         {power: 'expv1', path: '152websocket', title: 'WebSocket 协议'},
-        {power: 'expv1', path: '156img404', title: '图片404补偿(无效)'},
+        {power: 'expv1', path: '156img404', title: '图片404补偿'},
         {power: 'expv1', path: '160wordCss', title: '仿 Word 的 Css'},
         {power: 'expv1', path: '163svg', title: 'SVG symbol模版'},
         {power: 'expv1', path: '164socket', title: 'Socket 研究记录'},
