@@ -30,10 +30,40 @@
                 <p>如此排版就正常了</p>
                 <p></p>
                 <hr />
+                <p>直接使用是正常的
                 <img src="http://www.baidu.com/img/baidu_jgylogo3.gif">
+                <hr />
+                <p>οnerrοr="console.log(1)" 无效 估计是被什么包覆盖了效果</p>
                 <img src="http://www.b1a3idu.com/img/123.gif" οnerrοr="console.log(1)">
+                <hr />
+                <p>:src="pic" οnerrοr="alert(1)" 动态src也改变不了onerror不触发问题</p>
                 <img :src="pic" οnerrοr="alert(1)">
+                <hr />
+                <p>&lt;img :src="pic" alt="" @error="show_default_image"&gt; 通过事件监听可以生效</p>
                 <img :src="pic" alt="" @error="show_default_image">
+                <p class="text-info">效果可以 但使用略麻烦</p>
+                <script type="text/js">
+                    show_default_image: function (event) {
+                        event.target.src = '/static/img.null/null.png'
+                    }
+                </script>
+                <hr />
+                <p>&lt;img v-img404 src="http://www.b1a3idu.com/img/123.gif"&gt; 指令效果</p>
+                <img v-img404 src="http://www.b1a3idu.com/img/123.gif">
+                <p class="text-info">效果很好 建议大范围采用</p>
+                <script type="text/js">
+                    mport Vue from 'vue' // 核心
+                    const img404 = {
+                        bind: (el, binding) => {
+                            el.onerror = function (e) {
+                                e.target.src = '/static/img.null/null.png'
+                                el.onerror = null
+                            }
+                        }
+                    }
+                    Vue.directive('img404', img404) // 图片404的自动补偿
+                    export default img404
+                </script>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

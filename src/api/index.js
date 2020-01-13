@@ -45,6 +45,19 @@ export const Api = {
     role
 } // 接口列表
 
+// finally方法用于指定不管 Promise 对象最后状态如何，都会执行的操作，执行then()和catch()后，都会执行finally指定的回调函数。
+// 目前es6,es5还未支持。
+// 阮一峰 手动实现
+/*
+Promise.prototype.finally = function (callback) {
+    let P = this.constructor
+    return this.then(
+        value => P.resolve(callback()).then(() => value),
+        reason => P.resolve(callback()).then(() => { throw reason })
+    )
+}
+*/
+
 Vue.prototype.$api = Api // 挂载api
 
 Vue.prototype.$post = function (url, params) { // 将axios 的 post 方法，绑定到 vue 实例上面的 $post

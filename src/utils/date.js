@@ -257,6 +257,13 @@ export const timestamp2Date = (timestamp) => {
     let s = date.getSeconds()
     return Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s
 }
+export const easyToday = () => {
+    const d = new Date()
+    const Y = d.getFullYear()
+    const M = d.getMonth() + 1
+    const D = d.getDate()
+    return Y + (M < 10 ? ('0' + M) : M) + (D < 10 ? ('0' + D) : D)
+}
 // 两日期是否相等
 // y 年 q 季度 m 月 d 日 w 周 h 小时 n 分钟 s 秒 ms 毫秒
 // @param u {string} 单位
