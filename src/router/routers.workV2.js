@@ -16,6 +16,7 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-0', path: '205tableV1', title: '表格v1模版规范'},
                 {power: 'workv2-0', path: '205tableV1@bro', title: '表格v1兄弟页面', hideMenu: true},
                 {power: 'workv2-0', path: '205tab', title: '表格v1菜单Tab'},
+                {power: 'workv2-0', path: '205tableWithIcon', title: '表格v1应用小图标'},
                 {power: 'workv2-0', path: '205tableMaxHeight', title: '表格v1高度限定'},
                 {power: 'workv2-0', path: '205tableBatch', title: '表格v1批量操作'},
                 {power: 'workv2-0', path: '205tableTools', title: '表格v1搜索项'},

@@ -12,10 +12,17 @@ import { homePage, routerList as routes, specialPowerList, loginPowerList, lockP
 // 解决vue项目路由出现message: "Navigating to current location (XXX) is not allowed"的问题
 // 原因：在路由中添加了相同的路由
 // 先注掉 明显没有必须使用的必要
-// const routerPush = Router.prototype.push
-// Router.prototype.push = (location) => {
-//     return routerPush.call(this, location).catch(error => error)
-// }
+// 不能用 会导致页面无法跳转
+/*
+const routerPush = Router.prototype.push
+Router.prototype.push = (location) => {
+    return routerPush.call(this, location).catch(error => error)
+}
+const routerReplace = Router.prototype.replace
+Router.prototype.replace = (location) => {
+    return routerReplace.call(this, location).catch(error => error)
+}
+*/
 
 Vue.use(Router)
 

@@ -101,7 +101,6 @@ export const saveParamState = (obj) => { // 保存当前参数
     // 不好 商务要求url拷贝时候需要携带信息
     /*
     const time = new Date().getTime()
-    const name = router.history.current.name
     const paramList = Store.state.system.paramList
     paramList[name + time] = obj
     const query = { 'search': time }
@@ -116,9 +115,14 @@ export const saveParamState = (obj) => { // 保存当前参数
     const json = JSON.stringify(obj)
     router.replace({ name, query: {json} })
     */
+    const name = router.history.current.name
+    const jsonOld = router.history.current.query.json
     // 对象整成json并bs64转码
     const json = encodeBase64(JSON.stringify(obj))
-    router.replace({ name, query: {json} })
+    // 先比较再保存 不然老是报错 Navigating to current location ("XXXXXX") is not allowed
+    if (jsonOld !== json) {
+        router.replace({ name, query: {json} })
+    }
 }
 export const getParamState = () => { // 获取当前参数
     // 保存到ls里面 通过保存search来指定获取哪部分已存参数
@@ -139,12 +143,12 @@ export const getParamState = () => { // 获取当前参数
     */
     // 对象整成json存
     /*
-    const json = router.history.current.json
+    const json = router.history.current.query.json
     if (json) { return JSON.parse(json) }
     return {}
     */
     // 对象整成json并bs64转码
-    const json = router.history.current.json
+    const json = router.history.current.query.json
     if (json) { return JSON.parse(decodeBase64(json)) }
     return {}
 }

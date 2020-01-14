@@ -102,11 +102,10 @@
                 // foreColor,backColor
                 command: 'foreColor',
                 colors: [
-                    '#000000', '#000033', '#000066', '#000099', '#003300', '#003333', '#003366',
-                    '#003399', '#006600', '#006633', '#009900', '#330000', '#330033', '#330066',
-                    '#333300', '#333366', '#660000', '#660033', '#663300', '#666600', '#666633',
-                    '#666666', '#666699', '#990000', '#990033', '#9900CC', '#996600', '#FFCC00',
-                    '#FFCCCC', '#FFCC99', '#FFFF00', '#FF9900', '#CCFFCC', '#CCFFFF', '#CCFF99'
+                    '#ff0000', '#fbb034', '#ffdd00', '#c1d82f', '#00a4e4', '#8a7967', '#6a737b',
+                    '#222222', '#00aeff', '#3369e7', '#8e43e7', '#b84592', '#ff4f81', '#ff6c5f',
+                    '#2dde98', '#1cc7d0', '#ff6a00', '#0085c3', '#7ab800', '#f2af00', '#181a1b',
+                    '#2d72d9', '#00aeff', '#0ebeff', '#47cf73', '#ae63e4', '#fcd000', '#76daff'
                 ]
             }
         },
@@ -1045,9 +1044,9 @@
         },
         data: function data () {
             return {
-            // defaultShowModuleName:false
-            // locale: {},
-            // modules:{},
+                // defaultShowModuleName:false
+                // locale: {},
+                // modules:{},
                 fullScreen: false,
                 dashboard: null
             }
@@ -1160,6 +1159,71 @@
                 if (module.hasDashboard) {
                     this.toggleDashboard(('dashboard-' + (module.name)));
                 }
+            },
+            turnBs64: function turnBs64 (file) {
+                //拖拉图片到浏览器，可以实现预览功能
+                var UURL = (window.webkitURL)?window.webkitURL:window.URL;
+                var img = UURL.createObjectURL(file);
+                var filename = file.name; //图片名称
+                var filesize = Math.floor((file.size)/1024); 
+                if(filesize>500){
+                    alert("上传大小不能超过500K.");
+                    return false;
+                }
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function (e) {
+                    var dataURL = reader.result;
+                    var image = "<img src='"+dataURL+"' style='max-width: 100%;max-height: 300px;'>";
+                    content.innerHTML += image;
+                    this$1.$emit('change', content.innerHTML);
+                    this$1.saveCurrentRange();
+                }
+            },
+            uploadFile: function uploadFile (file) {
+                var this$1 = this;
+                console.log(this)
+                var config = this.config;
+                var formData = new FormData();
+                formData.append(config.upload.fieldName || 'image', file);
+                if (typeof config.upload.params === 'object') {
+                    Object.keys(config.upload.params).forEach(function (key) {
+                        var value = config.upload.params[key];
+                        if (Array.isArray(value)) {
+                            value.forEach(function (v) {
+                                formData.append(key, v);
+                            });
+                        } else {
+                            formData.append(key, value);
+                        }
+                    });
+                }
+                var xhr = new XMLHttpRequest();
+                xhr.onprogress = function (e) {
+                };
+                xhr.onload = function () {
+                    if (xhr.status >= 300) {
+                        return
+                    }
+                    try {
+                        var url = config.uploadHandler(xhr.responseText);
+                        if (url) {
+                            this$1.execCommand(Command.INSERT_IMAGE, url);
+                        }
+                    } catch (err) {
+                    }
+                };
+                xhr.onerror = function () {
+                };
+                xhr.onabort = function () {
+                };
+                xhr.open('POST', config.upload.url);
+                if (typeof config.upload.headers === 'object') {
+                    Object.keys(config.upload.headers).forEach(function (k) {
+                        xhr.setRequestHeader(k, config.upload.headers[k]);
+                    });
+                }
+                xhr.send(formData);
             }
         },
         created: function created () {
@@ -1189,17 +1253,6 @@
                 ev = ev || window.event;
                 return ev.target || ev.srcElement;
             }
-            content.addEventListener("dragenter", eventStop);
-            content.addEventListener("dragleave", eventStop);
-            content.addEventListener("dragover", eventStop);
-            content.addEventListener("drop", function(e){
-                var fileList = e.dataTransfer.files; // 获取文件对象
-                if(fileList.length == 0){ return false; }
-                for( var i=0,l=fileList.length;i<l;i++){
-                    turnImg( fileList[i] );
-                }
-                eventStop(e); // 取消默认浏览器拖拽效果
-            }, false);
             function turnImg( file ){
                 //检测文件是不是图片
                 if(file.type.indexOf('image') === -1){
@@ -1207,73 +1260,52 @@
                     return false;
                 }
                 //拖拉图片到浏览器，可以实现预览功能
-                var UURL = (window.webkitURL)?window.webkitURL:window.URL;
-                var img = UURL.createObjectURL(file);
-                var filename = file.name; //图片名称
+                // var UURL = (window.webkitURL)?window.webkitURL:window.URL;
+                // var img = UURL.createObjectURL(file);
+                // var filename = file.name; //图片名称
                 var filesize = Math.floor((file.size)/1024); 
                 if(filesize>500){
                     alert("上传大小不能超过500K.");
                     return false;
                 }
-                var reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = function (e) {
-                    var dataURL = reader.result;
-                    var image = "<img src='"+dataURL+"' style='max-width: 100%;max-height: 300px;'>";
-                    content.innerHTML += image;
-                    this$1.$emit('change', content.innerHTML);
-                    this$1.saveCurrentRange();
-                }
+                this$1.uploadFile(file)
             }
-            ///////////////////////////////////////////
-            content.addEventListener('mouseout', function (e) {
-                if (e.target === content) {
-                    this$1.saveCurrentRange();
-                }
+            content.addEventListener("dragenter", eventStop);
+            content.addEventListener("dragleave", eventStop);
+            content.addEventListener("dragover", eventStop);
+            content.addEventListener("drop", function(e){
+                var fileList = e.dataTransfer.files; // 获取文件对象
+                if(fileList.length == 0){ return false; }
+                for( var i=0,l=fileList.length;i<l;i++){ turnImg( fileList[i] ); }
+                eventStop(e); // 取消默认浏览器拖拽效果
             }, false);
-            this.touchHandler = function (e) {
-                if (content.contains(e.target)) {
-                    this$1.saveCurrentRange();
-                }
-            };
             content.addEventListener('paste', function (event) {
                 if (event.clipboardData || event.originalEvent) {
                     var clipboardData = (event.clipboardData || event.originalEvent.clipboardData);
                     if(clipboardData.items.length){
-                        var blob;
+                        var file;
                         for (var i = 0; i < clipboardData.items.length; i++) {
                             if (clipboardData.items[i].type.indexOf("image") !== -1) {
-                                blob = clipboardData.items[i].getAsFile();
+                                file = clipboardData.items[i].getAsFile();
+                                this$1.uploadFile(file)
                             }
-                        }
-                        if(blob){
-                            var render = new FileReader();
-                            render.onload = function (evt) {
-                                //输出base64编码
-                                var base64 = evt.target.result;
-                                var image = "<img src='"+base64+"' style='max-width: 100%;max-height: 300px;'>";
-                                content.innerHTML += image;
-                            }
-                            render.readAsDataURL(blob);
                         }
                     }
                 }
-                setTimeout(function () {
-                    this$1.$emit('change', content.innerHTML);
-                    this$1.saveCurrentRange();
-                }, 3e2)
             });
-            window.addEventListener('touchend', this.touchHandler, false);
+            ///////////////////////////////////////////
+            content.addEventListener('mouseout', function (e) { if (e.target === content) { this$1.saveCurrentRange(); } }, false);
+            window.addEventListener('touchend', function (e) { if (content.contains(e.target)) { this$1.saveCurrentRange(); } }, false);
         },
         updated: function updated () {
-        // update dashboard style
+            // update dashboard style
             if (this.$refs.dashboard) {
                 this.$refs.dashboard.style.maxHeight = (this.$refs.content.clientHeight) + 'px';
             }
         },
         beforeDestroy: function beforeDestroy () {
             var this$1 = this;
-            window.removeEventListener('touchend', this.touchHandler);
+            window.removeEventListener('touchend', function (e) { if (content.contains(e.target)) { this$1.saveCurrentRange(); } });
             this.modules.forEach(function (module) {
                 if (typeof module.destroyed === 'function') {
                     module.destroyed(this$1);
@@ -1448,11 +1480,11 @@
             })();
         }
         modules.forEach(function (module) {
-        // specify the config for each module in options by name
+            // specify the config for each module in options by name
             var config = options[module.name];
             module.config = mixin(module.config, config);
             if (module.dashboard) {
-            // $options.module
+                // $options.module
                 module.dashboard.module = module;
                 components[('dashboard-' + (module.name))] = module.dashboard;
             }
@@ -1476,7 +1508,12 @@
         // ######################################
         var compo = mixin(editor, {
             data: function data () {
-                return {modules: modules, locale: locale, defaultShowModuleName: defaultShowModuleName}
+                return {
+                    modules: modules,
+                    locale: locale,
+                    defaultShowModuleName: defaultShowModuleName,
+                    config: options['image']
+                }
             },
             components: components
         });

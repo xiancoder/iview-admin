@@ -92,8 +92,8 @@
                         <span>{{frm.p04.name}}</span>
                     </FormItem>
                     <FormItem>
-                        <img v-if="review.p03" :src="'http://localhost:4010/'+review.p03" alt="" />
-                        <img v-if="review.p04" :src="'http://localhost:4010/'+review.p04" alt="" />
+                        <img v-if="review.p03" :src="review.p03" alt="" />
+                        <img v-if="review.p04" :src="review.p04" alt="" />
                     </FormItem>
                     <FormItem style="margin-top: 50px">
                         <Button type="default" @click="cancel">返回</Button>

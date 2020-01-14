@@ -11,11 +11,13 @@
                 </div>
                 <p><Icon type="md-checkmark" style="color:green"/> 内容随时修改 双向绑定的缓存随时更新</p>
                 <p><Icon type="md-checkmark" style="color:green"/> 复制文本 向富文本粘贴</p>
-                <p><Icon type="md-checkmark" style="color:green"/> 使用工具截图 在富文本里面粘贴 直接加入bs64格式</p>
+                <p><Icon type="md-checkmark" style="color:green"/> 使用加入图片工具 图片直接上传 返回图片路径</p>
+                <p><Icon type="md-checkmark" style="color:green"/> 使用工具截图 在富文本里面粘贴 <del>直接加入bs64格式</del> 图片直接上传 返回图片路径</p>
+                <p><Icon type="md-checkmark" style="color:green"/> 使用鼠标拖拽图片 <del>直接加入bs64格式</del> 图片直接上传 返回图片路径</p>
                 <p><Icon type="md-close" style="color:red"/> 复制文件添加为附件 <i>还没想好</i></p>
-                <p><Icon type="md-checkmark" style="color:green"/> 从word复制格式到这里 <Button @click="test1()">点击测试</Button></p>
-                <p><Icon type="md-checkmark" style="color:green"/> 从excel复制格式到这里 <Button @click="test2()">点击测试</Button></p>
-                <p><Icon type="md-checkmark" style="color:green"/> html中 非富文本 原生事件 点击父元素 <del>冒泡</del> 捕获事件到img元素 获取src </p>
+                <p><Icon type="md-checkmark" style="color:green"/> 从word复制格式到这里 <Button @click="test1()">点击测试</Button> 差不多 但是内容超多</p>
+                <p><Icon type="md-checkmark" style="color:red"/> 从excel复制格式到这里 <Button @click="test2()">点击测试</Button> 不行 怎么看都不尽如人意</p>
+                <p><Icon type="md-checkmark" style="color:green"/> 非编辑器中 在生成的内容html中 <del>可采用原生事件点击父元素冒泡<u>捕获</u>事件到img元素 获取src</del> </p>
                 <p><Icon type="md-checkmark" style="color:green"/> 通过正则匹配html中的图片路径 配合小图大图组件进行显示 </p>
                 <p></p>
                 <Form ref="formValidateId" :model="frm" :label-width="150">

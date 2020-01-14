@@ -1006,7 +1006,7 @@ export default {
         copyHtml (e) {
             if (e.target.nodeName === 'I') {
                 let className = e.target.className
-                console.log(`<Icon type="${className}"/>`)
+                console.log(`<i class="${className}"/></i>`)
                 success('拼装成功, 查看console')
             }
         }

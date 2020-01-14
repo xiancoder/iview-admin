@@ -72,45 +72,92 @@ describe('测试正则是否符合要求', function () {
         // expect(regexp.phone.test('0311-85575234')).equal(true)
     })
     it('微信', function () {
-        expect(regexp.weixin.test('wxid_lpkjty5vhqt722')).equal(true) // 黄工
-        expect(regexp.weixin.test('wangdayue21')).equal(true) // 王月
-        expect(regexp.weixin.test('nothingyue')).equal(true) // 王月
-        expect(regexp.weixin.test('whereispal5')).equal(true) // 刘云朋
-        expect(regexp.weixin.test('sy5840982')).equal(true) // 郭颂杨
-        expect(regexp.weixin.test('zy735919882')).equal(true) // 赵瑶瑶
-        expect(regexp.weixin.test('zhaoyaoyao20181214')).equal(true) // 赵瑶瑶
-        expect(regexp.weixin.test('yaoyao20190303')).equal(true) // 赵瑶瑶
-        expect(regexp.weixin.test('wxy666666666688888')).equal(true) // 王晓云
-        expect(regexp.weixin.test('okhaoyuelei')).equal(true) // 郝跃雷
-        expect(regexp.weixin.test('da-mai520')).equal(true) // 郭海涛
-        expect(regexp.weixin.test('hwt1703')).equal(true) // 郝文涛
-        expect(regexp.weixin.test('wxh_zhang')).equal(true) // 张士博
-        expect(regexp.weixin.test('duronfly')).equal(true) // 彭飞飞
-        expect(regexp.weixin.test('wxid_64ipnw9py09122')).equal(true) // 韩霄冲
-        expect(regexp.weixin.test('aiwuxian521666')).equal(true) // 许玉昭
-        expect(regexp.weixin.test('weinann')).equal(true) // 魏楠楠
-        expect(regexp.weixin.test('ring_cat_2014')).equal(true) // 张红玲
-        expect(regexp.weixin.test('d2813437774')).equal(true) // 董素言
-        expect(regexp.weixin.test('d1813539328')).equal(true) // 董素言
-        expect(regexp.weixin.test('zhaixingxing325')).equal(true) // 翟星星
-        expect(regexp.weixin.test('buzhidao2084')).equal(true) // 刘子傲
-        expect(regexp.weixin.test('dayezi664681')).equal(true) // 贾晓烨
-        expect(regexp.weixin.test('shanwdh')).equal(true) // 王珊珊
-        expect(regexp.weixin.test('cece_g')).equal(true) // 郭策
-        expect(regexp.weixin.test('nnhh_88')).equal(true) // 赵涵
-        expect(regexp.weixin.test('sihan99')).equal(true) // 赵涵
-        expect(regexp.weixin.test('xiexiaonaner')).equal(true) // 解晓楠
-        expect(regexp.weixin.test('lihongying2766')).equal(true) // 李洪莹
-        expect(regexp.weixin.test('IIILOVEYUIII')).equal(true) // 韩帅
-        expect(regexp.weixin.test('xin_chenmo')).equal(true) // 姚文娟
-        expect(regexp.weixin.test('xiaowennuan6112')).equal(true) // 王玲
-        expect(regexp.weixin.test('SagittariusSQDXW')).equal(true) // 孙鹤
-        expect(regexp.weixin.test('jk18133815006')).equal(true) // 孙鹤
-        expect(regexp.weixin.test('faner0413')).equal(true) // 曹帆帆
-        expect(regexp.weixin.test('jianhtao1680')).equal(true) // 史江涛
-        expect(regexp.weixin.test('Lht-xfz0216')).equal(true) // 雷汉庭
-        expect(regexp.weixin.test('huan01191004')).equal(true) // 刘欢
-        expect(regexp.weixin.test('Angelia-Lee')).equal(true) // 李慧晓
+        expect(regexp.weixin.test('wxid_lpkjty5vhqt722')).equal(true)
+        expect(regexp.weixin.test('wangdayue21')).equal(true)
+        expect(regexp.weixin.test('nothingyue')).equal(true)
+        expect(regexp.weixin.test('whereispal5')).equal(true)
+        expect(regexp.weixin.test('sy5840982')).equal(true)
+        expect(regexp.weixin.test('zy735919882')).equal(true)
+        expect(regexp.weixin.test('zhaoyaoyao20181214')).equal(true)
+        expect(regexp.weixin.test('yaoyao20190303')).equal(true)
+        expect(regexp.weixin.test('wxy666666666688888')).equal(true)
+        expect(regexp.weixin.test('okhaoyuelei')).equal(true)
+        expect(regexp.weixin.test('da-mai520')).equal(true)
+        expect(regexp.weixin.test('hwt1703')).equal(true)
+        expect(regexp.weixin.test('wxh_zhang')).equal(true)
+        expect(regexp.weixin.test('duronfly')).equal(true)
+        expect(regexp.weixin.test('wxid_64ipnw9py09122')).equal(true)
+        expect(regexp.weixin.test('aiwuxian521666')).equal(true)
+        expect(regexp.weixin.test('weinann')).equal(true)
+        expect(regexp.weixin.test('ring_cat_2014')).equal(true)
+        expect(regexp.weixin.test('d2813437774')).equal(true)
+        expect(regexp.weixin.test('d1813539328')).equal(true)
+        expect(regexp.weixin.test('zhaixingxing325')).equal(true)
+        expect(regexp.weixin.test('buzhidao2084')).equal(true)
+        expect(regexp.weixin.test('dayezi664681')).equal(true)
+        expect(regexp.weixin.test('shanwdh')).equal(true)
+        expect(regexp.weixin.test('cece_g')).equal(true)
+        expect(regexp.weixin.test('nnhh_88')).equal(true)
+        expect(regexp.weixin.test('sihan99')).equal(true)
+        expect(regexp.weixin.test('xiexiaonaner')).equal(true)
+        expect(regexp.weixin.test('lihongying2766')).equal(true)
+        expect(regexp.weixin.test('IIILOVEYUIII')).equal(true)
+        expect(regexp.weixin.test('xin_chenmo')).equal(true)
+        expect(regexp.weixin.test('xiaowennuan6112')).equal(true)
+        expect(regexp.weixin.test('SagittariusSQDXW')).equal(true)
+        expect(regexp.weixin.test('jk18133815006')).equal(true)
+        expect(regexp.weixin.test('faner0413')).equal(true)
+        expect(regexp.weixin.test('jianhtao1680')).equal(true)
+        expect(regexp.weixin.test('Lht-xfz0216')).equal(true)
+        expect(regexp.weixin.test('huan01191004')).equal(true)
+        expect(regexp.weixin.test('Angelia-Lee')).equal(true)
     })
-
+    it('邮箱', function () {
+        expect(regexp.email.test('123123887@qq.com')).equal(true)
+        expect(regexp.email.test('zhangsan-001@gmail.com')).equal(true)
+        expect(regexp.email.test('001Abc@lenovo.com.cn')).equal(true)
+        expect(regexp.email.test('notice@mail.rongcloud.cn')).equal(true)
+        expect(regexp.email.test('taobao@mc.mail.taobao.com')).equal(true)
+        expect(regexp.email.test('xtbzof@dgvbsq.net')).equal(true)
+        expect(regexp.email.test('noreply@github.com')).equal(true)
+        expect(regexp.email.test('noreply@blizzardgames.cn')).equal(true)
+        expect(regexp.email.test('unmsww@tVL.fg.baoline.com')).equal(true)
+        expect(regexp.email.test('fxeinrwbglpuych@pcip.com')).equal(true)
+        expect(regexp.email.test('no-reply@leetcode-cn.com')).equal(true)
+        expect(regexp.email.test('mail@service.netease.com')).equal(true)
+        expect(regexp.email.test('subscribed@noreply.github.com')).equal(true)
+        expect(regexp.email.test('yunxizhihui1@yunxi.cn')).equal(true)
+        expect(regexp.email.test('no-reply@mail.yunxi.cn')).equal(true)
+        expect(regexp.email.test('zhangasdfaso@52yunxi.cn')).equal(true)
+        expect(regexp.email.test('testdspregister2@email.dsp-test.yunxi.cn')).equal(true)
+    })
+    it('IP地址', function () {
+        expect(regexp.ip.test('120.0.8.137')).equal(true)
+        expect(regexp.ip.test('1.0.0.0')).equal(true)
+        expect(regexp.ip.test('192.0.0.0')).equal(true)
+        expect(regexp.ip.test('223.255.255.0')).equal(true)
+        expect(regexp.ip.test('190.124.134.66')).equal(true)
+        expect(regexp.ip.test('172.173.91.129')).equal(true)
+        expect(regexp.ip.test('199.135.52.93')).equal(true)
+        expect(regexp.ip.test('193.174.95.91')).equal(true)
+        expect(regexp.ip.test('200.196.114.74')).equal(true)
+        expect(regexp.ip.test('146.39.0.216')).equal(true)
+        expect(regexp.ip.test('38.40.98.77')).equal(true)
+        expect(regexp.ip.test('147.160.31.118')).equal(true)
+        expect(regexp.ip.test('25.165.184.219')).equal(true)
+        expect(regexp.ip.test('75.20.93.48')).equal(true)
+        expect(regexp.ip.test('140.146.141.114')).equal(true)
+        expect(regexp.ip.test('58.236.206.30')).equal(true)
+        expect(regexp.ip.test('159.64.104.83')).equal(true)
+        expect(regexp.ip.test('93.105.44.147')).equal(true)
+        expect(regexp.ip.test('131.142.225.53')).equal(true)
+        expect(regexp.ip.test('42.0.172.75')).equal(true)
+    })
+    it('车牌号码', function () {
+        expect(regexp.carId.test('晋A332F1')).equal(true)
+        expect(regexp.carId.test('冀A234DE')).equal(true)
+        expect(regexp.carId.test('鲁C33223')).equal(true)
+        expect(regexp.carId.test('豫B33ED2')).equal(true)
+        expect(regexp.carId.test('冀A62O5X')).equal(false)
+    })
 })

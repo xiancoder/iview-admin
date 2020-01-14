@@ -20,13 +20,13 @@ export default {
     computed: { // 计算属性
         tabList () {
             const list = [
-                {name: 'workV2_work01_205tableV1', title: '表格规范v1模版'},
-                {name: 'workV2_work01_205tableV1@bro', title: '表格v1兄弟页面'},
-                {name: 'workV2_work01_205tableMaxHeight', title: '表格v1高度限定'},
-                {name: 'workV2_work01_205tableBatch', title: '表格v1批量操作'},
-                {name: 'workV2_work01_205tableTools', title: '表格v1搜索项'},
-                {name: 'workV2_work01_205tableSum', title: '表格v1总计框'},
-                {name: 'workV2_work01_205tableSort', title: '表格v1排序功能'}
+                {name: 'workV2_work00_205tableV1', title: '表格规范v1模版'},
+                {name: 'workV2_work00_205tableV1@bro', title: '表格v1兄弟页面'},
+                {name: 'workV2_work00_205tableMaxHeight', title: '表格v1高度限定'},
+                {name: 'workV2_work00_205tableBatch', title: '表格v1批量操作'},
+                {name: 'workV2_work00_205tableTools', title: '表格v1搜索项'},
+                {name: 'workV2_work00_205tableSum', title: '表格v1总计框'},
+                {name: 'workV2_work00_205tableSort', title: '表格v1排序功能'}
             ]
             return list
         }

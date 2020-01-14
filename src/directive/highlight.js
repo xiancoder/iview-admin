@@ -14,7 +14,7 @@ export default {
                 let uiBs = (sp && sp[1] && Math.floor(sp[1].length / 4)) || 5
                 el.innerHTML = c.replace(/\n|\r|\r\n/, '')
                     .replace(/^[ ]*|[ ]*$/g, '')
-                    .replace(new RegExp('\n' + (new Array(parseInt(uiBs) * 4 + 1).join(' ')), 'g'), '<br>')
+                    .replace(new RegExp('\n' + (new Array(parseInt(uiBs) * 4 + 1).join(' ')), 'g'), '\n')
                     .replace(/ /g, '&nbsp;')
                 hljs.highlightBlock(el)
             }
@@ -54,7 +54,7 @@ export default {
                     .replace(/>/g, '&gt;')
                     .replace(/v-/g, 'v\u002d') // - 转 unicode
                     .replace(/^[ ]*|[ ]*$/g, '')
-                    .replace(new RegExp('\n' + (new Array(parseInt(uiBs) * 4 + 1).join(' ')), 'g'), '<br>')
+                    .replace(new RegExp('\n' + (new Array(parseInt(uiBs) * 4 + 1).join(' ')), 'g'), '\n') // 不要使用<br> 会使高亮逻辑混乱
                     .replace(/ /g, '&nbsp;')
                 hljs.highlightBlock(pre)
             }

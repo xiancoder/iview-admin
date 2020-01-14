@@ -1,5 +1,6 @@
 import Vue from 'vue' // 核心
-import VueHtml5Editor from 'vue-html5-editor/dist/vue-html5-editor-liuyp.js'
+// import VueHtml5Editor from 'vue-html5-editor/dist/vue-html5-editor-liuyp.js'
+import VueHtml5Editor from 'vue-html5-editor/dist/vue-html5-editor-liuyp-forFileUpload.js'
 import './vueEditor.less'
 // import VueHtml5Editor from '@/../plugins/vue-html5-editor' // 修改了一个粘贴不触发问题
 // 遇到一个错误
@@ -27,10 +28,10 @@ Vue.use(VueHtml5Editor, {
         // 文件最大体积，单位字节 max file size
         sizeLimit: 10000 * 1024,
         upload: {
-            url: null,
+            url: '/api/file/upload',
+            fieldName: 'upload',
             headers: {},
-            params: {},
-            fieldName: {}
+            params: {}
         },
         compress: {
             width: 1600,
@@ -38,12 +39,13 @@ Vue.use(VueHtml5Editor, {
             quality: 80
         },
         uploadHandler (responseText) {
-            var json = JSON.parse(responseText)
-            if (!json.ok) {
-                alert(json.msg)
-            } else {
-                return json.data
+            const response = JSON.parse(responseText)
+            console.log(response)
+            const res = response.data
+            if (res && res.path && res.path.upload) {
+                return res.path.upload;
             }
+            return '';
         }
     },
     // 语言，内建的有英文（en-us）和中文（zh-cn）
