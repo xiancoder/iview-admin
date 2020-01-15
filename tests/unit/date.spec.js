@@ -172,4 +172,15 @@ describe('[日期]常用方法', function () {
         expect(dateJs.isDateNotBeOverdue(+new Date(2018, 11, 6, 10, 10, 10), new Date(2018, 11, 2, 12, 0, 0))).equal(true)
         expect(dateJs.isDateNotBeOverdue(+new Date(2018, 10, 2, 10, 10, 10), new Date(2018, 11, 2, 12, 0, 0))).equal(false)
     })
+    it('某天到今天还有几天/howManyToToday', function () {
+        // 警告说必须按照iso时间格式来搞
+        // expect(dateJs.howManyToToday('2020-01-16')).equal(-1) yes
+        // expect(dateJs.howManyToToday('2020-01-17')).equal(-2) yes
+        // expect(dateJs.howManyToToday('2020-01-18')).equal(-3) yes
+        // expect(dateJs.howManyToToday('2020-02-02')).equal(-18) yes
+        expect(dateJs.howManyToToday('2020-01-16', '2020-01-15')).equal(-1)
+        expect(dateJs.howManyToToday('2020-01-17', '2020-01-15')).equal(-2)
+        expect(dateJs.howManyToToday('2020-01-18', '2020-01-15')).equal(-3)
+        expect(dateJs.howManyToToday('2020-02-02', '2020-01-15')).equal(-18)
+    })
 })

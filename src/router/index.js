@@ -214,13 +214,15 @@ router.beforeEach((to, from, next) => {
 
         // 滚动条位置
         // 放弃 有更好的方法 路由提供了 scrollBehavior 钩子
-        // 不再放弃 钩子有问题
-        try {
-            const scroller = document.getElementById('mainScrollFlag')
-            if (scroller) scroller.scrollTo(0, 0)
-        } catch (e) {
-            console.error('IE不支持scrollTo')
-        }
+        // 不再放弃 上面说的钩子有问题
+        // try {
+        //    const scroller = document.getElementById('mainScrollFlag')
+        //    if (scroller) scroller.scrollTo(0, 0)
+        // } catch (e) {
+        //     console.error('IE不支持scrollTo')
+        // }
+        // 改进整体结构 使用body的滚动
+        window.scrollTo(0, 0)
 
         console.info('%c仙 准备跳转 跳转成功', 'color:#05ff0f;background:#000;padding:0 5px;')
         next() // 进入页面

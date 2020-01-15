@@ -20,11 +20,6 @@ export default makeMultiLevelRoute({
                 { power: 'dsp', path: 'list@account', title: '账户余额查询', hideMenu: true }
             ]
         }, {
-            path: 'charge', title: '收款账户', icon: 'md-contacts',
-            children: [
-                { power: 'dsp', path: 'chargeInfo', title: '收款账户' }
-            ]
-        }, {
             path: 'cost', title: '消耗管理', icon: 'md-contacts',
             children: [
                 { power: 'dsp', path: 'costList', title: '消耗管理' }

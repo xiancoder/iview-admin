@@ -1,5 +1,5 @@
 <template>
-    <Layout style="height:100%;min-width:1080px;" :class="[
+    <Layout :class="[
             'main',
             themeMiddle?'mianMiddle':'',
             themeLogoFlex?'logoconflex':''
@@ -9,7 +9,7 @@
         <!-- Sider：侧边栏，自带默认样式及基本功能，其下可嵌套任何元素，只能放在 Layout 中。 -->
         <!-- Content：内容部分，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。 -->
         <!-- Footer：底部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。 -->
-        <Layout style="height:100%">
+        <Layout>
             <Sider hide-trigger collapsible class="left-sider"
                 :width="200" :collapsed-width="64" v-model="collapsed">
                 <div class="logocon" :style="{'background': themeLogoBgColor}">
@@ -17,7 +17,7 @@
                 </div>
                 <side-menu :collapsed="collapsed"/>
             </Sider>
-            <Layout style="height:100%" class="right-sider">
+            <Layout class="right-sider">
                 <Header class="main-header":style="{'background': themeFgColor}">
                     <Row type="flex" justify="start" class="main-header-left">
                         <a @click="handleCollapsedChange" type="text"
@@ -85,7 +85,7 @@
                 </Header>
                 <Content class="main-content-con">
                     <Spin size="large" fix v-if="spinShow"></Spin>
-                    <div class="main-layout-con" id="mainScrollFlag">
+                    <div class="main-layout-con">
                         <div class="tag-nav-wrapper">
                             <tags-nav></tags-nav>
                         </div>
@@ -96,7 +96,6 @@
                                     <router-view></router-view>
                                 </keep-alive>
                             </transition>
-                            <ABackTop :height="100" :bottom="10" :right="42" container="#mainScrollFlag"></ABackTop>
                         </div>
                         <div class="main-xiangzhaosha">
                             <input class="xiangzhaosha-input" type="text" v-model="xiangzhaosha" placeholder="大声地说出我的名砸..你要找啥">
@@ -105,7 +104,6 @@
                                     <span v-for="item in routeList.filter(row=>{
                                         var v = xiangzhaosha.toLowerCase()
                                         return row.title.toLowerCase().includes(v) || row.path.toLowerCase().includes(v)
-
                                     })">
                                         <a :href="'#'+item.path" :title="item.path">{{item.title}}</a> &nbsp;|&nbsp;
                                     </span>
@@ -113,11 +111,12 @@
                                 <!-- template 里面放Button会导致页面滚动时候卡顿 -->
                             </div>
                         </div>
-                        <img :src="'/static/img.xian/logo.xian.png'" class="xianjscode">
                     </div>
                 </Content>
             </Layout>
         </Layout>
+        <ABackTop :height="100" :bottom="10" :right="42"></ABackTop>
+        <img :src="'/static/img.xian/logo.xian.png'" class="xianjscode">
         <Footer class="main-footer"> &copy;东胜神州傲来国无限技术公司 2010 - 2020 如来佛祖备案 </Footer>
         <Drawer title="系统界面控制" :closable="false" v-model="theme.Drawer">
             <Card title="主题变动" icon="ios-options" :padding="0" shadow style="width: 100%;">
@@ -179,14 +178,14 @@ export default {
             xiangzhaosha: '', // 想找啥
             transitionName: '', // 动画方式
             weblink: [ // 外链链接
-                // { img: 'maimai.jpg', title: '脉脉', link: 'http://maimai.cn' },
-                // { img: 'qichacha.jpg', title: '脉脉', link: 'http://www.qichacha.com' },
-                // { img: 'tianyancha.jpg', title: '脉脉', link: 'http://www.tianyancha.com' },
-                // { img: 'zdao.jpg', title: '脉脉', link: 'http://www.zdao.com' },
-                { img: 'vant.jpg', title: 'vue推荐移动端UI', link: 'https://youzan.github.io/vant/?source=vuejsorg#/zh-CN/intro' },
-                { img: 'iview3.jpg', title: '项目在用的iview3', link: 'http://v3.iviewui.com' },
-                { img: 'vue.jpg', title: 'vue官方API', link: 'https://cn.vuejs.org' },
-                { img: 'iview4.jpg', title: '资料库使用的iview4', link: 'https://www.iviewui.com' }
+                { img: 'momo.png', title: '脉脉', link: 'http://maimai.cn' },
+                { img: 'qichacha.png', title: '企查查', link: 'http://www.qichacha.com' },
+                { img: 'tianyancha.png', title: '天天眼查', link: 'http://www.tianyancha.com' },
+                { img: 'zhaodao.png', title: '找到', link: 'http://www.zdao.com' },
+                { img: 'vant.png', title: 'vue推荐移动端UI', link: 'https://youzan.github.io/vant/?source=vuejsorg#/zh-CN/intro' },
+                { img: 'iview3.png', title: '项目在用的iview3', link: 'http://v3.iviewui.com' },
+                { img: 'vue.png', title: 'vue官方API', link: 'https://cn.vuejs.org' },
+                { img: 'iview4.png', title: '资料库使用的iview4', link: 'https://www.iviewui.com' }
             ]
         }
     },
@@ -261,6 +260,3 @@ export default {
     }
 }
 </script>
-<style type="text/css">
-    .xianjscode{position: fixed; bottom: 1px; right: 96px; z-index: 1001;}
-</style>

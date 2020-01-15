@@ -17,7 +17,7 @@ export default {
         bottom: { type: Number, default: 32 },
         right: { type: Number, default: 18 },
         duration: { type: Number, default: 1000 },
-        container: { type: null, default: window }
+        container: { type: String, default: 'body' }
     },
     data () {
         return {
@@ -40,15 +40,16 @@ export default {
         classes () { return [ `${prefixCls}`, { [`${prefixCls}-show`]: this.backTop } ] },
         styles () { return { bottom: `${this.bottom}px`, right: `${this.right}px` } },
         innerClasses () { return `${prefixCls}-inner` },
-        containerEle () { return this.container === window ? window : document.querySelector(this.container) }
+        containerEle () { return this.container === 'body' ? window : document.querySelector(this.container) }
     },
     methods: {
         handleScroll () {
-            this.backTop = this.containerEle.scrollTop >= this.height
+            const el = this.container === 'body' ? document.querySelector('html') : this.containerEle
+            this.backTop = el.scrollTop >= this.height
         },
         back () {
-            let target = typeof this.container === 'string' ? this.containerEle : (document.documentElement || document.body)
-            const sTop = target.scrollTop
+            const el = this.container === 'body' ? document.querySelector('html') : this.containerEle
+            const sTop = el.scrollTop
             scrollTop(this.containerEle, sTop, 0, this.duration)
             this.$emit('on-click')
         }

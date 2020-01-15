@@ -59,6 +59,11 @@ export default makeMultiLevelRoute({
                 { power: 'oa-gong', path: 'group', title: '组管理' },
                 { power: 'oa-gong', path: 'group@edit', title: '组添加/编辑', hideMenu: true }
             ]
+        }, {
+            path: 'meeting', title: '会议管理', icon: 'md-mail',
+            children: [
+                { power: 'oa-gong', path: 'reserveRoom', title: '预约会议' }
+            ]
         }
     ]
 })

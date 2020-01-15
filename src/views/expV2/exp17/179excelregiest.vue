@@ -10,33 +10,48 @@
                 <p><Icon type="md-checkmark" style="color:green"/> 想法 如果我要批量注册10+用户</p>
                 <p><Icon type="md-checkmark" style="color:green"/> 想法 如果我要批量注册100+用户</p>
                 <p><Icon type="md-close" style="color:red"/> 想法 如果我要批量注册1000+用户 导入后台吧</p>
-                <Form ref="from1234" :model="frm" :rules="frmValidate" :label-width="150">
-                    <FormItem label="用户名" prop="user_name">
-                        <Input type="text" v-model="frm.user_name" placeholder="请您输入用户名" style="width: 326px"/>
-                    </FormItem>
-                    <FormItem label="登录密码" prop="user_pwd">
-                        <Input type="text" v-model="frm.user_pwd" placeholder="请输入输入密码,6-20位字母、数字" style="width: 326px"/>
-                    </FormItem>
-                    <FormItem label="联系方式" prop="contact_type">
-                        <Select v-model="frm.contact_type" filterable placeholder="请选择联系方式" style="width:326px">
-                            <Option v-for="option in list" :value="option.id" :key="option.id" :label="option.name">
-                            </Option>
-                        </Select>
-                    </FormItem>
-                    <FormItem label="手机号" prop="tel" v-if="frm.contact_type == 1">
-                        <Input type="text" v-model="frm.tel" placeholder="请输入11位有效手机号" style="width: 326px"/>
-                    </FormItem>
-                    <FormItem label="微信" prop="wx" v-if="frm.contact_type == 2">
-                        <Input type="text" v-model="frm.wx" placeholder="请输入微信号" style="width: 326px"/>
-                    </FormItem>
-                    <FormItem style="margin: 50px 0 0;">
-                        <Button type="primary" :loading="loading" @click="handleSubmit()">立即注册</Button>
-                        <Button type="primary" :loading="loading" @click="handlebatchSubmit()">批量注册</Button>
-                        <div>已有账号?<a style="margin-left:5px">去登录></a></div>
-                    </FormItem>
-                </Form>
-                <div>arr = {{arr}}</div>
-                <div>success = {{success}}</div>
+                <Row>
+                    <Col span="12">
+                        <Form ref="from1234" :model="frm" :rules="frmValidate" :label-width="150">
+                            <FormItem label="用户名" prop="user_name">
+                                <Input type="text" v-model="frm.user_name" placeholder="请您输入用户名" style="width: 326px"/>
+                            </FormItem>
+                            <FormItem label="登录密码" prop="user_pwd">
+                                <Input type="text" v-model="frm.user_pwd" placeholder="请输入输入密码,6-20位字母、数字" style="width: 326px"/>
+                            </FormItem>
+                            <FormItem label="联系方式" prop="contact_type">
+                                <Select v-model="frm.contact_type" filterable placeholder="请选择联系方式" style="width:326px">
+                                    <Option v-for="option in list" :value="option.id" :key="option.id" :label="option.name">
+                                    </Option>
+                                </Select>
+                            </FormItem>
+                            <FormItem label="手机号" prop="tel" v-if="frm.contact_type == 1">
+                                <Input type="text" v-model="frm.tel" placeholder="请输入11位有效手机号" style="width: 326px"/>
+                            </FormItem>
+                            <FormItem label="微信" prop="wx" v-if="frm.contact_type == 2">
+                                <Input type="text" v-model="frm.wx" placeholder="请输入微信号" style="width: 326px"/>
+                            </FormItem>
+                            <FormItem>
+                                {{arr.length?'正在添加第'+(success.length+1)+'条信息...':'校验完成'}}
+                            </FormItem>
+                            <FormItem style="margin: 50px 0 0;">
+                                <Button type="primary" :loading="loading" @click="handlebatchSubmit()">批量添加</Button>
+                            </FormItem>
+                        </Form>
+                    </Col>
+                    <Col span="12">
+                        <p>欲导入的数据</p>
+                        <table class="api">
+                            <tr> <th>用户名</th> <th>密码</th> <th>联系方式</th> <th>手机号</th> <th>微信</th> </tr>
+                            <tr v-for="row in arr"> <td>{{row.user_name}}</td> <td>{{row.user_pwd}}</td> <td>{{row.contact_type}}</td> <td>{{row.tel}}</td> <td>{{row.wx}}</td> </tr>
+                        </table>
+                        <p>已经校验的数据</p>
+                        <table class="api">
+                            <tr> <th>用户名</th> <th>密码</th> <th>联系方式</th> <th>手机号</th> <th>微信</th> </tr>
+                            <tr v-for="row in success"> <td>{{row.user_name}}</td> <td>{{row.user_pwd}}</td> <td>{{row.contact_type}}</td> <td>{{row.tel}}</td> <td>{{row.wx}}</td> </tr>
+                        </table>
+                    </Col>
+                </Row>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>
@@ -118,9 +133,10 @@ export default {
                 ]
             },
             arr: [
-                { user_name: 'xiexia', user_pwd: '123456', contact_type: 1, tel: '13831111445', wx: '' },
-                { user_name: 'xiesdf', user_pwd: '123456', contact_type: 1, tel: '13831111448', wx: '' },
+                { user_name: 'xiexia', user_pwd: '123456aaa', contact_type: 1, tel: '13831111445', wx: '' },
+                { user_name: 'xiesdf', user_pwd: '123456aaa', contact_type: 1, tel: '13831111448', wx: '' },
                 { user_name: 'liuliu', user_pwd: '123456', contact_type: 2, tel: '', wx: 'adfasdf' },
+                { user_name: 'xian_123', user_pwd: 'asd123', contact_type: 1, tel: '13634212365', wx: '' },
                 { user_name: 'qwe123', user_pwd: '123456', contact_type: 1, tel: '138312', wx: '' }
             ],
             success: [
@@ -128,13 +144,6 @@ export default {
         }
     },
     methods: {
-        handleSubmit () {
-            this.$refs['from1234'].validate((valid) => {
-                if (valid) {
-                    alert('ok')
-                }
-            });
-        },
         handlebatchSubmit () {
             if (!this.arr.length) return false
             if (this.beginBatchSubmit) {

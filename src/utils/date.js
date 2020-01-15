@@ -480,6 +480,13 @@ export const timeLong2 = (date1, date2) => {
     }
     return ((month) ? (month + '月零') : '') + day + '天'
 }
+// 某天到今天相差多少(天)
+// =====================
+// liuyp 2020年1月15日17:06:51
+export const howManyToToday = (dateStr, toTodayDateStr) => {
+    const t = moment(toTodayDateStr).format('YYYY-MM-DD')
+    return moment(t).diff(moment(dateStr), 'days')
+}
 // 是否超时日期
 export const isDateNotBeOverdue = (d, deadline) => {
     const checkDateTime = function (d) {
