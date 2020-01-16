@@ -42,7 +42,7 @@
                     <FormItem label="标题" prop="p02">
                         <Select v-model="frm.p02" placeholder="请搜索/选择XXX" style="width: 300px">
                             <Option value="0" label="全部"></Option>
-                            <Option v-for="option in list" :value="option.id" :key="option.id" :label="option.name">
+                            <Option v-for="option in dataSet.list" :value="option.id" :key="option.id" :label="option.name">
                             </Option>
                         </Select>
                         <div class="ivu-form-item-notice-tip">下拉框 所有数据源都从接口模块读取 且数据中不能包含0 (0代表全部)</div>
@@ -53,7 +53,7 @@
                             <FormItem label="标题" prop="p02">
                                 <Select v-model="frm.p02" placeholder="请搜索/选择XXX" style="width: 300px">
                                     <Option value="0" label="全部"></Option>
-                                    <Option v-for="option in list" :value="option.id" :key="option.id" :label="option.name">
+                                    <Option v-for="option in dataSet.list" :value="option.id" :key="option.id" :label="option.name">
                                     </Option>
                                 </Select>
                             </FormItem>
@@ -75,7 +75,7 @@
                         <Select v-model="frm.p03"  placeholder="请搜索/选择XXX" style="width: 300px"
                             filterable clearable>
                             <Option value="0" label="全部"></Option>
-                            <Option v-for="option in list" :value="option.id" :key="option.id" :label="option.name">
+                            <Option v-for="option in dataSet.list" :value="option.id" :key="option.id" :label="option.name">
                             </Option>
                         </Select>
                     </FormItem>
@@ -93,21 +93,51 @@
                         <Select v-model="frm.p04"  placeholder="请搜索/选择XXX" style="width: 300px"
                             filterable clearable>
                             <Option value="0" label="全部"></Option>
-                            <Option v-for="option in bigList" :value="option.id" :key="option.id" :label="option.name">
+                            <Option v-for="option in dataSet.bigList" :value="option.id" :key="option.id" :label="option.name">
                             </Option>
                         </Select>
                     </FormItem>
                     <FormItem>
-                        <Button type="primary" @click="bigList=[]">清空</Button>
+                        <Button type="primary" @click="dataSet.bigList=[]">清空</Button>
                         <Divider type="vertical" />
                         <Button type="primary" @click="showBigList1000()">尝试1000条信息</Button>
                         <Divider type="vertical" />
                         <Button type="primary" @click="showBigList2000()">尝试2000条信息</Button>
                         <Divider type="vertical" />
-                        <Button type="primary" @click="showBigList3000()">尝试3000条信息</Button>
+                        <Button type="primary" @click="model.edit=true">弹框尝试3000条信息</Button>
+                        <Modal v-model="model.edit" title="编辑啥啥" @on-cancel="model.edit=false;">
+                            <Select v-model="frm.p04m" placeholder="请搜索/选择XXX" style="width: 300px"
+                                filterable clearable>
+                                <Option value="0" label="全部"></Option>
+                                <Option v-for="option in dataSet.bigList2" :value="option.id" :key="option.id" :label="option.name">
+                                </Option>
+                            </Select>
+                        </Modal>
                     </FormItem>
                     <FormItem>
                         <p class="text-danger">经过尝试 的确会卡一会</p>
+                    </FormItem>
+
+                    <Divider orientation="left">下拉框 下拉框内容紧凑布局</Divider>
+                    <FormItem label="标题" prop="p04">
+                        <Select v-model="frm.p04" class="xxx" placeholder="请搜索/选择XXX" style="width: 300px"
+                            filterable clearable>
+                            <Option value="0" label="全部"></Option>
+                            <Option v-for="option in dataSet.bigList" :value="option.id" :key="option.id" :label="option.name">
+                            </Option>
+                        </Select>
+                    </FormItem>
+                    <FormItem>
+                        <div>class="xxx" 仅仅是样式作用</div>
+                    </FormItem>
+
+                    <Divider orientation="left">下拉框 多选</Divider>
+                    <FormItem label="标题" prop="p05">
+                        <Select v-model="frm.p05" class="xxx" multiple  placeholder="请搜索/选择XXX" style="width: 300px"
+                            filterable clearable>
+                            <Option v-for="option in dataSet.bigList" :value="option.id" :key="option.id" :label="option.name">
+                            </Option>
+                        </Select>
                     </FormItem>
 
                     <Divider orientation="left">提交</Divider>
@@ -134,30 +164,37 @@ export default {
     data () {
         return {
             loading: false,
-            list: [], // 动态数据源
+
+            model: {
+                edit: false
+            },
             frm: {
                 p01: '', // 下拉框测试
                 p02: '', // 下拉框测试
                 p03: '', // 下拉框测试
-                p04: '1' // 下拉框测试
+                p04: '1', // 下拉框测试
+                p05: [] // 下拉框测试
             },
             frmValidate: {
                 p01: [
                     { required: true, message: '下拉框必选其一' }
                 ],
-                p02: [
-                    { required: true, message: '下拉框必选其一' }
-                ],
-                p03: [
-                    { required: true, message: '下拉框必选其一' }
+                p05: [
+                    { required: true, message: '下拉框必选其一' },
+                    { type: 'array', min: 2, message: '复选框选择最少两项', trigger: 'change' },
+                    { type: 'array', max: 3, message: '复选框选择最多三项', trigger: 'change' }
                 ]
             },
-            bigList: []
+            dataSet: {
+                list: [], // 动态数据源
+                bigList: [],
+                bigList2: [] // 弹框数据源
+            }
         }
     },
     methods: {
         getDataSet () {
-            setTimeout(() => { this.list = [{id: 1, name: '一般'}, {id: 2, name: '重要'}, {id: 3, name: '紧急'}] }, 2e3)
+            setTimeout(() => { this.dataSet.list = [{id: 1, name: '一般'}, {id: 2, name: '重要'}, {id: 3, name: '紧急'}] }, 2e3)
         },
         handleSubmit () {
             this.$refs['from0982'].validate((valid) => {
@@ -173,19 +210,19 @@ export default {
         showBigList1000 () {
             axios.get('/api/unit/bigData1000').then(res => {
                 const data = res.data
-                this.bigList = data.data.list
+                this.dataSet.bigList = data.data.list
             })
         },
         showBigList2000 () {
             axios.get('/api/unit/bigData2000').then(res => {
                 const data = res.data
-                this.bigList = data.data.list
+                this.dataSet.bigList = data.data.list
             })
         },
         showBigList3000 () {
             axios.get('/api/unit/bigData3000').then(res => {
                 const data = res.data
-                this.bigList = data.data.list
+                this.dataSet.bigList2 = data.data.list
             })
         },
         cancel () {
@@ -198,3 +235,7 @@ export default {
     }
 }
 </script>
+<style>
+    .xxx ul.ivu-select-dropdown-list { width: min-content; overflow: hidden; }
+    .xxx ul.ivu-select-dropdown-list li.ivu-select-item { float: left; display: inline-block; clear: none; }
+</style>

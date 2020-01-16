@@ -210,7 +210,10 @@ router.beforeEach((to, from, next) => {
 
         LoadingBarRun(true) // 顶部进度条
         Store.dispatch('route/keepalive', to.name) // 路由keepAlive管理 当前页缓存
-        // Store.dispatch('route/routeSpin', true) // 路由视图loading // 路由 transition 搞通了 这个不需要了
+
+        // 路由 transition 搞通了 这个不需要了
+        // 路由 transition 动画生硬 还是用这个吧 2020年1月16日11:37:06
+        Store.dispatch('route/routeSpin', true) // 路由视图loading
 
         // 滚动条位置
         // 放弃 有更好的方法 路由提供了 scrollBehavior 钩子
@@ -237,7 +240,10 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from) => {
     LoadingBarRun(false) // 顶部进度条
-    // Store.dispatch('route/routeSpin', false) // 路由视图loading // 路由 transition 搞通了 这个不需要了
+
+    // 路由 transition 搞通了 这个不需要了
+    // 路由 transition 动画生硬 还是用这个吧 2020年1月16日11:37:06
+    Store.dispatch('route/routeSpin', false) // 路由视图loading
 
     if (to && from && to.name === from.name) { // 本页面跳转 不做各种表示
         return false

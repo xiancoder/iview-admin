@@ -128,6 +128,38 @@
                         </script>
                     </FormItem>
 
+                    <Divider orientation="left">日期范围框 必填 + 必须是时间段 </Divider>
+                    <FormItem label="标题 " prop="p06">
+                        <TimePicker type="timerange" placeholder="选择开始时间结束时间" style="width:300px"
+                            :disabled-hours="[0,1,2,3,4,5,6,7,20,21,22,23]" :steps="[1, 5]"
+                            :value="frm.p06" format="HH:mm" @on-change="frm.p06=$event" placement="bottom-start">
+                        </TimePicker>
+                    </FormItem>
+                    <FormItem>
+                        <p>结果: {{frm.p06}}</p>
+                        <script type="text/html" v-pre>
+                            <FormItem label="标题 " prop="p06">
+                                <TimePicker type="timerange" placeholder="选择开始时间结束时间" style="width:300px"
+                                    :disabled-hours="[0,1,2,3,4,5,6,7,20,21,22,23]" :steps="[1, 5]"
+                                    :value="frm.p06" format="HH:mm" @on-change="frm.p06=$event" placement="bottom-start">
+                                </TimePicker>
+                            </FormItem>
+                        </script>
+                        <script type="text/js">
+                            p06: [
+                                { required: true, message: '请选择时间' },
+                                { validator: (rule, value, callback) => {
+                                    const times = this.frm.p06
+                                    if (!times || times.length === 0) { return callback(new Error('必选时间段!')) }
+                                    if (parseInt(times[0].replace(/[^\d]/g, '')) === parseInt(times[1].replace(/[^\d]/g, '')) ) {
+                                        return callback(new Error('必选一段时间!'))
+                                    }
+                                    callback()
+                                } }
+                            ]
+                        </script>
+                    </FormItem>
+
                     <Divider orientation="left">提交</Divider>
                     <FormItem style="margin-top: 50px">
                         <Button type="default" @click="cancel">返回</Button>
@@ -155,7 +187,8 @@ export default {
                 p02: '', // 日期测试
                 p03: '', // 日期测试
                 p04: [], // 日期范围测试
-                p05: [] // 日期范围测试
+                p05: [], // 日期范围测试
+                p06: [] // 时间范围测试
             },
             frmValidate: {
                 p01: [
@@ -172,6 +205,17 @@ export default {
                     { validator: (rule, value, callback) => {
                         const dates = this.frm.p04
                         if (!dates || dates.length === 0) { return callback(new Error('必选日期段!')) }
+                        callback()
+                    } }
+                ],
+                p06: [
+                    { required: true, message: '请选择时间' },
+                    { validator: (rule, value, callback) => {
+                        const times = this.frm.p06
+                        if (!times || times.length === 0) { return callback(new Error('必选时间段!')) }
+                        if (parseInt(times[0].replace(/[^\d]/g, '')) === parseInt(times[1].replace(/[^\d]/g, ''))) {
+                            return callback(new Error('必选一段时间!'))
+                        }
                         callback()
                     } }
                 ]

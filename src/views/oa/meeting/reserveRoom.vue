@@ -5,7 +5,7 @@
                 <DatePicker class="big_date" :value="currentDate" size="large"
                     :open="true" :transfer="false"
                     placement="bottom" @on-change="handleChangeDate">
-                    <div>123123123</div>
+                    <div></div>
                 </DatePicker>
             </div>
             <div class="left_main">
@@ -14,7 +14,7 @@
                     <!-- <img src="../../images/alert.png"> -->
                     <div>本日暂无会议安排</div>
                 </div>
-                <div class="my_meeting" :class="index === 0 ? 'bn' : ''" v-for="(meeting, index) in myMeeting" :key="index">
+                <div class="my_meeting" :class="{'bn':index===0}" v-for="(meeting, index) in myMeeting" :key="index">
                     <div class="left_title pr">
                         {{meeting.roomName}}<br>{{meeting.begin}} - {{meeting.end}}
                         <div class="arrow_position">
@@ -94,8 +94,10 @@
         <Modal v-model="editModal" :title="editTitle" :mask-closable="false" @on-cancel="timeModal = false">
             <Form ref="formItem" :model="formData" :rules="formRules" :label-width="80" class="form_20">
                 <FormItem label="会议时间" prop="time" class="pr">
-                    <TimePicker confirm :disabled-hours="disTime" :steps="[1, 5]" :value="formData.time" @on-ok="confirmTime" @on-change="getTime"
-                                :open="timeModal" :clearable="false" :editable="false" format="HH:mm" type="timerange" class="no_reset" style="width: 230px"></TimePicker>
+                    <TimePicker confirm :disabled-hours="disTime" :steps="[1, 5]" :value="formData.time"
+                        @on-ok="handleConfirmTime" @on-change="(date)=>{formData.time=date}" :open="timeModal" :clearable="false"
+                        :editable="false" format="HH:mm" type="timerange" class="no_reset" style="width: 230px">
+                    </TimePicker>
                     <Card class="available_time" v-if="timeModal">
                         <p slot="title">可用时间</p>
                         <p v-for="(time, index) in availableTime" :key="index">
@@ -105,39 +107,44 @@
                     <div class="time_mask" @click="timeModal = true"></div>
                 </FormItem>
                 <FormItem label="参会人" prop="join">
-                    <Select v-model="formData.join" multiple filterable placeholder="请搜索 / 选择参会人" label-in-value @on-change="getJoin" @on-open-change="checkJoin">
+                    <Select v-model="formData.join" multiple filterable placeholder="请搜索 / 选择参会人"
+                        label-in-value @on-change="(date)=>{joinList=date;checkInJoin()}"
+                        @on-open-change="(show)=>{!show && checkConflictAjax()}">
                         <Option v-for="row in userList" :value="row.id" :key="row.id" :label="row.name">
                             {{row.name}}<span v-show="false">{{row.emailStr}}</span>
                         </Option>
                     </Select>
                 </FormItem>
                 <FormItem label="冲突人员" v-if="conflictList.length > 0">
-                        <div v-for="(user, index) in conflictList" :key="index" style="color: #ed4014">
-                            {{user.name}}（{{user.begin}}-{{user.end}}）
-                        </div>
+                    <div v-for="(user, index) in conflictList" :key="index" style="color: #ed4014">
+                        {{user.name}}（{{user.begin}}-{{user.end}}）
+                    </div>
                 </FormItem>
                 <FormItem label="主持人" prop="host">
                     <Select v-model="formData.host" clearable filterable placeholder="请搜索 / 选择主持人">
-                        <Option v-for="row in joinList" :value="row.value" :key="row.value" :label="row.label"></Option>
+                        <Option v-for="row in joinList" :value="row.value" :key="row.value" :label="row.label">
+                        </Option>
                     </Select>
                 </FormItem>
                 <FormItem label="记录人" prop="record">
                     <Select v-model="formData.record" clearable filterable placeholder="请搜索 / 选择记录人">
-                        <Option v-for="row in joinList" :value="row.value" :key="row.value" :label="row.label"></Option>
+                        <Option v-for="row in joinList" :value="row.value" :key="row.value" :label="row.label">
+                        </Option>
                     </Select>
                 </FormItem>
                 <FormItem label="会议主题" prop="mainContent">
                     <Input type="text" v-model="formData.mainContent" placeholder="请输入会议主题"/>
                 </FormItem>
                 <FormItem label="会议内容" prop="content">
-                    <Input type="textarea" class="textArea" :autosize="{minRows: 3,maxRows: 5}" v-model="formData.content" placeholder="请输入会议内容"/>
+                    <Input type="textarea" class="textArea" :autosize="{minRows: 3,maxRows: 5}"
+                        v-model="formData.content" placeholder="请输入会议内容"/>
                 </FormItem>
                 <FormItem label="所需物资" prop="material">
                     <Input type="text" v-model="formData.material" placeholder="请输入所需物资"/>
                 </FormItem>
             </Form>
             <div slot="footer">
-                <Button type="primary" :loading="loading" @click="saveEdit">立即预约</Button>
+                <Button type="primary" :loading="loading" @click="handleSubmitEditModal">立即预约</Button>
             </div>
         </Modal>
     </div>
@@ -146,6 +153,21 @@
 <script>
 import moment from 'moment'
 import { howManyToToday } from '@U/date'
+
+// 优化建议
+// good
+// 1 日期差计算妙 照抄
+// 2 样式写的好 照抄
+// need study
+// 1 时间范围控件的表单校验
+// bad
+// 1 公共方法抽取出来 如果应用范围大 应该抽取到utils
+// 2 datapicker on-change 应该尽量简单 统一
+// 3 多使用 computed 属性
+// advise
+// 1 建议方法命名 handle
+// 2 多写注释
+// 3 建议少用 517行 me = this 等结构
 
 const getNum = (hour, minute) => { // 当前分钟块的序数
     return (hour - 1) * 12 + minute
@@ -179,6 +201,21 @@ const minToStr = (min) => {
         return ((min - 1) * 5).toString()
     }
 }
+const getNow = () => { // 获取当前时间属于的时间段
+    const now = moment().get('hours')
+    if (now < 8) {
+        return ['8:00', '9:00']
+    }
+    const min = Math.ceil((moment().get('minutes') / 5))
+    if (min === 0) {
+        return [now + ':00', (now + 1) + ':00']
+    } else if (min === 1) {
+        return [now + ':05', (now + 1) + ':05']
+    } else if (min === 12) {
+        return [(now + 1) + ':00', (now + 2) + ':00']
+    }
+    return [now + ':' + min * 5, (now + 1) + ':' + min * 5]
+}
 
 export default {
     name: 'reserve-room',
@@ -197,6 +234,7 @@ export default {
                 {num: 9, name: '16:00'}, {num: 10, name: '17:00'}, {num: 11, name: '18:00'}, {num: 12, name: '19:00'}
             ],
             minuteList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+
             infoModal: false,
             infoData: {
                 roomName: '',
@@ -220,6 +258,7 @@ export default {
                 material: ''
             },
             loading: false,
+
             editModal: false,
             editTitle: '',
             disTime: [0, 1, 2, 3, 4, 5, 6, 7, 20, 21, 22, 23],
@@ -348,7 +387,7 @@ export default {
                 } else if (days < 0) {
                     return 0
                 } else {
-                    if (n <= timeToNum(this.getNow()[0])) {
+                    if (n <= timeToNum(getNow()[0])) {
                         return 3
                     } else {
                         return 0
@@ -356,6 +395,7 @@ export default {
                 }
             }
         },
+
         /* 会议详情 弹窗 */
         handleMeetingInfoModel (room, hour, minute) { // 会议信息弹框
             const type = this.randerMinuteType(getNum(hour.num, minute), room.meeting)
@@ -394,7 +434,7 @@ export default {
             this.$post('api/meeting/reserve_release', {
                 id: this.infoData.id,
                 date: this.currentDate,
-                time: this.getNow()[0]
+                time: getNow()[0]
             }).then((res) => {
                 if (res.data.data && res.data.data.res === 1) {
                     this.$Message.info({
@@ -410,6 +450,7 @@ export default {
                 }
             })
         },
+
         /* 以下为预约相关 */
         handleAppointModel (room, n) {
             this.$refs['formItem'].resetFields()
@@ -421,9 +462,9 @@ export default {
                     id: 0,
                     roomId: room.roomId,
                     roomName: room.roomName,
-                    time: this.getNow(),
-                    begin: this.getNow()[0],
-                    end: this.getNow()[1],
+                    time: getNow(),
+                    begin: getNow()[0],
+                    end: getNow()[1],
                     join: [this.userList[0].id],
                     host: null,
                     record: null,
@@ -439,45 +480,17 @@ export default {
             }).then((res) => {
                 this.availableTime = res.data.data.list
             }); // 可用时间
-            this.checkConflict()
+            this.checkConflictAjax()
             this.editTitle = '预约' + room.roomName
             this.editModal = true
         },
-        getNow () {
-            const now = moment().get('hours')
-            let begin = ''
-            let end = ''
-            if (now < 8) {
-                begin = '8:00'
-                end = '9:00'
-            } else {
-                const min = Math.ceil((moment().get('minutes') / 5))
-                if (min === 0) {
-                    begin = now + ':00'
-                    end = (now + 1) + ':00'
-                } else if (min === 1) {
-                    begin = now + ':05'
-                    end = (now + 1) + ':05'
-                } else if (min === 12) {
-                    begin = (now + 1) + ':00'
-                    end = (now + 2) + ':00'
-                } else {
-                    begin = now + ':' + min * 5
-                    end = (now + 1) + ':' + min * 5
-                }
-            }
-            return [begin, end]
-        },
-        getTime (t) {
-            this.formData.time = t
-        },
-        confirmTime () {
+        handleConfirmTime () { // 选定时间
             this.formData.begin = this.formData.time[0]
             this.formData.end = this.formData.time[1]
             this.timeModal = false
-            this.checkConflict()
+            this.checkConflictAjax()
         },
-        checkConflict () {
+        checkConflictAjax () { // 与会人员 以我为先
             this.$post('api/meeting/conflict_user', {
                 date: this.currentDate,
                 begin: this.formData.begin,
@@ -488,26 +501,17 @@ export default {
                 this.conflictList = res.data.data.list
             })
         },
-        getJoin (v) {
-            this.joinList = v
-            this.checkInJoin()
-        },
-        checkJoin (show) {
-            if (!show) {
-                this.checkConflict()
-            }
-        },
-        checkInJoin () {
+        checkInJoin () { // 联动判断
             if (!this.formData.join.includes(this.formData.host)) {
                 this.formData.host = null
             }
             if (!this.formData.join.includes(this.formData.record)) {
                 this.formData.record = null
             }
-        }, // 联动判断
-        saveEdit () {
+        },
+        handleSubmitEditModal () { // 提交表单
             if (this.timeModal) {
-                this.confirmTime()
+                this.handleConfirmTime()
             } // 关闭时间弹框
             this.$refs['formItem'].validate((valid) => {
                 if (valid) {
@@ -517,9 +521,11 @@ export default {
                         })
                         return
                     }
-                    const self = this
-                    self.loading = true
-                    setTimeout(function () { self.loading = false; }, 2000)
+                    // const self = this
+                    // self.loading = true
+                    // setTimeout(function () { self.loading = false; }, 2000)
+                    this.loading = true
+                    setTimeout(() => { this.loading = false; }, 2000)
                     this.formData.date = this.currentDate
                     this.$post('api/meeting/reserve', this.formData).then((res) => {
                         if (res.data.data && res.data.data.res === 1) {
@@ -584,7 +590,6 @@ export default {
     .color_passed{ background-color: #bcbcbc!important; }
     .color_reserved{ background-color: #FF8282!important;cursor: pointer; }
     .color_my{ background-color: #19be6b!important;cursor: pointer; }
-
     .info_modal{
         width: 70%; margin: 0 auto; font-size: 14px; line-height: 30px;
         img{

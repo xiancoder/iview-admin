@@ -113,9 +113,11 @@ export default {
             }
             commit('TAGNAVLIST', list)
         },
-        routeSpin ({ commit }, b) { // 启动关闭路由视图loading // 路由 transition 搞通了 这个不需要了
+        routeSpin ({ commit }, b) { // 启动关闭路由视图loading
+            // 路由 transition 搞通了 这个不需要了
+            // 路由 transition 动画生硬 还是用这个吧 2020年1月16日11:37:06
             if (b) commit('SPINLOADING', true)
-            else setTimeout(function () { commit('SPINLOADING', false) }, 500)
+            else setTimeout(function () { commit('SPINLOADING', false) }, 500) // 不再延时
         },
         keepalive ({ state, commit }, toname) { // 启动关闭路由视图loading
             if (state.cacheList && state.cacheList.length) {
