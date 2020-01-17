@@ -190,10 +190,16 @@ export default makeMultiLevelRoute({
         }, {
             path: 'exp18', title: '卷拾捌', icon: 'md-game-controller-b',
             children: [
+                {power: 'expv2-27890', path: '181errorList', title: '浏览器错误信息'},
+                {power: 'expv2-27890', path: '182h5tag', title: 'H5 各种标签'},
+                {power: 'expv2-27890', path: '183jsAudio', title: 'Js 播放声音'},
+                {power: 'expv2-27890', path: '184qrcode', title: '生成二维码'}
             ]
         }, {
             path: 'exp19', title: '卷拾玖', icon: 'md-game-controller-b',
             children: [
+                {power: 'expv2-27890', path: '191svg', title: 'svg收录'},
+                {power: 'expv2-27890', path: '192asciiPic', title: 'ascii 绘图'}
             ]
         }, {
             path: 'exp20', title: '卷贰拾', icon: 'md-game-controller-b',

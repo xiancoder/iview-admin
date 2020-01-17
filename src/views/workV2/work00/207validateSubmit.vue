@@ -130,13 +130,16 @@ export default {
             this.$refs['from0982'].validate((valid) => {
                 if (!valid) {return false}
                 this.serverError = ''
-                this.$api.stands.edit(this.frm).then((res) => { // ajax
-                    alert('提交ajax')
-                }).catch((msg) => {
-                    this.serverError = msg
-                }).finally(() => {
-                    this.loading = false
-                })
+                this.loading = true
+                setTimeout(() => {
+                    this.$api.stands.edit(this.frm).then((res) => { // ajax
+                        alert('提交ajax')
+                    }).catch((msg) => {
+                        this.serverError = msg
+                    }).finally(() => {
+                        this.loading = false
+                    })
+                }, 2e3)
             });
         },
         cancel () {

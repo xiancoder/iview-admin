@@ -45,7 +45,7 @@
                         <div class="bill--title">许志志</div>
                         <div class="bill--date">3月7日 13:00~14:00(入场)</div>
                         <div class="bill--hr"></div>
-                        <div class="bill--qrcode" qrcode ng-init="xxx='asdfa'" ng-model="xxx"></div>
+                        <div class="bill--qrcode"></div>
                     </div>
                 </div>
                 <script type="text/css">

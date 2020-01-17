@@ -15,6 +15,7 @@
 </style>
 <script>
 import QRCode from 'qrcode'
+
 export default{
     mounted () {
         var canvas = this.$el.querySelector('#canvas')
