@@ -29,6 +29,7 @@
                         <div style="cursor : wait"> <h6></h6> cursor :  wait : 用于标示程序忙用户需要等待的光标。通常是沙漏或手表的形状。</div>
                         <div style="cursor : w-resize"> <h6></h6> cursor :  *-resize : 用于标示对象可被改变尺寸方向的箭头光标。w-resize | s-resize | n-resize | e-resize | ne-resize | sw-resize | se-resize | nw-resize</div>
                         <div style="cursor: url(img/1.ani)"> <h6></h6> cursor :  url ( url ) : IE6.0 用户自定义光标。使用绝对或相对 url 地址指定光标文件(后缀为 .cur 或者 .ani )。</div>
+                        <div> <h6></h6> <a href="alert(1);" style="pointer-events: none;">a.disabled { pointer-events: none; }</a></div>
                     </Col>
                 </Row>
             </div>

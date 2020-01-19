@@ -1,9 +1,6 @@
-/* reset 经典重置 */
-.size{ width: 100%; height: 100%; }
-#app {
-    .size;
-}
 /* 系统主体样式结构 */
+html{width: 100%; height: 100%; }
+#app {width: 100%; height: 100%;}
 body{
     width: 100%; height: 100%; overflow: inherit; margin: 0; padding: 0;
     .main{
@@ -37,7 +34,7 @@ body{
             /* 顶部各项按钮 */
             .main-header{
                 transition: all .3s; box-shadow: 0 2px 1px 1px rgba(100,100,100,.1);
-                width: 100%; height: 60px; display: flex; padding: 0 20px;
+                width: 100%; height: 60px; display: flex; padding: 0 0 0 20px;
                 position: fixed; width: calc(~"100% - 200px"); min-width:1080px; left:194px; top: 0; z-index: 1000;
                 .main-header-left{
                     height: 60px; width: 30%; min-width: 400px; flex-grow:1;
@@ -175,10 +172,10 @@ body{
         width: 80%; margin: 50px auto; padding: 60px 0 0; background: #fff;
         .blogTitle{
             font-size: 39px; font-size: 1.5rem; line-height: 1.2308; margin-bottom: 1.2308em;
-            border-bottom: 3px solid #2d8cf0; margin: 0 57px; padding: 20px 0 13px 0;
+            border-bottom: 3px solid #2d8cf0; margin: 0 57px; padding: 30px 0 13px 0;
         }
         .blogContent{
-            padding: 10px 60px;
+            padding: 30px 60px;
             & > p {
                 font-size: 15px; line-height: 42px;
             }

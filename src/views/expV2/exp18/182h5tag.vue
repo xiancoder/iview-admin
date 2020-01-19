@@ -18,13 +18,18 @@
                                 <p> target=_top，在当前的整个浏览器窗口中打开所链接的文档，因而会删除所有框架</p>
                                 <p> target=_search 在浏览器的搜索区装载文档，注意</p>
                                 <p> target=new 只是临时的替代方法。和target="_blank"效果是不一样的。 定义了打开的窗口名为new，所有target为new的连接都会在同一个窗口打开而不是新窗口。</p>
-                                <p><a href="tencent://Message/?Uin=2596275588&websiteName=q-zone.qq.com&Menu=yes">tencent://Message/?Uin=2596275588&websiteName=q-zone.qq.com&Menu=yes</a> 触发qq的临时会话 目前测试谷歌 QQ 欧鹏浏览器不出，360极速和普通  搜狗 ie11 火狐 百度 UC 都可以出</p>
-                                <p>&lt;iframe src="http://wpa.qq.com/msgrd?v=3&uin=510082758&site=qq&menu=yes" width="0" marginwidth="0" height="0" marginheight="0" align="bottom" scrolling="auto" frameborder="0"&gt;&lt;/iframe&gt;立刻触发qq界面</p>
+                                <p><a href="tencent://Message/?Uin=2596275588&websiteName=q-zone.qq.com&Menu=yes"></a></p>
+                                <p>触发qq的临时会话 目前测试谷歌 QQ 欧鹏浏览器不出，360极速和普通  搜狗 ie11 火狐 百度 UC 都可以出</p>
+                                <p>&lt;iframe src="http://wpa.qq.com/msgrd?v=3&uin=510082758&site=qq&menu=yes" &gt;&lt;/iframe&gt;立刻触发qq界面</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <p><strong>&lt;div&gt;</strong> </p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
                                 <p><strong>&lt;span&gt;</strong> </p>
                                 <p><strong>&lt;H1&gt; - &lt;H6&gt;</strong> </p>
                                 <p><strong>&lt;p&gt;</strong></p>

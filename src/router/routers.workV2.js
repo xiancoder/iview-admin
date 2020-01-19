@@ -22,6 +22,7 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-0', path: '205tableTools', title: '表格v1搜索项'},
                 {power: 'workv2-0', path: '205tableSort', title: '表格v1排序功能'},
                 {power: 'workv2-0', path: '205tableSum', title: '表格v1总计框'},
+                {power: 'workv2-0', path: '205tableV2', title: '表格v2尝试'},
                 {power: 'workv2-0', path: '207validateInput', title: '表单v1输入框'},
                 {power: 'workv2-0', path: '207validateNumber', title: '表单v1数字框'},
                 {power: 'workv2-0', path: '207validateFile', title: '表单v1文件上传框'},
@@ -30,6 +31,7 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-0', path: '207validateRadio', title: '表单v1单选复选框'},
                 {power: 'workv2-0', path: '207validateRich', title: '表单v1富文本框'},
                 {power: 'workv2-0', path: '207validateSelect', title: '表单v1下拉框'},
+                {power: 'workv2-0', path: '207validateSelectCascade', title: '表单v1级联效果'},
                 {power: 'workv2-0', path: '207validateDate', title: '表单v1日期框'},
                 {power: 'workv2-0', path: '207validateSubmit', title: '表单v1提交逻辑'},
                 {power: 'workv2-0', path: '208creditSvgCss', title: 'Svg 银行卡信用卡'},
@@ -83,6 +85,7 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '233qqlink', title: '深链接:客服QQ'},
                 {power: 'workv2-2', path: '234ticketCss', title: '栅格布局 票据样式'},
                 {power: 'workv2-2', path: '235showMore', title: '查看更多css实现'},
+                {power: 'workv2-2', path: '236zoombg', title: '缩放下的背景样式'},
                 {power: 'workv2-2', path: '300brove', title: '收集300个'}
             ]
         }

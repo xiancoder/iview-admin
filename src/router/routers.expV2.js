@@ -105,13 +105,16 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-67890', path: '090keepalive', title: 'keep-alive'},
                 {power: 'expv2-67890', path: '090keepalive@add', title: 'keep-alive 缓存页', hideMenu: true},
                 {power: 'expv2-67890', path: '091textcss', title: '文本样式'},
+                {power: 'expv2-67890', path: '091ddd', title: '换行/省略号'},
+                {power: 'expv2-67890', path: '091mouse', title: '鼠标样式'},
+                {power: 'expv2-67890', path: '091xiewen', title: '斜纹样式'},
+                {power: 'expv2-67890', path: '091shadow', title: '阴影样式'},
+                {power: 'expv2-67890', path: '091sidai', title: '丝带样式'},
+                {power: 'expv2-67890', path: '091child', title: 'CSS选择器'},
+                {power: 'expv2-67890', path: '091calc', title: 'CSS计算'},
                 {power: 'expv2-67890', path: '092waining', title: '警告内容样式'},
-                {power: 'expv2-67890', path: '093ddd', title: '换行/省略号'},
-                {power: 'expv2-67890', path: '094mouse', title: '鼠标样式'},
                 {power: 'expv2-67890', path: '095qqimg', title: 'qq头像排列'},
-                {power: 'expv2-67890', path: '096xiewen', title: '斜纹样式'},
-                {power: 'expv2-67890', path: '097shadow', title: '阴影样式'},
-                {power: 'expv2-67890', path: '098sidai', title: '丝带样式'},
+                {power: 'expv2-67890', path: '099css3sanjiao', title: 'css3 绘制三角形'},
                 {power: 'expv2-67890', path: '099css3xingzhuang', title: 'css3 绘制各种形状'}
             ]
         }, {
@@ -199,7 +202,8 @@ export default makeMultiLevelRoute({
             path: 'exp19', title: '卷拾玖', icon: 'md-game-controller-b',
             children: [
                 {power: 'expv2-27890', path: '191svg', title: 'svg收录'},
-                {power: 'expv2-27890', path: '192asciiPic', title: 'ascii 绘图'}
+                {power: 'expv2-27890', path: '192asciiPic', title: 'ascii 绘图'},
+                {power: 'expv2-27890', path: '193flag', title: '所有国旗'}
             ]
         }, {
             path: 'exp20', title: '卷贰拾', icon: 'md-game-controller-b',

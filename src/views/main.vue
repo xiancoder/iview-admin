@@ -246,14 +246,12 @@ export default {
     },
     watch: {
         /*
-        watch: {
             // 监听路由 根据路由深度 决定页面的出现动画方式
             '$route' (to, from) {
                 const toDepth = to.path.split('/').length
                 const fromDepth = from.path.split('/').length
                 this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
             }
-        }
         */
     },
     mounted () {
