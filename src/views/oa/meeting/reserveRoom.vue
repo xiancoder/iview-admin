@@ -319,9 +319,9 @@ export default {
             })
             this.todayMeetingListAjax()
             this.roomListAjax()
-            this.$nextTick(() => { // 解决看不见的blur层问题 临时方案
+            /* this.$nextTick(() => { // 解决看不见的blur层问题 临时方案
                 this.$refs.clickBtn.click()
-            })
+            }) */
         },
 
         /* 日期面板 */

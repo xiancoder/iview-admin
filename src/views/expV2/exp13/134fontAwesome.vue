@@ -8,7 +8,7 @@
                 <script type="text/html">
                     <i class="fa fa-address-book"></i> fa-address-book // 点击以下icon可以自动复制到完整html
                 </script>
-                <p style="font-size:26px" @click="copyHtml($event)">
+                <p class="me" @click="copyHtml($event)">
                     <i class="fa fa-address-book"></i> fa-address-book
                     <i class="fa fa-address-book-o"></i> fa-address-book-o
                     <i class="fa fa-address-card"></i> fa-address-card
@@ -248,7 +248,7 @@
                     <i class="fa fa-gamepad"></i> fa-gamepad
                     <i class="fa fa-gavel"></i> fa-gavel
                     <i class="fa fa-gear"></i> fa-gear
-                    <i class="fa fa-gears"></i> fa-gears
+                    <font color="red"><i class="fa fa-gears"></i> fa-gears 配置表</font>
                     <i class="fa fa-gift"></i> fa-gift
                     <i class="fa fa-glass"></i> fa-glass
                     <i class="fa fa-globe"></i> fa-globe
@@ -787,9 +787,9 @@
                     <i class="fa fa-500px"></i> fa-500px
                     <i class="fa fa-adn"></i> fa-adn
                     <i class="fa fa-amazon"></i> fa-amazon
-                    <i class="fa fa-android"></i> fa-android
+                    <font color="red"><i class="fa fa-android"></i> fa-android</font>
                     <i class="fa fa-angellist"></i> fa-angellist
-                    <i class="fa fa-apple"></i> fa-apple
+                    <font color="red"><i class="fa fa-apple"></i> fa-apple</font>
                     <i class="fa fa-bandcamp"></i> fa-bandcamp
                     <i class="fa fa-behance"></i> fa-behance
                     <i class="fa fa-behance-square"></i> fa-behance-square
@@ -848,7 +848,7 @@
                     <i class="fa fa-gg-circle"></i> fa-gg-circle
                     <i class="fa fa-git"></i> fa-git
                     <i class="fa fa-git-square"></i> fa-git-square
-                    <i class="fa fa-github"></i> fa-github
+                    <font color="red"><i class="fa fa-github"></i> fa-github</font>
                     <i class="fa fa-github-alt"></i> fa-github-alt
                     <i class="fa fa-github-square"></i> fa-github-square
                     <i class="fa fa-gitlab"></i> fa-gitlab
@@ -900,7 +900,7 @@
                     <i class="fa fa-pinterest-p"></i> fa-pinterest-p
                     <i class="fa fa-pinterest-square"></i> fa-pinterest-square
                     <i class="fa fa-product-hunt"></i> fa-product-hunt
-                    <i class="fa fa-qq"></i> fa-qq
+                    <font color="red"><i class="fa fa-qq"></i> fa-qq </font>
                     <i class="fa fa-quora"></i> fa-quora
                     <i class="fa fa-ra"></i> fa-ra
                     <i class="fa fa-ravelry"></i> fa-ravelry
@@ -951,9 +951,9 @@
                     <i class="fa fa-vimeo-square"></i> fa-vimeo-square
                     <i class="fa fa-vine"></i> fa-vine
                     <i class="fa fa-vk"></i> fa-vk
-                    <i class="fa fa-wechat"></i> fa-wechat
+                    <font color="red"><i class="fa fa-wechat"></i> fa-wechat </font>
                     <i class="fa fa-weibo"></i> fa-weibo
-                    <i class="fa fa-weixin"></i> fa-weixin
+                    <font color="red"><i class="fa fa-weixin"></i> fa-weixin </font>
                     <i class="fa fa-whatsapp"></i> fa-whatsapp
                     <i class="fa fa-wikipedia-w"></i> fa-wikipedia-w
                     <i class="fa fa-windows"></i> fa-windows
@@ -1015,3 +1015,7 @@ export default {
     }
 }
 </script>
+<style scoped>
+    .me{font-size:26px}
+    .me .fa{font-size:40px}
+</style>
