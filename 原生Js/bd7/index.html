@@ -2,17 +2,18 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    <title>百度导航</title>
+    <title>百度一下, 你就知道</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="renderer" content="webkit" />
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="keywords" content="百度,网址导航,上网导航,网址之家,网址大全,网址,搜索,音乐,娱乐,图片,社区,天气预报,实用工具BLOG,黄页,企业名录,查询,网上黄页" />
     <meta name="description" content="百度网址导航——最专业权威的上网导航。包含音乐、视频、小说、游戏、财经等上百个分类的优秀站点，提供最简单便捷的网上导航服务，是最受网民欢迎的上网主页。" />
-    <LINK href="baidu/favicon.ico" type="image/x-icon" rel="icon" mce_href="baidu/favicon.ico">
-    <LINK href="baidu/favicon.ico" type="image/x-icon" rel="shortcut icon" mce_href="baidu/favicon.ico">
-    <LINK href="baidu/favicon.ico" type="image/x-icon" rel="apple-touch-icon" mce_href="baidu/favicon.ico">
+    <LINK href="/baidu/favicon.ico" type="image/x-icon" rel="icon" mce_href="/baidu/favicon.ico">
+    <LINK href="/baidu/favicon.ico" type="image/x-icon" rel="shortcut icon" mce_href="/baidu/favicon.ico">
+    <LINK href="/baidu/favicon.ico" type="image/x-icon" rel="apple-touch-icon" mce_href="/baidu/favicon.ico">
     <style type="text/css">
         *{margin:0;padding:0;}
+        html, body{width:100%;height:100%;overflow: hidden;}
     </style>
     <script type="text/javascript">
         function getUrLParam(name)  {
@@ -21,12 +22,14 @@
             return r ? r[2] : ''
         }
         var id = getUrLParam('id')
-        var wb = getUrLParam('wb')
-        var tz = getUrLParam('tz')
-        console.log(id, wb, tz)
+        var target = 'https://www.baidu.com/?tn={id}&ch=2'.replace('{id}', id)
+        document.write(
+            "<iframe name='message' width='100%' height='100%' src='" +
+            target +
+            "' target='_blank' scrolling='yes' marginwidth='0' marginheight='0' border='0' frameborder='0'></iframe>"
+        );
     </script>
 </head>
 <body>
-
 </body>
 </html>
