@@ -10,10 +10,7 @@ import { mapGetters } from 'vuex'
 export default {
     name: 'ErrorStore',
     computed: {
-        ...mapGetters([
-            'errorCount'
-        ]),
-        countComputed () { return this.$store.state.system.errorCount ? 0 : this.count }
+        countComputed () { return this.$store.getters['system/errorCount'] }
     },
     methods: {
         openErrorLoggerPage () {

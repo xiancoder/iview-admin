@@ -29,7 +29,7 @@ if (config.errorLogStore || process.env.NODE_ENV === 'development') {
         let info = { type: 'script', code: 0, mes: '[' + mes + ']' + error.message, url: window.location.href }
         // console.error(error, vm, mes) // 废弃 看不出有用信息
         Vue.nextTick(() => {
-            Store.dispatch('systemV1/pushError', info)
+            Store.dispatch('system/pushError', info)
         })
         throw error // 抛出错误
     }

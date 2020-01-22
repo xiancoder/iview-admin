@@ -151,9 +151,10 @@ export const power2BreadCrumb = (routeList, routeName) => {
 }
 
 router.beforeEach((to, from, next) => {
+    console.log(to, from)
     if (to && from && to.name === from.name) { // 本页面跳转 不做各种表示
         console.info('%c仙 参数变更', 'color:#05ff0f;background:#000;padding:0 5px;')
-        return next()
+        return next({ replace: true })
     }
 
     if (Store.state.route.doNotDrawRouter) { // 回退再前进 之间的页面不做渲染

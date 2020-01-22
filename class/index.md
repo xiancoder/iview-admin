@@ -154,3 +154,26 @@ hendleReset // 代表 [用户触发][重置] 功能
 
 handleSubmitAjax //代表 [用户触发][表单提交][ajax请求] 功能
 handleSubmitAjax4UserEditModel //代表 [用户触发][表单提交][ajax请求][用户编辑][弹窗] 功能
+
+如果方法仅仅负责改变一个值
+cancelSub () {
+    this.dialogShop = false;
+},
+不建议这么写 直接在 @click="dialogShop=false"
+
+- 请使用箭头函数 尽量不要使用 me = this (感觉很low)
+<img src="2020-1-22 153934.png" alt="">
+
+- 请使用 继承/深拷贝 的方式来获取定义的obj (尽量减少业务字段的出现次数 减少可能的写错字bug)
+<img src="2020-1-22 154305.png" alt="">
+
+- 你用英语问导游"where are we"
+- 导游脑中翻译了一下 "我们现在在哪"
+- 导游有了答案 将答案翻译成英语
+- "toilet"
+<img src="2020-1-22 160212.png" alt="">
+- 让常用的 逻辑结构(导游) 独立出来并负责多一点内容
+
+- 正文是一个字 注释却有七八行
+- 编译的过程中默认是将注释消灭的 所以注释不会拖慢项目速度
+<img src="2020-1-22 161332.png" alt="">

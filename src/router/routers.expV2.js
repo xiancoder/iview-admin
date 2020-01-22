@@ -205,7 +205,8 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-27890', path: '192asciiPic', title: 'ascii 绘图'},
                 {power: 'expv2-27890', path: '193flag', title: '所有国旗'},
                 {power: 'expv2-27890', path: '194placeholdit', title: 'placeholdit'},
-                {power: 'expv2-27890', path: '195todo', title: 'TODO'}
+                {power: 'expv2-27890', path: '195todo', title: 'TODO'},
+                {power: 'expv2-27890', path: '196QA', title: 'VUE 面试题精华'}
             ]
         }, {
             path: 'exp20', title: '卷贰拾', icon: 'md-game-controller-b',
