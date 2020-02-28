@@ -29,6 +29,9 @@
                             </div>
                             <Table border :loading="loading" :columns="columns" :data="tableData"
                                 @on-sort-change="hendleSort">
+                                <template slot-scope="{ row, index }" slot="op">
+                                    <Button @click="hendleEdit(row)" size="small">编辑</Button>
+                                </template>
                             </Table>
                             <div class="tableFooter">
                                 <span> {{showPageCount(page.rowCount,page.pageIndex,page.pageSize)}}</span>
@@ -70,7 +73,8 @@
                                         {title: '负责人', minWidth: 100, key: 'personLiable'},
                                         {title: '计划完成日期', minWidth: 100, key: 'completeTime', render: h.defaultH('completeTime')},
                                         {title: '优先级', minWidth: 100, key: 'taskPriority'},
-                                        {title: '状态', minWidth: 100, key: 'taskStatus'}
+                                        {title: '状态', minWidth: 100, key: 'taskStatus'},
+                                        {title: '操作', minWidth: 80, slot: 'op' }
                                     ],
                                     'serrchParam': null, /* 实际搜索项 */
                                     'serrchBack': null, /* 搜索项备份 */
@@ -115,6 +119,8 @@
                                     this.order.orderKey = param.key
                                     this.order.order = param.order
                                     this.ajax()
+                                },
+                                hendleEdit (param) { // 编辑功能
                                 },
                                 ajax: function () { /* 业务ajax */
                                     extend(this.serrchParam, this.search) /* 设置实际搜索项 */
@@ -240,6 +246,9 @@
             </div>
             <Table border :loading="loading" :columns="columns" :data="tableData"
                 @on-sort-change="hendleSort">
+                <template slot-scope="{ row, index }" slot="op">
+                    <Button @click="hendleEdit(row)" size="small">编辑</Button>
+                </template>
             </Table>
             <div class="tableFooter">
                 <span> {{showPageCount(page.rowCount,page.pageIndex,page.pageSize)}}</span>
@@ -282,7 +291,8 @@ export default {
                 {title: '负责人', minWidth: 100, key: 'personLiable'},
                 {title: '计划完成日期', minWidth: 100, key: 'completeTime', render: h.defaultH('completeTime')},
                 {title: '优先级', minWidth: 100, key: 'taskPriority'},
-                {title: '状态', minWidth: 100, key: 'taskStatus'}
+                {title: '状态', minWidth: 100, key: 'taskStatus'},
+                {title: '操作', minWidth: 80, slot: 'op'}
             ],
             'serrchParam': null, // 实际搜索项
             'serrchBack': null, // 搜索项备份
@@ -325,6 +335,8 @@ export default {
             this.order.orderKey = param.key
             this.order.order = param.order
             this.ajax()
+        },
+        hendleEdit (param) { // 编辑功能
         },
         ajax: function () { // 业务ajax
             extend(this.serrchParam, this.search) // 设置实际搜索项

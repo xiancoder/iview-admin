@@ -11,16 +11,7 @@ const { Message, Modal, LoadingBar, Notice } = iView
 /// ////////////////////////////////////////////////////
 // 常用的操作封装
 /// ////////////////////////////////////////////////////
-export const goto = (config, replace) => { // 弹框提示
-    const current = router.history.current
-    if (type(config) === 'string') config = { name: config }
-    if (config.name === current.name || config.path === current.path || replace) {
-        return router.replace(config).catch(err => {
-            if (err.name === 'NavigationDuplicated') return console.log('仙', '路由重复打开小问题')
-        })
-    }
-    router.push(config)
-}
+// 页面信息提示 小的需要一闪而过的信息
 export const alert = (msg) => { // 弹框提示
     Message.info({ content: msg || '处理中，请稍后' })
 }
@@ -38,7 +29,37 @@ export const error = (msg) => { // 错误提示
     setTimeout(() => {lastStatus401 = false}, 2e3)
     Message.error({ content: msg || '保存失败', duration: 3, closable: true })
 }
+
+// 页面信息提示 大的需要用户看清楚的信息
+export const alertMsg = (msg, title, onOk) => { // 弹框提示
+    const config = {
+        title: title || '提示信息',
+        content: msg || '-'
+    }
+    if (onOk) {config.onOk = onOk}
+    Modal.info(config)
+}
+export const successMsg = (msg, title) => { // 弹框成功提示
+    Modal.success({
+        title: title || '成功信息',
+        content: msg || '保存成功'
+    })
+}
+export const errorMsg = (msg, title) => { // 弹框失败提示
+    Modal.error({
+        title: title || '失败信息',
+        content: msg || '保存失败'
+    })
+}
+export const warningMsg = (msg, title) => { // 弹框警告提示
+    Modal.warning({
+        title: title || '警告信息',
+        content: msg || '-'
+    })
+}
 export const closeMsg = Modal.remove // 关闭信息框们
+
+// 页面信息提示 需要用户确认信息
 export const confirm = (msg, title) => { // 二次确认框
     return new Promise((resolve, reject) => {
         Modal.confirm({
@@ -50,33 +71,7 @@ export const confirm = (msg, title) => { // 二次确认框
         })
     })
 }
-export const alertMsg = (msg, title, onOk) => { // 弹框提示
-    const config = {
-        title: title || '提示信息',
-        content: msg || '-'
-    }
-    if (onOk) {config.onOk = onOk}
-    Modal.info(config)
-}
-export const errorMsg = (msg, title) => { // 弹框失败提示
-    Modal.error({
-        title: title || '失败信息',
-        content: msg || '保存失败'
-    })
-}
-export const successMsg = (msg, title) => { // 弹框成功提示
-    Modal.success({
-        title: title || '成功信息',
-        content: msg || '保存成功'
-    })
-}
-export const warningMsg = (msg, title) => { // 弹框警告提示
-    Modal.warning({
-        title: title || '警告信息',
-        content: msg || '-'
-    })
-}
-export const noticeNoSave = () => { // 二次确认框
+export const noticeNoSave = () => { // 未保存二次确认框
     return new Promise((resolve, reject) => {
         Notice.info({
             title: '友情提示',
@@ -93,9 +88,23 @@ export const noticeNoSave = () => { // 二次确认框
         });
     })
 }
-export const jumpto = (name, obj) => { // 跳转
+
+// 页面跳转路由
+export const goto = (config, replace) => { // 页面跳转
+    const current = router.history.current
+    if (type(config) === 'string') config = { name: config }
+    if (config.name === current.name || config.path === current.path || replace) {
+        return router.replace(config).catch(err => {
+            if (err.name === 'NavigationDuplicated') return console.log('仙', '路由重复打开小问题')
+        })
+    }
+    router.push(config)
+}
+export const jumpto = (name, obj) => { // 页面跳转
     if (obj) { router.push({ name, obj }) } else if (name) { router.push({ name }) } else { window.location.reload() }
 }
+
+// 表格数据的参数批量管理 存url
 export const saveParamState = (obj) => { // 保存当前参数
     // 保存到ls里面 通过保存search来指定获取哪部分已存参数
     // 不好 商务要求url拷贝时候需要携带信息
@@ -153,6 +162,7 @@ export const getParamState = () => { // 获取当前参数
     return {}
 }
 
+// 通用渲染格式
 export const h = { // 通用渲染格式 for 表格 (即将废弃)
     // vue 2.5.14 以上就不再支持h.rander 直接返回字符串了
     // 渲染头像 用户名 电话
@@ -244,6 +254,8 @@ export const h = { // 通用渲染格式 for 表格 (即将废弃)
     },
     end: null // 错误占位符
 }
+
+// 顶部进度条全局控制
 export const LoadingBarRun = (flag) => { // 顶部进度条执行
     if (flag) {
         LoadingBar.start()
@@ -251,6 +263,8 @@ export const LoadingBarRun = (flag) => { // 顶部进度条执行
         LoadingBar.finish()
     }
 }
+
+// 表格的全局管理方法
 export const companyTableSumColumns = (columns, sumData) => { // 表格总计一列的计算方法总结
     const sums = {};
     columns = columns || []
@@ -267,7 +281,6 @@ export const companyTableSumColumns = (columns, sumData) => { // 表格总计一
     })
     return sums;
 }
-
 Vue.prototype.showPageCount = function (totalCount, page, pageCount) { // 显示 '第 1 页/ 共 1 页'
     totalCount = totalCount || 0
     page = page || 1
@@ -277,7 +290,6 @@ Vue.prototype.showPageCount = function (totalCount, page, pageCount) { // 显示
     var endPage = (page * pageCount < totalCount) ? page * pageCount : totalCount
     return '当前第  ' + startPage + ' - ' + endPage + '条，共 ' + totalCount + ' 条'
 }
-
 Vue.prototype.showPageRow = function (totalCount, page, pageCount) { // 显示 '当前显示 0 - 0 条/ 0 条数据'
     totalCount = totalCount || 0
     page = page || 1
@@ -286,6 +298,8 @@ Vue.prototype.showPageRow = function (totalCount, page, pageCount) { // 显示 '
     const totalPage = Math.floor((totalCount + pageCount - 1) / pageCount)
     return '第 ' + page + ' 页 / 共 ' + totalPage + ' 页'
 }
+
+// 输出
 Vue.prototype.$tool = {
     goto,
     alert,

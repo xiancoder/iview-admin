@@ -29,7 +29,7 @@ export default {
     },
     methods: {
         GetCode: debounce(function () {
-            this.$store.dispatch('sms/smscode') // 开启倒计时
+            this.$store.dispatch('sms/smsCode') // 开启倒计时
             this.$emit('on-send')
         })
     },

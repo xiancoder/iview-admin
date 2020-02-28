@@ -7,9 +7,9 @@ export default {
     beforeRouteLeave (to, from, next) {
         confirm('页面即将切换, 离开将影响您未提交的配置, 是否继续?').then(() => {
             this.beforeCloseConfirm(true)
-            next()
+            next() // 必须
         }).catch(() => {
-            next(false)
+            next(false) // 必须
         })
     },
     beforeCloseConfirm () {

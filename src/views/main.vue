@@ -105,7 +105,7 @@
                                         var v = xiangzhaosha.toLowerCase()
                                         return row.title.toLowerCase().includes(v) || row.path.toLowerCase().includes(v)
                                     })">
-                                        <a :href="'#'+item.path" :title="item.path">{{item.title}}</a> &nbsp;|&nbsp;
+                                        <a :href="'#'+item.path" :title="item.path">{{item.title}}</a> &nbsp;|&nbsp
                                     </span>
                                 </div>
                                 <!-- template 里面放Button会导致页面滚动时候卡顿 -->

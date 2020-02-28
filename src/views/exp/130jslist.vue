@@ -15,10 +15,10 @@
                     <li><a href="https://github.com/vuetifyjs/vuetify" target="_blank">vuetify</a> - 为移动而生的Vue JS 2组件框架<br></li>
                     <li><a href="https://github.com/wangdahoo/vonic" target="_blank">vonic</a> - 快速构建移动端单页应用<br></li>
                     <li><a href="https://github.com/egoist/eme" target="_blank">eme</a> - 优雅的Markdown编辑器<br></li>
-                    <li><a href="https://github.com/monterail/vue-multiselect" target="_blank">vue-multiselect</a> - Vue.js选择框解决方案<br></li>
+                    <li style="color:red"><a href="https://github.com/monterail/vue-multiselect" target="_blank">vue-multiselect</a> - Vue.js选择框解决方案 -------------- 不错 没必要收录<br></li>
                     <li style="color:red"><a href="https://github.com/ratiw/vue-table" target="_blank">vue-table</a> - 简化数据表格 -------------- 不好<br></li>
-                    <li><a href="https://github.com/OYsun/VueCircleMenu" target="_blank">VueCircleMenu</a> - 漂亮的vue圆环菜单<br></li>
-                    <li><a href="https://github.com/Coffcer/vue-chat" target="_blank">vue-chat</a> - vuejs和vuex及webpack的聊天示例<br></li>
+                    <li style="color:green"><a href="https://github.com/OYsun/VueCircleMenu" target="_blank">VueCircleMenu</a> - 漂亮的vue圆环菜单 -------------- 值得尝试<br></li>
+                    <li style="color:green"><a href="https://github.com/Coffcer/vue-chat" target="_blank">vue-chat</a> - vuejs和vuex及webpack的聊天示例 -------------- 值得收录<br></li>
                     <li><a href="https://github.com/luojilab/radon-ui" target="_blank">radon-ui</a> - 快速开发产品的Vue组件库<br></li>
                     <li><a href="https://github.com/MopTym/vue-waterfall" target="_blank">vue-waterfall</a> - Vue.js的瀑布布局组件<br></li>
                     <li><a href="https://github.com/myronliu347/vue-carbon" target="_blank">vue-carbon</a> - 基于 vue 开发MD风格的移动端<br></li>

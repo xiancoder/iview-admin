@@ -15,6 +15,7 @@ import message from './store.message' // sms相关
 import sms from './store.sms' // sms相关
 import admin from './store.admin' // 管理员/用户相关
 import test from './store.test' // 测试相关
+import chat from './store.chat' // 聊天相关
 
 import data from './store.data' // 数据
 
@@ -54,6 +55,7 @@ const modules = {
     message,
     admin,
     test,
+    chat,
 
     data
 }

@@ -1,4 +1,5 @@
 'use strict';
+
 // 当前浏览器名称
 // =====================
 export const getExplorer = () => {
@@ -12,6 +13,7 @@ export const getExplorer = () => {
     else if (isExplorer('Opera')) return 'Opera'
     else if (isExplorer('Safari')) return 'Safari'
 }
+
 // 绑定事件 on(element, event, handler)
 // =====================
 export const on = (function () {
@@ -29,6 +31,7 @@ export const on = (function () {
         }
     }
 })()
+
 // 解绑事件 off(element, event, handler)
 // =====================
 export const off = (function () {
@@ -46,6 +49,7 @@ export const off = (function () {
         }
     }
 })()
+
 // 阻止事件冒泡 防止默认行为
 // =====================
 // liuyp 2018年12月27日19:44:45
@@ -57,6 +61,7 @@ export const eventStop = (ev) => {
     /* 阻止事件冒泡 */
     if (ev.stopPropagation) { ev.stopPropagation() } else { ev.cancelBubble = true; }
 }
+
 // 事件发生的目标
 // =====================
 // liuyp 2018年12月27日19:44:45
@@ -65,6 +70,7 @@ export const eventTarget = (ev) => {
     /* IE和Chrome下是srcElement FF下是target */
     return ev.target || ev.srcElement;
 }
+
 // 获取地址栏参数
 // =====================
 // liuyp 2020年1月2日10:02:53
@@ -76,6 +82,8 @@ export const getUrLParam = (name) => {
 }
 
 // scrollTop animation
+// =====================
+// liuyp 2019年9月6日 15:50:47
 export const scrollTop = (el, from = 0, to, duration = 500, endCallback) => {
     if (!window.requestAnimationFrame) {
         window.requestAnimationFrame = (
@@ -109,6 +117,17 @@ export const scrollTop = (el, from = 0, to, duration = 500, endCallback) => {
         window.requestAnimationFrame(() => scroll(d, end, step))
     }
     scroll(from, to, step)
+}
+
+// dom js触发打印功能
+// =====================
+// liuyp 2020年2月6日 15:50:47
+export function print (content) {
+    const printStr = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>' + content + '</body></html>'
+    const pwin = window.open('Print.htm', 'print', 'width=1000,height=600,left=150,top=150toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no, status=yes') // 如果是本地测试需要先新建 如果是在域中使用则不需要
+    pwin.document.write(printStr)
+    pwin.document.close() // 这句很重要，没有就无法实现
+    pwin.print()
 }
 
 export const findNodeUpperByClasses = (ele, classes) => {

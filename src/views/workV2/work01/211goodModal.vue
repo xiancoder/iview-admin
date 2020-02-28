@@ -13,7 +13,7 @@
                     </Modal>
                 </script>
                 <script type="text/js">
-                    import from1 from './147goodModalFrom'
+                    import from1 from './211goodModalFrom'
                     export default {
                         components: {
                             from1
@@ -27,6 +27,30 @@
                             }
                         }
                     }
+                </script>
+                <p>表单页内部需要添加如下适配</p>
+                <script type="text/js">
+                    watch: { // 监听
+                        flag (n, o) { // 离开时候清空输入框 归来时候初始化值
+                            if (n === true) {
+                                extend(this.frm, this.from)
+                            } else {
+                                this.$refs['form2235'].resetFields()
+                            }
+                        }
+                    },
+                    methods: {
+                        ok () {
+                            this.$refs['form2235'].validate(valid => {
+                                if (valid) {
+                                    this.$emit('on-submit', 1)
+                                }
+                            });
+                        },
+                        cancel () {
+                            this.$emit('on-submit', 0)
+                        }
+                    },
                 </script>
             </div>
             <div class="blogFooter">

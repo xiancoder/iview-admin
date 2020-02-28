@@ -15,7 +15,7 @@ import { Store } from '@/store' // 自定义状态管理 -挂载$stroe
 import { router } from '@/router' // 自定义路由定义 -挂载$router
 import '@/tools' // 自定义常用工具 -挂载$tool
 
-console.log('%c ', 'padding:112px 150px;background:url(http://returnc.com/frontend/images/console.gif) no-repeat;');
+console.log('%c ', 'padding:112px 150px;background:url(http://returnc.com/frontend/images/console.gif) no-repeat;')
 console.info('%c仙 目前环境', 'color:#05ff0f;background:#000;padding:0 5px;', process.env.NODE_ENV)
 
 /* eslint-disable */
@@ -29,7 +29,7 @@ if (config.errorLogStore || process.env.NODE_ENV === 'development') {
         let info = { type: 'script', code: 0, mes: '[' + mes + ']' + error.message, url: window.location.href }
         // console.error(error, vm, mes) // 废弃 看不出有用信息
         Vue.nextTick(() => {
-            Store.dispatch('systemV1/pushError', info)
+            Store.dispatch('system/pushError', info)
         })
         throw error // 抛出错误
     }

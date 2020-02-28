@@ -85,7 +85,7 @@ export default {
             for (var i = 0, vlen = company.length; i < vlen; i++) {
                 if (company[i].name === host) {
                     commit('PLATFORMID', company[i].id)
-                    return i;
+                    return i
                 }
             }
         },

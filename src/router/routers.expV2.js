@@ -9,15 +9,16 @@ export default makeMultiLevelRoute({
         {
             path: 'exp00', title: '卷零零', icon: 'md-camera',
             children: [
+                {power: 'expv2-12345', path: '001weixingzhreadme', title: 'WX公众号开发必读'},
                 {power: 'expv2-12345', path: '002eslint', title: 'EsLint 校验规则'},
+                {power: 'expv2-12345', path: '003weixingzhkaifa', title: 'WX公众号简单流程'},
+                {power: 'expv2-12345', path: '003weixinxcxlanya', title: 'WX小程序与蓝牙'},
                 {power: 'expv2-12345', path: '006jsx', title: 'Jsx 写法尝试'}
             ]
         }, {
             path: 'exp01', title: '卷零壹', icon: 'md-camera',
             children: [
-                {power: 'expv2-12345', path: '010mockData', title: '假数据mock专家'},
-                {power: 'expv2-12345', path: '014tableFrom', title: '表格-依附表单弹框'},
-                {power: 'expv2-12345', path: '014tableFrom@from', title: '表单', hideMenu: true}
+                {power: 'expv2-12345', path: '010mockData', title: '假数据mock专家'}
             ]
         }, {
             path: 'exp02', title: '卷零贰', icon: 'md-game-controller-b',
@@ -32,6 +33,12 @@ export default makeMultiLevelRoute({
         }, {
             path: 'exp03', title: '卷零叁', icon: 'md-game-controller-b',
             children: [
+                {power: 'expv2-12345', path: '031textAnimate', title: '文本动画'},
+                {power: 'expv2-12345', path: '032lizituan', title: 'canvas粒子图案效果'},
+                {power: 'expv2-12345', path: '034postmessage', title: 'postMessage详解'},
+                {power: 'expv2-12345', path: '035qqcookie', title: 'QQ cookie 偶遇'},
+                {power: 'expv2-12345', path: '036indexDB', title: 'indexDB 数据库简介'},
+                {power: 'expv2-12345', path: '036indexDBTry', title: 'indexDB 数据库代码'},
                 {power: 'expv2-12345', path: '039caothis', title: '箭头函数方法this坑'}
             ]
         }, {
@@ -165,9 +172,10 @@ export default makeMultiLevelRoute({
         }, {
             path: 'exp15', title: '卷拾伍', icon: 'md-game-controller-b',
             children: [
-                {power: 'expv2-22345', path: '150jscando', title: 'Js 权限能做到什么'},
+                {power: 'expv2-22345', path: '150jscando', title: 'Js权限能做到什么'},
                 {power: 'expv2-22345', path: '154deeplink', title: '深链接的深入研究'},
                 {power: 'expv2-22345', path: '155border', title: 'border 边框样式列举'},
+                {power: 'expv2-22345', path: '156img404', title: '图片404补偿'},
                 {power: 'expv2-22345', path: '158vshowbug', title: 'v-show 有 bug'}
             ]
         }, {
@@ -205,7 +213,8 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-27890', path: '192asciiPic', title: 'ascii 绘图'},
                 {power: 'expv2-27890', path: '193flag', title: '所有国旗'},
                 {power: 'expv2-27890', path: '194placeholdit', title: 'placeholdit'},
-                {power: 'expv2-27890', path: '195todo', title: 'TODO'}
+                {power: 'expv2-27890', path: '195todo', title: 'TODO'},
+                {power: 'expv2-27890', path: '196chart', title: '聊天面板'}
             ]
         }, {
             path: 'exp20', title: '卷贰拾', icon: 'md-game-controller-b',

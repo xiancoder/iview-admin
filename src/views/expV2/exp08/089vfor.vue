@@ -3,6 +3,7 @@
         <div class="blog">
             <div class="blogTitle">发布任务表单</div>
             <div class="blogContent" v-highlight>
+                <p><Icon type="md-checkmark" style="color:green"/> 请注意(item, index)是小括号不是大括号</p>
                 <script type="text/html" v-pre>
                     <div v-for="alias in expression"> {{ alias }}</div>
                     <div v-for="item in items">{{ item }}</div>

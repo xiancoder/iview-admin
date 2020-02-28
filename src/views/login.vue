@@ -1,5 +1,5 @@
 <template>
-    <div :class="classlist">
+    <div :class="classlist" @keyup.ctrl.left="quickToUserLogin" @keyup.ctrl.right="quickToStaffLogin">
         <div class="login-con" v-if="!myRoleisAdmin">
             <Card icon="log-in" title="欢迎登录" :bordered="false">
                 <div style="color:red">{{error}}</div>
@@ -31,9 +31,11 @@
 import LoginForm from '@C/login-form' // 登录表单
 import LoginVerification from '@C/login-Verification' // 登录表单
 import { homePage } from '@/router/routers'
-import '@S/login.less';
+import '@S/login.less'
 
-const myRoleisAdmin = window.location.pathname.indexOf('staff.html') > -1 // 登录管理员还是登录用户
+// const myRoleisAdmin = window.location.pathname.indexOf('staff.html') > -1 // 登录管理员还是登录用户
+// 调试阶段无法访问staff.html 改为url中存在即可
+const myRoleisAdmin = window.location.href.indexOf('staff.html') > -1 // 登录管理员还是登录用户
 
 export default {
     components: { LoginForm, LoginVerification },
@@ -85,6 +87,12 @@ export default {
             }).catch(res => {
                 this.error = res
             })
+        },
+        quickToUserLogin () {
+            if (myRoleisAdmin) window.location.href = '/main.html#/login'
+        },
+        quickToStaffLogin () {
+            if (!myRoleisAdmin) window.location.href = '/staff.html#/login'
         }
     },
     mounted: function () {
@@ -99,7 +107,6 @@ export default {
             } else {
                 this.classlist.loginUser2 = true
             }
-            console.log(pid)
         }
     }
 }

@@ -30,7 +30,7 @@ export default {
             }, 1e3)
             commit('SMSCODEINTERVAL', i)
         },
-        smsCodeInterval ({ commit, state }, param) { // 开启短信发送倒计时
+        stopSmsCode ({ commit, state }, param) { // 关闭短信发送倒计时
             const i = state.smsCodeInterval
             clearInterval(i)
             commit('SMSCODE', 0)

@@ -94,7 +94,7 @@ module.exports = {
         open: true,
         // 指定打开浏览器时要浏览的页面。
         // webpack-dev-server --open-page "/different/page"
-        openPage: '/main.html',
+        openPage: '/index.html',
         // 使用HTML5历史记录API时，index.html很可能必须提供该页面来代替任何404响应
         historyApiFallback: true,
         // 此选项使您可以精确控制显示哪些捆绑软件信息。如果您需要一些捆绑软件信息，但又不是全部，这可能是一个很好的中间立场。

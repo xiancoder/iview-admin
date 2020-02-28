@@ -3,8 +3,8 @@
         <div class="blog">
             <div class="blogTitle">FormData使用方法详解</div>
             <div class="blogContent" v-highlight>
-                <p><Icon type="md-checkmark" style="color:green"/> 非常有效 但注意不要传递bs64格式文件数组</p>
-                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
+                <p><Icon type="md-checkmark" style="color:green"/> 非常有效 </p>
+                <p><Icon type="md-close" style="color:red"/> 但注意不要传递bs64格式文件数组 不是不行 但是超级大 不方便 </p>
                 <p>FormData的主要用途有两个：</p>
                 <ul>
                     <li>将form表单元素的name与value进行组合，实现表单数据的序列化，从而减少表单元素的拼接，提高工作效率。</li>

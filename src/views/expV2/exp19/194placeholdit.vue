@@ -10,7 +10,7 @@
                 <p></p>
                 <script type="text/html">
                     <img src="http://placehold.it/400x200/">
-                    <img src="http://placehold.it/400x150/ff3333/ffffff"> 
+                    <img src="http://placehold.it/400x150/ff3333/ffffff">
                     <img src="http://placehold.it/500x200/eeee00/000000?text=placeholder picture">
                 </script>
                 <p><img src="http://placehold.it/400x200/"></p>

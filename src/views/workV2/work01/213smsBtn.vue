@@ -9,7 +9,9 @@
                 <p></p>
                 <Form ref="from0982" :model="frm" :rules="frmValidate" :label-width="150">
                     <FormItem label="测试">
-                        <Button type="primary" @click="handleSubmit()">测试</Button>
+                        <Button type="primary" @click="handleSubmit()">测试表单正确性</Button>
+                    <Divider type="vertical" />
+                        <Button type="primary" @click="handleStopSmsCode()">停止短信倒计时</Button>
                     </FormItem>
 
                     <FormItem label="短信验证码" prop="smscode">
@@ -24,12 +26,18 @@
                         <Input type="text" v-model="frm.smscode" placeholder="请输入短信验证码" style="width: 190px" maxlength="6"/>
                         <sms-btn :isDisabled="false" @on-send="sendSms()"></sms-btn>
                     </FormItem>
-                    <FormItem>
+                    <FormItem :label-width="0">
                         <script type="text/html" v-pre>
                             <FormItem label="短信验证码" prop="smscode">
                                 <Input type="text" v-model="frm.smscode" placeholder="请输入短信验证码" style="width: 190px"/>
                                 <sms-btn :isDisabled="false" @on-send="sendSms()"></sms-btn>
                             </FormItem>
+                        </script>
+                        <script type="text/js">
+                            // 执行发送短信接口后的回调 一般没啥用
+                            sendSms () {
+                                alert('假装发了短信')
+                            },
                         </script>
                     </FormItem>
 
@@ -59,12 +67,12 @@ export default {
         return {
             loading: false,
             frm: {
-                p01: '' // 输入框测试
+                smscode: '' // 输入框测试
             },
             frmValidate: {
-                p01: [
+                smscode: [
                     { required: true, message: '输入框不能为空' },
-                    { type: 'string', min: 6, message: '最少输入4个字符' }
+                    { type: 'string', min: 6, message: '最少输入6个字符' }
                 ]
             }
         }
@@ -72,6 +80,9 @@ export default {
     methods: {
         sendSms () {
             alert('假装发了短信')
+        },
+        handleStopSmsCode () {
+            this.$store.dispatch('sms/stopSmsCode') // 关闭倒计时
         },
         handleSubmit () {
             this.$refs['from0982'].validate((valid) => {

@@ -43,7 +43,9 @@ export default makeMultiLevelRoute({
             path: 'work01', title: '卷壹', icon: 'md-heart',
             children: [
                 {power: 'workv2-1', path: '210showMsg', title: '提示信息框规范'},
-                {power: 'workv2-1', path: '211goodModal', title: 'IviewModal 弹框'},
+                {power: 'workv2-1', path: '211tableFrom', title: '依附表单弹框尝试'},
+                {power: 'workv2-1', path: '211tableFrom@from', title: '表单', hideMenu: true},
+                {power: 'workv2-1', path: '211goodModal', title: '更好的弹框写法'},
                 {power: 'workv2-1', path: '212tools', title: '超公共 $tool 模块'},
                 {power: 'workv2-1', path: '213smsBtn', title: '短信验证码按钮'},
                 {power: 'workv2-1', path: '214formData', title: '提交用 FormData'},
@@ -86,6 +88,17 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '234ticketCss', title: '栅格布局 票据样式'},
                 {power: 'workv2-2', path: '235showMore', title: '查看更多css实现'},
                 {power: 'workv2-2', path: '236zoombg', title: '缩放下的背景样式'},
+                {power: 'workv2-2', path: '237print', title: '打印功能集锦'},
+                {power: 'workv2-2', path: '238datepanel', title: '日期面板网摘组件'},
+                {power: 'workv2-2', path: '239toutou', title: '偷学网络配置'}
+            ]
+        },
+        {
+            path: 'work04', title: '卷肆', icon: 'md-heart',
+            children: [
+                {power: 'workv2-2', path: '240googleerror', title: '浏览器插件报错'},
+                {power: 'workv2-2', path: '241html2canvas', title: '浏览器区域截图'},
+                {power: 'workv2-2', path: '242screenlog', title: '屏幕日志'},
                 {power: 'workv2-2', path: '300brove', title: '收集300个'}
             ]
         }

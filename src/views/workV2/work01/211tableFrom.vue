@@ -11,7 +11,7 @@
                     <Modal v-model="model.show1" closable :mask-closable="false" footer-hide width="600">
                         <from1 :startDate="startDate" @on-submit="handleSubmit1"/>
                     </Modal>
-                    <router-link :to="{name:'expV2_exp01_014tableFrom@from'}">
+                    <router-link :to="{name:'workV2_work01_211tableFrom@from'}">
                         <Button type="default"> 跳转表单 </Button>
                     </router-link>
                     <script type="text/html" v-pre>
@@ -41,7 +41,7 @@
     </div>
 </template>
 <script>
-import from1 from './014tableFrom@from'
+import from1 from './211tableFrom@from'
 export default {
     data () {
         return {

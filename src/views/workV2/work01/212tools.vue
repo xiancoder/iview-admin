@@ -5,68 +5,73 @@
             <div class="blogContent" v-highlight>
                 <p><Icon type="md-checkmark" style="color:green"/> 绝妙 要求合作开发者必须配合</p>
                 <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
+                <hr />
+                <p>页面信息提示 小的需要一闪而过的信息</p>
                 <p>
-                    信息提示统一使用
+                     统一使用
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="tryalert('处理进行中')">this.$tool.alert('处理进行中')</Button>
+                    <Button type="dashed" @click="$tool.alert('处理进行中')">this.$tool.alert('处理进行中')</Button>
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="tryalert2('处理进行中')">this.$tool.alertMsg('处理进行中')</Button>
+                    <Button type="dashed" @click="$tool.success('ajax处理成功')">this.$tool.success('ajax处理成功')</Button>
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="tryalert3('处理进行中')">this.$tool.alertMsg('处理进行中', 0, () => { alert('同意'); })</Button>
+                    <Button type="dashed" @click="$tool.success()">this.$tool.success() 有默认值</Button>
+                    <Divider type="vertical" />
+                    <Button type="dashed" @click="$tool.error('ajax处理失败')">this.$tool.error('ajax处理失败')</Button>
+                    <Divider type="vertical" />
+                    <Button type="dashed" @click="$tool.error()">this.$tool.error() 有默认值</Button>
                 </p>
+                <hr />
+                <p>页面信息提示 大的需要用户看清楚的信息</p>
                 <p>
-                    ajax成功统一使用
+                     统一使用
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="trysuccess('基本成功')">this.$tool.success('基本成功')</Button>
+                    <Button type="dashed" @click="$tool.alertMsg('处理进行中')">this.$tool.alertMsg('处理进行中')</Button>
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="trysuccess()">this.$tool.success()</Button>
+                    <Button type="dashed" @click="$tool.alertMsg('处理进行中', 0, () => { alert('同意'); })">this.$tool.alertMsg('处理进行中', 0, () => { alert('同意'); }) 加上回调方法</Button>
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="trysuccess2('基本成功')">this.$tool.successMsg('基本成功')</Button>
+                    <Button type="dashed" @click="$tool.successMsg('基本成功')">this.$tool.successMsg('基本成功')</Button>
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="trysuccess2()">this.$tool.successMsg()</Button>
+                    <Button type="dashed" @click="$tool.successMsg()">this.$tool.successMsg()</Button>
+                    <Divider type="vertical" />
+                    <Button type="dashed" @click="$tool.errorMsg('基本失败')">this.$tool.errorMsg('基本失败')</Button>
+                    <Divider type="vertical" />
+                    <Button type="dashed" @click="$tool.errorMsg()">this.$tool.errorMsg()</Button>
+                    <Divider type="vertical" />
+                    <Button type="dashed" @click="$tool.warningMsg('您的电脑要爆炸了')">this.$tool.warningMsg('您的电脑要爆炸了')</Button>
                 </p>
+                <hr />
+                <p>页面信息提示 需要用户确认信息</p>
                 <p>
-                    ajax失败统一使用
+                    统一使用
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="tryerror('基本失败')">this.$tool.error('基本失败')</Button>
+                    <Button type="dashed" @click="$tool.confirm('这样操作可以么').then(() => { alert('同意') }).catch(() => { alert('不同意') })">this.$tool.confirm('这样操作可以么').then(() => { alert('同意') }).catch(() => { alert('不同意') })</Button>
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="tryerror()">this.$tool.error()</Button>
-                    <Divider type="vertical" />
-                    <Button type="dashed" @click="tryerror2('基本失败')">this.$tool.errorMsg('基本失败')</Button>
-                    <Divider type="vertical" />
-                    <Button type="dashed" @click="tryerror2()">this.$tool.errorMsg()</Button>
+                    <Button type="dashed" @click="$tool.noticeNoSave()">$tool.noticeNoSave() 未保存二次确认框</Button>
                 </p>
+                <hr />
+                <p>页面跳转路由</p>
                 <p>
-                    警告
+                    统一使用
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="warningMsg('您的电脑要爆炸了')">this.$tool.warningMsg('您的电脑要爆炸了')</Button>
+                    <Button type="dashed" @click="$tool.jumpto(homePage)">this.$tool.jumpto(homePage)</Button>
                 </p>
+                <hr />
+                <p>表格数据的参数批量管理 存url</p>
                 <p>
-                    用户选择确认
-                    <Divider type="vertical" />
-                    <Button type="dashed" @click="tryconfirm()">this.$tool.confirm('这样操作可以么').then(() => { alert('同意') }).catch(() => { alert('不同意') })</Button>
-                </p>
-                <p>
-                    页面跳转统一使用
-                    <Divider type="vertical" />
-                    <Button type="dashed" @click="jumpto()">this.$tool.jumpto()</Button>
-                </p>
-                <p>
-                    参数不再存url存store(间接存ls)统一使用 {{paramState}}
+                    统一使用
                     <Divider type="vertical" />
                     <Button type="dashed" @click="saveParamState()">this.$tool.saveParamState(obj)</Button>
-                </p>
-                <p>
-                    参数不再取url取store(间接存ls)统一使用 {{paramState}}
                     <Divider type="vertical" />
                     <Button type="dashed" @click="getParamState()">this.$tool.getParamState()</Button>
                 </p>
+                <hr />
+                <p>顶部进度条全局控制</p>
                 <p>
-                    顶部进度条
+                    统一使用
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="LoadingBarRun(true)">LoadingBarRun(true)</Button>
+                    <Button type="dashed" @click="$tool.LoadingBarRun(true)">$tool.LoadingBarRun(true)</Button>
                     <Divider type="vertical" />
-                    <Button type="dashed" @click="LoadingBarRun(false)">LoadingBarRun(false)</Button>
+                    <Button type="dashed" @click="$tool.LoadingBarRun(false)">$tool.LoadingBarRun(false)</Button>
                 </p>
             </div>
             <div class="blogFooter">
@@ -82,23 +87,13 @@ import { homePage } from '@/router/routers'
 export default {
     data () {
         return {
-            paramState: {x: 123}
+            paramState: {x: 123},
+            homePage
         }
     },
     methods: {
-        tryalert (msg) { this.$tool.alert(msg) },
-        tryalert2 (msg) { this.$tool.alertMsg(msg) },
-        tryalert3 (msg) { this.$tool.alertMsg(msg, 0, () => { alert('同意'); }) },
-        trysuccess (msg) { this.$tool.success(msg) },
-        trysuccess2 (msg) { this.$tool.successMsg(msg) },
-        tryerror (msg) { this.$tool.error(msg) },
-        tryerror2 (msg) { this.$tool.errorMsg(msg) },
-        tryconfirm () { this.$tool.confirm('这样操作可以么').then(() => { alert('同意'); }).catch(() => { alert('不同意') }) },
-        jumpto () { this.$tool.jumpto(homePage) },
-        warningMsg (msg) { this.$tool.warningMsg(msg) },
         saveParamState () { this.$tool.saveParamState({x: (+new Date())}) },
-        getParamState () { this.paramState = this.$tool.getParamState() },
-        LoadingBarRun (b) { this.$tool.LoadingBarRun(b) }
+        getParamState () { this.paramState = this.$tool.getParamState() }
     }
 }
 </script>

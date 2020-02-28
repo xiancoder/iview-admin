@@ -84,7 +84,13 @@ export default {
             this.$emit('on-submit', 0)
         }
     },
-    mounted () {
+    beforeDestroy: function () {
+        // 关闭弹窗并不会触发卸载钩子
+        console.log(123)
+    },
+    destroyed: function () {
+        // 关闭弹窗并不会触发卸载钩子
+        console.log(321)
     }
 }
 </script>
