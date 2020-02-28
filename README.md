@@ -1,196 +1,33 @@
 # 完美vue项目
 
-```
-├── dist // 项目打包生成文件的目录
-├── build // 打包配置
-    ├── env.js
-    ├── webpack.base.config.js
-    ├── webpack.dev.config.js
-    ├── webpack.prod.config.js
-├── dist // 生成代码
-    ├── index.html
-├── download // 下载文件存仓 ???
-    ├── 公海客户模板.csv
-    ├── 上传款项模板.csv
-    ├── 值班表模板.csv
-├── src // 源码
-    ├── api // 接口管理
-          ├── axios.js // axios配置
-          ├── cache.js // 缓存包装的axios实例
-          ├── department.js // 部门接口集合
-          ├── employee.js // 职员接口集合
-          ├── department.js // 部门接口集合
-          ├── position.js // 职位接口集合
-          ├── role.js // 角色接口集合
-          ├── staff.js // 参考用
-          ├── unit.js // 测试用
-          ├── system.js // 系统有关的接口集合
-          └── index.js //出口
-    ├── assets // 附件
-        └── index.js
-    ├── cache // ls/ss管理
-        └── index.js
-    ├── components 组件
-        ├── breadcrumb-nav/index.vue // 面包屑
-        ├── date-range/index.vue // 日期范围
-        ├── department-tree/index.vue // 部门下拉树
-        ├── epopen/index.vue // EP打开
-        ├── fullscreen/index.vue // 全屏按钮
-        ├── lockscreen // 锁屏
-            ├── locking-page.vue
-            ├── unlock.less
-            ├── unlock.vue
-            └── index.js
-        ├── qrcode/index.vue // 二维码
-        ├── shrinkable-menu // 左侧树
-            ├── index.less
-            ├── sidebarMenu.vue // 舒展
-            ├── sidebarMenuShrink.vue // 折叠
-            └── index.js
-        ├── tags-page-opened/index.vue // 标签切换
-        ├── theme-switch/index.vue // 主题更换
-        ├── tree-box/index.vue // 树
-        ├── tree-drop/index.vue // 树下拉
-        ├── up-image/index.vue // 图片上传
-    ├── config // 全局配置
-        └── index.js
-    ├── directive 指令
-        ├── betterpre.js // 更好的pre排版
-        ├── clipboard.js // 复制粘贴按钮
-        ├── draggable.js // 可拖拽
-        ├── highlight.js // 高亮代码
-        └── index.js
-    ├── filter 过滤器
-        └── index.js
-    ├── i18n // 文本资源国际化
-        ├── locale.js
-        └── index.js
-    ├── images // 图片资源
-        └── ...
-    ├── mixin 混入
-        ├── tableMixin.js // 表格
-        └── index.js // 也是表格(待处理)
-    ├── plugins // 三方插件管理
-        ├── fontawesome.js // 友好字体图案
-        ├── iview.js // iview 基本配置
-        ├── moment.js // 日期库
-        ├── orgtree.js // 树形控件
-        ├── treetable.js // 树形表格
-        ├── vueEditor.js // 富文本
-        └── index.js //出口
-    ├── router // 路由信息
-        ├── before-close.js 关闭前提示
-        ├── router.js // 所有的注册路由列表
-        ├── util.js // 注册需要的简便方法
-        └── index.js //出口
-    ├── store // 状态管理
-        ├── system.js // 系统相关 或者一些与系统有关的用户接口
-        ├── user.js // 登录用户(管理员)相关
-        └── index.js //出口
-    ├── styles // 样式管理
-        ├── common.less // 通用reset
-        ├── loading.less // cao这是啥
-        ├── login.less // 登录样式
-        ├── main.less // 主体样式
-        ├── fonts // ion字体
-            ├── ionicons.eot
-            ├── ionicons.svg
-            ├── ionicons.ttf
-            ├── ionicons.woff
-        ├── theme // 主题
-            ├── g.css
-            ├── r.css
-            ├── y.css
-    ├── tools // 统一业务逻辑经常要用的工具
-        └── index.js
-    ├── utils // 常用方法
-        ├── array.js
-        ├── date.js
-        ├── dom.js
-        ├── function.js
-        ├── number.js
-        ├── object.js
-        ├── regexp.js
-        ├── string.js
-        ├── table2excel.js
-        ├── url.js
-        └── index.js
-    ├── validate // 校验规则
-        └── index.js
-    ├── vendors // ???
-        ├── vendors.base.js
-        ├── vendors.exten.js
-    ├── views // 视图
-        ├── advanced-router // ???
-        ├── canvas // 绘图学习
-        ├── contract // 联系人
-        ├── customer // 客户
-        ├── employee // 职员
-        ├── error-page // 错误页面
-        ├── exp1 // 经验集1
-        ├── exp2 // 经验集2
-        ├── finance // 财务
-        ├── home // 主页
-        ├── logs // ??
-        ├── notice // ??
-        ├── process // 过程
-        ├── study // 学习尝试
-        ├── system // 系统
-        ├── task // 任务
-        ├── Main.vue // 路由main 第一层
-        ├── index.ejs // html页面结构
-        ├── login.vue // 路由login 第一层
-    ├── app.vue 挂载vue的dom
-    ├── main.js 入口文件
-├── test // 测试相关
-    ├── array.test.js
-    ├── date.test.js
-    ├── number.test.js
-    ├── string.test.js
-├── .babelrc
-├── .editorconfig
-├── .eslintignore
-├── .eslintrc.json
-├── .gitignore
-├── .postcssrc.js
-├── .travis.yml
-├── index.html
-├── package.json
-├── package-lock.json
-├── td_icon.ico
-├── 启动.bat
-└── README.md // 项目目录
-```
-
 <p align="center">
     <a href="https://www.iviewui.com">
         <img width="200" src="https://file.iviewui.com/logo-new.svg">
     </a>
 </p>
 
-<h1>
-iView Admin
-    <h3>Vue.js 2.0 admin management system template based on iView.</h3>
-</h1>
+<h1> iView Admin - 延伸扩展版本</h1>
+<h3>Vue.js 2.0 admin management system template based on iView.</h3>
 
-## Getting started
+
+## 获取最新版本
 ```bush
-# clone the project
-git clone https://github.com/iview/iview-admin.git
+# 拷贝项目
+git clone https://github.com/xiancoder/iview-admin.git
 
-// install dependencies
-npm install
+// 安装依赖(推荐使用淘宝cnpm)
+cnpm install
 
-// develop
+// 开发模式
 npm run dev
-```
 
-## Build
-```bush
+// 生产模式(带console调试)
 npm run build
+
+// 生产模式(不带调试)
+npm run online
 ```
 
-## License
-[MIT](http://opensource.org/licenses/MIT)
+## License - none
 
-Copyright (c) 2016-present, TalkingData
+Copyright (c) 2016-present, liuyp

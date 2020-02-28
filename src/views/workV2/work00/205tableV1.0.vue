@@ -2,7 +2,7 @@
     <div>
         <div class="blogCss">
             <div class="blog">
-                <div class="blogTitle">表格标准规范写法 V1 (历练版)</div>
+                <div class="blogTitle">表格标准规范写法 V1.0 (历练版)</div>
                 <Divider orientation="right">可以直接投入项目使用的标准或规范</Divider>
                 <div class="blogContent" v-highlight>
                     <p><Icon type="md-checkmark" style="color:green"/> 本模板经历实战可以使用 </p>
