@@ -102,6 +102,14 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '242screenlog', title: '屏幕日志'},
                 {power: 'workv2-2', path: '300brove', title: '收集300个'}
             ]
+        },
+        {
+            path: 'work05wx', title: '卷伍-微信篇', icon: 'md-heart',
+            children: [
+                {power: 'workv2-2', path: '250csgzh', title: '微信公众测试号踩坑'},
+                {power: 'workv2-2', path: '251xcxly', title: '微信小程序和蓝牙'},
+                {power: 'workv2-2', path: '252gzhdl', title: '微信各种授权登录'}
+            ]
         }
     ]
 })

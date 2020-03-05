@@ -12,7 +12,6 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-12345', path: '001weixingzhreadme', title: 'WX公众号开发必读'},
                 {power: 'expv2-12345', path: '002eslint', title: 'EsLint 校验规则'},
                 {power: 'expv2-12345', path: '003weixingzhkaifa', title: 'WX公众号简单流程'},
-                {power: 'expv2-12345', path: '003weixinxcxlanya', title: 'WX小程序与蓝牙'},
                 {power: 'expv2-12345', path: '006jsx', title: 'Jsx 写法尝试'}
             ]
         }, {
@@ -214,7 +213,7 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-27890', path: '193flag', title: '所有国旗'},
                 {power: 'expv2-27890', path: '194placeholdit', title: 'placeholdit'},
                 {power: 'expv2-27890', path: '195todo', title: 'TODO'},
-                {power: 'expv2-27890', path: '196chart', title: '聊天面板'}
+                {power: 'expv2-27890', path: '196chart', title: '聊天面板'},
                 {power: 'expv2-27890', path: '196QA', title: 'VUE 面试题精华'}
             ]
         }, {
