@@ -6,6 +6,8 @@
                 <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
                 <p><Icon type="md-close" style="color:red"/>1.安卓和苹果获取的硬件服务UUID顺序不同 </p>
                 <p><Icon type="md-close" style="color:red"/>2.目前用的这一版 “启用低功耗蓝牙设备特征值变化时的 notify 功能”在安卓和苹果的测试机上都返回启动失败，其实是已经启动成功，在我同事安卓手机上返回的正常。 </p>
+                <p><img src="/static/img.wx/xcxly/1.png" style="max-width:100%" alt="" /></p>
+                <p><img src="/static/img.wx/xcxly/2.png" style="max-width:100%" alt="" /></p>
                 <p>index.wxml</p>
                 <script type="text/html" v-pre>
                     <view class="content">
