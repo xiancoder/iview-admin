@@ -6,6 +6,11 @@
                 <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
                 <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p></p>
+                <div style="position:relative;">
+                    <div class="showyouBlackDot"></div>
+                    <div class="showyouWhiteDot"></div>
+                    <div class="showyouTouming"></div>
+                </div>
                 <p>1234567890123456789012345678901234567890123456789012345678901234567890</p>
                 <p>1234567890123456789012345678901234567890123456789012345678901234567890</p>
                 <p>1234567890123456789012345678901234567890123456789012345678901234567890</p>
@@ -16,9 +21,6 @@
                 <p>1234567890123456789012345678901234567890123456789012345678901234567890</p>
                 <p>1234567890123456789012345678901234567890123456789012345678901234567890</p>
                 <p>1234567890123456789012345678901234567890123456789012345678901234567890</p>
-                <div class="showyouBlackDot"></div>
-                <div class="showyouWhiteDot"></div>
-                <div class="showyouTouming"></div>
                 <script type="text/css">
                     /*半黑色的遮罩*/
                     .showyouBlackDot{

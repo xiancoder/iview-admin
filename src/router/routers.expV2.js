@@ -17,7 +17,13 @@ export default makeMultiLevelRoute({
         }, {
             path: 'exp01', title: '卷零壹', icon: 'md-camera',
             children: [
-                {power: 'expv2-12345', path: '010mockData', title: '假数据mock专家'}
+                {power: 'expv2-12345', path: '010mockData', title: '假数据mock专家'},
+                {power: 'expv2-12345', path: '011base64pic', title: 'bs64 常用图片'},
+                {power: 'expv2-12345', path: '012asyncFunction', title: '异步方法概述'},
+                {power: 'expv2-12345', path: '013sonaskfather', title: '子组件控制父组件'},
+                {power: 'expv2-12345', path: '014manyDataset', title: '多地数据缓存原则'},
+                {power: 'expv2-12345', path: '015seo', title: '需知的SEO知识'},
+                {power: 'expv2-12345', path: '016maodian', title: 'VUE锚点定位'}
             ]
         }, {
             path: 'exp02', title: '卷零贰', icon: 'md-game-controller-b',
@@ -214,7 +220,8 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-27890', path: '194placeholdit', title: 'placeholdit'},
                 {power: 'expv2-27890', path: '195todo', title: 'TODO'},
                 {power: 'expv2-27890', path: '196chart', title: '聊天面板'},
-                {power: 'expv2-27890', path: '196QA', title: 'VUE 面试题精华'}
+                {power: 'expv2-27890', path: '197QA', title: 'VUE 面试题精华'},
+                {power: 'expv2-27890', path: '198phonevideo', title: '移动端video的坑'}
             ]
         }, {
             path: 'exp20', title: '卷贰拾', icon: 'md-game-controller-b',

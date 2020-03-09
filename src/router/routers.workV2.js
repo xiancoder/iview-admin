@@ -108,7 +108,8 @@ export default makeMultiLevelRoute({
             children: [
                 {power: 'workv2-2', path: '250csgzh', title: '微信公众测试号踩坑'},
                 {power: 'workv2-2', path: '251xcxly', title: '微信小程序和蓝牙'},
-                {power: 'workv2-2', path: '252gzhdl', title: '微信各种授权登录'}
+                {power: 'workv2-2', path: '252gzhdl', title: '微信各种授权登录'},
+                {power: 'workv2-2', path: '253xcxsp', title: '微信小程序视频'}
             ]
         }
     ]
