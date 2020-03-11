@@ -11,6 +11,7 @@ export default makeTwoLevelRoute({
         {power: 'tool', path: 'unicode', title: 'unicode转码'},
         {power: 'tool', path: 'md5', title: 'md5转码'},
         {power: 'tool', path: 'url', title: 'url转码'},
+        {power: 'tool', path: 'money2hanzi', title: '金钱数字转汉字'},
         {power: 'tool', path: 'repeat', title: '字符重复'},
         {power: 'tool', path: 'str2pinyin', title: '文字转音调拼音'},
         {power: 'tool', path: 'norepeat', title: '去重'},

@@ -1,5 +1,5 @@
 import showdown from 'showdown'
-import './showdown.less'
+import './index.less'
 
 const converter = new showdown.Converter()
 

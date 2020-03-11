@@ -1,7 +1,8 @@
 import Vue from 'vue' // 核心
 // import VueHtml5Editor from 'vue-html5-editor/dist/vue-html5-editor-liuyp.js'
 import VueHtml5Editor from 'vue-html5-editor/dist/vue-html5-editor-liuyp-forFileUpload.js'
-import './vueEditor.less'
+import './index.less'
+
 // import VueHtml5Editor from '@/../plugins/vue-html5-editor' // 修改了一个粘贴不触发问题
 // 遇到一个错误
 // Errors while compiling. Reload prevented.

@@ -23,7 +23,8 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-12345', path: '013sonaskfather', title: '子组件控制父组件'},
                 {power: 'expv2-12345', path: '014manyDataset', title: '多地数据缓存原则'},
                 {power: 'expv2-12345', path: '015seo', title: '需知的SEO知识'},
-                {power: 'expv2-12345', path: '016maodian', title: 'VUE锚点定位'}
+                {power: 'expv2-12345', path: '016maodian', title: 'VUE锚点定位'},
+                {power: 'expv2-12345', path: '017outmemoy', title: 'Node 超出内存'}
             ]
         }, {
             path: 'exp02', title: '卷零贰', icon: 'md-game-controller-b',
@@ -76,7 +77,8 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-12345', path: '057history', title: '路由历史记录'},
                 {power: 'expv2-12345', path: '057history@1', title: '路由历史记录1', hideMenu: true},
                 {power: 'expv2-12345', path: '057history@2', title: '路由历史记录2', hideMenu: true},
-                {power: 'expv2-12345', path: '057history@3', title: '路由历史记录3', hideMenu: true}
+                {power: 'expv2-12345', path: '057history@3', title: '路由历史记录3', hideMenu: true},
+                {power: 'expv2-12345', path: '058url', title: 'URL 详细说明'}
             ]
         }, {
             path: 'exp06', title: '卷零陆', icon: 'md-game-controller-b',
@@ -209,7 +211,8 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-27890', path: '181errorList', title: '浏览器错误信息'},
                 {power: 'expv2-27890', path: '182h5tag', title: 'H5 各种标签'},
                 {power: 'expv2-27890', path: '183jsAudio', title: 'Js 播放声音'},
-                {power: 'expv2-27890', path: '184qrcode', title: '生成二维码'}
+                {power: 'expv2-27890', path: '184qrcode', title: '生成二维码'},
+                {power: 'expv2-27890', path: '185llqrcode', title: '解析二维码'}
             ]
         }, {
             path: 'exp19', title: '卷拾玖', icon: 'md-game-controller-b',

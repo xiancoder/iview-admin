@@ -10,7 +10,8 @@
     "online": "cross-env NODE_ENV=production vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e"
+    "test:e2e": "vue-cli-service test:e2e",
+    "fix-memory-limit": "cross-env LIMIT=4096 increase-memory-limit"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -60,6 +61,7 @@
     "cross-env": "^6.0.3",
     "eslint-plugin-cypress": "^2.0.1",
     "filemanager-webpack-plugin": "^2.0.5",
+    "increase-memory-limit": "^1.0.7",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "lint-staged": "^6.0.0",

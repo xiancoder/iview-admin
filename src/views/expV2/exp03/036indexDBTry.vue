@@ -18,7 +18,7 @@
     </div>
 </template>
 <script>
-import indexedDB from '@/plugins/indexedDB.js'
+import indexedDB from '@/plugins/indexedDB'
 export default {
     data () {
         return {
