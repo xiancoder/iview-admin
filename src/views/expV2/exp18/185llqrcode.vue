@@ -1,10 +1,10 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">解析图片中的二维码 - 失败了</div>
+            <div class="blogTitle">解析图片中的二维码 </div>
             <div class="blogContent" v-highlight>
-                <p><Icon type="md-checkmark" style="color:green"/> ------------------------------------------</p>
-                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
+                <p><Icon type="md-checkmark" style="color:green"/> 有效 </p>
+                <p><Icon type="md-close" style="color:red"/> 但是注意 中文二维码会乱码 这个稍后跟进 </p>
                 <Form ref="from0982" :model="frm" :label-width="150">
                     <FormItem label="标题" prop="p03">
                         <Upload :before-upload="handleUpload3" action="" style="display: inline-block; margin-right: 20px;">
@@ -14,7 +14,7 @@
                         <div class="ivu-form-item-notice-tip">二维码识别 {{frm.llres}}</div>
                     </FormItem>
                     <FormItem style="margin-top: 50px">
-                        <Button type="primary" :loading="loading" @click="handleSubmit()">保存</Button>
+                        <Button type="primary" :loading="loading" @click="handleSubmit()">二维码识别</Button>
                     </FormItem>
                 </Form>
                 <a href="https://blog.csdn.net/qq_37816525/article/details/94571557"></a>

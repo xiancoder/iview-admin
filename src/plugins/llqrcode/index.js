@@ -1,9 +1,12 @@
-// import qrcode from './llqrcode.js'
+import qrcode from 'llqrcode/llqrcode.js'
 
 export default function (file) {
     return new Promise((resolve) => {
-        // qrcode.callback = resolve // 解读二维码的中转回调
-        // qrcode.decode(file)
-        resolve('失败了')
+        var reader = new FileReader()
+        reader.onload = function (e) {
+            qrcode.callback = resolve // 解读二维码的中转回调
+            qrcode.decode(e.target.result)
+        }
+        reader.readAsDataURL(file)
     })
 }

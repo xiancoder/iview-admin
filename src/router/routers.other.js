@@ -22,7 +22,6 @@ export default [
             {power: '0000', path: 'orgtree', icon: 'ios-people', title: '组织结构树'},
             {power: '0000', path: 'treetable', icon: 'md-git-branch', title: '树状表格'},
             {power: '0000', path: 'tables', icon: 'md-grid', title: '多功能表格'},
-            {power: '0000', path: 'markdown', icon: 'logo-markdown', title: 'Markdown编辑器'},
             {power: '0000', path: 'editor', icon: 'ios-create', title: '富文本编辑器'},
             {power: '0000', path: 'treeselect', icon: 'md-arrow-dropdown-circle', title: '树状下拉选择器'},
             {power: '0000', path: 'draglist', icon: 'ios-infinite', title: '拖拽列表'},

@@ -7,6 +7,8 @@
 <script>
 import Simplemde from 'simplemde'
 import 'simplemde/dist/simplemde.min.css'
+import './index.less'
+
 export default {
     name: 'MarkdownEditor',
     props: {
@@ -37,8 +39,23 @@ export default {
     },
     mounted () {
         this.editor = new Simplemde(Object.assign(this.options, {
-            element: this.$refs.editor
+            element: this.$refs.editor,
+            spellChecker: false, // 拼写检查
+            autofocus: true, // 自动聚焦
+            // toolbar: true, // 设置为false,标题栏不显示 true 会跑版
+            autoDownloadFontAwesome: false, // 自动下载FontAwesome
+            placeholder: "Type here...",
+            autosave: { // 自动保存
+                enabled: true,
+                uniqueId: "demo",
+                delay: 1000,
+            },
+            tabSize: 4, // tab代表空格数量
+            lineWrapping: false // 行内元素
         }))
+        // 获取/设置内容
+        // this.editor.value()
+        this.editor.value(this.value)
         /**
         * 事件列表为Codemirror编辑器的事件，更多事件类型，请参考：
         * https://codemirror.net/doc/manual.html#events
@@ -49,10 +66,3 @@ export default {
     }
 }
 </script>
-<style lang="less">
-    .markdown-wrapper{
-        .editor-toolbar.fullscreen{ z-index: 9999; }
-        .CodeMirror-fullscreen{ z-index: 9999; }
-        .CodeMirror-fullscreen ~ .editor-preview-side{ z-index: 9999; }
-    }
-</style>

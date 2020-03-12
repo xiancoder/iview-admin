@@ -212,7 +212,9 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-27890', path: '182h5tag', title: 'H5 各种标签'},
                 {power: 'expv2-27890', path: '183jsAudio', title: 'Js 播放声音'},
                 {power: 'expv2-27890', path: '184qrcode', title: '生成二维码'},
-                {power: 'expv2-27890', path: '185llqrcode', title: '解析二维码'}
+                {power: 'expv2-27890', path: '185llqrcode', title: '解析二维码'},
+                {power: 'expv2-27890', path: '186module', title: '代码模块化改造'},
+                {power: 'expv2-27890', path: '187markdown', title: 'Markdown编辑器'}
             ]
         }, {
             path: 'exp19', title: '卷拾玖', icon: 'md-game-controller-b',
