@@ -12,7 +12,7 @@ export default {
     mixins: [{methods: {goto}}],
     data () {
         return {
-            name: 'workV2_work01_205tab',
+            name: 'workV2_work00_205tab',
             currentName: '',
             balance: '-'
         }
@@ -20,14 +20,10 @@ export default {
     computed: { // 计算属性
         tabList () {
             const list = [
-                {name: 'workV2_work00_205tableV1.0', title: '表格规范v1.0模版'},
-                {name: 'workV2_work00_205tableV1.1', title: '表格规范v1.1模版'},
-                {name: 'workV2_work00_205tableV1@bro', title: '表格v1兄弟页面'},
-                {name: 'workV2_work00_205tableMaxHeight', title: '表格v1高度限定'},
-                {name: 'workV2_work00_205tableBatch', title: '表格v1批量操作'},
-                {name: 'workV2_work00_205tableTools', title: '表格v1搜索项'},
-                {name: 'workV2_work00_205tableSum', title: '表格v1总计框'},
-                {name: 'workV2_work00_205tableSort', title: '表格v1排序功能'}
+                {name: 'workV2_work00_205tableV10', title: '表格v10模版规范'},
+                {name: 'workV2_work00_205tableV10@bro', title: '表格v10兄弟页面'},
+                {name: 'workV2_work00_205tableV11', title: '表格v11模版规范'},
+                {name: 'workV2_work00_205tableV12', title: '表格v12模版规范'}
             ]
             return list
         }

@@ -122,12 +122,44 @@ export const scrollTop = (el, from = 0, to, duration = 500, endCallback) => {
 // dom js触发打印功能
 // =====================
 // liuyp 2020年2月6日 15:50:47
-export function print (content) {
-    const printStr = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>' + content + '</body></html>'
-    const pwin = window.open('Print.htm', 'print', 'width=1000,height=600,left=150,top=150toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no, status=yes') // 如果是本地测试需要先新建 如果是在域中使用则不需要
-    pwin.document.write(printStr)
-    pwin.document.close() // 这句很重要，没有就无法实现
-    pwin.print()
+export function print (content, style) {
+    let html = ''
+    if (Object.prototype.toString.call(content).toLowerCase() === '[object array]') {
+        content.forEach((one, index) => {
+            if (index % 2 !== 0) {html += '<div STYLE="page-break-before:always"></div>'}
+            html += one
+            if (index % 2 !== 0) {html += '<div STYLE="page-break-after:always"></div>'}
+        })
+    } else if (typeof content === 'string') {
+        html = content
+    } else {
+        return;
+    }
+    const printStr = `
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                <style type="text/css" media="print">${style || ''}</style>
+            </head>
+            <body>${html || ''}</body>
+        </html>
+    `
+    // const style = 'width=1000,height=600,left=150,top=150toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no,status=yes'
+    // const pwin = window.open('Print.htm', 'print', style) // 如果是本地测试需要先新建 如果是在域中使用则不需要
+    // pwin.document.write(printStr)
+    // pwin.document.close() // 这句很重要，没有就无法实现
+    // pwin.print()
+    // 不弹框测试
+    const ifr = document.createElement('iframe')
+    ifr.style.display = 'none'
+    document.body.appendChild(ifr)
+    const win = ifr.contentWindow
+    win.document.write(printStr)
+    win.document.close()
+    win.print();
+    setTimeout(() => {
+        document.body.removeChild(ifr)
+    }, 1e3);
 }
 
 export const findNodeUpperByClasses = (ele, classes) => {

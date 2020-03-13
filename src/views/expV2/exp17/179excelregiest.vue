@@ -10,6 +10,7 @@
                 <p><Icon type="md-checkmark" style="color:green"/> 想法 如果我要批量注册10+用户</p>
                 <p><Icon type="md-checkmark" style="color:green"/> 想法 如果我要批量注册100+用户</p>
                 <p><Icon type="md-close" style="color:red"/> 想法 如果我要批量注册1000+用户 导入后台吧</p>
+                <p class="text-success">2020年3月13日15:30:44 发现问题 修改优化</p>
                 <Row>
                     <Col span="12">
                         <Form ref="from1234" :model="frm" :rules="frmValidate" :label-width="150">
@@ -62,8 +63,9 @@
     </div>
 </template>
 <script>
-import { extendF } from '@/utils/object'
+import { extend, extendF } from '@/utils/object'
 import regexp from '@/utils/regexp'
+import { alert } from '@/tools'
 
 export default {
     data () {
@@ -73,17 +75,10 @@ export default {
                 {id: 1, name: '手机号'},
                 {id: 2, name: '微信'}
             ],
-            frmBack: {
-                user_name: '', // 用户名
-                user_pwd: '', // 密码
-                contact_type: 1, // 联系方式1,手机号,2-微信,3-qq,4-邮箱
-                tel: '', // 手机号
-                wx: '' // 微信
-            },
             frm: {
                 user_name: '', // 用户名
                 user_pwd: '', // 密码
-                contact_type: 1, // 联系方式1,手机号,2-微信,3-qq,4-邮箱
+                contact_type: '', // 联系方式1,手机号,2-微信,3-qq,4-邮箱
                 tel: '', // 手机号
                 wx: '' // 微信
             },
@@ -132,6 +127,7 @@ export default {
                     { pattern: regexp.b06, message: '请勿输入非法字符' }
                 ]
             },
+            handlebatchSubmitIng: false,
             arr: [
                 { user_name: 'xiexia', user_pwd: '123456aaa', contact_type: 1, tel: '13831111445', wx: '' },
                 { user_name: 'xiesdf', user_pwd: '123456aaa', contact_type: 1, tel: '13831111448', wx: '' },
@@ -145,32 +141,29 @@ export default {
     },
     methods: {
         handlebatchSubmit () {
-            if (!this.arr.length) return false
-            if (this.beginBatchSubmit) {
-                this.$refs['from1234'].validate((valid) => {
-                    if (valid) {
-                        this.success.push(this.arr[0])
-                        this.arr.splice(0, 1)
-                        extendF(this.frm, this.frmBack)
-                        this.handlebatchSubmit()
-                    }
-                })
+            if (!this.arr.length) {
+                alert('处理完成')
+                this.$refs['from1234'].resetFields()
+                return false
             }
-            this.beginBatchSubmit = true
-            extendF(this.frm, this.arr[0])
+            if (!this.handlebatchSubmitIng) {
+                extendF(this.frm, this.arr[0])
+            }
+            this.handlebatchSubmitIng = true
+            this.validate()
+        },
+        validate () {
             setTimeout(() => {
                 this.$refs['from1234'].validate((valid) => {
                     if (valid) {
-                        this.success.push(this.arr[0])
+                        this.success.push(extend({}, this.frm))
                         this.arr.splice(0, 1)
-                        extendF(this.frm, this.frmBack)
+                        this.handlebatchSubmitIng = false
+                        extendF(this.frm, this.$options.data().frm)
                         this.handlebatchSubmit()
                     }
                 })
             }, 500)
-        },
-        // 重置
-        handleReset (name1, name2) {
         }
     }
 }
