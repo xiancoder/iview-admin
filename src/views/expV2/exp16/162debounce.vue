@@ -28,8 +28,13 @@
         <div class="blog">
             <div class="blogTitle">utils的节流&防抖逻辑</div>
             <div class="blogContent" v-highlight>
-                <Button @click="fun21">防抖|debounce|{{obj1}}</Button>
-                <Button @click="fun22">节流|throttle|{{obj2}}</Button>
+                <span> 示例|开始|点击|等待|等待|等待|等待|等待|触发| </span>
+                <br /><br />
+                <Button @click="fun21">防抖|debounce|待敌人都进入埋伏圈</Button> |{{obj1}}
+                <br /><br />
+                <span> 示例|开始|点击|触发|点击|阻止|点击|阻止|点击|阻止|点击|阻止|放开|点击|触发|放开|</span>
+                <br /><br />
+                <Button @click="fun22">节流|throttle|弱水三千只取一瓢</Button>|{{obj2}}
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>
@@ -44,13 +49,41 @@ import { throttle, debounce } from '@/utils/function'
 export default {
     data () {
         return {
-            obj1: '啦啦|',
-            obj2: '啦啦|'
+            obj1: '开始|',
+            obj2: '开始|',
+            time1: 0,
+            time2: 0
         }
     },
     methods: {
-        fun21: debounce(function () { this.obj1 += '啦啦|' }, 2e3),
-        fun22: throttle(function () { this.obj2 += '啦啦|' }, 2e3)
+        fun21e: debounce(function () {
+            this.obj1 += '触发|'
+            clearInterval(this.time1)
+            this.time1 = 0
+        }, 5e3),
+        fun21 () {
+            this.obj1 += '点击|'
+            this.time1 = this.time1 || setInterval(() => {
+                this.obj1 += '等待|'
+            }, 1e3)
+            this.fun21e()
+        },
+        fun22e: throttle(function () {
+            this.obj2 += '触发|'
+        }, 5e3),
+        fun22 () {
+            this.obj2 += '点击|'
+            if (this.time2) {
+                this.obj2 += '阻止|'
+            } else {
+                this.time2 = setTimeout(() => {
+                    this.obj2 += '放开|'
+                    clearTimeout(this.time2)
+                    this.time2 = 0
+                }, 5e3)
+            }
+            this.fun22e()
+        }
     }
 }
 </script>

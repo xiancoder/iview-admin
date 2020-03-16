@@ -247,6 +247,27 @@ export const estimate2 = function (n, s) {
     if (n > 1e4) {return getNum(1e4, '万')}
     return getNum(1, '')
 }
+// 文件大小估算
+// =====================
+// liuyp 2020年3月16日10:29:24
+export const formatFileSize = function (fileSize) {
+    let temp;
+    if (fileSize < 1024) {
+        return fileSize + 'B'
+    } else if (fileSize < (1024 * 1024)) {
+        temp = fileSize / 1024
+        temp = temp.toFixed(2)
+        return temp + 'KB'
+    } else if (fileSize < (1024 * 1024 * 1024)) {
+        temp = fileSize / (1024 * 1024);
+        temp = temp.toFixed(2)
+        return temp + 'MB'
+    } else {
+        temp = fileSize / (1024 * 1024 * 1024)
+        temp = temp.toFixed(2)
+        return temp + 'GB'
+    }
+}
 // 小数点后位数
 // =====================
 // liuyp 2019年9月20日10:58:12

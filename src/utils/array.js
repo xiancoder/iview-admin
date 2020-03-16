@@ -41,6 +41,7 @@ export const arrayUnique = (arr, att) => {
             }
         }
     }
+    json = {}
     return resArr
 }
 // 判断两个数组是否一致

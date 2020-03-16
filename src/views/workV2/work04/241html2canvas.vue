@@ -135,7 +135,7 @@ export default {
     computed: { // 计算属性
         html2canvas () {
             if (this.headload && this.qrcodeload) {
-                // this.jieping()
+                this.jieping()
                 return true
             }
             return false
@@ -162,8 +162,9 @@ export default {
             img.onload = () => {
                 ctx.drawImage(img, 0, 0) // img转换为canvas
                 ctx.fillRect(0, 0, 50, 50)
-                var base64 = cav.toDataURL('images/png') // 注意是canvas元素才有 toDataURL 方法
-                this.headUrl2 = base64 // canvas 转换为 img
+                // 以下代码跨域报错了
+                // var base64 = cav.toDataURL('image/png') // 注意是canvas元素才有 toDataURL 方法
+                // this.headUrl2 = base64 // canvas 转换为 img
             }
         }
     },

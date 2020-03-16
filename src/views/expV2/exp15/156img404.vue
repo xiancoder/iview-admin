@@ -64,6 +64,12 @@
                     Vue.directive('img404', img404) // 图片404的自动补偿
                     export default img404
                 </script>
+                <hr />
+                <p class="text-info">马马虎虎简单些 这样的效率似乎更好</p>
+                <img :src="pic" alt="" @error="$event.target.src='/static/img.null/null.png'">
+                <script type="text/html" v-pre>
+                    <img :src="pic" alt="" @error="$event.target.src='/static/img.null/null.png'">
+                </script>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

@@ -74,11 +74,28 @@ export const eventTarget = (ev) => {
 // 获取地址栏参数
 // =====================
 // liuyp 2020年1月2日10:02:53
-export const getUrLParam = (name) => {
+/* export const getUrLParam = (name) => {
     var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i')
     var r = window.location.search.substr(1).match(reg)
     if (r !== null) return unescape(r[2])
     return null
+} */
+export const getUrlParam = (name, origin = null) => {
+    let reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+    let r = null
+    if (origin === null) {
+        r = window.location.search.substr(1).match(reg)
+    } else {
+        r = origin.substr(1).match(reg)
+    }
+    if (r !== null) return decodeURIComponent(r[2])
+    return null
+}
+export const replaceUrlParam = (paramName, replaceWith) => {
+    var oUrl = location.href.toString()
+    var re = new RegExp('(' + paramName + '=)([^&]*)', 'gi')
+    location.href = oUrl.replace(re, paramName + '=' + replaceWith)
+    return location.href
 }
 
 // scrollTop animation
@@ -368,19 +385,4 @@ export function prevSiblingNode (node) {
 export function isSiblingNode (element, siblingNode) {
     if (!siblingNode || !element) return false;
     return element.parentNode === siblingNode.parentNode;
-}
-// makeDom_动态计算应该显示的基准
-export function asdfasdfsaf () {
-    (function (win, doc) {
-        function change () {
-            doc.documentElement.style.fontSize = 100 * doc.documentElement.clientWidth / 320 + 'px';
-        }
-        change();
-        win.addEventListener('resize', change, false);
-    })(window, document);
-}
-export function asdfasdfsaf2 () {
-    var phoneWidth = parseInt(window.screen.width);
-    var phoneScale = phoneWidth / 640;
-    document.write('<meta name="viewport" content="width=640,initial-scale=' + phoneScale + ',minimum-scale=' + phoneScale + ',maximum-scale="+phoneScale+",target-densitydpi=device-dpi">');
 }

@@ -10,7 +10,6 @@ export default makeMultiLevelRoute({
         {power: 'expv1', path: '004cname', title: '组件 name 属性'},
         {power: 'expv1', path: '003eslintignore', title: 'Eslint 指定校验目录'},
         {power: 'expv1', path: '005oldTable', title: '原生表格 lodash尝试'},
-        {power: 'expv1', path: '008tableNoData', title: '表格-无数据'},
         {power: 'expv1', path: '008tableObj', title: '表格-超集中(废弃)'},
         {power: 'expv1', path: '009tableMixin', title: '表格-mixin(废弃)'},
         {power: 'expv1', path: '024validate', title: '表单所有校验方式'},

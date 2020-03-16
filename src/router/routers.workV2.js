@@ -17,7 +17,9 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-0', path: '205tableV10', title: '表格v10模版规范', hideMenu: true},
                 {power: 'workv2-0', path: '205tableV10@bro', title: '表格v10兄弟页面', hideMenu: true},
                 {power: 'workv2-0', path: '205tableV11', title: '表格v11模版规范'},
-                {power: 'workv2-0', path: '205tableV12', title: '表格v12模版规范'},
+                {power: 'workv2-0', path: '205tableV12', title: '表格v12模版规范(疑)'},
+                {power: 'workv2-0', path: '205tableV13', title: '表格v13模版规范'},
+                {power: 'workv2-0', path: '205tableNoData', title: '表格-无数据'},
                 {power: 'workv2-0', path: '205tableTab', title: '表格v10 Tab规范'},
                 {power: 'workv2-0', path: '205tableWithIcon', title: '表格v10应用小图标'},
                 {power: 'workv2-0', path: '205tableMaxHeight', title: '表格v10高度限定'},
@@ -29,6 +31,7 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-0', path: '207fromV10', title: '表单v10规范'},
                 {power: 'workv2-0', path: '207fromV10$edit', title: '表单v10规范子页面', hideMenu: true},
                 {power: 'workv2-0', path: '207validateInput', title: '表单v10输入框'},
+                {power: 'workv2-2', path: '207vueInputTrimSpace', title: '输入框小心写空格'},
                 {power: 'workv2-0', path: '207validateNumber', title: '表单v1数字框'},
                 {power: 'workv2-0', path: '207validateFile', title: '表单v10文件上传框'},
                 {power: 'workv2-0', path: '207validateOther', title: '表单v10其他框'},
@@ -78,7 +81,6 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '226vueConfigJs', title: 'vue.config.js'},
                 {power: 'workv2-2', path: '226vueVision', title: 'Node 运行时编译'},
                 {power: 'workv2-2', path: '226webpackPluginFilemanager', title: 'filemanager-w-p'},
-                {power: 'workv2-2', path: '227vueInputTrimSpace', title: '输入框小心写空格'},
                 {power: 'workv2-2', path: '228fireEvent', title: '尝试触发事件'},
                 {power: 'workv2-2', path: '229twoLogin', title: '两个角色登录入口'}
             ]

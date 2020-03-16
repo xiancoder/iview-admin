@@ -15,7 +15,7 @@
                     </Option>
                 </Select>
             </div>
-            <Table :loading="loading" :columns="columns" :data="tableData" ref="selection" max-height="auto"
+            <Table border :loading="loading" :columns="columns" :data="tableData" ref="selection" max-height="auto"
                 @on-sort-change="hendleSort">
             </Table>
             <div class="tableFooter">

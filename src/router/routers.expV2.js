@@ -12,7 +12,11 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-12345', path: '001weixingzhreadme', title: 'WX公众号开发必读'},
                 {power: 'expv2-12345', path: '002eslint', title: 'EsLint 校验规则'},
                 {power: 'expv2-12345', path: '003weixingzhkaifa', title: 'WX公众号简单流程'},
-                {power: 'expv2-12345', path: '006jsx', title: 'Jsx 写法尝试'}
+                {power: 'expv2-12345', path: '005panglu', title: '旁路系统介绍'},
+                {power: 'expv2-12345', path: '006jsx', title: 'Jsx 写法尝试'},
+                {power: 'expv2-12345', path: '007douyin', title: '抖音 logo css'},
+                {power: 'expv2-12345', path: '008qianduanzhidao', title: '前端之道'},
+                {power: 'expv2-12345', path: '009zujiantongxin', title: '组建通信'}
             ]
         }, {
             path: 'exp01', title: '卷零壹', icon: 'md-camera',
@@ -105,6 +109,7 @@ export default makeMultiLevelRoute({
         }, {
             path: 'exp08', title: '卷零捌', icon: 'md-game-controller-b',
             children: [
+                {power: 'expv2-67890', path: '081nrnr', title: '回车、换行的区别'},
                 {power: 'expv2-67890', path: '082download', title: 'JS  控制下载文档'},
                 {power: 'expv2-67890', path: '084public', title: '请求 public 内容'},
                 {power: 'expv2-67890', path: '085$set', title: 'vue $set 的用法'},
@@ -151,6 +156,8 @@ export default makeMultiLevelRoute({
         }, {
             path: 'exp12', title: '卷拾贰', icon: 'md-game-controller-b',
             children: [
+                {power: 'expv2-22345', path: '121design', title: '前端和设计的交流'},
+                {power: 'expv2-22345', path: '122bugHappen', title: '出乎意料的 bug'},
                 {power: 'expv2-22345', path: '123gujia', title: '占位符骨架屏'},
                 {power: 'expv2-22345', path: '127enterLeave', title: '路由进入退出钩子'},
                 {power: 'expv2-22345', path: '129pasteImg', title: '粘贴图片'}
