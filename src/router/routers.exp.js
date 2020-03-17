@@ -36,7 +36,6 @@ export default makeMultiLevelRoute({
         {power: 'expv1', path: '104echart', title: 'echart'},
         {power: 'expv1', path: '106yiyongxing', title: '易用性描述'},
         {power: 'expv1', path: '107kaifakunjing', title: '需求开发|困境'},
-        {power: 'expv1', path: '108axios', title: 'Axios详解'},
         {power: 'expv1', path: '111name', title: '命名法'},
         {power: 'expv1', path: '117rule', title: '规范想法'},
         {power: 'expv1', path: '121youku', title: '优酷视频'},

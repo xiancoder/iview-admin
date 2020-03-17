@@ -30,6 +30,7 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-0', path: '205tableV20', title: '表格v20尝试'},
                 {power: 'workv2-0', path: '207fromV10', title: '表单v10规范'},
                 {power: 'workv2-0', path: '207fromV10$edit', title: '表单v10规范子页面', hideMenu: true},
+                {power: 'workv2-0', path: '207axios', title: 'Axios 详解'},
                 {power: 'workv2-0', path: '207validateInput', title: '表单v10输入框'},
                 {power: 'workv2-2', path: '207vueInputTrimSpace', title: '输入框小心写空格'},
                 {power: 'workv2-0', path: '207validateNumber', title: '表单v1数字框'},
@@ -116,7 +117,15 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '250csgzh', title: '微信公众测试号踩坑'},
                 {power: 'workv2-2', path: '251xcxly', title: '微信小程序和蓝牙'},
                 {power: 'workv2-2', path: '252gzhdl', title: '微信各种授权登录'},
-                {power: 'workv2-2', path: '253xcxsp', title: '微信小程序视频'}
+                {power: 'workv2-2', path: '253xcxsp', title: '微信小程序视频'},
+                {power: 'workv2-2', path: '254gzhzdycd', title: '公众号自定义菜单'},
+                {power: 'workv2-2', path: '255xcxkeng', title: '小程序开发踩坑'}
+            ]
+        },
+        {
+            path: 'work06util', title: '卷伍-微信篇', icon: 'md-heart',
+            children: [
+                {power: 'workv2-2', path: '260dateUtil', title: '日期常用方法列举'}
             ]
         }
     ]

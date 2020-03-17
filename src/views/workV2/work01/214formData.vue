@@ -11,7 +11,15 @@
                     <li>异步上传文件</li>
                 </ul>
                 <hr />
-                <p>注: 通过 FormData.append()方法赋给字段的值若是数字会被自动转换为字符(字段的值可以是一个Blob对象,一个File对象,或者一个字符串,剩下其他类型的值都会被自动转换成字符串).</p>
+                <p>axios 默认是 Payload 格式数据请求，但有时候后端接收参数要求必须是 Form Data 格式的，所以我们就得进行转换。</p>
+                <p>Payload 和 Form Data 的主要设置是根据请求头的 Content-Type 的值来的。</p>
+                <p>Payload ----- Content-Type: 'application/json; charset=utf-8'</p>
+                <p>Form Data --- Content-Type: 'application/x-www-form-urlencoded'</p>
+                <p></p>
+                <img src="/static/img.formdata/1.png" style="max-width:100%" />
+                <hr />
+                <p>注: 通过 FormData.append()方法赋给字段的值若是数字会被自动转换为字符</p>
+                <p>(字段的值可以是一个Blob对象,一个File对象,或者一个字符串,剩下其他类型的值都会被自动转换成字符串).</p>
                 <Upload :before-upload="handleUpload" multiple action="">
                      <Button icon="ios-cloud-upload-outline">添加附件</Button>
                 </Upload>
@@ -23,6 +31,7 @@
                 </div>
                 <hr />
                 <Button @click="submit()">请上传多个文件 / 尝试发送请求</Button>
+                <Button @click="submitNew()">请上传多个文件 / 尝试发送请求 / 新的代码规范</Button>
                 <ul>
                     <li>id: 123</li>
                     <li>name: hahaha</li>
@@ -47,13 +56,21 @@
                     // ---------------------
                     fileList: [], // 文件列表
                     reviewList: [] // 文件bs64列表
-                    this.$api.unit.formData({
-                        id: '123',
-                        name: 'hahaha',
-                        files: this.fileList
-                    }).then(res => {
-                        console.log(res)
-                    })
+                    // ---------------------
+                    formDataNew ({id, name, files}) { // 测试formdata表单格式
+                        id = id || 0
+                        name = name || ''
+                        return new Promise((resolve, reject) => {
+                            axios.request({
+                    formData ({id, name, files}) { // 测试formdata表单格式
+                        return new Promise((resolve, reject) => {
+                            let fd = new FormData()
+                            fd.append('id', id || null)
+                            fd.append('name', name || '')
+                            if (files && files[0]) fd.append('file1', files[0])
+                            if (files && files[1]) fd.append('file2', files[1])
+                            if (files && files[2]) fd.append('file3', files[2])
+                            axios.request({
                 </script>
             </div>
             <div class="blogFooter">
@@ -143,9 +160,18 @@ export default {
         },
         submit () {
             this.$api.unit.formData({
-                id: '123',
-                name: 'hahaha',
-                files: this.fileList
+                'id': '123',
+                'name': 'hahaha',
+                'files': this.fileList
+            }).then(res => {
+                console.log(res)
+            })
+        },
+        submitNew () {
+            this.$api.unit.formDataNew({
+                'id': '123',
+                'name': 'hahaha',
+                'files': this.fileList
             }).then(res => {
                 console.log(res)
             })

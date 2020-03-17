@@ -45,6 +45,30 @@ export default {
             })
         })
     },
+    formDataNew ({id, name, files}) { // 测试formdata表单格式
+        id = id || 0
+        name = name || ''
+        return new Promise((resolve, reject) => {
+            axios.request({
+                method: 'post',
+                url: 'api/task/found',
+                data: {id, name, 'file[]': files},
+                headers: { 'Content-Type': 'multipart/form-data' },
+                timeout: 5 * 60 * 1e3
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.res === 1) {
+                    success(res.msg)
+                    resolve()
+                } else {
+                    error(res.msg)
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 中止操作
+            })
+        })
+    },
     formData ({id, name, files}) { // 测试formdata表单格式
         return new Promise((resolve, reject) => {
             let fd = new FormData()
@@ -60,7 +84,7 @@ export default {
                 url: 'api/task/found',
                 data: fd,
                 headers: { 'Content-Type': 'multipart/form-data' },
-                timeout: 300000
+                timeout: 5 * 60 * 1e3
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data
                 if (res && res.data && res.data.res === 1) {

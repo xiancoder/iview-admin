@@ -1,43 +1,105 @@
 // 不要直接使用moment 在这里套一层
+// liuyp 2020年3月17日17:39:46 权重排序
 import moment from 'moment'
 
-// 当前时间
 // =====================
-// liuyp 2019年6月11日09:59:51 moment逻辑
-// _bs( moment() ,result_flag_here
-// _bs( moment(new Date()) ,result_flag_here
-// _bs( moment(new Date(2017,1,1)).format('YYYY-MM-DD') == '2017-02-01' ,result_flag_here
-// _bs( moment([2017,1,1]).format('YYYY-MM-DD') == '2017-02-01' ,result_flag_here
-// _bs( moment(new Date(2017,1-1,1)).format('YYYY-MM-DD') == '2017-01-01' ,result_flag_here
-// _bs( moment([2017,1-1,1]).format('YYYY-MM-DD') == '2017-01-01' ,result_flag_here
-// 多种格式给moment赋值
+// 日期格式化
+// @param O {date} 日期
+// @param T {string} 格式字符串
 // =====================
-// liuyp 2019年6月11日09:59:51 moment逻辑
-// _bs( moment("29-06-1995", ["MM-DD-YYYY", "DD-MM", "DD-MM-YYYY"]) ,result_flag_here
-// _bs( moment("05-06-1995", ["MM-DD-YYYY", "DD-MM-YYYY"]) ,result_flag_here
-// 深拷贝
+// liuyp 2019年9月20日11:25:25
+export const dateFormater = (O, T) => { // 略过时 但经典可用
+    let D = new Date(O.getTime())
+    T = T || 'yyyy-MM-dd' // 专门为项目服务的'YYYY-MM-DD'格式
+    let o = {
+        'M+': D.getMonth() + 1,
+        'd+': D.getDate(),
+        'h+': D.getHours() % 12 === 0 ? 12 : D.getHours() % 12,
+        'H+': D.getHours(),
+        'm+': D.getMinutes(),
+        's+': D.getSeconds(),
+        'q+': Math.floor((D.getMonth() + 3) / 3),
+        'S': D.getMilliseconds()
+    }
+    let week = { '0': '\u65e5', '1': '\u4e00', '2': '\u4e8c', '3': '\u4e09', '4': '\u56db', '5': '\u4e94', '6': '\u516d' }
+    if (/(y+)/.test(T)) { T = T.replace(RegExp.$1, (D.getFullYear().toString().substr(4 - RegExp.$1.length))) }
+    if (/(E+)/.test(T)) { T = T.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? '\u661f\u671f' : '\u5468') : '') + week[D.getDay().toString()]) }
+    for (let k in o) {
+        if (new RegExp('(' + k + ')').test(T)) {
+            T = T.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+        }
+    }
+    return T
+}
+export const dateFormat = (dataStr, pattern) => { // moment 写法
+    pattern = pattern || 'YYYY-MM-DD' // 专门为项目服务的'YYYY-MM-DD'格式
+    return moment(dataStr).format(pattern);
+}
+export function sevenRange (D) { // 获取今天之前一周时间的字符串数组
+    const date = D || new Date()
+    const today = dateFormat(date)
+    const last7 = dateFormat(dateSub(date, 6, 'd'))
+    return [last7, today];
+}
+export function todayMouth (D) { // 获取今天年月 YYYY-MM
+    const date = D || new Date()
+    return dateFormat(date, 'YYYY-MM')
+}
+
 // =====================
-// liuyp 2019年6月11日09:59:51 moment逻辑
-// _bs( moment(moment([2012])) ,result_flag_here
-// _bs( moment([2012]).clone() ,result_flag_here
-// 倒计时
+// 日期的加减法
+// @param D {date} 日期
+// @param N {int} 数量
+// @param S {string} 单位
 // =====================
-// liuyp 2019年6月11日09:59:51 moment逻辑
-// _bs( moment([2007, 0, 29]).fromNow() ,result_flag_here
-// _bs( moment([2007, 0, 29]).fromNow(true) ,result_flag_here
-// 计算一个月有多少天
+// liuyp 2019年9月20日11:25:25
+export const dateAdd = (D, N, S) => {
+    let s = 0
+    let m = 0
+    let h = 0
+    let d = 0
+    let w = 0
+    let q = 0
+    let M = 0
+    let y = 0
+    if (S === 's') {
+        s = N
+    }
+    if (S === 'm') {
+        m = N
+    }
+    if (S === 'h') {
+        h = N
+    }
+    if (S === 'd') {
+        d = N
+    }
+    if (S === 'w') {
+        w = N
+    }
+    if (S === 'q') {
+        q = N
+    }
+    if (S === 'M') {
+        M = N
+    }
+    if (S === 'y') {
+        y = N
+    }
+    return new Date(
+        D.getFullYear() + y,
+        D.getMonth() + M + q * 3,
+        D.getDate() + d + w * 7,
+        D.getHours() + h,
+        D.getMinutes() + m,
+        D.getSeconds() + s
+    )
+}
+export const dateSub = (D, N, S) => {
+    return dateAdd(D, -1 * N, S)
+}
+
 // =====================
-// liuyp 2019年6月11日09:59:51 moment逻辑
-// _bs( moment("2012-02", "YYYY-MM").daysInMonth() ,result_flag_here
-// _bs( moment("2012-01", "YYYY-MM").daysInMonth() ,result_flag_here
-// 计算某天星期几
-// =====================
-// liuyp 2019年6月11日09:59:51 moment逻辑
-// _bs( moment().day() ,result_flag_here
-// _bs( moment().day(-7) ,result_flag_here
-// _bs( moment().day(7) ,result_flag_here
-// _bs( moment().day(10) ,result_flag_here
-// _bs( moment().day(24) ,result_flag_here
 // 星座
 // =====================
 // liuyp 2019年1月9日11:00:26 收录
@@ -52,6 +114,8 @@ export const date2xz = function (D) {
     if ((100 * m + d) >= z[0] || (100 * m + d) < z[1]) { i = 0 } else { for (i = 1; i < 12; i++) { if ((100 * m + d) >= z[i] && (100 * m + d) < z[i + 1]) break } }
     return x.substring(2 * i, 2 * i + 2)
 }
+
+// =====================
 // 天干地支
 // =====================
 // liuyp 2019年1月9日11:00:26
@@ -62,6 +126,8 @@ export const date2gz = function (D) {
         '\u5b50\u4e11\u5bc5\u536f\u8fb0\u5df3\u5348\u672a\u7533\u9149\u620c\u4ea5'];
     return GZDict[0].charAt(i % 10) + GZDict[1].charAt(i % 12)
 }
+
+// =====================
 // 属相
 // =====================
 // liuyp 2019年1月9日11:00:26
@@ -70,6 +136,8 @@ export const date2sx = function (D) {
     let SXDict = '\u9f20\u725b\u864e\u5154\u9f99\u86c7\u9a6c\u7f8a\u7334\u9e21\u72d7\u732a';
     return SXDict.charAt((y - 4) % 12)
 }
+
+// =====================
 // 农历时间
 // =====================
 // liuyp 2019年1月9日11:00:26
@@ -135,6 +203,8 @@ export const date2cnDate = function (D) {
     }
     return GetLunarDay(yy, mm, dd)
 }
+
+// =====================
 // 二十四节气(注节气指的是某一天)
 // =====================
 // liuyp 2019年1月9日11:00:26
@@ -158,6 +228,8 @@ export const date2jieqi = function (D) {
     if (tmp2 === dd) solarTerms = solarTerm[mm * 2];
     return solarTerms;
 }
+
+// =====================
 // 判断是否闰年
 // =====================
 // liuyp 2019年1月9日11:00:26
@@ -166,9 +238,8 @@ export const date2isLeapYear = function (D) {
     let year = D.getFullYear();
     return !!((year & 3) === 0 && (year % 100 || (year % 400 === 0 && year)))
 }
-export const isLeapYear = function (D) {
-    return moment(D).isLeapYear()
-}
+
+// =====================
 // 完整输出 "丙申(猴)年 (闰)五月廿"
 // =====================
 // liuyp 2019年1月9日11:00:26
@@ -178,61 +249,75 @@ export const date2all = function (D) {
     date2cnDate(D) +
     (date2jieqi(D) ? ' ' + date2jieqi(D) : ' \u65e0\u8282\u6c14');
 }
-// 日期格式化
-// @param O {date} 日期
-// @param T {string} 格式字符串
+
+// =====================
+// 计算其归属的计薪周期区间
+// @param date {date} 根据日期
+// @desc 获取今天归属哪个计薪周期 上个月26到这个月25 x 为今天月份 --- 八月
+// @desc 如果今天日期大于等于26 x加一月 --- 不大于
+// @desc x --- 八月计薪周期
+// @desc [ x的上一月26, x月25 ]  --- 七月26到八月25
 // =====================
 // liuyp 2019年9月20日11:25:25
-/* export const dateFormater = (O, T) => { // 可用 但过时
-    let D = new Date(O.getTime())
-    T = T || 'yyyy-MM-dd HH:mm:ss'
-    let o = {
-        'M+': D.getMonth() + 1,
-        'd+': D.getDate(),
-        'h+': D.getHours() % 12 === 0 ? 12 : D.getHours() % 12,
-        'H+': D.getHours(),
-        'm+': D.getMinutes(),
-        's+': D.getSeconds(),
-        'q+': Math.floor((D.getMonth() + 3) / 3),
-        'S': D.getMilliseconds()
-    }
-    let week = { '0': '\u65e5', '1': '\u4e00', '2': '\u4e8c', '3': '\u4e09', '4': '\u56db', '5': '\u4e94', '6': '\u516d' }
-    if (/(y+)/.test(T)) { T = T.replace(RegExp.$1, (D.getFullYear().toString().substr(4 - RegExp.$1.length))) }
-    if (/(E+)/.test(T)) { T = T.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? '\u661f\u671f' : '\u5468') : '') + week[D.getDay().toString()]) }
-    for (let k in o) {
-        if (new RegExp('(' + k + ')').test(T)) {
-            T = T.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
-        }
-    }
-    return T
-} */
-export const dateFormater = (dataStr, pattern) => {
-    pattern = pattern || 'YYYY-MM-DD HH:mm:ss'
-    return moment(dataStr).format(pattern);
+export const computeRange = (date) => { // 解释一下 moment对象和普通date对象不同
+    date = moment(date || new Date()) // 所以参数不管是何种对象 都转为moment对象来处理
+    let startDate = moment(date)
+    let endDate = moment(date)
+    if (date.date() >= 26) { endDate.add(1, 'months') } else { startDate.subtract(1, 'months') }
+    return [
+        moment(startDate).format('YYYY-MM-26'),
+        moment(endDate).format('YYYY-MM-25')
+    ]
 }
-export const dateFormat = (dataStr, pattern) => { // 专门为项目服务的'YYYY-MM-DD'格式
-    pattern = pattern || 'YYYY-MM-DD'
-    return moment(dataStr).format(pattern);
-}
-// 获取今天之前一周时间的字符串数组
+// 计算其归属的计薪周期区间
+// @param yearNum {int} 根据年份月份
+// @param mouthNum {int} 根据年份月份
 // =====================
-// liuyp 2019年9月30日15:16:59
-/* export function sevenRange () { // 放弃 未测试 也许更好
-    const today = moment().format('YYYY-MM-DD');
-    const last7 = moment().subtract(6,'days').format('YYYY-MM-DD');
-    return [last7, today];
-} */
-export function sevenRange (D) {
-    const date = D || new Date()
-    const today = dateFormat(date)
-    const last7 = dateFormat(dateSub(date, 6, 'd'))
-    return [last7, today];
+// liuyp 2019年9月20日11:25:25
+export const computeRangeByMouth = (yearNum, mouthNum) => {
+    const date = new Date(yearNum, mouthNum - 1, 1)
+    return computeRange(date)
 }
-// 获取今天年月 YYYY-MM
-export function todayMouth (D) {
-    const date = D || new Date()
-    return dateFormat(date, 'YYYY-MM')
-}
+
+// ===================== // ===================== // =====================// ===================== // ===================== // =====================
+// =====================
+// 当前时间
+// =====================
+// liuyp 2019年6月11日09:59:51 moment逻辑
+// _bs( moment() ,result_flag_here
+// _bs( moment(new Date()) ,result_flag_here
+// _bs( moment(new Date(2017,1,1)).format('YYYY-MM-DD') == '2017-02-01' ,result_flag_here
+// _bs( moment([2017,1,1]).format('YYYY-MM-DD') == '2017-02-01' ,result_flag_here
+// _bs( moment(new Date(2017,1-1,1)).format('YYYY-MM-DD') == '2017-01-01' ,result_flag_here
+// _bs( moment([2017,1-1,1]).format('YYYY-MM-DD') == '2017-01-01' ,result_flag_here
+// 多种格式给moment赋值
+// =====================
+// liuyp 2019年6月11日09:59:51 moment逻辑
+// _bs( moment("29-06-1995", ["MM-DD-YYYY", "DD-MM", "DD-MM-YYYY"]) ,result_flag_here
+// _bs( moment("05-06-1995", ["MM-DD-YYYY", "DD-MM-YYYY"]) ,result_flag_here
+// 深拷贝
+// =====================
+// liuyp 2019年6月11日09:59:51 moment逻辑
+// _bs( moment(moment([2012])) ,result_flag_here
+// _bs( moment([2012]).clone() ,result_flag_here
+// 倒计时
+// =====================
+// liuyp 2019年6月11日09:59:51 moment逻辑
+// _bs( moment([2007, 0, 29]).fromNow() ,result_flag_here
+// _bs( moment([2007, 0, 29]).fromNow(true) ,result_flag_here
+// 计算一个月有多少天
+// =====================
+// liuyp 2019年6月11日09:59:51 moment逻辑
+// _bs( moment("2012-02", "YYYY-MM").daysInMonth() ,result_flag_here
+// _bs( moment("2012-01", "YYYY-MM").daysInMonth() ,result_flag_here
+// 计算某天星期几
+// =====================
+// liuyp 2019年6月11日09:59:51 moment逻辑
+// _bs( moment().day() ,result_flag_here
+// _bs( moment().day(-7) ,result_flag_here
+// _bs( moment().day(7) ,result_flag_here
+// _bs( moment().day(10) ,result_flag_here
+// _bs( moment().day(24) ,result_flag_here
 
 // 时间戳转换日期
 // 防止ios出现日期bug 统一后台来的时间戳
@@ -321,84 +406,6 @@ export const dateObj = (arg) => {
     let min = tArr[1] ? tArr[1] : 0
     let sec = tArr[2] ? tArr[2] : 0
     return new Date(year, month, day, hour, min, sec)
-}
-// 日期的加减法
-// @param D {date} 日期
-// @param N {int} 数量
-// @param S {string} 单位
-// =====================
-// liuyp 2019年9月20日11:25:25
-export const dateAdd = (D, N, S) => {
-    let s = 0
-    let m = 0
-    let h = 0
-    let d = 0
-    let w = 0
-    let q = 0
-    let M = 0
-    let y = 0
-    if (S === 's') {
-        s = N
-    }
-    if (S === 'm') {
-        m = N
-    }
-    if (S === 'h') {
-        h = N
-    }
-    if (S === 'd') {
-        d = N
-    }
-    if (S === 'w') {
-        w = N
-    }
-    if (S === 'q') {
-        q = N
-    }
-    if (S === 'M') {
-        M = N
-    }
-    if (S === 'y') {
-        y = N
-    }
-    return new Date(
-        D.getFullYear() + y,
-        D.getMonth() + M + q * 3,
-        D.getDate() + d + w * 7,
-        D.getHours() + h,
-        D.getMinutes() + m,
-        D.getSeconds() + s
-    )
-}
-export const dateSub = (D, N, S) => {
-    return dateAdd(D, -1 * N, S)
-}
-// 计算其归属的计薪周期区间
-// @param date {date} 根据日期
-// @desc 获取今天归属哪个计薪周期 上个月26到这个月25 x 为今天月份 --- 八月
-// @desc 如果今天日期大于等于26 x加一月 --- 不大于
-// @desc x --- 八月计薪周期
-// @desc [ x的上一月26, x月25 ]  --- 七月26到八月25
-// =====================
-// liuyp 2019年9月20日11:25:25
-export const computeRange = (date) => { // 解释一下 moment对象和普通date对象不同
-    date = moment(date || new Date()) // 所以参数不管是何种对象 都转为moment对象来处理
-    let startDate = moment(date)
-    let endDate = moment(date)
-    if (date.date() >= 26) { endDate.add(1, 'months') } else { startDate.subtract(1, 'months') }
-    return [
-        moment(startDate).format('YYYY-MM-26'),
-        moment(endDate).format('YYYY-MM-25')
-    ]
-}
-// 计算其归属的计薪周期区间
-// @param yearNum {int} 根据年份月份
-// @param mouthNum {int} 根据年份月份
-// =====================
-// liuyp 2019年9月20日11:25:25
-export const computeRangeByMouth = (yearNum, mouthNum) => {
-    const date = new Date(yearNum, mouthNum - 1, 1)
-    return computeRange(date)
 }
 // 天数转年月日数
 // @param d {int} 天数

@@ -76,20 +76,46 @@ Vue.prototype.$get = function (url, params) { // 将axios 的 get 方法，绑�
 }
 
 axios.defaults.headers = { 'X-Requested-With': 'XMLHttpRequest' } // 设置默认请求头，如果不需要可以取消这一步
-axios.defaults.timeout = 20000 // 请求超时的时间限制
+axios.defaults.timeout = 20 * 1e3 // 请求超时的时间限制
 
 axios.interceptors.request.use( // 开始设置请求 发起的拦截处理
     config => { // config 代表发起请求的参数的实体
-        const token = Store.state.admin.token
-        config.headers['token'] = token || ''
+        // const token = Store.state.admin.token // 标识当前用户的sessionid 当然不用也行
+        // config.headers['token'] = token || ''
+
         let url = config.url
         if (!/^http|^\//.test(url)) url = '/' + url // 当请求为index.html时 斜杠可以保证请求的是根目录
         config.url = url.replace(/[\/\\]/g, '/')
-        if (config.method.toLowerCase() === 'get') {
+
+        if (config.method.toLowerCase() === 'get') { // 整理参数 省得两个传参变量傻傻分不清楚
             config.params = config.params || config.data
         } else { // 适用于这些请求方法 'PUT', 'POST', 和 'PATCH'
             config.data = config.data || config.params
         }
+        console.log(config.headers['Content-Type'], Object.prototype.toString.call(config.data))
+        // FormData简单化
+        if (config.headers['Content-Type'] === 'multipart/form-data' &&
+            Object.prototype.toString.call(config.data) !== '[object FormData]'
+        ) {
+            const { data } = config
+            let fd = new FormData()
+            for (const key in data) {
+                if (data.hasOwnProperty(key)) {
+                    // 若为单图上传，则将File类型保存到字段名`file`中即可。
+                    // 若为多图上传，则需将File类型的数据数组保存在`file[]`形式的字段内。
+                    // liuyp - file[]格式不大符合我的想法 file[]将被替换未file1file2file3...
+                    if (key.endsWith('[]')) {
+                        data[key].forEach((item, index) => {
+                            fd.append(key.replace('[]', index + 1), item)
+                        })
+                    } else {
+                        fd.append(key, data[key])
+                    }
+                }
+            }
+            config.data = fd
+        }
+
         return config
     },
     error => { return Promise.reject(error) }
