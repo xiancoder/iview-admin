@@ -4,86 +4,125 @@
             <div class="blogTitle">函数</div>
             <Divider orientation="right">ES6学习</Divider>
             <div class="blogContent" v-highlight>
-                <p>与解构赋值默认值结合使用</p>
-                <p>参数默认值可以与解构赋值的默认值，结合起来使用。</p>
-                <p>function foo({x, y = 5}) {</p>
-                <p>    console.log(x, y);</p>
-                <p>}</p>
-                <p>foo({}) // undefined 5</p>
-                <p>foo({x: 1}) // 1 5</p>
-                <p>foo({x: 1, y: 2}) // 1 2</p>
-                <p>foo() // TypeError: Cannot read property 'x' of undefined</p>
-                <p>上面代码只使用了对象的解构赋值默认值，没有使用函数参数的默认值。只有当函数foo的参数是一个对象时，变量x和y才会通过解构赋值生成。如果函数foo调用时没提供参数，变量x和y就不会生成，从而报错。通过提供函数参数的默认值，就可以避免这种情况。</p>
-                <p>function foo({x, y = 5} = {}) {</p>
-                <p>    console.log(x, y);</p>
-                <p>}</p>
-                <p>foo() // undefined 5</p>
-                <p>上面代码指定，如果没有提供参数，函数foo的参数默认为一个空对象。</p>
-                <p>下面是另一个解构赋值默认值的例子。</p>
-                <p>function fetch(url, { body = '', method = 'GET', headers = {} }) {</p>
-                <p>    console.log(method);</p>
-                <p>}</p>
-                <p>fetch('http://example.com', {})</p>
-                <p>// "GET"</p>
-                <p>fetch('http://example.com')</p>
-                <p>// 报错</p>
-                <p>上面代码中，如果函数fetch的第二个参数是一个对象，就可以为它的三个属性设置默认值。这种写法不能省略第二个参数，如果结合函数参数的默认值，就可以省略第二个参数。这时，就出现了双重默认值。</p>
-                <p>function fetch(url, { body = '', method = 'GET', headers = {} } = {}) {</p>
-                <p>    console.log(method);</p>
-                <p>}</p>
-                <p>fetch('http://example.com')</p>
-                <p>// "GET"</p>
-                <p>上面代码中，函数fetch没有第二个参数时，函数参数的默认值就会生效，然后才是解构赋值的默认值生效，变量method才会取到默认值GET。</p>
-                <p>作为练习，请问下面两种写法有什么差别？</p>
-                <p>// 写法一</p>
-                <p>function m1({x = 0, y = 0} = {}) {</p>
-                <p>    return [x, y];</p>
-                <p>}</p>
-                <p>// 写法二</p>
-                <p>function m2({x, y} = { x: 0, y: 0 }) {</p>
-                <p>    return [x, y];</p>
-                <p>}</p>
-                <p>上面两种写法都对函数的参数设定了默认值，区别是写法一函数参数的默认值是空对象，但是设置了对象解构赋值的默认值；写法二函数参数的默认值是一个有具体属性的对象，但是没有设置对象解构赋值的默认值。</p>
-                <p>// 函数没有参数的情况</p>
-                <p>m1() // [0, 0]</p>
-                <p>m2() // [0, 0]</p>
-                <p>// x 和 y 都有值的情况</p>
-                <p>m1({x: 3, y: 8}) // [3, 8]</p>
-                <p>m2({x: 3, y: 8}) // [3, 8]</p>
-                <p>// x 有值，y 无值的情况</p>
-                <p>m1({x: 3}) // [3, 0]</p>
-                <p>m2({x: 3}) // [3, undefined]</p>
-                <p>// x 和 y 都无值的情况</p>
-                <p>m1({}) // [0, 0];</p>
-                <p>m2({}) // [undefined, undefined]</p>
-                <p>m1({z: 3}) // [0, 0]</p>
-                <p>m2({z: 3}) // [undefined, undefined]</p>
-                <p>参数默认值的位置</p>
-                <p>通常情况下，定义了默认值的参数，应该是函数的尾参数。因为这样比较容易看出来，到底省略了哪些参数。如果非尾部的参数设置默认值，实际上这个参数是没法省略的。</p>
-                <p>// 例一</p>
-                <p>function f(x = 1, y) {</p>
-                <p>    return [x, y];</p>
-                <p>}</p>
-                <p>f() // [1, undefined]</p>
-                <p>f(2) // [2, undefined])</p>
-                <p>f(, 1) // 报错</p>
-                <p>f(undefined, 1) // [1, 1]</p>
-                <p>// 例二</p>
-                <p>function f(x, y = 5, z) {</p>
-                <p>    return [x, y, z];</p>
-                <p>}</p>
-                <p>f() // [undefined, 5, undefined]</p>
-                <p>f(1) // [1, 5, undefined]</p>
-                <p>f(1, ,2) // 报错</p>
-                <p>f(1, undefined, 2) // [1, 5, 2]</p>
-                <p>上面代码中，有默认值的参数都不是尾参数。这时，无法只省略该参数，而不省略它后面的参数，除非显式输入undefined。</p>
-                <p>如果传入undefined，将触发该参数等于默认值，null则没有这个效果。</p>
-                <p>function foo(x = 5, y = 6) {</p>
-                <p>    console.log(x, y);</p>
-                <p>}</p>
-                <p>foo(undefined, null)</p>
-                <p>// 5 null</p>
-                <p>上面代码中，x参数对应undefined，结果触发了默认值，y参数等于null，就没有触发默认值。</p>
+                <Row :gutter="20">
+                    <Col span="12">
+                        <p>与解构赋值默认值结合使用</p>
+                        <p>参数默认值可以与解构赋值的默认值，结合起来使用。</p>
+                        <script type="text/js">
+                            function foo({x, y = 5}) {
+                                console.log(x, y);
+                            }
+                            foo({}) // undefined 5
+                            foo({x: 1}) // 1 5
+                            foo({x: 1, y: 2}) // 1 2
+                            foo() // TypeError: Cannot read property 'x' of undefined
+                        </script>
+                        <p>上面代码只使用了对象的解构赋值默认值，没有使用函数参数的默认值。</p>
+                        <p>只有当函数foo的参数是一个对象时，变量x和y才会通过解构赋值生成。如果函数foo调用时没提供参数，变量x和y就不会生成，从而报错。</p>
+                        <p>通过提供函数参数的默认值，就可以避免这种情况。</p>
+                        <script type="text/js">
+                            function foo({x, y = 5} = {}) {
+                                console.log(x, y);
+                            }
+                            foo() // undefined 5
+                        </script>
+                        <p>上面代码指定，如果没有提供参数，函数foo的参数默认为一个空对象。</p>
+                        <p>下面是另一个解构赋值默认值的例子。</p>
+                        <script type="text/js">
+                            function fetch(url, { body = '', method = 'GET', headers = {} }) {
+                                console.log(method);
+                            }
+                            fetch('http://example.com', {})
+                            // "GET"
+                            fetch('http://example.com')
+                            // 报错
+                        </script>
+                        <p>上面代码中，如果函数fetch的第二个参数是一个对象，就可以为它的三个属性设置默认值。</p>
+                        <p>这种写法不能省略第二个参数，如果结合函数参数的默认值，就可以省略第二个参数。</p>
+                        <p>这时，就出现了双重默认值。</p>
+                        <script type="text/js">
+                            function fetch(url, { body = '', method = 'GET', headers = {} } = {}) {
+                                console.log(method);
+                            }
+                            fetch('http://example.com')
+                            // "GET"
+                        </script>
+                        <p>上面代码中，函数fetch没有第二个参数时，函数参数的默认值就会生效，然后才是解构赋值的默认值生效，变量method才会取到默认值GET。</p>
+                        <p>作为练习，请问下面两种写法有什么差别？</p>
+                        <script type="text/js">
+                            // 写法一
+                            function m1({x = 0, y = 0} = {}) {
+                                return [x, y];
+                            }
+                            // 写法二
+                            function m2({x, y} = { x: 0, y: 0 }) {
+                                return [x, y];
+                            }
+                        </script>
+                        <p>上面两种写法都对函数的参数设定了默认值，区别是写法一函数参数的默认值是空对象，但是设置了对象解构赋值的默认值；</p>
+                        <p>写法二函数参数的默认值是一个有具体属性的对象，但是没有设置对象解构赋值的默认值。</p>
+                        <script type="text/js">
+                            // 函数没有参数的情况
+                            m1() // [0, 0]
+                            m2() // [0, 0]
+                            // x 和 y 都有值的情况
+                            m1({x: 3, y: 8}) // [3, 8]
+                            m2({x: 3, y: 8}) // [3, 8]
+                            // x 有值，y 无值的情况
+                            m1({x: 3}) // [3, 0]
+                            m2({x: 3}) // [3, undefined]
+                            // x 和 y 都无值的情况
+                            m1({}) // [0, 0];
+                            m2({}) // [undefined, undefined]
+                            m1({z: 3}) // [0, 0]
+                            m2({z: 3}) // [undefined, undefined]
+                        </script>
+                    </Col>
+                    <Col span="12">
+                        <p>参数默认值的位置</p>
+                        <p>通常情况下，定义了默认值的参数，应该是函数的尾参数。因为这样比较容易看出来，到底省略了哪些参数。</p>
+                        <p>如果非尾部的参数设置默认值，实际上这个参数是没法省略的。</p>
+                        <script type="text/js">
+                            // 例一
+                            function f(x = 1, y) {
+                                return [x, y];
+                            }
+                            f() // [1, undefined]
+                            f(2) // [2, undefined])
+                            f(, 1) // 报错
+                            f(undefined, 1) // [1, 1]
+                            // 例二
+                            function f(x, y = 5, z) {
+                                return [x, y, z];
+                            }
+                            f() // [undefined, 5, undefined]
+                            f(1) // [1, 5, undefined]
+                            f(1, ,2) // 报错
+                            f(1, undefined, 2) // [1, 5, 2]
+                        </script>
+                        <p>上面代码中，有默认值的参数都不是尾参数。这时，无法只省略该参数，而不省略它后面的参数，除非显式输入undefined。</p>
+                        <p>如果传入undefined，将触发该参数等于默认值，null则没有这个效果。</p>
+                        <script type="text/js">
+                            function foo(x = 5, y = 6) {
+                                console.log(x, y);
+                            }
+                            foo(undefined, null)
+                            // 5 null
+                        </script>
+                        <p>上面代码中，x参数对应undefined，结果触发了默认值，y参数等于null，就没有触发默认值。</p>
+                    </Col>
+                </Row>
+                <Row :gutter="20">
+                    <Col span="12">
+                        <script type="text/js">
+                        </script>
+                    </Col>
+                    <Col span="12">
+                        <script type="text/js">
+                        </script>
+                    </Col>
+                </Row>
+
                 <p>函数的 length 属性</p>
                 <p>指定了默认值以后，函数的length属性，将返回没有指定默认值的参数个数。也就是说，指定了默认值后，length属性将失真。</p>
                 <p>(function (a) {}).length // 1</p>

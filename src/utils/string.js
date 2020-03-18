@@ -1,15 +1,9 @@
 'use strict';
 import _ from 'lodash'
-// 首字母大写
+
 // =====================
-// liuyp 2019年6月9日17:28:26 lodash替换
-export const capitalize = function (value) {
-    if (!value) { return '' }
-    value = value.toString()
-    return value.charAt(0).toUpperCase() + value.slice(1)
-}
-export const upperFirst = _.upperFirst
-// 驼峰化字符串 将ab-cd转化为abCd
+// 驼峰化字符串
+// 将ab-cd转化为abCd
 // camelCase (驼峰式命名)
 // =====================
 // liuyp 2019年6月9日17:28:26 lodash替换
@@ -18,8 +12,8 @@ export const humping = function (str) {
         return $1.toUpperCase()
     })
 }
-export const camelCase = _.camelCase
-// 反驼峰化字符串 将abCd转化为ab-cd
+// 反驼峰化字符串
+// 将abCd转化为ab-cd
 // kebab-case (短横线分隔式命名)
 // =====================
 // liuyp 2019年6月9日17:28:26 lodash替换
@@ -28,55 +22,14 @@ export const antiHumping = function (str) {
         return '-' + a.toLowerCase()
     })
 }
-export const kebabCase = _.kebabCase
-// 全角半角替换
-// 返回一个无错值字符串
-// 空格为12288,半角空格为32
-// 其他字符半角(33-126)与全角(65281-65374)的对应关系是:均相差65248
+
 // =====================
-// liuyp 2019年1月22日19:49:31
-export const dbc2Sbc = function (str) {
-    if ((str === null)) { return '' }
-    return str.replace(/[\uff01-\uff5e]/g, function (a) {
-        return String.fromCharCode(a.charCodeAt(0) - 65248)
-    }).replace(/[\u3000]/g, ' ')
-}
-// 两值切换
-// =====================
-// liuyp 2018年12月20日11:28:08
-export const toggle = function (S, A, B) {
-    return (S === A) ? B : A
-}
-// 打造重复值
-// =====================
-// liuyp 2019年6月9日17:28:26 lodash替换
-export const repeat = _.repeat
-// 剔除html标签
-// =====================
-// liuyp 2018年12月20日11:28:08
-export const stripTags = function (str) {
-    if (!str) { return '' } return str.replace(/<\/?[^>]+>/g, '')
-}
-// 回文字符串判断 ( 正反读都一样)
-// =====================
-// liuyp 2018年12月20日11:28:08
-export const palindrome = (str) => {
-    // 删除字符串中不必要的字符
-    var re = /[W_]/g
-    // 将字符串变成小写字符
-    var lowRegStr = str.toLowerCase().replace(re, '')
-    // 如果字符串lowRegStr的length长度为0时，字符串即是palindrome
-    if (lowRegStr.length === 0) { return true }
-    // 如果字符串的第一个和最后一个字符不相同，那么字符串就不是palindrome
-    if (lowRegStr[0] !== lowRegStr[lowRegStr.length - 1]) { return false }
-    return palindrome(lowRegStr.slice(1, lowRegStr.length - 1))
-}
 // 获得url字符串中所有的参数
 // =====================
 // liuyp 2019年1月22日19:49:31
-export const url2obj = (e) => {
+export const url2obj = (url) => {
     let t = {}
-    let r = e.substr(1 + e.indexOf('?'))
+    let r = url.substr(1 + url.indexOf('?'))
     r = r.split('&')
     for (let n = 0; n < r.length; n++) {
         let o = r[n].split('=')
@@ -87,40 +40,40 @@ export const url2obj = (e) => {
 // 对象转换为url参数格式
 // =====================
 // liuyp 2019年1月22日19:49:31
-export const obj2url = (url) => {
+export const obj2url = (obj) => {
     let arr = []
     let en = encodeURIComponent;
-    for (let name in url) {
-        arr.push(en(name.replace(/^[ ]*|[ ]*$/g, '')) + '=' + en(url[name]))
+    for (let name in obj) {
+        arr.push(en(name.replace(/^[ ]*|[ ]*$/g, '')) + '=' + en(obj[name]))
     }
     return arr.join('&');
 }
 // URL_添加参数
 // =====================
 // liuyp 2019年1月22日19:49:31
-export const urlChange = function (destiny, par, parvalue) {
+export const urlChange = function (url, par, parvalue) {
     var pattern = par + '=([^&]*)'
     var replaceText = par + '=' + parvalue
-    if (destiny.match(pattern)) {
+    if (url.match(pattern)) {
         var tmp = '\\' + par + '=[^&]*'
-        tmp = destiny.replace(new RegExp(tmp), replaceText)
+        tmp = url.replace(new RegExp(tmp), replaceText)
         return (tmp);
     } else {
-        if (destiny.match('[\?]')) {
-            return destiny + '&' + replaceText;
+        if (url.match('[\?]')) {
+            return url + '&' + replaceText;
         } else {
-            return destiny + '?' + replaceText
+            return url + '?' + replaceText
         }
     }
 }
 // 详细解析一个url,这段代码来自腾讯空间脚本
 // =====================
 // liuyp 2019年1月22日19:49:31
-export const urlInfo = function (c) {
+export const urlInfo = function (url) {
     let a = document.createElement('a');
-    a.href = c;
+    a.href = url;
     return {
-        source: c, host: a.hostname, port: a.port, query: a.search,
+        source: url, host: a.hostname, port: a.port, query: a.search,
         protocol: a.protocol.replace(':', ''),
         params: (function () {
             let b = {}
@@ -142,6 +95,8 @@ export const urlInfo = function (c) {
         segments: a.pathname.replace(/^\//, '').split('/')
     }
 }
+
+// =====================
 // 字符串处理转码/解码 base64
 // =====================
 // liuyp 2018年12月17日23:29:26 整理先进
@@ -233,6 +188,8 @@ export const decodeUtf8 = function (utftext) {
     }
     return string
 }
+
+// =====================
 // 字符串处理转码/解码 unicode
 // =====================
 // liuyp 2019年1月10日17: 45: 58 整理先进
@@ -248,38 +205,61 @@ export const asc2Uni = function (str) {
 export const uni2Asc = function (S) {
     return window.unescape(S.replace(/\\/g, '%'))
 }
-// 多行文本去重
+
+// ===================== // ===================== // =====================// ===================== // ===================== // =====================
+// ===================== // ===================== // =====================// ===================== // ===================== // =====================
+// ===================== // ===================== // =====================// ===================== // ===================== // =====================
+
+// 首字母大写
 // =====================
-// liuyp 2019年10月11日11:28:45
-export const lineUnique = function (ary) {
-    let gid = '_' + (+new Date()) + Math.random()
-    let objs = []
-    let hash = {'string': {}, 'boolean': {}, 'number': {}}
-    let p
-    let l = ary.length
-    let ret = []
-    for (let i = 0; i < l; i++) {
-        p = ary[i];
-        if (p === null) continue
-        let tp = typeof p
-        if (tp in hash) {
-            if (!(p in hash[tp])) {
-                hash[tp][p] = 1
-                ret.push(p)
-            }
-        } else {
-            if (p[gid]) continue
-            p[gid] = 1
-            objs.push(p)
-            ret.push(p)
-        }
-    }
-    for (let i = 0, l = objs.length; i < l; i++) {
-        p = objs[i]
-        p[gid] = undefined
-        delete p[gid]
-    }
-    return ret
+// liuyp 2019年6月9日17:28:26 lodash替换
+export const capitalize = function (value) {
+    if (!value) { return '' }
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+}
+export const upperFirst = _.upperFirst
+// 全角半角替换
+// 返回一个无错值字符串
+// 空格为12288,半角空格为32
+// 其他字符半角(33-126)与全角(65281-65374)的对应关系是:均相差65248
+// =====================
+// liuyp 2019年1月22日19:49:31
+export const dbc2Sbc = function (str) {
+    if ((str === null)) { return '' }
+    return str.replace(/[\uff01-\uff5e]/g, function (a) {
+        return String.fromCharCode(a.charCodeAt(0) - 65248)
+    }).replace(/[\u3000]/g, ' ')
+}
+// 两值切换
+// =====================
+// liuyp 2018年12月20日11:28:08
+export const toggle = function (S, A, B) {
+    return (S === A) ? B : A
+}
+// 打造重复值
+// =====================
+// liuyp 2019年6月9日17:28:26 lodash替换
+export const repeat = _.repeat
+// 剔除html标签
+// =====================
+// liuyp 2018年12月20日11:28:08
+export const stripTags = function (str) {
+    if (!str) { return '' } return str.replace(/<\/?[^>]+>/g, '')
+}
+// 回文字符串判断 ( 正反读都一样)
+// =====================
+// liuyp 2018年12月20日11:28:08
+export const palindrome = (str) => {
+    // 删除字符串中不必要的字符
+    var re = /[W_]/g
+    // 将字符串变成小写字符
+    var lowRegStr = str.toLowerCase().replace(re, '')
+    // 如果字符串lowRegStr的length长度为0时，字符串即是palindrome
+    if (lowRegStr.length === 0) { return true }
+    // 如果字符串的第一个和最后一个字符不相同，那么字符串就不是palindrome
+    if (lowRegStr[0] !== lowRegStr[lowRegStr.length - 1]) { return false }
+    return palindrome(lowRegStr.slice(1, lowRegStr.length - 1))
 }
 // 字符串随机生成
 export const ramdomString = function (len) {

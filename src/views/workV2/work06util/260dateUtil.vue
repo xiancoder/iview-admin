@@ -9,13 +9,18 @@
                     // v1: dateFormater(new Date(), 'yyyy-MM-dd') // 可以简写
                     v1: dateFormater(new Date())
                 </script>
-                <p><Icon type="md-checkmark" style="color:green"/> 获取近三天日期数组 : [{{ v1 }}, {{ v2 }}]</p>
+                <p><Icon type="md-checkmark" style="color:green"/> 获取近三天日期数组 : [{{ v2 }}, {{ v1 }}]</p>
                 <script type="text/js">
                     v2: dateFormater(dateSub(today, 2, 'd')),
                 </script>
-                <p><Icon type="md-checkmark" style="color:green"/> 获取近七天日期数组 : [{{ v1 }}, {{ v3 }}]</p>
+                <p><Icon type="md-checkmark" style="color:green"/> 获取近七天日期数组 : [{{ v3 }}, {{ v1 }}]</p>
                 <script type="text/js">
                     v3: dateFormater(dateSub(today, 6, 'd'))
+                </script>
+                <p><Icon type="md-checkmark" style="color:green"/> 获取近七天时间数组 : [{{ v32 }}, {{ v31 }}]</p>
+                <script type="text/js">
+                    v31: dateFormater(dateSub(today, 6, 'd'), 'yyyy-MM-dd hh:mm'),
+                    v32: dateFormater(dateSub(today), 'yyyy-MM-dd hh:mm'),
                 </script>
                 <p><Icon type="md-checkmark" style="color:green"/> 今天的农历信息 : {{ v4 }}</p>
                 <script type="text/js">
@@ -41,6 +46,8 @@ export default {
             v1: dateFormater(today),
             v2: dateFormater(dateSub(today, 2, 'd')),
             v3: dateFormater(dateSub(today, 6, 'd')),
+            v31: dateFormater(dateSub(today, 6, 'd'), 'yyyy-MM-dd hh:mm'),
+            v32: dateFormater(dateSub(today), 'yyyy-MM-dd hh:mm'),
             v4: date2all(today)
         }
     },

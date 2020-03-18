@@ -1,27 +1,6 @@
 'use strict'
-// 随机数字
+
 // =====================
-// liuyp 2019年6月9日17:28:26 lodash替换
-// _bs(_.flattenDeep([1, [2, [3, [4]], 5]]) ,result_flag_here
-// _bs(_.random(0, 5) ,result_flag_here
-// _bs(_.random(5) ,result_flag_here
-// _bs(_.random(5, true) ,result_flag_here
-// _bs(_.random(1.2, 5.2) ,result_flag_here
-// UUID
-// =====================
-// liuyp 2019年6月9日22:00:05
-// _bs(numberJs.uuid(10,5) ,result_flag_here
-// _bs(numberJs.uuid(32) ,result_flag_here
-// _bs(numberJs.uuid(32,5) ,result_flag_here
-// 数字转换为简写汉字一到十
-// =====================
-// liuyp 2018年12月20日11:28:08
-export const cnNumber = function (num) {
-    let n = num + ''
-    let cn = ['\u96f6', '\u4e00', '\u4e8c', '\u4e09', '\u56db', '\u4e94', '\u516d', '\u4e03', '\u516b', '\u4e5d']
-    for (let i = 0; i < 10; i++) n = n.replace(new RegExp(i, 'g'), cn[i])
-    return n
-}
 // 数位补全(2位)
 // @param num {int} 补全的数值 请自觉传入最多两位
 // @returns {String} 处理后的字符串
@@ -32,6 +11,8 @@ export const fillup2Digit = (num) => {
     let n = num.toString()
     return n[1] !== undefined ? n[0] + n[1] : '0' + n[0]
 }
+
+// =====================
 // 数字转换为简写汉字读数
 // =====================
 // liuyp 2019年1月22日19:49:31
@@ -109,6 +90,8 @@ export const number2Chinese2 = (num) => {
     })
     return str.replace(/(零(?=零))|(零$)|(零(?=万))/g, '')
 }
+
+// =====================
 // 金额转换为汉字大写
 // 适用场景 不含小数且最多处理到万级别
 // =====================
@@ -176,6 +159,8 @@ export const money2Chinese = (money) => {
     }
     return chineseStr
 }
+
+// =====================
 // UUID 生成
 // =====================
 // liuyp 2019年6月9日22:00:05
@@ -189,6 +174,116 @@ export const uuid = function (len, radix) {
         for (let i = 0; i < 36; i++) { if (!uuid[i]) { r = 0 | Math.random() * 16; uuid[i] = chars[(i === 19) ? (r & 0x3) | 0x8 : r]; } }
     }
     return uuid.join('')
+}
+
+// =====================
+// 精准四则运算
+// 小数点后位数
+// =====================
+// liuyp 2019年9月20日10:58:12
+const places = function (n) {
+    try { return n.toString().split('.')[1].length } catch (e) { return 0 }
+}
+// 剔除小数点
+// =====================
+// liuyp 2019年9月20日10:58:12
+const noplaces = function (n) {
+    return Number(n.toString().replace('.', ''))
+}
+// 精准加法
+// 对于整数，前端出现问题的几率可能比较低，毕竟很少有业务需要需要用到超大整数，只要运算结果不超过 Math.pow(2, 53) 就不会丢失精度。
+// 对于小数，前端出现问题的几率还是很多的，尤其在一些电商网站涉及到金额等数据。解决方式：把小数放到位整数（乘倍数），再缩小回原来倍数（除倍数）
+// =====================
+// liuyp 2019年9月20日10:58:12
+export const add = function (/* arguments */) {
+    let args = []
+    let l = arguments.length
+    if (l === 0) { return 0 }
+    for (let i = 0; i < l; i++) { args[i] = parseFloat(arguments[i]) }
+    if (l === 1) { return args[0] }
+    let m = 0
+    let r2 = 0
+    for (let i = 0; i < l; i++) { m = Math.max(places(args[i]), m) }
+    m = Math.pow(10, m)
+    for (let i = 0; i < l; i++) { r2 += Math.round(args[i] * m) }
+    return r2 / m
+}
+// 精准减法
+// =====================
+// liuyp 2019年9月20日10:58:12
+export const sub = function (/* arguments */) {
+    let l = arguments.length
+    if (l === 0) { return 0 }
+    let args = []
+    for (let i = 0; i < l; i++) { args[i] = parseFloat(arguments[i]) }
+    if (l === 1) { return args[0] }
+    let m = 0
+    let r2 = args[0]
+    for (let i = 0; i < l; i++) { m = Math.max(places(args[i]), m) }
+    m = Math.pow(10, m)
+    r2 = Math.round(r2 * m)
+    for (let i = 1; i < l; i++) { r2 -= Math.round(args[i] * m) }
+    return r2 / m
+}
+// 精准乘法
+// =====================
+// liuyp 2019年9月20日10:58:12
+export const mul = function (/* arguments */) {
+    let args = []
+    let l = arguments.length
+    if (l === 0) { return 0 }
+    if (l === 1) { return parseFloat(arguments[0]) }
+    let m = 0
+    let r2 = 1
+    for (let i = 0; i < l; i++) {
+        let n = parseFloat(arguments[i]).toString()
+        let r1 = places(n)
+        args[i] = n
+        m += r1
+    }
+    m = Math.pow(10, m)
+    for (let i = 0; i < l; i++) { r2 *= Number(args[i].replace(/\./g, '')) }
+    return r2 / m
+}
+// 精准除法
+// =====================
+// liuyp 2019年9月20日10:58:12
+export const div = function (bcs, cs) {
+    bcs = parseFloat(bcs)
+    cs = parseFloat(cs)
+    let t1 = places(bcs)
+    let t2 = places(cs)
+    let r1 = noplaces(bcs)
+    let r2 = noplaces(cs)
+    return mul((r1 / r2), Math.pow(10, t2 - t1))
+}
+
+// ===================== // ===================== // =====================// ===================== // ===================== // =====================
+// ===================== // ===================== // =====================// ===================== // ===================== // =====================
+// ===================== // ===================== // =====================// ===================== // ===================== // =====================
+
+// 随机数字
+// =====================
+// liuyp 2019年6月9日17:28:26 lodash替换
+// _bs(_.flattenDeep([1, [2, [3, [4]], 5]]) ,result_flag_here
+// _bs(_.random(0, 5) ,result_flag_here
+// _bs(_.random(5) ,result_flag_here
+// _bs(_.random(5, true) ,result_flag_here
+// _bs(_.random(1.2, 5.2) ,result_flag_here
+// UUID
+// =====================
+// liuyp 2019年6月9日22:00:05
+// _bs(numberJs.uuid(10,5) ,result_flag_here
+// _bs(numberJs.uuid(32) ,result_flag_here
+// _bs(numberJs.uuid(32,5) ,result_flag_here
+// 数字转换为简写汉字一到十
+// =====================
+// liuyp 2018年12月20日11:28:08
+export const cnNumber = function (num) {
+    let n = num + ''
+    let cn = ['\u96f6', '\u4e00', '\u4e8c', '\u4e09', '\u56db', '\u4e94', '\u516d', '\u4e03', '\u516b', '\u4e5d']
+    for (let i = 0; i < 10; i++) n = n.replace(new RegExp(i, 'g'), cn[i])
+    return n
 }
 // 从18位/17位身份证号算出校验位
 // (1)十七位数字本体码加权求和公式
@@ -268,85 +363,7 @@ export const formatFileSize = function (fileSize) {
         return temp + 'GB'
     }
 }
-// 小数点后位数
-// =====================
-// liuyp 2019年9月20日10:58:12
-const places = function (n) {
-    try { return n.toString().split('.')[1].length } catch (e) { return 0 }
-}
-// 剔除小数点
-// =====================
-// liuyp 2019年9月20日10:58:12
-export const noplaces = function (n) {
-    return Number(n.toString().replace('.', ''))
-}
-// 精准加法
-// 对于整数，前端出现问题的几率可能比较低，毕竟很少有业务需要需要用到超大整数，只要运算结果不超过 Math.pow(2, 53) 就不会丢失精度。
-// 对于小数，前端出现问题的几率还是很多的，尤其在一些电商网站涉及到金额等数据。解决方式：把小数放到位整数（乘倍数），再缩小回原来倍数（除倍数）
-// =====================
-// liuyp 2019年9月20日10:58:12
-export const add = function (/* arguments */) {
-    let args = []
-    let l = arguments.length
-    if (l === 0) { return 0 }
-    for (let i = 0; i < l; i++) { args[i] = parseFloat(arguments[i]) }
-    if (l === 1) { return args[0] }
-    let m = 0
-    let r2 = 0
-    for (let i = 0; i < l; i++) { m = Math.max(places(args[i]), m) }
-    m = Math.pow(10, m)
-    for (let i = 0; i < l; i++) { r2 += Math.round(args[i] * m) }
-    return r2 / m
-}
-// 精准减法
-// =====================
-// liuyp 2019年9月20日10:58:12
-export const sub = function (/* arguments */) {
-    let l = arguments.length
-    if (l === 0) { return 0 }
-    let args = []
-    for (let i = 0; i < l; i++) { args[i] = parseFloat(arguments[i]) }
-    if (l === 1) { return args[0] }
-    let m = 0
-    let r2 = args[0]
-    for (let i = 0; i < l; i++) { m = Math.max(places(args[i]), m) }
-    m = Math.pow(10, m)
-    r2 = Math.round(r2 * m)
-    for (let i = 1; i < l; i++) { r2 -= Math.round(args[i] * m) }
-    return r2 / m
-}
-// 精准乘法
-// =====================
-// liuyp 2019年9月20日10:58:12
-export const mul = function (/* arguments */) {
-    let args = []
-    let l = arguments.length
-    if (l === 0) { return 0 }
-    if (l === 1) { return parseFloat(arguments[0]) }
-    let m = 0
-    let r2 = 1
-    for (let i = 0; i < l; i++) {
-        let n = parseFloat(arguments[i]).toString()
-        let r1 = places(n)
-        args[i] = n
-        m += r1
-    }
-    m = Math.pow(10, m)
-    for (let i = 0; i < l; i++) { r2 *= Number(args[i].replace(/\./g, '')) }
-    return r2 / m
-}
-// 精准除法
-// =====================
-// liuyp 2019年9月20日10:58:12
-export const div = function (bcs, cs) {
-    bcs = parseFloat(bcs)
-    cs = parseFloat(cs)
-    let t1 = places(bcs)
-    let t2 = places(cs)
-    let r1 = noplaces(bcs)
-    let r2 = noplaces(cs)
-    return mul((r1 / r2), Math.pow(10, t2 - t1))
-}
+
 // 数字精准比较
 // =====================
 // liuyp 2019年9月20日10:58:12

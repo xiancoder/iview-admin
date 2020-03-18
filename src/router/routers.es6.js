@@ -11,6 +11,7 @@ export default makeMultiLevelRoute({
         { power: 'dsp', path: 'es603', title: '字符串的扩展' },
         { power: 'dsp', path: 'es604', title: '正则的扩展' },
         { power: 'dsp', path: 'es605', title: '数值的扩展' },
-        { power: 'dsp', path: 'es606', title: '函数的扩展' }
+        { power: 'dsp', path: 'es606', title: '函数的扩展' },
+        { power: 'dsp', path: 'es607', title: '类的开发' }
     ]
 })

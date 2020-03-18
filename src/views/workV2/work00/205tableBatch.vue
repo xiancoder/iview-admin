@@ -12,7 +12,7 @@
                     <p>给 data 项设置特殊 key _disabled: true 可以禁止选择当前项。</p>
                     <p></p>
                     <script type="text/html" v-pre>
-                        <Table border :loading="loading" :columns="columns" :data="tableData"
+                        <Table border ref="tableID" :loading="loading" :columns="columns" :data="tableData"
                             @on-sort-change="hendleSort" @on-selection-change="selectedChange">
                         </Table>
                     </script>
@@ -70,7 +70,7 @@
                 <Button type="default" class="fr" @click="handleSelectAll(false)">取消全选</Button>
                 <Button type="default" class="fr" @click="handleSelectAll(true)">设置全选</Button>
             </div>
-            <Table border :loading="loading" :columns="columns" :data="tableData"
+            <Table border ref="tableID" :loading="loading" :columns="columns" :data="tableData"
                 @on-sort-change="hendleSort" @on-selection-change="selectedChange">
             </Table>
             <div class="tableFooter">
@@ -107,7 +107,7 @@ export default {
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
             order: { orderKey: '', order: '' }, // 排序 变量名最好原样
             columns: [
-                { type: 'selection', width: 60, align: 'center' },
+                {type: 'selection', width: 60, align: 'center'},
                 {title: '任务编号', key: 'taskNumber', sortable: true},
                 {title: '发布人', key: 'founder', sortable: true},
                 {title: '发布日期', key: 'foundTime', sortable: true},
@@ -160,7 +160,7 @@ export default {
             this.ajax()
         },
         handleSelectAll (status) {
-            this.$refs.selection.selectAll(status);
+            this.$refs.tableID.selectAll(status);
         },
         selectedChange (selection) {
             const ids = []

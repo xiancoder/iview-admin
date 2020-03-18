@@ -15,7 +15,26 @@ import { Store } from '@/store' // 自定义状态管理 -挂载$stroe
 import { router } from '@/router' // 自定义路由定义 -挂载$router
 import '@/tools' // 自定义常用工具 -挂载$tool
 
-console.log('%c ', 'padding:112px 150px;background:url(http://returnc.com/frontend/images/console.gif) no-repeat;')
+var consoleString = (function (f) {
+    return f.toString().replace(/^[^\/]+\/\*!?\s?/, '').replace(/\*\/[^\/]+$/, '');
+})(function () {/*
+     _                               ___                  _____           _       _
+    | |                             |_  |                /  ___|         (_)     | |
+    | |     ___  __ _ _ __ _ __       | | __ ___   ____ _\ `--.  ___ _ __ _ _ __ | |_
+    | |    / _ \/ _` | '__| '_ \      | |/ _` \ \ / / _` |`--. \/ __| '__| | '_ \| __|
+    | |___|  __/ (_| | |  | | | | /\__/ / (_| |\ V / (_| /\__/ / (__| |  | | |_) | |_
+    \_____/\___|\__,_|_|  |_| |_| \____/ \__,_| \_/ \__,_\____/ \___|_|  |_| .__/ \__|
+
+     _                            __      __
+    | |                           \ \    / /
+    | |     ___  __ _ _ __ _ __    \ \  / /   _  ___
+    | |    / _ \/ _` | '__| '_ \    \ \/ / | | |/ _ \
+    | |___|  __/ (_| | |  | | | |    \  /| |_| |  __/
+    |______\___|\__,_|_|  |_| |_|     \/  \__,_|\___|
+*/
+});
+console.info(consoleString);
+// console.log('%c ', 'padding:112px 150px;background:url(http://returnc.com/frontend/images/console.gif) no-repeat;')
 console.info('%c仙 目前环境', 'color:#05ff0f;background:#000;padding:0 5px;', process.env.NODE_ENV)
 
 /* eslint-disable */

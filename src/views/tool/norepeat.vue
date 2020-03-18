@@ -27,7 +27,7 @@
     </div>
 </template>
 <script>
-import { lineUnique } from '@/utils/string'
+import { arrayUnique } from '@/utils/array'
 export default {
     data () {
         return {
@@ -55,8 +55,8 @@ export default {
         'frm.textarea1': {
             handler (val) {
                 let list = val
-                var arr = list.split('\n')
-                arr = lineUnique(arr)
+                var arr = list.split(/\r|\n|\r\n/g)
+                arr = arrayUnique(arr)
                 let result = ''
                 for (var key in arr) { result += arr[key] + '\n' }
                 this.frm.textarea2 = result
