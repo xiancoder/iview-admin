@@ -22,9 +22,17 @@
                     v31: dateFormater(dateSub(today, 6, 'd'), 'yyyy-MM-dd hh:mm'),
                     v32: dateFormater(dateSub(today), 'yyyy-MM-dd hh:mm'),
                 </script>
-                <p><Icon type="md-checkmark" style="color:green"/> 今天的农历信息 : {{ v4 }}</p>
+                <p><Icon type="md-checkmark" style="color:green"/> 今天的农历信息 (天干地支 属相 是否闰年 农历时间 节气) : {{ v4 }}</p>
                 <script type="text/js">
                     v4: date2all(today)
+                </script>
+                <p><Icon type="md-checkmark" style="color:green"/> 项目 : 某天所属的计薪周期 : {{ v5 }} </p>
+                <script type="text/js">
+                    v5: computeRange(today)
+                </script>
+                <p><Icon type="md-checkmark" style="color:green"/> 项目 : 某月的计薪周期 : {{ v6 }} </p>
+                <script type="text/js">
+                    v6: computeRangeByMouth(2020, 3)
                 </script>
             </div>
             <div class="blogFooter">
@@ -36,7 +44,7 @@
     </div>
 </template>
 <script>
-import { dateFormater, dateSub, date2all } from '@/utils/date'
+import { dateFormater, dateSub, date2all, computeRange, computeRangeByMouth } from '@/utils/date'
 
 const today = new Date()
 export default {
@@ -48,7 +56,9 @@ export default {
             v3: dateFormater(dateSub(today, 6, 'd')),
             v31: dateFormater(dateSub(today, 6, 'd'), 'yyyy-MM-dd hh:mm'),
             v32: dateFormater(dateSub(today), 'yyyy-MM-dd hh:mm'),
-            v4: date2all(today)
+            v4: date2all(today),
+            v5: computeRange(today),
+            v6: computeRangeByMouth(2020, 3)
         }
     },
     methods: {

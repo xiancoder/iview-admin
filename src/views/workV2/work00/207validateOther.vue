@@ -79,11 +79,6 @@
                         <Button type="primary" :loading="loading" @click="handleSubmit()">保存</Button>
                     </FormItem>
                 </Form>
-                <script type="text/html">
-                </script>
-                <p></p>
-                <script type="text/js">
-                </script>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

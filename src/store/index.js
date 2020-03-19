@@ -37,11 +37,11 @@ const plugins = [
     createPersistedState({ // 状态持久化
         storage: window.localStorage,
         reducer: (store) => {
-            const {theme, shrink, lang, locking, paramList} = store.system
+            const system = store.system
             const {tagNavList} = store.route
             const {token} = store.admin
             return { // 只储存指定的状态
-                system: {theme, shrink, lang, locking, paramList},
+                system: system,
                 route: {tagNavList},
                 admin: {token}
             }

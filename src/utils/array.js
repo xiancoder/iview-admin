@@ -32,14 +32,14 @@ export const arrayUnique = (arr, att) => {
     let json = {}
     for (let i = 0; i < arr.length; i++) {
         if (!att) {
-            if (!json[arr[i]]) {
+            if (!json['_' + arr[i]]) {
                 resArr.push(arr[i])
-                json[arr[i]] = 1
+                json['_' + arr[i]] = 1
             }
         } else {
-            if (!json[arr[i][att]]) {
+            if (!json['_' + arr[i][att]]) {
                 resArr.push(arr[i])
-                json[arr[i][att]] = 1
+                json['_' + arr[i][att]] = 1
             }
         }
     }

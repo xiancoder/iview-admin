@@ -11,25 +11,6 @@
                         <Button type="primary" @click="handleSubmit()">测试</Button>
                     </FormItem>
 
-                    <Divider orientation="left">文本域 必填 自动加高3-5</Divider>
-                    <FormItem label="标题" prop="p01">
-                        <Input v-model="frm.p01" type="textarea" :autosize="{minRows: 3,maxRows: 5}"
-                            placeholder="请输入XXXX" />
-                    </FormItem>
-                    <FormItem>
-                        <p>结果: {{frm.p01}}</p>
-                        <pre v-html="frm.p01"></pre>
-                        <script type="text/html" v-pre>
-                            <FormItem label="标题" prop="p01">
-                                <Input v-model="frm.p01" type="textarea" :autosize="{minRows: 3,maxRows: 5}"
-                                    placeholder="请输入XXXX" />
-                            </FormItem>
-                        </script>
-                        <script type="text/js">
-                            { required: true, message: '文本域不能为空' }
-                        </script>
-                    </FormItem>
-
                     <Divider orientation="left">富文本校验 必填</Divider>
                     <FormItem label="标题" prop="p02">
                         <vue-html5-editor @change="val=>frm.p02=val" :height="140" style="width: 600px;"
@@ -81,13 +62,9 @@ export default {
         return {
             loading: false,
             frm: {
-                p01: 'here comes a wei !!\nin game LOL', // 文本域测试
                 p02: '<h2><font color="#ffcc00" face="Comic Sans MS">here comes a wei !!</font></h2><div><font face="Comic Sans MS" color="#ffcc00">in game LOL</font></div>' // 富文本测试
             },
             frmValidate: {
-                p01: [
-                    { required: true, message: '文本域不能为空' }
-                ],
                 p02: [
                     { required: true, message: '富文本不能为空' }
                 ]

@@ -20,7 +20,7 @@
             <Layout class="right-sider">
                 <Header class="main-header":style="{'background': themeFgColor}">
                     <Row type="flex" justify="start" class="main-header-left">
-                        <a @click="handleCollapsedChange" type="text"
+                        <a @click="$store.dispatch('system/setShrink', !collapsed)" type="text"
                             :class="['sidertrigger', collapsed?'collapsed':'']">
                             <Icon type="md-menu" size="26" />
                         </a>
@@ -122,7 +122,7 @@
             <Card title="主题变动" icon="ios-options" :padding="0" shadow style="width: 100%;">
                 <CellGroup>
                     <Cell title="页面主体局中">
-                        <i-switch v-model="themeMiddle" slot="extra" />
+                        <i-switch :value="themeMiddle" @on-change="$store.dispatch('system/setThemeMiddle',!themeMiddle)" slot="extra" />
                     </Cell>
                     <Cell title="页面Logo固定">
                         <i-switch v-model="themeLogoFlex" slot="extra" />
@@ -163,7 +163,6 @@ export default {
     },
     data () {
         return {
-            themeMiddle: false, // 主题::主体局中
             themeLogoFlex: false, // 主题::logo固定
             themeLogoBgColor: '#92caf6', // 主题::logo背景颜色
             themeBgColor: '#515a6e', // 主题::主体背景颜色
@@ -202,10 +201,11 @@ export default {
             return arr
         }, // 路由 一维化数组
         collapsed () { return this.$store.state.system.shrink }, // 折叠状态
+        themeMiddle () { return this.$store.state.system.themeMiddle }, // 主题::主体居中
         cacheList () { return this.$store.state.route.cacheList }, // 被缓存的页面
         userAvatar () { return this.$store.state.admin.userAvatorPath }, // 用户头像
         userName () { return this.$store.state.admin.userName }, // 用户名
-        unreadCount () { return this.$store.state.message.newMessageNum }
+        unreadCount () { return this.$store.state.message.newMessageNum } // 未读消息
     },
     methods: {
         handleMenuClick (name) {
@@ -237,9 +237,9 @@ export default {
             }
             this.$router.push({ name, params, query })
         },
-        handleCollapsedChange (state) {
+        /* handleCollapsedChange () { // 触发状态可以写入html中
             this.$store.dispatch('system/setShrink', !this.collapsed)
-        },
+        }, */
         modifyPwdSubmit () {
             this.model.modifyPwd = false
         }

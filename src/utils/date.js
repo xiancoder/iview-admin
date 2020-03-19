@@ -227,7 +227,7 @@ export const date2isLeapYear = function (D) {
     let year = D.getFullYear();
     return !!((year & 3) === 0 && (year % 100 || (year % 400 === 0 && year)))
 }
-// 完整输出 "丙申(猴)年 (闰)五月廿"
+// 完整输出 "丙申(猴)年 (闰)五月廿 无节气"
 // =====================
 // liuyp 2019年1月9日11:00:26
 export const date2all = function (D) {
