@@ -153,47 +153,42 @@ export default {
     priority () { // 任务级别
         return new Promise((resolve, reject) => {
             resolve([
-                { id: '-1', name: '全部级别' },
-                { id: '0', name: '紧急' },
-                { id: '1', name: '重要' },
-                { id: '2', name: '一般' }
+                { id: '1', name: '紧急' },
+                { id: '2', name: '重要' },
+                { id: '3', name: '一般' }
             ])
         })
     },
     status () { // 任务级别
         return Promise.resolve([
-            { id: '-1', name: '全部状态' },
-            { id: '0', name: '待接受' },
-            { id: '1', name: '执行中' },
-            { id: '2', name: '待验收' },
-            { id: '3', name: '已通过' },
-            { id: '4', name: '已废弃' }
+            { id: '1', name: '待接受' },
+            { id: '2', name: '执行中' },
+            { id: '3', name: '待验收' },
+            { id: '4', name: '已通过' },
+            { id: '5', name: '已废弃' }
         ])
     },
     restart () { // 任务类型
         return new Promise((resolve, reject) => {
             resolve([
-                { id: '-1', name: '全部任务类型' },
-                { id: '0', name: '普通' },
-                { id: '1', name: '重启' }
+                { id: '1', name: '普通' },
+                { id: '2', name: '重启' }
             ])
         })
     },
     overdue () { // 任务类型
         return new Promise((resolve, reject) => {
             resolve([
-                { id: '-1', name: '全部逾期情况' },
-                { id: '0', name: '未逾期' },
-                { id: '1', name: '已逾期' }
+                { id: '1', name: '未逾期' },
+                { id: '2', name: '已逾期' }
             ])
         })
     },
     pause () { // 暂停状态
         return new Promise((resolve, reject) => {
             resolve([
-                { id: '-1', name: '全部暂停状态' },
-                { id: '0', name: '未暂停' },
-                { id: '1', name: '已暂停' }
+                { id: '1', name: '未暂停' },
+                { id: '2', name: '已暂停' }
             ])
         })
     },

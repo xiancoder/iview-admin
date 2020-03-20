@@ -1,10 +1,10 @@
 <template>
     <div class="blogCss">
         <div class="blog">
-            <div class="blogTitle">优化弹窗的方式</div>
+            <div class="blogTitle">优化弹窗的方式 (不再强制推荐)</div>
             <div class="blogContent" v-highlight>
                 <p><Icon type="md-checkmark" style="color:green"/> 有效 随插随用</p>
-                <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
+                <p><Icon type="md-close" style="color:red"/> 2020年3月20日13:34:04 不再强制推荐此写法 合并写入主题页面也没啥 </p>
                 <Button @click="model.show1=!model.show1">修改密码::弹框</Button>
                 <hr />
                 <script type="text/html" v-pre>

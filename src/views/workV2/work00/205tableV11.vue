@@ -24,11 +24,13 @@
         <div class="tableLayout">
             <tab></tab>
             <div class="tableTool" @keyup.enter.stop="hendleSearch">
-                <Select v-model="search.taskPriority" placeholder='请选择任务级别'>
+                <Select v-model="search.taskPriority" placeholder="请选择任务级别">
+                    <Option value="0" label="全部任务级别"></Option>
                     <Option v-for="option in dataSet.taskPriorityList" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
-                <Select v-model="search.taskStatus" placeholder='请选择任务状态'>
+                <Select v-model="search.taskStatus" placeholder="请选择任务状态">
+                    <Option value="0" label="全部任务状态"></Option>
                     <Option v-for="option in dataSet.taskStatuList" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>

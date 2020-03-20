@@ -231,15 +231,18 @@
         <div class="tableLayout">
             <tab></tab>
             <div class="tableTool" @keyup.enter.stop="hendleSearch">
-                <Select v-model="search.taskPriority" placeholder='请选择任务级别'>
+                <Select v-model="search.taskPriority" placeholder="请选择任务级别">
+                    <Option value="0" label="全部任务级别"></Option>
                     <Option v-for="option in dataSet.taskPriorityList" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
-                <Select v-model="search.taskStatus" placeholder='请选择任务状态'>
+                <Select v-model="search.taskStatus" placeholder="请选择任务状态">
+                    <Option value="0" label="全部任务状态"></Option>
                     <Option v-for="option in dataSet.taskStatuList" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
-                <Input type="text" v-model.trim="search.businessName" placeholder="请输入业务" style="width: 180px"/>
+                <Input type="text" v-model.trim="search.businessName" placeholder="请输入业务" style="width: 180px"
+                />
                 <Button type="primary" @click="hendleSearch">搜索</Button>
                 <Button type="default" @click="hendleReset">重置</Button>
                 <Button type="default" class="fr" @click="download">下载</Button>
@@ -277,9 +280,13 @@ export default {
                 'taskStatuList': []
             },
             search: {
-                'taskPriority': '', // 级别 0:一般 1：重要 2：紧急
-                'businessName': '', /* 想搜索的业务名称 */
-                'taskStatus': '' // 状态 任务状态, 0:待接受；1:执行中；2:待验收;3.验收通过；4.已废弃；5.已暂停
+                // 'taskPriority': '', // 级别 0:一般 1：重要 2：紧急
+                // 'taskStatus': '', // 任务状态, 0:待接受；1:执行中；2:待验收;3.验收通过；4.已废弃；5.已暂停
+                // 以上枚举的设置十分不利于前端规范化 请不要使用0为枚举id 因为0代表全部
+                // 建议 使用空值来初始显示 (虽然不大爽)
+                'taskPriority': '', // 级别 0全部1一般2重要3紧急
+                'taskStatus': '', // 任务状态 0全部1待接受2执行中3待验收4验收通过5已废弃6已暂停
+                'businessName': '' /* 想搜索的业务名称 */
             },
             loading: false,
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样

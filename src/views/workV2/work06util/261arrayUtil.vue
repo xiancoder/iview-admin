@@ -9,6 +9,20 @@
                 <script type="text/js">
                     v2: uniqueObj(x)
                 </script>
+                <p><Icon type="md-checkmark" style="color:green"/> 如何在不改变引用传递地址的情况下 批量改变某个引入数组变量</p>
+                <p><Icon type="md-checkmark" style="color:green"/> 666 apply 方法</p>
+                <script type="text/js">
+                    var x1 = [1,2,3,4]
+                    var x2 = x1
+                    var x3 = x1
+                    var y1 = [5,6,7,8]
+                    x2 = y1
+                    Array.prototype.push.apply(x3, y1)
+                    console.log(x1) // [1, 2, 3, 4, 5, 6, 7, 8]
+                    console.log(x2) // [1, 2, 3, 4]
+                    console.log(x3) // [5, 6, 7, 8, 5, 6, 7, 8]
+                    console.log(y1) // [5, 6, 7, 8]
+                </script>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

@@ -9,7 +9,7 @@
             <Button type="default" class="margin-right-10" @click="resetSearch">重置</Button>
             <a class="out_port" :href="url" download="" target="_blank">批量导出</a>
         </div>
-        <Table border :loading="loading" ref="selection" :columns="tableColumns" :data="currentTable" class="margin-top-20">
+        <Table border :loading="loading" :columns="tableColumns" :data="currentTable" class="margin-top-20">
             <template slot-scope="{ row, index }" slot="jobNum">
                 <span>{{row.jobNum || '-'}}</span>
             </template>

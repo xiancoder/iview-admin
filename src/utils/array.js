@@ -80,6 +80,47 @@ export const arrayFlatten = (ac) => {
     return array;
 }
 
+// =====================
+// 包含确认/交集/差集/并集/补集
+// 新数组,不伤源头
+// =====================
+// liuyp 2018年12月20日11:28:08
+// _bs(_.Array_contains([1,2,3,4,5,6],12),result_flag_here
+// _bs(_.Array_intersect([1,2,3,4,5,6],[4,5,6,7,8,9]),result_flag_here
+// _bs(_.Array_minus([1,2,3,4,5,6],[4,5,6,7,8,9]),result_flag_here
+// _bs(_.Array_union([1,2,3,4,5,6],[4,5,6,7,8,9]),result_flag_here
+// _bs(_.Array_complement([1,2,3,4,5,6],[4,5,6,7,8,9]),result_flag_here
+function arrayFilter (A, fn) {
+    fn = fn || function () {}; var arr = [];
+    for (var i = 0, l = A.length; i < l; i++) {if (fn(A[i])) {arr.push(A[i])}}
+    return arr
+}
+function arrayContains (A, V) {
+    var i = A.length; while (i--) {if (A[i] === V) { return true }} return false
+}
+export function arrayIntersect (a, b) {
+    return arrayFilter(arrayUnique(a), function (o) {return arrayContains(b, o)})
+}
+export function arrayMinus (a, b) {
+    return arrayFilter(arrayUnique(a), function (o) {return !arrayContains(b, o)})
+}
+export function arrayUnion (a, b) {
+    return arrayUnique(a.concat(b))
+}
+export function arrayComplement (a, b) {
+    return arrayMinus(arrayUnion(a, b), arrayIntersect(a, b))
+}
+// =====================
+// 数组洗牌
+// =====================
+// liuyp 2018年12月20日11:28:08
+export function arrayShuffle (o) { // v1.0
+    for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x) {
+        // 666
+    }
+    return o;
+}
+
 // ===================== // ===================== // =====================// ===================== // ===================== // =====================
 // ===================== // ===================== // =====================// ===================== // ===================== // =====================
 // ===================== // ===================== // =====================// ===================== // ===================== // =====================

@@ -22,6 +22,8 @@ export const antiHumping = function (str) {
         return '-' + a.toLowerCase()
     })
 }
+export const camelCase = _.camelCase
+export const kebabCase = _.kebabCase
 
 // =====================
 // 获得url字符串中所有的参数

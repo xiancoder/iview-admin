@@ -8,7 +8,7 @@
             <Button type="primary" class="margin-left-10 margin-right-10" @click="handleSearch(1)">搜索</Button>
             <Button type="default" class="margin-right-10" @click="resetSearch">重置</Button>
         </div>
-        <Table border :loading="loading" ref="selection" :columns="tableColumns" :data="currentTable" class="margin-top-20">
+        <Table border :loading="loading" :columns="tableColumns" :data="currentTable" class="margin-top-20">
             <template slot-scope="{ row, index }" slot="jobNum">
                 <span>{{row.jobNum || '-'}}</span>
             </template>

@@ -7,7 +7,7 @@
                 <p><Icon type="md-checkmark" style="color:green"/> -------------------------------------</p>
                 <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p></p>
-                <script type="text/html">
+                <script type="text/html" v-pre>
                 </script>
                 <p></p>
                 <script type="text/js">

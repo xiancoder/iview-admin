@@ -14,6 +14,7 @@
                 <p>6 接口定义放在这里 注意不要放置敏感内容</p>
                 <hr />
                 <h3>1 日期范围是两个字段(对应数据库) 但是在我们的控件是一个数组</h3>
+                <h3>2 操作返回值使用0失败1成功 但是数据返回值要使用1成功2失败 不要用0 0代表全部</h3>
                 <h3 class="text-dange">表单对于日期范围用的不多</h3>
                 <br>
                 <Row :gutter="5">
@@ -28,17 +29,14 @@
                                     axios({
                                         method: 'POST',
                                         url: '/api/attendance/confirm',
-                                        data: {
-                                            begin,
-                                            end
-                                        }
+                                        data: { begin, end }
                                     }).then(response => { // 请注意这个返回值是整个结果对象
                                         const res = response.data
                                         if (res && res.data && res.data.res) {
                                             success(res.msg || '操作成功')
-                                            resolve(res.data.res)
+                                            resolve()
                                         } else {
-                                            error(res.msg || '操作失败') // 报错并继续reject
+                                            error(res.data.res_code || '操作失败') // 报错并继续reject
                                             reject()
                                         }
                                     }).catch(e => {
@@ -62,7 +60,8 @@
                                     'code': '200',
                                     'msg': '',
                                     'data': {
-                                        'res': 0, // 1成功 0失败
+                                        'res': 0, // 0失败 1成功
+                                        'res_code': '' // 原因
                                     }
                                 }
                             */
@@ -89,16 +88,14 @@
                                     axios({
                                         method: 'POST',
                                         url: '/api/hr/departmentdel',
-                                        data: {
-                                            id
-                                        }
+                                        data: { id }
                                     }).then(response => { // 请注意这个返回值是整个结果对象
                                         const res = response.data
                                         if (res && res.data && res.data.res) {
-                                            success(res.msg || '操作成功')
-                                            resolve(res.data.res)
+                                            success(res.data.res_code || '操作成功')
+                                            resolve()
                                         } else {
-                                            error(res.msg || '操作失败') // 报错并继续reject
+                                            error(res.data.res_code || '操作失败') // 报错并继续reject
                                             reject()
                                         }
                                     }).catch(e => {
@@ -117,9 +114,10 @@
                                 'params':{ 'id':1 },
                                 'response':{
                                     'code': '200',
-                                    'msg': '该部门下存在子部门，无法删除',
+                                    'msg': '',
                                     'data':{
-                                        'res':0 // 1成功 0失败
+                                        'res': 0, // 0失败 1成功
+                                        'res_code': '该部门下存在子部门，无法删除' // 原因
                                     }
                                 }
                             */
@@ -166,9 +164,7 @@
                                     axios({
                                         method: 'GET',
                                         url: '/api/confirmproject/ad_detail',
-                                        data: {
-                                            id
-                                        }
+                                        data: { id }
                                     }).then(response => { // 请注意这个返回值是整个结果对象
                                         const res = response.data
                                         if (res && res.data && res.data.info) {
@@ -182,7 +178,7 @@
                                             ][info.settleType || 0] || '-')
                                             resolve(info)
                                         } else {
-                                            error(res.msg || '未获取到数据') // 报错并继续reject
+                                            error('未获取到数据') // 报错并继续reject
                                             reject()
                                         }
                                     }).catch(e => {
@@ -273,20 +269,13 @@
                                     axios({
                                         method: 'GET',
                                         url: '/api/confirmproject/online_ad',
-                                        data: {
-                                            projectType,
-                                            begin,
-                                            end,
-                                            keyword,
-                                            pageIndex,
-                                            pageSize
-                                        }
+                                        data: { projectType, begin, end, keyword, pageIndex, pageSize }
                                     }).then(response => { // 请注意这个返回值是整个结果对象
                                         const res = response.data
                                         if (res && res.data && res.data.list) {
                                             resolve(res.data) // 有分页 返回父层级
                                         } else {
-                                            error(res.msg || '未获取到数据') // 报错并继续reject
+                                            error('未获取到数据') // 报错并继续reject
                                             reject()
                                         }
                                     }).catch(e => {
@@ -391,23 +380,13 @@
                                     axios({
                                         method: 'GET',
                                         url: '/api/confirmproject/online_ad',
-                                        data: {
-                                            projectType,
-                                            companyId,
-                                            contractType,
-                                            type,
-                                            begin,
-                                            end,
-                                            keyword,
-                                            pageIndex,
-                                            pageSize
-                                        }
+                                        data: { projectType, companyId, contractType, type, begin, end, keyword, pageIndex, pageSize }
                                     }).then(response => { // 请注意这个返回值是整个结果对象
                                         const res = response.data
                                         if (res && res.data && res.data.list) {
                                             resolve(res.data) // 有分页 返回父层级
                                         } else {
-                                            error(res.msg || '未获取到数据') // 报错并继续reject
+                                            error('未获取到数据') // 报错并继续reject
                                             reject()
                                         }
                                     }).catch(e => {

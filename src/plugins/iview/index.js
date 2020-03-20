@@ -12,7 +12,8 @@ iView.DatePicker.mixins[0].props.placeholder.default = '请选择日期'
 iView.DatePicker.mixins[0].props.separator.default = ' 至 '
 iView.DatePicker.mixins[0].props.format.default = 'yyyy-MM-dd'
 iView.DatePicker.mixins[0].props.editable.default = false
-iView.TimePicker.mixins[0].props.format.default = 'HH:mm:ss'
+// iView.TimePicker.mixins[0].props.format.default = 'HH:mm:ss'
+iView.TimePicker.mixins[0].props.editable.default = false
 // =====================================================================
 // 表格控件 指定 最大高度 方便左右滚动时候直观看到横向滚动条
 // iView.Table.props.maxHeight.default = function () {

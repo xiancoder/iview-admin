@@ -8,11 +8,11 @@
                     <p><Icon type="md-checkmark" style="color:green"/> 有效 随插随用</p>
                     <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                     <p></p>
-                    <Button type="default" @click="confirm">confirm</Button>
-                    <Button type="default" @click="alertMsg">alertMsg</Button>
-                    <Button type="default" @click="errorMsg">errorMsg</Button>
-                    <Button type="default" @click="successMsg">successMsg</Button>
-                    <Button type="default" @click="warningMsg">warningMsg</Button>
+                    <Button type="default" @click="confirm('哈哈哈')">confirm('哈哈哈')</Button>
+                    <Button type="default" @click="alertMsg('哈哈哈')">alertMsg('哈哈哈')</Button>
+                    <Button type="default" @click="errorMsg('哈哈哈')">errorMsg('哈哈哈')</Button>
+                    <Button type="default" @click="successMsg('哈哈哈')">successMsg('哈哈哈')</Button>
+                    <Button type="default" @click="warningMsg('哈哈哈')">warningMsg('哈哈哈')</Button>
                     <script type="text/js">
                         import { confirm, alertMsg, errorMsg, successMsg, warningMsg } from '@/tools'
                         export default {

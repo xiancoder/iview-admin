@@ -51,15 +51,14 @@
             <div class="blogTitle">此控件可以跟着数值变化 即可以动态改变</div>
             <Divider orientation="right">尝试&&测试</Divider>
             <div class="blogContent" v-highlight>
-                <p><Button @click="testData2">测试给date2赋值</Button></p>
-                <p class="text-success">没问题 可以搞</p>
                 <Form ref="form12342" :model="frm2" :rules="frmValidate" :label-width="150">
                     <FormItem label="日期范围" prop="date2">
                         <DatePicker type="daterange" placeholder="选择开始日期结束日期" style="width:300px"
                             :value="frm2.date2" @on-change="frm2.date2=$event" @on-clear="frm2.date2=[]"
                             split-panels :editable="false">
                         </DatePicker>
-                        <Button type="primary" @click="handleSubmit('form12342')" style="margin-left:10px;">校验测试</Button>
+                        <Button type="primary" @click="handleSubmit('form12342')" style="margin-left:10px;">校验测试 (没问题)</Button>
+                        <Button type="primary" @click="testData2" style="margin-left:10px;">测试给date2赋值 (没问题)</Button>
                     </FormItem>
                 </Form>
                 <script type="text/html" v-pre>
@@ -124,7 +123,7 @@
                     </FormItem>
                 </script>
                 <p>官方api value属性 ，可以是 JavaScript 的 Date，例如 new Date()，也可以是标准的日期格式</p>
-                <p>注意：value 使用 v-model 时，值是 Date 类型，可以配合 @on-change 使用</p>
+                <p class="text-danger">注意：value 使用 v-model 时，值是 Date 类型，可以配合 @on-change 使用</p>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>
@@ -244,7 +243,7 @@ export default {
             })
         },
         testData2 () {
-            this.frm.date2 = ['2014-05-09', '2014-06-09']
+            this.frm2.date2 = ['2014-05-09', '2014-06-09']
         }
     },
     mounted () {

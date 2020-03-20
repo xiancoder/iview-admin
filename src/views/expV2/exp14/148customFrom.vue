@@ -14,7 +14,7 @@
                 </div>
                 <Form ref="form5596" :model="frm" :rules="frmValidate" :label-width="150">
                     <FormItem label="测试">
-                        <Button type="primary" @click="handleSubmit()">测试</Button>
+                        <Button type="primary" @click="handleSubmit('form5596')">测试</Button>
                     </FormItem>
 
                     <FormItem label="标题" prop="p01">
@@ -27,8 +27,8 @@
                     <FormItem>
                         <p>结果: {{frm.p02}}</p>
                         <script type="text/html" v-pre>
-                            <FormItem label="标题" prop="p02">
-                                <custom :p02="frm.p02"></custom>
+                            <FormItem label="标题" prop="p02"> // 表单校验实际上生效的是prop
+                                <custom :p02="frm.p02"></custom> // 组件内部不负责校验值
                             </FormItem>
                         </script>
                         <script type="text/js">

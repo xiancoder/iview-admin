@@ -12,8 +12,6 @@ export default makeMultiLevelRoute({
         {power: 'expv1', path: '005oldTable', title: '原生表格 lodash尝试'},
         {power: 'expv1', path: '008tableObj', title: '表格-超集中(废弃)'},
         {power: 'expv1', path: '009tableMixin', title: '表格-mixin(废弃)'},
-        {power: 'expv1', path: '024validate', title: '表单所有校验方式'},
-        {power: 'expv1', path: '025vvvali', title: '表单复杂校验方式'},
         {power: 'expv1', path: '028pluginLike', title: '插件比喻'},
         {power: 'expv1', path: '031mail', title: 'JS发邮件权限'},
         {power: 'expv1', path: '032api', title: '$api模块说明 v1'},
