@@ -10,7 +10,10 @@ export default makeMultiLevelRoute({
             path: 'work00', title: '卷零', icon: 'md-heart',
             children: [
                 {power: 'workv2-0', path: '201daterange', title: '日期范围优化'},
-                {power: 'workv2-0', path: '202api', title: 'api接口承上启下'},
+                {power: 'workv2-0', path: '202api', title: 'API模块优缺点'},
+                {power: 'workv2-0', path: '202apiAdd', title: 'API模块ADD接口'},
+                {power: 'workv2-0', path: '202apiList', title: 'API模块LIST接口'},
+                {power: 'workv2-0', path: '202apiDrop', title: 'API模块DROP接口'},
                 {power: 'workv2-0', path: '203fromdifto', title: '来源提交格式不同'},
                 {power: 'workv2-0', path: '204trytransfer', title: '尝试多搜索+穿梭框'},
                 {power: 'workv2-0', path: '205tab', title: '表格v10模版规范'},
@@ -113,6 +116,7 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '241html2canvas', title: '浏览器区域截图'},
                 {power: 'workv2-2', path: '242screenlog', title: '屏幕日志'},
                 {power: 'workv2-2', path: '243urlNoRepeat', title: '域名验重问题'},
+                {power: 'workv2-2', path: '244iframe', title: 'iframe 父子页面'},
                 {power: 'workv2-2', path: '300brove', title: '收集300个'}
             ]
         },

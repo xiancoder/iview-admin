@@ -92,7 +92,7 @@ axios.interceptors.request.use( // 开始设置请求 发起的拦截处理
         } else { // 适用于这些请求方法 'PUT', 'POST', 和 'PATCH'
             config.data = config.data || config.params
         }
-        console.log(config.headers['Content-Type'], Object.prototype.toString.call(config.data))
+
         // FormData简单化
         if (config.headers['Content-Type'] === 'multipart/form-data' &&
             Object.prototype.toString.call(config.data) !== '[object FormData]'
