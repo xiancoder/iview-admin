@@ -9,7 +9,9 @@
                 <p>开发文档地址 <a href="https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Requesting_an_API_Test_Account.html"></a></p>
                 <p></p>
                 <p><img src="/static/img.wx/gzhdl/1.png" style="max-width:100%" alt="" /></p>
-                <p></p>
+                <p>我们失误研究了开放平台的登录授权流程</p>
+                <p class="text-danger">注意这个仅仅支持pc网站 (移动端没法自己扫自己)</p>
+                <p><img src="/static/img.wx/gzhdl/2.png" style="max-width:100%" alt="" /></p>
                 <p></p>
             </div>
             <div class="blogFooter">
