@@ -79,6 +79,7 @@ export default makeMultiLevelRoute({
             path: 'exp05', title: '卷零伍', icon: 'md-game-controller-b',
             children: [
                 {power: 'expv2-12345', path: '051findpwd', title: '浏览器记录密码'},
+                {power: 'expv2-12345', path: '052stopPropagation', title: '取消默认事件'},
                 {power: 'expv2-12345', path: '057history', title: '路由历史记录'},
                 {power: 'expv2-12345', path: '057history@1', title: '路由历史记录1', hideMenu: true},
                 {power: 'expv2-12345', path: '057history@2', title: '路由历史记录2', hideMenu: true},

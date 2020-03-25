@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { on, off } from '@/utils/dom'
+import { on, off } from '@/utils/event'
 import Trigger from './trigger.vue'
 export default {
     name: 'SplitPane',
