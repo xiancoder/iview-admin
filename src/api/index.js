@@ -24,6 +24,9 @@ import finance from './api.finance' // 财务报表
 import charge from './api.charge' // 支付相关
 import cost from './api.cost' // 花费清单
 
+// 标准接口序列
+import student from './api.student' // 学生
+
 export const Api = {
     // 系统
     system,
@@ -42,7 +45,9 @@ export const Api = {
     position,
     user,
     task,
-    role
+    role,
+    // 标准接口序列
+    student
 } // 接口列表
 
 // finally方法用于指定不管 Promise 对象最后状态如何，都会执行的操作，执行then()和catch()后，都会执行finally指定的回调函数。

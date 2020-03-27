@@ -143,6 +143,13 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '263stringUtil', title: '字符串常用列举'},
                 {power: 'workv2-2', path: '264functionUtil', title: '方法常用列举'}
             ]
+        },
+        {
+            path: 'work07table', title: '卷陆-表格篇', icon: 'md-heart',
+            children: [
+                {power: 'workv2-0', path: '271tableV10', title: '表格v10模版规范'},
+                {power: 'workv2-0', path: '271tableV13', title: '表格v13模版规范'}
+            ]
         }
     ]
 })
