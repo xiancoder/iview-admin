@@ -60,6 +60,27 @@ export default {
             })
         })
     },
+    mockAddOne () { // 导入一份假数据
+        return new Promise((resolve, reject) => {
+            axios.request({
+                method: 'GET',
+                url: 'api/student/mockAddOne',
+                data: {}
+            }).then(response => { // 请注意这个返回值是整个结果对象
+                const res = response.data
+                if (res && res.data && res.data.res_code) {
+                    success(res.data.res || '操作成功')
+                    resolve()
+                } else {
+                    error(res.data.res || '操作失败') // 报错并继续reject
+                    reject()
+                }
+            }).catch(e => {
+                error(e.message) // ajax异常后 报错并中止操作
+                reject()
+            })
+        })
+    },
 
     /* 'title': '学生 - 添加/修改',
         'url': '/api/student/edit',
@@ -220,7 +241,9 @@ export default {
     listAll ({ // 查所有
         name,
         comeAge,
-        state
+        state,
+        page,
+        pageSize
     }) {
         return new Promise((resolve, reject) => {
             axios({
@@ -317,11 +340,7 @@ export default {
                 method: 'GET',
                 url: '/api/student/pull',
                 data: {
-                    name,
-                    comeAge,
-                    state,
-                    pageIndex: page, // 对应后台字段
-                    pageSize
+                    state
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data

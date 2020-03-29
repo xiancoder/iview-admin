@@ -17,6 +17,7 @@
                 <br />
                 <Button type="primary" :loading="loading.table" @click="hendleSearch">搜索</Button>
                 <Button type="default" :loading="loading.table" @click="hendleReset">重置</Button>
+                <Button type="primary" :loading="loading.btn4" @click="hendleMockInsert" class="fr">假数据插入</Button>
                 <Button type="primary" :loading="loading.btn3" @click="hendleErrorTry" class="fr">错误演示</Button>
                 <Button type="primary" :loading="loading.btn2" @click="hendleDrop" class="fr">删除表格</Button>
                 <Button type="primary" :loading="loading.btn1" @click="hendleCreate" class="fr">创建表格</Button>
@@ -42,8 +43,8 @@
 </template>
 <script>
 import { extend, extendF } from '@/utils/object'
-import { throttle, nothing } from '@/utils/function'
-import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+import { nothing } from '@/utils/function'
+import { h, confirmAjax, saveParamState, getParamState } from '@/tools' // 自定义常用工具
 
 export default {
     data () {
@@ -65,7 +66,8 @@ export default {
                 table: false,
                 btn1: false,
                 btn2: false,
-                btn3: false
+                btn3: false,
+                btn4: false
             },
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
             order: { orderKey: '', order: '' }, // 排序 变量名最好原样
@@ -110,6 +112,21 @@ export default {
                 this.loading.btn3 = false
             })
         },
+        hendleMockInsert () { // 操作::假数据插入
+            this.loading.btn3 = true
+            confirmAjax('这么懒啊要执行假数据插入').then(() => {
+                this.$api.student.mockAddOne().then(() => {
+                    this.$Modal.remove()
+                    this.loading.btn3 = false
+                }, () => {
+                    this.loading.btn3 = false
+                })
+            }, () => {
+                this.$Modal.remove()
+                this.loading.btn3 = false
+            })
+        },
+
         hendleEdit (param) { // 操作::编辑功能
         },
         initDataSet () { // 初始化数据源 [[模版方法不要动]]

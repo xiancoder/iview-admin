@@ -65,7 +65,18 @@ export const confirm = (msg, title) => { // 二次确认框
         Modal.confirm({
             title: title || '请确认',
             content: '<p>' + msg + '</p>',
-            // loading: true, // loading 点击确定按钮时，确定按钮是否显示 loading 状态，开启则需手动设置value来关闭对话框
+            onOk: resolve,
+            onCancel: reject
+        })
+    })
+}
+// 页面信息提示 需要用户确认信息
+export const confirmAjax = (msg, title) => { // 二次确认框
+    return new Promise((resolve, reject) => {
+        Modal.confirm({
+            title: title || '请确认',
+            content: '<p>' + msg + '</p>',
+            loading: true, // loading 点击确定按钮时，确定按钮是否显示 loading 状态，开启则需手动设置value来关闭对话框
             onOk: resolve,
             onCancel: reject
         })

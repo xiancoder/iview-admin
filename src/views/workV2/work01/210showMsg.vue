@@ -20,13 +20,6 @@
                         }
                     </script>
                 </div>
-                <div class="blogFooter">
-                    <Tag color="green">收集</Tag>
-                    <Tag color="cyan">学习</Tag>
-                    <Tag color="blue">增长</Tag>
-                </div>
-            </div>
-            <div class="blog">
                 <div class="blogTitle">各种功能弹框</div>
                 <div class="blogContent" v-highlight>
                     <p></p>
@@ -43,13 +36,6 @@
                         hendleConfirm () { this.$Modal.confirm({ title: '核对考勤', content: '确认考勤无误吗？', loading: true, onOk: () => { alert('ok'); this.$Modal.remove() } }) }
                     </script>
                 </div>
-                <div class="blogFooter">
-                    <Tag color="green">收集</Tag>
-                    <Tag color="cyan">学习</Tag>
-                    <Tag color="blue">增长</Tag>
-                </div>
-            </div>
-            <div class="blog">
                 <div class="blogTitle">信息弹框 最最最好不要在想 需要时候new一个 方式</div>
                 <div class="blogContent" v-highlight>
                     <p><Icon type="md-close" style="color:red"/> 思路本身就错了 这种类似jq的先定位在操作的思想</p>
