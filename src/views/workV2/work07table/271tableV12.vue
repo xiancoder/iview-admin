@@ -2,11 +2,12 @@
     <div>
         <div class="blogCss">
             <div class="blog">
-                <div class="blogTitle">表格v13模版规范</div>
+                <div class="blogTitle">表格v12模版规范</div>
                 <Divider orientation="right">项目上的经验积累</Divider>
                 <div class="blogContent" v-highlight>
-                    <p><Icon type="md-checkmark" style="color:green"/> 1 弹框写法</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 2 因为vue页面强调组件化 所以特地要求弹框内容另写文件</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 1 表格内容美化方案</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 2 长文本内容折叠tooltip提示</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 3 表格长度规范化 如日期100px...</p>
                     <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 </div>
             </div>

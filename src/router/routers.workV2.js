@@ -148,6 +148,8 @@ export default makeMultiLevelRoute({
             path: 'work07table', title: '卷陆-表格篇', icon: 'md-heart',
             children: [
                 {power: 'workv2-0', path: '271tableV10', title: '表格v10模版规范'},
+                {power: 'workv2-0', path: '271tableV11', title: '表格v11模版规范'},
+                {power: 'workv2-0', path: '271tableV12', title: '表格v12模版规范'},
                 {power: 'workv2-0', path: '271tableV13', title: '表格v13模版规范'}
             ]
         }

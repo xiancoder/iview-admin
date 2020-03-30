@@ -260,6 +260,14 @@ div.api{
 /* 表格自定义项 */
 .tableLayout{
     position: relative; padding:20px;
+    /* 表格页头 放置标题 */
+    .tableHeader{
+        margin: 20px 0 10px 0; padding: 0 0 10px 0; border-bottom: 1px solid #c5c8cc;
+        small{color: #bfbfbf;font-size: 70%;}
+        b{color: #f53636;font-size: 70%;}
+        b:before{content:'('}
+        b:after{content:')'}
+    }
     /* 工具栏 就是盛放搜索项的那块 */
     .tableTool{
         display: inline-block;width: 100%;

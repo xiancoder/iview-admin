@@ -1,19 +1,44 @@
 <template>
     <div>
+        <div class="blogCss">
+            <div class="blog">
+                <div class="blogTitle">表格v10模版规范</div>
+                <Divider orientation="right">项目上的经验积累</Divider>
+                <div class="blogContent" v-highlight>
+                    <p><Icon type="md-checkmark" style="color:green"/> 1 分页/搜索/排序 相互关系固化在代码中 尽量不要修改</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 2 内容的花样尽量使用tool中h方法提供的render方式</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 3 所有右边的按钮使用btn代表 表格中的按钮使用op代表</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 4 btn必须考虑loading效果 op必须考虑节流效果</p>
+                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
+                </div>
+            </div>
+        </div>
         <div class="tableLayout">
-            <h2>表格v10模版规范</h2>
+            <div class="tableHeader">
+                <h2>表格v10模版规范 <small>新的模版</small><b>新的模版</b></h2>
+            </div>
             <div class="tableTool" @keyup.enter.stop="hendleSearch">
-                <Select v-model="search.taskPriority" placeholder="请选择任务级别" style="width: 180px">
-                    <Option value="0" label="全部任务级别"></Option>
-                    <Option v-for="option in dataSet.taskPriorityList" :value="option.id" :key="option.id" :label="option.name" >
+                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
+                <Select v-model="search.sex" placeholder="请选择性别" style="width: 180px">
+                    <Option value="0" label="全部"></Option>
+                    <Option v-for="option in dataSet.sex" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
-                <Select v-model="search.taskStatus" placeholder="请选择任务状态" style="width: 180px">
-                    <Option value="0" label="全部任务状态"></Option>
-                    <Option v-for="option in dataSet.taskStatuList" :value="option.id" :key="option.id" :label="option.name" >
+                <Select v-model="search.taskStatus" placeholder="请选择状态" style="width: 180px">
+                    <Option value="0" label="全部"></Option>
+                    <Option v-for="option in dataSet.state" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
-                <Input type="text" v-model.trim="search.businessName" placeholder="请输入业务" style="width: 180px"/>
+                <Select v-model="search.sex" placeholder="请选择年龄" style="width: 180px">
+                    <Option value="0" label="全部"></Option>
+                    <Option v-for="option in dataSet.age" :value="option.id" :key="option.id" :label="option.name" >
+                    </Option>
+                </Select>
+                <Select v-model="search.stay" placeholder="请选择时长" style="width: 180px">
+                    <Option value="0" label="全部"></Option>
+                    <Option v-for="option in dataSet.stay" :value="option.id" :key="option.id" :label="option.name" >
+                    </Option>
+                </Select>
                 <br />
                 <Button type="primary" :loading="loading.table" @click="hendleSearch">搜索</Button>
                 <Button type="default" :loading="loading.table" @click="hendleReset">重置</Button>
@@ -25,7 +50,8 @@
             <Table border :loading="loading.table" :columns="columns" :data="tableData"
                 @on-sort-change="hendleSort">
                 <template slot-scope="{ row, index }" slot="op">
-                    <Button @click="hendleEdit(row)" size="small">编辑</Button>
+                    <Button type="text" @click="hendleEdit(row)" size="small">编辑</Button>
+                    <Button type="text" @click="hendleDel(row)" size="small">删除</Button>
                 </template>
             </Table>
             <div class="tableFooter">
@@ -50,40 +76,47 @@ export default {
     data () {
         return {
             dataSet: {
-                'taskPriorityList': [],
-                'taskStatuList': []
+                'sex': [], // 性别 0全部1男2女
+                'state': [], // 状态 0全部1在校2记过3劝退4开除
+                'age': [ // 年龄
+                    {id: '10', name: '10 ~ 20'},{id: '20', name: '20 ~ 30'},{id: '30', name: '30 ~ 40'},
+                    {id: '40', name: '40 ~ 50'},{id: '50', name: '50 ~ 60'},{id: '60', name: '60 ~ 70'},
+                    {id: '70', name: '70 ~ 80'},{id: '80', name: '80 ~ 90'}
+                ],
+                'stay': [ // 时长
+                    {id: '10', name: '0 ~ 10'},{id: '20', name: '10 ~ 20'},{id: '30', name: '20 ~ 30'}
+                ]
             },
             search: {
                 // 'taskPriority': '', // 级别 0:一般 1：重要 2：紧急
                 // 'taskStatus': '', // 任务状态, 0:待接受；1:执行中；2:待验收;3.验收通过；4.已废弃；5.已暂停
                 // 以上枚举的设置十分不利于前端规范化 请不要使用0为枚举id 因为0代表全部
                 // 建议 使用空值来初始显示 (虽然不大爽)
-                'taskPriority': '', // 级别 0全部1一般2重要3紧急
-                'taskStatus': '', // 任务状态 0全部1待接受2执行中3待验收4验收通过5已废弃6已暂停
-                'businessName': '' /* 想搜索的业务名称 */
+                'sex': '', // 性别 0全部1男2女
+                'state': '', // 状态 0全部1在校2记过3劝退4开除
+                'name': '',
+                'age': '',
+                'stay': ''
             },
             loading: {
-                table: false,
-                btn1: false,
-                btn2: false,
-                btn3: false,
-                btn4: false
+                table: false, // 表格加载
+                btn1: false, btn2: false, btn3: false, btn4: false, // 功能节流
+                op1: false, op2: false // 操作节流
             },
-            page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 变量名最好原样
-            order: { orderKey: '', order: '' }, // 排序 变量名最好原样
-            columns: [ // 必须指定最小宽度
-                {title: '任务编号', minWidth: 100, key: 'taskNumber', sortable: true},
-                {title: '发布人', minWidth: 100, key: 'founder', sortable: true},
-                {title: '发布日期', minWidth: 100, key: 'foundTime', sortable: true},
-                {title: '负责人', minWidth: 100, key: 'personLiable'},
-                {title: '计划完成日期', minWidth: 100, key: 'completeTime', render: h.defaultH('completeTime')},
-                {title: '优先级', minWidth: 100, key: 'taskPriority'},
-                {title: '状态', minWidth: 100, key: 'taskStatus'},
-                {title: '操作', minWidth: 80, slot: 'op'}
+            page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 [[模版变量不要动]]
+            order: { orderKey: '', order: '' }, // 排序 [[模版变量不要动]]
+            columns: [ // 列配置 必须指定最小宽度 [[模版变量不要动]]
+                {title: 'id', minWidth: 100, key: 'id', sortable: true},
+                {title: '姓名', minWidth: 100, key: 'name'},
+                {title: '性别', minWidth: 100, key: 'sex', render: h.readArr('sex', this.$api.student.pullSex('table'))},
+                {title: '状态', minWidth: 100, key: 'state', render: h.readArr('state', this.$api.student.pullState('table'))},
+                {title: '年龄', minWidth: 100, key: 'age'},
+                {title: '留学时长', minWidth: 100, key: 'stay'},
+                {title: '操作', minWidth: 80, slot: 'op', align: 'center'}
             ],
-            'serrchParam': null, // 实际搜索项
-            'serrchBack': null, // 搜索项备份
-            'tableData': [], // 表格内容
+            'serrchParam': null, // 实际搜索项 [[模版变量不要动]]
+            'serrchBack': null, // 搜索项备份 [[模版变量不要动]]
+            'tableData': [], // 表格内容 [[模版变量不要动]]
             end1: 1 // 防呆设计
         }
     },
@@ -116,6 +149,7 @@ export default {
             this.loading.btn3 = true
             confirmAjax('这么懒啊要执行假数据插入').then(() => {
                 this.$api.student.mockAddOne().then(() => {
+                    this.ajax()
                     this.$Modal.remove()
                     this.loading.btn3 = false
                 }, () => {
@@ -126,16 +160,25 @@ export default {
                 this.loading.btn3 = false
             })
         },
-
         hendleEdit (param) { // 操作::编辑功能
         },
+        hendleDel (id) { // 操作::删除
+            if (this.loading.op2) return false
+            this.loading.op2 = true
+            this.$api.student.del(id).then(() => {
+                this.loading.op2 = false
+                this.ajax()
+            }, () => {
+                this.loading.op2 = false
+            })
+        },
         initDataSet () { // 初始化数据源 [[模版方法不要动]]
-            this.$api.task.priority().then(list => {
-                this.dataSet.taskPriorityList = list
+            this.$api.student.pullSex().then(list => {
+                this.dataSet.sex = list
             }, () => {
             })
-            this.$api.task.status().then(list => {
-                this.dataSet.taskStatuList = list
+            this.$api.student.pullState().then(list => {
+                this.dataSet.state = list
             }, () => {
             })
         },
@@ -173,7 +216,7 @@ export default {
             extend(this.serrchParam, this.order) // 设置排序
             saveParamState(this.serrchParam) // 存url
             this.loading.table = true // 加载中
-            this.$api.task.listMine(this.serrchParam).then((info) => { // 发送ajax
+            this.$api.student.listAll(this.serrchParam).then((info) => { // 发送ajax
                 this.loading.table = false // 加载完成
                 this.tableData = info.list
                 this.page.rowCount = info.rowcount

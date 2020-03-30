@@ -60,6 +60,26 @@ export default {
             })
         })
     },
+
+    /* 'title': '学生 - 添加/修改',
+        'url': '/api/student/edit',
+        'method': 'post',
+        'params': {
+            'id': 1, // id
+            'name': 'pite', // 名称
+            'sex': 1, // 性别 1男2女
+            'comeAge': 12, // 入校年龄
+        },
+        'response': {
+            'code': '200',
+            'msg': '',
+            'data': {
+                'res_code': 1, // 结果 0失败1成功
+                'res': '' // 结果信息
+            }
+        }
+    */
+
     mockAddOne () { // 导入一份假数据
         return new Promise((resolve, reject) => {
             axios.request({
@@ -81,26 +101,6 @@ export default {
             })
         })
     },
-
-    /* 'title': '学生 - 添加/修改',
-        'url': '/api/student/edit',
-        'method': 'post',
-        'params': {
-            'id': 1, // id
-            'name': 'pite', // 名称
-            'sex': 1, // 性别 1男2女
-            'comeAge': 12, // 入校年龄
-        },
-        'response': {
-            'code': '200',
-            'msg': '',
-            'data': {
-                'res_code': 1, // 结果 0失败1成功
-                'res': '' // 结果信息
-            }
-        }
-    */
-
     edit ({ // 添加/修改
         id = 0,
         name,
@@ -195,8 +195,8 @@ export default {
     }) {
         return new Promise((resolve, reject) => {
             axios.request({
-                method: 'POST',
-                url: 'api/student/edit',
+                method: 'GET',
+                url: 'api/student/del',
                 data: {
                     id
                 }
@@ -376,7 +376,7 @@ export default {
         注意0是全部
     */
 
-    pullStatus (forTableShow) { // 枚举
+    pullState (forTableShow) { // 枚举
         if (forTableShow) { // 处理结果枚举 forTableShow指表格枚举
             return ['', '在校', '记过', '劝退', '开除']
         }

@@ -2,11 +2,11 @@
     <div>
         <div class="blogCss">
             <div class="blog">
-                <div class="blogTitle">表格v13模版规范</div>
+                <div class="blogTitle">表格v11模版规范</div>
                 <Divider orientation="right">项目上的经验积累</Divider>
                 <div class="blogContent" v-highlight>
-                    <p><Icon type="md-checkmark" style="color:green"/> 1 弹框写法</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 2 因为vue页面强调组件化 所以特地要求弹框内容另写文件</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 1 批量处理功能提供</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 2 注意在v10基础上需要添加3处代码 批量按钮/选中数组/全选处理方法</p>
                     <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 </div>
             </div>
