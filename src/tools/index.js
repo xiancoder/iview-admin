@@ -34,7 +34,7 @@ export const error = (msg) => { // 错误提示
 export const alertMsg = (msg, title, onOk) => { // 弹框提示
     const config = {
         title: title || '提示信息',
-        content: msg || '-'
+        content: '<div style=" word-break: break-all; ">' + (msg || '-') + '</div>'
     }
     if (onOk) {config.onOk = onOk}
     Modal.info(config)

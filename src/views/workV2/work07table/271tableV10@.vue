@@ -30,6 +30,7 @@
                 <br />
                 <Button type="primary" :loading="loading.table" @click="hendleSearch">搜索</Button>
                 <Button type="default" :loading="loading.table" @click="hendleReset">重置</Button>
+                <Button type="primary" @click="hendleNoData" class="fr">没有数据</Button>
                 <Button type="primary" :loading="loading.btn4" @click="hendleMockInsert" class="fr">假数据插入</Button>
                 <Button type="primary" :loading="loading.btn3" @click="hendleErrorTry" class="fr">错误演示</Button>
                 <Button type="primary" :loading="loading.btn2" @click="hendleDrop" class="fr">删除表格</Button>
@@ -71,7 +72,7 @@
 <script>
 import { extend, extendF } from '@/utils/object'
 import { nothing } from '@/utils/function'
-import { h, confirmAjax, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+import { h, confirmAjax, saveParamState, getParamState, alertMsg } from '@/tools' // 自定义常用工具
 import tab from './271tableV10'
 
 export default {
@@ -123,6 +124,10 @@ export default {
         }
     },
     methods: {
+        hendleNoData () { // 操作::没有数据
+            this.tableData = []
+            this.page.rowCount = 0
+        },
         hendleCreate () { // 操作::创建表格
             this.loading.btn1 = true
             this.$api.student.createTable().then(() => {
@@ -162,7 +167,8 @@ export default {
                 this.loading.btn3 = false
             })
         },
-        hendleEdit (param) { // 操作::编辑功能
+        hendleEdit (row) { // 操作::编辑功能
+            alertMsg(`姓名: ${row.name}<br/> 性别: ${row.sex}<br/> 状态: ${row.stare}<br/> 年龄: ${row.age}<br/> 留学时长: ${row.stay}<br/> `, '单元内容')
         },
         hendleDel (id) { // 操作::删除
             if (this.loading.op2) return false

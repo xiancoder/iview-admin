@@ -30,10 +30,6 @@
                 <br />
                 <Button type="primary" :loading="loading.table" @click="hendleSearch">搜索</Button>
                 <Button type="default" :loading="loading.table" @click="hendleReset">重置</Button>
-                <Button type="primary" :loading="loading.btn4" @click="hendleMockInsert" class="fr">假数据插入</Button>
-                <Button type="primary" :loading="loading.btn3" @click="hendleErrorTry" class="fr">错误演示</Button>
-                <Button type="primary" :loading="loading.btn2" @click="hendleDrop" class="fr">删除表格</Button>
-                <Button type="primary" :loading="loading.btn1" @click="hendleCreate" class="fr">创建表格</Button>
             </div>
             <Table border :loading="loading.table" :columns="columns" :data="tableData"
                 :maxHeight="maxheight" node="-----------------------------------------高度限定必须的配置"
@@ -86,7 +82,7 @@
 <script>
 import { extend, extendF } from '@/utils/object'
 import { nothing } from '@/utils/function'
-import { h, confirmAjax, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工具
 import tab from './271tableV10DHC'
 
 export default {
@@ -121,7 +117,6 @@ export default {
             },
             loading: {
                 table: false, // 表格加载
-                btn1: false, btn2: false, btn3: false, btn4: false, // 功能节流
                 op1: false, op2: false // 操作节流
             },
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 [[模版变量不要动]]
@@ -141,45 +136,6 @@ export default {
         }
     },
     methods: {
-        hendleCreate () { // 操作::创建表格
-            this.loading.btn1 = true
-            this.$api.student.createTable().then(() => {
-                this.loading.btn1 = false
-            }, () => {
-                this.loading.btn1 = false
-            })
-        },
-        hendleDrop () { // 操作::删除表格
-            this.loading.btn2 = true
-            this.$api.student.dropTable().then(() => {
-                this.loading.btn2 = false
-            }, () => {
-                this.loading.btn2 = false
-            })
-        },
-        hendleErrorTry () { // 操作::错误演示
-            this.loading.btn3 = true
-            this.$api.student.errorTry().then(() => {
-                this.loading.btn3 = false
-            }, () => {
-                this.loading.btn3 = false
-            })
-        },
-        hendleMockInsert () { // 操作::假数据插入
-            this.loading.btn3 = true
-            confirmAjax('这么懒啊要执行假数据插入').then(() => {
-                this.$api.student.mockAddOne().then(() => {
-                    this.ajax()
-                    this.$Modal.remove()
-                    this.loading.btn3 = false
-                }, () => {
-                    this.loading.btn3 = false
-                })
-            }, () => {
-                this.$Modal.remove()
-                this.loading.btn3 = false
-            })
-        },
         hendleEdit (param) { // 操作::编辑功能
         },
         hendleDel (id) { // 操作::删除

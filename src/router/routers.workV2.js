@@ -158,7 +158,8 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '271tableV10DHC@icon', title: '表格v10的DHC小图标', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10DHC@height', title: '表格v10的DHC高度限定', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10DHC@search', title: '表格v10的DHC搜索项', hideMenu: true},
-                {power: 'workv2-2', path: '271tableV10DHC@sum', title: '表格v10的DHC总计', hideMenu: true}
+                {power: 'workv2-2', path: '271tableV10DHC@sum', title: '表格v10的DHC总计', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10DHC@mixin', title: '表格v10的DHCMixin', hideMenu: true}
             ]
         }
     ]
