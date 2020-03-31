@@ -57,8 +57,10 @@
                         <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                     </Select>
                 </p>
-                <p>可搜索模式 filterable
-                    <Select filterable v-model="model1" style="width:200px">
+                <p>可搜索模式 filterable {{model1}}
+                    <!-- <Select filterable ref="dataSet" v-model="model1" style="width:200px" @on-open-change="xxx"> -->
+                    <!-- xxx方法不行 -->
+                    <Select filterable ref="dataSet" v-model="model1" style="width:200px">
                         <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                     </Select>
                 </p>
@@ -137,6 +139,13 @@ export default {
             testList3: [],
             test4: '',
             testList4: []
+        }
+    },
+    methods: {
+        xxx (a,b,c) {
+            console.log(a,b,c)
+            if (a)
+            this.$refs.dataSet.setQuery(null)
         }
     },
     mounted () {
