@@ -147,10 +147,18 @@ export default makeMultiLevelRoute({
         {
             path: 'work07table', title: '卷陆-表格篇', icon: 'md-heart',
             children: [
-                {power: 'workv2-0', path: '271tableV10', title: '表格v10模版规范'},
-                {power: 'workv2-0', path: '271tableV11', title: '表格v11模版规范'},
-                {power: 'workv2-0', path: '271tableV12', title: '表格v12模版规范'},
-                {power: 'workv2-0', path: '271tableV13', title: '表格v13模版规范'}
+                {power: 'workv2-2', path: '271tableV10', title: '表格v10模版规范'},
+                {power: 'workv2-2', path: '271tableV10@', title: '表格v10模版规范', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10@tab', title: '表格v10Tab规范', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10@userSay', title: '用户反映注意的点', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10@fspo', title: '搜索排序分页操作', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10@rule', title: '开发者应遵守', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10DHC', title: '表格v10的DHC'},
+                {power: 'workv2-2', path: '271tableV10DHC@betch', title: '表格v10的DHC批量处理', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10DHC@icon', title: '表格v10的DHC小图标', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10DHC@height', title: '表格v10的DHC高度限定', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10DHC@search', title: '表格v10的DHC搜索项', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10DHC@sum', title: '表格v10的DHC总计', hideMenu: true}
             ]
         }
     ]

@@ -1,23 +1,17 @@
 <template>
     <div>
-        <div class="blogCss">
-            <div class="blog">
-                <div class="blogTitle">表格v12模版规范</div>
-                <Divider orientation="right">项目上的经验积累</Divider>
-                <div class="blogContent" v-highlight>
-                    <p><Icon type="md-checkmark" style="color:green"/> 1 表格内容美化方案</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 2 长文本内容折叠tooltip提示</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 3 表格长度规范化 如日期100px...</p>
-                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
-                </div>
-            </div>
-        </div>
         <div class="tableLayout">
             <div class="tableHeader">
                 <h2>表格v10模版规范 <small>新的模版</small><b>新的模版</b></h2>
             </div>
+            <tab></tab>
             <div class="tableTool" @keyup.enter.stop="hendleSearch">
-                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
+                <DatePicker type="month" :value="search.date" placeholder="选择日期" format="yyyy-MM"
+                    @on-change="(date)=>{search.date=date}" style="width: 150px">
+                </DatePicker>
+                <DatePicker :value="search.start2end" type="daterange" placeholder="选择开始日期结束日期"
+                    @on-change="search.start2end=$event" @on-clear="search.start2end=[]" split-panels style="width: 220px">
+                </DatePicker>
                 <Select v-model="search.sex" placeholder="请选择性别" style="width: 180px">
                     <Option value="0" label="全部"></Option>
                     <Option v-for="option in dataSet.sex" :value="option.id" :key="option.id" :label="option.name" >
@@ -38,6 +32,12 @@
                     <Option v-for="option in dataSet.stay" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
+                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
+                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
+                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
+                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
+                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
+                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
                 <br />
                 <Button type="primary" :loading="loading.table" @click="hendleSearch">搜索</Button>
                 <Button type="default" :loading="loading.table" @click="hendleReset">重置</Button>
@@ -64,17 +64,36 @@
                 <span class="fr"> {{showPageRow(page.rowCount,page.pageIndex,page.pageSize)}}</span>
             </div>
         </div>
+        <div class="blogCss">
+            <div class="blog">
+                <div class="blogTitle">表格v10模版规范 搜索项用法</div>
+                <Divider orientation="right">项目上的经验积累</Divider>
+                <div class="blogContent" v-highlight>
+                    <p><Icon type="md-checkmark" style="color:green"/> 规范1 订立api的时候对枚举变量一定不要使用0 (使用0来代表全部)</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 规范2 每行最多5个控件 再多请换行 右侧最多4个按钮 再多请换行</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 规范3 api模块中不要写关于枚举0的内容 枚举0写入select标签内</p>
+                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
 import { extend, extendF } from '@/utils/object'
 import { nothing } from '@/utils/function'
+import { sevenRange, todayMouth } from '@/utils/date'
 import { h, confirmAjax, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+import tab from './271tableV10DHC'
 
 export default {
+    components: { tab },
     data () {
+        const start2end = sevenRange()
+        const date = todayMouth()
         return {
             dataSet: {
+                date, // 日期 yyyy-mm
+                start2end, // 日期范围 yyyy-mm-dd
                 'sex': [], // 性别 0全部1男2女
                 'state': [], // 状态 0全部1在校2记过3劝退4开除
                 'age': [ // 年龄
@@ -114,7 +133,6 @@ export default {
                 {title: '操作', minWidth: 80, slot: 'op', align: 'center'}
             ],
             'serrchParam': null, // 实际搜索项 [[模版变量不要动]]
-            'serrchBack': null, // 搜索项备份 [[模版变量不要动]]
             'tableData': [], // 表格内容 [[模版变量不要动]]
             end1: 1 // 防呆设计
         }
@@ -183,7 +201,6 @@ export default {
         },
         initTable () { // 初始化表格 [[模版方法不要动]]
             if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
-            if (!this.serrchBack) {this.serrchBack = extend({}, this.search)} // 备份
             const query = getParamState()
             extend(this.search, query) // 设置表现搜索项成url缓存
             extendF(this.page, query)
@@ -195,7 +212,7 @@ export default {
             this.hendleGopage(1)
         },
         hendleReset () { // 重置 [[模版方法不要动]]
-            extend(this.search, this.serrchBack) // 重置表现搜索项成备份搜索项
+            extend(this.search, this.$options.data().search) // 重置表现搜索项成备份搜索项
             this.hendleSearch()
         },
         hendleGopage (page) { // 跳转页 [[模版方法不要动]]

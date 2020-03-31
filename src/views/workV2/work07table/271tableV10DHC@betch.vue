@@ -1,21 +1,10 @@
 <template>
     <div>
-        <div class="blogCss">
-            <div class="blog">
-                <div class="blogTitle">表格v12模版规范</div>
-                <Divider orientation="right">项目上的经验积累</Divider>
-                <div class="blogContent" v-highlight>
-                    <p><Icon type="md-checkmark" style="color:green"/> 1 表格内容美化方案</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 2 长文本内容折叠tooltip提示</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 3 表格长度规范化 如日期100px...</p>
-                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
-                </div>
-            </div>
-        </div>
         <div class="tableLayout">
             <div class="tableHeader">
                 <h2>表格v10模版规范 <small>新的模版</small><b>新的模版</b></h2>
             </div>
+            <tab></tab>
             <div class="tableTool" @keyup.enter.stop="hendleSearch">
                 <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
                 <Select v-model="search.sex" placeholder="请选择性别" style="width: 180px">
@@ -47,6 +36,7 @@
                 <Button type="primary" :loading="loading.btn1" @click="hendleCreate" class="fr">创建表格</Button>
             </div>
             <Table border :loading="loading.table" :columns="columns" :data="tableData"
+                @on-selection-change="selectedChange" node="-----------------------------------------批量处理必须的配置"
                 @on-sort-change="hendleSort">
                 <template slot-scope="{ row, index }" slot="op">
                     <Button type="text" @click="hendleEdit(row)" size="small">编辑</Button>
@@ -64,14 +54,59 @@
                 <span class="fr"> {{showPageRow(page.rowCount,page.pageIndex,page.pageSize)}}</span>
             </div>
         </div>
+        <div class="blogCss">
+            <div class="blog">
+                <div class="blogTitle">表格v10模版规范 - 批量选中数据</div>
+                <Divider orientation="right">项目上的经验积累</Divider>
+                <div class="blogContent" v-highlight>
+                    <p><Icon type="md-checkmark" style="color:green"/> 1 批量选中数据 分页以后 table不保存旧选中 返回上一页 不会选中已有内容</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 2 给 data 项设置特殊 key _checked: true 可以默认选中当前项。</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 3 给 data 项设置特殊 key _disabled: true 可以禁止选择当前项。</p>
+                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
+                    <script type="text/html" v-pre>
+                        <Table border ref="tableID" :loading="loading" :columns="columns" :data="tableData"
+                            @on-selection-change="selectedChange"
+                            @on-sort-change="hendleSort">
+                        </Table>
+                    </script>
+                    <script type="text/js">
+                        columns: [
+                            { type: 'selection', width: 60, align: 'center' },
+                        ],
+                        'tableSelection': [], // 表格选中项
+                    </script>
+                    <script type="text/js">
+                        selectedChange (selection) {
+                            const ids = []
+                            selection = selection || []
+                            selection.forEach(row => { ids.push(row.id) })
+                            this.tableSelection = ids
+                        },
+                    </script>
+                    <script type="text/js">
+                        this.$api.task.listMine(this.serrchParam).then((info) => { // ajax
+                            this.loading = false; // 加载完成
+                            const infolist = (info.list || []).map(row => { // 根据条件禁止选中
+                                row._disabled = row.taskNumber > 5500
+                                return row
+                            })
+                            this.tableData = infolist
+                            this.page.rowCount = info.rowcount
+                        })
+                    </script>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
 import { extend, extendF } from '@/utils/object'
 import { nothing } from '@/utils/function'
 import { h, confirmAjax, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+import tab from './271tableV10DHC'
 
 export default {
+    components: { tab },
     data () {
         return {
             dataSet: {
@@ -105,6 +140,7 @@ export default {
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 [[模版变量不要动]]
             order: { orderKey: '', order: '' }, // 排序 [[模版变量不要动]]
             columns: [ // 列配置 必须指定最小宽度 [[模版变量不要动]]
+                {type: 'selection', width: 60, align: 'center'}, // -----------------------------------------批量处理必须的配置
                 {title: 'id', minWidth: 100, key: 'id', sortable: true},
                 {title: '姓名', minWidth: 100, key: 'name'},
                 {title: '性别', minWidth: 100, key: 'sex', render: h.readArr('sex', this.$api.student.pullSex('table'))},
@@ -114,8 +150,8 @@ export default {
                 {title: '操作', minWidth: 80, slot: 'op', align: 'center'}
             ],
             'serrchParam': null, // 实际搜索项 [[模版变量不要动]]
-            'serrchBack': null, // 搜索项备份 [[模版变量不要动]]
             'tableData': [], // 表格内容 [[模版变量不要动]]
+            'tableSelection': [], // 表格选中项 -----------------------------------------批量处理必须的配置
             end1: 1 // 防呆设计
         }
     },
@@ -171,6 +207,12 @@ export default {
                 this.loading.op2 = false
             })
         },
+        selectedChange (selection) { //  -----------------------------------------批量处理必须的配置
+            const ids = []
+            selection = selection || []
+            selection.forEach(row => { ids.push(row.id) })
+            this.tableSelection = ids
+        },
         initDataSet () { // 初始化数据源 [[模版方法不要动]]
             this.$api.student.pullSex().then(list => {
                 this.dataSet.sex = list
@@ -183,7 +225,6 @@ export default {
         },
         initTable () { // 初始化表格 [[模版方法不要动]]
             if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
-            if (!this.serrchBack) {this.serrchBack = extend({}, this.search)} // 备份
             const query = getParamState()
             extend(this.search, query) // 设置表现搜索项成url缓存
             extendF(this.page, query)
@@ -195,7 +236,7 @@ export default {
             this.hendleGopage(1)
         },
         hendleReset () { // 重置 [[模版方法不要动]]
-            extend(this.search, this.serrchBack) // 重置表现搜索项成备份搜索项
+            extend(this.search, this.$options.data().search) // 重置表现搜索项成备份搜索项
             this.hendleSearch()
         },
         hendleGopage (page) { // 跳转页 [[模版方法不要动]]
@@ -217,6 +258,11 @@ export default {
             this.loading.table = true // 加载中
             this.$api.student.listAll(this.serrchParam).then((info) => { // 发送ajax
                 this.loading.table = false // 加载完成
+                const infolist = (info.list || []).map(row => { // 根据条件禁止选中 -----------------------------------------批量处理参考的配置
+                    row._disabled = row.age > 60
+                    return row
+                })
+                this.tableData = infolist
                 this.tableData = info.list
                 this.page.rowCount = info.rowcount
             })

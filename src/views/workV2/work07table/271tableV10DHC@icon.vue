@@ -1,21 +1,10 @@
 <template>
     <div>
-        <div class="blogCss">
-            <div class="blog">
-                <div class="blogTitle">表格v12模版规范</div>
-                <Divider orientation="right">项目上的经验积累</Divider>
-                <div class="blogContent" v-highlight>
-                    <p><Icon type="md-checkmark" style="color:green"/> 1 表格内容美化方案</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 2 长文本内容折叠tooltip提示</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 3 表格长度规范化 如日期100px...</p>
-                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
-                </div>
-            </div>
-        </div>
         <div class="tableLayout">
             <div class="tableHeader">
                 <h2>表格v10模版规范 <small>新的模版</small><b>新的模版</b></h2>
             </div>
+            <tab></tab>
             <div class="tableTool" @keyup.enter.stop="hendleSearch">
                 <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
                 <Select v-model="search.sex" placeholder="请选择性别" style="width: 180px">
@@ -48,10 +37,6 @@
             </div>
             <Table border :loading="loading.table" :columns="columns" :data="tableData"
                 @on-sort-change="hendleSort">
-                <template slot-scope="{ row, index }" slot="op">
-                    <Button type="text" @click="hendleEdit(row)" size="small">编辑</Button>
-                    <Button type="text" @click="hendleDel(row)" size="small">删除</Button>
-                </template>
             </Table>
             <div class="tableFooter">
                 <!-- 模版结构不要动 -->
@@ -64,14 +49,45 @@
                 <span class="fr"> {{showPageRow(page.rowCount,page.pageIndex,page.pageSize)}}</span>
             </div>
         </div>
+        <div class="blogCss">
+            <div class="blog">
+                <div class="blogTitle">表格v10模版规范 小图标</div>
+                <Divider orientation="right">项目上的经验积累</Divider>
+                <div class="blogContent" v-highlight>
+                    <h2>
+                        <span>操作项</span>
+                        <i class="fa fa-power-off"></i>
+                        <i class="fa fa-cogs"></i>
+                        <i class="fa fa-download"></i>
+                        <i class="fa fa-edit"></i>
+                        <i class="fa fa-pencil"></i>
+                        <i class="fa fa-trash"></i>
+                        <i class="fa fa-vcard-o"/></i>
+                        <i class="fa fa-ban"/></i>
+                        <i class="fa fa-bell-o"/></i>
+                    </h2>
+                    <h2>
+                        <span>状态项</span>
+                        <i class="fa fa-toggle-on" style="color:green"></i><i class="fa fa-toggle-off" style="color:red"></i>
+                        <i class="fa fa-info-circle" style="color:#03A9F4"></i>
+                        <i class="fa fa-exclamation" style="color:red"></i>
+                        <i class="fa fa-calendar-check-o"/></i> <i class="fa fa-calendar-times-o"/></i>
+                        <i class="fa fa-close"/></i> <i class="fa fa-check"/></i>
+                        <i class="fa fa-eye"/></i> <i class="fa fa-eye-slash"/></i>
+                    </h2>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
 import { extend, extendF } from '@/utils/object'
 import { nothing } from '@/utils/function'
-import { h, confirmAjax, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+import { confirmAjax, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+import tab from './271tableV10DHC'
 
 export default {
+    components: { tab },
     data () {
         return {
             dataSet: {
@@ -107,14 +123,40 @@ export default {
             columns: [ // 列配置 必须指定最小宽度 [[模版变量不要动]]
                 {title: 'id', minWidth: 100, key: 'id', sortable: true},
                 {title: '姓名', minWidth: 100, key: 'name'},
-                {title: '性别', minWidth: 100, key: 'sex', render: h.readArr('sex', this.$api.student.pullSex('table'))},
-                {title: '状态', minWidth: 100, key: 'state', render: h.readArr('state', this.$api.student.pullState('table'))},
+                {title: '性别', minWidth: 100, key: 'sex', render: (h, params) => {
+                    const row = params.row;
+                    if (row['sex'] === 1) {
+                        return h('i', {'class': {'fa': true, 'fa-toggle-on': true}, style: {color: 'green'}, attrs: {title: '男'}})
+                    } else {
+                        return h('i', {'class': {'fa': true, 'fa-toggle-off': true}, style: {color: 'red'}, attrs: {title: '女'}})
+                    }
+                }},
+                {title: '状态', minWidth: 100, key: 'state', render: (h, params) => {
+                    const row = params.row;
+                    if (row['state'] === 1) {
+                        return h('i', {'class': {'fa': true, 'fa-toggle-on': true}, style: {color: 'green'}, attrs: {title: '一般'}})
+                    } else {
+                        return h('i', {'class': {'fa': true, 'fa-toggle-off': true}, style: {color: 'red'}, attrs: {title: '不一般'}})
+                    }
+                }},
                 {title: '年龄', minWidth: 100, key: 'age'},
                 {title: '留学时长', minWidth: 100, key: 'stay'},
-                {title: '操作', minWidth: 80, slot: 'op', align: 'center'}
+                {title: '操作', minWidth: 80, slot: 'op', key: 'op', render: (h, params) => {
+                    return h('div', [
+                        h('i', {
+                            'class': {'fa': true, 'fa-cogs': true},
+                            'style': {marginRight: '6px', 'cursor': 'pointer'},
+                            // 事件监听器在 `on` 属性内，
+                            // 但不再支持如 `v-on:keyup.enter` 这样的修饰器。
+                            // 需要在处理函数中手动检查 keyCode。
+                            'on': { 'click': this.hendleEdit }
+                        }),
+                        h('i', {'class': {'fa': true, 'fa-edit': true}, style: {marginRight: '6px', 'cursor': 'pointer'}}),
+                        h('i', {'class': {'fa': true, 'fa-pencil': true}, style: {marginRight: '6px', 'cursor': 'pointer'}})
+                    ])
+                }}
             ],
             'serrchParam': null, // 实际搜索项 [[模版变量不要动]]
-            'serrchBack': null, // 搜索项备份 [[模版变量不要动]]
             'tableData': [], // 表格内容 [[模版变量不要动]]
             end1: 1 // 防呆设计
         }
@@ -183,7 +225,6 @@ export default {
         },
         initTable () { // 初始化表格 [[模版方法不要动]]
             if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
-            if (!this.serrchBack) {this.serrchBack = extend({}, this.search)} // 备份
             const query = getParamState()
             extend(this.search, query) // 设置表现搜索项成url缓存
             extendF(this.page, query)
@@ -195,7 +236,7 @@ export default {
             this.hendleGopage(1)
         },
         hendleReset () { // 重置 [[模版方法不要动]]
-            extend(this.search, this.serrchBack) // 重置表现搜索项成备份搜索项
+            extend(this.search, this.$options.data().search) // 重置表现搜索项成备份搜索项
             this.hendleSearch()
         },
         hendleGopage (page) { // 跳转页 [[模版方法不要动]]

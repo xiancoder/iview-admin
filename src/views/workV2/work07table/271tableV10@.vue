@@ -1,21 +1,10 @@
 <template>
     <div>
-        <div class="blogCss">
-            <div class="blog">
-                <div class="blogTitle">表格v12模版规范</div>
-                <Divider orientation="right">项目上的经验积累</Divider>
-                <div class="blogContent" v-highlight>
-                    <p><Icon type="md-checkmark" style="color:green"/> 1 表格内容美化方案</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 2 长文本内容折叠tooltip提示</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 3 表格长度规范化 如日期100px...</p>
-                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
-                </div>
-            </div>
-        </div>
         <div class="tableLayout">
             <div class="tableHeader">
                 <h2>表格v10模版规范 <small>新的模版</small><b>新的模版</b></h2>
             </div>
+            <tab></tab>
             <div class="tableTool" @keyup.enter.stop="hendleSearch">
                 <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
                 <Select v-model="search.sex" placeholder="请选择性别" style="width: 180px">
@@ -64,14 +53,29 @@
                 <span class="fr"> {{showPageRow(page.rowCount,page.pageIndex,page.pageSize)}}</span>
             </div>
         </div>
+        <div class="blogCss">
+            <div class="blog">
+                <div class="blogTitle">表格v10模版规范</div>
+                <Divider orientation="right">项目上的经验积累</Divider>
+                <div class="blogContent" v-highlight>
+                    <p><Icon type="md-checkmark" style="color:green"/> 1 搜索/排序/分页/操作 相互关系固化在代码中 尽量不要修改</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 2 内容的花样尽量使用tool中h方法提供的render方式</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 3 所有右边的按钮使用btn代表 表格中的按钮使用op代表</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 4 btn必须考虑loading效果 op必须考虑节流效果</p>
+                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
 import { extend, extendF } from '@/utils/object'
 import { nothing } from '@/utils/function'
 import { h, confirmAjax, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+import tab from './271tableV10'
 
 export default {
+    components: { tab },
     data () {
         return {
             dataSet: {
@@ -114,7 +118,6 @@ export default {
                 {title: '操作', minWidth: 80, slot: 'op', align: 'center'}
             ],
             'serrchParam': null, // 实际搜索项 [[模版变量不要动]]
-            'serrchBack': null, // 搜索项备份 [[模版变量不要动]]
             'tableData': [], // 表格内容 [[模版变量不要动]]
             end1: 1 // 防呆设计
         }
@@ -183,7 +186,6 @@ export default {
         },
         initTable () { // 初始化表格 [[模版方法不要动]]
             if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
-            if (!this.serrchBack) {this.serrchBack = extend({}, this.search)} // 备份
             const query = getParamState()
             extend(this.search, query) // 设置表现搜索项成url缓存
             extendF(this.page, query)
@@ -195,7 +197,7 @@ export default {
             this.hendleGopage(1)
         },
         hendleReset () { // 重置 [[模版方法不要动]]
-            extend(this.search, this.serrchBack) // 重置表现搜索项成备份搜索项
+            extend(this.search, this.$options.data().search) // 重置表现搜索项成备份搜索项
             this.hendleSearch()
         },
         hendleGopage (page) { // 跳转页 [[模版方法不要动]]

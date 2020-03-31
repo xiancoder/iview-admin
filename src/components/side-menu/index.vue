@@ -90,7 +90,7 @@ export default {
             // 如果路由名字有$ 表示这是个子类页面
             // 如果路由名字有@ 表示这是个兄弟页面
             const routeName = this.$route.name || ''
-            return routeName.replace(/[\@\$].+/g, '')
+            return routeName.replace(/[\@\$].*/g, '')
         }, // 左边树 选中
         openNames () { return computeOpenName(this.$route.name) }, // 左边树的展开状态
         textColor () { return this.theme === 'dark' ? '#fff' : '#495060' } // 主题颜色

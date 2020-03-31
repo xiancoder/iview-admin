@@ -1,21 +1,10 @@
 <template>
     <div>
-        <div class="blogCss">
-            <div class="blog">
-                <div class="blogTitle">表格v12模版规范</div>
-                <Divider orientation="right">项目上的经验积累</Divider>
-                <div class="blogContent" v-highlight>
-                    <p><Icon type="md-checkmark" style="color:green"/> 1 表格内容美化方案</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 2 长文本内容折叠tooltip提示</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 3 表格长度规范化 如日期100px...</p>
-                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
-                </div>
-            </div>
-        </div>
         <div class="tableLayout">
             <div class="tableHeader">
                 <h2>表格v10模版规范 <small>新的模版</small><b>新的模版</b></h2>
             </div>
+            <tab></tab>
             <div class="tableTool" @keyup.enter.stop="hendleSearch">
                 <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
                 <Select v-model="search.sex" placeholder="请选择性别" style="width: 180px">
@@ -47,6 +36,7 @@
                 <Button type="primary" :loading="loading.btn1" @click="hendleCreate" class="fr">创建表格</Button>
             </div>
             <Table border :loading="loading.table" :columns="columns" :data="tableData"
+                :maxHeight="maxheight" node="-----------------------------------------高度限定必须的配置"
                 @on-sort-change="hendleSort">
                 <template slot-scope="{ row, index }" slot="op">
                     <Button type="text" @click="hendleEdit(row)" size="small">编辑</Button>
@@ -64,16 +54,48 @@
                 <span class="fr"> {{showPageRow(page.rowCount,page.pageIndex,page.pageSize)}}</span>
             </div>
         </div>
+        <div class="blogCss">
+            <div class="blog">
+                <div class="blogTitle">表格v10模版规范 添加最大高度 可方便查看汇总</div>
+                <Divider orientation="right">项目上的经验积累</Divider>
+                <div class="blogContent" v-highlight>
+                    <p><Icon type="md-checkmark" style="color:green"/> 1 没啥好说的</p>
+                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
+                    <script type="text/html" v-pre>
+                        <Table border :loading="loading" :columns="columns" :data="tableData"
+                            :maxHeight="maxheight"
+                            @on-sort-change="hendleSort">
+                        </Table>
+                    </script>
+                    <script type="text/js">
+                        export default {
+                            data () {
+                                const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+                                const maxheight = height - 144 - 150
+                                return {
+                                    maxheight, // 表格高度自适应
+                                }
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
 import { extend, extendF } from '@/utils/object'
 import { nothing } from '@/utils/function'
 import { h, confirmAjax, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+import tab from './271tableV10DHC'
 
 export default {
+    components: { tab },
     data () {
+        const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight // --- 高度限定必须的配置
+        const maxheight = height - 144 - 150
         return {
+            maxheight, // 表格高度自适应
             dataSet: {
                 'sex': [], // 性别 0全部1男2女
                 'state': [], // 状态 0全部1在校2记过3劝退4开除
@@ -114,7 +136,6 @@ export default {
                 {title: '操作', minWidth: 80, slot: 'op', align: 'center'}
             ],
             'serrchParam': null, // 实际搜索项 [[模版变量不要动]]
-            'serrchBack': null, // 搜索项备份 [[模版变量不要动]]
             'tableData': [], // 表格内容 [[模版变量不要动]]
             end1: 1 // 防呆设计
         }
@@ -183,7 +204,6 @@ export default {
         },
         initTable () { // 初始化表格 [[模版方法不要动]]
             if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
-            if (!this.serrchBack) {this.serrchBack = extend({}, this.search)} // 备份
             const query = getParamState()
             extend(this.search, query) // 设置表现搜索项成url缓存
             extendF(this.page, query)
@@ -195,7 +215,7 @@ export default {
             this.hendleGopage(1)
         },
         hendleReset () { // 重置 [[模版方法不要动]]
-            extend(this.search, this.serrchBack) // 重置表现搜索项成备份搜索项
+            extend(this.search, this.$options.data().search) // 重置表现搜索项成备份搜索项
             this.hendleSearch()
         },
         hendleGopage (page) { // 跳转页 [[模版方法不要动]]
