@@ -235,7 +235,8 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-27890', path: '195todo', title: 'TODO'},
                 {power: 'expv2-27890', path: '196chart', title: '聊天面板'},
                 {power: 'expv2-27890', path: '197QA', title: 'VUE 面试题精华'},
-                {power: 'expv2-27890', path: '198phonevideo', title: '移动端video的坑'}
+                {power: 'expv2-27890', path: '198phonevideo', title: '移动端video的坑'},
+                {power: 'expv2-27890', path: '199mingxing', title: '哪些明星'}
             ]
         }, {
             path: 'exp20', title: '卷贰拾', icon: 'md-game-controller-b',

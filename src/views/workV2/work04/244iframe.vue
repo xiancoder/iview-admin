@@ -22,12 +22,30 @@
                 <p>注意 如果不是用动态生成iframe的方式 iframe将受到内部页面影响直接获得焦点导致逻辑失败</p>
                 <p>注意 如果不是用动态生成iframe的方式 iframe将受到内部页面影响直接获得焦点导致逻辑失败</p>
                 <script type="text/js">
-                    let ifr = document.createElement('iframe');
-                    ifr.src = 'https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=1&tn=baidu&wd=%E7%BF%BB%E8%AF%91&rsv_t=6a2dQyJQhSIKi7pTTX54QNeDL%2FeVNTrKDNHP7PDs9MU8VA7WHmtypofDLYI&rsv_dl=ih_0&rsv_sug3=1&rsv_sug1=1&rsv_sug7=001&rsv_sug2=1&rsp=0&rsv_sug9=es_2_1&rsv_sug4=2228&rsv_sug=9';
-                    ifr.id = 'try1iframe';
-                    ifr.style.width = '100%';
-                    ifr.style.height = '200px';
-                    document.getElementById('tryiframe').appendChild(ifr)
+                    let iframe = document.createElement('iframe');
+                    iframe.src = 'https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=1&tn=baidu&wd=%E7%BF%BB%E8%AF%91&rsv_t=6a2dQyJQhSIKi7pTTX54QNeDL%2FeVNTrKDNHP7PDs9MU8VA7WHmtypofDLYI&rsv_dl=ih_0&rsv_sug3=1&rsv_sug1=1&rsv_sug7=001&rsv_sug2=1&rsp=0&rsv_sug9=es_2_1&rsv_sug4=2228&rsv_sug=9';
+                    iframe.id = 'try1iframe';
+                    iframe.style.width = '100%';
+                    iframe.style.height = '200px';
+                    var opacity = 50;
+                    iframe.style.filter = 'alpha(opacity=' + opacity + ')'; /* IE */
+                    iframe.style.MozOpacity = (opacity / 100); /* 老版Mozilla */
+                    iframe.style.KhtmlOpacity = (opacity / 100); /* 老版Safari */
+                    iframe.style.opacity = (opacity / 100); /* 支持opacity的浏览器*/
+                    iframe.style.left = -600;
+                    var scale = 30;
+                    iframe.style.msTransform = 'scale(' + scale + ')';
+                    iframe.style.MozTransform = 'scale(' + scale + ')';
+                    iframe.style.WebkitTransform = 'scale(' + scale + ')';
+                    iframe.style.KhtmlTransform = 'scale(' + scale + ')';
+                    iframe.style.OTransform = 'scale(' + scale + ')';
+                    var scaleOrigin = '7% 26%';
+                    iframe.style.msTransformOrigin = scaleOrigin;
+                    iframe.style.MozTransformOrigin = scaleOrigin;
+                    iframe.style.WebkitTransformOrigin = scaleOrigin;
+                    iframe.style.KhtmlTransformOrigin = scaleOrigin;
+                    iframe.style.OTransformOrigin = scaleOrigin;
+                    document.getElementById('tryiframe').appendChild(iframe)
                     var listenTimer = setInterval(function () {
                         var activeEle = document.activeElement
                         var try1iframe = document.getElementById('try1iframe')
@@ -116,25 +134,30 @@ export default {
     methods: {
     },
     mounted () {
-        let ifr = document.createElement('iframe')
-        ifr.src = 'https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=1&tn=baidu&wd=%E7%BF%BB%E8%AF%91&rsv_t=6a2dQyJQhSIKi7pTTX54QNeDL%2FeVNTrKDNHP7PDs9MU8VA7WHmtypofDLYI&rsv_dl=ih_0&rsv_sug3=1&rsv_sug1=1&rsv_sug7=001&rsv_sug2=1&rsp=0&rsv_sug9=es_2_1&rsv_sug4=2228&rsv_sug=9'
-        ifr.id = 'try1iframe'
-        ifr.style.width = '100%'
-        ifr.style.height = '200px'
-        document.getElementById('tryiframe').appendChild(ifr)
-        var listenTimer = setInterval(function () {
-            var activeEle = document.activeElement
-            var try1iframe = document.getElementById('try1iframe')
-            if (activeEle === try1iframe) {
-                try1iframe.style.height = 0
-                clearInterval(listenTimer)
-                document.getElementById('tryiframeResult').innerHTML += 'iframe被触发'
-                setTimeout(function () {
-                    document.getElementById('tryiframe').removeChild(try1iframe)
-                    document.getElementById('tryiframeResult').innerHTML += '<br>iframe被删除'
-                }, 5000)
-            }
-        }, 100);
+        let iframe = document.createElement('iframe');
+        iframe.src = 'https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=1&tn=baidu&wd=%E7%BF%BB%E8%AF%91&rsv_t=6a2dQyJQhSIKi7pTTX54QNeDL%2FeVNTrKDNHP7PDs9MU8VA7WHmtypofDLYI&rsv_dl=ih_0&rsv_sug3=1&rsv_sug1=1&rsv_sug7=001&rsv_sug2=1&rsp=0&rsv_sug9=es_2_1&rsv_sug4=2228&rsv_sug=9';
+        iframe.id = 'try1iframe';
+        iframe.style.width = '100%';
+        iframe.style.height = '200px';
+        var opacity = 50;
+        iframe.style.filter = 'alpha(opacity=' + opacity + ')'; /* IE */
+        iframe.style.MozOpacity = (opacity / 100); /* 老版Mozilla */
+        iframe.style.KhtmlOpacity = (opacity / 100); /* 老版Safari */
+        iframe.style.opacity = (opacity / 100); /* 支持opacity的浏览器*/
+        iframe.style.left = -600;
+        var scale = 30;
+        iframe.style.msTransform = 'scale(' + scale + ')';
+        iframe.style.MozTransform = 'scale(' + scale + ')';
+        iframe.style.WebkitTransform = 'scale(' + scale + ')';
+        iframe.style.KhtmlTransform = 'scale(' + scale + ')';
+        iframe.style.OTransform = 'scale(' + scale + ')';
+        var scaleOrigin = '7% 26%';
+        iframe.style.msTransformOrigin = scaleOrigin;
+        iframe.style.MozTransformOrigin = scaleOrigin;
+        iframe.style.WebkitTransformOrigin = scaleOrigin;
+        iframe.style.KhtmlTransformOrigin = scaleOrigin;
+        iframe.style.OTransformOrigin = scaleOrigin;
+        document.getElementById('tryiframe').appendChild(iframe)
     }
 }
 </script>

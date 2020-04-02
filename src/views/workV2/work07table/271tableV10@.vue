@@ -2,7 +2,7 @@
     <div>
         <div class="tableLayout">
             <div class="tableHeader">
-                <h2>表格v10模版规范 <small>新的模版</small><b>新的模版</b></h2>
+                <h2>表格v10模版规范 <small>原版信息</small><b>哈哈哈哈</b></h2>
             </div>
             <tab></tab>
             <div class="tableTool" @keyup.enter.stop="hendleSearch">
@@ -35,7 +35,7 @@
                 <Button type="primary" :loading="loading.btn3" @click="hendleErrorTry" class="fr">错误演示</Button>
                 <Button type="primary" :loading="loading.btn2" @click="hendleDrop" class="fr">删除表格</Button>
                 <Button type="primary" :loading="loading.btn1" @click="hendleCreate" class="fr">创建表格</Button>
-                <Button type="primary" @click="hendleAdd" class="fr">添加</Button>
+                <Button type="primary" @click="hendleAdd" class="fr">回跳信息保留</Button>
             </div>
             <Table border :loading="loading.table" :columns="columns" :data="tableData"
                 @on-sort-change="hendleSort">
