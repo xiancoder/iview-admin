@@ -1,5 +1,5 @@
 <template>
-    <div class="blogCss xianFrom">
+    <div class="blogCss formLayout">
         <div class="blog">
             <div class="blogTitle">工作需要 搞一个全局计时的短信验证码按钮</div>
             <Divider orientation="right">项目使用的标准或规范</Divider>

@@ -145,21 +145,28 @@ export default makeMultiLevelRoute({
             ]
         },
         {
-            path: 'work07table', title: '卷陆-表格篇', icon: 'md-heart',
+            path: 'work07table', title: '卷陆-真实操演', icon: 'md-heart',
             children: [
                 {power: 'workv2-2', path: '271tableV10', title: '表格v10模版规范'},
                 {power: 'workv2-2', path: '271tableV10@', title: '表格v10模版规范', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10@$edit', title: '表单页-回跳信息保留', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10@tab', title: '表格v10Tab规范', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10@userSay', title: '用户反映注意的点', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10@fspo', title: '搜索排序分页操作', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10@rule', title: '开发者应遵守', hideMenu: true},
-                {power: 'workv2-2', path: '271tableV10DHC', title: '表格v10的DHC'},
+                {power: 'workv2-2', path: '271tableV10DHC', title: '表格v10的DHC1'},
                 {power: 'workv2-2', path: '271tableV10DHC@betch', title: '表格v10的DHC批量处理', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10DHC@icon', title: '表格v10的DHC小图标', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10DHC@height', title: '表格v10的DHC高度限定', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10DHC@search', title: '表格v10的DHC搜索项', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10DHC@sum', title: '表格v10的DHC总计', hideMenu: true},
-                {power: 'workv2-2', path: '271tableV10DHC@mixin', title: '表格v10的DHCMixin', hideMenu: true}
+                {power: 'workv2-2', path: '271tableV10DHC2', title: '表格v10的DHC2'},
+                {power: 'workv2-2', path: '271tableV10DHC2@mixin', title: '表格v10的DHCMixin', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10DHC2@modal', title: '表格v10的DHCMixin', hideMenu: true},
+                {power: 'workv2-2', path: '272formV10', title: '表单v10模版规范'},
+                {power: 'workv2-2', path: '272formV10DHC', title: '表单v10的DHC1'},
+                {power: 'workv2-2', path: '272formV10DHC$add1', title: '表单v10的DHC添加普通表单', hideMenu: true},
+                {power: 'workv2-2', path: '272formV10DHC$extends', title: '表单v10的DHC继承重写', hideMenu: true}
             ]
         }
     ]

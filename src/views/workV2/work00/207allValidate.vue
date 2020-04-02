@@ -1,9 +1,9 @@
 <template>
-    <div class="blogCss xianFrom">
+    <div class="blogCss formLayout">
         <div class="blog">
             <div class="blogTitle">关于Vue中的校验</div>
             <div class="blogContent" v-highlight>
-                <div class="xian-title-tabs">
+                <div class="formHeader">
                     <h1>表单名称</h1>
                     <Divider/>
                 </div>

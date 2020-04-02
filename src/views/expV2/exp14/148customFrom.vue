@@ -1,5 +1,5 @@
 <template>
-    <div class="blogCss xianFrom">
+    <div class="blogCss formLayout">
         <div class="blog">
             <div class="blogTitle">自定义组件可以参与到表单校验中</div>
             <div class="blogContent" v-highlight>
@@ -8,7 +8,7 @@
                 <p><Icon type="md-checkmark" style="color:red"/> 如果是一层结构则需要emit广播事件 待尝试</p>
                 <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <hr />
-                <div class="xian-title-tabs">
+                <div class="formHeader">
                     <h1>表单名称</h1>
                     <Divider/>
                 </div>

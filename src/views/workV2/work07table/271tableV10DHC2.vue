@@ -12,7 +12,7 @@ export default {
     mixins: [{methods: {goto}}],
     data () {
         return {
-            name: 'workV2_work07table_271tableV10DHC',
+            name: 'workV2_work07table_271tableV10DHC2',
             currentName: '',
             balance: '-'
         }
@@ -20,11 +20,8 @@ export default {
     computed: { // 计算属性
         tabList () {
             const list = [
-                {name: 'workV2_work07table_271tableV10DHC@betch', title: '表格v10的DHC批量处理'},
-                {name: 'workV2_work07table_271tableV10DHC@icon', title: '表格v10的DHC小图标'},
-                {name: 'workV2_work07table_271tableV10DHC@height', title: '表格v10的DHC高度限定'},
-                {name: 'workV2_work07table_271tableV10DHC@search', title: '表格v10的DHC搜索项'},
-                {name: 'workV2_work07table_271tableV10DHC@sum', title: '表格v10的DHC总计'}
+                {name: 'workV2_work07table_271tableV10DHC2@mixin', title: '表格v10的DHCMixin'},
+                {name: 'workV2_work07table_271tableV10DHC2@modal', title: '表格v10的DHC弹框表单'}
             ]
             return list
         }

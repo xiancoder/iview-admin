@@ -1,6 +1,6 @@
 <template>
     <div style="background:#fff;overflow: hidden;padding: 0 30px;">
-        <div class="xian-title-tabs">
+        <div class="formHeader">
             <h1>发布任务哈哈</h1>
             <Tabs type="card" value="exp_002from" @on-click="handleMenuSelected">
                 <TabPane name="exp_002from" label="发布任务"> </TabPane>

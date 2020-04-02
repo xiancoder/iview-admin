@@ -1,21 +1,10 @@
 <template>
     <div>
-        <div class="blogCss">
-            <div class="blog">
-                <div class="blogTitle">表格v12模版规范</div>
-                <Divider orientation="right">项目上的经验积累</Divider>
-                <div class="blogContent" v-highlight>
-                    <p><Icon type="md-checkmark" style="color:green"/> 1 表格内容美化方案</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 2 长文本内容折叠tooltip提示</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 3 表格长度规范化 如日期100px...</p>
-                    <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
-                </div>
-            </div>
-        </div>
         <div class="tableLayout">
             <div class="tableHeader">
-                <h2>表格v10模版规范 <small>新的模版</small><b>新的模版</b></h2>
+                <h2>表格v10模版规范 <small> DHC补充内容 </small><b> MiXin尝试 - 失败品不建议使用 </b></h2>
             </div>
+            <tab></tab>
             <div class="tableTool" @keyup.enter.stop="hendleSearch">
                 <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
                 <Select v-model="search.sex" placeholder="请选择性别" style="width: 180px">
@@ -28,7 +17,7 @@
                     <Option v-for="option in dataSet.state" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
-                <Select v-model="search.sex" placeholder="请选择年龄" style="width: 180px">
+                <Select v-model="search.age" placeholder="请选择年龄" style="width: 180px">
                     <Option value="0" label="全部"></Option>
                     <Option v-for="option in dataSet.age" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
@@ -41,10 +30,6 @@
                 <br />
                 <Button type="primary" :loading="loading.table" @click="hendleSearch">搜索</Button>
                 <Button type="default" :loading="loading.table" @click="hendleReset">重置</Button>
-                <Button type="primary" :loading="loading.btn4" @click="hendleMockInsert" class="fr">假数据插入</Button>
-                <Button type="primary" :loading="loading.btn3" @click="hendleErrorTry" class="fr">错误演示</Button>
-                <Button type="primary" :loading="loading.btn2" @click="hendleDrop" class="fr">删除表格</Button>
-                <Button type="primary" :loading="loading.btn1" @click="hendleCreate" class="fr">创建表格</Button>
             </div>
             <Table border :loading="loading.table" :columns="columns" :data="tableData"
                 @on-sort-change="hendleSort">
@@ -64,14 +49,40 @@
                 <span class="fr"> {{showPageRow(page.rowCount,page.pageIndex,page.pageSize)}}</span>
             </div>
         </div>
+        <div class="blogCss">
+            <div class="blog">
+                <div class="blogTitle">不大好 只是尝试</div>
+                <Divider orientation="right">项目上的经验积累</Divider>
+                <div class="blogContent" v-highlight>
+                    <p class="text-danger">mixin 不能实现 变量先声明后混入的方式 先凑合一下</p>
+                    <script type="text/js">
+                        import tableV12Minxin from '@/mixin/tableV12Minxin'
+                        export default {
+                            data () {
+                                return {
+                                    ...tableV12Minxin.data,
+                                    'end1': 1 // 防呆设计
+                                }
+                            },
+                            methods: {
+                                ...tableV12Minxin.methods,
+                                end2: nothing // 防呆设计
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
-import { extend, extendF } from '@/utils/object'
 import { nothing } from '@/utils/function'
-import { h, confirmAjax, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+import {h, alertMsg} from '@/tools' // 自定义常用工具
+import tab from './271tableV10DHC2'
+import tableV12Minxin from '@/mixin/tableV12Minxin'
 
 export default {
+    components: { tab },
     data () {
         return {
             dataSet: {
@@ -102,8 +113,6 @@ export default {
                 btn1: false, btn2: false, btn3: false, btn4: false, // 功能节流
                 op1: false, op2: false // 操作节流
             },
-            page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 [[模版变量不要动]]
-            order: { orderKey: '', order: '' }, // 排序 [[模版变量不要动]]
             columns: [ // 列配置 必须指定最小宽度 [[模版变量不要动]]
                 {title: 'id', minWidth: 100, key: 'id', sortable: true},
                 {title: '姓名', minWidth: 100, key: 'name'},
@@ -113,53 +122,14 @@ export default {
                 {title: '留学时长', minWidth: 100, key: 'stay'},
                 {title: '操作', minWidth: 80, slot: 'op', align: 'center'}
             ],
-            'serrchParam': null, // 实际搜索项 [[模版变量不要动]]
-            'serrchBack': null, // 搜索项备份 [[模版变量不要动]]
-            'tableData': [], // 表格内容 [[模版变量不要动]]
+            ...tableV12Minxin.data,
             end1: 1 // 防呆设计
         }
     },
     methods: {
-        hendleCreate () { // 操作::创建表格
-            this.loading.btn1 = true
-            this.$api.student.createTable().then(() => {
-                this.loading.btn1 = false
-            }, () => {
-                this.loading.btn1 = false
-            })
-        },
-        hendleDrop () { // 操作::删除表格
-            this.loading.btn2 = true
-            this.$api.student.dropTable().then(() => {
-                this.loading.btn2 = false
-            }, () => {
-                this.loading.btn2 = false
-            })
-        },
-        hendleErrorTry () { // 操作::错误演示
-            this.loading.btn3 = true
-            this.$api.student.errorTry().then(() => {
-                this.loading.btn3 = false
-            }, () => {
-                this.loading.btn3 = false
-            })
-        },
-        hendleMockInsert () { // 操作::假数据插入
-            this.loading.btn3 = true
-            confirmAjax('这么懒啊要执行假数据插入').then(() => {
-                this.$api.student.mockAddOne().then(() => {
-                    this.ajax()
-                    this.$Modal.remove()
-                    this.loading.btn3 = false
-                }, () => {
-                    this.loading.btn3 = false
-                })
-            }, () => {
-                this.$Modal.remove()
-                this.loading.btn3 = false
-            })
-        },
-        hendleEdit (param) { // 操作::编辑功能
+        ...tableV12Minxin.methods,
+        hendleEdit (row) { // 操作::编辑功能
+            alertMsg(`姓名: ${row.name}<br/> 性别: ${row.sex}<br/> 状态: ${row.stare}<br/> 年龄: ${row.age}<br/> 留学时长: ${row.stay}<br/> `, '单元内容')
         },
         hendleDel (id) { // 操作::删除
             if (this.loading.op2) return false
@@ -181,42 +151,9 @@ export default {
             }, () => {
             })
         },
-        initTable () { // 初始化表格 [[模版方法不要动]]
-            if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
-            if (!this.serrchBack) {this.serrchBack = extend({}, this.search)} // 备份
-            const query = getParamState()
-            extend(this.search, query) // 设置表现搜索项成url缓存
-            extendF(this.page, query)
-            extendF(this.order, query)
-            this.ajax()
-        },
-        hendleSearch () { // 搜索
-            extend(this.serrchParam, this.search) // 设置实际搜索项成表现搜索项
-            this.hendleGopage(1)
-        },
-        hendleReset () { // 重置 [[模版方法不要动]]
-            extend(this.search, this.serrchBack) // 重置表现搜索项成备份搜索项
-            this.hendleSearch()
-        },
-        hendleGopage (page) { // 跳转页 [[模版方法不要动]]
-            extendF(this.search, this.serrchParam) // 恢复表现搜索项成实际搜索项
-            this.page.pageIndex = page
-            this.ajax()
-        },
-        hendleSort (param) { // 排序功能 [[模版方法不要动]]
-            // column/* 当前列数据 */, key/* 排序依据的指标 */, order/* 排序的顺序 值为 asc 或 desc */
-            this.order.orderKey = param.key
-            this.order.order = param.order
-            this.ajax()
-        },
-        ajax: function () { // 业务ajax [[模版方法不要动]]
-            extend(this.serrchParam, this.search) // 设置实际搜索项
-            extend(this.serrchParam, this.page) // 设置分页
-            extend(this.serrchParam, this.order) // 设置排序
-            saveParamState(this.serrchParam) // 存url
-            this.loading.table = true // 加载中
+        ajaxCustom: function () { // 业务ajax [[模版方法不要动]]
             this.$api.student.listAll(this.serrchParam).then((info) => { // 发送ajax
-                this.loading.table = false // 加载完成
+                this.ajaxEnd()
                 this.tableData = info.list
                 this.page.rowCount = info.rowcount
             })
@@ -224,7 +161,7 @@ export default {
         end2: nothing // 防呆设计
     },
     mounted: function () {
-        this.initTable()
+        this.init()
         this.initDataSet()
     }
 }

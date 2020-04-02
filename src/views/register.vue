@@ -1,5 +1,5 @@
 <template>
-    <div class="blogCss xianFrom ">
+    <div class="blogCss formLayout ">
         <div class="blog registered">
             <div class="blogContent"  :style="{height:autoheight}">
                 <Tabs value="personal" style="margin-top: 20px" @on-click="handleReset ('formValidateId','formcompany')">

@@ -105,7 +105,15 @@ body{
                 display: none !important;
             }
             .left-sider {left: 50%;margin-left: -640px;}
-            .right-sider .main-header {left: 50%;margin-left: -440px;width:1000px}
+            .right-sider .main-header {
+                left: 50%;margin-left: -440px;width:1000px;
+                .main-header-left{
+                    width: 50%;
+                }
+                .main-header-right{
+                    width: 50%;
+                }
+            }
             .blogCss .blog{ width: 100% !important; margin: 0px auto;;}
         }
         &.logoconflex{
@@ -296,9 +304,28 @@ div.api{
         }
     }
 }
-/* 表单复写内容范围 */
-.xianFrom {
+/* 表单自定义项 */
+.formLayout {
     position: relative; padding:20px;
+    .formHeader{
+        margin-top: 30px;
+        .ivu-tabs{
+            margin-bottom: 32px;
+        }
+        /* tab标签距离左边0 */
+        .ivu-tabs .ivu-tabs-bar {
+            border-bottom: 1px solid #dcdee2; margin-bottom: 0; margin-left: 0;
+        }
+        h1{
+            font-size: 26px; font-weight: 400; margin: 0 0 20px 20px;
+        }
+        .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-nav-container {
+            height: 32px; padding-left: 19px;
+        }
+        .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab {
+            margin: 0; margin-right: 15px;
+        }
+    }
     /* 复写表单样式 */
     .ivu-form{
         width: 100%; padding: 30px 0px;
@@ -357,26 +384,6 @@ div.api{
     display: block;
 }
 /* //////////////////////////////////////////////////////////////////////////// */
-/* 表单标题和tab */
-.xian-title-tabs{
-    margin-top: 30px;
-    .ivu-tabs{
-        margin-bottom: 32px;
-    }
-    /* tab标签距离左边0 */
-    .ivu-tabs .ivu-tabs-bar {
-        border-bottom: 1px solid #dcdee2; margin-bottom: 0; margin-left: 0;
-    }
-    h1{
-        font-size: 26px; font-weight: 400; margin: 0 0 20px 20px;
-    }
-    .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-nav-container {
-        height: 32px; padding-left: 19px;
-    }
-    .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab {
-        margin: 0; margin-right: 15px;
-    }
-}
 
 /* 右上角用户下拉 */
 .user{
@@ -542,3 +549,7 @@ a.text-#000000:hover { color: #131e25; }
 .ph-picture { width: 100%; height: 120px; background-color: #ced4da; margin-bottom: 15px; }
 @-webkit-keyframes phAnimation { 0% { transform: translate3d(-30%, 0, 0); } 100% { transform: translate3d(30%, 0, 0); } }
 @keyframes phAnimation { 0% { transform: translate3d(-30%, 0, 0); } 100% { transform: translate3d(30%, 0, 0); } }
+
+.ivu-select-dropdown-list {
+    max-height: 300px;
+}

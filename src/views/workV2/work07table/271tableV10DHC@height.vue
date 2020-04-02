@@ -2,7 +2,7 @@
     <div>
         <div class="tableLayout">
             <div class="tableHeader">
-                <h2>表格v10模版规范 <small>新的模版</small><b>新的模版</b></h2>
+                <h2>表格v10模版规范 <small> DHC补充内容 </small><b> 指定最大高度 方便视图查看 </b></h2>
             </div>
             <tab></tab>
             <div class="tableTool" @keyup.enter.stop="hendleSearch">
@@ -17,7 +17,7 @@
                     <Option v-for="option in dataSet.state" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
-                <Select v-model="search.sex" placeholder="请选择年龄" style="width: 180px">
+                <Select v-model="search.age" placeholder="请选择年龄" style="width: 180px">
                     <Option value="0" label="全部"></Option>
                     <Option v-for="option in dataSet.age" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>

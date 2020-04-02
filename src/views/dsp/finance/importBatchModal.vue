@@ -1,5 +1,5 @@
 <template>
-    <div class="xianFrom">
+    <div class="formLayout">
         <Form ref="form3333" :model="frm" :rules="frmRule"
             :label-width="150" style="width: 90%;margin: 0 auto;padding: 0;">
             <FormItem label="">

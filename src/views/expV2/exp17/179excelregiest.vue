@@ -1,5 +1,5 @@
 <template>
-    <div class="blogCss xianFrom">
+    <div class="blogCss formLayout">
         <div class="blog">
             <div class="blogTitle">excel 导入 导出 辅助注册大批量 (用户/业务信息/配置)</div>
             <div class="blogContent" v-highlight>

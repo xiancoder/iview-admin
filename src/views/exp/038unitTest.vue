@@ -1,9 +1,9 @@
 <template>
-    <div class="blogCss xianFrom">
+    <div class="blogCss formLayout">
         <div class="blog">
             <div class="blogTitle">表单的单元测试 (mock赋值 - 模拟操作 - mock提交 - 校验)</div>
             <div class="blogContent">
-                <div class="xian-title-tabs">
+                <div class="formHeader">
                     <h1>表单名称</h1>
                     <Divider/>
                 </div>

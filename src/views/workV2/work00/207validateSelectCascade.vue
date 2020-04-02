@@ -1,5 +1,5 @@
 <template>
-    <div class="blogCss xianFrom">
+    <div class="blogCss formLayout">
         <div class="blog">
             <div class="blogTitle">关于Vue中的下拉框级联效果</div>
             <div class="blogContent" v-highlight>

@@ -1,5 +1,5 @@
 <template>
-    <div class="blogCss xianFrom">
+    <div class="blogCss formLayout">
         <div class="blog">
             <div class="blogTitle">关于Vue中的文本域的校验</div>
             <Divider orientation="right">项目使用的标准或规范</Divider>

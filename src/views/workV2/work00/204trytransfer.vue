@@ -6,7 +6,7 @@
             <div class="blogContent" v-highlight>
                 <p><Icon type="md-checkmark" style="color:green"/> 有效</p>
                 <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
-                <div class="xian-title-tabs">
+                <div class="formHeader">
                     <h1>表单名称</h1>
                     <Divider/>
                 </div>

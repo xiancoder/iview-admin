@@ -35,6 +35,12 @@
                     <p>2020年3月31日13:42:46 想起谁提出的 '排序功能也加上' </p>
                     <p><Icon type="md-checkmark" style="color:green"/> 解决方案 sortable: true </p>
                     <Tag color="green">v10已经投入使用</Tag>
+
+                    <p>2020年3月31日17:56:19 产品剔除提出的 '如果下拉框内容超级多 想输入字符匹配' </p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 解决方案 Select filterable </p>
+                    <Tag color="green">v10已经投入使用</Tag>
+                    <p><Icon type="md-checkmark" style="color:green"/> 解决方案 autoComplete 控件 </p>
+                    <Tag color="green">控件已经分析整理</Tag>
                 </div>
                 <div class="blogFooter">
                     <Tag color="green">收集</Tag> <Tag color="cyan">学习</Tag> <Tag color="blue">增长</Tag>

@@ -17,7 +17,7 @@
                     <Option v-for="option in dataSet.state" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
-                <Select v-model="search.sex" placeholder="请选择年龄" style="width: 180px">
+                <Select v-model="search.age" placeholder="请选择年龄" style="width: 180px">
                     <Option value="0" label="全部"></Option>
                     <Option v-for="option in dataSet.age" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
@@ -35,6 +35,7 @@
                 <Button type="primary" :loading="loading.btn3" @click="hendleErrorTry" class="fr">错误演示</Button>
                 <Button type="primary" :loading="loading.btn2" @click="hendleDrop" class="fr">删除表格</Button>
                 <Button type="primary" :loading="loading.btn1" @click="hendleCreate" class="fr">创建表格</Button>
+                <Button type="primary" @click="hendleAdd" class="fr">添加</Button>
             </div>
             <Table border :loading="loading.table" :columns="columns" :data="tableData"
                 @on-sort-change="hendleSort">
@@ -72,7 +73,7 @@
 <script>
 import { extend, extendF } from '@/utils/object'
 import { nothing } from '@/utils/function'
-import { h, confirmAjax, saveParamState, getParamState, alertMsg } from '@/tools' // 自定义常用工具
+import { h, saveParamState, getParamState, alertMsg, goto } from '@/tools' // 自定义常用工具
 import tab from './271tableV10'
 
 export default {
@@ -166,6 +167,9 @@ export default {
                 this.$Modal.remove()
                 this.loading.btn3 = false
             })
+        },
+        hendleAdd (row) { // 操作::添加功能
+            goto({name: 'workV2_work07table_271tableV10@$edit', query: {id: 333}})
         },
         hendleEdit (row) { // 操作::编辑功能
             alertMsg(`姓名: ${row.name}<br/> 性别: ${row.sex}<br/> 状态: ${row.stare}<br/> 年龄: ${row.age}<br/> 留学时长: ${row.stay}<br/> `, '单元内容')
