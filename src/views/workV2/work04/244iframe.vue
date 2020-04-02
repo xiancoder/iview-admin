@@ -143,7 +143,7 @@ export default {
         iframe.style.filter = 'alpha(opacity=' + opacity + ')'; /* IE */
         iframe.style.MozOpacity = (opacity / 100); /* 老版Mozilla */
         iframe.style.KhtmlOpacity = (opacity / 100); /* 老版Safari */
-        iframe.style.opacity = (opacity / 100); /* 支持opacity的浏览器*/
+        iframe.style.opacity = (opacity / 100); /* 支持opacity的浏览器 */
         iframe.style.left = -600;
         var scale = 30;
         iframe.style.msTransform = 'scale(' + scale + ')';

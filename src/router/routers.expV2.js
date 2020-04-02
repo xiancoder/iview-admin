@@ -37,6 +37,7 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-12345', path: '021route@add', title: '路由跳转添加', hideMenu: true},
                 {power: 'expv2-12345', path: '022extends', title: 'VUE组件间的继承'},
                 {power: 'expv2-12345', path: '023from', title: '表单基本样式'},
+                {power: 'expv2-12345', path: '024drag', title: '拖拽功能'},
                 {power: 'expv2-12345', path: '026iviewDefault', title: 'Iview 控件默认配置'},
                 {power: 'expv2-12345', path: '027filter', title: '过滤器收集整理'}
             ]

@@ -23,12 +23,12 @@ export default {
     data () {
         return {
             loading: {
-                table: false, // 表格加载
+                table: false // 表格加载
             },
             'columns': [ // 必须指定最小宽度
                 {'title': 'ID', 'minWidth': 60, 'key': 'id', 'sortable': true},
                 {'title': '编号', 'minWidth': 60, 'key': 'taskNumber', 'sortable': true},
-                {'title': '发布人', 'minWidth': 100, 'key': 'founder',},
+                {'title': '发布人', 'minWidth': 100, 'key': 'founder'},
                 {'title': '全名', 'minWidth': 150, 'key': 'taskName', 'tooltip': true},
                 {'title': '负责人', 'minWidth': 100, 'key': 'personLiable'},
                 {'title': '时间', 'align': 'center', 'minWidth': 100, 'key': 'foundTime'},

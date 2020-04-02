@@ -73,7 +73,7 @@
 <script>
 import { extend, extendF } from '@/utils/object'
 import { nothing } from '@/utils/function'
-import { h, saveParamState, getParamState, alertMsg, goto } from '@/tools' // 自定义常用工具
+import { h, confirmAjax, saveParamState, getParamState, alertMsg, goto } from '@/tools' // 自定义常用工具
 import tab from './271tableV10'
 
 export default {

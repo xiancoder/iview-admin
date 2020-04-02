@@ -33,7 +33,7 @@ export default {
             frmValidate: {
                 input1: [
                     { required: true, message: '输入框不能为空' }
-                ],
+                ]
             },
             loading: ''
         }
@@ -46,18 +46,17 @@ export default {
         handleSubmit () {
             this.$refs['from0982'].validate((valid) => {
                 if (valid) {
-                    this.postForm();
+                    this.postForm()
                 }
-            });
+            })
         },
         cancel () {
             this.$Modal.confirm({
                 title: '提示',
                 content: '<p>信息还未保存，确定要离开当前页面么？</p>',
-                onOk: () => {
-                },
+                onOk: () => {},
                 onCancel: () => {}
-            });
+            })
         }
     },
     mounted () {
