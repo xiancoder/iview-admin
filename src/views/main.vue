@@ -149,7 +149,6 @@ import epopen from '@C/epopen' // 组件::EP编辑
 import epopenRoute from '@C/epopen/route' // 组件::EP编辑
 import minLogo from '@/assets/images/logo-min.jpg'
 import maxLogo from '@/assets/images/logo.gif'
-// import maxLogo from '@/assets/images/logo.jpg'
 import '@S/main.less'
 import '@S/util.less'
 

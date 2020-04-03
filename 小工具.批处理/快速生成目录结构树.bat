@@ -1,0 +1,1 @@
+tree /f > contents.txt

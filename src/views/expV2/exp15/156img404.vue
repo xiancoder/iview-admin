@@ -11,12 +11,11 @@
                 <p>注意的几个点 1. onerror前面要用冒号 : 2. 注意看logo定义的格式，符号不要写错了，很坑啊</p>
                 <script type="text/html">
                     <!--template-->
-                    <img :src="pic?pic:'../../assets/img/load.png'" :οnerrοr="logo" alt="">
+                    <img :src="pic?pic:'/static/img.null/null.png'" :οnerrοr="logo" alt="">
                     <!--script-->
-                    import nullPic from '@/assets/images/img.404.jpg'
                     data() {
                         return {
-                            logo: 'this.src="' + require('../../assets/image/img.404.jpg') + '"'  ,
+                            logo: 'this.src="/static/img.null/null.png"'  ,
                         }
                     },
                 </script>
@@ -80,7 +79,7 @@
     </div>
 </template>
 <script>
-import nullPic from '@/assets/images/img.404.jpg'
+const nullPic = '/static/img.null/null.png'
 
 export default {
     data () {
@@ -92,11 +91,11 @@ export default {
     },
     methods: {
         isNullPic () {
-            console.log(this)
+            // console.log(this)
             this.src = nullPic
         },
         xxx () {
-            console.log(123)
+            // console.log(123)
             this.pic = '/static/img.null/null.png'
         },
         show_default_image: function (event) {

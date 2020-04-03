@@ -16,7 +16,7 @@
                             </FormItem>
                             <FormItem label="邀请码" prop="invite_code">
                                 <Input type="text" v-model="frm.invite_code" placeholder="请联系客服获取邀请码" style="width: 326px"/>
-                                <a style="margin-left:15px" class="waiter" @click="instance"><img src="../assets/images/waiter.png" alt="" >联系客服</a>
+                                <a style="margin-left:15px" class="waiter" @click="instance"><img src="/static/img.logo/waiter.png" alt="" >联系客服</a>
                             </FormItem>
                             <FormItem label="联系方式" prop="contact_type">
                                 <Select v-model="frm.contact_type" filterable placeholder="请选择联系方式" style="width:326px">
@@ -63,7 +63,7 @@
                             </FormItem>
                             <FormItem label="邀请码" prop="invite_code">
                                 <Input type="text" v-model="frm.invite_code" placeholder="请联系客服获取邀请码" style="width: 326px"/>
-                                <a style="margin-left:15px" class="waiter" @click="instance"><img src="../assets/images/waiter.png" alt="" >联系客服</a>
+                                <a style="margin-left:15px" class="waiter" @click="instance"><img src="/static/img.logo/waiter.png" alt="" >联系客服</a>
                             </FormItem>
                             <FormItem label="公司名称" prop="company_name">
                                 <Input type="text" v-model="frm.company_name" placeholder="请输入公司名称" style="width: 326px"/>
@@ -91,7 +91,7 @@
                             </FormItem>
                             <!-- <FormItem label="图形验证码" prop="imgcode" v-if="frm.contact_type == 1">
                                 <Input type="text" v-model="frm.imgcode" placeholder="请输入图形验证码" style="width: 217px"/>
-                                <img class="imgcode" src="../assets/images/u86.png" alt="">
+                                <img class="imgcode" src="/static/img.ccode/u86.png" alt="">
                             </FormItem> -->
                             <FormItem label=" 短信验证码" prop="telcode" v-if="frm.contact_type == 1">
                                 <Input type="text" v-model="frm.telcode" placeholder="请输入短信验证码" style="width: 217px"/>

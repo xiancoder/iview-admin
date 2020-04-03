@@ -16,7 +16,7 @@
                     <img :src="maxLogo" key="max-logo" class="BlackAndWhitePhoto" />
                 </p>
                 <script type="text/js">
-                    import maxLogo from '@/assets/images/logo.jpg'
+                    import maxLogo from '@/assets/images/logo.gif'
                     data () { return { maxLogo } },
                 </script>
                 <script type="text/html">
@@ -29,7 +29,7 @@
                 <p>页面样式引用</p>
                 <script type="text/html">
                     .box1{
-                        background: url(../../../assets/images/login-bg.jpg); background-position: center; background-attachment: fixed;
+                        background: url(/static/bg.vue.jpg); background-position: center; background-attachment: fixed;
                         position: relative; height: 400px; width: 100%;
                     }
                 </script>
@@ -61,7 +61,7 @@
 </template>
 <style>
     .box1{
-        background: url(../../../assets/images/login-bg.jpg); background-position: center; background-attachment: fixed;
+        background: url(/static/bg.vue.jpg); background-position: center; background-attachment: fixed;
         position: relative; height: 400px; width: 100%;
     }
     .box1 > *{ z-index: 10; color: #fff; position: relative; }
@@ -75,7 +75,7 @@
     }
 </style>
 <script>
-import maxLogo from '@/assets/images/logo.jpg'
+import maxLogo from '@/assets/images/logo.gif'
 export default {
     data () {
         return {

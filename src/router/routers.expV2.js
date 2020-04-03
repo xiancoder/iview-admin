@@ -193,7 +193,9 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-22345', path: '154deeplink', title: '深链接的深入研究'},
                 {power: 'expv2-22345', path: '155border', title: 'border 边框样式列举'},
                 {power: 'expv2-22345', path: '156img404', title: '图片404补偿'},
-                {power: 'expv2-22345', path: '158vshowbug', title: 'v-show 有 bug'}
+                {power: 'expv2-22345', path: '157imgLazy', title: '图片懒加载插件'},
+                {power: 'expv2-22345', path: '158vshowbug', title: 'v-show 有 bug'},
+                {power: 'expv2-22345', path: '159clearInterval', title: '怎么销毁定时器'}
             ]
         }, {
             path: 'exp16', title: '卷拾陆', icon: 'md-game-controller-b',

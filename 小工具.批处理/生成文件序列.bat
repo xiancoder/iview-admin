@@ -1,0 +1,1 @@
+for /l %%a in (21 1 30) do echo.>page.%%a.html.php
