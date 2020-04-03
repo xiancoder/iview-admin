@@ -32,34 +32,6 @@ export default makeMultiLevelRoute({
                 { power: 'oa-renshi', path: 'cc@list', title: '抄送人配置', hideMenu: true }
             ]
         }, {
-            path: 'task', title: '任务管理', icon: 'logo-buffer',
-            children: [
-                { power: 'oa-renwu', path: 'mine', title: '我的任务' },
-                { power: 'oa-renwu', path: 'mine@publish', title: '我发布的任务', hideMenu: true },
-                { power: 'oa-renwu', path: 'mine@conscient', title: '我负责的任务', hideMenu: true },
-                { power: 'oa-renwu', path: 'mine@executive', title: '我执行的任务', hideMenu: true },
-                { power: 'oa-renwu', path: 'mine@besend', title: '抄送我的任务', hideMenu: true },
-                { power: 'oa-renwu', path: 'mine@@info', title: '任务详情', hideMenu: true },
-                { power: 'oa-renwu', path: 'mine@@release', title: '发布任务', hideMenu: true },
-                { power: 'oa-renwu', path: 'mine@@restart', title: '重启任务', hideMenu: true },
-                { power: 'oa-renwu', path: 'subordinate', title: '下属任务' }
-            ]
-        }, {
-            path: 'order', title: '工单管理', icon: 'md-mail',
-            children: [
-                { power: 'oa-gong', path: 'mine', title: '我的工单' },
-                { power: 'oa-gong', path: 'mine@sendList', title: '已发工单', hideMenu: true },
-                { power: 'oa-gong', path: 'mine@receiveList', title: '已收工单', hideMenu: true },
-                { power: 'oa-gong', path: 'mine@draftsList', title: '草稿箱', hideMenu: true },
-                { power: 'oa-gong', path: 'mine@endList', title: '已结工单', hideMenu: true },
-                { power: 'oa-gong', path: 'mine@@info', title: '工单详情', hideMenu: true },
-                { power: 'oa-gong', path: 'mine@@release', title: '工单发布', hideMenu: true },
-                { power: 'oa-gong', path: 'subordinate', title: '下属工单' },
-                { power: 'oa-gong', path: 'subordinate@@info', title: '工单详情', hideMenu: true },
-                { power: 'oa-gong', path: 'group', title: '组管理' },
-                { power: 'oa-gong', path: 'group@edit', title: '组添加/编辑', hideMenu: true }
-            ]
-        }, {
             path: 'meeting', title: '会议管理', icon: 'md-mail',
             children: [
                 { power: 'oa-gong', path: 'reserveRoom', title: '预约会议' }

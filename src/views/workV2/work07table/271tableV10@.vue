@@ -111,13 +111,13 @@ export default {
             page: { pageIndex: 1, pageSize: 30, rowCount: 999 }, // 分页 [[模版变量不要动]]
             order: { orderKey: '', order: '' }, // 排序 [[模版变量不要动]]
             columns: [ // 列配置 必须指定最小宽度 [[模版变量不要动]]
-                {title: 'id', minWidth: 100, key: 'id', sortable: true},
-                {title: '姓名', minWidth: 100, key: 'name'},
-                {title: '性别', minWidth: 100, key: 'sex', render: h.readArr('sex', this.$api.student.pullSex('table'))},
-                {title: '状态', minWidth: 100, key: 'state', render: h.readArr('state', this.$api.student.pullState('table'))},
-                {title: '年龄', minWidth: 100, key: 'age'},
-                {title: '留学时长', minWidth: 100, key: 'stay'},
-                {title: '操作', minWidth: 80, slot: 'op', align: 'center'}
+                {'title': 'id', 'minWidth': 100, 'key': 'id', 'sortable': true},
+                {'title': '姓名', 'minWidth': 100, 'key': 'name', 'slot': 'op'},
+                {'title': '性别', 'minWidth': 100, 'key': 'sex', 'render': h.readArr('sex', this.$api.student.pullSex('table'))},
+                {'title': '状态', 'minWidth': 100, 'key': 'state', 'render': h.readArr('state', this.$api.student.pullState('table'))},
+                {'title': '年龄', 'minWidth': 100, 'key': 'age'},
+                {'title': '留学时长', 'minWidth': 100, 'key': 'stay'},
+                {'title': '操作', 'minWidth': 80, 'slot': 'op', 'align': 'center'}
             ],
             'serrchParam': null, // 实际搜索项 [[模版变量不要动]]
             'tableData': [], // 表格内容 [[模版变量不要动]]

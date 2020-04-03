@@ -162,12 +162,12 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '271tableV10DHC@sum', title: '表格v10的DHC总计', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10DHC2', title: '表格v10的DHC2'},
                 {power: 'workv2-2', path: '271tableV10DHC2@mixin', title: '表格v10的DHCMixin', hideMenu: true},
-                {power: 'workv2-2', path: '271tableV10DHC2@modal', title: '表格v10的DHCMixin', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10DHC2@modal', title: '表格v10的DHC弹框表单', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10DHC2@typesetting', title: '表格v10的DHC合理排版', hideMenu: true},
                 {power: 'workv2-2', path: '272formV10', title: '表单v10模版规范'},
                 {power: 'workv2-2', path: '272formV10DHC', title: '表单v10的DHC1'},
                 {power: 'workv2-2', path: '272formV10DHC$add1', title: '表单v10的DHC添加普通表单', hideMenu: true},
-                {power: 'workv2-2', path: '272formV10DHC$extends', title: '表单v10的DHC继承重写', hideMenu: true},
-                {power: 'workv2-2', path: '271tableV10DHC2@typesetting', title: '表格v10的DHC合理排版', hideMenu: true}
+                {power: 'workv2-2', path: '272formV10DHC$extends', title: '表单v10的DHC继承重写', hideMenu: true}
             ]
         }
     ]

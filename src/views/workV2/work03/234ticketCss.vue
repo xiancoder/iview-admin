@@ -60,30 +60,29 @@
                     </div>
                     <div class="mainLiuBox3 ww_else" id="welse">
                         <div class="mainLiuBox_title">其它广告</div>
-                            <div class="mainLiuBox_box">
-                                <div class="mainLiuBox_box_title icon10">智能元</div>
-                                <ul class="mainLiuList">
-                                    <li class="color_red"><i class="fl"></i><span class="fl">终端数</span><h3 class="fr">{{obj.cloud.Terminals}}</h3></li>
-                                    <li class="color_orange"><i class="fl"></i><span class="fl">CPU算力</span><h3 class="fr">{{obj.cloud.CPU}}</h3></li>
-                                    <li class="color_blue"><i class="fl"></i><span class="fl">GPU算力</span><h3 class="fr">{{obj.cloud.GPU}}</h3></li>
-                                </ul>
-                            </div>
-                            <div class="mainLiuBox_box">
-                                <div class="mainLiuBox_box_title icon11">浏览器</div>
-                                <ul class="mainLiuList">
-                                    <li class="color_red"><i class="fl"></i><span class="fl">终端数</span><h3 class="fr">{{obj.b2.Terminals}}</h3></li>
-                                    <li class="color_orange"><i class="fl"></i><span class="fl">执行数</span><h3 class="fr">{{obj.b2.Action}}</h3></li>
-                                    <li class="color_blue"><i class="fl"></i><span class="fl">CNZZ UV数</span><h3 class="fr">{{obj.b2.CNZZUV}}</h3></li>
-                                </ul>
-                            </div>
-                            <div class="mainLiuBox_box">
-                                <div class="mainLiuBox_box_title icon12">TD</div>
-                                <ul class="mainLiuList">
-                                    <li class="color_red"><i class="fl"></i><span class="fl">终端数</span><h3 class="fr">{{obj.dler.Terminals}}</h3></li>
-                                    <li class="color_orange"><i class="fl"></i><span class="fl">执行数</span><h3 class="fr">{{obj.dler.Downloads}}</h3></li>
-                                    <li class="color_blue"><i class="fl"></i><span class="fl">CNZZ UV数</span><h3 class="fr">{{obj.dler.CNZZUV}}</h3></li>
-                                </ul>
-                            </div>
+                        <div class="mainLiuBox_box">
+                            <div class="mainLiuBox_box_title icon10">智能元</div>
+                            <ul class="mainLiuList">
+                                <li class="color_red"><i class="fl"></i><span class="fl">终端数</span><h3 class="fr">{{obj.cloud.Terminals}}</h3></li>
+                                <li class="color_orange"><i class="fl"></i><span class="fl">CPU算力</span><h3 class="fr">{{obj.cloud.CPU}}</h3></li>
+                                <li class="color_blue"><i class="fl"></i><span class="fl">GPU算力</span><h3 class="fr">{{obj.cloud.GPU}}</h3></li>
+                            </ul>
+                        </div>
+                        <div class="mainLiuBox_box">
+                            <div class="mainLiuBox_box_title icon11">浏览器</div>
+                            <ul class="mainLiuList">
+                                <li class="color_red"><i class="fl"></i><span class="fl">终端数</span><h3 class="fr">{{obj.b2.Terminals}}</h3></li>
+                                <li class="color_orange"><i class="fl"></i><span class="fl">执行数</span><h3 class="fr">{{obj.b2.Action}}</h3></li>
+                                <li class="color_blue"><i class="fl"></i><span class="fl">CNZZ UV数</span><h3 class="fr">{{obj.b2.CNZZUV}}</h3></li>
+                            </ul>
+                        </div>
+                        <div class="mainLiuBox_box">
+                            <div class="mainLiuBox_box_title icon12">TD</div>
+                            <ul class="mainLiuList">
+                                <li class="color_red"><i class="fl"></i><span class="fl">终端数</span><h3 class="fr">{{obj.dler.Terminals}}</h3></li>
+                                <li class="color_orange"><i class="fl"></i><span class="fl">执行数</span><h3 class="fr">{{obj.dler.Downloads}}</h3></li>
+                                <li class="color_blue"><i class="fl"></i><span class="fl">CNZZ UV数</span><h3 class="fr">{{obj.dler.CNZZUV}}</h3></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -182,7 +181,7 @@ export default {
     .mainLiuBox3 .mainLiuBox_box,
     .mainLiuBox4 .mainLiuBox_box{width: 48%;cursor:pointer; border:1px solid #fff;border-left:1px dashed #dedede;margin: 20px 1%;display:inline-block;vertical-align: top;}
     .mainLiuBox3 .mainLiuBox_box{width: 32%;margin:30px 0 30px 1%;}
-    .mainLiuBox4 .mainLiuBox_box { padding: 0 0 0 32px; }
+    .mainLiuBox4 .mainLiuBox_box { padding: 0 0 0 10px; }
     .mainLiuBox3 .mainLiuBox_box:nth-child(3n+2),
     .mainLiuBox4 .mainLiuBox_box:nth-child(2n+2){ cursor:pointer;border:1px solid #fff;border-left:1px dashed #fff;}
     .mainLiuBox4 .mainLiuBox_box:hover{z-index:99;}
