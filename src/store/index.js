@@ -16,9 +16,9 @@ import sms from './store.sms' // sms相关
 import admin from './store.admin' // 管理员/用户相关
 import test from './store.test' // 测试相关
 import chat from './store.chat' // 聊天相关
-
 import data from './store.data' // 数据
-import {logTime} from '@/config' // 配置
+
+import config from '@/config' // 配置
 
 Vue.use(Vuex)
 
@@ -35,7 +35,7 @@ try {
         window.localStorage.setItem('timeLog', +(new Date()))
     } else {
         let time2 = +(new Date())
-        if (time2 - parseInt(time1) > logTime) {
+        if (time2 - parseInt(time1) > config.logTime) {
             window.localStorage.clear()
         }
     }

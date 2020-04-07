@@ -4,7 +4,7 @@ import { getUrlParam } from '@U/dom'
 const config = {
     title: 'VUE资料库',
 
-    logTime: 26 *60 *60 *1000, // 用户登录标识缓存时间
+    logTime: 26 * 60 * 60 * 1000, // 用户登录标识缓存时间
 
     smsThrottleTime: 60, // 短信节流时间 单位(秒)
 
