@@ -74,8 +74,9 @@ new Vue({ // 实例化
     // },
     beforeCreate () {
         // 在实例初始化之后，数据观测(data observer开始监控Data对象数据变化)
-        Store.dispatch('admin/getPlatformId') // 获取所属公司
         // 和初始化事件(init event，Vue内部初始化事件)之前被调用
+        Store.dispatch('admin/timeLog') // 时间戳控制
+        Store.dispatch('admin/getPlatformId') // 获取所属公司
         const isLogined = Store.getters['admin/access']
         if (isLogined) { // 未登录的话由路由负责判断并进入登录页
             console.info('%c仙 用户已经登陆', 'color:#05ff0f;background:#000;padding:0 5px;')

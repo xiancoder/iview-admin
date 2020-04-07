@@ -4,6 +4,8 @@ import { getUrlParam } from '@U/dom'
 const config = {
     title: 'VUE资料库',
 
+    logTime: 26 *60 *60 *1000, // 用户登录标识缓存时间
+
     smsThrottleTime: 60, // 短信节流时间 单位(秒)
 
     cookieExpires: 1, // token在Cookie中存储的天数，默认1天

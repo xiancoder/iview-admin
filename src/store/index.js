@@ -18,6 +18,7 @@ import test from './store.test' // 测试相关
 import chat from './store.chat' // 聊天相关
 
 import data from './store.data' // 数据
+import {logTime} from '@/config' // 配置
 
 Vue.use(Vuex)
 
@@ -27,9 +28,19 @@ Vue.use(Vuex)
 // 但是setItem会报异常：QuotaExceededError
 // getItem和removeItem直接忽略
 try {
-    window.localStorage.setItem('user', '123')
-    window.localStorage.removeItem('user')
+    // window.localStorage.setItem('user', '123')
+    // window.localStorage.removeItem('user')
+    let time1 = window.localStorage.getItem('timeLog')
+    if (!time1) {
+        window.localStorage.setItem('timeLog', +(new Date()))
+    } else {
+        let time2 = +(new Date())
+        if (time2 - parseInt(time1) > logTime) {
+            window.localStorage.clear()
+        }
+    }
 } catch (e) {
+    throw e
     alert('您处于无痕浏览模式，可能会发生意想不到的错误，请调整浏览器浏览模式！')
 }
 
