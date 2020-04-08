@@ -31,14 +31,11 @@ try {
     // window.localStorage.setItem('user', '123')
     // window.localStorage.removeItem('user')
     let time1 = window.localStorage.getItem('timeLog')
-    if (!time1) {
-        window.localStorage.setItem('timeLog', +(new Date()))
-    } else {
-        let time2 = +(new Date())
-        if (time2 - parseInt(time1) > config.logTime) {
-            window.localStorage.clear()
-        }
+    let time2 = +(new Date())
+    if (time2 - parseInt(time1) > config.logTime) {
+        window.localStorage.clear()
     }
+    window.localStorage.setItem('timeLog', +(new Date()))
 } catch (e) {
     throw e
     alert('您处于无痕浏览模式，可能会发生意想不到的错误，请调整浏览器浏览模式！')

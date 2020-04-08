@@ -2,7 +2,8 @@
     <i :class="`iconfont icon-${type}`" :style="styles"></i>
 </template>
 <script>
-import '@/assets/icons/iconfont.css'
+import '@/plugins/iconfont/index.css'
+
 export default {
     name: 'Icons',
     props: {

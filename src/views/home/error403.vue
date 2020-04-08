@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import error401 from '@/assets/images/error-page/error-403.svg'
 import errorContent from '@C/error-content'
+
 export default {
     name: 'error_403',
     components: {
@@ -14,7 +14,7 @@ export default {
     },
     data () {
         return {
-            src: error401
+            src: '/error-page/error-403.svg'
         }
     }
 }

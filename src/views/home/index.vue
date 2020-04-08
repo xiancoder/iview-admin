@@ -33,9 +33,9 @@
 <script>
 import InforCard from '@C/info-card'
 import CountTo from '@C/count-to'
-import ChartPie from '@C/charts/pie.vue'
-import ChartBar from '@C/charts/bar.vue'
-import Example from './example.vue'
+import ChartPie from '@C/charts/pie'
+import ChartBar from '@C/charts/bar'
+import Example from './example'
 export default {
     name: 'home',
     components: { InforCard, CountTo, ChartPie, ChartBar, Example },

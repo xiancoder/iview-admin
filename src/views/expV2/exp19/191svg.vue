@@ -149,7 +149,23 @@
                         <path d="M768.992 737.568V623.36h-57.184v171.296H883.2V737.6h-114.208v-0.032z m0-279.84h57.056V57.92h-171.296v57.152h114.208v342.656h0.032zM426.304 914.592H83.616V115.04h114.24V57.92H26.592v913.824h399.712v-57.152z" p-id="7360" fill="#e6e6e6"></path>
                     </svg>
                 </div>
-
+                <hr />
+                <div class="graph__wrapper">
+                    <div class="coordinates"> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> </div>
+                    <svg width="315px" height="107px" viewBox="0 0 315 107" version="1.1">
+                        <defs>
+                            <linearGradient x1="0%" y1="100%" x2="100%" y2="100%" id="linearGradient-1">
+                                <stop stop-color="#2090F8" offset="0%"></stop>
+                                <stop stop-color="#01FCE4" offset="41.7610013%"></stop>
+                                <stop stop-color="#0BFF8C" offset="78.6870217%"></stop>
+                                <stop stop-color="#51FF00" offset="100%"></stop>
+                            </linearGradient>
+                        </defs>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                            <path d="M2.10546875,95.75 L40.5546875,68.3476562 L55.2109375,81.1796875 L65.2148437,76.3945312 L96.1835937,86.8320312 L131.023438,19.9414062 L142.15625,23.7226562 L183.605469,2.1953125 L211.007812,22.3320312 L234.320312,71.5664062 L234.667969,83.0039062 L244.019531,83.0039062 L247.105469,88.8320312 L312.695312,104.839844" id="Path-1" stroke="url(#linearGradient-1)" stroke-width="4" sketch:type="MSShapeGroup" class="path"></path>
+                        </g>
+                    </svg>
+                </div>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>
@@ -170,3 +186,14 @@ export default {
     }
 }
 </script>
+<style type="text/css">
+    .graph__wrapper { width: 400px; position: relative; }
+    .graph__wrapper svg { position: relative; margin: 36px 0px 0px 15px; }
+    .coordinates { position: absolute; top: 0; counter-reset: line 6; }
+    .coordinates span { display: inline-block; border-bottom: 1px solid #3a3a3a; height: 20px; width: 400px; }
+    .coordinates span:before { counter-increment: line -1; content: counter(line); display: inline-block; color: #4a4a4a; margin: 10px 0px 0px -15px; }
+    .path { stroke-dasharray: 1000; stroke-dashoffset: 1000; -webkit-animation: dash 3s ease-in forwards; animation: dash 3s ease-in forwards; -webkit-animation-delay: 1s; animation-delay: 1s; }
+    @-webkit-keyframes dash { to { stroke-dashoffset: 0; } }
+    @keyframes dash { to { stroke-dashoffset: 0; } }
+    .description { font-family: "Roboto"; color: #b0b0b0; text-align: center; margin: 40px 0px; }
+</style>

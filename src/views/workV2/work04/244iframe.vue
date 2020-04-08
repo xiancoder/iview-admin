@@ -127,6 +127,24 @@
                 <Tag color="blue">增长</Tag>
             </div>
         </div>
+        <div class="blog">
+            <div class="blogTitle"> https使用iframe嵌入http资源的问题</div>
+            <div class="blogContent" v-highlight>
+                <p>https 网站 使用iframe嵌入http资源网站的内容，会弹出“是否加载不安全的内容”的提示，点击“加载”按钮后显示正常。对用户来说显示不友好。</p>
+                <p>动态加入的iframe 无法再https的情况下嵌入http资源网站的内容</p>
+                <p>https中使用http的资源时，浏览器会认为可能会不安全， 会自动弹出“是否加载不安全的内容”的提示。</p>
+                <p>该提示由浏览器自动弹出，不能通过修改代码的方式解决。</p>
+                <p>https中使用https资源时，如果https资源不安全，同样会报错。</p>
+                <p></p>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
+            </div>
+        </div>
+
+        
     </div>
 </template>
 <script>

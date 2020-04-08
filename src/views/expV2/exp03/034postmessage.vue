@@ -19,7 +19,7 @@
                     *  |说明|targetOrigin是接收方的URI（协议+主机+端口），也可以是url形式，但之后的内容（形如xx.html）会自动忽略；用通配符*可以指定所有域，但是切记不要用（for security）。
                     *  |说明|transfer可省略，没看懂是啥意思...以后有需要的时候再研究
                     \*================================================================================*/
-                        //if(window.postMessage) console.log("postMessage is ok");
+                        // if(window.postMessage) console.log("postMessage is ok");
                         function xcvxv22(){
                             window.addEventListener('message',function(e){
                                 var color=e.data; console.log("postMessage 回传了"+color);
@@ -28,6 +28,16 @@
                         }
                     /*未完待续*/
                 </script>
+                <hr />
+                <p>1 在目标页面(A) 执行adx(JS)</p>
+                <p>2 生成结构Iframe 内嵌页面(B) B为我方页面</p>
+                <p>3 使用postMessage/iframeSrc 来传递信息</p>
+                <p>4 达成种cookie的效果</p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

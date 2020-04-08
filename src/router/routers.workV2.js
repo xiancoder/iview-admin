@@ -118,9 +118,8 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '243urlNoRepeat', title: '域名验重问题'},
                 {power: 'workv2-2', path: '244iframe', title: 'iframe 父子页面'},
                 {power: 'workv2-2', path: '244budiaoji', title: '补点击 脚本'},
-                {power: 'workv2-2', path: '244baiduurl.vue', title: '百度URL参数解读'},
-                {power: 'workv2-2', path: '244document', title: 'document 复习'},
-                {power: 'workv2-2', path: '300brove', title: '收集300个'}
+                {power: 'workv2-2', path: '244baiduurl', title: '百度URL参数解读'},
+                {power: 'workv2-2', path: '244document', title: 'document 复习'}
             ]
         },
         {

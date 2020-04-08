@@ -13,6 +13,8 @@
                         {{ item.title }}
                     </Option>
                 </AutoComplete>
+                <p><Icon type="md-checkmark" style="color:green"/> 1 点击回车不会选中下拉内容 (NG有个比较大的问题就是默认选中第一项)</p>
+                <p><Icon type="md-checkmark" style="color:green"/> 2 没有默认值 </p>
                 <p>{{dataSet.autoCompleteShow}}</p>
                 <script type="text/html" v-pre>
                     <AutoComplete v-model="searchMenuVale" @on-search="handleSearch" placeholder="大声的说要找啥"
