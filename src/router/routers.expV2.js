@@ -28,7 +28,8 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-12345', path: '014manyDataset', title: '多地数据缓存原则'},
                 {power: 'expv2-12345', path: '015seo', title: '需知的SEO知识'},
                 {power: 'expv2-12345', path: '016maodian', title: 'VUE锚点定位'},
-                {power: 'expv2-12345', path: '017outmemoy', title: 'Node 超出内存'}
+                {power: 'expv2-12345', path: '017outmemoy', title: 'Node 超出内存'},
+                {power: 'expv2-12345', path: '018getword', title: '匹配网页关键字'}
             ]
         }, {
             path: 'exp02', title: '卷零贰', icon: 'md-game-controller-b',

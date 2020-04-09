@@ -38,7 +38,8 @@ console.info(consoleString);
 console.info('%c仙 目前环境', 'color:#05ff0f;background:#000;padding:0 5px;', process.env.NODE_ENV)
 
 /* eslint-disable */
-if (process.env.NODE_ENV === 'development') require('@/mock') // 实际打包时应该不引入mock
+// if (process.env.NODE_ENV === 'development') require('@/mock') // 实际打包时应该不引入mock
+// 即使是开发环境也不应该引入mockjs
 
 // 当开关开启同时为研发环境 执行vue报错记录功能
 // 处理错误信息, 进行错误上报

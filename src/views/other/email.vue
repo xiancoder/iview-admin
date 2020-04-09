@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="width: 90%;margin: 42px auto 0;">
         <button class="app-cancel-bonuses">请取消！</button>
         <div class="app-info app-info--right bonus-dark-mode">切换黑/白版本</div>
         <div class="app">
@@ -60,17 +60,17 @@
                     <div class="accounts__item accounts__item--active">
                         <span class="accounts__pill pill pill--solid">3</span>
                         <img class="accounts__avatar"
-                            src="img/5c9deb858a91e.png" alt="">
+                            src="/static/img.head/3.png" alt="">
                     </div>
                     <div class="accounts__item">
                         <img class="accounts__avatar"
-                            src="img/2.jpg"
+                            src="/static/img.head/2.jpg"
                             alt="">
                     </div>
                     <div class="accounts__item">
                         <span class="accounts__pill pill pill--solid">8</span>
                         <img class="accounts__avatar"
-                            src="img/1.jpg"
+                            src="/static/img.head/1.jpg"
                             alt="">
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                         <div class="profile-head">
                             <div class="profile-head__id">
                                 <img class="profile-head__avatar"
-                                    src="img/5c9deb858a91e.png" alt="">
+                                    src="/static/img.head/4.png" alt="">
                                 <div>
                                     <div class="profile-head__name">Jean-Claude</div>
                                     <div class="profile-head__mail">jeanclaude@gmail.com</div>
@@ -424,7 +424,6 @@
                     </div>
                     <div class="preview">
                         <div class="preview-top">
-
                             <div class="preview__title">Am I on the Internet?</div>
                             <div>
                                 <i class="preview-top__icon fas fa-print"></i>
@@ -438,9 +437,7 @@
                                     <div class="preview-respond__head">
                                         <div class="profile-head">
                                             <div class="profile-head__id">
-                                                <img class="profile-head__avatar"
-                                                    src="img/20130510_100741_226_grandpa.png"
-                                                    alt="">
+                                                <img class="profile-head__avatar" src="/static/img.head/4.png" alt="">
                                                 <div>
                                                     <div class="profile-head__name">Papy Bear</div>
                                                     <div class="profile-head__mail">itsmepapy@gmail.com</div>
@@ -468,9 +465,7 @@
                                     <div class="preview-respond__head">
                                         <div class="profile-head">
                                             <div class="profile-head__id">
-                                                <img class="profile-head__avatar"
-                                                    src="img/5c9deb858a91e.png"
-                                                    alt="">
+                                                <img class="profile-head__avatar" src="/static/img.head/3.png" alt="">
                                                 <div>
                                                     <div class="profile-head__name">Jean-Claude</div>
                                                     <div class="profile-head__mail">jeanclaude@gmail.com</div>
@@ -490,7 +485,7 @@
                                         <div class="profile-head">
                                             <div class="profile-head__id">
                                                 <img class="profile-head__avatar"
-                                                    src="img/20130510_100741_226_grandpa.png"
+                                                    src="/static/img.head/3.png"
                                                     alt="">
                                                 <div>
                                                     <div class="profile-head__name">Papy Bear</div>
