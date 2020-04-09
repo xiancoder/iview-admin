@@ -93,6 +93,9 @@ export default makeMultiLevelRoute({
             path: 'exp06', title: '卷零陆', icon: 'md-game-controller-b',
             children: [
                 {power: 'expv2-67890', path: '060newtabopen', title: '新页面打开'},
+                {power: 'expv2-67890', path: '061css3huai', title: 'CSS3坏掉了'},
+                {power: 'expv2-67890', path: '061css3bolang', title: 'CSS3波浪'},
+                {power: 'expv2-67890', path: '061css3changeFont', title: 'CSS切换字据'},
                 {power: 'expv2-67890', path: '062fanyinhao', title: '反引号推广'},
                 {power: 'expv2-67890', path: '063flexbox', title: 'Flex 布局基础'},
                 {power: 'expv2-67890', path: '064flexlayout', title: 'Flex 深层应用'},

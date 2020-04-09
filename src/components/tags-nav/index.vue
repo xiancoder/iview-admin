@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import beforeCloseFun from '@/router/router.beforeCloseFun'
+import beforeCloseFun from '@/mixin/router.beforeCloseFun'
 import { routeEqual } from '@/router/util'
 import { homePage } from '@/router/routers'
 

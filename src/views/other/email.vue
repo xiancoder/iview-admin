@@ -1,0 +1,533 @@
+<template>
+    <div>
+        <button class="app-cancel-bonuses">请取消！</button>
+        <div class="app-info app-info--right bonus-dark-mode">切换黑/白版本</div>
+        <div class="app">
+            <div class="top">
+                <div class="top-menu">
+                    <div class="top-menu__item">
+                        <div class="top-menu__label">File</div>
+                        <ul class="top-menu-sub">
+                            <li class="top-menu-sub__item">New mail</li>
+                            <li class="top-menu-sub__item">Refresh mails</li>
+                            <li class="top-menu-sub__separator"></li>
+                            <li class="top-menu-sub__item">Export mails to MP3</li>
+                            <li class="top-menu-sub__item">Export mails to BMP</li>
+                            <li class="top-menu-sub__separator"></li>
+                            <li class="top-menu-sub__item bonus-exit">Exit</li>
+                        </ul>
+                    </div>
+                    <div class="top-menu__item">
+                        <div class="top-menu__label">Edit</div>
+                        <ul class="top-menu-sub">
+                            <li class="top-menu-sub__item">Undo</li>
+                            <li class="top-menu-sub__item">Redo</li>
+                            <li class="top-menu-sub__separator"></li>
+                            <li class="top-menu-sub__item">Settings</li>
+                        </ul>
+                    </div>
+                    <div class="top-menu__item">
+                        <div class="top-menu__label">Bonus</div>
+                        <ul class="top-menu-sub">
+                            <li class="top-menu-sub__item bonus-weird-rotate">Infinite weird rotate of the app</li>
+                            <li class="top-menu-sub__item bonus-zoom">Please zoom</li>
+                            <li class="top-menu-sub__item bonus-why-so-serious">Why so serious ? </li>
+                            <li class="top-menu-sub__item bonus-russia">Please more russia </li>
+                        </ul>
+                    </div>
+                    <div class="top-menu__item">
+                        <div class="top-menu__label">About</div>
+                        <ul class="top-menu-sub">
+                            <li class="top-menu-sub__item">
+                                <a class="top-menu-sub__link" target="_BLANK"
+                                    href="https://github.com/BeardedBear/pens/tree/master/mail">Repository of this app</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="top-search">
+                    <i class="fas fa-search"></i>
+                    <input class="input" type="text" placeholder="Search mails...">
+                </div>
+                <div class="top-action">
+                    <div class="top-action__item"><i class="far fa-window-minimize"></i></div>
+                    <div class="top-action__item"><i class="far fa-window-maximize"></i></div>
+                    <div class="top-action__item"><i class="fas fa-times"></i></div>
+                </div>
+            </div>
+            <div class="app__content">
+                <div class="accounts">
+                    <div class="accounts__item accounts__item--active">
+                        <span class="accounts__pill pill pill--solid">3</span>
+                        <img class="accounts__avatar"
+                            src="img/5c9deb858a91e.png" alt="">
+                    </div>
+                    <div class="accounts__item">
+                        <img class="accounts__avatar"
+                            src="img/2.jpg"
+                            alt="">
+                    </div>
+                    <div class="accounts__item">
+                        <span class="accounts__pill pill pill--solid">8</span>
+                        <img class="accounts__avatar"
+                            src="img/1.jpg"
+                            alt="">
+                    </div>
+                </div>
+                <div class="menu">
+                    <div class="menu-user">
+                        <div class="profile-head">
+                            <div class="profile-head__id">
+                                <img class="profile-head__avatar"
+                                    src="img/5c9deb858a91e.png" alt="">
+                                <div>
+                                    <div class="profile-head__name">Jean-Claude</div>
+                                    <div class="profile-head__mail">jeanclaude@gmail.com</div>
+                                </div>
+                            </div>
+                            <div class="profile-head__options">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="menu-main">
+                            <div class="menu__item active">
+                                <div>
+                                    <i class="menu__icon fas fa-inbox"></i>
+                                    <span class="menu__label">Inbox</span>
+                                </div>
+                                <span class="menu-main__pill pill">3</span>
+                            </div>
+                            <div class="menu__item">
+                                <div>
+                                    <i class="menu__icon fas fa-paper-plane"></i>
+                                    <span class="menu__label">Sent mail</span>
+                                </div>
+                                <span class="menu-main__pill pill">78</span>
+                            </div>
+                            <div class="menu__item">
+                                <div>
+                                    <i class="menu__icon fas fa-pencil-alt"></i>
+                                    <span class="menu__label">Drafts</span>
+                                </div>
+                                <span class="menu-main__pill pill">2</span>
+                            </div>
+                            <div class="menu__item">
+                                <div>
+                                    <i class="menu__icon fas fa-trash-alt"></i>
+                                    <span class="menu__label">Spam</span>
+                                </div>
+                                <span class="menu-main__pill pill">290</span>
+                            </div>
+                        </div>
+                        <ul class="menu-tags">
+                            <li class="menu-tags__item">
+                                <span class="dot dot--pink"></span>
+                                <span class="menu-tags__label">Shopping</span>
+                            </li>
+                            <li class="menu-tags__item">
+                                <span class="dot dot--red"></span>
+                                <span class="menu-tags__label">Important</span>
+                            </li>
+                            <li class="menu-tags__item">
+                                <span class="dot dot--blue"></span>
+                                <span class="menu-tags__label">Work</span>
+                            </li>
+                            <li class="menu-tags__item">
+                                <span class="dot dot--green"></span>
+                                <span class="menu-tags__label">Done</span>
+                            </li>
+                            <li class="menu-tags__item">
+                                <span class="dot dot--yellow"></span>
+                                <span class="menu-tags__label">To-Do</span>
+                            </li>
+                            <li class="menu-tags__item">
+                                <span class="dot dot--purple"></span>
+                                <span class="menu-tags__label">Personal</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="new">
+                        <button class="new__button new-mail__toggle"><i class="fas fa-plus"></i></button>
+                        <div class="new-mail">
+                            <div class="new-mail__top">
+                                <div class="new-mail__title">
+                                    <span>Write a new mail from</span>
+                                    <div class="select">
+                                        <select class="select__item" name="" id="">
+                                            <option value="">jeanclaude@gmail.com</option>
+                                            <option value="">him@gmail.com</option>
+                                        </select>
+                                        <i class="select__arrow fas fa-sort-down"></i>
+                                    </div>
+                                </div>
+                                <i class="new-mail__close new-mail__toggle fas fa-times"></i>
+                            </div>
+                            <div class="new-mail-exp">
+                                <div class="new-mail-exp__item">
+                                    <div class="new-mail-exp__label">To</div>
+                                    <input placeholder="Enter email" type="text" class="new-mail-exp__input">
+                                </div>
+                                <div class="new-mail-exp__item">
+                                    <div class="new-mail-exp__label">Object</div>
+                                    <input placeholder="Enter mail object" type="text" class="new-mail-exp__input">
+                                </div>
+                            </div>
+                            <div class="new-mail__content">
+                                <textarea
+                                    class="new-mail__message">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur eveniet corrupti deserunt ad cum inventore error architecto voluptatum temporibus eligendi asperiores placeat explicabo, consequatur molestias. Corrupti voluptatem commodi dicta dolorum.</textarea>
+                            </div>
+                            <div class="new-mail-foot">
+                                <div class="new-mail-foot__insert">
+                                    <i class="new-mail-foot__icon far fa-file-archive"></i>
+                                    <i class="new-mail-foot__icon far fa-image"></i>
+                                    <i class="new-mail-foot__icon fas fa-paperclip"></i>
+                                </div>
+                                <div class="new-mail-foot__actions">
+                                    <button class="button button new-mail__toggle">Cancel</button>
+                                    <button class="button button--primary">
+                                        <i class="fas fa-paper-plane"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mails">
+                    <div class="message-list scrollable">
+                        <div class="scrollable__target">
+                            <div class="message">
+                                <div class="message-tags">
+                                    <span class="dot dot--green"></span>
+                                </div>
+                                <div class="message__actions">
+                                    <i class="message__icon far fa-square"></i>
+                                    <i class="message__icon fas fa-trash-alt"></i>
+                                    <i class="message__icon fas fa-archive"></i>
+                                </div>
+                                <div class="message__content">
+                                    <div class="message__exp">
+                                        <div>Kanye West</div>
+                                        <div class="date">Today, 15:14</div>
+                                    </div>
+                                    <div class="message__title">
+                                        Please come back bro !
+                                    </div>
+                                    <div class="message__expr">
+                                        « Please, I need you to make my music fantastic! »
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="message message--new">
+                                <div class="message__actions">
+                                    <i class="message__icon far fa-square"></i>
+                                    <i class="message__icon fas fa-trash-alt"></i>
+                                    <i class="message__icon fas fa-archive"></i>
+                                </div>
+                                <div class="message__content">
+                                    <div class="message__exp">
+                                        <div>Phil Collins</div>
+                                        <div class="date">Yesterday, 23:12</div>
+                                    </div>
+                                    <div class="message__title">
+                                        Genesis... again ?
+                                    </div>
+                                    <div class="message__expr">
+                                        « Hi Peter, are you interested in coming back to genesis? »
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="message">
+                                <div class="message-tags">
+                                    <span class="dot dot--purple"></span>
+                                    <span class="dot dot--green"></span>
+                                </div>
+                                <div class="message__actions">
+                                    <i class="message__icon far fa-square"></i>
+                                    <i class="message__icon fas fa-trash-alt"></i>
+                                    <i class="message__icon fas fa-archive"></i>
+                                </div>
+                                <div class="message__content">
+                                    <div class="message__exp">
+                                        <div>Tim Curry</div>
+                                        <div class="date">Yesterday, 20:45</div>
+                                    </div>
+                                    <div class="message__title">
+                                        I lost my glasses...
+                                    </div>
+                                    <div class="message__expr">
+                                        « Hi, I lost my glasses in your living room, could you bring them back to me? »
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="message message--new message--active">
+                                <div class="message__actions">
+                                    <i class="message__icon far fa-square"></i>
+                                    <i class="message__icon fas fa-trash-alt"></i>
+                                    <i class="message__icon fas fa-archive"></i>
+                                </div>
+                                <div class="message__content">
+                                    <div class="message__exp">
+                                        <div>Papy Bear</div>
+                                        <div class="date">Yesterday, 12:01</div>
+                                    </div>
+                                    <div class="message__title">
+                                        Am I on the Internet?
+                                    </div>
+                                    <div class="message__expr">
+                                        « Oh, my God, I was scared! »
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="message message--new">
+                                <div class="message__actions">
+                                    <i class="message__icon far fa-square"></i>
+                                    <i class="message__icon fas fa-trash-alt"></i>
+                                    <i class="message__icon fas fa-archive"></i>
+                                </div>
+                                <div class="message__content">
+                                    <div class="message__exp">
+                                        <div>Josie Smith</div>
+                                        <div class="date">Yesterday, 02:59</div>
+                                    </div>
+                                    <div class="message__title">
+                                        Have you heard of our lord Raptor Jesus?
+                                    </div>
+                                    <div class="message__expr">
+                                        « Do you know Raptor Jesus? He is the savior of us all. »
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="message">
+                                <div class="message-tags">
+                                    <span class="dot dot--red"></span>
+                                    <span class="dot dot--blue"></span>
+                                </div>
+                                <div class="message__actions">
+                                    <i class="message__icon far fa-square"></i>
+                                    <i class="message__icon fas fa-trash-alt"></i>
+                                    <i class="message__icon fas fa-archive"></i>
+                                </div>
+                                <div class="message__content">
+                                    <div class="message__exp">
+                                        <div>Vador</div>
+                                        <div class="date">Monday, 23:12</div>
+                                    </div>
+                                    <div class="message__title">
+                                        You know... The force...
+                                    </div>
+                                    <div class="message__expr">
+                                        « HHhhhHHhhhhH Jean hhhhrrhrhhhr Claude hhhHhhhHH »
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="message">
+                                <div class="message__actions">
+                                    <i class="message__icon far fa-square"></i>
+                                    <i class="message__icon fas fa-trash-alt"></i>
+                                    <i class="message__icon fas fa-archive"></i>
+                                </div>
+                                <div class="message__content">
+                                    <div class="message__exp">
+                                        <div>John Wayne</div>
+                                        <div class="date">Monday, 17:08</div>
+                                    </div>
+                                    <div class="message__title">
+                                        STOP saving people !!!
+                                    </div>
+                                    <div class="message__expr">
+                                        « It's MY job, OKAY ?! »
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="message">
+                                <div class="message-tags">
+                                    <span class="dot dot--pink"></span>
+                                </div>
+                                <div class="message__actions">
+                                    <i class="message__icon far fa-square"></i>
+                                    <i class="message__icon fas fa-trash-alt"></i>
+                                    <i class="message__icon fas fa-archive"></i>
+                                </div>
+                                <div class="message__content">
+                                    <div class="message__exp">
+                                        <div>Discount4Life</div>
+                                        <div class="date">Monday, 11:28</div>
+                                    </div>
+                                    <div class="message__title">
+                                        EXCLUSIVE DISCOUNT JUST FOR YOU
+                                    </div>
+                                    <div class="message__expr">
+                                        « Unbelievable! Save 89% on the green sock catalogue! »
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="message">
+                                <div class="message__actions">
+                                    <i class="message__icon far fa-square"></i>
+                                    <i class="message__icon fas fa-trash-alt"></i>
+                                    <i class="message__icon fas fa-archive"></i>
+                                </div>
+                                <div class="message__content">
+                                    <div class="message__exp">
+                                        <div>Dewey</div>
+                                        <div class="date">Monday, 06:35</div>
+                                    </div>
+                                    <div class="message__title">
+                                        Poupi Poupi Poupi Pou.
+                                    </div>
+                                    <div class="message__expr">
+                                        « Poupi Poupi Poupi Pou. Poupi Poupi Poupi Pou. »
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="message">
+                                <div class="message__actions">
+                                    <i class="message__icon far fa-square"></i>
+                                    <i class="message__icon fas fa-trash-alt"></i>
+                                    <i class="message__icon fas fa-archive"></i>
+                                </div>
+                                <div class="message__content">
+                                    <div class="message__exp">
+                                        <div>Vlad Poutipout</div>
+                                        <div class="date">Monday, 04:52</div>
+                                    </div>
+                                    <div class="message__title">
+                                        Vodka
+                                    </div>
+                                    <div class="message__expr">
+                                        « Я люблю водку настолько, что пукнул алкоголиком. »
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="message">
+                                <div class="message__actions">
+                                    <i class="message__icon far fa-square"></i>
+                                    <i class="message__icon fas fa-trash-alt"></i>
+                                    <i class="message__icon fas fa-archive"></i>
+                                </div>
+                                <div class="message__content">
+                                    <div class="message__exp">
+                                        <div>Captain Krabs</div>
+                                        <div class="date">Monday, 02:16</div>
+                                    </div>
+                                    <div class="message__title">
+                                        Need for crab meat
+                                    </div>
+                                    <div class="message__expr">
+                                        « Hi, I need some coconut crab meat, quick. »
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="preview">
+                        <div class="preview-top">
+
+                            <div class="preview__title">Am I on the Internet?</div>
+                            <div>
+                                <i class="preview-top__icon fas fa-print"></i>
+                                <i class="preview-top__icon fas fa-archive"></i>
+                                <i class="preview-top__icon fas fa-ellipsis-h"></i>
+                            </div>
+                        </div>
+                        <div class="scrollable">
+                            <div class="preview-content scrollable__target">
+                                <div class="preview-respond">
+                                    <div class="preview-respond__head">
+                                        <div class="profile-head">
+                                            <div class="profile-head__id">
+                                                <img class="profile-head__avatar"
+                                                    src="img/20130510_100741_226_grandpa.png"
+                                                    alt="">
+                                                <div>
+                                                    <div class="profile-head__name">Papy Bear</div>
+                                                    <div class="profile-head__mail">itsmepapy@gmail.com</div>
+                                                </div>
+                                            </div>
+                                            <div class="date">Yesterday, 11:17</div>
+                                        </div>
+                                    </div>
+                                    <div class="preview-respond__content">
+                                        <p class="paragraph">I plugged in the computer, and I'm not sure I plugged
+                                            in the internets properly. Do you think you could come and check me out? There
+                                            are little beeps in the black box in the living room, maybe I broke the
+                                            internet, I wouldn't want to do anything stupid!</p>
+                                        <p class="paragraph">Grandma tells me I'm an idiot and if I can see my messages it's
+                                            because it's okay, but you know, Grandma's not good with these things. And then
+                                            I'm suspicious, maybe the aliens aren't watching my internets? They would be
+                                            able to fit into the small box in the living room, Jack told me last week, when
+                                            we were drinking wine on the terrace... Do you think that's true? </p>
+                                        <p class="paragraph">Are you there?</p>
+                                        <p class="paragraph">Jean-Claude?</p>
+                                        <p class="paragraph">I call 911.</p>
+                                    </div>
+                                </div>
+                                <div class="preview-respond">
+                                    <div class="preview-respond__head">
+                                        <div class="profile-head">
+                                            <div class="profile-head__id">
+                                                <img class="profile-head__avatar"
+                                                    src="img/5c9deb858a91e.png"
+                                                    alt="">
+                                                <div>
+                                                    <div class="profile-head__name">Jean-Claude</div>
+                                                    <div class="profile-head__mail">jeanclaude@gmail.com</div>
+                                                </div>
+                                            </div>
+                                            <div class="date">Yesterday, 11:27</div>
+                                        </div>
+                                    </div>
+                                    <div class="preview-respond__content">
+                                        <p class="paragraph">Grandpa! Don't call 911!</p>
+                                        <p class="paragraph">Don't panic! they're e-mails, I only see them when they're
+                                            sent, I don't see your messages live! I'm coming to help you.</p>
+                                    </div>
+                                </div>
+                                <div class="preview-respond">
+                                    <div class="preview-respond__head">
+                                        <div class="profile-head">
+                                            <div class="profile-head__id">
+                                                <img class="profile-head__avatar"
+                                                    src="img/20130510_100741_226_grandpa.png"
+                                                    alt="">
+                                                <div>
+                                                    <div class="profile-head__name">Papy Bear</div>
+                                                    <div class="profile-head__mail">itsmepapy@gmail.com</div>
+                                                </div>
+                                            </div>
+                                            <div class="date">Yesterday, 12:01</div>
+                                        </div>
+                                    </div>
+                                    <div class="preview-respond__content">
+                                        <p class="paragraph">Oh, my God, I was scared!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-foot">
+                            <button class="preview-foot__button button"><i class="fas fa-reply-all"></i> Reply All</button>
+                            <button class="preview-foot__button button"><i class="fas fa-reply"></i> Reply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+import '@S/normalize.min.css'
+import '@S/reset.min.css'
+import '@S/email.css'
+
+export default {
+    data () {
+        return {}
+    },
+    methods: {
+    },
+    mounted () {
+    }
+}
+</script>

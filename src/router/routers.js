@@ -42,7 +42,8 @@ export const routerList = [
             {power: '0000', path: 'music', name: 'music', icon: 'md-funnel', title: '音乐', component: () => import('@V/other/music.vue')},
             {power: '0000', path: 'ad', name: 'ad', icon: 'md-funnel', title: '广告', component: () => import('@V/other/ad.vue')},
             {power: '0000', path: 'firstPage', name: 'firstPage', icon: 'md-funnel', title: '首页', component: () => import('@V/other/firstPage.vue')},
-            {power: '0000', path: 'blog', name: 'blog', icon: 'md-funnel', title: '博客', component: () => import('@V/other/blog.vue')}
+            {power: '0000', path: 'blog', name: 'blog', icon: 'md-funnel', title: '博客', component: () => import('@V/other/blog.vue')},
+            {power: '0000', path: 'email', name: 'email', icon: 'md-funnel', title: '邮箱结构', component: () => import('@V/other/email.vue')}
         ]
     },
     /*
