@@ -166,7 +166,8 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '272formV10', title: '表单v10模版规范'},
                 {power: 'workv2-2', path: '272formV10DHC', title: '表单v10的DHC1'},
                 {power: 'workv2-2', path: '272formV10DHC$add1', title: '表单v10的DHC添加普通表单', hideMenu: true},
-                {power: 'workv2-2', path: '272formV10DHC$extends', title: '表单v10的DHC继承重写', hideMenu: true}
+                {power: 'workv2-2', path: '272formV10DHC$extends', title: '表单v10的DHC继承重写', hideMenu: true},
+                {power: 'workv2-2', path: '273apiUnitTest', title: '接口的单元测试'}
             ]
         }
     ]

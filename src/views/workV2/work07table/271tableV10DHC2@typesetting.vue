@@ -19,9 +19,19 @@
             <br /><br />
             <Table border :loading="loading.table" :columns="columns2" :data="tableData">
                 <template slot-scope="{ row, index }" slot="taskName">
-                    <Poptip trigger="hover" title="详情" :content="row.taskName" transfer="true">
+                    <Poptip trigger="hover" title="详情" :content="row.taskName" :transfer="true">
                         {{row.taskName}}
                     </Poptip>
+                </template>
+                <template slot-scope="{ row, index }" slot="op">
+                    <Button type="text" size="small">编辑</Button>
+                    <Button type="text" size="small">删除</Button>
+                </template>
+            </Table>
+            <br /><br />
+            <Table border :loading="loading.table" :columns="columns3" :data="tableData">
+                <template slot-scope="{ row, index }" slot="taskName">
+                    <p> {{row.taskName}} <br /> {{row.taskStatus}} <br /> <b>时间 </b> {{row.foundTime}} <b> 计划完成日期</b> {{row.completeTime}} </p>
                 </template>
                 <template slot-scope="{ row, index }" slot="op">
                     <Button type="text" size="small">编辑</Button>
@@ -63,6 +73,13 @@ export default {
                 {'title': '计划完成日期', 'align': 'center', 'minWidth': 120, 'key': 'completeTime', 'render': h.defaultH('completeTime')},
                 {'title': '金钱', 'align': 'right', 'minWidth': 100, 'key': 'cost', 'render': h.moneyFormat('cost')},
                 {'title': '状态', 'minWidth': 150, 'key': 'taskStatus', 'ellipsis': true},
+                {'title': '操作', 'align': 'center', 'width': 120, 'slot': 'op'}
+            ],
+            'columns3': [ // 必须指定最小宽度
+                {'title': 'ID', 'width': 60, 'key': 'id'},
+                {'title': '编号', 'width': 60, 'key': 'taskNumber'},
+                {'title': '详情', 'minWidth': 600, 'key': 'taskName', 'slot': 'taskName'},
+                {'title': '金钱', 'align': 'right', 'minWidth': 100, 'key': 'cost', 'render': h.moneyFormat('cost')},
                 {'title': '操作', 'align': 'center', 'width': 120, 'slot': 'op'}
             ],
             tableData: [

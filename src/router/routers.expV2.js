@@ -179,6 +179,7 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-22345', path: '134fontAwesome', title: 'Font Awesome'},
                 {power: 'expv2-22345', path: '134microsoftyahei', title: '微软雅黑字体版权'},
                 {power: 'expv2-22345', path: '134freefont', title: '各种字体展示'},
+                {power: 'expv2-22345', path: '134rjdaoico', title: '牛批字体Rjdaoico'},
                 {power: 'expv2-22345', path: '135doutu', title: '斗图神奇神器'},
                 {power: 'expv2-22345', path: '138globalclick', title: '全局相应点击'}
             ]

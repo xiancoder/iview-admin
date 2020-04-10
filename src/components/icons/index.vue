@@ -25,7 +25,7 @@ export default {
         if (!document.getElementById(id)) {
             var style1 = document.createElement('link')
             style1.id = id
-            style1.href = '/iconfont/index.css'
+            style1.href = '/font/iconfont/index.css'
             style1.rel = 'stylesheet'
             document.head.appendChild(style1)
         }

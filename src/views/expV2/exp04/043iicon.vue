@@ -8,7 +8,7 @@
                 <script type="text/html">
                     <Icon type="ios-loading"/> ios-loading // 点击以下icon可以自动复制到完整html
                 </script>
-                <p style="font-size:26px" @click="copyHtml($event)">
+                <p style="" class="xxxx" @click="copyHtml($event)">
                     <Icon type="ios-add"/> ios-add
                     <Icon type="md-add"/> md-add
                     <br/>
@@ -1210,3 +1210,7 @@ export default {
     }
 }
 </script>
+<style type="text/css" scoped>
+    .xxxx {font-size:26px}
+    .xxxx i {font-size:40px}
+</style>
