@@ -1,8 +1,10 @@
 const FileManagerPlugin = require('filemanager-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path')
 
 const resolve = dir => { return path.join(__dirname, dir) }
 const isDev = !!(process.env.NODE_ENV === 'development')
+const isAnalyzer = true
 
 module.exports = {
     // 项目部署基础
@@ -63,6 +65,11 @@ module.exports = {
                         ]
                     }]
                 })
+            )
+        }
+        if (isAnalyzer) {
+            config.plugins.push(
+                new BundleAnalyzerPlugin()
             )
         }
     },

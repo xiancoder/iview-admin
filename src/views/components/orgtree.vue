@@ -24,6 +24,8 @@
 <script>
 import OrgView from './orgview.vue'
 import ZoomController from './zoomcontroller.vue'
+import orgData from './org-data'
+
 const menuDic = {
     edit: '编辑部门',
     detail: '查看部门',
@@ -54,10 +56,8 @@ export default {
             })
         },
         getDepartmentData () {
-            this.$api.data.getOrgData().then(res => {
-                const { data } = res
-                this.data = data
-            })
+            const { data } = orgData
+            this.data = data
         }
     },
     mounted () {

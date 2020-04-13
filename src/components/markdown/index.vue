@@ -44,11 +44,11 @@ export default {
             autofocus: true, // 自动聚焦
             // toolbar: true, // 设置为false,标题栏不显示 true 会跑版
             autoDownloadFontAwesome: false, // 自动下载FontAwesome
-            placeholder: "Type here...",
+            placeholder: 'Type here...',
             autosave: { // 自动保存
                 enabled: true,
-                uniqueId: "demo",
-                delay: 1000,
+                uniqueId: 'demo',
+                delay: 1000
             },
             tabSize: 4, // tab代表空格数量
             lineWrapping: false // 行内元素

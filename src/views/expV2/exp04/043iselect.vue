@@ -142,10 +142,9 @@ export default {
         }
     },
     methods: {
-        xxx (a,b,c) {
-            console.log(a,b,c)
-            if (a)
-            this.$refs.dataSet.setQuery(null)
+        xxx (a, b, c) {
+            console.log(a, b, c)
+            if (a) { this.$refs.dataSet.setQuery(null) }
         }
     },
     mounted () {

@@ -152,6 +152,7 @@
 
 <script>
 import moment from 'moment'
+import '@/plugins/mock'
 import { howManyToToday } from '@U/date'
 
 // 优化建议

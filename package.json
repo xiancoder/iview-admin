@@ -7,6 +7,7 @@
     "start": "cross-env NODE_ENV=development vue-cli-service serve --open",
     "dev": "cross-env NODE_ENV=production vue-cli-service serve --open",
     "build": "cross-env NODE_ENV=development vue-cli-service build",
+    "analyz": "cross-env NODE_ENV=production npm_config_report=true vue-cli-service build",
     "online": "cross-env NODE_ENV=production vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
@@ -67,7 +68,8 @@
     "less-loader": "^4.0.5",
     "lint-staged": "^6.0.0",
     "mockjs": "^1.0.1-beta3",
-    "vue-template-compiler": "^2.5.13"
+    "vue-template-compiler": "^2.5.13",
+    "webpack-bundle-analyzer": "^3.6.1"
   },
   "browserslist": [
     "> 1%",

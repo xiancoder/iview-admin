@@ -27,7 +27,19 @@
 </template>
 <script>
 import DragList from '@C/drag-list'
-import { getDragList } from '@/mock/data'
+import Mock from 'mockjs'
+const Random = Mock.Random
+
+const getDragList = req => {
+    let dragList = []
+    for (var i = 0, l = 5; i < l; i++) {
+        dragList.push(Mock.mock({
+            name: Random.csentence(10, 13),
+            id: Random.increment(10)
+        }))
+    }
+    return dragList
+}
 export default {
     name: 'drag_list_page',
     components: { DragList },

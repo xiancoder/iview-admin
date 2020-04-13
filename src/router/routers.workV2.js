@@ -117,9 +117,11 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '242screenlog', title: '屏幕日志'},
                 {power: 'workv2-2', path: '243urlNoRepeat', title: '域名验重问题'},
                 {power: 'workv2-2', path: '244iframe', title: 'iframe 父子页面'},
-                {power: 'workv2-2', path: '244budiaoji', title: '补点击 脚本'},
+                {power: 'workv2-2', path: '244budianji', title: '补点击脚本'},
+                {power: 'workv2-2', path: '244charu360', title: '360插入脚本'},
                 {power: 'workv2-2', path: '244baiduurl', title: '百度URL参数解读'},
-                {power: 'workv2-2', path: '244document', title: 'document 复习'}
+                {power: 'workv2-2', path: '244document', title: 'document 复习'},
+                {power: 'workv2-2', path: '245webpackbundleanalyzer', title: 'webpack 打包分析'}
             ]
         },
         {
@@ -140,7 +142,8 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '261arrayUtil', title: '数组常用列举'},
                 {power: 'workv2-2', path: '262objUtil', title: '对象常用列举'},
                 {power: 'workv2-2', path: '263stringUtil', title: '字符串常用列举'},
-                {power: 'workv2-2', path: '264functionUtil', title: '方法常用列举'}
+                {power: 'workv2-2', path: '264functionUtil', title: '方法常用列举'},
+                {power: 'workv2-2', path: '264easyFun', title: '便宜方法积累'}
             ]
         },
         {
@@ -163,6 +166,7 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '271tableV10DHC2@mixin', title: '表格v10的DHCMixin', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10DHC2@modal', title: '表格v10的DHC弹框表单', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10DHC2@typesetting', title: '表格v10的DHC合理排版', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10dongtai', title: '表格v10的动态显隐'},
                 {power: 'workv2-2', path: '272formV10', title: '表单v10模版规范'},
                 {power: 'workv2-2', path: '272formV10DHC', title: '表单v10的DHC1'},
                 {power: 'workv2-2', path: '272formV10DHC$add1', title: '表单v10的DHC添加普通表单', hideMenu: true},
