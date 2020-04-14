@@ -2,13 +2,11 @@
 // 负责::所有的过滤器在这里初始化
 import Vue from 'vue' // 核心
 // =====================================================================
-import * as dateJs from '@/utils/date'
-import * as stringJs from '@/utils/string'
-import * as numberJs from '@/utils/number'
+import * as lib from '@/utils'
 
 // 日期格式
 Vue.filter('dateformat', (val) => {
-    return dateJs.dateFormater(val, 'YYYY-MM-DD')
+    return lib.dateFormater(val, 'YYYY-MM-DD')
 })
 
 // 解码字符串
@@ -53,7 +51,7 @@ Vue.filter('toNum', (val) => {
 // 首字母大写
 Vue.filter('capitalize', (val) => {
     if (val === null) return null
-    return stringJs.capitalize(val)
+    return lib.capitalize(val)
 })
 // =========================================================================
 // 将传入的值判断为空替换'-'
@@ -81,13 +79,13 @@ Vue.filter('fixed2', (val, defaultValue) => {
 // 10000 => "10,000"
 Vue.filter('numberformat', (val) => {
     if (val === null) return null
-    return numberJs.thousand(val)
+    return lib.thousand(val)
 })
 // 金钱千分符 (强制2位小数)
 // 10000 => "10,000.00"
 Vue.filter('moneyformat', (val) => {
     if (val === null) return null
-    return numberJs.thousand(numberJs.toDecimalForce(parseFloat(val || 0)))
+    return lib.thousand(lib.toDecimalForce(parseFloat(val || 0)))
 })
 // 百分比
 Vue.filter('percent', (val, defaultValue) => {

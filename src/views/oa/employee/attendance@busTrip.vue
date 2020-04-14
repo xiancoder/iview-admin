@@ -22,7 +22,7 @@
 </template>
 <script>
 import TreeDrop from '@C/tree-drop'
-import { sevenRange } from '@/utils/date'
+import { sevenRange } from '@/utils'
 import tab from './attendance@tab.vue'
 export default {
     name: 'busTrip-list',

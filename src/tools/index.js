@@ -2,9 +2,7 @@ import Vue from 'vue' // 核心
 import { router } from '@/router' // 自定义路由定义
 import iView from '@/plugins/iview'
 // import { Store } from '@/store' // 自定义状态管理 // 状态管理 -挂载$stroe
-import { type } from '@/utils/object'
-import { thousand, toDecimalForce } from '@/utils/number'
-import { encodeBase64, decodeBase64 } from '@/utils/string'
+import { type, thousand, toDecimalForce, encodeBase64, decodeBase64 } from '@/utils'
 
 const { Message, Modal, LoadingBar, Notice } = iView
 

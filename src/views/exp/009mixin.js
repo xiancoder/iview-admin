@@ -1,6 +1,6 @@
-import { extend, extendF } from '@/utils/object'
+import { extend, extendF } from '@/utils'
 import { saveParamState, getParamState } from '@/tools' // 自定义常用工具
-import { debounce } from '@/utils/function'
+import { debounce } from '@/utils'
 
 export default {
     beforeMount: function () {

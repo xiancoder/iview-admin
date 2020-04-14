@@ -4,7 +4,8 @@
 <script>
 import echarts from 'echarts'
 import tdTheme from './theme.json'
-import { on, off } from '@/utils/event'
+import { on, off } from '@/utils'
+
 echarts.registerTheme('tdTheme', tdTheme)
 export default {
     name: 'ChartPie',

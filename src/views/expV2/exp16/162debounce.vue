@@ -45,7 +45,7 @@
     </div>
 </template>
 <script>
-import { throttle, debounce } from '@/utils/function'
+import { throttle, debounce } from '@/utils'
 export default {
     data () {
         return {

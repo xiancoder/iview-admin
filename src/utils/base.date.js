@@ -1,5 +1,4 @@
 'use strict';
-import moment from 'moment' // 不要直接使用moment 墙裂建议在这里套一层
 
 // =====================
 // 日期格式化
@@ -29,10 +28,6 @@ export const dateFormater = (O, T) => { // 略过时 但经典可用
         }
     }
     return T
-}
-export const dateFormat = (dataStr, pattern) => { // moment 写法
-    pattern = pattern || 'YYYY-MM-DD' // 专门为项目服务的'YYYY-MM-DD'格式
-    return moment(dataStr).format(pattern);
 }
 export function sevenRange (D) { // 获取今天之前一周时间的字符串数组
     const date = D || new Date()
@@ -113,6 +108,8 @@ export const date2xz = function (D) {
     if ((100 * m + d) >= z[0] || (100 * m + d) < z[1]) { i = 0 } else { for (i = 1; i < 12; i++) { if ((100 * m + d) >= z[i] && (100 * m + d) < z[i + 1]) break } }
     return x.substring(2 * i, 2 * i + 2)
 }
+
+// =====================
 // 天干地支
 // =====================
 // liuyp 2019年1月9日11:00:26
@@ -123,6 +120,8 @@ export const date2gz = function (D) {
         '\u5b50\u4e11\u5bc5\u536f\u8fb0\u5df3\u5348\u672a\u7533\u9149\u620c\u4ea5'];
     return GZDict[0].charAt(i % 10) + GZDict[1].charAt(i % 12)
 }
+
+// =====================
 // 属相
 // =====================
 // liuyp 2019年1月9日11:00:26
@@ -131,6 +130,8 @@ export const date2sx = function (D) {
     let SXDict = '\u9f20\u725b\u864e\u5154\u9f99\u86c7\u9a6c\u7f8a\u7334\u9e21\u72d7\u732a';
     return SXDict.charAt((y - 4) % 12)
 }
+
+// =====================
 // 农历时间
 // =====================
 // liuyp 2019年1月9日11:00:26
@@ -196,6 +197,8 @@ export const date2cnDate = function (D) {
     }
     return GetLunarDay(yy, mm, dd)
 }
+
+// =====================
 // 二十四节气(注节气指的是某一天)
 // =====================
 // liuyp 2019年1月9日11:00:26
@@ -219,14 +222,17 @@ export const date2jieqi = function (D) {
     if (tmp2 === dd) solarTerms = solarTerm[mm * 2];
     return solarTerms;
 }
+
+// =====================
 // 判断是否闰年
 // =====================
 // liuyp 2019年1月9日11:00:26
-// liuyp 2019年6月11日09:59:51 moment逻辑
 export const date2isLeapYear = function (D) {
     let year = D.getFullYear();
     return !!((year & 3) === 0 && (year % 100 || (year % 400 === 0 && year)))
 }
+
+// =====================
 // 完整输出 "丙申(猴)年 (闰)五月廿 无节气"
 // =====================
 // liuyp 2019年1月9日11:00:26
@@ -238,77 +244,6 @@ export const date2all = function (D) {
 }
 
 // =====================
-// 计算其归属的计薪周期区间
-// @param date {date} 根据日期
-// @desc 获取今天归属哪个计薪周期 上个月26到这个月25 x 为今天月份 --- 八月
-// @desc 如果今天日期大于等于26 x加一月 --- 不大于
-// @desc x --- 八月计薪周期
-// @desc [ x的上一月26, x月25 ]  --- 七月26到八月25
-// =====================
-// liuyp 2019年9月20日11:25:25
-export const computeRange = (date) => { // 解释一下 moment对象和普通date对象不同
-    date = moment(date || new Date()) // 所以参数不管是何种对象 都转为moment对象来处理
-    let startDate = moment(date)
-    let endDate = moment(date)
-    if (date.date() >= 26) { endDate.add(1, 'months') } else { startDate.subtract(1, 'months') }
-    return [
-        moment(startDate).format('YYYY-MM-26'),
-        moment(endDate).format('YYYY-MM-25')
-    ]
-}
-// 计算其归属的计薪周期区间
-// @param yearNum {int} 根据年份月份
-// @param mouthNum {int} 根据年份月份
-// =====================
-// liuyp 2019年9月20日11:25:25
-export const computeRangeByMouth = (yearNum, mouthNum) => {
-    const date = new Date(yearNum, mouthNum - 1, 1)
-    return computeRange(date)
-}
-
-// ===================== // ===================== // =====================// ===================== // ===================== // =====================
-// ===================== // ===================== // =====================// ===================== // ===================== // =====================
-// ===================== // ===================== // =====================// ===================== // ===================== // =====================
-
-// =====================
-// 当前时间
-// =====================
-// liuyp 2019年6月11日09:59:51 moment逻辑
-// _bs( moment() ,result_flag_here
-// _bs( moment(new Date()) ,result_flag_here
-// _bs( moment(new Date(2017,1,1)).format('YYYY-MM-DD') == '2017-02-01' ,result_flag_here
-// _bs( moment([2017,1,1]).format('YYYY-MM-DD') == '2017-02-01' ,result_flag_here
-// _bs( moment(new Date(2017,1-1,1)).format('YYYY-MM-DD') == '2017-01-01' ,result_flag_here
-// _bs( moment([2017,1-1,1]).format('YYYY-MM-DD') == '2017-01-01' ,result_flag_here
-// 多种格式给moment赋值
-// =====================
-// liuyp 2019年6月11日09:59:51 moment逻辑
-// _bs( moment("29-06-1995", ["MM-DD-YYYY", "DD-MM", "DD-MM-YYYY"]) ,result_flag_here
-// _bs( moment("05-06-1995", ["MM-DD-YYYY", "DD-MM-YYYY"]) ,result_flag_here
-// 深拷贝
-// =====================
-// liuyp 2019年6月11日09:59:51 moment逻辑
-// _bs( moment(moment([2012])) ,result_flag_here
-// _bs( moment([2012]).clone() ,result_flag_here
-// 倒计时
-// =====================
-// liuyp 2019年6月11日09:59:51 moment逻辑
-// _bs( moment([2007, 0, 29]).fromNow() ,result_flag_here
-// _bs( moment([2007, 0, 29]).fromNow(true) ,result_flag_here
-// 计算一个月有多少天
-// =====================
-// liuyp 2019年6月11日09:59:51 moment逻辑
-// _bs( moment("2012-02", "YYYY-MM").daysInMonth() ,result_flag_here
-// _bs( moment("2012-01", "YYYY-MM").daysInMonth() ,result_flag_here
-// 计算某天星期几
-// =====================
-// liuyp 2019年6月11日09:59:51 moment逻辑
-// _bs( moment().day() ,result_flag_here
-// _bs( moment().day(-7) ,result_flag_here
-// _bs( moment().day(7) ,result_flag_here
-// _bs( moment().day(10) ,result_flag_here
-// _bs( moment().day(24) ,result_flag_here
-
 // 时间戳转换日期
 // 防止ios出现日期bug 统一后台来的时间戳
 // @param timestamp {int} 时间戳为10位/13位均可
@@ -339,6 +274,8 @@ export const easyToday = () => {
     const D = d.getDate()
     return Y + (M < 10 ? ('0' + M) : M) + (D < 10 ? ('0' + D) : D)
 }
+
+// =====================
 // 两日期是否相等
 // y 年 q 季度 m 月 d 日 w 周 h 小时 n 分钟 s 秒 ms 毫秒
 // @param u {string} 单位
@@ -371,6 +308,8 @@ export const dateEqual = (u, d1, d2) => {
     }
     return d1.getTime() === d2.getTime()
 }
+
+// =====================
 // 指定格式字符串转换日期
 // @author liuyp
 // @param arg {string} 时间戳为10位/13位均可
@@ -397,6 +336,8 @@ export const dateObj = (arg) => {
     let sec = tArr[2] ? tArr[2] : 0
     return new Date(year, month, day, hour, min, sec)
 }
+
+// =====================
 // 天数转年月日数
 // @param d {int} 天数
 // =====================
@@ -404,6 +345,8 @@ export const dateObj = (arg) => {
 export const dateDays2ymd = (d) => {
     return [Math.floor(d / 365), Math.floor(d / 30) % 12, d % 30]
 }
+
+// =====================
 // 毫秒转日时分秒数
 // @param d {int} 毫秒数
 // =====================
@@ -415,6 +358,8 @@ export const dateMs2dhns = (d) => {
     let d4 = Math.floor(d3 / 24)
     return [d4, d3 % 24, d2 % 60, d1 % 60]
 }
+
+// =====================
 // 两个日期的相差
 // =====================
 // liuyp 2019年10月5日23:09:25
@@ -477,13 +422,8 @@ export const timeLong2 = (date1, date2) => {
     }
     return ((month) ? (month + '月零') : '') + day + '天'
 }
-// 某天到今天相差多少(天)
+
 // =====================
-// liuyp 2020年1月15日17:06:51
-export const howManyToToday = (dateStr, toTodayDateStr) => {
-    const t = moment(toTodayDateStr).format('YYYY-MM-DD')
-    return moment(t).diff(moment(dateStr), 'days')
-}
 // 是否超时日期
 export const isDateNotBeOverdue = (d, deadline) => {
     const checkDateTime = function (d) {

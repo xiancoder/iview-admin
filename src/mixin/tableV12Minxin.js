@@ -1,4 +1,4 @@
-import { extend, extendF } from '@/utils/object'
+import { extend, extendF } from '@/utils'
 import { saveParamState, getParamState } from '@/tools' // 自定义常用工具
 
 export default {

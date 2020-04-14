@@ -55,8 +55,7 @@
     </div>
 </template>
 <script>
-import { extend, extendF } from '@/utils/object'
-import { debounce, nothing } from '@/utils/function'
+import { extend, extendF, debounce, nothing } from '@/utils'
 import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工具
 import tab from './205tab'
 

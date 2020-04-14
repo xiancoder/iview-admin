@@ -30,7 +30,7 @@
     </div>
 </template>
 <script>
-import { debounce } from '@/utils/function'
+import { debounce } from '@/utils'
 
 export default {
     data () {

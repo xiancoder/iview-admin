@@ -122,9 +122,7 @@
     </div>
 </template>
 <script>
-import { extend } from '@/utils/object'
-import { debounce, nothing } from '@/utils/function'
-import { sevenRange, todayMouth } from '@/utils/date'
+import { extend, debounce, nothing, sevenRange, todayMouth } from '@/utils'
 import tab from './205tab'
 
 export default {

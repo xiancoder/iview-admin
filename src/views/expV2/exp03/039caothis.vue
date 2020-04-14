@@ -82,7 +82,7 @@
 </template>
 <script>
 import { JobList } from '@/api/api.unit'
-import { debounce } from '@/utils/function'
+import { debounce } from '@/utils'
 export default {
     data () {
         return {

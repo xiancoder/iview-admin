@@ -1,29 +1,26 @@
 'use strict';
-import _ from 'lodash'
 
 // =====================
-// 驼峰化字符串
+// 驼峰化字符串 camelCase (驼峰式命名)
 // 将ab-cd转化为abCd
-// camelCase (驼峰式命名)
 // =====================
-// liuyp 2019年6月9日17:28:26 lodash替换
+// liuyp 2019年6月9日17:28:26
 export const humping = function (str) {
     return str.replace(/-(\w)/g, function ($0, $1) {
         return $1.toUpperCase()
     })
 }
+
 // 反驼峰化字符串
 // 将abCd转化为ab-cd
 // kebab-case (短横线分隔式命名)
 // =====================
-// liuyp 2019年6月9日17:28:26 lodash替换
+// liuyp 2019年6月9日17:28:26
 export const antiHumping = function (str) {
     return str.replace(/[A-Z]/g, function (a) {
         return '-' + a.toLowerCase()
     })
 }
-export const camelCase = _.camelCase
-export const kebabCase = _.kebabCase
 
 // =====================
 // 获得url字符串中所有的参数
@@ -39,6 +36,8 @@ export const url2obj = (url) => {
     }
     return t
 }
+
+// =====================
 // 对象转换为url参数格式
 // =====================
 // liuyp 2019年1月22日19:49:31
@@ -50,6 +49,8 @@ export const obj2url = (obj) => {
     }
     return arr.join('&');
 }
+
+// =====================
 // URL_添加参数
 // =====================
 // liuyp 2019年1月22日19:49:31
@@ -68,6 +69,8 @@ export const urlChange = function (url, par, parvalue) {
         }
     }
 }
+
+// =====================
 // 详细解析一个url,这段代码来自腾讯空间脚本
 // =====================
 // liuyp 2019年1月22日19:49:31
@@ -208,19 +211,18 @@ export const uni2Asc = function (S) {
     return window.unescape(S.replace(/\\/g, '%'))
 }
 
-// ===================== // ===================== // =====================// ===================== // ===================== // =====================
-// ===================== // ===================== // =====================// ===================== // ===================== // =====================
-// ===================== // ===================== // =====================// ===================== // ===================== // =====================
 
+// =====================
 // 首字母大写
 // =====================
-// liuyp 2019年6月9日17:28:26 lodash替换
+// liuyp 2019年6月9日17:28:26
 export const capitalize = function (value) {
     if (!value) { return '' }
     value = value.toString()
     return value.charAt(0).toUpperCase() + value.slice(1)
 }
-export const upperFirst = _.upperFirst
+
+// =====================
 // 全角半角替换
 // 返回一个无错值字符串
 // 空格为12288,半角空格为32
@@ -233,22 +235,24 @@ export const dbc2Sbc = function (str) {
         return String.fromCharCode(a.charCodeAt(0) - 65248)
     }).replace(/[\u3000]/g, ' ')
 }
+
+// =====================
 // 两值切换
 // =====================
 // liuyp 2018年12月20日11:28:08
 export const toggle = function (S, A, B) {
     return (S === A) ? B : A
 }
-// 打造重复值
+
 // =====================
-// liuyp 2019年6月9日17:28:26 lodash替换
-export const repeat = _.repeat
 // 剔除html标签
 // =====================
 // liuyp 2018年12月20日11:28:08
 export const stripTags = function (str) {
     if (!str) { return '' } return str.replace(/<\/?[^>]+>/g, '')
 }
+
+// =====================
 // 回文字符串判断 ( 正反读都一样)
 // =====================
 // liuyp 2018年12月20日11:28:08
@@ -263,6 +267,8 @@ export const palindrome = (str) => {
     if (lowRegStr[0] !== lowRegStr[lowRegStr.length - 1]) { return false }
     return palindrome(lowRegStr.slice(1, lowRegStr.length - 1))
 }
+
+// =====================
 // 字符串随机生成
 export const ramdomString = function (len) {
     len = len || 32;

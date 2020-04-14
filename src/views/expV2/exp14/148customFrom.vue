@@ -55,7 +55,7 @@
     </div>
 </template>
 <script>
-import regexp from '@/utils/regexp'
+import { regexp } from '@/utils'
 import custom from './148customFromItem'
 export default {
     components: {

@@ -97,8 +97,8 @@
     </div>
 </template>
 <script>
-import { extend, extendF } from '@/utils/object'
-import { nothing } from '@/utils/function'
+import { extend, extendF, nothing } from '@/utils'
+
 import { h, confirmAjax, saveParamState, getParamState, companyTableSumColumns } from '@/tools' // 自定义常用工具
 import tab from './271tableV10DHC'
 

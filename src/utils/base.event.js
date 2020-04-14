@@ -1,5 +1,6 @@
 'use strict';
 
+// =====================
 // 绑定事件 on(element, event, handler)
 // =====================
 export const on = (function () {
@@ -18,6 +19,7 @@ export const on = (function () {
     }
 })()
 
+// =====================
 // 解绑事件 off(element, event, handler)
 // =====================
 export const off = (function () {
@@ -36,6 +38,7 @@ export const off = (function () {
     }
 })()
 
+// =====================
 // 阻止事件冒泡 防止默认行为
 // =====================
 // liuyp 2018年12月27日19:44:45
@@ -48,6 +51,7 @@ export const eventStop = (ev) => {
     if (ev.stopPropagation) { ev.stopPropagation() } else { ev.cancelBubble = true; }
 }
 
+// =====================
 // 事件发生的目标
 // =====================
 // liuyp 2018年12月27日19:44:45

@@ -28,7 +28,7 @@
                     </FormItem>
                 </script>
                 <script type="text/js">
-                    import { sevenRange } from '@/utils/date'
+                    import { sevenRange } from '@/utils'
                     export default {
                         data () {
                             return {
@@ -158,7 +158,7 @@
                 </script>
                 <p class="text-danger">公共方法请去utils里面找 这里面的方法都经历了单元测试</p>
                 <script type="text/js">
-                    import { dateFormat, dateSub } from '@/utils/date'
+                    import { dateFormat, dateSub } from '@/utils'
                     export default {
                         data () {
                             let today = new Date() // 常用的是前七天
@@ -208,7 +208,7 @@
     </div>
 </template>
 <script>
-import { dateFormat, dateSub, sevenRange } from '@/utils/date'
+import { dateFormat, dateSub, sevenRange } from '@/utils'
 import { required4DateRange } from '@/validate'
 export default {
     data () {

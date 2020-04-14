@@ -69,7 +69,7 @@
     </div>
 </template>
 <script>
-import { uniqueObj } from '@/utils/array'
+import { uniqueObj } from '@/utils'
 
 export default {
     data () {

@@ -28,7 +28,7 @@
     </div>
 </template>
 <script>
-import { encodeBase64, decodeBase64 } from '@/utils/string'
+import { encodeBase64, decodeBase64 } from '@/utils'
 export default {
     data () {
         return {

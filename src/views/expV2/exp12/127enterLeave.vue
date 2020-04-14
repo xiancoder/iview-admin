@@ -32,7 +32,7 @@
 <script>
 import pageLoadNoSave from '@/mixin/router.unsavedData'
 import pageConfirmToGo from '@/mixin/router.leavePrompt'
-import regexp from '@/utils/regexp'
+import { regexp } from '@/utils'
 export default {
     mixins: [
         pageLoadNoSave,

@@ -45,7 +45,7 @@
     </div>
 </template>
 <script>
-import regExp from '@/utils/regexp'
+import { regexp } from '@/utils'
 
 export default {
     data () {
@@ -57,7 +57,7 @@ export default {
             frmValidate: {
                 p01: [
                     { required: true, message: '输入框不能为空' },
-                    { pattern: regExp.b05, message: '整数6位，小数点2位' }
+                    { pattern: regexp.b05, message: '整数6位，小数点2位' }
                 ]
             }
         }

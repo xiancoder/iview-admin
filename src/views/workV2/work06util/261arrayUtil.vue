@@ -33,7 +33,7 @@
     </div>
 </template>
 <script>
-import { uniqueObj } from '@/utils/array'
+import { uniqueObj } from '@/utils'
 
 const x = [{id: 1}, {id: 2}, {id: 1}]
 

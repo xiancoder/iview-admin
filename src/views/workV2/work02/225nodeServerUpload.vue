@@ -126,7 +126,7 @@
 </template>
 <script>
 import { error } from '@/tools' // 自定义常用工具
-import { extendF } from '@/utils/object'
+import { extendF } from '@/utils'
 import axios from 'axios' // http请求库
 
 export default {

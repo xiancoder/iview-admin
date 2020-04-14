@@ -63,7 +63,7 @@
     </div>
 </template>
 <script>
-import { extend, extendF } from '@/utils/object'
+import { extend, extendF } from '@/utils'
 import { h } from '@/tools' // 自定义常用工具
 export default {
     data () {

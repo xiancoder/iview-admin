@@ -63,8 +63,7 @@
     </div>
 </template>
 <script>
-import { extend, extendF } from '@/utils/object'
-import regexp from '@/utils/regexp'
+import { extend, extendF, regexp } from '@/utils'
 import { alert } from '@/tools'
 
 export default {

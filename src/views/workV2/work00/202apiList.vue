@@ -233,7 +233,7 @@
                     <Col span="12">
                         <script type="text/js">
                             // 这是api模块 这里的代码应该是开发初期作为工作量写好的
-                            import { dateFormat } from '@/utils/date' // 常用方法
+                            import { dateFormat } from '@/utils' // 常用方法
                             listAdOnLine ({
                                 projectType, contractSubject, contractType, type, date,
                                 keyword, pageIndex, pageSize
@@ -307,7 +307,7 @@
                                 }
                             */
                             // 这是业务逻辑 后期写的 找到接口直接使用 多爽
-                            import { sevenRange } from '@/utils/date' // 常用方法
+                            import { sevenRange } from '@/utils' // 常用方法
                             var onWeakTimeStr = sevenRange() // 初始化使用一周时间
                             this.search = {
                                 'projectType': '',

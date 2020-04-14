@@ -1,5 +1,5 @@
 import Vue from 'vue' // 核心
-import { getUrlParam } from '@U/dom'
+import { getUrlParam } from '@/utils'
 
 const config = {
     title: 'VUE资料库',

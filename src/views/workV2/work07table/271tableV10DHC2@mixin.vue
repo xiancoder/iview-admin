@@ -76,7 +76,7 @@
     </div>
 </template>
 <script>
-import { nothing } from '@/utils/function'
+import { nothing } from '@/utils'
 import {h, alertMsg} from '@/tools' // 自定义常用工具
 import tab from './271tableV10DHC2'
 import tableV12Minxin from '@/mixin/tableV12Minxin'

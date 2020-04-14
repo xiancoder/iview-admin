@@ -1,21 +1,21 @@
 'use strict';
-//////////////////////////////////////////////////////////////////////////////
+
+// =====================
 // 编译 字符串中的中文 方便Cookie保存
 // =====================
 // liuyp 2018年12月20日11:28:08
-//////////////////////////////////////////////////////////////////////////////
 function encode (str) {
     return ! str ? '' : (str + '').replace(/[\u4e00-\u9fa5]/g, function (v) {return escape(v)})
 }
 function decode (str) {
     return unescape(str)
 }
-//////////////////////////////////////////////////////////////////////////////
+
+// =====================
 // Cookie保存/获取/删除
 // =====================
 // liuyp 2018年12月20日11:28:08 中文转义
-//////////////////////////////////////////////////////////////////////////////
-export const set (name, content, time, path, domain, noEscape) => {
+export const setCookie = (name, content, time, path, domain, noEscape) => {
     let expire = new Date
     expire.setTime(expire.getTime() + time * 1e3)
     document.cookie = name + '=' +
@@ -25,13 +25,13 @@ export const set (name, content, time, path, domain, noEscape) => {
         (domain ? '; domain=' + domain : '')
     if( ! content ) { del(name) }
 }
-export const get (name) => {
+export const getCookie = (name) => {
     let r = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
     let result = document.cookie.match(r)
     if(null !== result){return decode(result[2])}
     return ''
 }
-export const getAll () => {
+export const getAllCookie = () => {
     let s = document.cookie
     let a1 = s.split('; ')
     let a2 = []
@@ -41,7 +41,7 @@ export const getAll () => {
     }
     return a2;
 }
-export const del (name,path,domain) => {
+export const delCookie = (name,path,domain) => {
     let n = get(name)
     if (null === n) return
     document.cookie = name + '=' +
@@ -49,7 +49,7 @@ export const del (name,path,domain) => {
         (domain ? '; domain=' + domain : '') +
         ';expires=Fri, 02-Jan-1970 00:00:00 GMT'
 }
-export const delAll () => {
+export const delAllCookie = () => {
     let keys = document.cookie.match(/[^ =;]+(?=\=)/g)
     if (keys) {
         for (let i = keys.length; i--;)

@@ -1,6 +1,6 @@
 import axios from 'axios' // http请求库
 import { error } from '@/tools' // 自定义常用工具
-import { dateFormat } from '@/utils/date' // 常用方法
+import { dateFormat } from '@/utils' // 常用方法
 
 export default {
 

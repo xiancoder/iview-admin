@@ -152,7 +152,7 @@
 </template>
 <script>
 import treeDrop from '@C/tree-drop'
-import {sevenRange} from '@/utils/date.js'
+import { sevenRange } from '@/utils'
 import tab from './attendance@tab.vue'
 export default {
     components: {treeDrop, tab},

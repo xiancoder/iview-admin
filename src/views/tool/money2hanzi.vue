@@ -21,7 +21,7 @@
     </div>
 </template>
 <script>
-import { money2Chinese } from '@/utils/number'
+import { money2Chinese } from '@/utils'
 
 export default {
     data () {

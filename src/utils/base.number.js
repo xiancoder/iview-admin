@@ -184,12 +184,16 @@ export const uuid = function (len, radix) {
 const places = function (n) {
     try { return n.toString().split('.')[1].length } catch (e) { return 0 }
 }
+
+// =====================
 // 剔除小数点
 // =====================
 // liuyp 2019年9月20日10:58:12
 const noplaces = function (n) {
     return Number(n.toString().replace('.', ''))
 }
+
+// =====================
 // 精准加法
 // 对于整数，前端出现问题的几率可能比较低，毕竟很少有业务需要需要用到超大整数，只要运算结果不超过 Math.pow(2, 53) 就不会丢失精度。
 // 对于小数，前端出现问题的几率还是很多的，尤其在一些电商网站涉及到金额等数据。解决方式：把小数放到位整数（乘倍数），再缩小回原来倍数（除倍数）
@@ -208,6 +212,8 @@ export const add = function (/* arguments */) {
     for (let i = 0; i < l; i++) { r2 += Math.round(args[i] * m) }
     return r2 / m
 }
+
+// =====================
 // 精准减法
 // =====================
 // liuyp 2019年9月20日10:58:12
@@ -225,6 +231,8 @@ export const sub = function (/* arguments */) {
     for (let i = 1; i < l; i++) { r2 -= Math.round(args[i] * m) }
     return r2 / m
 }
+
+// =====================
 // 精准乘法
 // =====================
 // liuyp 2019年9月20日10:58:12
@@ -245,6 +253,8 @@ export const mul = function (/* arguments */) {
     for (let i = 0; i < l; i++) { r2 *= Number(args[i].replace(/\./g, '')) }
     return r2 / m
 }
+
+// =====================
 // 精准除法
 // =====================
 // liuyp 2019年9月20日10:58:12
@@ -258,24 +268,7 @@ export const div = function (bcs, cs) {
     return mul((r1 / r2), Math.pow(10, t2 - t1))
 }
 
-// ===================== // ===================== // =====================// ===================== // ===================== // =====================
-// ===================== // ===================== // =====================// ===================== // ===================== // =====================
-// ===================== // ===================== // =====================// ===================== // ===================== // =====================
-
-// 随机数字
 // =====================
-// liuyp 2019年6月9日17:28:26 lodash替换
-// _bs(_.flattenDeep([1, [2, [3, [4]], 5]]) ,result_flag_here
-// _bs(_.random(0, 5) ,result_flag_here
-// _bs(_.random(5) ,result_flag_here
-// _bs(_.random(5, true) ,result_flag_here
-// _bs(_.random(1.2, 5.2) ,result_flag_here
-// UUID
-// =====================
-// liuyp 2019年6月9日22:00:05
-// _bs(numberJs.uuid(10,5) ,result_flag_here
-// _bs(numberJs.uuid(32) ,result_flag_here
-// _bs(numberJs.uuid(32,5) ,result_flag_here
 // 数字转换为简写汉字一到十
 // =====================
 // liuyp 2018年12月20日11:28:08
@@ -285,6 +278,8 @@ export const cnNumber = function (num) {
     for (let i = 0; i < 10; i++) n = n.replace(new RegExp(i, 'g'), cn[i])
     return n
 }
+
+// =====================
 // 从18位/17位身份证号算出校验位
 // (1)十七位数字本体码加权求和公式
 // S = Ai * Wi, i = 2, ... , 18
@@ -308,6 +303,8 @@ export const idCardNumCompute = function (idcardno) {
     // 对权重值取模
     return verify18Checkdigit.charAt(sum % 11)
 }
+
+// =====================
 // 数字估算
 // 源,过滤数组
 // 为了适应浏览器局限宽度来显示数字,需要对数字进行估算显示
@@ -342,6 +339,8 @@ export const estimate2 = function (n, s) {
     if (n > 1e4) {return getNum(1e4, '万')}
     return getNum(1, '')
 }
+
+// =====================
 // 文件大小估算
 // =====================
 // liuyp 2020年3月16日10:29:24
@@ -364,6 +363,7 @@ export const formatFileSize = function (fileSize) {
     }
 }
 
+// =====================
 // 数字精准比较
 // =====================
 // liuyp 2019年9月20日10:58:12
@@ -380,20 +380,24 @@ export const gte = function (a, b) { var r = compare(a, b); return r === '>' || 
 export const lt = function (a, b) { var r = compare(a, b); return r === '<' }
 export const lte = function (a, b) { var r = compare(a, b); return r === '<' || r === '=' }
 export const eq = function (a, b) { var r = compare(a, b); return r === '=' }
+
+// =====================
 // 数字千分金钱
 // 返回一个千分金钱的字符串
-/* export const thousand = function (str) { // 可用 但过时
-    let s=(str+""),n=s.valueOf().length%3
+// =====================
+export const thousand = function (str) {
+    // 可用 但过时
+    /* let s=(str+""),n=s.valueOf().length%3
     if (n){return s.slice(0,n)+s.slice(n).replace(/(\d{3})/g,',$1')}
-    return s.replace(/(\d{3})/g,',$1').slice(1)
-} */
-// 更新：2019年12月3日15:08:07
-export const thousand = function (num) {
+    return s.replace(/(\d{3})/g,',$1').slice(1) */
+    // 更新：2019年12月3日15:08:07
     return (num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
 }
+
+// =====================
 // 四位分隔银行账号 有问题 这个是反向每四个符号一分割的
-/* export const bankCartNum = function (str, tag, count) {
-    tag = tag || ' '
+export const bankCartNum = function (str, tag, count) {
+    /* tag = tag || ' '
     count = count || 4
     let len = str.length
     let s2 = ''
@@ -404,15 +408,15 @@ export const thousand = function (num) {
         s2 = (tag + s) + s2
         len = str.length
     }
-    return str + s2
-} */
-// 更新：2019年12月4日17:05:05 分隔各种数字格式 (文本格式,间隔符号,分割数量)
-export const bankCartNum = function (str, tag, count) {
+    return str + s2 */
+    // 更新：2019年12月4日17:05:05 分隔各种数字格式 (文本格式,间隔符号,分割数量)
     tag = tag || ' '
     count = count || 4
     const reg = new RegExp('(.{' + count + '})', 'g')
     return str.replace(reg, '$1' + tag)
 }
+
+// =====================
 // IP地址的校验
 export const validateIP = function (e) {
     let t = 0
@@ -429,6 +433,8 @@ export const validateIP = function (e) {
         }
     } return t > 0
 }
+
+// =====================
 // IP地址的比较
 export const compareIP = function (ipBegin, ipEnd) {
     let temp1 = ipBegin.split('.')
@@ -437,6 +443,8 @@ export const compareIP = function (ipBegin, ipEnd) {
         if (temp1[i] > temp2[i]) { return 1; } else if (temp1[i] < temp2[i]) { return -1; }
     } return 0
 }
+
+// =====================
 // 保留x位小数
 // 功能：将浮点数四舍五入，取小数点后x位
 export const toDecimal = function (num, pos) {
@@ -447,6 +455,8 @@ export const toDecimal = function (num, pos) {
     result = Math.round(num * bit10) / bit10
     return result
 }
+
+// =====================
 // 强制保留2位小数，如：2，会在2后面补上00.即2.00
 export const toDecimalForce = function (num, pos) {
     let result = parseFloat(num)
@@ -463,6 +473,8 @@ export const toDecimalForce = function (num, pos) {
     while (s.length <= rs + pos) { s += '0' }
     return s
 }
+
+// =====================
 // 一个数字字符串 小数 的 保留两位 格式限定处理
 // 非四舍五入 直接舍
 export const toDecimalFormat = function (s) {
@@ -471,18 +483,3 @@ export const toDecimalFormat = function (s) {
     // return s.substring(0,s.indexOf(".") + 3) // 非小数 报错
     return s.toString().replace(/([0-9]+\.[0-9]{2})[0-9]*/, '$1') // 挺好 略麻烦
 }
-// 五舍六入
-// "保留2位小数 1000.003.toFixed(2) "1000.00"
-// "保留1位小数 1000.08.toFixed(1) "1000.1"
-// "保留1位小数 1000.04.toFixed(1) "1000.1"
-// "保留1位小数 1000.05.toFixed(1) "1000.2"
-// 科学计数
-// 3.1415.toExponential(2) "3.14e+0"
-// 3.1455.toExponential(2) "3.15e+0"
-// 3.1445.toExponential(2) "3.14e+0"
-// 3.1665.toExponential(1) "3.2e+0"
-// 精确到n位，不含n位
-// "精确到小数点第2位 3.1415.toPrecision(2) "3.1"
-// "精确到小数点第3位 3.1465.toPrecision(3) "3.15"
-// "精确到小数点第2位 3.1455.toPrecision(2) "3.1"
-// "精确到小数点第5位 3.141592679287.toPrecision(5) 3.1416"

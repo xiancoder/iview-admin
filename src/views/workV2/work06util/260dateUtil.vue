@@ -44,7 +44,7 @@
     </div>
 </template>
 <script>
-import { dateFormater, dateSub, date2all, computeRange, computeRangeByMouth } from '@/utils/date'
+import { dateFormater, dateSub, date2all, computeRange, computeRangeByMouth } from '@/utils'
 
 const today = new Date()
 export default {

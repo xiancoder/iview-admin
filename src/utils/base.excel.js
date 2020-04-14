@@ -70,8 +70,8 @@ export const export_array_to_excel = ({key, data, title, filename, autoWidth}) =
     XLSX.utils.book_append_sheet(wb, ws, filename);
     XLSX.writeFile(wb, filename + '.xlsx');
 }
-export const read = (data, type) => {
-    const workbook = XLSX.read(data, { type: type });
+export const read_excel = (data, type) => {
+    const workbook = XLSX.read_excel(data, { type: type });
     const firstSheetName = workbook.SheetNames[0];
     const worksheet = workbook.Sheets[firstSheetName];
     const header = get_header_row(worksheet);
@@ -82,5 +82,5 @@ export default {
     export_table_to_excel,
     export_array_to_excel,
     export_json_to_excel,
-    read
+    read_excel
 }

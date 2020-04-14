@@ -23,7 +23,7 @@
     </div>
 </template>
 <script>
-import { extend } from '@/utils/object'
+import { extend } from '@/utils'
 
 export default {
     data () {

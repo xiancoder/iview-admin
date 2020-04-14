@@ -31,7 +31,7 @@
 </template>
 <script>
 import { error, success } from '@/tools' // 自定义常用工具
-import { dateFormat } from '@/utils/date'
+import { dateFormat } from '@/utils'
 export default {
     data () {
         return {

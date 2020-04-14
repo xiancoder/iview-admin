@@ -69,8 +69,7 @@
     </div>
 </template>
 <script>
-import regexp from '@/utils/regexp'
-import { debounce, throttle } from '@/utils/function'
+import { regexp, debounce, throttle } from '@/utils'
 
 export default {
     data () {

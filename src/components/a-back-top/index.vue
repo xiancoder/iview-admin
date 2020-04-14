@@ -8,8 +8,7 @@
     </div>
 </template>
 <script>
-import { on, off } from '@/utils/event'
-import { scrollTop } from '@/utils/dom'
+import { on, off, scrollTop } from '@/utils'
 const prefixCls = 'ivu-back-top'
 export default {
     name: 'ABackTop',

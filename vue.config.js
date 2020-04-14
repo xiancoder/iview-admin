@@ -4,7 +4,10 @@ const path = require('path')
 
 const resolve = dir => { return path.join(__dirname, dir) }
 const isDev = !!(process.env.NODE_ENV === 'development')
-const isAnalyzer = true
+const isPro = !!(process.env.NODE_ENV === 'production')
+const isAnalyzer = !!(process.env.NODE_ENV === 'analyz')
+
+if (isAnalyzer) {process.env.NODE_ENV = 'production'}
 
 module.exports = {
     // 项目部署基础
@@ -56,7 +59,7 @@ module.exports = {
     },
     // 调整 webpack 配置最简单的方式
     configureWebpack: config => {
-        if (!isDev) {
+        if (isPro) {
             config.plugins.push(
                 new FileManagerPlugin({
                     onEnd: [{

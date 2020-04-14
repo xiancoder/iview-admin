@@ -1,5 +1,5 @@
 import Vue from 'vue' // 核心
-import { on } from '@/utils/event'
+import { on } from '@/utils'
 
 const draggable = {
     inserted: (el, binding, vnode) => {

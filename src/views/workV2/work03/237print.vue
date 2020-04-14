@@ -277,7 +277,7 @@
     </div>
 </template>
 <script>
-import { print } from '@U/dom'
+import { print } from '@/utils'
 
 export default {
     data () {

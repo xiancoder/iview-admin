@@ -81,7 +81,7 @@
     </div>
 </template>
 <script>
-import regexp from '@/utils/regexp'
+import { regexp } from '@/utils'
 export default {
     data () {
         return {

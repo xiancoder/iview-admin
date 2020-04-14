@@ -9,7 +9,7 @@
     </div>
 </template>
 <script>
-import { on, off } from '@/utils/event'
+import { on, off } from '@/utils'
 import '@/plugins/orgtree'
 const menuList = [
     { key: 'edit', label: '编辑部门' },

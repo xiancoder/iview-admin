@@ -49,7 +49,8 @@
     </div>
 </template>
 <script>
-import excel from '@/utils/excel'
+import { excel } from '@/utils'
+
 export default {
     data () {
         return {
@@ -134,7 +135,7 @@ export default {
             reader.onload = e => {
                 this.$Message.info('文件读取成功')
                 const data = e.target.result
-                const { header, results } = excel.read(data, 'array')
+                const { header, results } = excel.read_excel(data, 'array')
                 const tableTitle = header.map(item => { return { title: item, key: item } })
                 this.tableData = results
                 this.tableTitle = tableTitle

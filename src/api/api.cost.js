@@ -1,6 +1,6 @@
 import axios from 'axios' // http请求库
 import { success, error } from '@/tools' // 自定义常用工具
-import { obj2url } from '@/utils/string' // 自定义常用工具
+import { obj2url } from '@/utils' // 自定义常用工具
 
 export default {
     costList ({ // 消耗记录 / 可以导出

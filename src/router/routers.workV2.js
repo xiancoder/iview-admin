@@ -143,7 +143,7 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '262objUtil', title: '对象常用列举'},
                 {power: 'workv2-2', path: '263stringUtil', title: '字符串常用列举'},
                 {power: 'workv2-2', path: '264functionUtil', title: '方法常用列举'},
-                {power: 'workv2-2', path: '264easyFun', title: '便宜方法积累'}
+                {power: 'workv2-2', path: '265easyFun', title: '便宜方法积累'}
             ]
         },
         {

@@ -6,7 +6,7 @@
 */
 
 import { expect } from 'chai'
-import regexp from '@/utils/regexp.js'
+import { regexp } from '@/utils'
 
 describe('测试正则是否符合要求', function () {
     it('匹配整数，小数限2位', function () {

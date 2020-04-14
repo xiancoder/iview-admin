@@ -83,8 +83,8 @@
                     <FormItem>
                         <p>结果: {{frm.p05}}</p>
                         <script type="text/js">
-                            import regExp from '@/utils/regexp'
-                            { pattern: regExp.a05, message: '电话格式错误' }
+                            import { regexp } from '@/utils'
+                            { pattern: regexp.a05, message: '电话格式错误' }
                         </script>
                     </FormItem>
 
@@ -120,7 +120,7 @@
                     <FormItem>
                         <p>结果: {{frm.p06}}</p>
                         <script type="text/js">
-                            { pattern: regExp.a01, message: '整数6位，小数点2位' }
+                            { pattern: regexp.a01, message: '整数6位，小数点2位' }
                         </script>
                     </FormItem>
 
@@ -152,8 +152,7 @@
 </template>
 <script>
 import Ccode from '@C/ccode'
-import { ramdomString } from '@/utils/string'
-import regExp from '@/utils/regexp'
+import { ramdomString, regexp } from '@/utils'
 import SmsBtn from '@C/sms-btn'
 
 export default {
@@ -193,11 +192,11 @@ export default {
                     { required: true, message: '输入框不能为空' },
                     { type: 'string', min: 11, message: '请输入11位手机号码' },
                     { type: 'string', max: 11, message: '请输入11位手机号码' },
-                    { pattern: regExp.a05, message: '电话格式错误' }
+                    { pattern: regexp.a05, message: '电话格式错误' }
                 ],
                 p06: [
                     { required: true, message: '输入框不能为空' },
-                    { pattern: regExp.a01, message: '整数6位，小数点2位' }
+                    { pattern: regexp.a01, message: '整数6位，小数点2位' }
                 ],
                 p07: [
                     { required: true, message: '输入框不能为空' },

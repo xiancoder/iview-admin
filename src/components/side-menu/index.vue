@@ -48,7 +48,7 @@
 <script>
 import SideMenuItem from './side-menu-item.vue'
 import CollapsedMenu from './collapsed-menu.vue'
-import { getUnion } from '@/utils/array'
+import { arrayUnion } from '@/utils'
 import { goto } from '@/tools' // 自定义常用工具
 import mixin from './mixin'
 import { homePage } from '@/router/routers'
@@ -121,7 +121,7 @@ export default {
     watch: {
         activeName (name) {
             if (this.accordion) this.openedNames = this.getOpenedNamesByActiveName(name)
-            else this.openedNames = getUnion(this.openedNames, this.getOpenedNamesByActiveName(name))
+            else this.openedNames = arrayUnion(this.openedNames, this.getOpenedNamesByActiveName(name))
         },
         openNames (newNames) {
             this.openedNames = newNames
@@ -133,7 +133,7 @@ export default {
         }
     },
     mounted () {
-        this.openedNames = getUnion(this.openedNames, this.getOpenedNamesByActiveName(name))
+        this.openedNames = arrayUnion(this.openedNames, this.getOpenedNamesByActiveName(name))
     }
 }
 </script>

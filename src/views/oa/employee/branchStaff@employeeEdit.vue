@@ -91,8 +91,8 @@
     </div>
 </template>
 <script>
-import { dateFormat } from '@/utils/date'
-import { extendF, deepClone } from '@/utils/object'
+import { dateFormat, extendF, deepClone } from '@/utils'
+
 import common from '@/mixin/utils'
 export default {
     mixins: [common],

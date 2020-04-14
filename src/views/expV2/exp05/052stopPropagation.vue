@@ -37,7 +37,7 @@
     </div>
 </template>
 <script>
-import { eventStop } from '@/utils/event'
+import { eventStop } from '@/utils'
 
 export default {
     data () {

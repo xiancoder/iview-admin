@@ -103,8 +103,7 @@
     </div>
 </template>
 <script>
-import { extendF } from '@/utils/object'
-import { encodeBase64, decodeBase64 } from '@/utils/string'
+import { extendF, encodeBase64, decodeBase64 } from '@/utils'
 
 export default {
     data () {

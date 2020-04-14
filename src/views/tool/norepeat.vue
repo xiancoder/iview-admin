@@ -27,7 +27,7 @@
     </div>
 </template>
 <script>
-import { arrayUnique } from '@/utils/array'
+import { arrayUnique } from '@/utils'
 export default {
     data () {
         return {

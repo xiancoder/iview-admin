@@ -4,7 +4,8 @@
 
 <script>
 import echarts from 'echarts'
-import { on, off } from '@/utils/event'
+import { on, off } from '@/utils'
+
 export default {
     name: 'serviceRequests',
     data () {

@@ -1,6 +1,6 @@
 import Main from '@V/main'
 import Main2level from '@V/main2level'
-import { objEqual } from '@/utils/object'
+import { objEqual } from '@/utils'
 
 // 处理两层路由
 export const makeTwoLevelRoute = (config) => {

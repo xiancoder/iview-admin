@@ -2,6 +2,7 @@
 *  |说明|_Regexp_正则 测试 TEST
 *  |说明|源头
 \*================================================================================ */
+
 // 制作正则表达式
 function createRegexp (op) {
     let args = Array.prototype.slice.call(arguments, 0)
@@ -14,6 +15,7 @@ function createRegexp (op) {
         no: new RegExp(regText, '')
     }
 }
+
 export default {
     n01: createRegexp('^[\u4E00-\u9FA5]+$').g, // 纯中文
     n02: /^[\u4E00-\u9FA5\uF900-\uFA2D]+$/, // 纯中文

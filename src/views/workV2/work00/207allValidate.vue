@@ -241,7 +241,7 @@
 <script>
 import '@/plugins/vueEditor'
 import Ccode from '@C/ccode'
-import { ramdomString } from '@/utils/string'
+import { ramdomString } from '@/utils'
 import { error } from '@/tools' // 自定义常用工具
 
 export default {

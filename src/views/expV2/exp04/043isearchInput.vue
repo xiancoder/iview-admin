@@ -35,7 +35,7 @@
     </div>
 </template>
 <script>
-import { throttle } from '@/utils/function'
+import { throttle } from '@/utils'
 export default {
     data () {
         return {

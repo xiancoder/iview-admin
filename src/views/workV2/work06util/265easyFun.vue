@@ -8,12 +8,18 @@
                 <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 <p></p>
                 <script type="text/js">
+                    // 简单无依赖的获取日期字符串
                     function easyToday(d){
                         d = d || new Date()
                         var Y = d.getFullYear()
                         var M = d.getMonth() + 1
                         var D = d.getDate()
                         return Y + '-' + (M < 10 ? ('0' + M) : M) + '-' + (D < 10 ? ('0' + D) : D)
+                    }
+                    // 简单无依赖的日期字符串转时间戳
+                    function getDateTime(a) {
+                        a= a.replace("-","/"); // 替换字符，变成标准格式
+                        return  new Date(Date.parse(customTime));
                     }
                 </script>
             </div>

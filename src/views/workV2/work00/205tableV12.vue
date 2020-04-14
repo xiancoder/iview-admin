@@ -65,7 +65,7 @@
     </div>
 </template>
 <script>
-import { debounce, nothing } from '@/utils/function'
+import { debounce, nothing } from '@/utils'
 import { h } from '@/tools' // 自定义常用工具
 import tab from './205tab'
 import tableV12Minxin from '@/mixin/tableV12Minxin'

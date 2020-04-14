@@ -110,7 +110,7 @@
 </template>
 <script>
 import SmsBtn from '@C/sms-btn'
-import regexp from '@/utils/regexp'
+import { regexp } from '@/utils'
 import '@S/register.less';
 export default {
     components: {

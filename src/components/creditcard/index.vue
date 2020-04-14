@@ -77,7 +77,7 @@
     </div>
 </template>
 <script>
-import { bankCartNum } from '@/utils/number'
+import { bankCartNum } from '@/utils'
 export default {
     name: 'CreditCard',
     props: {
