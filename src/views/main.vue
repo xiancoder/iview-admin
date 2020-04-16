@@ -44,6 +44,7 @@
                         <div><epopen-route/></div>
                         <div><lock-screen/></div>
                         <div><full-screen/></div>
+                        <div><page-unit-test/></div>
                         <div><error-store v-if="$config.errorLogStore"/></div>
                         <div>
                             <div class="user-avatar-dropdown">
@@ -142,6 +143,7 @@ import TagsNav from '@C/tags-nav'
 import LockScreen from '@C/lockscreen'
 import ABackTop from '@C/a-back-top'
 import FullScreen from '@C/fullscreen' // 组件::全屏按钮
+import PageUnitTest from '@C/page-unit-test' // 组件::单元测试
 import ErrorStore from '@C/error-store'
 import CustomBreadCrumb from '@C/custom-bread-crumb' // 组件::面包屑
 import qrCode from '@C/qrcode' // 组件::二维码
@@ -158,7 +160,8 @@ export default {
     name: 'Main', // 注册为组件时候name可以用来递归自己
     components: {
         SideMenu, TagsNav, FullScreen, ErrorStore, ABackTop,
-        CustomBreadCrumb, qrCode, epopen, epopenRoute, LockScreen, modifyPwd
+        CustomBreadCrumb, qrCode, epopen, epopenRoute, LockScreen, modifyPwd,
+        PageUnitTest
     },
     data () {
         return {

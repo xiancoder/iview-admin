@@ -9,7 +9,6 @@ import expV2 from './routers.expV2'
 import workV2 from './routers.workV2'
 import es6 from './routers.es6'
 import tool from './routers.tool'
-import oa from './routers.oa'
 import other from './routers.other'
 
 export const homePage = 'home_index' // 首页
@@ -33,7 +32,6 @@ export const routerList = [
     workV2,
     es6,
     tool,
-    oa,
     ...other,
     {
         path: '/wiki', name: 'wiki', icon: 'md-infinite', title: '其他模式', component: MarkDown,

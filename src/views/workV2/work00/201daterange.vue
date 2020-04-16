@@ -158,13 +158,13 @@
                 </script>
                 <p class="text-danger">公共方法请去utils里面找 这里面的方法都经历了单元测试</p>
                 <script type="text/js">
-                    import { dateFormat, dateSub } from '@/utils'
+                    import { dateFormater, dateSub } from '@/utils'
                     export default {
                         data () {
                             let today = new Date() // 常用的是前七天
                             return {
                                 frm: {
-                                    date3: [dateFormat(dateSub(today, 6, 'd')), dateFormat(today)],
+                                    date3: [dateFormater(dateSub(today, 6, 'd')), dateFormater(today)],
                                 }
                             }
                         },
@@ -208,14 +208,14 @@
     </div>
 </template>
 <script>
-import { dateFormat, dateSub, sevenRange } from '@/utils'
+import { dateFormater, dateSub, sevenRange } from '@/utils'
 import { required4DateRange } from '@/validate'
 export default {
     data () {
         let today = new Date() // 常用的是前七天
         return {
             frm: {
-                date2: [dateFormat(dateSub(today, 6, 'd')), dateFormat(today)], // 日期范围测试
+                date2: [dateFormater(dateSub(today, 6, 'd')), dateFormater(today)], // 日期范围测试
                 date3: sevenRange() // 前七天
             },
             frm2: {
@@ -225,8 +225,8 @@ export default {
                 date2: [] // 日期范围测试
             },
             search: {
-                'end': dateFormat(today),
-                'begin': dateFormat(dateSub(today, 6, 'd'))
+                'end': dateFormater(today),
+                'begin': dateFormater(dateSub(today, 6, 'd'))
             },
             frmValidate: {
                 date2: [

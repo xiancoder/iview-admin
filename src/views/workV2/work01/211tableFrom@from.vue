@@ -31,7 +31,7 @@
 </template>
 <script>
 import { error, success } from '@/tools' // 自定义常用工具
-import { dateFormat } from '@/utils'
+import { dateFormater } from '@/utils'
 export default {
     data () {
         return {
@@ -74,7 +74,7 @@ export default {
                     this.loading2 = true;
                     this.$post('api/task/found', {
                         'id': this.endId,
-                        'endTime': dateFormat(this.frm.date),
+                        'endTime': dateFormater(this.frm.date),
                         'endDesc': this.frm.explain,
                         'users': this.frm.correlation
                     }).then(response => { // 请注意这个返回值是整个结果对象

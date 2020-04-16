@@ -129,13 +129,7 @@ export const power2routesII = (powerList) => { // 根据权限更新视图
 // 本算法只支持 同名称结果和 @符号子类
 export const power2BreadCrumb = (routeList, routeName) => {
     const bca = []
-    if (
-        routeName &&
-        routeName !== homePage &&
-        routeList &&
-        routeName &&
-        routeName.indexOf('_') > -1
-    ) {
+    if (routeName && routeName !== homePage && routeList && routeName && routeName.indexOf('_') > -1) {
         let l1 = routeName.replace(/_.*$/g, '')
         let r1 = routeList[l1]
         if (r1 && l1 !== 'home') { bca.push(r1) }
@@ -165,24 +159,24 @@ router.beforeEach((to, from, next) => {
 
     const isLocked = Store.state.system.locking
     const goLocking = lockPowerList.includes(to.name)
-    if (isLocked) {
-        if (goLocking) {
-            console.info('%c仙 准备跳转 锁定状态去锁定页面', 'color:#05ff0f;background:#000;padding:0 5px;')
+    if (goLocking) {
+        if (!isLocked) {
+            console.info('%c仙 准备跳转 未锁定状态去锁定页面', 'color:#05ff0f;background:#000;padding:0 5px;')
             return next()
         }
-        console.info('%c仙 准备跳转 锁定状态不允许去其他页面', 'color:#05ff0f;background:#000;padding:0 5px;')
+        console.info('%c仙 准备跳转 锁定状态不允许去非锁定页面', 'color:#05ff0f;background:#000;padding:0 5px;')
         return next({ replace: true, name: 'locking' })
     }
 
     const isLogined = Store.getters['admin/access']
     const goLogin = loginPowerList.includes(to.name)
-    if (!isLogined) {
-        if (goLogin) {
+    if (goLogin) {
+        if (!isLogined) {
             console.info('%c仙 准备跳转 未登录状态去登录页面', 'color:#05ff0f;background:#000;padding:0 5px;')
             return next()
         }
-        console.info('%c仙 准备跳转 未登录状态不允许去其他页面', 'color:#05ff0f;background:#000;padding:0 5px;')
-        return next({ replace: true, name: 'login' })
+        console.info('%c仙 准备跳转 登录状态不允许去登录页面', 'color:#05ff0f;background:#000;padding:0 5px;')
+        return next({ replace: true, name: homePage })
     }
 
     Store.dispatch('route/setBreadCrumbList', to.name) // 面包屑
@@ -198,16 +192,6 @@ router.beforeEach((to, from, next) => {
     }
 
     const goPowerPage = () => { // 权限页面的判断
-        if (!isLocked && goLocking) {
-            console.info('%c仙 准备跳转 非锁定状态不允许去锁定页面', 'color:#05ff0f;background:#000;padding:0 5px;')
-            return next(false) // 中止一切 复原url
-        }
-
-        if (isLogined && goLogin) {
-            console.info('%c仙 准备跳转 登录状态不允许去注册登录页', 'color:#05ff0f;background:#000;padding:0 5px;')
-            return next({ replace: true, name: homePage })
-        }
-
         LoadingBarRun(true) // 顶部进度条
         Store.dispatch('route/keepalive', to.name) // 路由keepAlive管理 当前页缓存
 

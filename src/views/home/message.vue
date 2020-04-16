@@ -51,7 +51,6 @@
         </Card>
     </div>
 </template>
-
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 const listDic = {
@@ -127,62 +126,33 @@ export default {
     }
 }
 </script>
-
 <style lang="less">
 .message-page{
-  &-con{
-    height: ~"calc(100vh - 176px)";
-    display: inline-block;
-    vertical-align: top;
-    position: relative;
-    &.message-category-con{
-      border-right: 1px solid #e6e6e6;
-      width: 200px;
-    }
-    &.message-list-con{
-      border-right: 1px solid #e6e6e6;
-      width: 230px;
-    }
-    &.message-view-con{
-      position: absolute;
-      left: 446px;
-      top: 16px;
-      right: 16px;
-      bottom: 16px;
-      overflow: auto;
-      padding: 12px 20px 0;
-      .message-view-header{
-        margin-bottom: 20px;
-        .message-view-title{
-          display: inline-block;
+    &-con{
+        /*height: ~"calc(100vh - 176px)";*/
+        display: inline-block; vertical-align: top; position: relative;
+        &.message-category-con{ border-right: 1px solid #e6e6e6; width: 200px; }
+        &.message-list-con{ border-right: 1px solid #e6e6e6; width: 230px; }
+        &.message-view-con{
+            position: absolute; left: 446px; top: 16px; right: 16px;
+            bottom: 16px; overflow: auto; padding: 12px 20px 0;
+            .message-view-header{
+                margin-bottom: 20px;
+                .message-view-title{ display: inline-block; }
+                .message-view-time{ margin-left: 20px; }
+            }
         }
-        .message-view-time{
-          margin-left: 20px;
+        .category-title{ display: inline-block; width: 65px; }
+        .gray-dadge{ background: gainsboro; }
+        .not-unread-list{
+            .msg-title{ color: rgb(170, 169, 169); }
+            .ivu-menu-item{
+                .ivu-btn.ivu-btn-text.ivu-btn-small.ivu-btn-icon-only{ display: none; }
+                &:hover{
+                    .ivu-btn.ivu-btn-text.ivu-btn-small.ivu-btn-icon-only{ display: inline-block; }
+                }
+            }
         }
-      }
     }
-    .category-title{
-      display: inline-block;
-      width: 65px;
-    }
-    .gray-dadge{
-      background: gainsboro;
-    }
-    .not-unread-list{
-      .msg-title{
-        color: rgb(170, 169, 169);
-      }
-      .ivu-menu-item{
-        .ivu-btn.ivu-btn-text.ivu-btn-small.ivu-btn-icon-only{
-          display: none;
-        }
-        &:hover{
-          .ivu-btn.ivu-btn-text.ivu-btn-small.ivu-btn-icon-only{
-            display: inline-block;
-          }
-        }
-      }
-    }
-  }
 }
 </style>

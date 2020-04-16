@@ -31,13 +31,13 @@ export const dateFormater = (O, T) => { // 略过时 但经典可用
 }
 export function sevenRange (D) { // 获取今天之前一周时间的字符串数组
     const date = D || new Date()
-    const today = dateFormat(date)
-    const last7 = dateFormat(dateSub(date, 6, 'd'))
+    const today = dateFormater(date)
+    const last7 = dateFormater(dateSub(date, 6, 'd'))
     return [last7, today];
 }
 export function todayMouth (D) { // 获取今天年月 YYYY-MM
     const date = D || new Date()
-    return dateFormat(date, 'YYYY-MM')
+    return dateFormater(date, 'YYYY-MM')
 }
 
 // =====================

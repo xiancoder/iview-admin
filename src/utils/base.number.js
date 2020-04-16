@@ -385,7 +385,7 @@ export const eq = function (a, b) { var r = compare(a, b); return r === '=' }
 // 数字千分金钱
 // 返回一个千分金钱的字符串
 // =====================
-export const thousand = function (str) {
+export const thousand = function (num) {
     // 可用 但过时
     /* let s=(str+""),n=s.valueOf().length%3
     if (n){return s.slice(0,n)+s.slice(n).replace(/(\d{3})/g,',$1')}

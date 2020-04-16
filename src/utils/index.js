@@ -71,7 +71,6 @@ export const throttle = func.throttle
 export const nothing = func.nothing
 
 export const regexp = regExp
-console.log(regexp)
 
 export const excel = exCel
 

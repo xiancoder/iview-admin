@@ -359,7 +359,7 @@
                     <Col span="12">
                         <script type="text/js">
                             // 这是api模块 这里的代码应该是开发初期作为工作量写好的
-                            import { dateFormat } from '@/utils' // 常用方法
+                            import { dateFormater } from '@/utils' // 常用方法
                             listAdOnLine ({
                                 projectType, contractSubject, contractType, type, date,
                                 keyword, pageIndex, pageSize
@@ -374,8 +374,8 @@
                                 /* 使用value/onchange方式 和使用model方式赋值 */
                                 /* 其得到的结果分别为 字符串 日期对象 格式 */
                                 /* 必须要转换一下 */
-                                const begin = dateFormat(date[0])
-                                const end = dateFormat(date[1])
+                                const begin = dateFormater(date[0])
+                                const end = dateFormater(date[1])
                                 return new Promise((resolve, reject) => {
                                     axios({
                                         method: 'GET',

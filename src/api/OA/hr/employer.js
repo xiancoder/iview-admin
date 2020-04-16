@@ -1,6 +1,6 @@
 import axios from 'axios' // http请求库
 import { error } from '@/tools' // 自定义常用工具
-import { dateFormat } from '@/utils'
+import { dateFormater } from '@/utils'
 
 export default {
 
@@ -60,13 +60,13 @@ export default {
         accountManager
     }) {
         if (birthday !== null && typeof (birthday) === 'object') {
-            birthday = dateFormat(birthday)
+            birthday = dateFormater(birthday)
         }
         if (entryDate !== null && typeof (entryDate) === 'object') {
-            entryDate = dateFormat(entryDate)
+            entryDate = dateFormater(entryDate)
         }
         if (regularDate !== null && typeof (regularDate) === 'object') {
-            regularDate = dateFormat(regularDate)
+            regularDate = dateFormater(regularDate)
         }
         if (!Array.isArray(departmentIds)) {
             departmentIds = null

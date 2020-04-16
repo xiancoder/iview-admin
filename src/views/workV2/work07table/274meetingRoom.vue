@@ -11,7 +11,6 @@
             <div class="left_main">
                 <h2 style="color: #2d8cf0" v-if="myMeeting.length > 0">日程安排：</h2>
                 <div class="no_meeting tc" v-if="myMeeting.length === 0">
-                    <!-- <img src="../../images/alert.png"> -->
                     <div>本日暂无会议安排</div>
                 </div>
                 <div class="my_meeting" :class="{'bn':index===0}" v-for="(meeting, index) in myMeeting" :key="index">
@@ -52,15 +51,12 @@
                         <span style="margin-right: 15px">{{room.equipment||'无描述'}}</span>
                     </div>
                     <div class="room_bar pr">
-                        <Button type="primary" class="reserve_button" @click="handleAppointModel(room, 0)" :disabled="editButtonDisabled">
-                            预约
-                        </Button>
+                        <Button type="primary" class="reserve_button" @click="handleAppointModel(room, 0)" :disabled="editButtonDisabled"> 预约 </Button>
                         <Row :gutter="6">
                             <Col span="2" v-for="hour in hourList" :key="hour.num">
                                 <Row class="rec">
-                                    <Col span="2" v-for="(minute, index) in minuteList" :key="index"
+                                    <Col span="2" v-for="(minute, index) in minuteList" :key="index" class="rec_sub"
                                         @click.native="handleMeetingInfoModel(room, hour, minute)"
-                                        class="rec_sub"
                                         :class="randerBoxColor(hour.num, minute, room.meeting)">
                                         <Poptip v-if="randerBoxMeeting(hour.num, minute, room.meeting)"
                                             trigger="hover" :title="randerBoxTip(room, hour, minute, 2)"
@@ -219,7 +215,6 @@ const getNow = () => { // 获取当前时间属于的时间段
 }
 
 export default {
-    name: 'reserve-room',
     data () {
         return {
             datePicker: 0,
@@ -320,9 +315,9 @@ export default {
             })
             this.todayMeetingListAjax()
             this.roomListAjax()
-            /* this.$nextTick(() => { // 解决看不见的blur层问题 临时方案
+            this.$nextTick(() => { // 解决看不见的blur层问题 临时方案
                 this.$refs.clickBtn.click()
-            }) */
+            })
         },
 
         /* 日期面板 */

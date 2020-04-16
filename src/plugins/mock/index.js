@@ -33,7 +33,10 @@ Mock.mock(/mock\/data\/error/, req => {
 })
 
 Mock.mock(/api\/meeting\/today/, req => {
-    return {'code': 200, 'data': {'list': []}, 'msg': ''}
+    return {'code': 200, 'data': {'list': [
+        {roomName: '月野兔团操室', begin: '2020-4-15 10:00', end: '2020-4-15 11:00', show: true, mainContent: '研究怎么着逃课', content: '闲的蛋疼的不行'},
+        {roomName: '东风会议室', begin: '2020-4-16 18:00', end: '2020-4-16 22:00', show: true, mainContent: '研究怎么着逃课', content: '闲的蛋疼的不行'}
+    ]}, 'msg': ''}
 })
 Mock.mock(/api\/meeting\/info/, req => {
     return {'code': 200, 'data': {'list': [{'roomId': 1, 'roomName': '天时会议室', 'status': 1, 'count': 8, 'mainContent': null, 'equipment': '接线板、激光电视', 'meeting': [{'id': 23, 'roomId': 1, 'status': 1, 'begin': '10:00', 'end': '12:00', 'userName': '陈满云'}]}, {'roomId': 2, 'roomName': '地利会议室', 'status': 1, 'count': 10, 'mainContent': null, 'equipment': '接线板，投影，白板', 'meeting': [{'id': 20, 'roomId': 2, 'status': 1, 'begin': '09:35', 'end': '10:30', 'userName': '姚聪聪'}]}, {'roomId': 3, 'roomName': '人和会议室', 'status': 1, 'count': 10, 'mainContent': null, 'equipment': '接线板、白板、幕布', 'meeting': []}, {'roomId': 4, 'roomName': '东风会议室', 'status': 1, 'count': 14, 'mainContent': null, 'equipment': '接线板、电视、白板', 'meeting': [{'id': 24, 'roomId': 4, 'status': 1, 'begin': '10:20', 'end': '10:25', 'userName': '赵涵'}]}, {'roomId': 5, 'roomName': '接待室', 'status': 1, 'count': 6, 'mainContent': null, 'equipment': '电视、白板', 'meeting': []}, {'roomId': 6, 'roomName': '月野兔健身厅', 'status': 1, 'count': 40, 'mainContent': null, 'equipment': '接线板、电视、白板、话筒、音响', 'meeting': [{'id': 25, 'roomId': 6, 'status': 1, 'begin': '10:30', 'end': '11:30', 'userName': '赵涵'}]}]}, 'msg': ''}

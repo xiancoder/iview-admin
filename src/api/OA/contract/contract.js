@@ -1,6 +1,6 @@
 import axios from 'axios' // http请求库
 import { error } from '@/tools' // 自定义常用工具
-import { dateFormat } from '@/utils' // 常用方法
+import { dateFormater } from '@/utils' // 常用方法
 
 export default {
 
@@ -735,8 +735,8 @@ export default {
         contractType = contractType === 0 ? '' : contractType;
         type = type === -1 ? '' : type;
         const companyId = contractSubject === 0 ? '' : contractSubject;
-        const begin = dateFormat(date[0]) // 请注意 i-datapicker 控件 使用value/onchange方式 和使用model方式赋值
-        const end = dateFormat(date[1]) // 其得到的结果分别为 字符串 日期对象 格式 必须要转换一下
+        const begin = dateFormater(date[0]) // 请注意 i-datapicker 控件 使用value/onchange方式 和使用model方式赋值
+        const end = dateFormater(date[1]) // 其得到的结果分别为 字符串 日期对象 格式 必须要转换一下
         return new Promise((resolve, reject) => {
             axios({
                 method: 'GET',
