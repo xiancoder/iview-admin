@@ -16,7 +16,6 @@ export default [
         path: 'components', title: '组件(未测试)', icon: 'logo-buffer',
         children: [
             {power: '0000', path: 'cropper', icon: 'md-crop', title: '图片裁剪'},
-            {power: '0000', path: 'splitpane', icon: 'md-pause', title: '分割窗口'},
             {power: '0000', path: 'dragdrawer', icon: 'md-list', title: '可拖拽抽屉'},
             {power: '0000', path: 'countto', icon: 'md-trending-up', title: '数字渐变'},
             {power: '0000', path: 'orgtree', icon: 'ios-people', title: '组织结构树'},

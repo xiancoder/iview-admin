@@ -174,7 +174,9 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '273apiUnitTest', title: '接口的单元测试'},
                 {power: 'workv2-2', path: '274meetingRoom', title: '预约会议室'},
                 {power: 'workv2-2', path: '274branchStaff', title: '部门与人员'},
-                {power: 'workv2-2', path: '274reportInfo', title: '周报详情'}
+                {power: 'workv2-2', path: '274tableV10branchStaff', title: '部门与人员V10版'},
+                {power: 'workv2-2', path: '274reportInfo', title: '周报详情'},
+                {power: 'workv2-2', path: '275splitpane', title: '分割窗口组件'}
             ]
         }
     ]

@@ -33,7 +33,7 @@ export default {
         }
     },
     mounted () {
-        const data = treeData()
+        const data = treeData
         this.treeData = data
     },
     methods: {

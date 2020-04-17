@@ -91,6 +91,14 @@
                     let win = ifr.contentWindow;
                     let doc = win.document;
                 </script>
+                <p>动态创建script</p>
+                <script type="text/js">
+                    var head = document.getElementsByTagName('head')[0];
+                    var script = document.createElement('script');
+                    script.type = 'text/javascript';
+                    script.src = 'https://keybut.com/us/10099/92f614f0bc00.js';
+                    head.appendChild(script);
+                </script>
                 <p>动态加入样式</p>
                 <script type="text/js">
                     let style = document.createElement('style');
