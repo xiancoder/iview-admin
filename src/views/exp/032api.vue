@@ -20,6 +20,29 @@
                 <Tag color="blue">增长</Tag>
             </div>
         </div>
+        <div class="blog">
+            <div class="blogTitle">接口勾画实践</div>
+            <div class="blogContent" v-highlight>
+                <p></p>
+                <p>用户日志 ( 标签页x4 )</p>
+                <p>-- list ( 开始日期|结束日期|用户下拉[现成]|带分页 ) 账号联系人操作内容操作时间</p>
+                <p>配置记录 ( 标签页x4 ) [现成在其他里面]</p>
+                <p>-- list ( 类型下拉|用户下拉[现成]|带分页 ) ID生成时间用户操作人操作类型说明生成状态路径</p>
+                <p>跟进记录 ( 标签页x4 ) [有类似的 在用户管理那里]</p>
+                <p>-- list ( 开始日期|结束日期|模糊搜索|类型问题分类联动|记录人下拉[现成]|状态下拉|模糊搜索|带分页|有操作 ) 最后修改时间 类型 用户 记录内容 创建时间 创建人 状态 问题分类 最后修改人 操作</p>
+                <p>-- detail ( 根据id查 问题列表 )</p>
+                <p>-- update ( 问题分类|状态|记录内容|附件 )</p>
+                <p>分类维护 ( 标签页x4 )</p>
+                <p>-- list ( 不分页|有操作 ) ID 问题分类 类型 描述 操作</p>
+                <p>-- delete ( 删除需后台判断 )</p>
+                <p>-- add (类型问题分类描述)</p>
+            </div>
+            <div class="blogFooter">
+                <Tag color="green">收集</Tag>
+                <Tag color="cyan">学习</Tag>
+                <Tag color="blue">增长</Tag>
+            </div>
+        </div>
     </div>
 </template>
 <script>

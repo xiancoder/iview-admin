@@ -102,6 +102,16 @@ export const urlInfo = function (url) {
 }
 
 // =====================
+// 重复字段
+// =====================
+// liuyp 2020年4月17日15:12:20
+export const repeat = function (str, time) {
+    let res = ''
+    for (var i = 0; i < time; i++) { res += str }
+    return res
+}
+
+// =====================
 // 字符串处理转码/解码 base64
 // =====================
 // liuyp 2018年12月17日23:29:26 整理先进
@@ -210,7 +220,6 @@ export const asc2Uni = function (str) {
 export const uni2Asc = function (S) {
     return window.unescape(S.replace(/\\/g, '%'))
 }
-
 
 // =====================
 // 首字母大写

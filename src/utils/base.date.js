@@ -7,7 +7,7 @@
 // =====================
 // liuyp 2019年9月20日11:25:25
 export const dateFormater = (O, T) => { // 略过时 但经典可用
-    let D = new Date(O.getTime())
+    let D = (typeof O === 'string') ? new Date(O.replace(/-/g, '/')) : new Date(O)
     T = T || 'yyyy-MM-dd' // 专门为项目服务的'YYYY-MM-DD'格式
     let o = {
         'M+': D.getMonth() + 1,

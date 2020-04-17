@@ -14,7 +14,6 @@ describe('字符串常用方法', function () {
     })
     it('首字母大写/capitalize', function () {
         expect(lib.capitalize('abc')).equal('Abc')
-        expect(lib.upperFirst('fred')).equal('Fred')
     })
     it('全角字符/dbc2Sbc', function () {
         expect(lib.dbc2Sbc('ａｂｃ１２３')).equal('abc123')

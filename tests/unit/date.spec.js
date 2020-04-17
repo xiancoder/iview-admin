@@ -49,11 +49,14 @@ describe('[日期]常用方法', function () {
         expect(lib.date2all(new Date(1988, 5, 2))).equal('戊辰(龙)年 (闰)四月十八 无节气')
         expect(lib.date2all(new Date(2008, 7, 1))).equal('戊子(鼠)年 (闰)七月初一 无节气')
     })
-    it('根据日期进行格式化/dateFormater和dateFormat', function () {
+    it('根据日期进行格式化/dateFormater', function () {
         const today = lib.dateObj('2017-11-12 13:14:15')
         expect(lib.dateFormater(today)).equal('2017-11-12')
         expect(lib.dateFormater(today, 'yyyy-MM-dd HH:mm:ss')).equal('2017-11-12 13:14:15')
         expect(lib.dateFormater(today, 'yyyy-MM-dd')).equal('2017-11-12')
+    })
+    it('根据日期进行格式化/dateFormat', function () {
+        const today = lib.dateObj('2017-11-12 13:14:15')
         expect(lib.dateFormat(today)).equal('2017-11-12')
         expect(lib.dateFormat(new Date(1988, 5, 2))).equal('1988-06-02')
         expect(lib.dateFormat([2017, 1 - 1, 1])).equal('2017-01-01')

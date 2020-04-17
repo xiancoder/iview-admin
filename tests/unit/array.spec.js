@@ -28,7 +28,7 @@ describe('[数组]常用方法', function () {
     it('数组简化为一维/arrayFlatten', function () {
         expect(lib.arrayFlatten([1, [2, 3], 4, [5, [6, [7, [8]]], 9], 0]).toString()).equal('1,2,3,4,5,6,7,8,9,0')
     })
-    it('得到两个数组的并集/getUnion', function () {
-        expect(lib.getUnion([1, 2, 3], [2, 3, 4]).toString()).equal('1,2,3,4')
+    it('得到两个数组的并集/arrayUnion', function () {
+        expect(lib.arrayUnion([1, 2, 3], [2, 3, 4]).toString()).equal('1,2,3,4')
     })
 })
