@@ -63,7 +63,7 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-1', path: '211tableFrom', title: '依附表单弹框尝试'},
                 {power: 'workv2-1', path: '211tableFrom@from', title: '表单', hideMenu: true},
                 {power: 'workv2-1', path: '211goodModal', title: '更好的弹框写法'},
-                {power: 'workv2-1', path: '212tools', title: '超公共 $tool 模块'},
+                {power: 'workv2-1', path: '212tools', title: '超公共 tools 模块'},
                 {power: 'workv2-1', path: '213smsBtn', title: '短信验证码按钮'},
                 {power: 'workv2-1', path: '214formData', title: '提交用 FormData'},
                 {power: 'workv2-1', path: '215fontawesome', title: 'font 绘制 logo'},

@@ -30,6 +30,8 @@
 </template>
 <script>
 import { extend } from '@/utils'
+import { jumpto } from '@/tools'
+
 export default {
     data () {
         return {
@@ -52,7 +54,7 @@ export default {
     },
     methods: {
         goto (name, query) { // 跳转目录
-            if (name === 'table') { this.$tool.jumpto('exp2_037unitTest') }
+            if (name === 'table') { jumpto('exp2_037unitTest') }
         },
         init () {
             const id = 234

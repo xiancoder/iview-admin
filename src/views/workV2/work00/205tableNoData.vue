@@ -28,7 +28,8 @@
 </template>
 <script>
 import { extend, extendF, debounce, nothing } from '@/utils'
-import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工具
+import { h, saveParamState, getParamState, jumpto } from '@/tools' // 自定义常用工具
+
 export default {
     data () {
         return {
@@ -67,7 +68,7 @@ export default {
             console.log(this.serrchParam)
             this.hendleSearch()
         }),
-        changeTab (name) { this.$tool.jumpto(name) },
+        changeTab (name) { jumpto(name) },
         init () { // 初始化
             if (!this.serrchParam) {this.serrchParam = {}} // 下发参数
             if (!this.serrchBack) {this.serrchBack = extend({}, this.search)} // 备份

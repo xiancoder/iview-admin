@@ -70,6 +70,7 @@
 </template>
 <script>
 import { uniqueObj } from '@/utils'
+import { alertMsg } from '@/tools'
 
 export default {
     data () {
@@ -96,7 +97,7 @@ export default {
                     const arr1 = this.frm.p02.split(/\r|\n|\r\n/)
                     const arr2 = uniqueObj(arr1)
                     if (arr1.length !== arr2.length) {
-                        this.$tool.alertMsg('输入的XX列表有重复数据 即将进行去重处理', 0, () => {
+                        alertMsg('输入的XX列表有重复数据 即将进行去重处理', 0, () => {
                             this.frm.p02 = arr2.join('\n')
                             this.submitAjax()
                         })

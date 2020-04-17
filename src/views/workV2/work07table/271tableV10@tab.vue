@@ -4,6 +4,9 @@
             <div class="tableHeader">
                 <h2>表格v10模版规范 <small>新的模版</small><b>新的模版</b></h2>
             </div>
+            <p>原来是使用的这个tab样式</p>
+            <tab2></tab2>
+            <p>后台发现这个更好看 立马褫夺上位</p>
             <tab></tab>
         </div>
         <div class="blogCss">
@@ -72,9 +75,10 @@
 </template>
 <script>
 import tab from './271tableV10'
+import tab2 from './271tableV10HHH'
 
 export default {
-    components: { tab },
+    components: { tab, tab2 },
     data () {
         return {
             'end1': 1 // 防呆设计

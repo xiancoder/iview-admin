@@ -115,7 +115,9 @@ export default {
             },
             columns: [ // 列配置 必须指定最小宽度 [[模版变量不要动]]
                 {title: 'id', minWidth: 100, key: 'id', sortable: true},
+                {title: '头像照片', minWidth: 100, key: 'pic', render: h.showHead('pic')},
                 {title: '姓名', minWidth: 100, key: 'name'},
+                {title: '生活照片', minWidth: 100, key: 'pic', render: h.showPic('pic'), align: 'center'},
                 {title: '性别', minWidth: 100, key: 'sex', render: h.readArr('sex', this.$api.student.pullSex('table'))},
                 {title: '状态', minWidth: 100, key: 'state', render: h.readArr('state', this.$api.student.pullState('table'))},
                 {title: '年龄', minWidth: 100, key: 'age'},
@@ -154,7 +156,10 @@ export default {
         ajaxCustom: function () { // 业务ajax [[模版方法不要动]]
             this.$api.student.listAll(this.serrchParam).then((info) => { // 发送ajax
                 this.ajaxEnd()
-                this.tableData = info.list
+                this.tableData = info.list.map(function (row) {
+                    row.pic = 'https://i.loli.net/2017/08/21/599a521472424.jpg'
+                    return row
+                })
                 this.page.rowCount = info.rowcount
             })
         },

@@ -91,6 +91,7 @@
                             }]
                         });
                     </script>
+                    <p> const names = Mock.mock({ 'list|100': ['@cname'] }) names.list = {{ names.join(',') }}</p>
                 </div>
                 <div class="blogFooter">
                     <Tag color="green">收集</Tag>
@@ -102,13 +103,21 @@
     </div>
 </template>
 <script>
+import Mock from 'mockjs'
+
 export default {
     data () {
-        return {}
+        return {
+            names: []
+        }
     },
     methods: {
     },
     mounted () {
+        const names = Mock.mock({
+            'list|100': ['@cname']
+        })
+        this.names = names.list
     }
 }
 </script>

@@ -28,11 +28,20 @@ export const error = (msg) => { // 错误提示
     Message.error({ content: msg || '保存失败', duration: 3, closable: true })
 }
 
+const configModal = (msg) => {
+    return {
+        width: msg.length < 300 ? 416 : 600, // 宽度，单位 px
+        scrollable: true, // 页面是否可以滚动
+        closable: true // 是否可以按 Esc 键关闭
+    }
+}
+
 // 页面信息提示 大的需要用户看清楚的信息
 export const alertMsg = (msg, title, onOk) => { // 弹框提示
     const config = {
         title: title || '提示信息',
-        content: '<div style=" word-break: break-all; ">' + (msg || '-') + '</div>'
+        content: '<div style=" word-break: break-all; ">' + (msg || '-') + '</div>',
+        ...configModal(msg)
     }
     if (onOk) {config.onOk = onOk}
     Modal.info(config)
@@ -40,19 +49,22 @@ export const alertMsg = (msg, title, onOk) => { // 弹框提示
 export const successMsg = (msg, title) => { // 弹框成功提示
     Modal.success({
         title: title || '成功信息',
-        content: msg || '保存成功'
+        content: msg || '保存成功',
+        ...configModal(msg)
     })
 }
 export const errorMsg = (msg, title) => { // 弹框失败提示
     Modal.error({
         title: title || '失败信息',
-        content: msg || '保存失败'
+        content: msg || '保存失败',
+        ...configModal(msg)
     })
 }
 export const warningMsg = (msg, title) => { // 弹框警告提示
     Modal.warning({
         title: title || '警告信息',
-        content: msg || '-'
+        content: msg || '-',
+        ...configModal(msg)
     })
 }
 export const closeMsg = Modal.remove // 关闭信息框们
@@ -63,6 +75,7 @@ export const confirm = (msg, title) => { // 二次确认框
         Modal.confirm({
             title: title || '请确认',
             content: '<p>' + msg + '</p>',
+            ...configModal(msg),
             onOk: resolve,
             onCancel: reject
         })
@@ -74,6 +87,7 @@ export const confirmAjax = (msg, title) => { // 二次确认框
         Modal.confirm({
             title: title || '请确认',
             content: '<p>' + msg + '</p>',
+            ...configModal(msg),
             loading: true, // loading 点击确定按钮时，确定按钮是否显示 loading 状态，开启则需手动设置value来关闭对话框
             onOk: resolve,
             onCancel: reject
@@ -261,6 +275,23 @@ export const h = { // 通用渲染格式 for 表格 (即将废弃)
             return h('div', arr)
         }
     },
+    // 显示圆形头像
+    showHead: (a) => {
+        return (h, params) => {
+            const row = params.row;
+            return h('Avatar', { props: { src: row[a] } })
+        }
+    },
+    // 显示方形素材
+    showPic: (a) => {
+        return (h, params) => {
+            const row = params.row;
+            return h('img', {
+                attrs: { src: row[a] },
+                style: { 'text-align': 'center', 'width': '50%', 'display': 'inline-block' }
+            })
+        }
+    },
     end: null // 错误占位符
 }
 
@@ -290,6 +321,8 @@ export const companyTableSumColumns = (columns, sumData) => { // 表格总计一
     })
     return sums;
 }
+
+// 表格常用的方法挂载在vue原型上
 Vue.prototype.showPageCount = function (totalCount, page, pageCount) { // 显示 '第 1 页/ 共 1 页'
     totalCount = totalCount || 0
     page = page || 1
@@ -309,7 +342,7 @@ Vue.prototype.showPageRow = function (totalCount, page, pageCount) { // 显示 '
 }
 
 // 输出
-Vue.prototype.$tool = {
+/* Vue.prototype.$tool = {
     goto,
     alert,
     success,
@@ -326,4 +359,4 @@ Vue.prototype.$tool = {
     h,
     LoadingBarRun,
     companyTableSumColumns
-}
+} */

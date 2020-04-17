@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Tabs :value="currentName" @on-click="goto" type="card">
+        <Tabs :value="currentName" @on-click="goto">
             <TabPane v-for="(row, index) in tabList" :key="index" :label="row.title" :name="row.name">
             </TabPane>
         </Tabs>
