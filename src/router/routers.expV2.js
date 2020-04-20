@@ -197,9 +197,11 @@ export default makeMultiLevelRoute({
             path: 'exp15', title: '卷拾伍', icon: 'md-game-controller-b',
             children: [
                 {power: 'expv2-22345', path: '150jscando', title: 'Js权限能做到什么'},
+                {power: 'expv2-22345', path: '151yishan', title: '一闪而过Css'},
                 {power: 'expv2-22345', path: '154deeplink', title: '深链接的深入研究'},
                 {power: 'expv2-22345', path: '155border', title: 'border 边框样式列举'},
                 {power: 'expv2-22345', path: '156img404', title: '图片404补偿'},
+                {power: 'expv2-22345', path: '156imgplaceholder', title: '图片placeholder'},
                 {power: 'expv2-22345', path: '157imgLazy', title: '图片懒加载插件'},
                 {power: 'expv2-22345', path: '158vshowbug', title: 'v-show 有 bug'},
                 {power: 'expv2-22345', path: '159clearInterval', title: '怎么销毁定时器'}

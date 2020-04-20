@@ -117,7 +117,8 @@
             </Layout>
         </Layout>
         <ABackTop :height="100" :bottom="10" :right="42"></ABackTop>
-        <img :src="'/static/img.xian/logo.xian.png'" class="xianjscode">
+        <img v-if="logoRandom>5" :src="'/static/img.xian/logo.xian.png'" class="xianjscode">
+        <img v-if="logoRandom<=5" :src="'/static/img.xian/logo.xply.png'" class="xianjscode">
         <Footer class="main-footer"> &copy;东胜神州傲来国无限技术公司 2010 - 2020 如来佛祖备案 </Footer>
         <Drawer title="系统界面控制" :closable="false" v-model="theme.Drawer">
             <Card title="主题变动" icon="ios-options" :padding="0" shadow style="width: 100%;">
@@ -169,6 +170,8 @@ export default {
             themeLogoBgColor: '#92caf6', // 主题::logo背景颜色
             themeBgColor: '#515a6e', // 主题::主体背景颜色
             themeFgColor: '#fff', // 主题::主体前景颜色
+
+            logoRandom: Math.random() * 10,
 
             model: {
                 modifyPwd: false // 修改密码的弹窗
