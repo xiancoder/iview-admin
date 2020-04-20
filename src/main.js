@@ -78,8 +78,10 @@ new Vue({ // 实例化
         // 和初始化事件(init event，Vue内部初始化事件)之前被调用
         Store.dispatch('admin/getPlatformId') // 获取所属公司
         const isLogined = Store.getters['admin/access']
-        if (isLogined) { // 未登录的话由路由负责判断并进入登录页
-            console.info('%c仙 用户已经登陆', 'color:#05ff0f;background:#000;padding:0 5px;')
+        if (!isLogined) { // 未登录的话由路由负责判断并进入登录页
+            console.info('%c仙 用户未登陆', 'color:#05ff0f;background:#000;padding:0 5px;')
+        } else {
+            console.info('%c仙 用户已登陆', 'color:#05ff0f;background:#000;padding:0 5px;')
             Store.dispatch('admin/getUserInfo') // 获取用户信息
             Store.dispatch('message/getNewMessageNum') // 获取未读最新消息
             Store.dispatch('route/getPowerList').then(() => { // 读取权限 更新权限视图

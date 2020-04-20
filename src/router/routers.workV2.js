@@ -169,6 +169,7 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '271tableV10dongtai', title: '表格v10的动态显隐'},
                 {power: 'workv2-2', path: '272formV10', title: '表单v10模版规范'},
                 {power: 'workv2-2', path: '272formV10DHC', title: '表单v10的DHC1'},
+                {power: 'workv2-2', path: '272formV10super', title: '表单v10超级分解'},
                 {power: 'workv2-2', path: '272formV10DHC$add1', title: '表单v10的DHC添加普通表单', hideMenu: true},
                 {power: 'workv2-2', path: '272formV10DHC$extends', title: '表单v10的DHC继承重写', hideMenu: true},
                 {power: 'workv2-2', path: '273apiUnitTest', title: '接口的单元测试'},
@@ -176,6 +177,7 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '274branchStaff', title: '部门与人员'},
                 {power: 'workv2-2', path: '274tableV10branchStaff', title: '部门与人员V10版'},
                 {power: 'workv2-2', path: '274reportInfo', title: '周报详情'},
+                {power: 'workv2-2', path: '274formV10reportInfo', title: '周报详情V10版'},
                 {power: 'workv2-2', path: '275splitpane', title: '分割窗口组件'}
             ]
         }

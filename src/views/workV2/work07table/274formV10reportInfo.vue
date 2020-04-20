@@ -1,9 +1,7 @@
 <template>
     <div>
         <div class="head">
-            <span class="day_icon" v-if="response.type === 1">日报</span>
-            <span class="week_icon" v-if="response.type === 2">周报</span>
-            <span class="month_icon" v-if="response.type === 3">月报</span>
+            <span :class="['','day_icon','week_icon','month_icon'][response.type]" >{{['','日报','周报','月报'][response.type]}}</span>
             <strong style="font-size:16px;margin-left: 10px">{{response.title}}</strong>
         </div>
         <div class="content">
@@ -14,19 +12,19 @@
                     <span class="fontBlue" @click="getState">阅读状态</span>
                     <table slot="content">
                         <thead>
-                        <tr>
-                            <td style="padding:0 5px;font-weight:bold;">收件人</td>
-                            <td style="padding:0 5px;">阅读状态</td>
-                            <td style="padding:0 5px;">时间</td>
-                        </tr>
-                        <tr style="height:6px;"></tr>
+                            <tr>
+                                <td style="padding:0 5px;font-weight:bold;">收件人</td>
+                                <td style="padding:0 5px;">阅读状态</td>
+                                <td style="padding:0 5px;">时间</td>
+                            </tr>
+                            <tr style="height:6px;"></tr>
                         </thead>
                         <tbody>
-                        <tr style="line-height: 26px;" :class="row.isRead ? 'blue':''" v-for="(row,index) in responseRead" :key="index">
-                            <td style="padding:0 5px;">{{row.name}}</td>
-                            <td style="padding:0 5px;">{{row.isRead ? '已读' : '未读'}}</td>
-                            <td style="padding:0 5px;">{{row.isRead ? row.date : ''}}</td>
-                        </tr>
+                            <tr style="line-height: 26px;" :class="row.isRead ? 'blue':''" v-for="(row,index) in responseRead" :key="index">
+                                <td style="padding:0 5px;">{{row.name}}</td>
+                                <td style="padding:0 5px;">{{row.isRead ? '已读' : '未读'}}</td>
+                                <td style="padding:0 5px;">{{row.isRead ? row.date : ''}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </Poptip>
@@ -120,11 +118,13 @@
         <Modal v-model="bigShow" :footer-hide="true" :closable="false" width="60">
             <img :src="bigImgSrc" style="width: 100%">
         </Modal>
+        <form-panel></form-panel>
     </div>
 </template>
 
 <script>
 import '@/plugins/mock'
+import FormPanel from './274formV10reportInfoForm'
 
 // 匹配超链接,转化为a标签
 function urlToLink (val) {
@@ -139,6 +139,7 @@ function urlToLink (val) {
 }
 
 export default {
+    components: { FormPanel },
     data () {
         return {
             response: {

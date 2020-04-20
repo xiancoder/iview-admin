@@ -13,7 +13,7 @@ import other from './routers.other'
 
 export const homePage = 'home_index' // 首页
 
-export const specialPowerList = [homePage, 'error403', 'error404', 'error500'] // 必须登录的不走鉴权的核心页面
+export const specialPowerList = ['error403', 'error404', 'error500'] // 必须登录的不走鉴权的核心页面
 
 export const loginPowerList = ['login', 'register', 'phone'] // 未登录时候可以访问的页面
 

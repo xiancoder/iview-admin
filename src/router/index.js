@@ -157,8 +157,26 @@ router.beforeEach((to, from, next) => {
 
     console.info('%c仙 准备跳转', 'color:#05ff0f;background:#000;padding:0 5px;', to)
 
+    const isLogined = Store.getters['admin/access']
+    const goLogin = loginPowerList.includes(to.name)
+    if (isLogined && goLogin) { // 已登录去登录页 - 回首页
+        console.info('%c仙 禁止 登录状态禁止去登录页面', 'color:#05ff0f;background:#000;padding:0 5px;')
+        return next({ replace: true, name: homePage })
+    }
+    if (!isLogined && goLogin) { // 未登录去登录页 - 直达
+        return next()
+    }
+    if (!isLogined && !goLogin) { // 未登录去其他页 - 回登录页
+        console.info('%c仙 禁止 未登录状态禁止去非登录页面', 'color:#05ff0f;background:#000;padding:0 5px;')
+        return next({ replace: true, name: loginPowerList[0] })
+    }
+
     const isLocked = Store.state.system.locking
     const goLocking = lockPowerList.includes(to.name)
+    if (isLocked && !goLocking) { // 已锁定去其他页 - 禁止
+        return next(false)
+    }
+
     if (goLocking) {
         if (!isLocked) {
             console.info('%c仙 准备跳转 未锁定状态去锁定页面', 'color:#05ff0f;background:#000;padding:0 5px;')
@@ -166,17 +184,6 @@ router.beforeEach((to, from, next) => {
         }
         console.info('%c仙 准备跳转 锁定状态不允许去非锁定页面', 'color:#05ff0f;background:#000;padding:0 5px;')
         return next({ replace: true, name: 'locking' })
-    }
-
-    const isLogined = Store.getters['admin/access']
-    const goLogin = loginPowerList.includes(to.name)
-    if (goLogin) {
-        if (!isLogined) {
-            console.info('%c仙 准备跳转 未登录状态去登录页面', 'color:#05ff0f;background:#000;padding:0 5px;')
-            return next()
-        }
-        console.info('%c仙 准备跳转 登录状态不允许去登录页面', 'color:#05ff0f;background:#000;padding:0 5px;')
-        return next({ replace: true, name: homePage })
     }
 
     Store.dispatch('route/setBreadCrumbList', to.name) // 面包屑

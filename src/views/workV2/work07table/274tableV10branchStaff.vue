@@ -222,7 +222,7 @@ export default {
 </script>
 <style lang="less">
 .split-pane-page-wrapper{
-    height: 1200px;
+    height: 1800px;
     .pane{
         width: 100%; height: 100%;
     }

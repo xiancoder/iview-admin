@@ -1,17 +1,62 @@
 <template>
-    <div class="formLayout">
+    <div class="formLayout" v-highlight>
         <div class="formHeader">
             <h1>表单名称</h1>
             <Divider/>
         </div>
         <Form ref="from0982" :model="frm" :rules="frmValidate" :label-width="150">
+            <FormItem>
+                <script type="text/html" v-pre>
+                    <div class="formLayout" v-highlight>
+                        <div class="formHeader">
+                            <h1>表单名称</h1>
+                            <Divider/>
+                        </div>
+                        <Form ref="from0982" :model="frm" :rules="frmValidate" :label-width="150">
+                        </Form>
+                    </div>
+                </script>
+                <script type="text/js">
+                    frm: {}
+                    frmValidate: {}
+                </script>
+            </FormItem>
             <FormItem label="正常文本">
                 <p>{{ frm.text1 }}</p>
             </FormItem>
-            <Divider orientation="left">输入框校验</Divider>
+            <FormItem>
+                <script type="text/html" v-pre>
+                    <FormItem label="正常文本">
+                        <p>{{ frm.text1 }}</p>
+                    </FormItem>
+                </script>
+                <script type="text/js">
+                    frm: {
+                        text1: '啦啦啦啦啦', // 正常文本
+                    }
+                </script>
+            </FormItem>
             <FormItem label="输入框" prop="input1">
                 <Input type="text" v-model="frm.input1" placeholder="请输入XXXX" style="width: 450px"/>
                 <div class="ivu-form-item-notice-tip">【完美】</div>
+            </FormItem>
+            <FormItem>
+                <script type="text/html" v-pre>
+                    <FormItem label="输入框" prop="input1">
+                        <Input type="text" v-model="frm.input1" placeholder="请输入XXXX" style="width: 450px"/>
+                        <div class="ivu-form-item-notice-tip">【完美】</div>
+                    </FormItem>
+                </script>
+                <script type="text/js">
+                    frm: {
+                        input1: '',
+                    }
+                    frmValidate: {
+                        input1: [
+                            { required: true, message: '输入框不能为空' }
+                        ],
+                    }
+                </script>
             </FormItem>
             <FormItem label="输入框" prop="input12">
                 <Input type="text" v-model="frm.input12" placeholder="请输入XXXX" style="width: 450px" maxlength="51"/>
@@ -35,22 +80,32 @@
             </FormItem>
             <FormItem label="文本域" prop="textarea1">
                 <Input v-model="frm.textarea1" type="textarea" style="width: 450px"
-                    :autosize="{minRows: 3,maxRows: 5}" placeholder="请输入XXXX" />
+                    :autosize="{minRows: 5,maxRows: 8}" placeholder="请输入XXXX" />
             </FormItem>
-            <FormItem label="测试">
-                <Button type="primary" @click="handleSubmit()">测试</Button>
+            <FormItem>
+                <script type="text/html" v-pre>
+                    <FormItem label="文本域" prop="textarea1">
+                        <Input v-model="frm.textarea1" type="textarea" style="width: 450px"
+                            :autosize="{minRows: 5,maxRows: 8}" placeholder="请输入XXXX" />
+                    </FormItem>
+                </script>
+                <script type="text/js">
+                    frm: {
+                        textarea1: '',
+                    }
+                    frmValidate: {
+                        textarea1: [
+                            { required: true, message: '文本域不能为空' }
+                        ],
+                    }
+                </script>
             </FormItem>
-            <Divider orientation="left">数字框校验</Divider>
             <FormItem label="数字框" prop="num1">
                 <InputNumber :max="100" :min="1" v-model="frm.num1" style="width: 450px"
                     placeholder="请输入XXXX" :precision="0">
                 </InputNumber>
                 <div class="ivu-form-item-notice-tip">必填+1-100+只能输入数字整数</div>
             </FormItem>
-            <FormItem label="测试">
-                <Button type="primary" @click="handleSubmit()">测试</Button>
-            </FormItem>
-            <Divider orientation="left">下拉框校验</Divider>
             <FormItem label="下拉框" prop="select1">
                 <Select v-model="frm.select1" style="width: 450px" placeholder="请搜索/选择XXX" >
                     <Option value="" label="全部"></Option>
@@ -61,10 +116,40 @@
             <FormItem label="下拉框" prop="select12">
                 <Select v-model="frm.select12" filterable clearable placeholder="请搜索/选择XXX" style="width: 450px">
                     <Option value="" label="全部"></Option>
-                    <Option v-for="option in list" :value="option.id" :key="option.id" :label="option.name">
+                    <Option v-for="option in dateSet.list" :value="option.id" :key="option.id" :label="option.name">
                     </Option>
                 </Select>
                 <div class="ivu-form-item-notice-tip">必填+远程请求  【完美】【所有数据源都搞成异步:远程或者api中】</div>
+            </FormItem>
+            <FormItem>
+                <script type="text/html" v-pre>
+                    <FormItem label="下拉框" prop="select12">
+                        <Select v-model="frm.select12" filterable clearable placeholder="请搜索/选择XXX" style="width: 450px">
+                            <Option value="" label="全部"></Option>
+                            <Option v-for="option in dateSet.list" :value="option.id" :key="option.id" :label="option.name">
+                            </Option>
+                        </Select>
+                        <div class="ivu-form-item-notice-tip">必填+远程请求  【完美】【所有数据源都搞成异步:远程或者api中】</div>
+                    </FormItem>
+                </script>
+                <script type="text/js">
+                    frm: {
+                        select12: '',
+                    }
+                    frmValidate: {
+                        select12: [
+                            { required: true, message: '下拉框必选其一' }
+                        ],
+                    }
+                    dateSet: {
+                        list: [],
+                    }
+                    init () {
+                        setTimeout(() => {
+                            this.dateSet.list = [{id: 0, name: '一般'}, {id: 1, name: '重要'}, {id: 2, name: '紧急'}]
+                        }, 2e3)
+                    },
+                </script>
             </FormItem>
             <FormItem label="下拉框" prop="select13">
                 <Select v-model="frm.select13" filterable clearable placeholder="请搜索/选择XXX" style="width: 450px">
@@ -78,15 +163,31 @@
             <FormItem label="下拉框">
                 <div>当用户配置项和请求来的数据源不匹配时候怎么弄</div>
             </FormItem>
-            <FormItem label="测试">
-                <Button type="primary" @click="handleSubmit()">测试</Button>
-            </FormItem>
-            <Divider orientation="left">日期校验</Divider>
             <FormItem label="日期框" prop="date11">
                 <DatePicker type="date" :value="frm.date11" placeholder="选择日期" format="yyyy-MM-dd"
                     @on-change="(date)=>{frm.date11=date}" style="width: 450px">
                 </DatePicker>
                 <div class="ivu-form-item-notice-tip">【不大完美】【】</div>
+            </FormItem>
+            <FormItem>
+                <script type="text/html" v-pre>
+                    <FormItem label="日期框" prop="date11">
+                        <DatePicker type="date" :value="frm.date11" placeholder="选择日期" format="yyyy-MM-dd"
+                            @on-change="(date)=>{frm.date11=date}" style="width: 450px">
+                        </DatePicker>
+                        <div class="ivu-form-item-notice-tip">【不大完美】【】</div>
+                    </FormItem>
+                </script>
+                <script type="text/js">
+                    frm: {
+                        date11: '',
+                    }
+                    frmValidate: {
+                        date11: [
+                            { required: true, message: '请选择日期' }
+                        ],
+                    }
+                </script>
             </FormItem>
             <FormItem label="日期框(年月)" prop="date12">
                 <DatePicker type="month" :value="frm.date12" placeholder="选择日期" format="yyyy-MM"
@@ -107,16 +208,36 @@
                 </DatePicker>
                 <div class="ivu-form-item-notice-tip">【不完美】【写三遍字段】【提交时候得拆分字段】</div>
             </FormItem>
+            <FormItem>
+                <script type="text/html" v-pre>
+                    <FormItem label="日期范围" prop="date2">
+                        <DatePicker :value="frm.date2" type="daterange" placeholder="选择开始日期结束日期" style="width: 450px"
+                            @on-change="frm.date2=$event" @on-clear="frm.date2=[]" split-panels>
+                        </DatePicker>
+                        <div class="ivu-form-item-notice-tip">【不完美】【写三遍字段】【提交时候得拆分字段】</div>
+                    </FormItem>
+                </script>
+                <script type="text/js">
+                    frm: {
+                        date2: [],
+                    }
+                    frmValidate: {
+                        date2: [
+                            { validator: (rule, value, callback) => {
+                                const dates = this.frm.date2
+                                if (!dates || dates.length === 0) { return callback(new Error('必选日期段!')) }
+                                callback()
+                            } }
+                        ],
+                    }
+                </script>
+            </FormItem>
             <FormItem label="日期范围 (自定义时间段)" prop="date2">
                 <DatePicker :value="frm.date2" type="daterange" placeholder="选择开始日期结束日期" style="width: 450px"
                     @on-change="frm.date2=$event" @on-clear="frm.date2=[]" split-panels :options="options2" >
                 </DatePicker>
                 <div class="ivu-form-item-notice-tip">【不完美】【写三遍字段】【提交时候得拆分字段】</div>
             </FormItem>
-            <FormItem label="测试">
-                <Button type="primary" @click="handleSubmit()">测试</Button>
-            </FormItem>
-            <Divider orientation="left">滑轨</Divider>
             <FormItem label="Slider" prop="slider1">
                 <Slider v-model="frm.slider1" :step="10" show-stops style="width: 450px"/></Slider>
                 <div class="ivu-form-item-notice-tip">额....</div>
@@ -133,24 +254,68 @@
                 <Rate show-text v-model="frm.rate1" />
                 <div class="ivu-form-item-notice-tip">额....</div>
             </FormItem>
-            <FormItem label="测试">
-                <Button type="primary" @click="handleSubmit()">测试</Button>
-            </FormItem>
-            <Divider orientation="left">附件上传</Divider>
             <FormItem label="多附件框" prop="file1">
                 <Upload :before-upload="handleUpload" multiple action="">
                      <Button icon="ios-cloud-upload-outline">添加附件</Button>
                 </Upload>
-                <div v-for="(item, index) in reviewList" :key="index">
-                    <img :src="item"><a @click="reviewList.splice(index, 1),frm.file1.splice(index, 1)">删除</a>
+                <div v-for="(item, index) in dateSet.reviewList" :key="index">
+                    <img :src="item"><a @click="dateSet.reviewList.splice(index, 1),frm.file1.splice(index, 1)">删除</a>
                 </div>
                 <div class="ivu-form-item-notice-tip">必填【不大完美】【需要辅助方法】【选中文件后需要手动触发一下本框的验证】</div>
             </FormItem>
+            <FormItem>
+                <script type="text/html" v-pre>
+                    <FormItem label="多附件框" prop="file1">
+                        <Upload :before-upload="handleUpload" multiple action="">
+                             <Button icon="ios-cloud-upload-outline">添加附件</Button>
+                        </Upload>
+                        <div v-for="(item, index) in dateSet.reviewList" :key="index">
+                            <img :src="item"><a @click="dateSet.reviewList.splice(index, 1),frm.file1.splice(index, 1)">删除</a>
+                        </div>
+                        <div class="ivu-form-item-notice-tip">必填【不大完美】【需要辅助方法】【选中文件后需要手动触发一下本框的验证】</div>
+                    </FormItem>
+                </script>
+                <script type="text/js">
+                    frm: {
+                        file1: [],
+                    }
+                    frmValidate: {
+                        file1: [
+                            { validator: (rule, value, callback) => {
+                                const filelist = this.frm.file1
+                                if (!filelist || filelist.length === 0) { return callback(new Error('请上传文件!')) }
+                                callback()
+                            } }
+                        ],
+                    }
+                    dateSet: { // 数据源
+                        reviewList: []
+                    },
+                    methods: {
+                        handleUpload (file) {
+                            if (file.size > 2 * 1024 * 1024) {
+                                error('文件过大')
+                            } else {
+                                if (window.FileReader) {
+                                    const fr = new FileReader()
+                                    fr.onloadend = (e) => {
+                                        this.dateSet.reviewList.push(e.target.result)
+                                        this.frm.file1.push(file)
+                                    }
+                                    fr.readAsDataURL(file)
+                                }
+                                this.$refs['from0982'].validateField('file1') // 需要手动触发一下本必填上传框的验证
+                            }
+                            return false
+                        },
+                    },
+                </script>
+            </FormItem>
             <FormItem label="多附件框" prop="file2">
-                <div class="xian-review-list" v-for="(item, index) in reviewList" :key="index">
+                <div class="xian-review-list" v-for="(item, index) in dateSet.reviewList" :key="index">
                     <img :src="item">
                     <div class="xian-review-list-cover">
-                        <Icon type="ios-trash-outline" @click.native="reviewList.splice(index, 1),frm.file1.splice(index, 1)"></Icon>
+                        <Icon type="ios-trash-outline" @click.native="dateSet.reviewList.splice(index, 1),frm.file1.splice(index, 1)"></Icon>
                     </div>
                 </div>
                 <Upload :before-upload="handleUpload2" multiple action="" type="drag" style="display: inline-block;width:58px;">
@@ -160,6 +325,59 @@
                 </Upload>
                 <div class="ivu-form-item-notice-tip">必填【不大完美】【需要辅助方法】</div>
             </FormItem>
+            <FormItem>
+                <script type="text/html" v-pre>
+                    <FormItem label="多附件框" prop="file2">
+                        <div class="xian-review-list" v-for="(item, index) in dateSet.reviewList" :key="index">
+                            <img :src="item">
+                            <div class="xian-review-list-cover">
+                                <Icon type="ios-trash-outline" @click.native="dateSet.reviewList.splice(index, 1),frm.file1.splice(index, 1)"></Icon>
+                            </div>
+                        </div>
+                        <Upload :before-upload="handleUpload2" multiple action="" type="drag" style="display: inline-block;width:58px;">
+                             <div style="width: 58px;height:58px;line-height: 58px;">
+                                <Icon type="ios-camera" size="20"></Icon>
+                            </div>
+                        </Upload>
+                        <div class="ivu-form-item-notice-tip">必填【不大完美】【需要辅助方法】</div>
+                    </FormItem>
+                </script>
+                <script type="text/js">
+                    frm: {
+                        file2: [],
+                    }
+                    frmValidate: {
+                        file2: [
+                            { validator: (rule, value, callback) => {
+                                const filelist = this.frm.file2
+                                if (!filelist || filelist.length === 0) { return callback(new Error('请上传文件!')) }
+                                callback()
+                            } }
+                        ],
+                    }
+                    dateSet: { // 数据源
+                        reviewList: []
+                    },
+                    methods: {
+                        handleUpload2 (file) {
+                            if (file.size > 2 * 1024 * 1024) {
+                                error('文件过大')
+                            } else {
+                                if (window.FileReader) {
+                                    const fr = new FileReader()
+                                    fr.onloadend = (e) => {
+                                        this.dateSet.reviewList.push(e.target.result)
+                                        this.frm.file2.push(file)
+                                    }
+                                    fr.readAsDataURL(file)
+                                }
+                                this.$refs['from0982'].validateField('file2') // 需要手动触发一下本必填上传框的验证
+                            }
+                            return false
+                        },
+                    },
+                </script>
+            </FormItem>
             <FormItem label="单附件框" prop="file3">
                 <Upload :before-upload="handleUpload3" action="" style="display: inline-block; margin-right: 20px;">
                      <Button icon="ios-cloud-upload-outline">添加附件</Button>
@@ -167,10 +385,6 @@
                 <span>{{frm.file3.name}}</span>
                 <div class="ivu-form-item-notice-tip">必填【不大完美】【需要辅助方法】【选中文件后需要手动触发一下本框的验证】</div>
             </FormItem>
-            <FormItem label="测试">
-                <Button type="primary" @click="handleSubmit()">测试</Button>
-            </FormItem>
-            <Divider orientation="left">单复选校验</Divider>
             <FormItem label="单选框" prop="radio1">
                 <RadioGroup v-model="frm.radio1">
                     <Radio label="male">Male</Radio>
@@ -196,10 +410,6 @@
                 </CheckboxGroup>
                 <div class="ivu-form-item-notice-tip">必填+最多两个 【完美】</div>
             </FormItem>
-            <FormItem label="测试">
-                <Button type="primary" @click="handleSubmit()">测试</Button>
-            </FormItem>
-            <Divider orientation="left">密码</Divider>
             <FormItem label="密码" prop="pwd1">
                 <input type="text" style="width: 0px; height: 0px; position: absolute;"/>
                 <Input type="password" v-model="frm.pwd1" placeholder="请输入XXXX" style="width: 450px"/>
@@ -209,10 +419,6 @@
                 <Input type="password" v-model="frm.pwd2" placeholder="请输入XXXX" style="width: 450px"/>
                 <div class="ivu-form-item-notice-tip">必填+与前面的相同 【完美】【自定义校验方法全局化】</div>
             </FormItem>
-            <FormItem label="测试">
-                <Button type="primary" @click="handleSubmit()">测试</Button>
-            </FormItem>
-            <Divider orientation="left">富文本校验</Divider>
             <FormItem label="任务内容" prop="rich1">
                 <vue-html5-editor :content="frm.rich1"
                     @change="val=>frm.rich1=val" :height="140" style="width: 600px;">
@@ -384,10 +590,12 @@ export default {
                     { text: '过去三月', value () { const end = new Date(); const start = new Date(); start.setTime(start.getTime() - 3600 * 1000 * 24 * 90); return [start, end]; } }
                 ]
             },
-            list: [],
+            dateSet: { // 数据源
+                list: [],
+                reviewList: []
+            },
             content: '',
             correlation: [],
-            reviewList: [],
             loading: '',
             ccore: '0000'
         };
@@ -395,7 +603,7 @@ export default {
     methods: {
         init () {
             setTimeout(() => {
-                this.list = [{id: 0, name: '一般'}, {id: 1, name: '重要'}, {id: 2, name: '紧急'}]
+                this.dateSet.list = [{id: 0, name: '一般'}, {id: 1, name: '重要'}, {id: 2, name: '紧急'}]
             }, 2e3)
         },
         handleUpload (file) {
@@ -405,7 +613,7 @@ export default {
                 if (window.FileReader) {
                     const fr = new FileReader()
                     fr.onloadend = (e) => {
-                        this.reviewList.push(e.target.result)
+                        this.dateSet.reviewList.push(e.target.result)
                         this.frm.file1.push(file)
                     }
                     fr.readAsDataURL(file)
@@ -421,7 +629,7 @@ export default {
                 if (window.FileReader) {
                     const fr = new FileReader()
                     fr.onloadend = (e) => {
-                        this.reviewList.push(e.target.result)
+                        this.dateSet.reviewList.push(e.target.result)
                         this.frm.file2.push(file)
                     }
                     fr.readAsDataURL(file)
