@@ -16,9 +16,9 @@
                         <Upload :before-upload="handleUpload1" multiple action="">
                              <Button icon="ios-cloud-upload-outline">添加附件</Button>
                         </Upload>
-                        <div v-for="(item, index) in reviewList1" :key="index">
+                        <div v-for="(item, index) in reviewList1" class="imgReviewBox" :key="index">
                             <img :src="item" style="max-height:100px;max-width:200px;">
-                            <a @click="reviewList1.splice(index, 1),frm.p01.splice(index, 1)">删除</a>
+                            <div @click="reviewList1.splice(index, 1),frm.p01.splice(index, 1)">+</div>
                         </div>
                         <div class="ivu-form-item-notice-tip">多选 必填 选中文件后需要手动触发一下本框的验证 </div>
                     </FormItem>

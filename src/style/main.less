@@ -383,6 +383,10 @@ div.api{
 .xian-review-list:hover .xian-review-list-cover{
     display: block;
 }
+/* imgReview */
+.imgReviewBox{position: relative; display: inline-block; margin-top: 10px; margin-right: 10px; vertical-align: top;}
+.imgReviewBox img{max-height: 200px;max-width: 200px;}
+.imgReviewBox div{color: #fff; background: #FF5722; width: 20px; display: block; height: 20px; line-height: 20px; text-align: center; border-radius: 50%; font-size: 20px; transform: rotateZ(45deg); position: absolute; right: -10px; top: -10px;}
 /* //////////////////////////////////////////////////////////////////////////// */
 
 /* 右上角用户下拉 */
@@ -499,9 +503,7 @@ a.text-#000000:hover { color: #131e25; }
 .bg-danger.dk, .bg-danger .dk { background-color: #f13636; }
 .bg-danger.dker, .bg-danger .dker { background-color: #f21b1b; }
 .bg-danger.bg, .bg-danger .bg { background-color: #f05050; }
-/**
-    * 页面主体 想找啥
-**/
+/** * 页面主体 想找啥 **/
 .main-xiangzhaosha {
     width: auto; background: #fff; padding: 50px; box-shadow: 0 0 6px 6px #e2e2e2;
     .xiangzhaosha-input {
@@ -518,11 +520,7 @@ a.text-#000000:hover { color: #131e25; }
     }
 }
 
-/**
-    * placeholder-loading v0.2.2 骨架屏Css
-    * Author: Zalog (https://www.zalog.ro/)
-    * License: MIT
-**/
+/** * placeholder-loading v0.2.2 骨架屏Css * Author: Zalog (https://www.zalog.ro/) * License: MIT **/
 .ph-item {
     position: relative; display: flex; flex-wrap: wrap; padding: 30px 15px 15px 15px; overflow: hidden;
     margin-bottom: 30px; background-color: #fff; border: 1px solid #e6e6e6; border-radius: 2px;
@@ -549,7 +547,3 @@ a.text-#000000:hover { color: #131e25; }
 .ph-picture { width: 100%; height: 120px; background-color: #ced4da; margin-bottom: 15px; }
 @-webkit-keyframes phAnimation { 0% { transform: translate3d(-30%, 0, 0); } 100% { transform: translate3d(30%, 0, 0); } }
 @keyframes phAnimation { 0% { transform: translate3d(-30%, 0, 0); } 100% { transform: translate3d(30%, 0, 0); } }
-
-.ivu-select-dropdown-list {
-    max-height: 300px;
-}

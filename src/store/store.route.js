@@ -5,7 +5,7 @@
 import config from '@/config' // 自定义配置
 import { Api } from '@/api'
 import { power2routesII, power2BreadCrumb } from '@/router' // 自定义路由定义
-import { specialPowerList, loginPowerList } from '@/router/routers'
+import { homePage, specialPowerList, loginPowerList } from '@/router/routers'
 
 export default {
     namespaced: true, // 作用域,配置上以后才能够dispach system/xxx 建议必须 不同的状态里有相同字段值
@@ -81,6 +81,7 @@ export default {
         },
         addTagNav ({ state, commit }, route) { // 添加历史记录标签
             const name = route.name
+            if (homePage === name) return false
             if (specialPowerList.includes(name)) return false
             if (loginPowerList.includes(name)) return false
             const routeInfo = state.routeList[name]

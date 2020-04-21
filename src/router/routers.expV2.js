@@ -42,17 +42,22 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-12345', path: '025jianrong', title: '兼容大数据'},
                 {power: 'expv2-12345', path: '026iviewDefault', title: 'Iview 控件默认配置'},
                 {power: 'expv2-12345', path: '027filter', title: '过滤器收集整理'},
-                {power: 'expv2-12345', path: '028jsnoad', title: 'js屏蔽脚本广告'}
+                {power: 'expv2-12345', path: '028jsnoad', title: 'js屏蔽脚本广告'},
+                {power: 'expv2-12345', path: '029modalColor', title: '弹框彩色样式'}
             ]
         }, {
             path: 'exp03', title: '卷零叁', icon: 'md-game-controller-b',
             children: [
                 {power: 'expv2-12345', path: '031textAnimate', title: '文本动画'},
                 {power: 'expv2-12345', path: '032lizituan', title: 'canvas粒子图案效果'},
+                {power: 'expv2-12345', path: '033timeLine1', title: '时间线 Iview样式'},
+                {power: 'expv2-12345', path: '033timeLine2', title: '时间线 css样式1'},
                 {power: 'expv2-12345', path: '034postmessage', title: 'postMessage详解'},
                 {power: 'expv2-12345', path: '035qqcookie', title: 'QQ cookie 偶遇'},
                 {power: 'expv2-12345', path: '036indexDB', title: 'indexDB 数据库简介'},
                 {power: 'expv2-12345', path: '036indexDBTry', title: 'indexDB 数据库代码'},
+                {power: 'expv2-12345', path: '037cssSwitch', title: '漂亮交互开关控件'},
+                {power: 'expv2-12345', path: '038phone', title: '手机样式'},
                 {power: 'expv2-12345', path: '039caothis', title: '箭头函数方法this坑'}
             ]
         }, {
