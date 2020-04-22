@@ -30,7 +30,7 @@
                     </script>
                     <p>- - 5 tab模版代码如下</p>
                     <script type="text/html" v-pre>
-                        <Tabs :value="currentName" @on-click="goto">
+                        <Tabs :value="currentName" @on-click="goto" type="card">
                             <TabPane v-for="(row, index) in tabList" :key="index" :label="row.title" :name="row.name">
                             </TabPane>
                         </Tabs>

@@ -82,7 +82,8 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-12345', path: '043igrid', title: 'IviewGrid 和所有'},
                 {power: 'expv2-12345', path: '043isearchInput', title: 'IviewAutoComplete'},
                 {power: 'expv2-12345', path: '043ipop', title: 'IviewTooltip 提示'},
-                {power: 'expv2-12345', path: '043ipage', title: 'IviewPage'}
+                {power: 'expv2-12345', path: '043ipage', title: 'IviewPage'},
+                {power: 'expv2-12345', path: '043time', title: 'IviewTime'}
             ]
         }, {
             path: 'exp05', title: '卷零伍', icon: 'md-game-controller-b',
