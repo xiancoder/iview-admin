@@ -129,7 +129,13 @@ axios.interceptors.request.use( // 开始设置请求 发起的拦截处理
 )
 axios.interceptors.response.use( // 请求到结果的拦截处理
     response => { // 返回请求正确的结果
-        console.info('%c仙 请求接口', 'color:#05ff0f;background:#000;padding:0 5px;', response.config.url, response.data)
+        console.info(
+            '%c 资料库 %c 请求接口 ',
+            'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+            'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+            response.config.url,
+            response.data
+        )
         return response
     },
     error => { // 错误的请求结果处理，这里的代码根据后台的状态码来决定错误的输出信息

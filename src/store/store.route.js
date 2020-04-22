@@ -65,7 +65,12 @@ export default {
                 return new Promise((resolve, reject) => {
                     if (state.menuList.length === 0) {
                         setTimeout(() => {
-                            console.info('%c仙 等待鉴权', 'color:#05ff0f;background:#000;padding:0 5px;')
+                            console.info(
+                                '%c 资料库 %c 等待鉴权 ',
+                                'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                                'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                                '-'
+                            )
                             loopObj().then(resolve).catch(reject)
                         }, 1e3)
                         return false
@@ -129,18 +134,33 @@ export default {
                     if (toname === row) { ins = true }
                 })
                 if (ins) {
-                    console.info('%c仙 准备跳转 KeepAlive 拒绝', 'color:#05ff0f;background:#000;padding:0 5px;')
+                    console.info(
+                        '%c 资料库 %c KeepAlive 拒绝 ',
+                        'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                        'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                        '-'
+                    )
                     return false
                 }
                 if (includes) {
                     const list = Object.assign(state.cacheList)
                     list.push(toname)
                     commit('CACHELIST', list)
-                    console.info('%c仙 准备跳转 KeepAlive', 'color:#05ff0f;background:#000;padding:0 5px;', list)
+                    console.info(
+                        '%c 资料库 %c KeepAlive ',
+                        'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                        'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                        list
+                    )
                     return false
                 }
             }
-            console.info('%c仙 准备跳转 KeepAlive 拒绝', 'color:#05ff0f;background:#000;padding:0 5px;')
+            console.info(
+                '%c 资料库 %c KeepAlive 拒绝 ',
+                'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                '-'
+            )
             commit('CACHELIST', [toname])
         },
         noRender ({ commit }, b) { // 是否渲染

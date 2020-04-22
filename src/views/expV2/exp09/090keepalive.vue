@@ -68,7 +68,12 @@
                     // 路由卫士
                     // 设置下一个路由的 meta
                     if (from.name && from.name.includes(to.name)) {
-                        console.info('%c仙 路由keepAlive', 'color:#05ff0f;background:#000;padding:0 5px;')
+                        console.info(
+                            '%c 资料库 %c 路由keepAlive ',
+                            'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                            'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                            '-'
+                        )
                         to.meta.keepAlive = true // C 跳转到 A 时让 A 缓存，即保存原来状态
                     } else {
                         to.meta.keepAlive = false // C 跳转到 A 时让 A 不缓存，即刷新

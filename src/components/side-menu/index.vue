@@ -97,17 +97,32 @@ export default {
     },
     methods: {
         handleSelect (select) { // 直接跳转
-            console.info('%c仙 二级菜单 直接跳转', 'color:#05ff0f;background:#000;padding:0 5px;', select)
+            console.info(
+                '%c 资料库 %c 二级菜单 直接跳转 ',
+                'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                select
+            )
             const name = select
             goto({ name })
         },
         handleSelectBox (selectArr) { // 一级页面跳第一个子页面
             const select = selectArr[0]
             if (!select) return false
-            console.info('%c仙 一级页面 不跳觉得烦了', 'color:#05ff0f;background:#000;padding:0 5px;')
+            console.info(
+                '%c 资料库 %c 一级页面 不再跳转 (觉得烦了) ',
+                'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                'background:green; padding: 1px; border-radius: 0 3px 3px 0;color: #fff;',
+                '-'
+            )
             return false // 觉得烦了 先不跳
             const path = this.$store.state.route.routeList[select].path
-            console.info('%c仙 一级页面 跳第一个子页面', 'color:#05ff0f;background:#000;padding:0 5px;', path)
+            console.info(
+                '%c 资料库 %c 一级页面 跳第一个子页面 ',
+                'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                'background:green; padding: 1px;border-radius: 0 3px 3px 0;color: #fff;',
+                path
+            )
             goto({ path })
         },
         getOpenedNamesByActiveName (name) {

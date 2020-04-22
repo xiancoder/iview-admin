@@ -43,7 +43,6 @@ export const router = new Router({
 // 由路由信息列表 整理成 树数据源 一维路由列表
 // 本算法只支持二层目录结构
 /* export const power2routes = (powerList) => { // 根据权限更新视图
-    console.info('%c仙 根据权限更新视图', 'color:#05ff0f;background:#000;padding:0 5px;')
     // 目的是整理左边树数据源
     // 目的是整理一维视图
     const list = []
@@ -78,7 +77,12 @@ export const router = new Router({
 // 由路由信息列表 整理成 左边树数据源 一维路由列表
 // 本算法多层目录结构
 export const power2routesII = (powerList) => { // 根据权限更新视图
-    console.info('%c仙 根据权限更新视图II', 'color:#05ff0f;background:#000;padding:0 5px;')
+    console.info(
+        '%c 资料库 %c 根据权限更新视图II ',
+        'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+        'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+        '-'
+    )
     const listOneLevel = {}
     const readRouterList = function (routeList, listOneLevel) {
         const list = []
@@ -146,28 +150,53 @@ export const power2BreadCrumb = (routeList, routeName) => {
 
 router.beforeEach((to, from, next) => {
     if (to && from && to.name === from.name) { // 本页面跳转 不做各种表示
-        console.info('%c仙 参数变更', 'color:#05ff0f;background:#000;padding:0 5px;')
+        console.info(
+            '%c 资料库 %c 参数变更 ',
+            'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+            'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+            '-'
+        )
         return next({ replace: true })
     }
 
     if (Store.state.route.doNotDrawRouter) { // 回退再前进 之间的页面不做渲染
-        console.info('%c仙 准备跳转 历史记录管理', 'color:#05ff0f;background:#000;padding:0 5px;')
+        console.info(
+            '%c 资料库 %c 准备跳转 历史记录管理 ',
+            'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+            'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+            '-'
+        )
         return
     }
 
-    console.info('%c仙 准备跳转', 'color:#05ff0f;background:#000;padding:0 5px;', to)
+    console.info(
+        '%c 资料库 %c 准备跳转 ',
+        'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+        'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+        to
+    )
 
     const isLogined = Store.getters['admin/access']
     const goLogin = loginPowerList.includes(to.name)
     if (isLogined && goLogin) { // 已登录去登录页 - 回首页
-        console.info('%c仙 禁止 登录状态禁止去登录页面', 'color:#05ff0f;background:#000;padding:0 5px;')
+        console.info(
+            '%c 资料库 %c 登录状态禁止去登录页面 ',
+            'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+            'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+            '-'
+        )
         return next({ replace: true, name: homePage })
     }
     if (!isLogined && goLogin) { // 未登录去登录页 - 直达
         return next()
     }
     if (!isLogined && !goLogin) { // 未登录去其他页 - 回登录页
-        console.info('%c仙 禁止 未登录状态禁止去非登录页面', 'color:#05ff0f;background:#000;padding:0 5px;')
+        console.info(
+            '%c 资料库 %c 禁止未登录状态禁止去非登录页面 ',
+            'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+            'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+            '-'
+        )
         return next({ replace: true, name: loginPowerList[0] })
     }
 
@@ -179,22 +208,42 @@ router.beforeEach((to, from, next) => {
 
     if (goLocking) {
         if (!isLocked) {
-            console.info('%c仙 准备跳转 未锁定状态去锁定页面', 'color:#05ff0f;background:#000;padding:0 5px;')
+            console.info(
+                '%c 资料库 %c 未锁定状态去锁定页面 ',
+                'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                '-'
+            )
             return next()
         }
-        console.info('%c仙 准备跳转 锁定状态不允许去非锁定页面', 'color:#05ff0f;background:#000;padding:0 5px;')
+        console.info(
+            '%c 资料库 %c 锁定状态不允许去非锁定页面 ',
+            'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+            'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+            '-'
+        )
         return next({ replace: true, name: 'locking' })
     }
 
     Store.dispatch('route/setBreadCrumbList', to.name) // 面包屑
 
     if (specialPowerList.includes(to.name)) {
-        console.info('%c仙 准备跳转 特殊不走鉴权', 'color:#05ff0f;background:#000;padding:0 5px;')
+        console.info(
+            '%c 资料库 %c 特殊不走鉴权 ',
+            'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+            'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+            '-'
+        )
         return next()
     }
 
     if (specialPowerList.includes(to.name)) {
-        console.info('%c仙 准备跳转 默认不走鉴权', 'color:#05ff0f;background:#000;padding:0 5px;')
+        console.info(
+            '%c 资料库 %c 默认不走鉴权 ',
+            'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+            'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+            '-'
+        )
         return next()
     }
 
@@ -218,12 +267,22 @@ router.beforeEach((to, from, next) => {
         // 改进整体结构 使用body的滚动
         window.scrollTo(0, 0)
 
-        console.info('%c仙 准备跳转 跳转成功', 'color:#05ff0f;background:#000;padding:0 5px;')
+        console.info(
+            '%c 资料库 %c 跳转成功 ',
+            'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+            'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+            '-'
+        )
         next() // 进入页面
     }
 
     Store.dispatch('route/hasPower', to.name).then((bool) => { // 鉴权
-        console.info('%c仙 准备跳转 鉴权', 'color:#05ff0f;background:#000;padding:0 5px;', bool ? '有权限' : '无权限')
+        console.info(
+            '%c 资料库 %c 鉴权 ',
+            'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+            'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+            bool ? '有权限' : '无权限'
+        )
         if (!bool) { return next({name: 'error403'}) }
         goPowerPage()
     })
@@ -243,5 +302,10 @@ router.afterEach((to, from) => {
     Store.dispatch('route/setTitle', to.name) // 设置标题
     Store.dispatch('route/addTagNav', to) // 增加页面缓存标签
 
-    console.info('%c仙 跳转完成', 'color:#05ff0f;background:#000;padding:0 5px;', to)
+    console.info(
+        '%c 资料库 %c 跳转完成 ',
+        'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+        'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+        to
+    )
 })

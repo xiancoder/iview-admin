@@ -123,7 +123,12 @@ export default {
                 if (state.token) {
                     state.token = ''
                     commit('TOKEN', '')
-                    console.info('%c仙 登出清场', 'color:#05ff0f;background:#000;padding:0 5px;')
+                    console.info(
+                        '%c 资料库 %c 登出清场 ',
+                        'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                        'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                        '-'
+                    )
                 } else {
                     return false
                 }
@@ -132,10 +137,20 @@ export default {
                 // else { router.push({name: 'slogin'}) }
                 router.push({name: 'login'})
                 Api.system.logout().then(() => {
-                    console.info('%c仙 登出成功', 'color:#05ff0f;background:#000;padding:0 5px;')
+                    console.info(
+                        '%c 资料库 %c 登出成功 ',
+                        'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                        'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                        '-'
+                    )
                     resolve()
                 }, errorMsg => {
-                    console.info('%c仙 登出失败', 'color:#05ff0f;background:#000;padding:0 5px;')
+                    console.info(
+                        '%c 资料库 %c 登出失败 ',
+                        'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                        'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                        '-'
+                    )
                     resolve()
                 })
             })

@@ -42,7 +42,8 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-12345', path: '025jianrong', title: '兼容大数据'},
                 {power: 'expv2-12345', path: '026iviewDefault', title: 'Iview 控件默认配置'},
                 {power: 'expv2-12345', path: '027filter', title: '过滤器收集整理'},
-                {power: 'expv2-12345', path: '028jsnoad', title: 'js屏蔽脚本广告'},
+                {power: 'expv2-12345', path: '028jsnoad', title: 'js 屏蔽脚本广告'},
+                {power: 'expv2-12345', path: '028jsbacktoad', title: 'js 尝试后退切广告'},
                 {power: 'expv2-12345', path: '029modalColor', title: '弹框彩色样式'}
             ]
         }, {

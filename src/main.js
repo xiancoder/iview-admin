@@ -31,12 +31,32 @@ var consoleString = (function (f) {
     | |    / _ \/ _` | '__| '_ \    \ \/ / | | |/ _ \
     | |___|  __/ (_| | |  | | | |    \  /| |_| |  __/
     |______\___|\__,_|_|  |_| |_|     \/  \__,_|\___|
+
+
+     _                             _   _           _      _
+    | |                           | \ | |         | |    (_)
+    | |     ___  __ _ _ __ _ __   |  \| | ___   __| | ___ _ ___
+    | |    / _ \/ _` | '__| '_ \  | . ` |/ _ \ / _` |/ _ \ / __|
+    | |___|  __/ (_| | |  | | | | | |\  | (_) | (_| |  __/ \__ \
+    |______\___|\__,_|_|  |_| |_| |_| \_|\___/ \__,_|\___| |___/
+                                                        _/ |
+                                                       |__/
+
+     _                            __      ___               _    _ _
+    | |                           \ \    / (_)             | |  | (_)
+    | |     ___  __ _ _ __ _ __    \ \  / / _  _____      _| |  | |_
+    | |    / _ \/ _` | '__| '_ \    \ \/ / | |/ _ \ \ /\ / / |  | | |
+    | |___|  __/ (_| | |  | | | |    \  /  | |  __/\ V  V /| |__| | |
+    |______\___|\__,_|_|  |_| |_|     \/   |_|\___| \_/\_/  \____/|_|
 */
 });
 console.info(consoleString);
-// console.log('%c ', 'padding:112px 150px;background:url(http://returnc.com/frontend/images/console.gif) no-repeat;')
-console.info('%c仙 目前环境', 'color:#05ff0f;background:#000;padding:0 5px;', process.env.NODE_ENV)
-
+console.info(
+    '%c 资料库 %c 目前环境详细信息 ',
+    'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+    'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+    process.env.NODE_ENV
+)
 /* eslint-disable */
 // if (process.env.NODE_ENV === 'development') require('@/mock') // 实际打包时应该不引入mock
 // 即使是开发环境也不应该引入mockjs
@@ -79,9 +99,19 @@ new Vue({ // 实例化
         Store.dispatch('admin/getPlatformId') // 获取所属公司
         const isLogined = Store.getters['admin/access']
         if (!isLogined) { // 未登录的话由路由负责判断并进入登录页
-            console.info('%c仙 用户未登陆', 'color:#05ff0f;background:#000;padding:0 5px;')
+            console.info(
+                '%c 资料库 %c 用户未登陆 ',
+                'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                '-'
+            )
         } else {
-            console.info('%c仙 用户已登陆', 'color:#05ff0f;background:#000;padding:0 5px;')
+            console.info(
+                '%c 资料库 %c 用户已登陆 ',
+                'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                'background:red; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                '-'
+            )
             Store.dispatch('admin/getUserInfo') // 获取用户信息
             Store.dispatch('message/getNewMessageNum') // 获取未读最新消息
             Store.dispatch('route/getPowerList').then(() => { // 读取权限 更新权限视图

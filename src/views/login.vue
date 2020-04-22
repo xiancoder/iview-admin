@@ -80,7 +80,12 @@ export default {
             param.token = this.token
             this.$store.dispatch('admin/google', param).then(res => {
                 this.$store.dispatch('route/getPowerList').then(res => { // 读取权限 更新权限视图
-                    console.info('%c仙 管理员登录喽', 'color:#05ff0f;background:#000;padding:0 5px;')
+                    console.info(
+                        '%c 资料库 %c 管理员来喽 ',
+                        'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                        'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                        '-'
+                    )
                     this.$router.push({ name: homePage })
                 })
                 this.$store.dispatch('admin/getUserInfo') // 获取用户信息
