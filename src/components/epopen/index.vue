@@ -1,5 +1,5 @@
 <template>
-    <Button type="text" @click.native="handleMe" style="padding: 0;">
+    <Button type="text" @click.native="handleMe" style="padding:0;vertical-align: middle;">
         <Tooltip content="editplus打开本页面" placement="bottom" theme="light" class="hand">
             <Icon :size="23" type="ios-folder-open"/>
         </Tooltip>

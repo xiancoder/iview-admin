@@ -32,6 +32,7 @@
                 <Button type="default" :loading="loading.table" @click="hendleReset">重置</Button>
                 <Button type="primary" @click="hendleShowData" class="fr">展示选中数据</Button>
             </div>
+            <Alert show-icon>已经选择了 <a href="">0</a> 项，预计处理条目数量 <a href="">30000</a> ， <a href="">点击清空</a></Alert>
             <Table border :loading="loading.table" :columns="columns" :data="tableData"
                 @on-selection-change="selectedChange" node="-----------------------------------------批量处理必须的配置"
                 @on-sort-change="hendleSort">

@@ -17,11 +17,10 @@
                 </div>
                 <side-menu :collapsed="collapsed"/>
             </Sider>
-            <Layout class="right-sider">
-                <Header class="main-header":style="{'background': themeFgColor}">
+            <Layout class="right-sider" :class="{'right-sider-collapsed':collapsed}">
+                <Header class="main-header":style="{'background': themeFgColor}" :class="{'main-header-collapsed':collapsed}">
                     <Row type="flex" justify="start" class="main-header-left">
-                        <a @click="$store.dispatch('system/setShrink', !collapsed)" type="text"
-                            :class="['sidertrigger', collapsed?'collapsed':'']">
+                        <a @click="$store.dispatch('system/setShrink', !collapsed)" type="text" class="sidertrigger" :class="{'collapsed':collapsed}">
                             <Icon type="md-menu" size="26" />
                         </a>
                         <custom-bread-crumb show-icon :list="breadCrumbList"/>
@@ -33,9 +32,9 @@
                             <img :src="`/static/img.site/${row.img}`" :title="row.title">
                         </a>
                         <div>
-                            <Button type="text" style="padding: 0;">
+                            <Button type="text" style="padding:0;vertical-align: middle;">
                                 <Badge dot :count="newMessageNum">
-                                    <Icon type="md-notifications-outline" size="23"/>
+                                    <Icon type="md-notifications" size="23"/>
                                 </Badge>
                             </Button>
                         </div>
@@ -47,40 +46,38 @@
                         <div><page-unit-test/></div>
                         <div><error-store v-if="$config.errorLogStore"/></div>
                         <div>
-                            <div class="user-avatar-dropdown">
-                                <Dropdown @on-click="handleMenuClick">
-                                    <Badge :dot="!!unreadCount">
-                                        <Avatar style="color: #f56a00;background-color: #fde3cf" :src="userAvatar"
-                                            @on-error="userAvatar=''"
-                                            :icon="userName?'':'ios-person'">{{userName[0]}}</Avatar>
-                                    </Badge>
-                                    {{ userName }}
-                                    <Icon :size="18" type="md-arrow-dropdown"></Icon>
-                                    <DropdownMenu slot="list">
-                                        <DropdownItem name="accountInfo">
-                                            账户信息  <Badge style="margin-left: 10px" text="建设中"></Badge>
-                                        </DropdownItem>
-                                        <DropdownItem name="message">
-                                            消息中心 <Badge style="margin-left: 10px" :count="unreadCount"></Badge>
-                                        </DropdownItem>
-                                        <DropdownItem name="modifyPwd">
-                                            修改密码  <Badge style="margin-left: 10px" text="建设中"></Badge>
-                                        </DropdownItem>
-                                        <DropdownItem name="clear">
-                                            清理缓存  <Badge style="margin-left: 10px" text="建设中"></Badge>
-                                        </DropdownItem>
-                                        <DropdownItem name="themeDrawer">
-                                            主题修改
-                                        </DropdownItem>
-                                        <DropdownItem name="logout">
-                                            退出登录
-                                        </DropdownItem>
-                                    </DropdownMenu>
-                                </Dropdown>
-                                <Modal v-model="model.modifyPwd" title="修改密码" :closable="false" :mask-closable="false" footer-hide>
-                                    <modify-pwd @on-submit="modifyPwdSubmit"/>
-                                </Modal>
-                            </div>
+                            <Dropdown @on-click="handleMenuClick">
+                                <Badge :dot="!!unreadCount">
+                                    <Avatar style="color: #f56a00;background-color: #fde3cf" :src="userAvatar"
+                                        @on-error="userAvatar=''"
+                                        :icon="userName?'':'ios-person'">{{userName[0]}}</Avatar>
+                                </Badge>
+                                {{ userName }}
+                                <Icon :size="18" type="md-arrow-dropdown"></Icon>
+                                <DropdownMenu slot="list">
+                                    <DropdownItem name="accountInfo">
+                                        账户信息  <Badge style="margin-left: 10px" text="建设中"></Badge>
+                                    </DropdownItem>
+                                    <DropdownItem name="message">
+                                        消息中心 <Badge style="margin-left: 10px" :count="unreadCount"></Badge>
+                                    </DropdownItem>
+                                    <DropdownItem name="modifyPwd">
+                                        修改密码  <Badge style="margin-left: 10px" text="建设中"></Badge>
+                                    </DropdownItem>
+                                    <DropdownItem name="clear">
+                                        清理缓存  <Badge style="margin-left: 10px" text="建设中"></Badge>
+                                    </DropdownItem>
+                                    <DropdownItem name="themeDrawer">
+                                        主题修改
+                                    </DropdownItem>
+                                    <DropdownItem name="logout">
+                                        退出登录
+                                    </DropdownItem>
+                                </DropdownMenu>
+                            </Dropdown>
+                            <Modal v-model="model.modifyPwd" title="修改密码" :closable="false" :mask-closable="false" footer-hide>
+                                <modify-pwd @on-submit="modifyPwdSubmit"/>
+                            </Modal>
                         </div>
                     </Row>
                 </Header>

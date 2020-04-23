@@ -1,5 +1,5 @@
 <template>
-    <Button type="text" @click="lockScreen" style="padding: 0;">
+    <Button type="text" @click="handleMe" style="padding:0;vertical-align: middle;">
         <Tooltip content="锁屏" placement="bottom" theme="light" class="hand">
             <Icon :size="23" type="md-lock"/>
         </Tooltip>
@@ -11,7 +11,7 @@ export default {
         value: { type: Boolean, default: false }
     },
     methods: {
-        lockScreen () {
+        handleMe () {
             let lockScreenBack = document.getElementById('lock_screen_back')
             lockScreenBack.style.transition = 'all 3s'
             lockScreenBack.style.zIndex = 10000

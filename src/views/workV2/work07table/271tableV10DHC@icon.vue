@@ -118,25 +118,43 @@ export default {
             columns: [ // 列配置 必须指定最小宽度 [[模版变量不要动]]
                 {title: 'id', minWidth: 100, key: 'id', sortable: true},
                 {title: '姓名', minWidth: 100, key: 'name'},
-                {title: '性别', minWidth: 100, key: 'sex', render: (h, params) => {
+                {title: '性别', width: 80, align: 'center', key: 'sex', render: (h, params) => {
                     const row = params.row;
                     if (row['sex'] === 1) {
-                        return h('i', {'class': {'fa': true, 'fa-toggle-on': true}, style: {color: 'green'}, attrs: {title: '男'}})
+                        return h('Icon', { props: {type: 'md-male'}, style: {color: 'green'}, attrs: {title: '男'} })
                     } else {
-                        return h('i', {'class': {'fa': true, 'fa-toggle-off': true}, style: {color: 'red'}, attrs: {title: '女'}})
+                        return h('Icon', { props: {type: 'md-female'}, style: {color: 'red'}, attrs: {title: '女'} })
                     }
                 }},
-                {title: '状态', minWidth: 100, key: 'state', render: (h, params) => {
+                {title: '状态', width: 80, align: 'center', key: 'state', render: (h, params) => {
                     const row = params.row;
                     if (row['state'] === 1) {
-                        return h('i', {'class': {'fa': true, 'fa-toggle-on': true}, style: {color: 'green'}, attrs: {title: '一般'}})
+                        return [
+                            h('Icon', { props: {type: 'ios-flash-outline'}, style: {color: 'red'}}),
+                            h('span', '未运行')
+                        ]
                     } else {
-                        return h('i', {'class': {'fa': true, 'fa-toggle-off': true}, style: {color: 'red'}, attrs: {title: '不一般'}})
+                        return [
+                            h('Icon', { props: {type: 'ios-flash'}, style: {color: 'green'}}),
+                            h('span', '运行中')
+                        ]
                     }
                 }},
-                {title: '年龄', minWidth: 100, key: 'age'},
-                {title: '留学时长', minWidth: 100, key: 'stay'},
-                {title: '操作', minWidth: 80, slot: 'op', key: 'op', render: (h, params) => {
+                {title: '年龄', width: 80, align: 'center', key: 'age', render: (h, params) => {
+                    const row = params.row;
+                    return [
+                        h('Icon', { props: {type: 'md-ribbon'}, style: {color: 'red'}}),
+                        h('span', row.age)
+                    ]
+                }},
+                {title: '留学时长', width: 80, align: 'center', key: 'stay', render: (h, params) => {
+                    const row = params.row;
+                    return [
+                        h('Icon', { props: {type: 'md-pricetag'}, style: {color: 'red'}}),
+                        h('span', row.age)
+                    ]
+                }},
+                {title: '操作', minWidth: 80, align: 'center', slot: 'op', key: 'op', render: (h, params) => {
                     return h('div', [
                         h('i', {
                             'class': {'fa': true, 'fa-cogs': true},

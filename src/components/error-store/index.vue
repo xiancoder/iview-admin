@@ -1,5 +1,5 @@
 <template>
-    <Button type="text" @click="openErrorLoggerPage" style="padding: 0;">
+    <Button type="text" @click="openErrorLoggerPage" style="padding:0;vertical-align: middle;">
         <Badge dot :count="countComputed">
             <Icon :size="23" type="ios-bug"/>
         </Badge>

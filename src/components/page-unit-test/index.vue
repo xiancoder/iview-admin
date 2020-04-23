@@ -1,5 +1,5 @@
 <template>
-    <Button type="text" @click.native="handleMe" style="padding: 0;">
+    <Button type="text" @click.native="handleMe" style="padding:0;vertical-align: middle;">
         <Tooltip content="每个路由的单元测试" placement="bottom" theme="light" class="hand">
             <Icon :size="23" type="ios-game-controller-b"/>
         </Tooltip>

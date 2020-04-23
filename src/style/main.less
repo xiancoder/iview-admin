@@ -13,33 +13,36 @@ body{
             overflow-x: hidden; overflow-y: scroll; height: 100%;
             /* logo */
             .logocon{
-                height: 99px; padding: 10px;
+                height: 65px; padding: 10px;
                 img{
-                    height: 98px; width: auto; display: block; margin: 0 0 0 7px;
+                    height: 65px; width: auto; display: block; margin: 0 0 0 7px;
                 }
             }
             &.ivu-layout-sider-collapsed .logocon{
-                height: 36px;
+                height: 65px;
                 img{
                     height: 27px;
+                    margin: 12px auto 0 auto;
                 }
             }
             /* 复写 树形菜单微调 */
             .ivu-layout-sider-children{
-                overflow-y: scroll; margin-right: -18px;
+                overflow-y: scroll; margin-right: -8px;
             }
         }
         /* 右边 */
         .right-sider{
-            position: relative; /*z-index: 1000;*/
-            overflow-x: hidden; overflow-y: scroll; margin-left: 195px; padding-top: 60px;
+            position: relative; padding-top: 65px;
+            overflow-x: hidden; overflow-y: scroll; margin-left: 195px;
+            &.right-sider-collapsed{margin-left: 58px;}
             /* 顶部各项按钮 */
             .main-header{
                 transition: all .3s; box-shadow: 0 2px 1px 1px rgba(100,100,100,.1);
-                width: 100%; height: 60px; display: flex; padding: 0 0 0 20px;
-                position: fixed; width: calc(~"100% - 200px"); min-width:1080px; left:194px; top: 0; z-index: 1000;
+                width: 89%; height: 65px; display: flex; padding: 0 0 0 20px;
+                position: fixed; min-width:1080px; left:194px; top: 0; z-index: 1000;
+                &.main-header-collapsed{width: 96%;left: 67px;}
                 .main-header-left{
-                    height: 60px; width: 30%; min-width: 400px; flex-grow:1;
+                    height: 65px; width: 30%; min-width: 400px; flex-grow:1;
                     > * {
                         margin-right: 20px;
                     }
@@ -55,7 +58,7 @@ body{
                     }
                 }
                 .main-header-right{
-                    height: 60px; width: 70%; flex-grow:1;
+                    height: 65px; width: 70%; flex-grow:1;
                     > * {
                         margin-right: 10px;
                     }
