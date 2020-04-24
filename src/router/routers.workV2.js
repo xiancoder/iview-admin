@@ -117,6 +117,7 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '242screenlog', title: '屏幕日志'},
                 {power: 'workv2-2', path: '243urlNoRepeat', title: '域名验重问题'},
                 {power: 'workv2-2', path: '244iframe', title: 'iframe 父子页面'},
+                {power: 'workv2-2', path: '244iframeRefuesd', title: 'iframe 不能嵌套'},
                 {power: 'workv2-2', path: '244budianji', title: '补点击脚本'},
                 {power: 'workv2-2', path: '244charu360', title: '360插入脚本'},
                 {power: 'workv2-2', path: '244baiduurl', title: '百度URL参数解读'},

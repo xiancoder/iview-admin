@@ -83,33 +83,45 @@
                 </Header>
                 <Content class="main-content-con">
                     <Spin size="large" fix v-if="spinShow"></Spin>
-                    <div class="main-layout-con">
-                        <div class="tag-nav-wrapper">
-                            <tags-nav></tags-nav>
-                        </div>
-                        <div class="content-wrapper">
-                            <!-- 页面缓存功能 vue提供 keep-alive -->
-                            <transition :name="'fade'" mode="out-in">
-                                <keep-alive :include="cacheList">
-                                    <router-view></router-view>
-                                </keep-alive>
-                            </transition>
-                        </div>
-                        <div class="main-xiangzhaosha">
-                            <input class="xiangzhaosha-input" type="text" v-model="xiangzhaosha" placeholder="大声地说出我的名砸..你要找啥">
-                            <div class="xiangzhaosha-content">
-                                <div>
-                                    <span v-for="item in routeList.filter(row=>{
-                                        var v = xiangzhaosha.toLowerCase()
-                                        return row.title.toLowerCase().includes(v) || row.path.toLowerCase().includes(v)
-                                    })">
-                                        <a :href="'#'+item.path" :title="item.path">{{item.title}}</a> &nbsp;|&nbsp
-                                    </span>
+                    <Row>
+                        <div class="main-layout-con">
+                            <div class="tag-nav-wrapper">
+                                <tags-nav></tags-nav>
+                            </div>
+                            <Row :gutter="16">
+                                <Col :xl="{ span: 24 }" :xxl="{ span: 20 }">
+                                    <div class="content-wrapper">
+                                        <!-- 页面缓存功能 vue提供 keep-alive -->
+                                        <transition :name="'fade'" mode="out-in">
+                                            <keep-alive :include="cacheList">
+                                                <router-view></router-view>
+                                            </keep-alive>
+                                        </transition>
+                                    </div>
+                                </Col>
+                                <Col :xl="{ span: 0 }" :xxl="{ span: 4 }" style=" padding: 47px 10px; ">
+                                    <Card :bordered="false">
+                                        <p slot="title">No border title</p>
+                                        <p>Content of no border type. Content of no border type. Content of no border type. Content of no border type. </p>
+                                    </Card>
+                                </Col>
+                            </Row>
+                            <div class="main-xiangzhaosha">
+                                <input class="xiangzhaosha-input" type="text" v-model="xiangzhaosha" placeholder="大声地说出我的名砸..你要找啥">
+                                <div class="xiangzhaosha-content">
+                                    <div>
+                                        <span v-for="item in routeList.filter(row=>{
+                                            var v = xiangzhaosha.toLowerCase()
+                                            return row.title.toLowerCase().includes(v) || row.path.toLowerCase().includes(v)
+                                        })">
+                                            <a :href="'#'+item.path" :title="item.path">{{item.title}}</a> &nbsp;|&nbsp
+                                        </span>
+                                    </div>
+                                    <!-- template 里面放Button会导致页面滚动时候卡顿 -->
                                 </div>
-                                <!-- template 里面放Button会导致页面滚动时候卡顿 -->
                             </div>
                         </div>
-                    </div>
+                    </Row>
                 </Content>
             </Layout>
         </Layout>

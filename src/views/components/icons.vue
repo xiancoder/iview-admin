@@ -4,7 +4,7 @@
             <Row v-for="i in (customIconList.length / 3)" :key="`custom-icon-row-${i}`">
                 <i-col span="8" v-for="item in customIconList.slice((i - 1) * 3, i * 3)" :key="`custom-icon-${item}`">
                     <Card style="margin: 0 5px 5px; text-align: center;">
-                        <icons :size="30" :type="item"/>
+                        <Icon :size="30" :type="item"/>
                         <p class="icon-code">&lt;Icons :size="30" type="{{ item }}"&gt;</p>
                         <p>&lt;CommonIcon :size="30" type="_{{ item }}"&gt;</p>
                     </Card>
@@ -13,7 +13,7 @@
             <Row>
                 <i-col>
                     <Card style="margin: 0 5px 5px; text-align: center;">
-                        <common-icon :size="30" type="ionic"/>
+                        <Icon type="ionic" :size="30"/>
                         <p class="icon-code">iView内置图标</p>
                         <p>&lt;CommonIcon :size="30" type="ionic"&gt;</p>
                     </Card>
@@ -29,11 +29,8 @@
     </Row>
 </template>
 <script>
-import Icons from '@C/icons'
-import CommonIcon from '@C/common-icon'
 export default {
     name: 'icons_pages',
-    components: { Icons, CommonIcon },
     data () {
         return {
             customIconList: [ 'woman', 'man', 'smile', 'meh', 'frown', 'bear' ]

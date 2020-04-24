@@ -31,7 +31,6 @@ export default makeMultiLevelRoute({
         {power: 'expv1', path: '080yin', title: '名词缩写发音'},
         {power: 'expv1', path: '081templete', title: '标签 templete'},
         {power: 'expv1', path: '101looknodown', title: '评审看不下去代码'},
-        {power: 'expv1', path: '104echart', title: 'echart'},
         {power: 'expv1', path: '106yiyongxing', title: '易用性描述'},
         {power: 'expv1', path: '107kaifakunjing', title: '需求开发|困境'},
         {power: 'expv1', path: '111name', title: '命名法'},

@@ -1,7 +1,8 @@
-import CommonIcon from '@C/common-icon'
 export default {
-    components: {
-        CommonIcon
+    data () {
+        return {
+            iconSize: 16
+        }
     },
     methods: {
         showChildren (item) {
@@ -10,5 +11,9 @@ export default {
         getNameOrHref (item, children0) {
             return children0 ? item.children[0].name : item.name
         }
+    },
+    computed: {
+        theme () { return this.$store.state.system.theme }, // 主题
+        textColor () { return this.theme === 'dark' ? '#fff' : '#495060' } // 主题颜色
     }
 }

@@ -11,7 +11,7 @@
                     <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item">
                     </side-menu-item>
                     <menu-item v-else :name="getNameOrHref(item, true)" :key="`menu-${item.children[0].name}`">
-                        <common-icon :type="item.children[0].icon||'ios-document'"/>
+                        <Icon :type="item.children[0].icon||'ios-document'":size="iconSize" :color="textColor" />
                         <span>{{ item.children[0].title}}</span>
                     </menu-item>
                 </template>
@@ -19,7 +19,7 @@
                     <side-menu-item v-if="showChildren(item)" :key="`menu-${item.name}`" :parent-item="item">
                     </side-menu-item>
                     <menu-item v-else :name="getNameOrHref(item)" :key="`menu-${item.name}`">
-                        <common-icon :type="item.icon||'ios-document'"/>
+                        <Icon :type="item.icon||'ios-document'":size="iconSize" :color="textColor" />
                         <span>{{ item.title }}</span>
                     </menu-item>
                 </template>
@@ -36,9 +36,7 @@
                     :content="item.children && item.children[0] ? item.children[0].title : item.title"
                     placement="right" :key="`drop-menu-${item.name}`">
                     <a @click="handleSelect(getNameOrHref(item, true))" class="drop-menu-a" :style="{textAlign: 'center'}">
-                        <common-icon :size="rootIconSize" :color="textColor"
-                            :type="item.icon||(item.children && item.children[0].icon)||'ios-document' "
-                        />
+                        <Icon :type="item.icon||(item.children && item.children[0].icon)||'ios-document'":size="iconSize" :color="textColor" />
                     </a>
                 </Tooltip>
             </template>
@@ -75,7 +73,6 @@ export default {
     data () {
         return {
             openedNames: [], // 左边树的展开状态数组
-            iconSize: 16,
             rootIconSize: 20,
             accordion: true
         }
@@ -85,15 +82,13 @@ export default {
     },
     computed: {
         menuList () { return this.$store.state.route.menuList }, // 左边树 数据源
-        theme () { return this.$store.state.system.theme }, // 主题
         activeName () {
             // 如果路由名字有$ 表示这是个子类页面
             // 如果路由名字有@ 表示这是个兄弟页面
             const routeName = this.$route.name || ''
             return routeName.replace(/[\@\$].*/g, '')
         }, // 左边树 选中
-        openNames () { return computeOpenName(this.$route.name) }, // 左边树的展开状态
-        textColor () { return this.theme === 'dark' ? '#fff' : '#495060' } // 主题颜色
+        openNames () { return computeOpenName(this.$route.name) } // 左边树的展开状态
     },
     methods: {
         handleSelect (select) { // 直接跳转
@@ -152,6 +147,3 @@ export default {
     }
 }
 </script>
-<style lang="less">
-    @import './side-menu.less';
-</style>

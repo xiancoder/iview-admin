@@ -12,6 +12,8 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-12345', path: '001weixingzhreadme', title: 'WX公众号开发必读'},
                 {power: 'expv2-12345', path: '002eslint', title: 'EsLint 校验规则'},
                 {power: 'expv2-12345', path: '003weixingzhkaifa', title: 'WX公众号简单流程'},
+                {power: 'expv2-12345', path: '004echart', title: '图表 ECHART'},
+                {power: 'expv2-12345', path: '004sparkline', title: '图表 SPARKLINE'},
                 {power: 'expv2-12345', path: '005panglu', title: '旁路系统介绍'},
                 {power: 'expv2-12345', path: '006jsx', title: 'Jsx 写法尝试'},
                 {power: 'expv2-12345', path: '007douyin', title: '抖音 logo css'},
@@ -84,7 +86,8 @@ export default makeMultiLevelRoute({
                 {power: 'expv2-12345', path: '043isearchInput', title: 'IviewAutoComplete'},
                 {power: 'expv2-12345', path: '043ipop', title: 'IviewTooltip 提示'},
                 {power: 'expv2-12345', path: '043ipage', title: 'IviewPage'},
-                {power: 'expv2-12345', path: '043time', title: 'IviewTime'}
+                {power: 'expv2-12345', path: '043time', title: 'IviewTime'},
+                {power: 'expv2-12345', path: '043badge', title: 'IviewBadge'}
             ]
         }, {
             path: 'exp05', title: '卷零伍', icon: 'md-game-controller-b',

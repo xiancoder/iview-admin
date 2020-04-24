@@ -14,42 +14,22 @@
 /* 边栏背景色 */
 @layout-sider-background: #515a6e;
 /* 返回顶部 样式覆盖 */
-.ivu-back-top {
-    z-index: 1402;
-}
+.ivu-back-top { z-index: 1402; }
 /* 左边树形目录 样式覆盖 */
-.ivu-menu-item > i{
-    margin-right: 12px !important;
-}
-.ivu-menu-submenu > .ivu-menu > .ivu-menu-item > i {
-    margin-right: 8px !important;
-}
-.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item {
-    padding-left: 25px !important;
-}
-.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-has-parent-submenu .ivu-menu-submenu-title {
-    padding-left: 25px !important;
-}
+.ivu-menu-item > i{ margin-right: 12px !important; }
+.ivu-menu-submenu > .ivu-menu > .ivu-menu-item > i { margin-right: 8px !important; }
+.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item { padding-left: 25px !important; padding-right: 10px !important; }
+.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-has-parent-submenu .ivu-menu-submenu-title { padding-left: 25px !important; }
 /* 自定义的表单内容提示 样式覆盖 */
 /* 错误提示 将遮挡 内容提示 样式覆盖 */
 .ivu-form-item-notice-tip{
     position: absolute; top: 100%; left: 0; line-height: 1; padding-top: 6px; color: #9E9E9E;
-    & + .ivu-form-item-error-tip{
-        background: #f5f7f9; width: 100%;
-    }
-}
-/* 下拉框不被其他框架遮挡 样式覆盖 */
-.ivu-select .ivu-select-dropdown{
-    z-index: 900;
+    & + .ivu-form-item-error-tip{ background: #f5f7f9; width: 100%; }
 }
 /* loading遮挡 样式覆盖 */
-.ivu-spin-fix{
-    z-index: 1001;
-}
+.ivu-spin-fix{ z-index: 1001; }
 /* 表单可单用可以弹框嵌套使用 样式覆盖 */
-.ivu-form-item.ivu-form-submit{
-    margin-top: 50px
-}
+.ivu-form-item.ivu-form-submit{ margin-top: 50px }
 .ivu-modal-body{
     .ivu-form-item.ivu-form-submit{
         margin: 0; height: 50px;
@@ -61,50 +41,37 @@
     }
 }
 /* 边框表格 打通其内部 */
-.ivu-table-border th, .ivu-table-border td {
-    border-right: 0
-}
+.ivu-table-border th, .ivu-table-border td { border-right: 0 }
 /* 目录 一级目录唯一节点选中的样式 */
 .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu),
-.ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu) {
-    background: #2d8cf0 !important;
-    color: #fff;
-}
-/* table tool 里面的日期框 浮动面板会被spin挡住 提升zindex */
-.ivu-date-picker .ivu-select-dropdown {
-    z-index: 901;
-}
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu) { background: #2d8cf0 !important; color: #fff; }
 /* table 单元格 右边距变窄 以适应小屏幕大数据展示 */
-.ivu-table-cell {
-     padding-right: 2px;
-}
+.ivu-table-cell { padding-right: 2px; }
 /* 路由却换动画 */
 .fade-enter { opacity:0;transition:opacity .5s; }
 .fade-leave { display: none; }
 .fade-enter-active { transition-delay: 2s; opacity:1; }
 .fade-leave-active { display: none; }
+
+/* table tool 里面的日期框 浮动面板会被spin挡住 提升zindex */
+.ivu-date-picker .ivu-select-dropdown { z-index: 901; }
+/* 下拉框不被其他框架遮挡 样式覆盖 */
+.ivu-select .ivu-select-dropdown{ z-index: 900; }
+/* 下拉框最大高度 */
+.ivu-select-dropdown-list { max-height: 400px; }
 /* 选择下拉框的悬浮面板最大高度 */
-.ivu-select-dropdown.ivu-dropdown-transfer{
-    max-height: 400px;
-}
+.ivu-select-dropdown.ivu-dropdown-transfer{ max-height: 400px; }
+/* 下拉框的高度限制 */
+.ivu-dropdown .ivu-select-dropdown { max-height: 400px; overflow-x: visible; overflow-y: auto; }
+/* 下拉框的宽度限制 */
+.ivu-dropdown-menu { min-width: 100px; max-width: 250px; }
+
 /* 抽屉遮盖应该更大一些 */
-.ivu-drawer-mask {
-    z-index: 8888;
-}
-.ivu-drawer-wrap {
-    z-index: 8899;
-}
+.ivu-drawer-mask { z-index: 8888; }
+.ivu-drawer-wrap { z-index: 8899; }
 /* 改变一下默认的tab样式 适应我的主题 */
 .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-nav-container { height: 37px; padding-left: 4px; }
 .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab{ background: #fff; height: 36px; line-height: 27px;}
 .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab-active{ background: #f5f7f9; height: 37px; }
 /* 面板分割样式覆盖 */
-.ivu-split-trigger-vertical {
-    background: #fff;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-/* 下拉框最大高度 */
-.ivu-select-dropdown-list {
-    max-height: 300px;
-}
+.ivu-split-trigger-vertical { background: #fff; box-shadow: none; }
