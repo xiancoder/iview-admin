@@ -22,22 +22,28 @@
                     <Option v-for="option in dataSet.state" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
-                <Select v-model="search.age" placeholder="请选择年龄" style="width: 180px">
+                <Button type="default" @click="showMoreSearch=!showMoreSearch">
+                    {{ showMoreSearch?'隐藏更多':'显示更多' }}
+                    <Icon :size="18" :type="showMoreSearch?'md-arrow-dropdown':'md-arrow-dropup'"></Icon>
+                </Button>
+                <br v-show="showMoreSearch" />
+                <Select v-model="search.age" placeholder="请选择年龄" v-show="showMoreSearch" style="width: 180px">
                     <Option value="0" label="全部"></Option>
                     <Option v-for="option in dataSet.age" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
-                <Select v-model="search.stay" placeholder="请选择时长" style="width: 180px">
+                <Select v-model="search.stay" placeholder="请选择时长" v-show="showMoreSearch" style="width: 180px">
                     <Option value="0" label="全部"></Option>
                     <Option v-for="option in dataSet.stay" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
-                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
-                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
-                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
-                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
-                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
-                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
+                <Input type="text" v-model.trim="search.businessName" v-show="showMoreSearch" placeholder="请输入姓名" style="width: 180px"/>
+                <Input type="text" v-model.trim="search.businessName" v-show="showMoreSearch" placeholder="请输入姓名" style="width: 180px"/>
+                <Input type="text" v-model.trim="search.businessName" v-show="showMoreSearch" placeholder="请输入姓名" style="width: 180px"/>
+                <br v-show="showMoreSearch" />
+                <Input type="text" v-model.trim="search.businessName" v-show="showMoreSearch" placeholder="请输入姓名" style="width: 180px"/>
+                <Input type="text" v-model.trim="search.businessName" v-show="showMoreSearch" placeholder="请输入姓名" style="width: 180px"/>
+                <Input type="text" v-model.trim="search.businessName" v-show="showMoreSearch" placeholder="请输入姓名" style="width: 180px"/>
                 <br />
                 <Button type="primary" :loading="loading.table" @click="hendleSearch">搜索</Button>
                 <Button type="default" :loading="loading.table" @click="hendleReset">重置</Button>
@@ -133,6 +139,7 @@ export default {
             ],
             'serrchParam': null, // 实际搜索项 [[模版变量不要动]]
             'tableData': [], // 表格内容 [[模版变量不要动]]
+            'showMoreSearch': false, // 显示更多的搜索项
             end1: 1 // 防呆设计
         }
     },

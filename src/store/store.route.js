@@ -102,7 +102,9 @@ export default {
                 if (e.message) list.splice(e.message, 1)
             }
             */
-            const index = list.findIndex(function (row) { return name.replace(/@.*/, '') === row.name })
+            const index = list.findIndex(function (row) {
+                return name === row.name || name.replace(/@.*/, '') === row.name
+            })
             const data = {
                 name,
                 title: routeInfo.title,

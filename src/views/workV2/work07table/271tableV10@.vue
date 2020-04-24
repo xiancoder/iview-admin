@@ -37,6 +37,7 @@
                 <Button type="primary" :loading="loading.btn1" @click="hendleCreate" class="fr">创建表格</Button>
                 <Button type="primary" @click="hendleAdd" class="fr">回跳信息保留</Button>
             </div>
+            <Alert type="warning" show-icon> 请注意，这里是正式环境，切勿尝试，如有需要请切换 <a href="">切换环境</a> </Alert>
             <Table border :loading="loading.table" :columns="columns" :data="tableData"
                 @on-sort-change="hendleSort">
                 <template slot-scope="{ row, index }" slot="op">
