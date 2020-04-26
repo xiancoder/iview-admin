@@ -286,10 +286,11 @@ export default {
                     resolve(res.data.list)
                 } else {
                     error(res.res) // 报错并继续reject
-                    reject()
+                    resolve({list: [], listOneLevel: []})
                 }
             }).catch(e => {
                 error(e.message) // ajax异常后 报错并中止操作
+                reject()
             })
         })
     },

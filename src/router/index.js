@@ -158,7 +158,6 @@ router.beforeEach((to, from, next) => {
         )
         return next({ replace: true })
     }
-
     if (Store.state.route.doNotDrawRouter) { // 回退再前进 之间的页面不做渲染
         console.info(
             '%c 资料库 %c 准备跳转 历史记录管理 ',
@@ -202,34 +201,24 @@ router.beforeEach((to, from, next) => {
 
     const isLocked = Store.state.system.locking
     const goLocking = lockPowerList.includes(to.name)
-    if (isLocked && !goLocking) { // 已锁定去其他页 - 禁止
-        return next(false)
-    }
-
-    if (goLocking) {
-        if (!isLocked) {
-            console.info(
-                '%c 资料库 %c 未锁定状态去锁定页面 ',
-                'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
-                'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
-                '-'
-            )
-            return next()
-        }
+    if (!goLocking && isLocked) { // 已锁定去其他页 - 禁止
         console.info(
             '%c 资料库 %c 锁定状态不允许去非锁定页面 ',
             'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
             'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
             '-'
         )
-        return next({ replace: true, name: 'locking' })
+        return next(false)
+    }
+    if (goLocking) { // 去锁定页面 - 直达
+        return next()
     }
 
     Store.dispatch('route/setBreadCrumbList', to.name) // 面包屑
 
-    if (specialPowerList.includes(to.name)) {
+    if (specialPowerList.includes(to.name) || homePage === to.name) {
         console.info(
-            '%c 资料库 %c 特殊不走鉴权 ',
+            '%c 资料库 %c [特殊页面/首页]不走鉴权 ',
             'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
             'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
             '-'
@@ -237,17 +226,14 @@ router.beforeEach((to, from, next) => {
         return next()
     }
 
-    if (specialPowerList.includes(to.name)) {
+    Store.dispatch('route/hasPower', to.name).then((bool) => { // 鉴权
         console.info(
-            '%c 资料库 %c 默认不走鉴权 ',
+            '%c 资料库 %c 鉴权 ',
             'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
             'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
-            '-'
+            bool ? '有权限' : '无权限'
         )
-        return next()
-    }
-
-    const goPowerPage = () => { // 权限页面的判断
+        if (!bool) { return next({name: 'error403'}) }
         LoadingBarRun(true) // 顶部进度条
         Store.dispatch('route/keepalive', to.name) // 路由keepAlive管理 当前页缓存
 
@@ -274,17 +260,6 @@ router.beforeEach((to, from, next) => {
             '-'
         )
         next() // 进入页面
-    }
-
-    Store.dispatch('route/hasPower', to.name).then((bool) => { // 鉴权
-        console.info(
-            '%c 资料库 %c 鉴权 ',
-            'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
-            'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
-            bool ? '有权限' : '无权限'
-        )
-        if (!bool) { return next({name: 'error403'}) }
-        goPowerPage()
     })
 })
 

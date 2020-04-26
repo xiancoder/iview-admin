@@ -40,24 +40,20 @@ export default {
             const bca = power2BreadCrumb(state.routeList, routeName)
             commit('BREADCRUMBLIST', bca)
         },
-        getPowerList ({ commit }) { // 触发读取权限接口
+        getPowerList ({ commit }, powerList) { // 触发读取权限接口
             return new Promise((resolve, reject) => {
-                Api.system.getPowerList().then(powerList => { // 读取权限
+                const logic = (powerList) => { // 读取权限
                     const { list, listOneLevel } = power2routesII(powerList) // 传递给路由模块计算解析
                     commit('POWERLIST', powerList)
                     commit('MENULIST', list)
                     commit('ROUTELIST', listOneLevel)
                     resolve()
-                })
-            })
-        },
-        onlineResetPowerList ({ commit }, powerList) { // 临时 在线编辑权限接口
-            return new Promise((resolve, reject) => {
-                const { list, listOneLevel } = power2routesII(powerList) // 传递给路由模块计算解析
-                commit('POWERLIST', powerList)
-                commit('MENULIST', list)
-                commit('ROUTELIST', listOneLevel)
-                resolve()
+                }
+                if (powerList) {
+                    logic(powerList)
+                } else {
+                    Api.system.getPowerList().then(logic).catch(() => logic([]))
+                }
             })
         },
         hasPower ({ state }, name) { // 判断是否有权限 得多考虑权限没有返回的情况

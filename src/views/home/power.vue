@@ -111,7 +111,7 @@ export default {
         },
         handleSubmit () {
             this.loading = true
-            this.$store.dispatch('route/onlineResetPowerList', this.targetKeys3).then(() => {
+            this.$store.dispatch('route/getPowerList', this.targetKeys3).then(() => {
                 this.loading = false
             })
         },
