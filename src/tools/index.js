@@ -215,6 +215,34 @@ export const h = { // 通用渲染格式 for 表格 (即将废弃)
             ])
         }
     },
+    avatar2: (a, b, c, d) => {
+        return (h, params) => {
+            const row = params.row;
+            let ds = []
+            if (Object.prototype.toString.call(row[d]) === '[object Array]') ds = row[d]
+            if (Object.prototype.toString.call(row[d]) === '[object String]') ds = row[d].split(',')
+            return h('div', {}, [
+                h('div', {
+                    style: { 'display': 'inline-block', 'vertical-align': 'middle', 'margin-right': '10px' }
+                }, [
+                    row[a]
+                        ? h('Avatar', { props: { src: row[a] } })
+                        : h('Avatar', { style: { color: '#f56a00', 'background-color': '#fde3cf' } }, row[b][0])
+                ]),
+                h('div', {
+                    style: { 'display': 'inline-block', 'vertical-align': 'middle', 'margin': '10px 0' }
+                }, [
+                    h('div', (row[b] || '-') + ' ' + (row[c] || '')),
+                    ds.map(item => {
+                        return h('Tag', {
+                            props: { color: 'blue' },
+                            style: { 'text-align': 'center', 'padding': '1px 4px', 'display': 'inline-block' }
+                        }, item);
+                    })
+                ])
+            ])
+        }
+    },
     // 渲染字符串列表 默认逗号分隔
     // 字符串, 分隔符
     strList1: (a, b) => {

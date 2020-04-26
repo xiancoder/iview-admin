@@ -167,6 +167,8 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '271tableV10DHC2@mixin', title: '表格v10的DHCMixin', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10DHC2@modal', title: '表格v10的DHC弹框表单', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10DHC2@typesetting', title: '表格v10的DHC合理排版', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10DHC2@fuza', title: '表格v10的DHC复杂结构', hideMenu: true},
+                {power: 'workv2-2', path: '271tableV10DHC2@zongheng', title: '表格v10的DHC纵横结构', hideMenu: true},
                 {power: 'workv2-2', path: '271tableV10dongtai', title: '表格v10的动态显隐'},
                 {power: 'workv2-2', path: '272formV10', title: '表单v10模版规范'},
                 {power: 'workv2-2', path: '272formV10DHC', title: '表单v10的DHC1'},
