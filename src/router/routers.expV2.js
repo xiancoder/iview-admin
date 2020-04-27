@@ -24,6 +24,7 @@ export default makeMultiLevelRoute({
             path: 'exp01', title: '卷零壹', icon: 'md-camera',
             children: [
                 {power: 'expv2-12345', path: '010mockData', title: '假数据mock专家'},
+                {power: 'expv2-12345', path: '010mockApi', title: '假接口mock专家'},
                 {power: 'expv2-12345', path: '011base64pic', title: 'bs64 常用图片'},
                 {power: 'expv2-12345', path: '012asyncFunction', title: '异步方法概述'},
                 {power: 'expv2-12345', path: '013sonaskfather', title: '子组件控制父组件'},
