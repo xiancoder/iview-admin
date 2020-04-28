@@ -91,7 +91,8 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '226vueVision', title: 'Node 运行时编译'},
                 {power: 'workv2-2', path: '226webpackPluginFilemanager', title: 'filemanager-w-p'},
                 {power: 'workv2-2', path: '228fireEvent', title: '尝试触发事件'},
-                {power: 'workv2-2', path: '229twoLogin', title: '两个角色登录入口'}
+                {power: 'workv2-2', path: '229twoLogin', title: '两个角色登录入口'},
+                {power: 'workv2-2', path: '229logincss', title: '登录界面样式'}
             ]
         },
         {

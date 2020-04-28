@@ -49,17 +49,17 @@
                         <input v-show="row2.edit" type="text" v-model="row2.dosc"/>
                         <span v-show="!row2.edit">{{row2.dosc}}</span>
                         <Icon type="md-flower" size="20" @click="row2.edit=!row2.edit" title="修改提交"/>
-                        <Icon type="md-ionic" size="20" @click="row2.type=1;row2.value='\'\'';row2.dosc='啥'" title="字符串"/>
+                        <Icon type="md-paper" size="20" @click="row2.type=1;row2.value='\'abcd\'';row2.dosc='一段文本'" title="字符串"/>
                         <Icon type="md-ionic" size="20" @click="row2.type=2;row2.value='\'2020-4-27\'';row2.dosc='日期'" title="日期"/>
-                        <Icon type="md-ionic" size="20" @click="row2.type=3;row2.value=0;row2.dosc='0代表XX,1代表XX'" title="布尔01"/>
-                        <Icon type="md-ionic" size="20" @click="row2.type=4;row2.value=200;row2.dosc='数字,'" title="数字金钱"/>
-                        <Icon type="md-ionic" size="20" @click="row2.type=5;row2.value=1;row2.dosc='0代表全部,1代表XX,2代表XX'" title="枚举"/>
-                        <Icon type="md-ionic" size="20" @click="row2.type=6;row2.value='[]';row2.dosc='数组'" title="数组"/>
-                        <Icon type="md-ionic" size="20" @click="row2.type=7;row2.value='\'柳依依\'';row2.dosc='名字'" title="名字"/>
-                        <Icon type="md-ionic" size="20" @click="row2.type=8;row2.value='\'missHaHeHo\'';row2.dosc='账号'" title="账号"/>
-                        <Icon type="md-ionic" size="20" @click="row2.type=9;row2.value='\'AAA@sina.com\'';row2.dosc='邮箱'" title="邮箱"/>
-                        <Icon type="md-ionic" size="20" @click="row2.type=10;row2.value='2';row2.dosc='ID'" title="ID"/>
-                        <Icon type="md-close-circle" size="20" @click="row.params.splice(index,1)" title="移除结果列"/>
+                        <Icon type="ios-switch" size="20" @click="row2.type=3;row2.value=0;row2.dosc='0代表XX,1代表XX'" title="布尔01"/>
+                        <Icon type="md-timer" size="20" @click="row2.type=4;row2.value=200;row2.dosc='数字,'" title="数字金钱"/>
+                        <Icon type="md-git-compare" size="20" @click="row2.type=5;row2.value=1;row2.dosc='0代表全部,1代表XX,2代表XX'" title="枚举"/>
+                        <Icon type="md-cube" size="20" @click="row2.type=6;row2.value='[]';row2.dosc='数组'" title="数组"/>
+                        <Icon type="md-contact" size="20" @click="row2.type=7;row2.value='\'柳依依\'';row2.dosc='名字'" title="名字"/>
+                        <Icon type="md-person" size="20" @click="row2.type=8;row2.value='\'missHaHeHo\'';row2.dosc='账号'" title="账号"/>
+                        <Icon type="md-at" size="20" @click="row2.type=9;row2.value='\'AAA@sina.com\'';row2.dosc='邮箱'" title="邮箱"/>
+                        <Icon type="md-ribbon" size="20" @click="row2.type=10;row2.value='2';row2.dosc='ID'" title="ID"/>
+                        <Icon type="md-close-circle" size="20" @click="row.list.splice(index,1)" title="移除结果列"/>
                     </p>
                     <p>____________}],
                     <p v-show="row.page">____________count: 200
