@@ -46,11 +46,10 @@ const plugins = [
         reducer: (store) => {
             const system = store.system
             const {tagNavList} = store.route
-            const {token} = store.admin
+            // const {token} = store.admin 重要信息单独存放
             return { // 只储存指定的状态
                 system: system,
-                route: {tagNavList},
-                admin: {token}
+                route: {tagNavList}
             }
         }
     })

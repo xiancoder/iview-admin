@@ -72,7 +72,7 @@
                     <p>____'url':'<span>{{row.url}}</span>', // 接口URL</p>
                     <p>____'method':'<span>{{row.method}}</span>', // 接口请求方式</p>
                     <p>____'params':{</p>
-                    <p v-for="(row2,index) in row.list">________'<span>{{row2.key}}</span>' :&nbsp;
+                    <p v-for="(row2) in row.list">________'<span>{{row2.key}}</span>' :&nbsp;
                         <span>{{row2.value}}</span>, //&nbsp;
                         <span>{{row2.dosc}}</span>
                     </p>
@@ -138,21 +138,21 @@ export default {
                 res.data.count = 200
             }
             let obj = {}
-            for(var i = 0, l = row.list.length; i < l; i++){
+            for (var i = 0, l = row.list.length; i < l; i++) {
                 let x = ''
                 switch (row.list[i].type) {
-                     case 1: x = '@csentence(1, 3)'; break
-                     case 2: x = '@date("yyyy-MM-dd")'; break
-                     case 3: x = '0'; break
-                     case 4: x = '1250'; break
-                     case 5: x = '1'; break
-                     case 6: x = []; break
-                     case 7: x = '@cname()'; break
-                     case 8: x = '@word(6, 9)'; break
-                     case 9: x = '@email()'; break
-                     case 10: x = '@increment(0)'; break
-                     default: x = '-'
-                } 
+                    case 1: x = '@csentence(1, 3)'; break
+                    case 2: x = '@date("yyyy-MM-dd")'; break
+                    case 3: x = '0'; break
+                    case 4: x = '1250'; break
+                    case 5: x = '1'; break
+                    case 6: x = []; break
+                    case 7: x = '@cname()'; break
+                    case 8: x = '@word(6, 9)'; break
+                    case 9: x = '@email()'; break
+                    case 10: x = '@increment(0)'; break
+                    default: x = '-'
+                }
                 obj[row.list[i].key] = x
             }
             const d = Mock.mock({

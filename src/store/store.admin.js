@@ -18,7 +18,7 @@ export default {
         userRoleName: '无', // 管理员角色NAME
         userCertificatId: 0, // 账户类型 1 个人 2 公司
 
-        token: '', // 服务器token 用于存在header中与服务器交换数据使用
+        token: window.localStorage.getItem('token'), // 服务器token 用于存在header中与服务器交换数据使用
 
         platformId: 0, // 平台ID 1 A平台 2 B平台 3 C平台 4 D平台
         firstAuthNotise: false, // 是否第一次提示请认证通知
@@ -40,7 +40,7 @@ export default {
         USERROLENAME (state, v) { state.userRoleName = v },
         USERCERTIFICATID (state, v) { state.usercertificatId = parseInt(v) },
 
-        TOKEN (state, token) { window.localStorage.clear(); state.token = token },
+        TOKEN (state, token) { window.localStorage.clear(); state.token = token; window.localStorage.setItem('token', token) },
 
         PLATFORMID (state, v) { state.platformId = v },
         FIRSTAUTH (state, v) { state.firstAuth = parseInt(v) === 1 },

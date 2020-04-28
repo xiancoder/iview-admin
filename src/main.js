@@ -118,6 +118,22 @@ new Vue({ // 实例化
                 }
             })
         }
+        // 同一个浏览器只能一个用户登录
+        //  如果其他页面退出了 本页面刷新
+        //  如果其他页面登录 本页面刷新
+        window.addEventListener('storage', function (event) { //跨标签页通信
+            // 注意 本页面修改storage是无法触发事件的
+            // console.log(event.key + "=" + event.newValue)
+            if (event.key === 'token') {
+                window.location.reload()
+                console.info(
+                    '%c 资料库 %c 登录状态已改变 ',
+                    'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
+                    'background:yellow; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                    '-'
+                )
+            }
+        })
     },
     created: function () {
         // 在实例已经创建完成之后被调用。
