@@ -6,7 +6,7 @@
                     <div slot="top" class="pane top-pane"></div>
                     <div slot="bottom" class="pane bottom-pane"></div>
                     <div slot="trigger" class="custom-trigger">
-                        <Icon class="trigger-icon" :size="22" type="resize-vertical" color="#fff"/>
+                        <Icon class="trigger-icon" :size="15" type="md-options"/>
                     </div>
                 </split-pane>
             </div>
@@ -56,7 +56,7 @@ export default {
         }
     }
     .custom-trigger{
-        width: 20px; height: 20px; border-radius: 50%; background: #000000;
+        width: 20px; height: 20px; border-radius: 50%; background: #f8f8f9;
         .center-middle;
         box-shadow: 0 0 6px 0 rgba(28, 36, 56, 0.4); position: absolute;
         i.trigger-icon{

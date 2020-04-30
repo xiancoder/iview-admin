@@ -27,7 +27,7 @@
                     </Option>
                 </Select>
                 <br />
-                <Button type="primary" :loading="loading.table" @click="hendleSearch">搜索</Button>
+                <Button type="warning" :loading="loading.table" @click="hendleSearch">搜索</Button>
                 <Button type="default" :loading="loading.table" @click="hendleReset">重置</Button>
             </div>
             <Table border :loading="loading.table" :columns="columns" :data="tableData"

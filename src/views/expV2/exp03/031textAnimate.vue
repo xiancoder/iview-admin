@@ -21,6 +21,12 @@
                 <hr />
                 <button @click="handleBtnClick1">handleBtnClick1</button>
                 <button @click="handleBtnClick2">handleBtnClick2</button>
+                <transition name="fuck">
+                    <div v-if="show" @click="show = !show"
+                        style=" position: fixed; top: 0; bottom: 0; left: 0; right: 0; background: #00000096; z-index: 9998; ">
+                        <img src="static/img.byj/3.png" alt="" style="position: fixed; min-width: 50px; max-width: 80%; max-height: 80%; z-index: 9999; top: 50%; left: 50%; transition: all 300ms ease 0s; transform: translate(-50%, -50%); cursor: -webkit-zoom-out;"/>
+                    </div>
+                </transition>
             </div>
             <div class="blogFooter">
                 <Tag color="green">收集</Tag>

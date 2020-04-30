@@ -17,7 +17,7 @@
                             <Option v-for="option in dataSet.postList" :value="option.id" :key="option.id" :label="option.name" ></Option>
                         </Select>
                         <br />
-                        <Button type="primary" :loading="loading.table" @click="hendleSearch">搜索</Button>
+                        <Button type="warning" :loading="loading.table" @click="hendleSearch">搜索</Button>
                         <Button type="default" :loading="loading.table" @click="hendleReset">重置</Button>
                     </div>
                     <div class="tableTool" v-show="tableSelection.length>0">

@@ -28,7 +28,7 @@
                     </Option>
                 </Select>
                 <br />
-                <Button type="primary" :loading="loading.table" @click="hendleSearch">搜索</Button>
+                <Button type="warning" :loading="loading.table" @click="hendleSearch">搜索</Button>
                 <Button type="default" :loading="loading.table" @click="hendleReset">重置</Button>
                 <Button type="primary" :loading="loading.btn4" @click="hendleMockInsert" class="fr">假数据插入</Button>
                 <Button type="primary" :loading="loading.btn3" @click="hendleErrorTry" class="fr">错误演示</Button>

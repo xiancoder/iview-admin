@@ -3,8 +3,10 @@
         <Tabs :value="currentRouteName" closable @on-click="goto" type="card" @on-tab-remove="handleClose">
             <TabPane label="首页" :name="homePage" :closable="false">
             </TabPane>
+
             <TabPane v-for="(row, index) in list" :key="index" :label="row.title" :name="row.name">
             </TabPane>
+
             <div slot="extra">
                 <Dropdown transfer @on-click="handleTagsOption">
                     <Button><Icon type="ios-arrow-down"/></Button>
@@ -81,3 +83,11 @@ export default {
     }
 }
 </script>
+<style type="text/css" scoped>
+    .contextmenu {
+        position: absolute; margin: 0; padding: 5px 0; background: #fff; z-index: 1000;
+        list-style-type: none; border-radius: 4px; box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .1);
+    }
+    .contextmenu li { margin: 0; padding: 5px 15px; cursor: pointer; }
+    .contextmenu li:hover { background: #eee; }
+</style>

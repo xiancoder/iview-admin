@@ -7,6 +7,7 @@
                 <div class="blogContent" v-highlight>
                     <p><Icon type="md-checkmark" style="color:green"/> 本模板经历实战可以使用 </p>
                     <p><Icon type="md-checkmark" style="color:green"/> 批量选中数据 分页以后 table不保存旧选中 返回上一页 不会选中已有内容 </p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 重大bug 每次读取分页后一定要清空选中数组 不然bug滚滚而来 </p>
                 <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                     <p>给 data 项设置特殊 key _checked: true 可以默认选中当前项。</p>
                     <p>给 data 项设置特殊 key _disabled: true 可以禁止选择当前项。</p>
@@ -40,12 +41,13 @@
                     <script type="text/js">
                         this.$api.task.listMine(this.serrchParam).then((info) => { // ajax
                             this.loading = false; // 加载完成
-                            const infolist = (info.list || []).map(row => { // 根据条件禁止选中
+                            const infolist = (info.list || []).map(row => { // 根据条件禁止选中 // --------------------参考
                                 row._disabled = row.taskNumber > 5500
                                 return row
                             })
                             this.tableData = infolist
                             this.page.rowCount = info.rowcount
+                            this.tableSelection = [] // -------------------------------------------------------重要
                         })
                     </script>
                 </div>
@@ -118,7 +120,7 @@ export default {
             'serrchParam': null, // 实际搜索项
             'serrchBack': null, // 搜索项备份
             'tableData': [], // 表格内容
-            'tableSelection': [], // 表格选中项
+            'tableSelection': [], // 表格选中项 // -------------------------------------------------------重要
             end1: 1 // 防呆设计
         }
     },
@@ -161,7 +163,7 @@ export default {
         handleSelectAll (status) {
             this.$refs.tableID.selectAll(status);
         },
-        selectedChange (selection) {
+        selectedChange (selection) { // -------------------------------------------------------重要
             const ids = []
             selection = selection || []
             selection.forEach(row => { ids.push(row.id) })
@@ -175,12 +177,13 @@ export default {
             this.loading = true // 加载中
             this.$api.task.listMine(this.serrchParam).then((info) => { // ajax
                 this.loading = false; // 加载完成
-                const infolist = (info.list || []).map(row => { // 根据条件禁止选中
+                const infolist = (info.list || []).map(row => { // 根据条件禁止选中 // --------------------参考
                     row._disabled = row.taskNumber > 5500
                     return row
                 })
                 this.tableData = infolist
                 this.page.rowCount = info.rowcount
+                this.tableSelection = [] // -------------------------------------------------------重要
             })
         },
         end2: nothing // 防呆设计

@@ -28,7 +28,7 @@
                     </Option>
                 </Select>
                 <br />
-                <Button type="primary" :loading="loading.table" @click="hendleSearch">搜索</Button>
+                <Button type="warning" :loading="loading.table" @click="hendleSearch">搜索</Button>
                 <Button type="default" :loading="loading.table" @click="hendleReset">重置</Button>
             </div>
             <Table border :loading="loading.table" :columns="columns" :data="tableData"
@@ -121,21 +121,21 @@ export default {
                 {title: '性别', width: 80, align: 'center', key: 'sex', render: (h, params) => {
                     const row = params.row;
                     if (row['sex'] === 1) {
-                        return h('Icon', { props: {type: 'md-male'}, style: {color: 'green'}, attrs: {title: '男'} })
+                        return h('Icon', {props: {type: 'md-male'}, style: {color: 'green'}, attrs: {title: '男'}})
                     } else {
-                        return h('Icon', { props: {type: 'md-female'}, style: {color: 'red'}, attrs: {title: '女'} })
+                        return h('Icon', {props: {type: 'md-female'}, style: {color: 'red'}, attrs: {title: '女'}})
                     }
                 }},
                 {title: '状态', width: 80, align: 'center', key: 'state', render: (h, params) => {
                     const row = params.row;
                     if (row['state'] === 1) {
                         return [
-                            h('Icon', { props: {type: 'ios-flash-outline'}, style: {color: 'red'}}),
+                            h('Icon', {props: {type: 'ios-flash-outline'}, style: {color: 'red'}}),
                             h('span', '未运行')
                         ]
                     } else {
                         return [
-                            h('Icon', { props: {type: 'ios-flash'}, style: {color: 'green'}}),
+                            h('Icon', {props: {type: 'ios-flash'}, style: {color: 'green'}}),
                             h('span', '运行中')
                         ]
                     }
@@ -143,14 +143,14 @@ export default {
                 {title: '年龄', width: 80, align: 'center', key: 'age', render: (h, params) => {
                     const row = params.row;
                     return [
-                        h('Icon', { props: {type: 'md-ribbon'}, style: {color: 'red'}}),
+                        h('Icon', {props: {type: 'md-ribbon'}, style: {color: 'red'}}),
                         h('span', row.age)
                     ]
                 }},
                 {title: '留学时长', width: 80, align: 'center', key: 'stay', render: (h, params) => {
                     const row = params.row;
                     return [
-                        h('Icon', { props: {type: 'md-pricetag'}, style: {color: 'red'}}),
+                        h('Icon', {props: {type: 'md-pricetag'}, style: {color: 'red'}}),
                         h('span', row.age)
                     ]
                 }},
