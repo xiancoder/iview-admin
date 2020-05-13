@@ -48,7 +48,7 @@
                         <div>
                             <Dropdown @on-click="handleMenuClick">
                                 <Badge :dot="!!unreadCount">
-                                    <Avatar style="color: #f56a00;background-color: #fde3cf" :src="userAvatar"
+                                    <Avatar style="color: #f56a00;background-color: #fde3cf;border: 1px solid #92caf6;" :src="userAvatar"
                                         @on-error="userAvatar=''"
                                         :icon="userName?'':'ios-person'">{{userName[0]}}</Avatar>
                                 </Badge>

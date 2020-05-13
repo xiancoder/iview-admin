@@ -7,52 +7,52 @@ export default makeMultiLevelRoute({
     path: 'expV2', title: '经验集 V2', icon: 'md-menu',
     children: [
         {
-            path: 'exp00', title: '卷零零', icon: 'md-camera',
+            path: 'exp00', title: '卷零零', icon: 'md-beer',
             children: [
-                {power: 'expv2-12345', path: '001weixingzhreadme', title: 'WX公众号开发必读'},
-                {power: 'expv2-12345', path: '002eslint', title: 'EsLint 校验规则'},
-                {power: 'expv2-12345', path: '003weixingzhkaifa', title: 'WX公众号简单流程'},
-                {power: 'expv2-12345', path: '004echart', title: '图表 ECHART'},
-                {power: 'expv2-12345', path: '004sparkline', title: '图表 SPARKLINE'},
-                {power: 'expv2-12345', path: '005panglu', title: '旁路系统介绍'},
-                {power: 'expv2-12345', path: '006jsx', title: 'Jsx 写法尝试'},
-                {power: 'expv2-12345', path: '007douyin', title: '抖音 logo css'},
-                {power: 'expv2-12345', path: '008qianduanzhidao', title: '前端之道'},
-                {power: 'expv2-12345', path: '009zujiantongxin', title: '组建通信'}
+                {power: 'expv2-12345', icon: 'ios-alarm', path: '001weixingzhreadme', title: 'WX公众号开发必读'},
+                {power: 'expv2-12345', icon: 'ios-alert', path: '002eslint', title: 'EsLint 校验规则'},
+                {power: 'expv2-12345', icon: 'ios-american-football', path: '003weixingzhkaifa', title: 'WX公众号简单流程'},
+                {power: 'expv2-12345', icon: 'ios-appstore', path: '004echart', title: '图表 ECHART'},
+                {power: 'expv2-12345', icon: 'ios-basketball', path: '004sparkline', title: '图表 SPARKLINE'},
+                {power: 'expv2-12345', icon: 'md-analytics', path: '005panglu', title: '旁路系统介绍'},
+                {power: 'expv2-12345', icon: 'md-aperture', path: '006jsx', title: 'Jsx 写法尝试'},
+                {power: 'expv2-12345', icon: 'md-archive', path: '007douyin', title: '抖音 logo css'},
+                {power: 'expv2-12345', icon: 'md-backspace', path: '008qianduanzhidao', title: '前端之道'},
+                {power: 'expv2-12345', icon: 'md-boat', path: '009zujiantongxin', title: '组建通信'}
             ]
         }, {
-            path: 'exp01', title: '卷零壹', icon: 'md-camera',
+            path: 'exp01', title: '卷零壹', icon: 'md-bulb',
             children: [
-                {power: 'expv2-12345', path: '010mockData', title: '假数据mock专家'},
-                {power: 'expv2-12345', path: '010mockApi', title: '假接口mock专家'},
-                {power: 'expv2-12345', path: '011base64pic', title: 'bs64 常用图片'},
-                {power: 'expv2-12345', path: '012asyncFunction', title: '异步方法概述'},
-                {power: 'expv2-12345', path: '013sonaskfather', title: '子组件控制父组件'},
-                {power: 'expv2-12345', path: '014manyDataset', title: '多地数据缓存原则'},
-                {power: 'expv2-12345', path: '015seo', title: '需知的SEO知识'},
-                {power: 'expv2-12345', path: '016maodian', title: 'VUE锚点定位'},
-                {power: 'expv2-12345', path: '017outmemoy', title: 'Node 超出内存'},
-                {power: 'expv2-12345', path: '018getword', title: '匹配网页关键字'}
+                {power: 'expv2-12345', icon: 'md-arrow-round-down', path: '010mockData', title: '假数据mock专家'},
+                {power: 'expv2-12345', icon: 'md-arrow-round-up', path: '010mockApi', title: '假接口mock专家'},
+                {power: 'expv2-12345', icon: 'md-arrow-up', path: '011base64pic', title: 'bs64 常用图片'},
+                {power: 'expv2-12345', icon: 'md-bicycle', path: '012asyncFunction', title: '异步方法概述'},
+                {power: 'expv2-12345', icon: 'md-attach', path: '013sonaskfather', title: '子组件控制父组件'},
+                {power: 'expv2-12345', icon: 'md-bug', path: '014manyDataset', title: '多地数据缓存原则'},
+                {power: 'expv2-12345', icon: 'ios-boat-outline', path: '015seo', title: '需知的SEO知识'},
+                {power: 'expv2-12345', icon: 'ios-bug-outline', path: '016maodian', title: 'VUE锚点定位'},
+                {power: 'expv2-12345', icon: 'ios-bug', path: '017outmemoy', title: 'Node 超出内存'},
+                {power: 'expv2-12345', icon: 'ios-brush-outline', path: '018getword', title: '匹配网页关键字'}
             ]
         }, {
             path: 'exp02', title: '卷零贰', icon: 'md-game-controller-b',
             children: [
-                {power: 'expv2-12345', path: '021route', title: '路由跳转各种尝试'},
+                {power: 'expv2-12345', icon: 'ios-checkmark-circle-outline', path: '021route', title: '路由跳转各种尝试'},
                 {power: 'expv2-12345', path: '021route@add', title: '路由跳转添加', hideMenu: true},
-                {power: 'expv2-12345', path: '022extends', title: 'VUE组件间的继承'},
-                {power: 'expv2-12345', path: '023from', title: '表单基本样式'},
-                {power: 'expv2-12345', path: '024drag', title: '拖拽功能'},
-                {power: 'expv2-12345', path: '025jianrong', title: '兼容大数据'},
-                {power: 'expv2-12345', path: '026iviewDefault', title: 'Iview 控件默认配置'},
-                {power: 'expv2-12345', path: '027filter', title: '过滤器收集整理'},
-                {power: 'expv2-12345', path: '028jsnoad', title: 'js 屏蔽脚本广告'},
-                {power: 'expv2-12345', path: '028jsbacktoad', title: 'js 尝试后退切广告'},
-                {power: 'expv2-12345', path: '029modalColor', title: '弹框彩色样式'}
+                {power: 'expv2-12345', icon: 'ios-close-circle-outline', path: '022extends', title: 'VUE组件间的继承'},
+                {power: 'expv2-12345', icon: 'ios-cloud-circle-outline', path: '023from', title: '表单基本样式'},
+                {power: 'expv2-12345', icon: 'ios-cloud-done-outline', path: '024drag', title: '拖拽功能'},
+                {power: 'expv2-12345', icon: 'ios-cloudy-night-outline', path: '025jianrong', title: '兼容大数据'},
+                {power: 'expv2-12345', icon: 'md-closed-captioning', path: '026iviewDefault', title: 'Iview 控件默认配置'},
+                {power: 'expv2-12345', icon: 'ios-cog-outline', path: '027filter', title: '过滤器收集整理'},
+                {power: 'expv2-12345', icon: 'md-cloud-outline', path: '028jsnoad', title: 'js 屏蔽脚本广告'},
+                {power: 'expv2-12345', icon: 'md-code-download', path: '028jsbacktoad', title: 'js 尝试后退切广告'},
+                {power: 'expv2-12345', icon: 'md-cloudy', path: '029modalColor', title: '弹框彩色样式'}
             ]
         }, {
             path: 'exp03', title: '卷零叁', icon: 'md-game-controller-b',
             children: [
-                {power: 'expv2-12345', path: '031textAnimate', title: '文本动画'},
+                {power: 'expv2-12345', icon: 'ios-clock-outline', path: '031textAnimate', title: '文本动画'},
                 {power: 'expv2-12345', path: '032lizituan', title: 'canvas粒子图案效果'},
                 {power: 'expv2-12345', path: '033timeLine1', title: '时间线 Iview样式'},
                 {power: 'expv2-12345', path: '033timeLine2', title: '时间线 css样式1'},
