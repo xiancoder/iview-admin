@@ -51,12 +51,30 @@
                     <Button type="text" size="small">删除</Button>
                 </template>
             </Table>
+            <br />
+            <br />
+            <br />
+            <hr />
+            <span>
+                <Icon type="md-calendar" :size="16" title="日期"/> 2017/2/9
+                <Icon type="md-chatboxes" :size="16" title="评论"/> 0 Comments
+                <Icon type="ios-eye" :size="16" title="观看"/> 3 Views
+                <Icon type="md-thumbs-up" :size="16" title="点赞"/> 0 Times
+            </span>
+            <hr />
+            <span>
+                <Icon type="md-calendar" :size="16" title="日期"/> 2020-5-15
+                <Icon type="md-chatboxes" :size="16" title="评论"/> 50W+ Comments
+                <Icon type="ios-eye" :size="16" title="观看"/> 3K+ Views
+                <Icon type="md-thumbs-up" :size="16" title="点赞"/> 1888 Times
+            </span>
         </div>
     </div>
 </template>
 <script>
 import { h } from '@/tools' // 自定义常用工具
 import tab from './271tableV10DHC3'
+import '@/plugins/viewer' // 三方插件
 
 export default {
     name: 'workV2_work07table_271tableV10DHC3_typesetting', // 如果想用缓存必须声明页面name
