@@ -170,6 +170,7 @@ export default makeMultiLevelRoute({
             children: [
                 {power: 'expv2-22345', path: '110jumpbug', title: 'JS跳转误区/bug'},
                 {power: 'expv2-22345', path: '111zindexbug', title: 'z-index 的bug'},
+                {power: 'expv2-22345', path: '112stackingcontext', title: 'CSS层叠上下文'},
                 {power: 'expv2-22345', path: '114fileDown', title: '文件下载进度条'},
                 {power: 'expv2-22345', path: '115ajaxcache', title: '异步请求缓存'},
                 {power: 'expv2-22345', path: '116mount', title: '钩子函数流程'},

@@ -110,6 +110,7 @@
                                 <input class="xiangzhaosha-input" type="text" v-model="xiangzhaosha" placeholder="大声地说出我的名砸..你要找啥">
                                 <div class="xiangzhaosha-content">
                                     <div>
+                                        <span><b>快速目录 : </b> &nbsp;|&nbsp</span>
                                         <span v-for="item in routeList.filter(row=>{
                                             var v = xiangzhaosha.toLowerCase()
                                             return row.title.toLowerCase().includes(v) || row.path.toLowerCase().includes(v)
@@ -118,6 +119,14 @@
                                         </span>
                                     </div>
                                     <!-- template 里面放Button会导致页面滚动时候卡顿 -->
+                                </div>
+                                <div class="xiangzhaosha-content">
+                                    <div>
+                                        <span> <b>页面缓存 : </b> &nbsp;|&nbsp </span>
+                                        <span v-for="item in cacheList">
+                                            <b>{{item}}</b> &nbsp;|&nbsp
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

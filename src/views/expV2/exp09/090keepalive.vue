@@ -24,7 +24,7 @@
                 </script>
                 <p>使用keep-alive会将数据保留在内存中，如果要在每次进入页面的时候获取最新的数据，需要在activated阶段获取数据，承担原来created钩子中获取数据的任务。</p>
                 <p>结合router，缓存部分页面 使用$route.meta的keepAlive属性：</p>
-                <script type="text/html">
+                <script type="text/html" v-pre>
                     <keep-alive>
                         <router-view v-if="$route.meta.keepAlive"></router-view>
                     </keep-alive>
@@ -130,6 +130,9 @@
                     }
                 </script>
                 <p class="text-info">亲测有效</p>
+                <p>悲剧 自从我加上了三层菜单的结构 这个东西就不好使了 keep-alive :include="cacheList" 必须放在你想要生效的 router-view 外层</p>
+                <p>我为了搞多层菜单 引入了main2level 导致了本次记录的结果不生效 特此记录防止再错</p>
+                <p></p>
                 <p></p>
             </div>
             <div class="blogFooter">
@@ -142,7 +145,7 @@
 </template>
 <script>
 export default {
-    name: 'exp5_090keepalive',
+    name: 'expV2_exp09_090keepalive',
     data () {
         return {
             xxx: ''
@@ -150,7 +153,7 @@ export default {
     },
     methods: {
         godetail () {
-            this.$router.push({name: 'vxpV2_exp09_090keepalive@add'})
+            this.$router.push({name: 'expV2_exp09_090keepalive@add'})
         }
     },
     mounted () {

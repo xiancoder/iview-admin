@@ -75,6 +75,7 @@ import tab from './271tableV10DHC2'
 import from1 from './272formV10'
 
 export default {
+    name: 'workV2_work07table_271tableV10DHC2_modal', // 如果想用缓存必须声明页面name
     components: { tab, from1 },
     data () {
         return {

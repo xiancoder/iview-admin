@@ -68,6 +68,7 @@ import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工
 import tab from './271tableV10'
 
 export default {
+    name: 'workV2_work07table_271tableV10dongtai', // 如果想用缓存必须声明页面name
     components: { tab },
     data () {
         return {

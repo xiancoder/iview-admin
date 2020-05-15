@@ -24,7 +24,7 @@
                 <p>因为我们在App.vue中使用了keep-alive导致我们第二次进入的时候页面不会重新请求，即触发mounted函数。</p>
                 <p>有两个解决方案,一个增加activated()函数,每次进入新页面的时候再获取一次数据。</p>
                 <p>还有个方案就是在keep-alive中增加一个过滤，如下图所示：</p>
-                <script type="text/js" v-pre>
+                <script type="text/html" v-pre>
                     <div id="app">
                         <keep-alive exclude="Detail">
                         <router-view/>
@@ -33,7 +33,7 @@
                 </script>
                 <p>2.DOM做递归组件时</p>
                 <p>比如说detail.vue组件里有个list.vue子组件，递归迭代时需要调用自身name</p>
-                <script type="text/js" v-pre>
+                <script type="text/html" v-pre>
                     <div>
                         <div v-for="(item,index) of list" :key="index">
                             <div>

@@ -83,6 +83,7 @@ import { saveParamState, getParamState } from '@/tools' // 自定义常用工具
 import tab from './271tableV10DHC'
 
 export default {
+    name: 'workV2_work07table_271tableV10DHC_icon', // 如果想用缓存必须声明页面name
     components: { tab },
     data () {
         return {

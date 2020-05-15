@@ -22,7 +22,6 @@ export default {
             const list = [
                 {name: 'workV2_work07table_271tableV10DHC2@mixin', title: '表格v10的DHCMixin'},
                 {name: 'workV2_work07table_271tableV10DHC2@modal', title: '表格v10的DHC弹框表单'},
-                {name: 'workV2_work07table_271tableV10DHC2@typesetting', title: '表格v10的DHC合理排版'},
                 {name: 'workV2_work07table_271tableV10DHC2@fuza', title: '表格v10的DHC复杂结构'},
                 {name: 'workV2_work07table_271tableV10DHC2@zongheng', title: '表格v10的DHC纵横结构'}
             ]

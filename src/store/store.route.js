@@ -124,6 +124,7 @@ export default {
             else setTimeout(function () { commit('SPINLOADING', false) }, 500) // 不再延时
         },
         keepalive ({ state, commit }, toname) { // 启动关闭路由视图loading
+            toname = toname.replace(/[@|$]/g, '_')
             if (state.cacheList && state.cacheList.length) {
                 let includes = false
                 let ins = false
@@ -133,10 +134,10 @@ export default {
                 })
                 if (ins) {
                     console.info(
-                        '%c 资料库 %c KeepAlive 拒绝 ',
+                        '%c 资料库 %c 本页面已缓存 NoKeepAlive',
                         'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
                         'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
-                        '-'
+                        state.cacheList, toname
                     )
                     return false
                 }
@@ -145,16 +146,16 @@ export default {
                     list.push(toname)
                     commit('CACHELIST', list)
                     console.info(
-                        '%c 资料库 %c KeepAlive ',
+                        '%c 资料库 %c 页面缓存 KeepAlive',
                         'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
                         'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
-                        list
+                        list, toname
                     )
                     return false
                 }
             }
             console.info(
-                '%c 资料库 %c KeepAlive 拒绝 ',
+                '%c 资料库 %c 初始页面缓存 KeepAlive',
                 'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
                 'background:green; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
                 '-'

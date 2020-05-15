@@ -82,6 +82,7 @@ import tab from './271tableV10DHC2'
 import tableV12Minxin from '@/mixin/tableV12Minxin'
 
 export default {
+    name: 'workV2_work07table_271tableV10DHC2_mixin', // 如果想用缓存必须声明页面name
     components: { tab },
     data () {
         return {

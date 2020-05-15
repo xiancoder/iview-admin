@@ -77,6 +77,7 @@ import { h, confirmAjax, saveParamState, getParamState, alertMsg, goto } from '@
 import tab from './271tableV10'
 
 export default {
+    name: 'workV2_work07table_271tableV10_standard', // 如果想用缓存必须声明页面name
     components: { tab },
     data () {
         return {
@@ -169,7 +170,7 @@ export default {
             })
         },
         hendleAdd (row) { // 操作::添加功能
-            goto({name: 'workV2_work07table_271tableV10@$edit', query: {id: 333}})
+            goto({name: 'workV2_work07table_271tableV10@standard$edit', query: {id: 333}})
         },
         hendleEdit (row) { // 操作::编辑功能
             alertMsg(`姓名: ${row.name}<br/> 性别: ${row.sex}<br/> 状态: ${row.stare}<br/> 年龄: ${row.age}<br/> 留学时长: ${row.stay}<br/> `, '单元内容')

@@ -78,6 +78,7 @@ import tab from './271tableV10'
 import tab2 from './271tableV10HHH'
 
 export default {
+    name: 'workV2_work07table_271tableV10_tab', // 如果想用缓存必须声明页面name
     components: { tab, tab2 },
     data () {
         return {

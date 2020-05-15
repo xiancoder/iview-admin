@@ -64,7 +64,7 @@
                         this.$router.go(-2)
                         setTimeout(() => {
                             this.$store.dispatch('route/noRender', false).then(() => {
-                                this.$router.push({'name': 'vxpV2_exp05_057history@3'})
+                                this.$router.push({'name': 'expV2_exp05_057history@3'})
                             })
                         },500)
                     })

@@ -41,7 +41,7 @@ export default {
     methods: {
         postForm () {
             // this.$router.go(-1)
-            goto('workV2_work07table_271tableV10@')
+            goto('workV2_work07table_271tableV10@standard')
         },
         handleSubmit () {
             this.$refs['from0982'].validate((valid) => {

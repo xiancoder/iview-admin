@@ -56,7 +56,7 @@ export default {
                     console.info(
                         '%c 资料库 %c 管理员登录成功 ',
                         'background:#35495E;padding:1px;border-radius:3px 0 0 3px;color:#fff;',
-                        'background:yellow; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;',
+                        'background:yellow; padding: 1px; border-radius: 0 3px 3px 0;  color: #000;',
                         '-'
                     )
                     this.$router.push({ name: homePage })
