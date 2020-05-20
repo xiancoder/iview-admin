@@ -27,10 +27,10 @@
     </div>
 </template>
 <script>
-import tab from './271tableV10'
+import tab from './271tableV10ORC'
 
 export default {
-    name: 'workV2_work07table_271tableV10_fspo', // 如果想用缓存必须声明页面name
+    name: 'workV2_work07table_271tableV10ORC_fspo', // 如果想用缓存必须声明页面name
     components: { tab },
     data () {
         return {}

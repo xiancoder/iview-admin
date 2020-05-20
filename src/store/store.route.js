@@ -99,7 +99,7 @@ export default {
             }
             */
             const index = list.findIndex(function (row) {
-                return name === row.name || name.replace(/@.*/, '') === row.name
+                return name === row.name || name.replace(/@.*/g, '') === row.name || name === row.name.replace(/@.*/g, '')
             })
             const data = {
                 name,

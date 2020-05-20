@@ -65,7 +65,7 @@
 import { extend, extendF, nothing } from '@/utils'
 
 import { h, saveParamState, getParamState } from '@/tools' // 自定义常用工具
-import tab from './271tableV10'
+import tab from './271tableV10ORC'
 
 export default {
     name: 'workV2_work07table_271tableV10dongtai', // 如果想用缓存必须声明页面name

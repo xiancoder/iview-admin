@@ -4,8 +4,14 @@
             <TabPane label="首页" :name="homePage" :closable="false">
             </TabPane>
 
-            <TabPane v-for="(row, index) in list" :key="index" :label="row.title" :name="row.name">
+            <TabPane v-for="(row, index) in list" :key="index+'a'+new Date().getTime()" :label="row.title" :name="row.name">
             </TabPane>
+            <!--
+                我们常常会给tabpane使用index作为绑定key，删除的时候，如你删除第一项，那么key为0的项会被删除，
+                但是由于数据双向绑定的原因，后面的项key值会依次改变，导致第二项的key也变为0，
+                然后handleTabRemove又检测到有key为0的项，会继续删除，导致删除出错的问题。
+                解决办法：给key值加上时间戳
+            -->
 
             <div slot="extra">
                 <Dropdown transfer @on-click="handleTagsOption">
@@ -24,7 +30,6 @@
 
 <script>
 import { goto } from '@/tools' // 自定义常用工具
-import beforeCloseFun from '@/mixin/router.beforeCloseFun'
 import { homePage } from '@/router/routers'
 
 export default {
@@ -61,22 +66,16 @@ export default {
                 return this.handleCloseTag(res, {})
             }
         },
-        handleCloseTag (res, route) { // 关闭标签 即重置数据
-            if (res.length === 0 || route.name === this.currentRouteName) {
-                const name = homePage
-                this.$router.push({name})
+        handleCloseTag (res, routeName) { // 关闭标签 即重置数据
+            if (res.length === 0 || routeName === this.currentRouteName) {
+                this.$router.push({name: homePage})
             }
             this.$store.dispatch('route/setTagNavList', res)
         },
-        handleClose (route) { // 触发关闭单一标签 且如果关闭之前有动作就触发
-            if (route.beforeCloseFun && route.beforeCloseFun in beforeCloseFun) {
-                new Promise(beforeCloseFun[route.beforeCloseFun]).then(close => {
-                    if (close) { this.close(route) }
-                })
-            } else {
-                let res = this.list.filter(item => route.name !== item.name)
-                this.handleCloseTag(res, route)
-            }
+        handleClose (routeName) { // 触发关闭单一标签 且如果关闭之前有动作就触发
+            // 以前有个退出钩子在这里检测 现在取消了 2020年5月20日13:46:51 liuyp
+            let res = this.list.filter(item => routeName !== item.name)
+            this.handleCloseTag(res, routeName)
         }
     },
     mounted: function () {

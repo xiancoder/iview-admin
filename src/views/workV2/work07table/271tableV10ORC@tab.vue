@@ -74,11 +74,11 @@
     </div>
 </template>
 <script>
-import tab from './271tableV10'
+import tab from './271tableV10ORC'
 import tab2 from './271tableV10HHH'
 
 export default {
-    name: 'workV2_work07table_271tableV10_tab', // 如果想用缓存必须声明页面name
+    name: 'workV2_work07table_271tableV10ORC_tab', // 如果想用缓存必须声明页面name
     components: { tab, tab2 },
     data () {
         return {
@@ -88,6 +88,13 @@ export default {
     methods: {
     },
     mounted: function () {
+        console.log('mounted', 'mounted 初始化方法')
+    },
+    activated () {
+        console.log('keepalive', 'activated 重新刷新本页数据')
+    },
+    deactivated () {
+        console.log('keepalive', 'deactivated 离开本页数据\r\n 如果是子页面会声明并缓存 如果是不相干页面会清空本页留下的内容')
     }
 }
 </script>

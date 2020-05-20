@@ -72,7 +72,7 @@
 import { extend, extendF, nothing } from '@/utils'
 import { h, saveParamState, getParamState, alertMsg } from '@/tools' // 自定义常用工具
 import tab from './271tableV10DHC2'
-import from1 from './272formV10'
+import from1 from './272formV10ORC'
 
 export default {
     name: 'workV2_work07table_271tableV10DHC2_modal', // 如果想用缓存必须声明页面name

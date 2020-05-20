@@ -27,6 +27,8 @@
                     <Option v-for="option in dataSet.stay" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
+                <Input type="text" v-model.trim="search.name" placeholder="请输入姓名"
+                    style="width: 180px"/>
                 <br />
                 <Button type="warning" :loading="loading.table" @click="hendleSearch">搜索</Button>
                 <Button type="default" :loading="loading.table" @click="hendleReset">重置</Button>
@@ -63,8 +65,11 @@
                 <div class="blogContent" v-highlight>
                     <p><Icon type="md-checkmark" style="color:green"/> 1 搜索/排序/分页/操作 相互关系固化在代码中 尽量不要修改</p>
                     <p><Icon type="md-checkmark" style="color:green"/> 2 内容的花样尽量使用tool中h方法提供的render方式</p>
-                    <p><Icon type="md-checkmark" style="color:green"/> 3 所有右边的按钮使用btn代表 表格中的按钮使用op代表</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 3 所有右边的按钮使用btn代表 表格中的按钮使用op代表 每行不超过6个按钮 5个最佳</p>
                     <p><Icon type="md-checkmark" style="color:green"/> 4 btn必须考虑loading效果 op必须考虑节流效果</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 5 排版尽量精巧易读 能折叠的折叠 能放在弹框里的放弹框</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 6 考虑到页面缓存的复杂性 mounted 和 activated 钩子的分工要清楚</p>
+                    <p><Icon type="md-checkmark" style="color:green"/> 7 弹框尽量单独安排文件 不强制</p>
                     <p><Icon type="md-close" style="color:red"/> ------------------------------------------ </p>
                 </div>
             </div>
@@ -74,10 +79,10 @@
 <script>
 import { extend, extendF, nothing } from '@/utils'
 import { h, confirmAjax, saveParamState, getParamState, alertMsg, goto } from '@/tools' // 自定义常用工具
-import tab from './271tableV10'
+import tab from './271tableV10ORC'
 
 export default {
-    name: 'workV2_work07table_271tableV10_standard', // 如果想用缓存必须声明页面name
+    name: 'workV2_work07table_271tableV10ORC_standard', // 如果想用缓存必须声明页面name
     components: { tab },
     data () {
         return {
@@ -170,7 +175,7 @@ export default {
             })
         },
         hendleAdd (row) { // 操作::添加功能
-            goto({name: 'workV2_work07table_271tableV10@standard$edit', query: {id: 333}})
+            goto({name: 'workV2_work07table_271tableV10ORC@standard$edit', query: {id: 333}})
         },
         hendleEdit (row) { // 操作::编辑功能
             alertMsg(`姓名: ${row.name}<br/> 性别: ${row.sex}<br/> 状态: ${row.stare}<br/> 年龄: ${row.age}<br/> 留学时长: ${row.stay}<br/> `, '单元内容')
@@ -201,7 +206,7 @@ export default {
             extend(this.search, query) // 设置表现搜索项成url缓存
             extendF(this.page, query)
             extendF(this.order, query)
-            this.ajax()
+            // this.ajax() // 因为加入来activated钩子 所以初始化时刻不再读取ajax
         },
         hendleSearch () { // 搜索
             extend(this.serrchParam, this.search) // 设置实际搜索项成表现搜索项
@@ -237,8 +242,16 @@ export default {
         end2: nothing // 防呆设计
     },
     mounted: function () {
+        console.log('mounted', 'mounted 初始化方法')
         this.initTable()
         this.initDataSet()
+    },
+    activated () {
+        console.log('keepalive', 'activated 重新刷新本页数据')
+        this.ajax() // 刷新当前数据
+    },
+    deactivated () {
+        console.log('keepalive', 'deactivated 离开本页数据\r\n 如果是子页面会声明并缓存 如果是不相干页面会清空本页留下的内容')
     }
 }
 </script>

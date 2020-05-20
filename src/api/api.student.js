@@ -242,7 +242,7 @@ export default {
         name,
         comeAge,
         state,
-        page,
+        pageIndex,
         pageSize
     }) {
         return new Promise((resolve, reject) => {
@@ -253,7 +253,7 @@ export default {
                     name,
                     comeAge,
                     state,
-                    pageIndex: page, // 对应后台字段
+                    pageIndex: pageIndex, // 对应后台字段
                     pageSize
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象

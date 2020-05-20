@@ -41,7 +41,7 @@ export default {
     methods: {
         postForm () {
             // this.$router.go(-1)
-            goto('workV2_work07table_271tableV10@standard')
+            goto('workV2_work07table_271tableV10ORC@standard')
         },
         handleSubmit () {
             this.$refs['from0982'].validate((valid) => {
@@ -54,13 +54,15 @@ export default {
             this.$Modal.confirm({
                 title: '提示',
                 content: '<p>信息还未保存，确定要离开当前页面么？</p>',
-                onOk: () => {},
+                onOk: () => {
+                    this.postForm()
+                },
                 onCancel: () => {}
             })
         }
     },
     mounted () {
-        console.log('id', this.$route.query)
+        // console.log('id', this.$route.query)
     }
 }
 </script>

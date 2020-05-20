@@ -128,6 +128,14 @@
                                         </span>
                                     </div>
                                 </div>
+                                <div class="xiangzhaosha-content">
+                                    <div>
+                                        <span> <b>历史记录 : </b> &nbsp;|&nbsp </span>
+                                        <span v-for="item in tagNavList">
+                                            <b>{{item.name}}</b> &nbsp;|&nbsp
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </Row>
@@ -217,6 +225,7 @@ export default {
         breadCrumbList () { return this.$store.state.route.breadCrumbList }, // 面包屑
         spinShow () { return this.$store.state.route.spinLoading || false }, // 路由切换等待效果
         menuList () { return this.$store.state.route.menuList || [] }, // 左边树 数据源
+        tagNavList () { return this.$store.state.route.tagNavList || [] }, // 历史记录tab
         routeList () {
             const obj = this.$store.state.route.routeList
             const arr = []

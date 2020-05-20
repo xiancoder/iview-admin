@@ -1,6 +1,6 @@
 <template>
     <div class="tableLayout">
-        <Card shadow>
+        <Card>
             <div>
                 <div class="message-page-con message-category-con">
                     <Menu width="auto" active-name="unread" @on-select="handleSelect">
