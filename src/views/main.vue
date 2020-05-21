@@ -91,12 +91,13 @@
                             <Row :gutter="16">
                                 <Col :xl="{ span: 24 }" :xxl="{ span: themeMiddle?24:20 }">
                                     <div class="content-wrapper">
-                                        <!-- 页面缓存功能 vue提供 keep-alive -->
-                                        <transition :name="'fade'" mode="out-in">
-                                            <keep-alive :include="cacheList">
-                                                <router-view></router-view>
-                                            </keep-alive>
-                                        </transition>
+                                        <!--
+                                        <keep-alive :include="cacheList">
+                                            <router-view/>
+                                        </keep-alive>
+                                        用几层就放开几层
+                                        -->
+                                        <router-view></router-view>
                                     </div>
                                 </Col>
                                 <Col :xl="{ span: 0 }" :xxl="{ span: 4 }" style=" padding: 47px 10px; " v-if="!themeMiddle">

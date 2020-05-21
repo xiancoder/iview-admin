@@ -12,11 +12,15 @@ export default {
     mixins: [{methods: {goto}}],
     data () {
         return {
-            currentName: '',
-            balance: '-'
+            name: 'workV2_work07table_271tableV10ORC'
         }
     },
     computed: { // 计算属性
+        currentName () {
+            const routeName = this.$route.name
+            if (routeName === this.name) { goto(this.tabList[0].name, 'r') }
+            return routeName
+        },
         tabList () {
             const list = [
                 {name: 'workV2_work07table_271tableV10ORC@standard', title: '表格v10模版规范'},
@@ -29,8 +33,10 @@ export default {
         }
     },
     mounted: function () {
-        this.currentName = this.$route.name
-        if (this.currentName === this.name) { return goto(this.tabList[0].name, 'r') }
+    },
+    activated () {
+    },
+    deactivated () {
     }
 }
 </script>

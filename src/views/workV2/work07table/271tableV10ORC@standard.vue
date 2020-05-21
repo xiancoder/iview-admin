@@ -6,7 +6,8 @@
             </div>
             <tab></tab>
             <div class="tableTool" @keyup.enter.stop="hendleSearch">
-                <Input type="text" v-model.trim="search.businessName" placeholder="请输入姓名" style="width: 180px"/>
+                <Input type="text" v-model.trim="search.name" placeholder="请输入姓名"
+                    style="width: 180px"/>
                 <Select v-model="search.sex" placeholder="请选择性别" style="width: 180px">
                     <Option value="0" label="全部"></Option>
                     <Option v-for="option in dataSet.sex" :value="option.id" :key="option.id" :label="option.name" >
@@ -27,8 +28,6 @@
                     <Option v-for="option in dataSet.stay" :value="option.id" :key="option.id" :label="option.name" >
                     </Option>
                 </Select>
-                <Input type="text" v-model.trim="search.name" placeholder="请输入姓名"
-                    style="width: 180px"/>
                 <br />
                 <Button type="warning" :loading="loading.table" @click="hendleSearch">搜索</Button>
                 <Button type="default" :loading="loading.table" @click="hendleReset">重置</Button>
