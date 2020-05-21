@@ -1,7 +1,7 @@
 // 项目::路由页面
 // 2019年12月31日15:15:49 更新
 
-import MarkDown from '@V/markDown'
+import MarkDown from '@L/markDown'
 import { makeTwoLevelRoute } from './util'
 
 export default makeTwoLevelRoute({

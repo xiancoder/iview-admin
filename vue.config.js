@@ -87,6 +87,7 @@ module.exports = {
             .set('@R', resolve('src/router'))
             .set('@U', resolve('src/utils'))
             .set('@T', resolve('src/tools'))
+            .set('@L', resolve('src/layout'))
         if (!isDev) {
             // 移除 插件
             config.plugins.delete('preload')
