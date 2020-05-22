@@ -1,9 +1,9 @@
 <template>
-    <Layout :class="[
-            'main',
-            themeMiddle?'mianMiddle':'',
-            themeLogoFlex?'logoconflex':''
-        ]">
+    <Layout :class="{
+            'main': true,
+            'mianMiddle': themeMiddle,
+            'logoconflex': themeLogoFlex
+        }">
         <!-- Layout：布局容器，其下可嵌套 HeaderSiderContentFooter或 Layout 本身，可以放在任何父容器中。 -->
         <!-- Header：顶部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。 -->
         <!-- Sider：侧边栏，自带默认样式及基本功能，其下可嵌套任何元素，只能放在 Layout 中。 -->
@@ -166,17 +166,17 @@
     </Layout>
 </template>
 <script>
-import SideMenu from '@C/side-menu' // 组件::左侧树菜单
-import TagsNav from '@C/tags-nav'
-import LockScreen from '@C/lockscreen'
-import ABackTop from '@C/a-back-top'
-import FullScreen from '@C/fullscreen' // 组件::全屏按钮
-import PageUnitTest from '@C/page-unit-test' // 组件::单元测试
-import ErrorStore from '@C/error-store'
-import CustomBreadCrumb from '@C/custom-bread-crumb' // 组件::面包屑
-import qrCode from '@C/qrcode' // 组件::二维码
-import epopen from '@C/epopen' // 组件::EP编辑
-import epopenRoute from '@C/epopen/route' // 组件::EP编辑
+import SideMenu from './components/side-menu' // 组件::左侧树菜单
+import TagsNav from './components/tags-nav' // 组件::历史记录标签
+import LockScreen from './components/lockscreen' // 组件::锁屏
+import ABackTop from './components/a-back-top' // 组件::返回顶部
+import FullScreen from './components/fullscreen' // 组件::全屏按钮
+import PageUnitTest from './components/page-unit-test' // 组件::单元测试
+import ErrorStore from './components/error-store' // 组件::错误信息
+import CustomBreadCrumb from './components/custom-bread-crumb' // 组件::面包屑
+import qrCode from './components/qrcode' // 组件::二维码
+import epopen from './components/epopen' // 组件::EP编辑
+import epopenRoute from './components/epopen/route' // 组件::EP编辑
 import minLogo from '@/assets/images/logo-min.jpg'
 import maxLogo from '@/assets/images/logo.gif'
 import '@S/main.less'

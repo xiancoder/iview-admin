@@ -56,6 +56,7 @@ export const type = object.type
 export const extend = object.extend
 export const extendF = object.extendF
 export const objEqual = object.objEqual
+export const clone = object.clone
 export const deepClone = object.deepClone
 
 export const fillup2Digit = number.fillup2Digit

@@ -67,6 +67,20 @@ export function ownProp (a, b) {
 }
 
 // =====================
+// 简单拷贝
+// =====================
+// liuyp 2018年12月20日11:28:08
+export const clone = (obj) => {
+    var t = Object.prototype.toString.call(obj)
+    if (
+        t === '[object Object]' ||
+        t === '[object Array]' ||
+        t === '[object Date]'
+    ) return Object.assign(obj);
+    return obj
+}
+
+// =====================
 // 深度克隆
 // =====================
 // liuyp 2018年12月20日11:28:08
@@ -87,7 +101,6 @@ export const deepClone = (obj) => {
     }
     return objClone;
 }
-
 // =====================
 // 判断两个对象是否相等
 // @param {*} obj1 对象
