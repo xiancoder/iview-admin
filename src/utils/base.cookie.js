@@ -5,7 +5,7 @@
 // =====================
 // liuyp 2018年12月20日11:28:08
 function encode (str) {
-    return ! str ? '' : (str + '').replace(/[\u4e00-\u9fa5]/g, function (v) {return escape(v)})
+    return !str ? '' : (str + '').replace(/[\u4e00-\u9fa5]/g, function (v) {return escape(v)})
 }
 function decode (str) {
     return unescape(str)
@@ -16,19 +16,19 @@ function decode (str) {
 // =====================
 // liuyp 2018年12月20日11:28:08 中文转义
 export const setCookie = (name, content, time, path, domain, noEscape) => {
-    let expire = new Date
+    let expire = new Date()
     expire.setTime(expire.getTime() + time * 1e3)
     document.cookie = name + '=' +
         (noEscape ? content : encode(content)) +
         '; expires=' + expire.toGMTString() +
         (path ? '; path=' + path : '; path=/') +
         (domain ? '; domain=' + domain : '')
-    if( ! content ) { del(name) }
+    if (!content) { del(name) }
 }
 export const getCookie = (name) => {
     let r = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
     let result = document.cookie.match(r)
-    if(null !== result){return decode(result[2])}
+    if (result !== null) {return decode(result[2])}
     return ''
 }
 export const getAllCookie = () => {
@@ -41,9 +41,9 @@ export const getAllCookie = () => {
     }
     return a2;
 }
-export const delCookie = (name,path,domain) => {
+export const delCookie = (name, path, domain) => {
     let n = get(name)
-    if (null === n) return
+    if (n === null) return
     document.cookie = name + '=' +
         (path ? '; path=' + path : '; path=/') +
         (domain ? '; domain=' + domain : '') +
@@ -52,7 +52,6 @@ export const delCookie = (name,path,domain) => {
 export const delAllCookie = () => {
     let keys = document.cookie.match(/[^ =;]+(?=\=)/g)
     if (keys) {
-        for (let i = keys.length; i--;)
-        document.cookie = keys[i] + '=0;expires=' + new Date( 0).toUTCString()
+        for (let i = keys.length; i--;) {document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()}
     }
 }

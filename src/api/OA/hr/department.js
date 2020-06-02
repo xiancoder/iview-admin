@@ -158,7 +158,7 @@ export default {
                 method: 'GET',
                 url: '/api/hr/post_depart',
                 data: {
-                    postId //职位id，可多选
+                    postId // 职位id，可多选
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data

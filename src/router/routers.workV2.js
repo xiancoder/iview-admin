@@ -185,7 +185,8 @@ export default makeMultiLevelRoute({
                 {power: 'workv2-2', path: '274reportInfo', title: '周报详情'},
                 {power: 'workv2-2', path: '274formV10reportInfo', title: '周报详情V10版'},
                 {power: 'workv2-2', path: '275splitpane', title: '分割窗口组件'},
-                {power: 'workv2-2', path: '276gitlab', title: 'GITLAB界面'}
+                {power: 'workv2-2', path: '276gitlab', title: 'GITLAB界面'},
+                {power: 'workv2-2', path: '277dragTree', title: '可拖动树'}
             ]
         }
     ]

@@ -1,6 +1,5 @@
 
-
-    /* 'title': '所有任务-列表',
+/* 'title': '所有任务-列表',
         'url': '/api/task/myfound',
         'method': 'get',
         'params': {
@@ -39,7 +38,7 @@
         }
     */
 
-    /* 'title': '任务重启详情',
+/* 'title': '任务重启详情',
         'url': '/api/task/restartdetail',
         'method': 'get',
         'params': {
@@ -62,7 +61,7 @@
         }
     */
 
-    /* 'title': '发布任务',
+/* 'title': '发布任务',
         'url': '/api/task/found',
         'method': 'post',
         'params': {
@@ -85,7 +84,7 @@
         }
     */
 
-    /* 'title': '重启任务',
+/* 'title': '重启任务',
         'url': '/api/task/restartSpecial',
         'method': 'post',
         'params': {
@@ -104,7 +103,7 @@
         }
     */
 
-    /* 'title': '普通重启',
+/* 'title': '普通重启',
         'url': '/api/task/restart',
         'method': 'get',
         'params': {
@@ -119,7 +118,7 @@
         }
     */
 
-    /* 'title': '富文本编辑框上传图片-暂时不用',
+/* 'title': '富文本编辑框上传图片-暂时不用',
         'url': '/api/task/uploadimg',
         'method': 'get',
         'params': {
@@ -134,7 +133,7 @@
         }
     */
 
-    /* 'title': '发布人编辑',
+/* 'title': '发布人编辑',
         'url': '/api/task/founderedit',
         'method': 'post',
         'params': {
@@ -151,7 +150,7 @@
         }
     */
 
-    /* 'title': '追加需求',
+/* 'title': '追加需求',
         'url': '/api/task/addneed',
         'method': 'post',
         'params': {
@@ -168,7 +167,7 @@
         }
     */
 
-    /* 'title': '废弃任务',
+/* 'title': '废弃任务',
         'url': '/api/task/giveup',
         'method': 'HttpPost',
         'params': {
@@ -183,7 +182,7 @@
         }
     */
 
-    /* 'title': '删除',
+/* 'title': '删除',
         'url': '/api/task/delete',
         'method': 'HttpPost',
         'params': {
@@ -198,7 +197,7 @@
         }
     */
 
-    /* 'title': '暂停/恢复',
+/* 'title': '暂停/恢复',
         'url': '/api/task/setpause',
         'method': 'post',
         'params': {
@@ -214,7 +213,7 @@
         }
     */
 
-    /* 'title': '恢复',
+/* 'title': '恢复',
         'url': '/api/task/recover',
         'method': 'post',
         'params': {
@@ -229,7 +228,7 @@
         }
     */
 
-    /* 'title': '验收通过',
+/* 'title': '验收通过',
         'url': '/api/task/checkpass',
         'method': 'HttpPost',
         'params': {
@@ -244,7 +243,7 @@
         }
     */
 
-    /* 'title': '我负责的任务-列表',
+/* 'title': '我负责的任务-列表',
         'url': '/api/task/myown',
         'method': 'get',
         'params': {
@@ -283,7 +282,7 @@
         }
     */
 
-    /* 'title': '任务变更负责人',
+/* 'title': '任务变更负责人',
         'url': '/api/task/changeleader',
         'method': 'post',
         'params': {
@@ -299,7 +298,7 @@
         }
     */
 
-    /* 'title': '负责人接受任务',
+/* 'title': '负责人接受任务',
         'url': '/api/task/accept',
         'method': 'post',
         'params': {
@@ -316,7 +315,7 @@
         }
     */
 
-    /* 'title': '任务执行中编辑',
+/* 'title': '任务执行中编辑',
         'url': '/api/task/change',
         'method': 'post',
         'params': {
@@ -333,7 +332,7 @@
         }
     */
 
-    /* 'title': '负责人提交验收',
+/* 'title': '负责人提交验收',
         'url': '/api/task/commit',
         'method': 'get',
         'params': {
@@ -348,7 +347,7 @@
         }
     */
 
-    /* 'title': '我执行的任务-列表',
+/* 'title': '我执行的任务-列表',
         'url': '/api/task/myexe',
         'method': 'get',
         'params': {
@@ -387,7 +386,7 @@
         }
     */
 
-    /* 'title': '抄送我的任务-列表',
+/* 'title': '抄送我的任务-列表',
         'url': '/api/task/aboutme',
         'method': 'get',
         'params': {
@@ -427,7 +426,7 @@
         }
     */
 
-    /* 'title': '添加评论',
+/* 'title': '添加评论',
         'url': '/api/task/discussadd',
         'method': 'post',
         'params': {
@@ -443,7 +442,7 @@
         }
     */
 
-    /* 'title': '任务详情',
+/* 'title': '任务详情',
         'url': '/api/task/detail',
         'method': 'get',
         'params': {
@@ -479,7 +478,7 @@
         }
     */
 
-    /* 'title': '任务轨迹',
+/* 'title': '任务轨迹',
         'url': '/api/task/tasklog',
         'method': 'get',
         'params': {
@@ -502,7 +501,7 @@
         }
     */
 
-    /* 'title': '用户下拉框',
+/* 'title': '用户下拉框',
         'url': '/api/task/users',
         'method': 'get',
         'params': {},

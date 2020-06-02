@@ -1,6 +1,5 @@
 
-
-    /* 'title': '财务领回对账单',
+/* 'title': '财务领回对账单',
         'url': '/api/invoice/receive',
         'method': 'post',
         'params': {
@@ -17,7 +16,7 @@
         }
     */
 
-    /* 'title': '对账单详情',
+/* 'title': '对账单详情',
         'url': '/api/invoice/receive_info',
         'method': 'post',
         'params': {
@@ -36,7 +35,7 @@
         }
     */
 
-    /* 'title': '发票申请申请/编辑',
+/* 'title': '发票申请申请/编辑',
         'url': '/api/invoice/save',
         'method': 'get',
         'params': {
@@ -71,7 +70,7 @@
         }
     */
 
-    /* 'title': '发票详情',
+/* 'title': '发票详情',
         'url': '/api/invoice/detail',
         'method': 'get',
         'params': {
@@ -135,8 +134,8 @@
             }
         }
     */
-    
-    /* 'title': '根据客户id获取反显字段接口',
+
+/* 'title': '根据客户id获取反显字段接口',
         'url': '/api/invoice/cusinfo',
         'method': 'get',
         'params': {
@@ -154,7 +153,7 @@
         }
     */
 
-    /* 'title': '根据客户获取合同搜索下拉框',
+/* 'title': '根据客户获取合同搜索下拉框',
         'url': '/api/invoice/contractlist',
         'method': 'get',
         'params': {
@@ -172,7 +171,7 @@
         }
     */
 
-    /* 'title': '发票列表财务',
+/* 'title': '发票列表财务',
         'url': '/api/invoice/financelist',
         'method': 'get',
         'params': {
@@ -201,7 +200,7 @@
         }
     */
 
-    /* 'title': '发票列表商务/运营',
+/* 'title': '发票列表商务/运营',
         'url': '/api/invoice/financelist',
         'method': 'get',
         'params': {
@@ -229,7 +228,7 @@
         }
     */
 
-    /* 'title': '开票',
+/* 'title': '开票',
         'url': '/api/invoice/set',
         'method': 'post',
         'params': {
@@ -249,7 +248,7 @@
         }
     */
 
-    /* 'title': '发票申请单',
+/* 'title': '发票申请单',
         'url': '/api/invoice/get',
         'method': 'get',
         'params': {
@@ -287,7 +286,7 @@
         }
     */
 
-    /* 'title': '发票通过申请',
+/* 'title': '发票通过申请',
         'url': '/api/invoice/pass_invoice',
         'method': 'post',
         'params': {
@@ -309,7 +308,7 @@
         }
     */
 
-    /* 'title': '发票审批驳回',
+/* 'title': '发票审批驳回',
         'url': '/api/invoice/reject_invoice',
         'method': 'post',
         'params': {
@@ -327,7 +326,7 @@
         }
     */
 
-    /* 'title': '发票审批转发',
+/* 'title': '发票审批转发',
         'url': '/api/invoice/replace_invoice',
         'method': 'post',
         'params': {

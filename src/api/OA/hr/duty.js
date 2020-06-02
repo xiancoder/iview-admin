@@ -184,8 +184,8 @@ export default {
             'msg': '',
             'data':{
                 'list':[ {
-                    'userName': '刘涛', 
-                    'jobNum': '234423423', 
+                    'userName': '刘涛',
+                    'jobNum': '234423423',
                     'department': '商务部',
                     'clockTime':'2019-05-21',
                     'reason': 'xxxxxx',

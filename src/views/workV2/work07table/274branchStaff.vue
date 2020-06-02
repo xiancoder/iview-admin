@@ -474,11 +474,11 @@ export default {
 <style scoped lang="less">
     .layout{
         .layoutLeft{
-            overflow: auto; position: absolute; top: 20px; left: 31px; bottom: 0; width: 255px;
+            overflow: auto; position: absolute; top: 11px; left: 7px; bottom: 0; width: 290px;
             padding: 10px; background: #fff; border: 1px solid #dcdee2;
         }
         .layoutRight{
-            display: inline-block;padding-left: 280px;
+            display: inline-block;padding-left: 298px;width: 100%;
             .layoutTool2{
                 margin-bottom:15px;
                 > *{margin-right: 10px;}

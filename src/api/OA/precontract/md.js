@@ -1,5 +1,5 @@
 
-    /* 'title': '合同前置条件审核申请',
+/* 'title': '合同前置条件审核申请',
         'url': 'api/precontract/examine',
         'method': 'post',
         'params': {
@@ -27,7 +27,7 @@
         }
     */
 
-    /* 'title': '合同前置条件审核申请-保存草稿',
+/* 'title': '合同前置条件审核申请-保存草稿',
         'url': 'api/precontract/examineback',
         'method': 'post',
         'params': {
@@ -55,12 +55,12 @@
         }
     */
 
-    /* 'title': '合同前置条件审核申请-编辑',
+/* 'title': '合同前置条件审核申请-编辑',
         'url': 'api/precontract/examine_edit',
         'method': 'post',
         'params': {
             'wId': 0 // 流程ID
-            'id': 1, // 
+            'id': 1, //
             'projectType': 1 // 所属项目
             'isFirst': 1, // 是否首次合作
             'cusId': 1, // 客户Id
@@ -85,7 +85,7 @@
         }
     */
 
-    /* 'title': '财务审核',
+/* 'title': '财务审核',
         'url': 'api/precontract/audit',
         'method': 'post',
         'params': {
@@ -108,7 +108,7 @@
         }
     */
 
-    /* 'title': '合同前置条件详情',
+/* 'title': '合同前置条件详情',
         'url': 'api/precontract/getdetail',
         'method': 'get',
         'params': {
@@ -131,7 +131,7 @@
                     'isFirst': '1' // 是否首次合作 0 否 1首次
                     'companyName': '企业名称' // 企业名称
                     'cusId': '1' // 客户id
-                    'companyManegerStatus': '企业经营状况' // 
+                    'companyManegerStatus': '企业经营状况' //
                     'industryIvaluation': '业内评价' // 业内评价
                     'companyScale': '公司规模' // 公司规模
                     'licensePic': '经营许可证图片路径' // 经营许可证图片路径
@@ -164,7 +164,7 @@
         }
     */
 
-    /* 'title': '合同前置条件流程列表',
+/* 'title': '合同前置条件流程列表',
         'url': 'api/precontract/list',
         'method': 'get',
         'params': {
@@ -186,7 +186,7 @@
         }
     */
 
-    /* 'title': '预览',
+/* 'title': '预览',
         'url': 'api/precontract/getpreview',
         'method': 'get',
         'params': {
@@ -202,7 +202,7 @@
         }
     */
 
-    /* 'title': '上传图片',
+/* 'title': '上传图片',
         'url': 'api/precontract/savefile',
         'method': 'post',
         'params': {

@@ -122,37 +122,25 @@ export default {
                 h('span', {
                     'style': {
                         padding: '5px',
-                        backgroundColor: data.id === this.treeSelectedDepId ? 'rgb(213, 232, 252)' : '#f5f7f9'
+                        backgroundColor: data.id === this.treeSelectedDepId ? 'rgb(213, 232, 252)' : '#fff'
                     },
                     'on': { click: (souce) => {this.onTreeSelect(data.id)} }
                 }, data.title + '(' + data.id + ')'),
-                h('Poptip', {
-                    'props': { trigger: 'hover', title: data.title, placement: 'right', transfer: true },
-                    'style': { marginLeft: '5px' }
-                }, [
-                    h('Tag', {
-                        style: {lineHeight: '18px'}
-                    }, [
-                        h('Icon', { props: {type: 'md-menu'} })
-                    ]),
-                    h('div', { slot: 'content' }, [
-                        h('Button', { // 添加
-                            props: { icon: 'md-add' },
-                            style: { padding: '3px', marginRight: '5px' }
-                            // on: { click: () => { this.treeMenuAddButton(data.id) } }
-                        }),
-                        h('Button', { // 编辑
-                            props: { icon: 'md-create' },
-                            style: { padding: '3px', marginRight: '5px' }
-                            // on: { click: () => { this.treeMenuEditButton(data) } }
-                        }),
-                        h('Button', { // 删除
-                            props: { icon: 'ios-trash' },
-                            style: { padding: '3px' }
-                            // on: { click: () => { this.treeMenuDelButton(data.id) } }
-                        })
-                    ])
-                ])
+                h('Button', { // 添加
+                    props: { icon: 'md-add', type: 'text' },
+                    style: { marginRight: '2px', width: '20px' },
+                    on: { click: () => { alert(111) } }
+                }),
+                h('Button', { // 编辑
+                    props: { icon: 'md-create', type: 'text' },
+                    style: { marginRight: '2px', width: '20px' },
+                    on: { click: () => { alert(222) } }
+                }),
+                h('Button', { // 删除
+                    props: { icon: 'ios-trash', type: 'text' },
+                    style: { marginRight: '2px', width: '20px' },
+                    on: { click: () => { alert(333) } }
+                })
             ])
         },
         onTreeSelect () {

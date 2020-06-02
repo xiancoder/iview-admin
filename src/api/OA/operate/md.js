@@ -1,5 +1,5 @@
 
-    /* 'title': '获取运营人员'',
+/* 'title': '获取运营人员'',
         'url': '/api/operate/operate_users',
         'method': 'get',
         'params': {},
@@ -15,7 +15,7 @@
         }
     */
 
-    /* 'title': '运营管理列表',
+/* 'title': '运营管理列表',
         'url': '/api/operate/operate_list',
         'method': 'get',
         'params': {
@@ -50,7 +50,7 @@
         }
     */
 
-    /* 'title': '设置预算',
+/* 'title': '设置预算',
         'title': '设置预算',
         'url': '/api/operate/budget_set',
         'method': 'post',
@@ -73,7 +73,7 @@
         }
     */
 
-    /* 'title': '获取设置预算',
+/* 'title': '获取设置预算',
         'url': '/api/operate/budget_get',
         'method': 'get',
         'params': {

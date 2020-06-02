@@ -9,7 +9,7 @@
     "build": "cross-env NODE_ENV=development vue-cli-service build",
     "analyz": "cross-env NODE_ENV=analyz npm_config_report=true vue-cli-service build",
     "online": "cross-env NODE_ENV=production vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "lint": "vue-cli-service lint --fix",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "fix-memory-limit": "cross-env LIMIT=4096 increase-memory-limit"

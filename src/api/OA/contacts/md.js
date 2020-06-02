@@ -1,5 +1,5 @@
 
-    /* 'title': '联系人列表',
+/* 'title': '联系人列表',
         'url': '/api/contacts/getcontacts',
         'method': 'get',
         'params': {

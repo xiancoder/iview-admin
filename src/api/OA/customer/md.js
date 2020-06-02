@@ -3,7 +3,6 @@ import { error } from '@/tools' // 自定义常用工具
 
 export default {
 
-
     /* 'title': '导入客户',
         'url': '/api/customer/upload',
         'method': 'post',
@@ -54,10 +53,6 @@ export default {
             }
         }
     */
-
-
-
-
 
     /* 'title': '客户-公海客户列表',
         'url': '/api/customer/getlistpublic',
@@ -262,7 +257,6 @@ export default {
         }
     */
 
-
     /* 'title': '客户-客户企业详情',
         'url': '/api/customer/detail',
         'method': 'get',
@@ -322,9 +316,6 @@ export default {
         }
     */
 
-
-
-
     /* 'title': '企业联系人-列表',
         'url': '/api/customer/contact',
         'method': 'get',
@@ -376,14 +367,6 @@ export default {
         }
     */
 
-
-
-
-
-
-
-
-
     /* 'title': '负责人联合负责人右侧栏',
         'url': '/api/customer/leader',
         'method': 'get',
@@ -433,7 +416,6 @@ export default {
         }
     */
 
-
     /* 'title': '添加/编辑企业联系人',
         'url': '/api/customer/addcontact',
         'method': 'post',
@@ -457,11 +439,6 @@ export default {
             }
         }
     */
-
-
-
-
-
 
     /* 'title': '获取跟进记录',
         'url': '/api/customer/followuplog',

@@ -1,5 +1,5 @@
 
-    /* 'title': '财务管理-款项认领-我的',
+/* 'title': '财务管理-款项认领-我的',
         'url': '/api/finance/claim_list',
         'method': 'get',
         'params': {
@@ -33,7 +33,7 @@
         }
     */
 
-    /* 'title': '财务管理-款项认领-下属',
+/* 'title': '财务管理-款项认领-下属',
         'url': '/api/finance/claim_sub_list',
         'method': 'get',
         'params': {
@@ -67,7 +67,7 @@
         }
     */
 
-    /* 'title': '财务管理-财务-列表',
+/* 'title': '财务管理-财务-列表',
         'url': '/api/finance/claim_uplist',
         'method': 'get',
         'params': {
@@ -100,7 +100,7 @@
         }
     */
 
-    /* 'title': '财务管理-财务-认领小列表',
+/* 'title': '财务管理-财务-认领小列表',
         'url': '/api/finance/claim_info_list',
         'method': 'get',
         'params': {
@@ -124,7 +124,7 @@
         }
     */
 
-    /* 'title': '财务管理-财务-详情',
+/* 'title': '财务管理-财务-详情',
         'url': '/api/finance/claim_detail',
         'method': 'get',
         'params': {
@@ -165,7 +165,7 @@
         }
     */
 
-    /* 'title': '财务管理-财务-认领',
+/* 'title': '财务管理-财务-认领',
         'url': '/api/finance/claim',
         'method': 'post',
         'params': {
@@ -192,7 +192,7 @@
         }
     */
 
-    /* 'title': '财务管理-财务-上传',
+/* 'title': '财务管理-财务-上传',
         'url': '/api/finance/claim_upload',
         'method': 'post',
         'params': {
@@ -208,7 +208,7 @@
         }
     */
 
-    /* 'title': '财务管理-款项认领-导出我的认领',
+/* 'title': '财务管理-款项认领-导出我的认领',
         'url': '/api/finance/claim_list_export',
         'method': 'get',
         'params': {
@@ -228,7 +228,7 @@
         }
     */
 
-    /* 'title': '财务管理-款项认领-导出下属认领',
+/* 'title': '财务管理-款项认领-导出下属认领',
         'url': '/api/finance/sub_list_export',
         'method': 'get',
         'params': {
@@ -248,7 +248,7 @@
         }
     */
 
-    /* 'title': '财务管理-款项认领-上传数据-导出',
+/* 'title': '财务管理-款项认领-上传数据-导出',
         'url': '/api/finance/claim_uplist_export',
         'method': 'get',
         'params': {
@@ -268,7 +268,7 @@
         }
     */
 
-    /* 'title': '财务管理-款项认领-撤回',
+/* 'title': '财务管理-款项认领-撤回',
         'url': '/api/finance/claim_goback',
         'method': 'get',
         'params': {
@@ -283,7 +283,7 @@
         }
     */
 
-    /* 'title': '财务管理-款项认领-删除',
+/* 'title': '财务管理-款项认领-删除',
         'url': '/api/finance/claim_delete',
         'method': 'get',
         'params': {
@@ -298,7 +298,7 @@
         }
     */
 
-    /* 'title': '客户搜索下拉框',
+/* 'title': '客户搜索下拉框',
         'url': '/api/finance/customer',
         'method': 'get',
         'params': {
@@ -319,7 +319,7 @@
         }
     */
 
-    /* 'title': '所属人员下拉框',
+/* 'title': '所属人员下拉框',
         'url': '/api/finance/users',
         'method': 'get',
         'params': {
@@ -337,7 +337,7 @@
         }
     */
 
-    /* 'title': '获取客户的所属商务',
+/* 'title': '获取客户的所属商务',
         'url': '/api/finance/customer_leader',
         'method': 'get',
         'params': {
@@ -356,7 +356,7 @@
         }
     */
 
-    /* 'title': '获取产品名称下拉框',
+/* 'title': '获取产品名称下拉框',
         'url': '/api/finance/adName',
         'method': 'get',
         'params': {

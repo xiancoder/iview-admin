@@ -1,5 +1,5 @@
 
-    /* 'title': '人员和组列表',
+/* 'title': '人员和组列表',
         'url': '/api/order/user_list',
         'method': 'get',
         'params': {},
@@ -17,7 +17,7 @@
         }
     */
 
-    /* 'title': '获取附件路径',
+/* 'title': '获取附件路径',
         'url': '/api/order/file_url',
         'method': 'post',
         'params': {
@@ -32,7 +32,7 @@
         }
     */
 
-    /* 'title': '发布工单',
+/* 'title': '发布工单',
         'url': '/api/order/edit',
         'method': 'post',
         'params': {
@@ -54,7 +54,7 @@
         }
     */
 
-    /* 'title': '工单详情-编辑',
+/* 'title': '工单详情-编辑',
         'url': '/api/order/info_edit',
         'method': 'get',
         'params': {
@@ -76,7 +76,7 @@
         }
     */
 
-    /* 'title': '回复工单',
+/* 'title': '回复工单',
         'url': '/api/order/reply',
         'method': 'post',
         'params': {
@@ -98,7 +98,7 @@
         }
     */
 
-    /* 'title': '工单列表 已发工单列表',
+/* 'title': '工单列表 已发工单列表',
         'url': '/api/order/order_list',
         'method': 'get',
         'params': {
@@ -129,7 +129,7 @@
         }
     */
 
-    /* 'title': '工单详情',
+/* 'title': '工单详情',
         'url': '/api/order/order_info',
         'method': 'get',
         'params': {
@@ -163,7 +163,7 @@
         }
     */
 
-    /* 'title': '工单阅读状态',
+/* 'title': '工单阅读状态',
         'url': '/api/order/read_list',
         'method': 'get',
         'params': {
@@ -182,7 +182,7 @@
         }
     */
 
-    /* 'title': '结单',
+/* 'title': '结单',
         'url': '/api/order/closure',
         'method': 'post',
         'params': {
@@ -197,7 +197,7 @@
         }
     */
 
-    /* 'title': '草稿箱删除 回复撤回',
+/* 'title': '草稿箱删除 回复撤回',
         'url': '/api/order/order_delete',
         'method': 'post',
         'params': {
@@ -212,7 +212,7 @@
         }
     */
 
-    /* 'title': '下属工单列表',
+/* 'title': '下属工单列表',
         'url': '/api/order/order_sub_list',
         'method': 'get',
         'params': {
@@ -243,7 +243,7 @@
         }
     */
 
-    /* 'title': '回复撤回',
+/* 'title': '回复撤回',
         'url': '/api/order/recall',
         'method': 'post',
         'params': {
@@ -258,7 +258,7 @@
         }
     */
 
-    /* 'title': '组查看列表',
+/* 'title': '组查看列表',
         'url': '/api/order/group_list',
         'method': 'get',
         'params': {
@@ -278,7 +278,7 @@
         }
     */
 
-    /* 'title': '组管理列表',
+/* 'title': '组管理列表',
         'url': '/api/order/group_list_manager',
         'method': 'get',
         'params': {
@@ -298,7 +298,7 @@
         }
     */
 
-    /* 'title': '获取当前用户角色',
+/* 'title': '获取当前用户角色',
         'url': '/api/order/role',
         'method': 'get',
         'params': {},
@@ -311,7 +311,7 @@
         }
     */
 
-    /* 'title': '组添加编辑',
+/* 'title': '组添加编辑',
         'url': '/api/order/group_edit',
         'method': 'post',
         'params': {
@@ -331,7 +331,7 @@
         }
     */
 
-    /* 'title': '获取当前组树',
+/* 'title': '获取当前组树',
         'url': '/api/order/group_tree',
         'method': 'get',
         'params': {
@@ -354,7 +354,7 @@
         }
     */
 
-    /* 'title': '组编辑详情',
+/* 'title': '组编辑详情',
         'url': '/api/order/group_info',
         'method': 'get',
         'params': {
@@ -375,7 +375,7 @@
         }
     */
 
-    /* 'title': '组删除',
+/* 'title': '组删除',
         'url': '/api/order/group_delete',
         'method': 'post',
         'params': {

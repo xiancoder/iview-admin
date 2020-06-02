@@ -1,5 +1,5 @@
 
-    /* 'title': '消息列表',
+/* 'title': '消息列表',
         'url': '/api/message/list',
         'method': 'get',
         'params': {
@@ -26,7 +26,7 @@
         }
     */
 
-    /* 'title': '是否有新的消息',
+/* 'title': '是否有新的消息',
         'url': '/api/message/have',
         'method': 'get',
         'params': {},
@@ -39,7 +39,7 @@
         }
     */
 
-    /* 'title': '已读改状态',
+/* 'title': '已读改状态',
         'url': '/api/message/readed',
         'method': 'get',
         'params': {

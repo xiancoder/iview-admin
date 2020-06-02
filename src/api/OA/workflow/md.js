@@ -1,5 +1,5 @@
 
-    /* 'title': '全部流程列表（商务）',
+/* 'title': '全部流程列表（商务）',
         'url': 'api/workflow/businesslist',
         'method': 'get',
         'params': {
@@ -30,7 +30,7 @@
         }
     */
 
-    /* 'title': '获取所有流程',
+/* 'title': '获取所有流程',
         'url': 'api/workflow/getall',
         'method': 'get',
         'params': {},
@@ -50,7 +50,7 @@
         }
     */
 
-    /* 'title': '广告上线申请',
+/* 'title': '广告上线申请',
         'url': 'api/workflow/apply_ad',
         'method': 'post',
         'params': {
@@ -84,7 +84,7 @@
         }
     */
 
-    /* 'title': '广告上线申请保存为草稿',
+/* 'title': '广告上线申请保存为草稿',
         'url': 'api/workflow/apply_ad_draft',
         'method': 'post',
         'params': {
@@ -112,7 +112,7 @@
         }
     */
 
-    /* 'title': '立项编号搜索下拉框接口',
+/* 'title': '立项编号搜索下拉框接口',
         'url': 'api/workflow/confirmproject',
         'method': 'get',
         'params': {
@@ -131,7 +131,7 @@
         }
     */
 
-    /* 'title': '获取审批人接口',
+/* 'title': '获取审批人接口',
         'url': 'api/workflow/getusers',
         'method': 'get',
         'params': {},
@@ -147,7 +147,7 @@
         }
     */
 
-    /* 'title': '获取立项信息接口',
+/* 'title': '获取立项信息接口',
         'url': 'api/workflow/confirmproject_info',
         'method': 'get',
         'params': {
@@ -165,7 +165,7 @@
         }
     */
 
-    /* 'title': '获取流程节点接口',
+/* 'title': '获取流程节点接口',
         'url': 'api/workflow/getnodes',
         'method': 'get',
         'params': {
@@ -183,7 +183,7 @@
         }
     */
 
-    /* 'title': '我的流程列表（待我审批的,我已审批的,抄送我的）',
+/* 'title': '我的流程列表（待我审批的,我已审批的,抄送我的）',
         'url': 'api/workflow/list',
         'method': 'get',
         'params': {
@@ -219,7 +219,7 @@
         }
     */
 
-    /* 'title': '我的流程列表（我申请的）',
+/* 'title': '我的流程列表（我申请的）',
         'url': 'api/workflow/list_myown',
         'method': 'get',
         'params': {
@@ -254,7 +254,7 @@
         }
     */
 
-    /* 'title': '获取流程类型',
+/* 'title': '获取流程类型',
         'url': 'api/workflow/gettype',
         'method': 'get',
         'params': {},
@@ -271,7 +271,7 @@
         }
     */
 
-    /* 'title': '获取流程名称 联动',
+/* 'title': '获取流程名称 联动',
         'url': 'api/workflow/getname',
         'method': 'get',
         'params': {
@@ -290,7 +290,7 @@
         }
     */
 
-    /* 'title': '我的流程列表（草稿箱）',
+/* 'title': '我的流程列表（草稿箱）',
         'url': 'api/workflow/draft',
         'method': 'get',
         'params': {
@@ -315,7 +315,7 @@
         }
     */
 
-    /* 'title': '我的流程列表（草稿箱）删除',
+/* 'title': '我的流程列表（草稿箱）删除',
         'url': 'api/workflow/delete',
         'method': 'get',
         'params': {
@@ -330,7 +330,7 @@
         }
     */
 
-    /* 'title': '广告上线申请 编辑',
+/* 'title': '广告上线申请 编辑',
         'url': 'api/workflow/apply_edit',
         'method': 'post',
         'params': {
@@ -364,7 +364,7 @@
         }
     */
 
-    /* 'title': '广告上线详情',
+/* 'title': '广告上线详情',
         'url': 'api/workflow/detail_ad_edit',
         'method': 'get',
         'params': {
@@ -401,7 +401,7 @@
         }
     */
 
-    /* 'title': '',
+/* 'title': '',
         'url': 'api/workflow/detail_ad_view',
         'method': 'get',
         'params': {
@@ -443,7 +443,7 @@
         }
     */
 
-    /* 'title': '审批 通过',
+/* 'title': '审批 通过',
         'url': 'api/workflow/pass_ad',
         'method': 'post',
         'params': {
@@ -463,7 +463,7 @@
         }
     */
 
-    /* 'title': '审批 驳回',
+/* 'title': '审批 驳回',
         'url': 'api/workflow/reject_ad',
         'method': 'post',
         'params': {
@@ -480,7 +480,7 @@
         }
     */
 
-    /* 'title': '审批 转发',
+/* 'title': '审批 转发',
         'url': 'api/workflow/change_ad',
         'method': 'post',
         'params': {
@@ -496,7 +496,7 @@
         }
     */
 
-    /* 'title': '获取是否有签名',
+/* 'title': '获取是否有签名',
         'url': 'api/workflow/getisexis',
         'method': 'get',
         'params': {},
@@ -509,7 +509,7 @@
         }
     */
 
-    /* 'title': '获取签名',
+/* 'title': '获取签名',
         'url': 'api/workflow/getSign',
         'method': 'post',
         'params': {
@@ -524,7 +524,7 @@
         }
     */
 
-    /* 'title': '获取上次审批人及抄送人',
+/* 'title': '获取上次审批人及抄送人',
         'url': 'api/workflow/get_last',
         'method': 'get',
         'params': {
@@ -546,7 +546,7 @@
         }
     */
 
-    /* 'title': '获取审批人员列表',
+/* 'title': '获取审批人员列表',
         'url': 'api/workflow/get_approver_list',
         'method': 'get',
         'params': {

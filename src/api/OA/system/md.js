@@ -1,5 +1,5 @@
 
-    /* 'title': '登陆 ',
+/* 'title': '登陆 ',
         'url': '/api/system/login',
         'method': 'post',
         'params': {
@@ -16,7 +16,7 @@
         }
     */
 
-    /* 'title': '登录用户信息 ',
+/* 'title': '登录用户信息 ',
         'url': '/api/system/login_user',
         'method': 'post',
         'response': {
@@ -32,7 +32,7 @@
         }
     */
 
-    /* 'title': '退出',
+/* 'title': '退出',
         'url': '/api/system/loginout',
         'method': 'get',
         'params': {},
@@ -46,7 +46,7 @@
         }
     */
 
-    /* 'title': '移除全部缓存',
+/* 'title': '移除全部缓存',
         'url': '/api/system/remove_all_cache',
         'method': 'get',
         'params': {},
@@ -60,7 +60,7 @@
         }
     */
 
-    /* 'title': '获取菜单',
+/* 'title': '获取菜单',
         'url': '/api/system/menulist',
         'method': 'get',
         'params': {
@@ -88,7 +88,7 @@
         }
     */
 
-    /* 'title': '操作日志-操作类型下拉框',
+/* 'title': '操作日志-操作类型下拉框',
         'url': '/api/system/operate_type',
         'method': 'get',
         'params': {},
@@ -105,7 +105,7 @@
         }
     */
 
-    /* 'title': '操作日志',
+/* 'title': '操作日志',
         'url': '/api/system/operate',
         'method': 'get',
         'params': {
@@ -136,7 +136,7 @@
         }
     */
 
-    /* 'title': '获取所有用户下拉框 操作日志',
+/* 'title': '获取所有用户下拉框 操作日志',
         'url': '/api/system/getalluser',
         'method': 'get',
         'params': {},
@@ -153,7 +153,7 @@
         }
     */
 
-    /* 'title': '系统设置-客户管理设置-获取',
+/* 'title': '系统设置-客户管理设置-获取',
         'url': '/api/system/getcustomer',
         'method': 'get',
         'params': {},
@@ -172,7 +172,7 @@
         }
     */
 
-    /* 'title': '系统设置-客户管理设置-保存',
+/* 'title': '系统设置-客户管理设置-保存',
         'url': '/api/system/setcustomer',
         'method': 'post',
         'params': {
@@ -191,7 +191,7 @@
         }
     */
 
-    /* 'title': '款项认领设置',
+/* 'title': '款项认领设置',
         'url': '/api/system/operate_set',
         'method': 'post',
         'params': {
@@ -206,7 +206,7 @@
         }
     */
 
-    /* 'title': '款项认领设置详情',
+/* 'title': '款项认领设置详情',
         'url': '/api/system/operate_get',
         'method': 'get',
         'params': {},
@@ -219,7 +219,7 @@
         }
     */
 
-    /* 'title': '系统设置-角色设置-搜索',
+/* 'title': '系统设置-角色设置-搜索',
         'url': '/api/system/rolelist',
         'method': 'get',
         'params': {
@@ -236,7 +236,7 @@
         }
     */
 
-    /* 'title': '系统设置-角色设置-添加or编辑',
+/* 'title': '系统设置-角色设置-添加or编辑',
         'url': '/api/system/roleedit',
         'method': 'post',
         'params': {
@@ -260,7 +260,7 @@
         }
     */
 
-    /* 'title': '系统设置-角色设置-详情',
+/* 'title': '系统设置-角色设置-详情',
         'url': '/api/system/roledetail',
         'method': 'get',
         'params': {
@@ -285,7 +285,7 @@
         }
     */
 
-    /* 'title': '权限设置-搜索角色设置没有的权限 ',
+/* 'title': '权限设置-搜索角色设置没有的权限 ',
         'url': '/api/system/rightlistno',
         'method': 'get',
         'params': {
@@ -309,7 +309,7 @@
         }
     */
 
-    /* 'title': '权限设置-搜索 ',
+/* 'title': '权限设置-搜索 ',
         'url': '/api/system/rightlist',
         'method': 'get',
         'params': {
@@ -336,7 +336,7 @@
         }
     */
 
-    /* 'title': '权限设置-添加or编辑 ',
+/* 'title': '权限设置-添加or编辑 ',
         'url': '/api/system/rightedit',
         'method': 'post',
         'params': {
@@ -356,7 +356,7 @@
         }
     */
 
-    /* 'title': '权限设置-详情 ',
+/* 'title': '权限设置-详情 ',
         'url': '/api/system/rightdetail',
         'method': 'get',
         'params': {
@@ -376,7 +376,7 @@
         }
     */
 
-    /* 'title': '修改密码 ',
+/* 'title': '修改密码 ',
         'url': '/api/system/pwd_modify',
         'method': 'post',
         'params': {
@@ -393,7 +393,7 @@
         }
     */
 
-    /* 'title': '修改密码 ',
+/* 'title': '修改密码 ',
         'url': '/api/system/suggest
         'method': 'post',
         'params': {
