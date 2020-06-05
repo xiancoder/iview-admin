@@ -6,6 +6,7 @@ import home from './routers.home'
 import exp from './routers.exp'
 import expV2 from './routers.expV2'
 import workV2 from './routers.workV2'
+import plop from './routers.plop'
 import es6 from './routers.es6'
 import tool from './routers.tool'
 import other from './routers.other'
@@ -30,6 +31,7 @@ export const routerList = [
     exp,
     expV2,
     workV2,
+    plop,
     es6,
     tool,
     other,

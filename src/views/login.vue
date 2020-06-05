@@ -49,9 +49,9 @@ export default {
         }
     },
     methods: {
-        handleSubmit1 (param) {
+        handleSubmit1 () {
             this.error = ''
-            this.$store.dispatch('admin/login', param).then(res => {
+            this.$store.dispatch('admin/login', arguments[0]).then(res => {
                 this.$store.dispatch('route/getPowerList').then(res => { // 读取权限 更新权限视图
                     console.info(
                         '%c 资料库 %c 管理员登录成功 ',
@@ -60,6 +60,7 @@ export default {
                         '-'
                     )
                     this.$router.push({ name: homePage })
+                    arguments[1]()
                 })
                 this.$store.dispatch('admin/getUserInfo') // 获取用户信息
             }).catch(res => {

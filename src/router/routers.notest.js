@@ -7,8 +7,8 @@ export default [
     makeTwoLevelRoute({
         path: 'draw', title: '绘制相关', icon: 'ios-stats',
         children: [
-            {power: 'canvas', path: 'canvas', icon: 'md-add', title: 'Canvas绘制'},
-            {power: 'canvas', path: 'svg', icon: 'md-download', title: 'Svg绘制'}
+            {power: '0000', path: 'canvas', icon: 'md-add', title: 'Canvas绘制'},
+            {power: '0000', path: 'svg', icon: 'md-download', title: 'Svg绘制'}
         ]
     }),
 
@@ -24,13 +24,7 @@ export default [
             {power: '0000', path: 'editor', icon: 'ios-create', title: '富文本编辑器'},
             {power: '0000', path: 'treeselect', icon: 'md-arrow-dropdown-circle', title: '树状下拉选择器'},
             {power: '0000', path: 'draglist', icon: 'ios-infinite', title: '拖拽列表'},
-            {power: '0000', path: 'icons', icon: 'bear', title: '自定义图标'}
-        ]
-    }),
-
-    makeTwoLevelRoute({
-        path: 'update', title: '数据上传(未测试)', icon: 'md-cloud-upload',
-        children: [
+            {power: '0000', path: 'icons', icon: 'bear', title: '自定义图标'},
             {power: '0000', path: 'updatetable', icon: 'md-arrow-dropdown-circle', title: '上传Csv'},
             {power: '0000', path: 'updatepaste', icon: 'md-trending-up', title: '粘贴表格数据'}
         ]

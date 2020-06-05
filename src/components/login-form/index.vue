@@ -7,7 +7,7 @@
             <Input type="password" v-model="form.password" prefix="md-lock" placeholder="请输入密码" />
         </FormItem>
         <FormItem>
-            <Button @click.stop.prevent="handleSubmit" type="primary" long>登录</Button>
+            <Button :loading="loading" @click.stop.prevent="handleSubmit" type="primary" long>登录</Button>
         </FormItem>
     </Form>
 </template>
@@ -20,6 +20,7 @@ export default {
                 userName: 'liuyp@163.com',
                 password: '123456'
             },
+            loading: false,
             rules: {},
             rulesII: {
                 userName: [
@@ -40,12 +41,17 @@ export default {
             this.handleSubmit = this.handleSubmitII
         },
         handleSubmitII () {
+            this.loading = true
             this.$refs.loginForm.validate((valid) => {
                 if (valid) {
                     this.$emit('on-success-valid', {
                         userName: this.form.userName,
                         password: this.form.password
+                    }, () => {
+                        this.loading = false
                     })
+                } else {
+                    this.loading = false
                 }
             })
         }

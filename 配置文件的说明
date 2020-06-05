@@ -1,0 +1,118 @@
+1 =====================================
+
+package.json
+
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "IOS >= 7",
+    "not ie <= 8"
+  ],
+
+.browserslistrc
+
+[production staging]
+> 1%
+last 2 versions
+IOS >= 7
+not ie <= 8
+
+[development]
+last 1 chrome version
+last 1 firefox version
+
+1 =====================================
+
+package.json
+
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+
+.lintstagedrc
+
+{
+    "*.js": [
+        "vue-cli-service lint",
+        "git add"
+    ],
+    "*.vue": [
+        "vue-cli-service lint",
+        "git add"
+    ]
+}
+
+1 =====================================
+
+package.json
+
+  "jest": {
+    "moduleNameMapper": {
+      "^vue$": "vue/dist/vue.common.js"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor"
+    },
+    "collectCoverageFrom": [
+      "src/**/*.{js,vue}",
+      "!src/main.js",
+      "!src/router/index.js",
+      "!**/node_modules/**"
+    ]
+  }
+
+jest.config.js
+
+module.exports = {
+    verbose: true,
+    moduleFileExtensions: [
+        'js',
+        'jsx',
+        'json',
+        'vue'
+    ],
+    transform: {
+        '^.+\\.vue$': 'vue-jest',
+        '.+\\.(css|styl|less|sass|scss|svg|gif|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
+        '^.+\\.jsx?$': 'babel-jest'
+    },
+    transformIgnorePatterns: [
+        '/node_modules/'
+    ],
+    moduleNameMapper: {
+        '^@/(.*)$': '<rootDir>/src/$1',
+        '^@S/(.*)$': '<rootDir>/src/style/$1',
+        '^@C/(.*)$': '<rootDir>/src/components/$1',
+        '^@V/(.*)$': '<rootDir>/src/views/$1'
+    },
+    snapshotSerializers: [
+        'jest-serializer-vue'
+    ],
+    testMatch: [
+        '**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)'
+    ],
+    testURL: 'http://localhost/'
+};
+
+
+1 =====================================
+1 =====================================
+1 =====================================
+1 =====================================
+1 =====================================
+1 =====================================
+1 =====================================
+1 =====================================
+
