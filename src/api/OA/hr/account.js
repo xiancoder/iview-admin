@@ -19,15 +19,15 @@ export default {
              }
         }
     */
-    edit ({ type_id, account_name, user_id }) {
+    edit ({ typeId, accountName, userId }) {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
                 url: '/api/hr/account_add',
                 data: {
-                    type_id,
-                    account_name,
-                    user_id
+                    type_id: typeId,
+                    account_name: accountName,
+                    user_id: userId
                 }
             }).then(response => { // 请注意这个返回值是整个结果对象
                 const res = response.data

@@ -10,7 +10,9 @@ export default {
     props: {
         value: {
             type: Array,
-            default: []
+            default: () => {
+                return []
+            }
         },
         name: {
             type: String,
@@ -18,7 +20,9 @@ export default {
         },
         data: {
             type: Array,
-            default: []
+            default: () => {
+                return []
+            }
         }
     },
     data () {
