@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 // =====================
 // 防抖
@@ -9,7 +9,7 @@
 export const debounce = (fn, interval = 2e3) => {
     let last = null
     let timer = 0
-    return function () {
+    return function() {
         const args = arguments
         const now = +new Date()
         last = now
@@ -30,7 +30,7 @@ export const debounce = (fn, interval = 2e3) => {
 // 2019年12月13日17:55:24 经历实战
 export const throttle = (fn, delay = 2e3) => {
     let last = null
-    return function () {
+    return function() {
         var args = arguments
         const now = +new Date()
         if (last && now - last < delay) {
@@ -51,7 +51,7 @@ export const nothing = () => {}
 // argusParseArray(1,2,3,4,5) 结果 [1,2,3,4,5]
 // =====================
 // liuyp 2019-11-15 10:48:11
-export function argusParseArray () {
+export function argusParseArray() {
     var args = Array.prototype.slice.call(arguments, 0)
     return args
 }

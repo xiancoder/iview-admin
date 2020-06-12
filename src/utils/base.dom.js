@@ -1,11 +1,11 @@
-'use strict';
+'use strict'
 
 // =====================
 // 当前浏览器名称
 // =====================
 export const getExplorer = () => {
     const ua = window.navigator.userAgent
-    const isExplorer = (exp) => {
+    const isExplorer = exp => {
         return ua.indexOf(exp) > -1
     }
     if (isExplorer('MSIE')) return 'IE'
@@ -49,17 +49,16 @@ export const replaceUrlParam = (paramName, replaceWith) => {
 // liuyp 2019年9月6日 15:50:47
 export const scrollTop = (el, from = 0, to, duration = 500, endCallback) => {
     if (!window.requestAnimationFrame) {
-        window.requestAnimationFrame = (
+        window.requestAnimationFrame =
             window.webkitRequestAnimationFrame ||
             window.mozRequestAnimationFrame ||
             window.msRequestAnimationFrame ||
-            function (callback) {
+            function(callback) {
                 return window.setTimeout(callback, 1000 / 60)
             }
-        )
     }
     const difference = Math.abs(from - to)
-    const step = Math.ceil(difference / duration * 50)
+    const step = Math.ceil((difference / duration) * 50)
 
     const scroll = (start, end, step) => {
         if (start === end) {
@@ -67,9 +66,9 @@ export const scrollTop = (el, from = 0, to, duration = 500, endCallback) => {
             return
         }
 
-        let d = (start + step > end) ? end : start + step
+        let d = start + step > end ? end : start + step
         if (start > end) {
-            d = (start - step < end) ? end : start - step
+            d = start - step < end ? end : start - step
         }
 
         if (el === window) {
@@ -82,22 +81,88 @@ export const scrollTop = (el, from = 0, to, duration = 500, endCallback) => {
     scroll(from, to, step)
 }
 
+Math.easeInOutQuad = function(t, b, c, d) {
+    t /= d / 2
+    if (t < 1) {
+        return (c / 2) * t * t + b
+    }
+    t--
+    return (-c / 2) * (t * (t - 2) - 1) + b
+}
+// requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
+var requestAnimFrame = (function() {
+    return (
+        window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        function(callback) {
+            window.setTimeout(callback, 1000 / 60)
+        }
+    )
+})()
+/**
+ * Because it's so fucking difficult to detect the scrolling element, just move them all
+ * @param {number} amount
+ */
+function move(amount) {
+    document.documentElement.scrollTop = amount
+    document.body.parentNode.scrollTop = amount
+    document.body.scrollTop = amount
+}
+function position() {
+    return document.documentElement.scrollTop || document.body.parentNode.scrollTop || document.body.scrollTop
+}
+/**
+ * @param {number} to
+ * @param {number} duration
+ * @param {Function} callback
+ */
+export function scrollTo(to, duration, callback) {
+    const start = position()
+    const change = to - start
+    const increment = 20
+    let currentTime = 0
+    duration = typeof duration === 'undefined' ? 500 : duration
+    var animateScroll = function() {
+        // increment the time
+        currentTime += increment
+        // find the value with the quadratic in-out easing function
+        var val = Math.easeInOutQuad(currentTime, start, change, duration)
+        // move the document.body
+        move(val)
+        // do the animation unless its over
+        if (currentTime < duration) {
+            requestAnimFrame(animateScroll)
+        } else {
+            if (callback && typeof callback === 'function') {
+                // the animation is done so lets callback
+                callback()
+            }
+        }
+    }
+    animateScroll()
+}
+
 // =====================
 // dom js触发打印功能
 // =====================
 // liuyp 2020年2月6日 15:50:47
-export function print (content, style) {
+export function print(content, style) {
     let html = ''
     if (Object.prototype.toString.call(content).toLowerCase() === '[object array]') {
         content.forEach((one, index) => {
-            if (index % 2 !== 0) {html += '<div STYLE="page-break-before:always"></div>'}
+            if (index % 2 !== 0) {
+                html += '<div STYLE="page-break-before:always"></div>'
+            }
             html += one
-            if (index % 2 !== 0) {html += '<div STYLE="page-break-after:always"></div>'}
+            if (index % 2 !== 0) {
+                html += '<div STYLE="page-break-after:always"></div>'
+            }
         })
     } else if (typeof content === 'string') {
         html = content
     } else {
-        return;
+        return
     }
     const printStr = `
         <html>
@@ -120,10 +185,10 @@ export function print (content, style) {
     const win = ifr.contentWindow
     win.document.write(printStr)
     win.document.close()
-    win.print();
+    win.print()
     setTimeout(() => {
         document.body.removeChild(ifr)
-    }, 1e3);
+    }, 1e3)
 }
 
 // =====================
@@ -145,7 +210,7 @@ export const findNodeUpperByClasses = (ele, classes) => {
 // makeDom_创_创建节点
 /* 动态加入文字DIV */
 // =====================
-export function appendDiv (text, elem) {
+export function appendDiv(text, elem) {
     var dNode = document.createTextNode(text)
     var dElem = document.createElement(elem)
     dElem.appendChild(dNode)
@@ -158,46 +223,46 @@ export function appendDiv (text, elem) {
 // 有appendChild的应该也有prependChild吧？
 // document.body.insertBefore(xx, document.body.children.item(0));
 // =====================
-export function insertAfter (newEl, targetEl) {
-    var parentEl = targetEl.parentNode;
+export function insertAfter(newEl, targetEl) {
+    var parentEl = targetEl.parentNode
     if (parentEl.lastChild === targetEl) {
-        parentEl.appendChild(newEl);
+        parentEl.appendChild(newEl)
     } else {
-        parentEl.insertBefore(newEl, targetEl.nextElementSibling || targetEl.nextSibling);
+        parentEl.insertBefore(newEl, targetEl.nextElementSibling || targetEl.nextSibling)
     }
 }
-export function insertBefore (newEl, targetEl) {
-    var parentEl = targetEl.parentNode;
-    parentEl.insertBefore(newEl, targetEl);
+export function insertBefore(newEl, targetEl) {
+    var parentEl = targetEl.parentNode
+    parentEl.insertBefore(newEl, targetEl)
 }
-export function prependChild (newEl, parentEl) {
-    var r = parentEl.firstChild;
+export function prependChild(newEl, parentEl) {
+    var r = parentEl.firstChild
     return r && r.nodeType ? void parentEl.insertBefore(newEl, r) : void parentEl.appendChild(newEl)
 }
-export function appendChild (newEl, parentEl) {
-    return parentEl.appendChild(newEl);
+export function appendChild(newEl, parentEl) {
+    return parentEl.appendChild(newEl)
 }
 
 // =====================
 // makeDom_增_测试手动插入脚本
 // =====================
-export function appendScript () {
-    var script = document.createElement('script');
-    script.src = '';
-    document.body.appendChild(script);
+export function appendScript() {
+    var script = document.createElement('script')
+    script.src = ''
+    document.body.appendChild(script)
 }
 
 // =====================
 // makeDom_删_动态移除DOM
 // =====================
-export function remove (elem) {
-    elem.parentNode && elem.parentNode.removeChild(elem);
+export function remove(elem) {
+    elem.parentNode && elem.parentNode.removeChild(elem)
 }
 
 // =====================
 // makeDom_改_动态处理属性
 // =====================
-export function Attr (elem, attr, value) {
+export function Attr(elem, attr, value) {
     if (value === undefined) {
         return elem.getAttribute(attr)
     } else if (value === '') {
@@ -208,30 +273,85 @@ export function Attr (elem, attr, value) {
 // =====================
 // makeDom_改_动态处理样式
 // =====================
-export function hasClass (el, k) {
-    if (!el || !k) { return; }
-    return (' ' + el.className + ' ').indexOf(' ' + k + ' ') > -1;
+export function hasClass(el, k) {
+    if (!el || !k) {
+        return
+    }
+    return (' ' + el.className + ' ').indexOf(' ' + k + ' ') > -1
 }
-export function addClass (el, k) {
-    if (!el || !k) { return; }
-    if (!el.className) { el.className = k; return k }
-    if (hasClass(el, k)) { el.className = [el.className, k].join(' '); }
+export function addClass(el, k) {
+    if (!el || !k) {
+        return
+    }
+    if (!el.className) {
+        el.className = k
+        return k
+    }
+    if (hasClass(el, k)) {
+        el.className = [el.className, k].join(' ')
+    }
 }
-export function removeClass (el, k) {
-    if (!el || !k) { return; }
-    if (k === '*') { el.className = k; return k }
-    if (hasClass(el, k)) { el.className = (' ' + el.className + ' ').replace(k, ''); }
+export function removeClass(el, k) {
+    if (!el || !k) {
+        return
+    }
+    if (k === '*') {
+        el.className = k
+        return k
+    }
+    if (hasClass(el, k)) {
+        el.className = (' ' + el.className + ' ').replace(k, '')
+    }
 }
-export function toggleClass (el, k) {
-    if (!el || !k) { return; }
-    return (hasClass(el, k)) ? removeClass(el, k) : addClass(el, k);
+export function toggleClass(el, k) {
+    if (!el || !k) {
+        return
+    }
+    return hasClass(el, k) ? removeClass(el, k) : addClass(el, k)
 }
 
 // =====================
 // makeDom_断_元素属性
 // 判断siblingNode和dom是否为同一个父元素下的同一级的元素，返回bool值
 // =====================
-export function isSiblingNode (element, siblingNode) {
-    if (!siblingNode || !element) return false;
-    return element.parentNode === siblingNode.parentNode;
+export function isSiblingNode(element, siblingNode) {
+    if (!siblingNode || !element) return false
+    return element.parentNode === siblingNode.parentNode
+}
+
+// =====================
+// 新窗口打开
+// Created by jiachenpan on 16/11/29.
+// @param {Sting} url
+// @param {Sting} title
+// @param {Number} w
+// @param {Number} h
+// =====================
+export function openWindow(url, title, w, h) {
+    // Fixes dual-screen position Most browsers Firefox
+    const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left
+    const dualScreenTop = window.screenTop !== undefined ? window.screenTop : screen.top
+    const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width
+    const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height
+    const left = width / 2 - w / 2 + dualScreenLeft
+    const top = height / 2 - h / 2 + dualScreenTop
+    const newWindow = window.open(
+        url,
+        title,
+        'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=' +
+            w +
+            ', height=' +
+            h +
+            ', top=' +
+            top +
+            ', left=' +
+            left
+    )
+    // Puts focus on the newWindow
+    if (window.focus) {
+        newWindow.focus()
+    }
+}
+export function openNewTag(url) {
+    window.open(url, '_blank')
 }
